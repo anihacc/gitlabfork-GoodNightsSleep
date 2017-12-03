@@ -1,17 +1,18 @@
 package com.legacy.goodnightsleep.common.blocks;
 
+import com.legacy.goodnightsleep.common.blocks.depricated.BlockAetherPortal;
 import com.legacy.goodnightsleep.common.GoodNightSleep;
 import com.legacy.goodnightsleep.common.blocks.construction.BlockGNSPlank;
 import com.legacy.goodnightsleep.common.blocks.natural.BlockGNSDirt;
 import com.legacy.goodnightsleep.common.blocks.natural.BlockGNSFlower;
 import com.legacy.goodnightsleep.common.blocks.natural.BlockGNSGrass;
+import com.legacy.goodnightsleep.common.blocks.natural.BlockGNSLeaves;
 import com.legacy.goodnightsleep.common.blocks.natural.BlockGNSLog;
+import com.legacy.goodnightsleep.common.blocks.natural.BlockGNSMushroom;
 import com.legacy.goodnightsleep.common.blocks.natural.BlockGNSTallGrass;
 import com.legacy.goodnightsleep.common.registry.GNSCreativeTabs;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockSlab;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemBlock;
@@ -35,6 +36,8 @@ public class BlocksGNS
 	public static Block nightmare_test_portal, dream_test_portal;
 
 	public static Block orange_flower, cyan_flower, dead_flower, despair_mushroom, hope_mushroom;
+	
+	public static Block hope_mushroom_cap, despair_mushroom_cap;
 
 	//public static Block skyroot_sapling, golden_oak_sapling;
 
@@ -53,6 +56,8 @@ public class BlocksGNS
 	//public static Block holystone_wall, mossy_holystone_wall, holystone_brick_wall, carved_wall, angelic_wall, hellfire_wall, aerogel_wall;
 
 	public static Block pot_of_gold, present;
+	
+	public static Block test_portal;
 
 	public static void initialization()
 	{
@@ -61,6 +66,8 @@ public class BlocksGNS
 		dream_grass = register("dream_grass", new BlockGNSGrass());
 		dream_dirt = register("dream_dirt", new BlockGNSDirt());
 		nightmare_grass = register("nightmare_grass", new BlockGNSGrass());
+		hope_mushroom = register("hope_mushroom", new BlockGNSMushroom());
+		despair_mushroom = register("despair_mushroom", new BlockGNSMushroom());
 		
 		//zitrite_ore = register("zitrite_ore", new BlockZirtiteOre());
 		//necrum_ore = register("necrum_ore", new BlockNecrumOre());
@@ -69,7 +76,9 @@ public class BlocksGNS
 		//positite_ore = register("positite_ore", new BlockPosititeOre());
 		//negatite_ore = register("negatite_ore", new BlockNegatiteOre());
 		
-		//aether_leaves = registerMeta("aether_leaves", new BlockGNSLeaves());
+		dream_leaves = register("dream_leaves", new BlockGNSLeaves());
+		candy_leaves = register("candy_leaves", new BlockGNSLeaves());
+		diamond_leaves = register("diamond_leaves", new BlockGNSLeaves());
 		
 		dream_log = register("dream_log", new BlockGNSLog());
 		white_log = register("white_log", new BlockGNSLog());
@@ -81,7 +90,7 @@ public class BlocksGNS
 		dead_plank = register("dead_plank", new BlockGNSPlank());
 		blood_plank = register("blood_plank", new BlockGNSPlank());
 		
-		//aether_portal = register("aether_portal", new BlockAetherPortal()).setCreativeTab(null);
+		test_portal = register("test_portal", new BlockAetherPortal()).setCreativeTab(GNSCreativeTabs.blocks);
 		
 		orange_flower = register("orange_flower", new BlockGNSFlower());
 		cyan_flower = register("cyan_flower", new BlockGNSFlower());
