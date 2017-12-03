@@ -11,6 +11,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import com.legacy.goodnightsleep.common.blocks.BlocksGNS;
 import com.legacy.goodnightsleep.common.entities.GNSEntities;
 import com.legacy.goodnightsleep.common.registry.GNSCreativeTabs;
+import com.legacy.goodnightsleep.common.world.GNSWorld;
 
 @Mod(name = "Good Night Sleep", modid = GoodNightSleep.modid, version = GoodNightSleep.version, acceptedMinecraftVersions = "1.11.2")
 public class GoodNightSleep 
@@ -28,7 +29,7 @@ public class GoodNightSleep
 	@EventHandler
 	public void preInitialization(FMLPreInitializationEvent event)
 	{
-		//AetherConfig.init(event.getModConfigurationDirectory());
+		GNSConfig.init(event.getModConfigurationDirectory());
 		//AetherConfig.autoDeveloperMode(version);
 
 		//AetherNetworkingManager.preInitialization();
@@ -48,11 +49,11 @@ public class GoodNightSleep
 		//AchievementsAether.initialization();
 		//AetherTileEntities.initialization();
 		GNSCreativeTabs.initialization();
-		//AetherWorld.initialization();
+		GNSWorld.initialization();
 
 		proxy.initialization();
 
-		//ServerProxy.registerEvent(new AetherEventHandler());
+		ServerProxy.registerEvent(new GNSEventHandler());
 	}
 
 	public static ResourceLocation locate(String location)
