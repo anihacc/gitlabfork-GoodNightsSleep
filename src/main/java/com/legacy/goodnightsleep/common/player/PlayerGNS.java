@@ -2,17 +2,12 @@ package com.legacy.goodnightsleep.common.player;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.init.Blocks;
 import net.minecraft.server.management.PlayerList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent.RightClickBlock;
 import net.minecraftforge.fml.common.FMLCommonHandler;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-
 import java.util.Random;
 
 import com.legacy.goodnightsleep.common.GNSConfig;
@@ -119,6 +114,22 @@ public class PlayerGNS
 			PlayerList scm = FMLCommonHandler.instance().getMinecraftServerInstance().getPlayerList();
 
 			int transferToID = player.dimension == GNSConfig.getDreamDimensionID() ? 0 : GNSConfig.getDreamDimensionID();
+
+			scm.transferPlayerToDimension(player, transferToID, new TeleporterHeck(FMLCommonHandler.instance().getMinecraftServerInstance().worldServerForDimension(transferToID)));
+		}
+	}
+	
+	public void teleportPlayerNightmare(boolean shouldSpawnPortal) 
+	{
+		this.player.dismountRidingEntity();
+		this.player.removePassengers();
+
+		if (this.player instanceof EntityPlayerMP)
+		{
+			EntityPlayerMP player = (EntityPlayerMP) this.player;
+			PlayerList scm = FMLCommonHandler.instance().getMinecraftServerInstance().getPlayerList();
+
+			int transferToID = player.dimension == GNSConfig.getNightmareDimensionID() ? 0 : GNSConfig.getNightmareDimensionID();
 
 			scm.transferPlayerToDimension(player, transferToID, new TeleporterHeck(FMLCommonHandler.instance().getMinecraftServerInstance().worldServerForDimension(transferToID)));
 		}

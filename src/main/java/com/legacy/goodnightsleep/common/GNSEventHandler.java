@@ -55,4 +55,20 @@ public class GNSEventHandler
 				}
 			}
 	}
+	
+	@SubscribeEvent
+	public void haveBadDream(RightClickBlock event)
+	{	
+		//Entity entity = (EntityPlayer) event.getObject();
+				
+		if (event.getWorld().getBlockState(event.getPos()).getBlock() == Blocks.OAK_FENCE)
+			{
+				if (event.getEntityLiving() instanceof EntityPlayer)
+				{
+					PlayerGNS.get((EntityPlayer) event.getEntityLiving()).teleportPlayerNightmare(true);
+					System.out.println("Entering your Nightmares");
+					
+				}
+			}
+	}
 }
