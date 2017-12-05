@@ -30,9 +30,6 @@ public class RenderTormenter extends RenderBiped<EntityTormenter>
         this.addLayer(layerbipedarmor);
     }
 
-    /**
-     * Returns the location of an entity's texture. Doesn't seem to be called unless you call Render.bindEntityTexture.
-     */
     protected ResourceLocation getEntityTexture(EntityTormenter entity)
     {
         return TEXTURE;
