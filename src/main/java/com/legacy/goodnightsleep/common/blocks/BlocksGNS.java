@@ -1,3 +1,4 @@
+
 package com.legacy.goodnightsleep.common.blocks;
 
 import com.legacy.goodnightsleep.common.blocks.depricated.BlockAetherPortal;
@@ -57,7 +58,7 @@ public class BlocksGNS
 
 	public static Block pot_of_gold, present;
 	
-	public static Block test_portal;
+	public static Block luxurious_bed, wretched_bed;
 
 	public static void initialization()
 	{
@@ -90,7 +91,7 @@ public class BlocksGNS
 		dead_plank = register("dead_plank", new BlockGNSPlank());
 		blood_plank = register("blood_plank", new BlockGNSPlank());
 		
-		test_portal = register("test_portal", new BlockAetherPortal()).setCreativeTab(GNSCreativeTabs.blocks);
+		//test_portal = register("test_portal", new BlockAetherPortal()).setCreativeTab(GNSCreativeTabs.blocks);
 		
 		orange_flower = register("orange_flower", new BlockGNSFlower());
 		cyan_flower = register("cyan_flower", new BlockGNSFlower());

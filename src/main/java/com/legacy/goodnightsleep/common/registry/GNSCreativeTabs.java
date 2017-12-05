@@ -6,15 +6,25 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import com.legacy.goodnightsleep.common.blocks.BlocksGNS;
+import com.legacy.goodnightsleep.common.items.ItemsGNS;
 
 public class GNSCreativeTabs 
 {
 
-	public static GNSTab blocks = new GNSTab("gns_blocks");
+	public static GNSTab blocks = new GNSTab("blocks");
+	
+	public static GNSTab items = new GNSTab("items");
+	
+	public static GNSTab tools = new GNSTab("tools");
+
+	public static GNSTab armor = new GNSTab("armor");
 	
 	public static void initialization()
 	{
 		blocks.setIcon(new ItemStack(BlocksGNS.dream_grass));
+		items.setIcon(new ItemStack(ItemsGNS.positite_gem));
+		tools.setIcon(new ItemStack(ItemsGNS.positite_sword));
+		armor.setIcon(new ItemStack(ItemsGNS.rainbow_chestplate));
 	}
 	
 	public static class GNSTab extends CreativeTabs

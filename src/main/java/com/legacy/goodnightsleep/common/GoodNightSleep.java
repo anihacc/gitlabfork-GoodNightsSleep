@@ -10,6 +10,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 import com.legacy.goodnightsleep.common.blocks.BlocksGNS;
 import com.legacy.goodnightsleep.common.entities.GNSEntities;
+import com.legacy.goodnightsleep.common.items.ItemsGNS;
 import com.legacy.goodnightsleep.common.registry.GNSCreativeTabs;
 import com.legacy.goodnightsleep.common.world.GNSWorld;
 
@@ -44,7 +45,7 @@ public class GoodNightSleep
 		//SoundsAether.initialization();
 		GNSEntities.initialization();
 		BlocksGNS.initialization();
-		//ItemsAether.initialization();
+		ItemsGNS.initialization();
 		//AetherRecipes.initialization();
 		//AchievementsAether.initialization();
 		//AetherTileEntities.initialization();
