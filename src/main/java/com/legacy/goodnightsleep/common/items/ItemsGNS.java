@@ -17,13 +17,17 @@ import com.legacy.goodnightsleep.common.items.tools.ItemGNSPickaxe;
 import com.legacy.goodnightsleep.common.items.tools.ItemGNSShovel;
 import com.legacy.goodnightsleep.common.items.tools.ItemGNSSword;
 import com.legacy.goodnightsleep.common.items.util.ItemGNS;
+import com.legacy.goodnightsleep.common.items.util.ItemLuxuriousBed;
+import com.legacy.goodnightsleep.common.items.util.ItemWretchedBed;
 import com.legacy.goodnightsleep.common.registry.GNSCreativeTabs;
 
 public class ItemsGNS
 {
 
 	public static Item positite_gem, zitrite_ingot, negatite_gem, necrum, rainbow_ingot;
-
+	
+	public static Item candy_pickaxe, candy_axe, candy_shovel, candy_sword;
+	
 	public static Item necrum_pickaxe, necrum_axe, necrum_shovel, necrum_sword;
 
 	public static Item zitrite_pickaxe, zitrite_axe, zitrite_shovel, zitrite_sword;
@@ -41,6 +45,8 @@ public class ItemsGNS
 	public static Item positite_helmet, positite_chestplate, positite_leggings, positite_boots;
 
 	public static Item negatite_helmet, negatite_chestplate, negatite_leggings, negatite_boots;
+	
+	public static Item luxurious_bed_item, wretched_bed_item;
 
 	
 	public static ToolMaterial NEGATITE = EnumHelper.addToolMaterial("NEGATITE", 3, 1561, 8.5F, 3.2F, 10);
@@ -52,6 +58,10 @@ public class ItemsGNS
 		negatite_gem = register("negatite_gem", new ItemGNS(GNSCreativeTabs.items));
 		necrum = register("necrum", new ItemGNS(GNSCreativeTabs.items));
 		rainbow_ingot = register("rainbow_ingot", new ItemGNS(GNSCreativeTabs.items));
+		
+		candy_pickaxe = register("candy_pickaxe", new ItemGNSPickaxe(ToolMaterial.GOLD));
+		candy_axe = register("candy_axe", new ItemGNSAxe(ToolMaterial.GOLD));
+		candy_shovel = register("candy_shovel", new ItemGNSShovel(ToolMaterial.GOLD));
 
 		necrum_pickaxe = register("necrum_pickaxe", new ItemGNSPickaxe(ToolMaterial.WOOD));
 		necrum_axe = register("necrum_axe", new ItemGNSAxe(ToolMaterial.WOOD));
@@ -98,6 +108,10 @@ public class ItemsGNS
 		candy_chestplate = register("candy_chestplate", new ItemGNSArmor(EntityEquipmentSlot.CHEST, ArmorMaterial.CHAIN, "candy"));
 		candy_leggings = register("candy_leggings", new ItemGNSArmor(EntityEquipmentSlot.LEGS, ArmorMaterial.CHAIN, "candy"));
 		candy_boots = register("candy_boots", new ItemGNSArmor(EntityEquipmentSlot.FEET, ArmorMaterial.CHAIN, "candy"));
+		
+		//Block Items
+		luxurious_bed_item = register("luxurious_bed_item", new ItemLuxuriousBed());
+		wretched_bed_item = register("wretched_bed_item", new ItemWretchedBed());
 	}
 
 	public static Item register(String name, Item item)

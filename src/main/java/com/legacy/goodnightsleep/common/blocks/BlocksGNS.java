@@ -1,9 +1,9 @@
 
 package com.legacy.goodnightsleep.common.blocks;
 
-import com.legacy.goodnightsleep.common.blocks.depricated.BlockAetherPortal;
 import com.legacy.goodnightsleep.common.GoodNightSleep;
 import com.legacy.goodnightsleep.common.blocks.construction.BlockGNSPlank;
+import com.legacy.goodnightsleep.common.blocks.natural.BlockGNSBed;
 import com.legacy.goodnightsleep.common.blocks.natural.BlockGNSDirt;
 import com.legacy.goodnightsleep.common.blocks.natural.BlockGNSFlower;
 import com.legacy.goodnightsleep.common.blocks.natural.BlockGNSGrass;
@@ -67,8 +67,8 @@ public class BlocksGNS
 		dream_grass = register("dream_grass", new BlockGNSGrass());
 		dream_dirt = register("dream_dirt", new BlockGNSDirt());
 		nightmare_grass = register("nightmare_grass", new BlockGNSGrass());
-		hope_mushroom = register("hope_mushroom", new BlockGNSMushroom());
-		despair_mushroom = register("despair_mushroom", new BlockGNSMushroom());
+		hope_mushroom_cap = register("hope_mushroom_cap", new BlockGNSMushroom());
+		despair_mushroom_cap = register("despair_mushroom_cap", new BlockGNSMushroom());
 		
 		//zitrite_ore = register("zitrite_ore", new BlockZirtiteOre());
 		//necrum_ore = register("necrum_ore", new BlockNecrumOre());
@@ -95,7 +95,12 @@ public class BlocksGNS
 		
 		orange_flower = register("orange_flower", new BlockGNSFlower());
 		cyan_flower = register("cyan_flower", new BlockGNSFlower());
+		lolipop_bush = register("lolipop_bush", new BlockGNSFlower());
 		dead_flower = register("dead_flower", new BlockGNSFlower());
+		
+		luxurious_bed = register("luxurious_bed", new BlockGNSBed());
+		wretched_bed = register("wretched_bed", new BlockGNSBed());
+
 		
 		//present = register("present", new BlockPresent());
 

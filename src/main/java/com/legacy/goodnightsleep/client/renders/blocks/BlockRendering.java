@@ -21,6 +21,9 @@ public class BlockRendering
 		register(BlocksGNS.nightmare_grass, "nightmare_grass");
 		register(BlocksGNS.dream_dirt, "dream_dirt");
 		
+		register(BlocksGNS.hope_mushroom_cap, "hope_mushroom");
+		register(BlocksGNS.despair_mushroom_cap, "despair_mushroom");
+		
 		register(BlocksGNS.dream_plank, "dream_plank");
 		register(BlocksGNS.white_plank, "white_plank");
 		register(BlocksGNS.dead_plank, "dead_plank");
@@ -31,8 +34,10 @@ public class BlockRendering
 		register(BlocksGNS.dead_log, "dead_log");
 		register(BlocksGNS.blood_log, "blood_log");
 		
-		//register(BlocksSkies.everdawn_portal, "everdawn_portal");
-		//register(BlocksSkies.everbright_portal, "everbright_portal");
+		register(BlocksGNS.orange_flower, "orange_flower");
+		register(BlocksGNS.cyan_flower, "cyan_flower");
+		register(BlocksGNS.dead_flower, "dead_flower");
+		register(BlocksGNS.lolipop_bush, "lolipop_bush");
 	}
 
 	public static void register(Block block, String model)
