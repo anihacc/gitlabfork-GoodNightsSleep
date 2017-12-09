@@ -1,5 +1,6 @@
 package com.legacy.goodnightsleep.common;
 
+import com.legacy.goodnightsleep.common.blocks.BlocksGNS;
 import com.legacy.goodnightsleep.common.player.PlayerGNS;
 import com.legacy.goodnightsleep.common.player.capability.GNSProvider;
 
@@ -42,10 +43,8 @@ public class GNSEventHandler
 	
 	@SubscribeEvent
 	public void haveGoodDream(RightClickBlock event)
-	{	
-		//Entity entity = (EntityPlayer) event.getObject();
-				
-		if (event.getWorld().getBlockState(event.getPos()).getBlock() == Blocks.COAL_BLOCK)
+	{					
+		if (event.getWorld().getBlockState(event.getPos()).getBlock() == BlocksGNS.luxurious_bed)
 			{
 				if (event.getEntityLiving() instanceof EntityPlayer)
 				{
@@ -58,10 +57,8 @@ public class GNSEventHandler
 	
 	@SubscribeEvent
 	public void haveBadDream(RightClickBlock event)
-	{	
-		//Entity entity = (EntityPlayer) event.getObject();
-				
-		if (event.getWorld().getBlockState(event.getPos()).getBlock() == Blocks.OAK_FENCE)
+	{
+		if (event.getWorld().getBlockState(event.getPos()).getBlock() == BlocksGNS.wretched_bed)
 			{
 				if (event.getEntityLiving() instanceof EntityPlayer)
 				{

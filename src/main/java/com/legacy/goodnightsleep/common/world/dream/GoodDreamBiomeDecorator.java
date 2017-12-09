@@ -76,6 +76,7 @@ public class GoodDreamBiomeDecorator extends BiomeDecorator
 
     	this.generateFoilage(BlocksGNS.orange_flower.getDefaultState());
     	this.generateFoilage(BlocksGNS.cyan_flower.getDefaultState());
+    	this.generateFoilage(BlocksGNS.lolipop_bush.getDefaultState());
     }
 
 	public int nextInt(int max)

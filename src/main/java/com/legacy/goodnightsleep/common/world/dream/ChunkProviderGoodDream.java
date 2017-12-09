@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Random;
 
 import com.legacy.goodnightsleep.common.blocks.BlocksGNS;
+import com.legacy.goodnightsleep.common.world.genfeatures.WorldGenHopeMushroom;
 
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.state.IBlockState;
@@ -365,6 +366,14 @@ public class ChunkProviderGoodDream implements IChunkGenerator
         int i = x * 16;
         int j = z * 16;
         BlockPos blockpos = new BlockPos(i, 0, j);
+        
+        for (int size = 0; size < 8; ++size)
+		{
+			//TODO pls fix me
+			new WorldGenHopeMushroom().generate(this.worldObj, this.random, blockpos.add(this.random.nextInt(16), 47 + this.random.nextInt(25), this.random.nextInt(16)));
+			//(this.random.nextInt(16), 61 + this.random.nextInt(40), this.random.nextInt(16)));
+//			//(this.nextInt(16) + 8, 0, this.nextInt(16) + 8)));
+		}
 
         this.random.setSeed(this.worldObj.getSeed());
         long k = this.random.nextLong() / 2L * 2L + 1L;
