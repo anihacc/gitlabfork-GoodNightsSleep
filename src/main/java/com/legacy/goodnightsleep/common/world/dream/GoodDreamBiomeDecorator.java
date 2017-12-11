@@ -9,9 +9,12 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType;
+import net.minecraftforge.event.terraingen.TerrainGen;
 
 import com.legacy.goodnightsleep.common.blocks.BlocksGNS;
 import com.legacy.goodnightsleep.common.world.genfeatures.GNSGenMinable;
+import com.legacy.goodnightsleep.common.world.genfeatures.WorldGenBigMushroomGNS;
 import com.legacy.goodnightsleep.common.world.genfeatures.WorldGenFoilage;
 import com.legacy.goodnightsleep.common.world.genfeatures.WorldGenGNSTree;
 import com.legacy.goodnightsleep.common.world.genfeatures.WorldGenTallGrass;
@@ -31,6 +34,10 @@ public class GoodDreamBiomeDecorator extends BiomeDecorator
 	public GoodDreamBiomeDecorator()
 	{
 		super();
+		
+		this.bigMushroomsPerChunk = 1;
+		
+		this.bigMushroomGen = new WorldGenBigMushroomGNS(BlocksGNS.hope_mushroom_cap);
 	}
 
 	@Override
@@ -72,6 +79,17 @@ public class GoodDreamBiomeDecorator extends BiomeDecorator
                 biomeGenBaseIn.getRandomWorldGenForGrass(random).generate(worldIn, random, this.chunkPos.add(j7, l17, i11));
             }
         }
+        
+        if(TerrainGen.decorate(worldIn, random, chunkPos, EventType.BIG_SHROOM))
+            for (int k2 = 0; k2 < this.bigMushroomsPerChunk; ++k2)
+            {
+            	//int k = i * 4 + 1 + 8 + p_185379_2_.nextInt(3);
+                //int l = j * 4 + 1 + 8 + p_185379_2_.nextInt(3);
+                
+                int l6 = random.nextInt(500) + 20;
+                int k10 = random.nextInt(500) + 20;
+                this.bigMushroomGen.generate(worldIn, random, worldIn.getHeight(this.chunkPos.add(l6, 0, k10)));
+            }
 
 		this.spawnOres();
 

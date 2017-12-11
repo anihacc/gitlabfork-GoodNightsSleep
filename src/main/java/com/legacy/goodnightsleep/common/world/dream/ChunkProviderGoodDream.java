@@ -368,7 +368,7 @@ public class ChunkProviderGoodDream implements IChunkGenerator
         BlockPos blockpos = new BlockPos(i, 0, j);
         
         //System.out.println("");
-        for (int size = 0; size < 16; ++size)
+        /*for (int size = 0; size < 16; ++size)
 		{
         	
         	int l6 = random.nextInt(16 + 8);
@@ -376,8 +376,8 @@ public class ChunkProviderGoodDream implements IChunkGenerator
 			//TODO pls fix me
 			new WorldGenHopeMushroom().generate(this.worldObj, this.random, blockpos.add(l6, 0, k10));
 			//(this.random.nextInt(16), 61 + this.random.nextInt(40), this.random.nextInt(16)));
-//			//(this.nextInt(16) + 8, 0, this.nextInt(16) + 8)));
-		}
+			//(this.nextInt(16) + 8, 0, this.nextInt(16) + 8)));
+		}*/
 
         this.random.setSeed(this.worldObj.getSeed());
         long k = this.random.nextLong() / 2L * 2L + 1L;
