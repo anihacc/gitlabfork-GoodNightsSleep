@@ -18,8 +18,8 @@ public class BiomeGenGoodDreamPlains extends Biome
 {
 	public BiomeGenGoodDreamPlains()
 	{
-		super(new BiomeProperties("Good Dream Plains").setRainDisabled().setBaseHeight(0.1F).setHeightVariation(0.5F).setTemperature(1.0F).setRainfall(0.0F));
-		this.spawnableCreatureList.clear();
+		super(new BiomeProperties("Good Dream Plains").setRainDisabled().setBaseHeight(0.1F).setHeightVariation(0.5F).setTemperature(0.8F).setRainfall(0.0F));
+		this.spawnableCreatureList.clear(); //.setRainDisabled() .setRainfall(0.0F)
 		
 		ArrayList<SpawnListEntry> list = new ArrayList<SpawnListEntry>();
 
@@ -43,7 +43,7 @@ public class BiomeGenGoodDreamPlains extends Biome
 	{
 		//list.add(new SpawnListEntry(EntityStardustSheep.class, 25, 3, 4));
 		list.add(new SpawnListEntry(EntityPig.class, 15, 2, 4));
-		//list.add(new SpawnListEntry(EntityHorse.class, 7, 3, 4));
+		list.add(new SpawnListEntry(EntityHorse.class, 7, 3, 4));
 		//list.add(new SpawnListEntry(EntityAzulfo.class, 27, 3, 5));
 	}
 	
@@ -57,6 +57,11 @@ public class BiomeGenGoodDreamPlains extends Biome
     {
         return 0xcee7f5;
     }*/
+	
+	public Biome.TempCategory getTempCategory()
+    {
+        return Biome.TempCategory.MEDIUM;
+    }
 	
 	public float getSpawningChance()
     {

@@ -11,7 +11,6 @@ import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
 import com.legacy.goodnightsleep.common.blocks.BlocksGNS;
-import com.legacy.goodnightsleep.common.world.genfeatures.AetherGenMinable;
 import com.legacy.goodnightsleep.common.world.genfeatures.GNSGenMinable;
 import com.legacy.goodnightsleep.common.world.genfeatures.WorldGenFoilage;
 import com.legacy.goodnightsleep.common.world.genfeatures.WorldGenGNSTree;
@@ -25,7 +24,7 @@ public class GoodDreamBiomeDecorator extends BiomeDecorator
 
 	public Biome dreambiome;
 
-	public AetherGenMinable ores = new AetherGenMinable();
+	public GNSGenMinable ores = new GNSGenMinable();
 
 	public WorldGenFoilage foilage = new WorldGenFoilage();
 
