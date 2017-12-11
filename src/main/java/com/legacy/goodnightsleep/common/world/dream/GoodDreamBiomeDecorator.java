@@ -3,6 +3,7 @@ package com.legacy.goodnightsleep.common.world.dream;
 import java.util.Random;
 
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
@@ -10,6 +11,7 @@ import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
 import com.legacy.goodnightsleep.common.blocks.BlocksGNS;
+import com.legacy.goodnightsleep.common.world.genfeatures.AetherGenMinable;
 import com.legacy.goodnightsleep.common.world.genfeatures.GNSGenMinable;
 import com.legacy.goodnightsleep.common.world.genfeatures.WorldGenFoilage;
 import com.legacy.goodnightsleep.common.world.genfeatures.WorldGenGNSTree;
@@ -23,7 +25,7 @@ public class GoodDreamBiomeDecorator extends BiomeDecorator
 
 	public Biome dreambiome;
 
-	public GNSGenMinable ores = new GNSGenMinable();
+	public AetherGenMinable ores = new AetherGenMinable();
 
 	public WorldGenFoilage foilage = new WorldGenFoilage();
 
@@ -91,12 +93,20 @@ public class GoodDreamBiomeDecorator extends BiomeDecorator
     
     public void spawnOres()
     {
-    	//this.spawnOre(BlocksSkies.everbright_diopside_ore.getDefaultState(), 8, 8, 45);
-    	//this.spawnOre(BlocksSkies.everbright_moonstone_ore.getDefaultState(), 16, 20, 55);
-    	//this.spawnOre(BlocksSkies.everbright_pyrope_ore.getDefaultState(), 8, 15, 40);
-    	//this.spawnOre(BlocksSkies.everbright_turquoise_ore.getDefaultState(), 8, 13, 30);
-    	//this.spawnOre(BlocksSkies.everbright_charoite_ore.getDefaultState(), 4, 6, 12);
-    	//this.spawnOre(BlocksSkies.turquoise_dirt.getDefaultState(), 32, 25, 128);
+    	this.spawnOre(Blocks.DIRT.getDefaultState(), 20, 32, 128);
+    	this.spawnOre(Blocks.GRAVEL.getDefaultState(), 10, 32, 128);
+    	
+    	this.spawnOre(Blocks.COAL_ORE.getDefaultState(), 20, 16, 128);
+    	this.spawnOre(Blocks.IRON_ORE.getDefaultState(), 20, 8, 64);
+    	this.spawnOre(Blocks.GOLD_ORE.getDefaultState(), 2, 8, 32);
+    	this.spawnOre(Blocks.REDSTONE_ORE.getDefaultState(), 8, 7, 16);
+    	this.spawnOre(Blocks.LAPIS_ORE.getDefaultState(), 1, 6, 16);
+    	this.spawnOre(Blocks.DIAMOND_ORE.getDefaultState(), 1, 7, 16);
+    	this.spawnOre(Blocks.GLOWSTONE.getDefaultState(), 15, 8, 3);
+    	
+    	this.spawnOre(BlocksGNS.candy_ore.getDefaultState(), 20, 8, 128);
+    	this.spawnOre(BlocksGNS.rainbow_ore.getDefaultState(), 10, 8, 32);
+    	this.spawnOre(BlocksGNS.positite_ore.getDefaultState(), 1, 7, 16);
     }
 
     public void spawnOre(IBlockState state, int size, int chance, int y)

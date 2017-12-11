@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Random;
 
 import com.legacy.goodnightsleep.common.blocks.BlocksGNS;
-import com.legacy.goodnightsleep.common.world.genfeatures.WorldGenNightmareLava;
 
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.state.IBlockState;
@@ -22,7 +21,6 @@ import net.minecraft.world.gen.MapGenBase;
 import net.minecraft.world.gen.MapGenCaves;
 import net.minecraft.world.gen.MapGenRavine;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
-import net.minecraft.world.gen.feature.WorldGenHellLava;
 
 public class ChunkProviderNightmare implements IChunkGenerator 
 {
@@ -52,7 +50,6 @@ public class ChunkProviderNightmare implements IChunkGenerator
 	
 	private MapGenBase ravineGenerator = new MapGenRavine();
 	private MapGenBase caveGenerator = new MapGenCaves();
-	private final WorldGenNightmareLava hellSpringGen = new WorldGenNightmareLava(Blocks.FLOWING_LAVA, false);
 
 	public ChunkProviderNightmare(World world, long seed)
 	{
@@ -375,13 +372,6 @@ public class ChunkProviderNightmare implements IChunkGenerator
         this.random.setSeed((long)x * k + (long)z * l ^ this.worldObj.getSeed());
 
 		this.worldObj.getBiome(blockpos.add(16, 0, 16)).decorate(this.worldObj, this.random, new BlockPos(i, 0, j));
-		
-		 if (net.minecraftforge.event.terraingen.TerrainGen.populate(this, this.worldObj, this.random, x, z, false, net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType.NETHER_LAVA))
-		        for (int m = 0; m < 8; ++m)
-		        {
-		        	System.out.println("wee");
-		            this.hellSpringGen.generate(this.worldObj, this.random, blockpos.add(this.random.nextInt(16) + 8, this.random.nextInt(120) + 4, this.random.nextInt(16) + 8));
-		        }
 
         BlockFalling.fallInstantly = false;
 	}

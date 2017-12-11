@@ -51,7 +51,7 @@ public class BlockGNSTallGrass extends BlockBush
 			 return state.getBlock() == Blocks.GRASS;
 			}
 	 }
-
+	 
 	 @Override
 	 public boolean isReplaceable(IBlockAccess worldIn, BlockPos pos)
 	 {

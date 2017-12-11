@@ -38,6 +38,13 @@ public class BlockRendering
 		register(BlocksGNS.cyan_flower, "cyan_flower");
 		register(BlocksGNS.dead_flower, "dead_flower");
 		register(BlocksGNS.lolipop_bush, "lolipop_bush");
+		
+		register(BlocksGNS.zitrite_ore, "zitrite_ore");
+		register(BlocksGNS.necrum_ore, "necrum_ore");
+		register(BlocksGNS.candy_ore, "candy_ore");
+		register(BlocksGNS.rainbow_ore, "rainbow_ore");
+		register(BlocksGNS.positite_ore, "positite_ore");
+		register(BlocksGNS.negatite_ore, "negatite_ore");
 	}
 
 	public static void register(Block block, String model)
