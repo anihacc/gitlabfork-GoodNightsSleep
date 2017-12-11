@@ -93,20 +93,20 @@ public class GoodDreamBiomeDecorator extends BiomeDecorator
     
     public void spawnOres()
     {
-    	this.spawnOre(Blocks.DIRT.getDefaultState(), 20, 32, 128);
-    	this.spawnOre(Blocks.GRAVEL.getDefaultState(), 10, 32, 128);
+    	this.spawnOre(Blocks.DIRT.getDefaultState(), 32, 20, 128);
+    	this.spawnOre(Blocks.GRAVEL.getDefaultState(), 32, 10, 128);
     	
-    	this.spawnOre(Blocks.COAL_ORE.getDefaultState(), 20, 16, 128);
-    	this.spawnOre(Blocks.IRON_ORE.getDefaultState(), 20, 8, 64);
-    	this.spawnOre(Blocks.GOLD_ORE.getDefaultState(), 2, 8, 32);
-    	this.spawnOre(Blocks.REDSTONE_ORE.getDefaultState(), 8, 7, 16);
-    	this.spawnOre(Blocks.LAPIS_ORE.getDefaultState(), 1, 6, 16);
-    	this.spawnOre(Blocks.DIAMOND_ORE.getDefaultState(), 1, 7, 16);
-    	this.spawnOre(Blocks.GLOWSTONE.getDefaultState(), 15, 8, 3);
+    	this.spawnOre(Blocks.COAL_ORE.getDefaultState(), 16, 20, 128);
+    	this.spawnOre(Blocks.IRON_ORE.getDefaultState(), 8, 20, 64);
+    	this.spawnOre(Blocks.GOLD_ORE.getDefaultState(), 8, 2, 32);
+    	this.spawnOre(Blocks.REDSTONE_ORE.getDefaultState(), 7, 8, 16);
+    	this.spawnOre(Blocks.LAPIS_ORE.getDefaultState(), 6, 1, 16);
+    	this.spawnOre(Blocks.DIAMOND_ORE.getDefaultState(), 7, 1, 16);
+    	this.spawnOre(Blocks.GLOWSTONE.getDefaultState(), 8, 15, 3);
     	
-    	this.spawnOre(BlocksGNS.candy_ore.getDefaultState(), 20, 8, 128);
-    	this.spawnOre(BlocksGNS.rainbow_ore.getDefaultState(), 10, 8, 32);
-    	this.spawnOre(BlocksGNS.positite_ore.getDefaultState(), 1, 7, 16);
+    	this.spawnOre(BlocksGNS.candy_ore.getDefaultState(), 8, 20, 128);
+    	this.spawnOre(BlocksGNS.rainbow_ore.getDefaultState(), 8, 10, 32);
+    	this.spawnOre(BlocksGNS.positite_ore.getDefaultState(), 7, 1, 16);
     }
 
     public void spawnOre(IBlockState state, int size, int chance, int y)
