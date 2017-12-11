@@ -11,11 +11,14 @@ import com.legacy.goodnightsleep.common.blocks.natural.BlockGNSLeaves;
 import com.legacy.goodnightsleep.common.blocks.natural.BlockGNSLog;
 import com.legacy.goodnightsleep.common.blocks.natural.BlockGNSMushroom;
 import com.legacy.goodnightsleep.common.blocks.natural.BlockGNSTallGrass;
+import com.legacy.goodnightsleep.common.blocks.natural.ores.BlockGNSOre;
+import com.legacy.goodnightsleep.common.items.ItemsGNS;
 import com.legacy.goodnightsleep.common.registry.GNSCreativeTabs;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemBlock;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
@@ -70,12 +73,12 @@ public class BlocksGNS
 		hope_mushroom_cap = register("hope_mushroom_cap", new BlockGNSMushroom());
 		despair_mushroom_cap = register("despair_mushroom_cap", new BlockGNSMushroom());
 		
-		//zitrite_ore = register("zitrite_ore", new BlockZirtiteOre());
-		//necrum_ore = register("necrum_ore", new BlockNecrumOre());
-		//candy_ore = register("candy_ore", new BlockCandyOre());
-		//rainbow_ore = register("rainbow_ore", new BlockRainbowOre());
-		//positite_ore = register("positite_ore", new BlockPosititeOre());
-		//negatite_ore = register("negatite_ore", new BlockNegatiteOre());
+		zitrite_ore = register("zitrite_ore", new BlockGNSOre(ItemsGNS.zitrite_ingot));
+		necrum_ore = register("necrum_ore", new BlockGNSOre(ItemsGNS.necrum));
+		candy_ore = register("candy_ore", new BlockGNSOre(Items.APPLE));
+		rainbow_ore = register("rainbow_ore", new BlockGNSOre(ItemsGNS.rainbow_ingot));
+		positite_ore = register("positite_ore", new BlockGNSOre(ItemsGNS.positite_gem));
+		negatite_ore = register("negatite_ore", new BlockGNSOre(ItemsGNS.negatite_gem));
 		
 		dream_leaves = register("dream_leaves", new BlockGNSLeaves());
 		candy_leaves = register("candy_leaves", new BlockGNSLeaves());
@@ -90,9 +93,7 @@ public class BlocksGNS
 		white_plank = register("white_plank", new BlockGNSPlank());
 		dead_plank = register("dead_plank", new BlockGNSPlank());
 		blood_plank = register("blood_plank", new BlockGNSPlank());
-		
-		//test_portal = register("test_portal", new BlockAetherPortal()).setCreativeTab(GNSCreativeTabs.blocks);
-		
+				
 		orange_flower = register("orange_flower", new BlockGNSFlower());
 		cyan_flower = register("cyan_flower", new BlockGNSFlower());
 		lolipop_bush = register("lolipop_bush", new BlockGNSFlower());
