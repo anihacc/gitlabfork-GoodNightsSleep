@@ -8,6 +8,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeDecorator;
+import net.minecraft.world.gen.feature.WorldGenLiquids;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType;
 import net.minecraftforge.event.terraingen.TerrainGen;
@@ -30,13 +31,14 @@ public class GoodDreamBiomeDecorator extends BiomeDecorator
 	public GNSGenMinable ores = new GNSGenMinable();
 
 	public WorldGenFoilage foilage = new WorldGenFoilage();
+	
+	//public boolean generateLakes = true;
 
 	public GoodDreamBiomeDecorator()
 	{
 		super();
 		
 		this.bigMushroomsPerChunk = 1;
-		
 		this.bigMushroomGen = new WorldGenBigMushroomGNS(BlocksGNS.hope_mushroom_cap);
 	}
 
@@ -55,7 +57,6 @@ public class GoodDreamBiomeDecorator extends BiomeDecorator
             this.dreambiome = biome;
             this.genDecorations(biome, worldIn, random);
             this.decorating = false;
-            this.generateLakes = true;
         }
     }
 
@@ -69,8 +70,8 @@ public class GoodDreamBiomeDecorator extends BiomeDecorator
 
         for (int i3 = 0; i3 < 1; ++i3)
         {
-            int j7 = random.nextInt(16) + 8;
-            int i11 = random.nextInt(16) + 8;
+            int j7 = random.nextInt(10) + 5;
+            int i11 = random.nextInt(10) + 5;
             int k14 = worldIn.getHeight(this.chunkPos.add(j7, 0, i11)).getY() * 2;
 
             if (k14 > 0)
@@ -83,13 +84,26 @@ public class GoodDreamBiomeDecorator extends BiomeDecorator
         if(TerrainGen.decorate(worldIn, random, chunkPos, EventType.BIG_SHROOM))
             for (int k2 = 0; k2 < this.bigMushroomsPerChunk; ++k2)
             {
-            	//int k = i * 4 + 1 + 8 + p_185379_2_.nextInt(3);
-                //int l = j * 4 + 1 + 8 + p_185379_2_.nextInt(3);
-                
                 int l6 = random.nextInt(500) + 20;
                 int k10 = random.nextInt(500) + 20;
                 this.bigMushroomGen.generate(worldIn, random, worldIn.getHeight(this.chunkPos.add(l6, 0, k10)));
             }
+        
+            if(TerrainGen.decorate(worldIn, random, chunkPos, EventType.LAKE_WATER))
+            for (int k5 = 0; k5 < 50; ++k5)
+            {
+                int i10 = random.nextInt(16) + 8;
+                int l13 = random.nextInt(16) + 8;
+                int i17 = random.nextInt(248) + 8;
+
+                if (i17 > 0)
+                {
+                    int k19 = random.nextInt(i17);
+                    BlockPos blockpos6 = this.chunkPos.add(i10, k19, l13);
+                    (new WorldGenLiquids(Blocks.FLOWING_WATER)).generate(worldIn, random, blockpos6);
+                }
+            }
+
 
 		this.spawnOres();
 
@@ -110,7 +124,7 @@ public class GoodDreamBiomeDecorator extends BiomeDecorator
     
     public void spawnOres()
     {
-    	this.spawnOre(Blocks.DIRT.getDefaultState(), 32, 20, 128);
+    	this.spawnOre(BlocksGNS.dream_dirt.getDefaultState(), 32, 20, 128);
     	this.spawnOre(Blocks.GRAVEL.getDefaultState(), 32, 10, 128);
     	
     	this.spawnOre(Blocks.COAL_ORE.getDefaultState(), 16, 20, 128);

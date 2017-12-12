@@ -9,6 +9,7 @@ import com.legacy.goodnightsleep.common.world.genfeatures.WorldGenHopeMushroom;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;
+import net.minecraft.init.Biomes;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -18,10 +19,14 @@ import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.chunk.IChunkGenerator;
+import net.minecraft.world.gen.ChunkProviderSettings;
 import net.minecraft.world.gen.MapGenBase;
 import net.minecraft.world.gen.MapGenCaves;
 import net.minecraft.world.gen.MapGenRavine;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
+import net.minecraft.world.gen.feature.WorldGenLakes;
+import net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType;
+import net.minecraftforge.event.terraingen.TerrainGen;
 
 public class ChunkProviderGoodDream implements IChunkGenerator 
 {
@@ -36,7 +41,7 @@ public class ChunkProviderGoodDream implements IChunkGenerator
 	private NoiseGeneratorOctaves noiseGen4;
 	public NoiseGeneratorOctaves noiseGen5;
 	public NoiseGeneratorOctaves noiseGen6;
-
+	
 	private double[] noiseArray;
 	private double[] stoneNoise = new double[256];
 
@@ -366,18 +371,19 @@ public class ChunkProviderGoodDream implements IChunkGenerator
         int i = x * 16;
         int j = z * 16;
         BlockPos blockpos = new BlockPos(i, 0, j);
+        boolean flag = false;
         
-        //System.out.println("");
-        /*for (int size = 0; size < 16; ++size)
-		{
-        	
-        	int l6 = random.nextInt(16 + 8);
-            int k10 = random.nextInt(16) + 8;
-			//TODO pls fix me
-			new WorldGenHopeMushroom().generate(this.worldObj, this.random, blockpos.add(l6, 0, k10));
-			//(this.random.nextInt(16), 61 + this.random.nextInt(40), this.random.nextInt(16)));
-			//(this.nextInt(16) + 8, 0, this.nextInt(16) + 8)));
-		}*/
+        //System.out.println("w");
+        if (this.random.nextInt(13) == 0)
+        {
+        	if (TerrainGen.populate(this, this.worldObj, this.random, x, z, flag, EventType.LAKE))
+        	{
+        		int i1 = this.random.nextInt(16) + 8;
+        		int j1 = this.random.nextInt(256);
+        		int k1 = this.random.nextInt(16) + 8;
+        		(new WorldGenLakes(Blocks.WATER)).generate(this.worldObj, this.random, blockpos.add(i1, j1, k1));
+        	}
+        }
 
         this.random.setSeed(this.worldObj.getSeed());
         long k = this.random.nextLong() / 2L * 2L + 1L;
