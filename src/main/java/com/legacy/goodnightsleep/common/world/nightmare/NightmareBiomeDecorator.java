@@ -9,9 +9,12 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraftforge.event.terraingen.TerrainGen;
+import net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType;
 
 import com.legacy.goodnightsleep.common.blocks.BlocksGNS;
 import com.legacy.goodnightsleep.common.world.genfeatures.GNSGenMinable;
+import com.legacy.goodnightsleep.common.world.genfeatures.WorldGenBigMushroomGNS;
 import com.legacy.goodnightsleep.common.world.genfeatures.WorldGenFoilage;
 import com.legacy.goodnightsleep.common.world.genfeatures.WorldGenGNSTree;
 import com.legacy.goodnightsleep.common.world.genfeatures.WorldGenTallGrass;
@@ -48,7 +51,9 @@ public class NightmareBiomeDecorator extends BiomeDecorator
             this.nightmarebiome = biome;
             this.genDecorations(biome, worldIn, random);
             this.decorating = false;
-            this.generateLakes = true;
+            
+            this.bigMushroomsPerChunk = 1;
+    		this.bigMushroomGen = new WorldGenBigMushroomGNS(BlocksGNS.despair_mushroom_cap);
         }
     }
 
@@ -59,6 +64,14 @@ public class NightmareBiomeDecorator extends BiomeDecorator
 		{
 			this.getTree().generate(this.world, this.rand, this.world.getHeight(this.chunkPos.add(this.nextInt(16) + 8, 0, this.nextInt(16) + 8)));
 		}
+		
+			if(TerrainGen.decorate(worldIn, random, chunkPos, EventType.BIG_SHROOM))
+            for (int k2 = 0; k2 < this.bigMushroomsPerChunk; ++k2)
+            {   
+                int l6 = random.nextInt(500) + 20;
+                int k10 = random.nextInt(500) + 20;
+                this.bigMushroomGen.generate(worldIn, random, worldIn.getHeight(this.chunkPos.add(l6, 0, k10)));
+            }
 
         for (int i3 = 0; i3 < 1; ++i3)
         {
@@ -90,12 +103,20 @@ public class NightmareBiomeDecorator extends BiomeDecorator
     
     public void spawnOres()
     {
-    	//this.spawnOre(BlocksSkies.everbright_diopside_ore.getDefaultState(), 8, 8, 45);
-    	//this.spawnOre(BlocksSkies.everbright_moonstone_ore.getDefaultState(), 16, 20, 55);
-    	//this.spawnOre(BlocksSkies.everbright_pyrope_ore.getDefaultState(), 8, 15, 40);
-    	//this.spawnOre(BlocksSkies.everbright_turquoise_ore.getDefaultState(), 8, 13, 30);
-    	//this.spawnOre(BlocksSkies.everbright_charoite_ore.getDefaultState(), 4, 6, 12);
-    	//this.spawnOre(BlocksSkies.turquoise_dirt.getDefaultState(), 32, 25, 128);
+    	this.spawnOre(Blocks.DIRT.getDefaultState(), 32, 20, 128);
+    	this.spawnOre(Blocks.GRAVEL.getDefaultState(), 32, 10, 128);
+    	
+    	this.spawnOre(Blocks.COAL_ORE.getDefaultState(), 16, 20, 128);
+    	this.spawnOre(Blocks.IRON_ORE.getDefaultState(), 8, 20, 64);
+    	this.spawnOre(Blocks.GOLD_ORE.getDefaultState(), 8, 2, 32);
+    	this.spawnOre(Blocks.REDSTONE_ORE.getDefaultState(), 7, 8, 16);
+    	this.spawnOre(Blocks.LAPIS_ORE.getDefaultState(), 6, 1, 16);
+    	this.spawnOre(Blocks.DIAMOND_ORE.getDefaultState(), 7, 1, 16);
+    	this.spawnOre(Blocks.GLOWSTONE.getDefaultState(), 8, 15, 3);
+    	
+    	this.spawnOre(BlocksGNS.necrum_ore.getDefaultState(), 8, 20, 128);
+    	this.spawnOre(BlocksGNS.zitrite_ore.getDefaultState(), 8, 10, 32);
+    	this.spawnOre(BlocksGNS.negatite_ore.getDefaultState(), 7, 1, 16);
     }
 
     public void spawnOre(IBlockState state, int size, int chance, int y)
