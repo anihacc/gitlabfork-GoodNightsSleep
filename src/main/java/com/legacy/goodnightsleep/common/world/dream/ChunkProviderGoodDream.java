@@ -72,8 +72,82 @@ public class ChunkProviderGoodDream implements IChunkGenerator
 		caveGenerator = net.minecraftforge.event.terraingen.TerrainGen.getModdedMapGen(caveGenerator, net.minecraftforge.event.terraingen.InitMapGenEvent.EventType.CAVE);
 	}
 
+	
 
 	public void generateTerrain(int x, int z, ChunkPrimer chunkPrimer)
+	{
+		byte b0 = 4;
+		byte b1 = 16;
+		byte b2 = 63;
+		int k = b0 + 1;
+		byte b3 = 17;
+		int l = b0 + 1;
+
+		this.biomesForGeneration = this.worldObj.getBiomeProvider().getBiomesForGeneration(this.biomesForGeneration, x * 4 - 2, z * 4 - 2, 10, 10);
+
+		this.noiseArray = this.initializeNoiseField(this.noiseArray, x * b0, 0, z * b0, k, b3, l);
+
+		for (int i1 = 0; i1 < b0; ++i1)
+		{
+			for (int j1 = 0; j1 < b0; ++j1)
+			{
+				for (int k1 = 0; k1 < b1; ++k1)
+				{
+					 double d0 = 0.125D;
+					 double d1 = this.noiseArray[((i1) * l + j1) * b3 + k1];
+					 double d2 = this.noiseArray[((i1) * l + j1 + 1) * b3 + k1];
+					 double d3 = this.noiseArray[((i1 + 1) * l + j1) * b3 + k1];
+					 double d4 = this.noiseArray[((i1 + 1) * l + j1 + 1) * b3 + k1];
+					 double d5 = (this.noiseArray[((i1) * l + j1) * b3 + k1 + 1] - d1) * d0;
+					 double d6 = (this.noiseArray[((i1) * l + j1 + 1) * b3 + k1 + 1] - d2) * d0;
+					 double d7 = (this.noiseArray[((i1 + 1) * l + j1) * b3 + k1 + 1] - d3) * d0;
+					 double d8 = (this.noiseArray[((i1 + 1) * l + j1 + 1) * b3 + k1 + 1] - d4) * d0;
+
+					 for (int l1 = 0; l1 < 8; ++l1)
+					 {
+						 double d9 = 0.25D;
+						 double d10 = d1;
+						 double d11 = d2;
+						 double d12 = (d3 - d1) * d9;
+						 double d13 = (d4 - d2) * d9;
+
+						 for (int i2 = 0; i2 < 4; ++i2)
+						 {
+							 double d14 = 0.25D;
+							 double d15 = (d11 - d10) * d14;
+							 double d16 = d10 - d15;
+
+							 for (int k2 = 0; k2 < 4; ++k2)
+							 {
+								 if ((d16 += d15) > 0.0D)
+								 {
+									 chunkPrimer.setBlockState(i1 * 4 + i2, k1 * 8 + l1, j1 * 4 + k2, Blocks.STONE.getDefaultState());
+								 }
+								 else if (k1 * 8 + l1 < b2)
+								 {
+									 chunkPrimer.setBlockState(i1 * 4 + i2, k1 * 100 + l1, j1 * 4 + k2, Blocks.WATER.getDefaultState());
+								 }
+								 else
+								 {
+									 chunkPrimer.setBlockState(i1 * 4 + i2, k1 * 8 + l1, j1 * 4 + k2, Blocks.AIR.getDefaultState());
+								 }
+							 }
+
+							 d10 += d12;
+							 d11 += d13;
+						 }
+						 d1 += d5;
+						 d2 += d6;
+						 d3 += d7;
+						 d4 += d8;
+					 }
+				}
+			}
+		}
+	}
+	
+	//TODO
+	/*public void generateTerrain(int x, int z, ChunkPrimer chunkPrimer)
 	{
 		byte b0 = 4;
 		byte b1 = 16;
@@ -143,7 +217,8 @@ public class ChunkProviderGoodDream implements IChunkGenerator
 				}
 			}
 		}
-	}
+	}*/
+
 	public void replaceBlocksForBiome(int x, int z, ChunkPrimer chunkPrimer)
 	{
 		double var6 = 0.03125D;
