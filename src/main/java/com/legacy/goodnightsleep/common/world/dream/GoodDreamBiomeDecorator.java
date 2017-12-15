@@ -32,7 +32,7 @@ public class GoodDreamBiomeDecorator extends BiomeDecorator
 
 	public WorldGenFoilage foilage = new WorldGenFoilage();
 	
-	//public boolean generateLakes = true;
+	public boolean generateLakes = true;
 
 	public GoodDreamBiomeDecorator()
 	{
