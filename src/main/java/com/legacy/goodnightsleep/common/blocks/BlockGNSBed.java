@@ -1,14 +1,12 @@
-package com.legacy.goodnightsleep.common.blocks.natural;
+package com.legacy.goodnightsleep.common.blocks;
 
 import java.util.Random;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockBed;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.material.EnumPushReaction;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
@@ -37,6 +35,7 @@ public class BlockGNSBed extends BlockHorizontal
     {
         super(Material.CLOTH);
         this.setDefaultState(this.blockState.getBaseState().withProperty(PART, BlockGNSBed.EnumPartType.FOOT));
+        this.setCreativeTab(null);
     }
     
     /**

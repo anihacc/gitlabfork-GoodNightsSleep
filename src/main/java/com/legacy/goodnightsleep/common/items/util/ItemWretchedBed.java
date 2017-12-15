@@ -1,7 +1,7 @@
 package com.legacy.goodnightsleep.common.items.util;
 
+import com.legacy.goodnightsleep.common.blocks.BlockGNSBed;
 import com.legacy.goodnightsleep.common.blocks.BlocksGNS;
-import com.legacy.goodnightsleep.common.blocks.natural.BlockGNSBed;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;

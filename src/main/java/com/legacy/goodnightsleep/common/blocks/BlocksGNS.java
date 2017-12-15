@@ -3,7 +3,6 @@ package com.legacy.goodnightsleep.common.blocks;
 
 import com.legacy.goodnightsleep.common.GoodNightSleep;
 import com.legacy.goodnightsleep.common.blocks.construction.BlockGNSPlank;
-import com.legacy.goodnightsleep.common.blocks.natural.BlockGNSBed;
 import com.legacy.goodnightsleep.common.blocks.natural.BlockGNSDirt;
 import com.legacy.goodnightsleep.common.blocks.natural.BlockGNSFlower;
 import com.legacy.goodnightsleep.common.blocks.natural.BlockGNSGrass;
