@@ -21,6 +21,10 @@ import net.minecraft.world.gen.MapGenBase;
 import net.minecraft.world.gen.MapGenCaves;
 import net.minecraft.world.gen.MapGenRavine;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
+import net.minecraft.world.gen.feature.WorldGenDungeons;
+import net.minecraft.world.gen.feature.WorldGenLakes;
+import net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType;
+import net.minecraftforge.event.terraingen.TerrainGen;
 
 public class ChunkProviderNightmare implements IChunkGenerator 
 {
@@ -365,6 +369,64 @@ public class ChunkProviderNightmare implements IChunkGenerator
         int i = x * 16;
         int j = z * 16;
         BlockPos blockpos = new BlockPos(i, 0, j);
+        
+        boolean flag = false;
+		
+		 if (!flag && this.random.nextInt(80 / 10) == 0)
+		 {
+		        if (TerrainGen.populate(this, this.worldObj, this.random, x, z, flag, EventType.LAVA))
+		        {
+		            int i2 = this.random.nextInt(16) + 8;
+		            int l2 = this.random.nextInt(this.random.nextInt(248) + 8);
+		            int k3 = this.random.nextInt(16) + 8;
+
+		            if (l2 < this.worldObj.getSeaLevel() || this.random.nextInt(80 / 8) == 0)
+		            {
+		                (new WorldGenLakes(Blocks.LAVA)).generate(this.worldObj, this.random, blockpos.add(i2, l2, k3));
+		            }
+		        }
+		 }
+		 
+		 
+		 //if (this.random.nextInt(13) == 0)
+	        //{
+	        	if (TerrainGen.populate(this, this.worldObj, this.random, x, z, flag, EventType.LAKE))
+	        	{
+	        		int i1 = this.random.nextInt(16) + 8;
+	        		int j1 = this.random.nextInt(this.random.nextInt(this.random.nextInt(112) + 8) + 8);
+	        		int k1 = this.random.nextInt(16) + 8;
+	        		(new WorldGenLakes(Blocks.LAVA)).generate(this.worldObj, this.random, blockpos.add(i1, j1, k1));
+	        	}
+	        //}
+	        	
+	        	int var12;
+	            int var13;
+	            int var14;
+	            if(!flag && this.random.nextInt(4) == 0) 
+	            {
+	            if (TerrainGen.populate(this, this.worldObj, this.random, x, z, flag, EventType.LAKE))
+	            	
+	            {
+	               var12 = i + this.random.nextInt(16) + 8;
+	               var13 = this.random.nextInt(128);
+	               var14 = j + this.random.nextInt(16) + 8;
+	               (new WorldGenLakes(Blocks.LAVA)).generate(this.worldObj, this.random, blockpos.add(var12, var13, var14));
+	            }
+	            }
+
+	            if(!flag && this.random.nextInt(8) == 0) 
+	            {
+	            	if (TerrainGen.populate(this, this.worldObj, this.random, x, z, flag, EventType.LAKE))
+		        	{
+	               var12 = i + this.random.nextInt(16) + 8;
+	               var13 = this.random.nextInt(this.random.nextInt(120) + 8);
+	               var14 = j + this.random.nextInt(16) + 8;
+	               if(var13 < 63 || this.random.nextInt(10) == 0) 
+	               {
+	                  (new WorldGenLakes(Blocks.LAVA)).generate(this.worldObj, this.random, blockpos.add(var12, var13, var14));
+	               }
+	            }       
+	            }
 
         this.random.setSeed(this.worldObj.getSeed());
         long k = this.random.nextLong() / 2L * 2L + 1L;

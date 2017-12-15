@@ -8,6 +8,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeDecorator;
+import net.minecraft.world.gen.feature.WorldGenPumpkin;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.event.terraingen.TerrainGen;
 import net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType;
@@ -65,13 +66,32 @@ public class NightmareBiomeDecorator extends BiomeDecorator
 			this.getTree().generate(this.world, this.rand, this.world.getHeight(this.chunkPos.add(this.nextInt(16) + 8, 0, this.nextInt(16) + 8)));
 		}
 		
+		if(random.nextInt(5) == 0)
+		{
 			if(TerrainGen.decorate(worldIn, random, chunkPos, EventType.BIG_SHROOM))
-            for (int k2 = 0; k2 < this.bigMushroomsPerChunk; ++k2)
-            {   
-                int l6 = random.nextInt(500) + 20;
-                int k10 = random.nextInt(500) + 20;
-                this.bigMushroomGen.generate(worldIn, random, worldIn.getHeight(this.chunkPos.add(l6, 0, k10)));
+			for (int k2 = 0; k2 < this.bigMushroomsPerChunk; ++k2)
+		    {
+		        int l6 = random.nextInt(16) + 8;
+		        int k10 = random.nextInt(16) + 8;
+		        this.bigMushroomGen.generate(worldIn, random, worldIn.getHeight(this.chunkPos.add(l6, 0, k10)));
+		    }
+		}
+		
+		if (random.nextInt(32) == 0)
+        {
+            int i5 = random.nextInt(16) + 8;
+            int k9 = random.nextInt(16) + 8;
+            int j13 = worldIn.getHeight(this.chunkPos.add(i5, 0, k9)).getY() * 2;
+
+            if (j13 > 0)
+            {
+                int k16 = random.nextInt(j13);
+                (new WorldGenPumpkin()).generate(worldIn, random, this.chunkPos.add(i5, k16, k9));
             }
+        }
+		
+			
+           
 
         for (int i3 = 0; i3 < 1; ++i3)
         {
@@ -112,7 +132,6 @@ public class NightmareBiomeDecorator extends BiomeDecorator
     	this.spawnOre(Blocks.REDSTONE_ORE.getDefaultState(), 7, 8, 16);
     	this.spawnOre(Blocks.LAPIS_ORE.getDefaultState(), 6, 1, 16);
     	this.spawnOre(Blocks.DIAMOND_ORE.getDefaultState(), 7, 1, 16);
-    	this.spawnOre(Blocks.GLOWSTONE.getDefaultState(), 8, 15, 3);
     	
     	this.spawnOre(BlocksGNS.necrum_ore.getDefaultState(), 8, 20, 128);
     	this.spawnOre(BlocksGNS.zitrite_ore.getDefaultState(), 8, 10, 32);
