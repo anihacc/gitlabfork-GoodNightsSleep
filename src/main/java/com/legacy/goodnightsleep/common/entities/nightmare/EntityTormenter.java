@@ -2,6 +2,7 @@ package com.legacy.goodnightsleep.common.entities.nightmare;
 
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
@@ -18,7 +19,7 @@ public class EntityTormenter extends EntityZombie
 	        return SoundEvents.AMBIENT_CAVE;
 	    }
 
-	    protected SoundEvent getHurtSound()
+	    protected SoundEvent getHurtSound(DamageSource source)
 	    {
 	        return SoundEvents.AMBIENT_CAVE;
 	    }

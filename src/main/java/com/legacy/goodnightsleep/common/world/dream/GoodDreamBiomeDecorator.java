@@ -32,6 +32,8 @@ public class GoodDreamBiomeDecorator extends BiomeDecorator
 
 	public WorldGenFoilage foilage = new WorldGenFoilage();
 	
+	public WorldGenSponge spongeGen = new WorldGenSponge();
+	
 	public boolean generateLakes = true;
 
 	public GoodDreamBiomeDecorator()
@@ -104,6 +106,20 @@ public class GoodDreamBiomeDecorator extends BiomeDecorator
                 }
             }
 
+            // if (random.nextInt(2) == 0)
+            {
+                int j7 = random.nextInt(16) + 8;
+                int i11 = random.nextInt(16) + 8;
+                int k14 = worldIn.getHeight(this.chunkPos.add(j7, 0, i11)).getY() * 2;
+                
+                int y = random.nextInt(2) + 59;
+                
+                //if (k14 > 0)
+                {
+                    int l17 = random.nextInt(k14);
+                    this.spongeGen.generate(worldIn, random, this.chunkPos.add(j7, y, i11));
+                }
+            }
 
 		this.spawnOres();
 

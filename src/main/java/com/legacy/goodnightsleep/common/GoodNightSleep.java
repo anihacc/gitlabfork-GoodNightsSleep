@@ -1,6 +1,10 @@
 package com.legacy.goodnightsleep.common;
 
-import net.minecraft.util.ResourceLocation;
+import com.legacy.goodnightsleep.common.entities.GNSEntities;
+import com.legacy.goodnightsleep.common.registry.RegistryEventHandler;
+import com.legacy.goodnightsleep.common.registry.VariableConstants;
+import com.legacy.goodnightsleep.common.world.GNSWorld;
+
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -8,23 +12,14 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
-import com.legacy.goodnightsleep.common.blocks.BlocksGNS;
-import com.legacy.goodnightsleep.common.entities.GNSEntities;
-import com.legacy.goodnightsleep.common.items.ItemsGNS;
-import com.legacy.goodnightsleep.common.registry.GNSCreativeTabs;
-import com.legacy.goodnightsleep.common.world.GNSWorld;
-
-@Mod(name = "Good Night Sleep", modid = GoodNightSleep.modid, version = GoodNightSleep.version, acceptedMinecraftVersions = "1.11.2")
+@Mod(name = VariableConstants.NAME, version = VariableConstants.VERSION, modid = VariableConstants.MODID)
 public class GoodNightSleep 
 {
 
-	public static final String modid = "goodnightsleep";
-	public static final String version = "v1.0.1";
-
-	@Instance(GoodNightSleep.modid)
+	@Instance(VariableConstants.MODID)
 	public static GoodNightSleep instance;
 
-	@SidedProxy(modId = GoodNightSleep.modid, clientSide = "com.legacy.goodnightsleep.client.ClientProxy", serverSide = "com.legacy.goodnightsleep.common.ServerProxy")
+	@SidedProxy(modId = VariableConstants.MODID, clientSide = VariableConstants.CLIENT_PROXY_LOCATION, serverSide = VariableConstants.COMMON_PROXY_LOCATION)
 	public static ServerProxy proxy;
 
 	@EventHandler
@@ -32,7 +27,7 @@ public class GoodNightSleep
 	{
 		GNSConfig.init(event.getModConfigurationDirectory());
 		//AetherConfig.autoDeveloperMode(version);
-
+		VariableConstants.registerEvent(new RegistryEventHandler());
 		//AetherNetworkingManager.preInitialization();
 
 		proxy.preInitialization();
@@ -44,27 +39,17 @@ public class GoodNightSleep
 		//PlayerAetherManager.initialization();
 		//SoundsAether.initialization();
 		GNSEntities.initialization();
-		BlocksGNS.initialization();
-		ItemsGNS.initialization();
+		//BlocksGNS.initialization();
+		//ItemsGNS.initialization();
 		//AetherRecipes.initialization();
 		//AchievementsAether.initialization();
 		//AetherTileEntities.initialization();
-		GNSCreativeTabs.initialization();
+		//GNSCreativeTabs.initialization();
 		GNSWorld.initialization();
 
 		proxy.initialization();
 
 		ServerProxy.registerEvent(new GNSEventHandler());
-	}
-
-	public static ResourceLocation locate(String location)
-	{
-		return new ResourceLocation(modid, location);
-	}
-
-	public static String modAddress()
-	{
-		return modid + ":";
 	}
 
 }

@@ -1,19 +1,20 @@
 package com.legacy.goodnightsleep.client.renders.blocks;
 
+import com.legacy.goodnightsleep.common.blocks.BlocksGNS;
+import com.legacy.goodnightsleep.common.registry.VariableConstants;
+
 import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
-import net.minecraft.util.ResourceLocation;
-
-import com.legacy.goodnightsleep.common.GoodNightSleep;
-import com.legacy.goodnightsleep.common.blocks.BlocksGNS;
+import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class BlockRendering 
 {
 
-	public static void initialize()
+	@SubscribeEvent
+	public void onModelRegisterEvent(ModelRegistryEvent event)
 	{
 		register(BlocksGNS.tall_dream_grass, "tall_dream_grass");
 		register(BlocksGNS.tall_nightmare_grass, "tall_nightmare_grass");
@@ -49,19 +50,6 @@ public class BlockRendering
 
 	public static void register(Block block, String model)
 	{
-		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(block), 0, new ModelResourceLocation(GoodNightSleep.locate(model).toString(), "inventory"));
+		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block), 0, new ModelResourceLocation(VariableConstants.MODID + ":" + model, "inventory"));
 	}
-
-	public static void register(Block block, int meta, String model)
-	{
-		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(block), meta, new ModelResourceLocation(GoodNightSleep.locate(model).toString(), "inventory"));
-	}
-
-	public static void registerModels(Block block, String... model)
-	{
-		for (String name : model)
-		{
-			ModelBakery.registerItemVariants(Item.getItemFromBlock(block), new ResourceLocation("goodnightsleep", name));
-		}
-		}
 }

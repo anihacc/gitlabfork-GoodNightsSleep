@@ -115,7 +115,7 @@ public class PlayerGNS
 
 			int transferToID = player.dimension == GNSConfig.getDreamDimensionID() ? 0 : GNSConfig.getDreamDimensionID();
 
-			scm.transferPlayerToDimension(player, transferToID, new TeleporterHeck(FMLCommonHandler.instance().getMinecraftServerInstance().worldServerForDimension(transferToID)));
+			scm.transferPlayerToDimension(player, transferToID, new TeleporterHeck(FMLCommonHandler.instance().getMinecraftServerInstance().getWorld(transferToID)));
 		}
 	}
 	
@@ -131,7 +131,7 @@ public class PlayerGNS
 
 			int transferToID = player.dimension == GNSConfig.getNightmareDimensionID() ? 0 : GNSConfig.getNightmareDimensionID();
 
-			scm.transferPlayerToDimension(player, transferToID, new TeleporterHeck(FMLCommonHandler.instance().getMinecraftServerInstance().worldServerForDimension(transferToID)));
+			scm.transferPlayerToDimension(player, transferToID, new TeleporterHeck(FMLCommonHandler.instance().getMinecraftServerInstance().getWorld(transferToID)));
 		}
 	}
 

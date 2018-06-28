@@ -1,12 +1,12 @@
 package com.legacy.goodnightsleep.common.items.tools;
 
+import com.legacy.goodnightsleep.common.registry.GNSCreativeTabs;
+import com.legacy.goodnightsleep.common.registry.VariableConstants;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
-
-import com.legacy.goodnightsleep.common.GoodNightSleep;
-import com.legacy.goodnightsleep.common.registry.GNSCreativeTabs;
 
 public class ItemGNSArmor extends ItemArmor
 {
@@ -28,6 +28,6 @@ public class ItemGNSArmor extends ItemArmor
     	boolean leggings = this.getUnlocalizedName().contains("leggings");
     	String type1 = leggings ? "layer_2" : "layer_1";
 
-        return GoodNightSleep.modAddress() + "textures/armor/" + this.armorName + "_" + type1 + ".png";
+        return VariableConstants.MODID + "textures/armor/" + this.armorName + "_" + type1 + ".png";
     }
 }

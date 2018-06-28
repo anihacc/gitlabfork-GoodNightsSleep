@@ -3,16 +3,14 @@ package com.legacy.goodnightsleep.common.world.dream;
 import java.util.ArrayList;
 import java.util.Random;
 
+import com.legacy.goodnightsleep.common.blocks.BlocksGNS;
+import com.legacy.goodnightsleep.common.world.genfeatures.WorldGenTallGrass;
+
 import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
-import com.legacy.goodnightsleep.common.blocks.BlocksGNS;
-import com.legacy.goodnightsleep.common.world.genfeatures.WorldGenTallGrass;
 
 public class BiomeGenGoodDreamPlains extends Biome
 {
@@ -29,8 +27,8 @@ public class BiomeGenGoodDreamPlains extends Biome
 
 		list.clear();
 
-		this.topBlock = BlocksGNS.dream_grass.getDefaultState();
-		this.fillerBlock = BlocksGNS.dream_dirt.getDefaultState();
+		//this.topBlock = BlocksGNS.dream_grass.getDefaultState();
+		//this.fillerBlock = BlocksGNS.dream_dirt.getDefaultState();
 	}
 
 	@Override

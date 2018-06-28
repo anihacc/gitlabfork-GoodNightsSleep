@@ -1,71 +1,45 @@
 package com.legacy.goodnightsleep.common.registry;
 
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
 import com.legacy.goodnightsleep.common.blocks.BlocksGNS;
 import com.legacy.goodnightsleep.common.items.ItemsGNS;
+
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.ItemStack;
 
 public class GNSCreativeTabs 
 {
 
-	public static GNSTab blocks = new GNSTab("blocks");
-	
-	public static GNSTab items = new GNSTab("items");
-	
-	public static GNSTab tools = new GNSTab("tools");
-
-	public static GNSTab armor = new GNSTab("armor");
-	
-	public static void initialization()
+	public static final CreativeTabs blocks = new CreativeTabs("gns_blocks")
 	{
-		blocks.setIcon(new ItemStack(BlocksGNS.dream_grass));
-		items.setIcon(new ItemStack(ItemsGNS.positite_gem));
-		tools.setIcon(new ItemStack(ItemsGNS.positite_sword));
-		armor.setIcon(new ItemStack(ItemsGNS.rainbow_chestplate));
-	}
-	
-	public static class GNSTab extends CreativeTabs
+		@Override
+		public ItemStack getTabIconItem() 
+		{
+			return new ItemStack(BlocksGNS.dream_grass);
+		}
+	};
+	public static final CreativeTabs tools = new CreativeTabs("gns_tools")
 	{
-
-		private ItemStack stack;
-
-		public GNSTab(String unlocalizedName)
-		{
-			super(unlocalizedName);
-		}
-
-		public GNSTab(String unlocalizedName, ItemStack stack)
-		{
-			super(unlocalizedName);
-			this.stack = stack;
-		}
-
-		public void setIcon(ItemStack stack)
-		{
-			this.stack = stack;
-		}
-
-	    @SideOnly(Side.CLIENT)
-	    public String getTranslatedTabLabel()
-	    {
-	        return "tab." + this.getTabLabel();
-	    }
-
 		@Override
-		public ItemStack getIconItemStack()
+		public ItemStack getTabIconItem() 
 		{
-			return stack;
+			return new ItemStack(ItemsGNS.candy_axe);
 		}
-
+	};
+	public static final CreativeTabs armor = new CreativeTabs("gns_armor")
+	{
 		@Override
-		public ItemStack getTabIconItem()
+		public ItemStack getTabIconItem() 
 		{
-			return stack;
+			return new ItemStack(ItemsGNS.candy_chestplate);
 		}
-		
-	}
+	};
+	public static final CreativeTabs items = new CreativeTabs("gns_items")
+	{
+		@Override
+		public ItemStack getTabIconItem() 
+		{
+			return new ItemStack(ItemsGNS.positite_gem);
+		}
+	};
 
 }

@@ -1,7 +1,6 @@
 
 package com.legacy.goodnightsleep.common.blocks;
 
-import com.legacy.goodnightsleep.common.GoodNightSleep;
 import com.legacy.goodnightsleep.common.blocks.construction.BlockGNSPlank;
 import com.legacy.goodnightsleep.common.blocks.natural.BlockGNSDirt;
 import com.legacy.goodnightsleep.common.blocks.natural.BlockGNSFlower;
@@ -13,13 +12,15 @@ import com.legacy.goodnightsleep.common.blocks.natural.BlockGNSTallGrass;
 import com.legacy.goodnightsleep.common.blocks.natural.ores.BlockGNSOre;
 import com.legacy.goodnightsleep.common.items.ItemsGNS;
 import com.legacy.goodnightsleep.common.registry.GNSCreativeTabs;
+import com.legacy.goodnightsleep.common.registry.VariableConstants;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
-import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.registries.IForgeRegistry;
 
 public class BlocksGNS
 {
@@ -61,9 +62,18 @@ public class BlocksGNS
 	public static Block pot_of_gold, present;
 	
 	public static Block luxurious_bed, wretched_bed;
+	
+	private static IForgeRegistry<Block> iBlockRegistry;
+
+	private static IForgeRegistry<Item> iItemRegistry;
 
 	public static void initialization()
-	{
+	{		
+		if (iBlockRegistry == null || iItemRegistry == null)
+		{
+			return;
+		}
+		
 		tall_dream_grass = register("tall_dream_grass", new BlockGNSTallGrass());
 		tall_nightmare_grass = register("tall_nightmare_grass", new BlockGNSTallGrass());
 		dream_grass = register("dream_grass", new BlockGNSGrass());
@@ -126,14 +136,33 @@ public class BlocksGNS
 
 		return slab1;
 	}*/
+	
+	public static void setItemRegistry(IForgeRegistry<Item> iItemRegistry)
+	{
+		BlocksGNS.iItemRegistry = iItemRegistry;
+	}
 
+	public static void setBlockRegistry(IForgeRegistry<Block> iBlockRegistry)
+	{
+		BlocksGNS.iBlockRegistry = iBlockRegistry;
+	}
+	
 	public static Block register(String name, Block block)
 	{
-		block.setUnlocalizedName(name);
-		block.setCreativeTab(GNSCreativeTabs.blocks);
+		return register(name, block, new ItemBlock(block));
+	}
 
-		GameRegistry.register(block.setRegistryName(GoodNightSleep.locate(name)));
-		GameRegistry.register(new ItemBlock(block).setRegistryName(GoodNightSleep.locate(name)));
+	public static Block register(String name, Block block, ItemBlock item)
+	{
+		block.setUnlocalizedName(name);
+
+		block.setRegistryName(VariableConstants.locate(name));
+		item.setRegistryName(VariableConstants.locate(name));
+
+		iBlockRegistry.register(block);
+		iItemRegistry.register(item);
+
+		block.setCreativeTab(GNSCreativeTabs.blocks);
 
 		return block;
 	}

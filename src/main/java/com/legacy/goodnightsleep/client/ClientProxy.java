@@ -2,6 +2,11 @@ package com.legacy.goodnightsleep.client;
 
 import java.util.Random;
 
+import com.legacy.goodnightsleep.client.renders.GNSEntityRenderingRegistry;
+import com.legacy.goodnightsleep.client.renders.blocks.BlockRendering;
+import com.legacy.goodnightsleep.client.renders.items.ItemRendering;
+import com.legacy.goodnightsleep.common.ServerProxy;
+
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
@@ -11,25 +16,22 @@ import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.client.FMLClientHandler;
 
-import com.legacy.goodnightsleep.client.renders.GNSEntityRenderingRegistry;
-import com.legacy.goodnightsleep.client.renders.blocks.BlockRendering;
-import com.legacy.goodnightsleep.client.renders.items.ItemRendering;
-import com.legacy.goodnightsleep.common.ServerProxy;
-
 public class ClientProxy extends ServerProxy
 {
 
 	@Override
 	public void preInitialization()
 	{
+		registerEvent(new BlockRendering());
+		registerEvent(new ItemRendering());
 		GNSEntityRenderingRegistry.initialize();
+
+		//MinecraftForge.EVENT_BUS.register(new GNSClientEvent());
 	}
 
 	@Override
 	public void initialization()
 	{
-		BlockRendering.initialize();
-		ItemRendering.initialize();
 	}
 
 	@Override

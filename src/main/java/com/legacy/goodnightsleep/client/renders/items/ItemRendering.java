@@ -1,13 +1,11 @@
 package com.legacy.goodnightsleep.client.renders.items;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.block.model.ModelBakery;
+import com.legacy.goodnightsleep.common.items.ItemsGNS;
+import com.legacy.goodnightsleep.common.registry.VariableConstants;
+
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
-import net.minecraft.util.ResourceLocation;
-
-import com.legacy.goodnightsleep.common.GoodNightSleep;
-import com.legacy.goodnightsleep.common.items.ItemsGNS;
+import net.minecraftforge.client.model.ModelLoader;
 
 public class ItemRendering 
 {
@@ -69,22 +67,9 @@ public class ItemRendering
 		register(ItemsGNS.negatite_boots, "negatite_boots");
 	}
 
-	public static void register(Item item, int meta, String model)
-	{
-		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, meta, new ModelResourceLocation(GoodNightSleep.locate(model).toString(), "inventory"));
-	}
-
 	public static void register(Item item, String model)
 	{
-		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 0, new ModelResourceLocation(GoodNightSleep.locate(model).toString(), "inventory"));
-	}
-
-	public static void registerMetaModel(Item item, String... model)
-	{
-		for (String name : model)
-		{
-			ModelBakery.registerItemVariants(item, new ResourceLocation("goodnightsleep", name));
-		}
+		ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(VariableConstants.MODID + ":" + model, "inventory"));
 	}
 
 }

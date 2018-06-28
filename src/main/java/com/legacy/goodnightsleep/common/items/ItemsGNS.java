@@ -1,16 +1,5 @@
 package com.legacy.goodnightsleep.common.items;
 
-import net.minecraft.inventory.EntityEquipmentSlot;
-import net.minecraft.item.EnumRarity;
-import net.minecraft.item.Item;
-import net.minecraft.item.Item.ToolMaterial;
-import net.minecraft.item.ItemArmor;
-import net.minecraft.item.ItemArmor.ArmorMaterial;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraftforge.common.util.EnumHelper;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-
-import com.legacy.goodnightsleep.common.GoodNightSleep;
 import com.legacy.goodnightsleep.common.items.tools.ItemGNSArmor;
 import com.legacy.goodnightsleep.common.items.tools.ItemGNSAxe;
 import com.legacy.goodnightsleep.common.items.tools.ItemGNSPickaxe;
@@ -20,9 +9,18 @@ import com.legacy.goodnightsleep.common.items.util.ItemGNS;
 import com.legacy.goodnightsleep.common.items.util.ItemLuxuriousBed;
 import com.legacy.goodnightsleep.common.items.util.ItemWretchedBed;
 import com.legacy.goodnightsleep.common.registry.GNSCreativeTabs;
+import com.legacy.goodnightsleep.common.registry.VariableConstants;
+
+import net.minecraft.inventory.EntityEquipmentSlot;
+import net.minecraft.item.Item;
+import net.minecraft.item.Item.ToolMaterial;
+import net.minecraft.item.ItemArmor.ArmorMaterial;
+import net.minecraftforge.common.util.EnumHelper;
+import net.minecraftforge.registries.IForgeRegistry;
 
 public class ItemsGNS
 {
+	private static IForgeRegistry<Item> iItemRegistry;
 
 	public static Item positite_gem, zitrite_ingot, negatite_gem, necrum, rainbow_ingot;
 	
@@ -114,12 +112,20 @@ public class ItemsGNS
 		wretched_bed_item = register("wretched_bed_item", new ItemWretchedBed());
 	}
 
-	public static Item register(String name, Item item)
+	private static Item register(String unlocalizedName, Item item)
 	{
-		item.setUnlocalizedName(name);
-		GameRegistry.register(item.setRegistryName(GoodNightSleep.locate(name)));
+		item.setUnlocalizedName(unlocalizedName);
+
+		item.setRegistryName(VariableConstants.locate(unlocalizedName));
+
+		iItemRegistry.register(item);
 
 		return item;
+	}
+	
+	public static void setItemRegistry(IForgeRegistry<Item> iItemRegistry)
+	{
+		ItemsGNS.iItemRegistry = iItemRegistry;
 	}
 
 }
