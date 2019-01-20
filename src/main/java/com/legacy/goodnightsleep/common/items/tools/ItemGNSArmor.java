@@ -28,6 +28,6 @@ public class ItemGNSArmor extends ItemArmor
     	boolean leggings = this.getUnlocalizedName().contains("leggings");
     	String type1 = leggings ? "layer_2" : "layer_1";
 
-        return VariableConstants.MODID + "textures/armor/" + this.armorName + "_" + type1 + ".png";
+        return VariableConstants.MODID + ":" + "textures/armor/" + this.armorName + "_" + type1 + ".png";
     }
 }

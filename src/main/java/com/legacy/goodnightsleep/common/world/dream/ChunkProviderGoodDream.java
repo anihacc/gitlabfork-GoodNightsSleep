@@ -99,7 +99,7 @@ public class ChunkProviderGoodDream implements IChunkGenerator
             }
         }
 		
-		this.worldObj.setSeaLevel(61);
+		this.worldObj.setSeaLevel(65);
 	}
 
 
@@ -108,7 +108,7 @@ public class ChunkProviderGoodDream implements IChunkGenerator
         this.biomesForGeneration = this.worldObj.getBiomeProvider().getBiomesForGeneration(this.biomesForGeneration, x * 4 - 2, z * 4 - 2, 10, 10);
         this.generateHeightmap(x * 4, 0, z * 4);
 
-        byte b2 = 65;
+        int b2 = this.worldObj.getSeaLevel();
         
         for (int i = 0; i < 4; ++i)
         {
@@ -317,7 +317,15 @@ public class ChunkProviderGoodDream implements IChunkGenerator
 						 {
 							 var13 = var12;
 							 
-							 chunkPrimer.setBlockState(var8, var16 + 1, var9, topBlock);
+							 if (var16 < 63)
+							 {
+								 chunkPrimer.setBlockState(var8, var16 + 1, var9, fillerBlock);
+							 }
+							 else
+							 {
+								 chunkPrimer.setBlockState(var8, var16 + 1, var9, topBlock);
+							 }
+							 
 							 chunkPrimer.setBlockState(var8, var16, var9, fillerBlock);
 						 }
 

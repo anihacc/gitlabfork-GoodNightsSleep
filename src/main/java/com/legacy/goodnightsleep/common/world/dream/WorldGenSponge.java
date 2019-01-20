@@ -22,7 +22,7 @@ public class WorldGenSponge extends WorldGenerator
    public boolean generate(World worldIn, Random random, BlockPos pos) 
    {
 	   
-	   if((worldIn.getBlockState(pos.down()).getMaterial() == Material.WATER || worldIn.getBlockState(pos).getMaterial() == Material.WATER || worldIn.getBlockState(pos.up()).getMaterial() == Material.WATER) && worldIn.getBlockState(pos.up()).getMaterial() == Material.AIR) 	    
+	   if((worldIn.getBlockState(pos).getMaterial() == Material.WATER || worldIn.getBlockState(pos.down()).getMaterial() == Material.WATER || worldIn.getBlockState(pos.up()).getMaterial() == Material.WATER) && worldIn.getBlockState(pos.up()).getMaterial() == Material.AIR) 	    
       {
          int varSize = random.nextInt(6);
          int varSpace = 1 + random.nextInt(3);

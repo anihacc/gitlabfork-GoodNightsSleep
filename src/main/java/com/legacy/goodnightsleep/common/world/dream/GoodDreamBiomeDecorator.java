@@ -62,6 +62,7 @@ public class GoodDreamBiomeDecorator extends BiomeDecorator
         }
     }
 
+	@SuppressWarnings("deprecation")
 	@Override
     protected void genDecorations(Biome biomeGenBaseIn, World worldIn, Random random)
     {    	
@@ -70,7 +71,7 @@ public class GoodDreamBiomeDecorator extends BiomeDecorator
 			this.getTree().generate(this.world, this.rand, this.world.getHeight(this.chunkPos.add(this.nextInt(16) + 8, 0, this.nextInt(16) + 8)));
 		}
 
-        for (int i3 = 0; i3 < 1; ++i3)
+        for (int i3 = 0; i3 < 5; ++i3)
         {
             int j7 = random.nextInt(10) + 5;
             int i11 = random.nextInt(10) + 5;
@@ -108,17 +109,19 @@ public class GoodDreamBiomeDecorator extends BiomeDecorator
 
             // if (random.nextInt(2) == 0)
             {
-                int j7 = random.nextInt(16) + 8;
-                int i11 = random.nextInt(16) + 8;
-                int k14 = worldIn.getHeight(this.chunkPos.add(j7, 0, i11)).getY() * 2;
                 
-                int y = random.nextInt(2) + 59;
-                
-                //if (k14 > 0)
-                {
-                    int l17 = random.nextInt(k14);
-                    this.spongeGen.generate(worldIn, random, this.chunkPos.add(j7, y, i11));
-                }
+            }
+            
+            int j7 = random.nextInt(16) + 8;
+            int i11 = random.nextInt(16) + 8;
+            int k14 = worldIn.getHeight(this.chunkPos.add(j7, 0, i11)).getY() * 2;
+            
+            int y = random.nextInt(2) + 61;
+            
+            //if (k14 > 0)
+            {
+                int l17 = random.nextInt(k14);
+                this.spongeGen.generate(worldIn, random, this.chunkPos.add(j7, l17, i11));
             }
 
 		this.spawnOres();
