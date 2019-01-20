@@ -1,7 +1,7 @@
 package com.legacy.goodnightsleep.client.renders.items;
 
-import com.legacy.goodnightsleep.common.items.ItemsGNS;
-import com.legacy.goodnightsleep.common.registry.VariableConstants;
+import com.legacy.goodnightsleep.items.ItemsGNS;
+import com.legacy.goodnightsleep.registry.VariableConstants;
 
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;

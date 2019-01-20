@@ -9,11 +9,11 @@ import com.legacy.goodnightsleep.client.renders.entities.factory.GiantFactory;
 import com.legacy.goodnightsleep.client.renders.entities.factory.GummyBearFactory;
 import com.legacy.goodnightsleep.client.renders.entities.factory.HerobrineFactory;
 import com.legacy.goodnightsleep.client.renders.entities.factory.TormenterFactory;
-import com.legacy.goodnightsleep.common.entities.dream.EntityBabyCreeper;
-import com.legacy.goodnightsleep.common.entities.dream.EntityGummyBear;
-import com.legacy.goodnightsleep.common.entities.nightmare.EntityGiant;
-import com.legacy.goodnightsleep.common.entities.nightmare.EntityHerobrine;
-import com.legacy.goodnightsleep.common.entities.nightmare.EntityTormenter;
+import com.legacy.goodnightsleep.entities.dream.EntityBabyCreeper;
+import com.legacy.goodnightsleep.entities.dream.EntityGummyBear;
+import com.legacy.goodnightsleep.entities.nightmare.EntityGiant;
+import com.legacy.goodnightsleep.entities.nightmare.EntityHerobrine;
+import com.legacy.goodnightsleep.entities.nightmare.EntityTormenter;
 
 public class GNSEntityRenderingRegistry 
 {

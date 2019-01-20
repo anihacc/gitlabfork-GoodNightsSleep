@@ -5,7 +5,7 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 import com.legacy.goodnightsleep.client.renders.entities.RenderTormenter;
-import com.legacy.goodnightsleep.common.entities.nightmare.EntityTormenter;
+import com.legacy.goodnightsleep.entities.nightmare.EntityTormenter;
 
 public class TormenterFactory implements IRenderFactory<EntityTormenter>
 {

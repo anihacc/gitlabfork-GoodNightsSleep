@@ -6,8 +6,8 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 import com.legacy.goodnightsleep.client.renders.entities.RenderBabyCreeper;
 import com.legacy.goodnightsleep.client.renders.entities.RenderGummyBear;
-import com.legacy.goodnightsleep.common.entities.dream.EntityBabyCreeper;
-import com.legacy.goodnightsleep.common.entities.dream.EntityGummyBear;
+import com.legacy.goodnightsleep.entities.dream.EntityBabyCreeper;
+import com.legacy.goodnightsleep.entities.dream.EntityGummyBear;
 
 public class GummyBearFactory implements IRenderFactory<EntityGummyBear>
 {

@@ -1,7 +1,7 @@
 package com.legacy.goodnightsleep.client.renders.entities;
 
 import com.legacy.goodnightsleep.client.models.entities.ModelTormenter;
-import com.legacy.goodnightsleep.common.entities.nightmare.EntityTormenter;
+import com.legacy.goodnightsleep.entities.nightmare.EntityTormenter;
 
 import net.minecraft.client.model.ModelZombie;
 import net.minecraft.client.renderer.entity.RenderBiped;

@@ -1,10 +1,10 @@
 package com.legacy.goodnightsleep.client.renders.entities.factory;
 
+import com.legacy.goodnightsleep.entities.nightmare.EntityGiant;
+
 import net.minecraft.client.renderer.entity.RenderGiantZombie;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
-
-import com.legacy.goodnightsleep.common.entities.nightmare.EntityGiant;
 
 public class GiantFactory implements IRenderFactory<EntityGiant>
 {

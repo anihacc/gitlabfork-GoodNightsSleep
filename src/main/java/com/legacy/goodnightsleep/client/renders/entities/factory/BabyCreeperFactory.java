@@ -5,7 +5,7 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 import com.legacy.goodnightsleep.client.renders.entities.RenderBabyCreeper;
-import com.legacy.goodnightsleep.common.entities.dream.EntityBabyCreeper;
+import com.legacy.goodnightsleep.entities.dream.EntityBabyCreeper;
 
 public class BabyCreeperFactory implements IRenderFactory<EntityBabyCreeper>
 {

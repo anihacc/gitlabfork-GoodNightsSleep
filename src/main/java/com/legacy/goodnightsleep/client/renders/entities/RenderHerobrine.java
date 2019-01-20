@@ -1,6 +1,7 @@
 package com.legacy.goodnightsleep.client.renders.entities;
 
-import com.legacy.goodnightsleep.common.entities.nightmare.EntityHerobrine;
+import com.legacy.goodnightsleep.entities.nightmare.EntityHerobrine;
+
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.entity.RenderBiped;
 import net.minecraft.client.renderer.entity.RenderManager;

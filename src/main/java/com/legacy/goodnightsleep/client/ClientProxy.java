@@ -2,10 +2,10 @@ package com.legacy.goodnightsleep.client;
 
 import java.util.Random;
 
+import com.legacy.goodnightsleep.CommonProxy;
 import com.legacy.goodnightsleep.client.renders.GNSEntityRenderingRegistry;
 import com.legacy.goodnightsleep.client.renders.blocks.BlockRendering;
 import com.legacy.goodnightsleep.client.renders.items.ItemRendering;
-import com.legacy.goodnightsleep.common.ServerProxy;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -16,7 +16,7 @@ import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.client.FMLClientHandler;
 
-public class ClientProxy extends ServerProxy
+public class ClientProxy extends CommonProxy
 {
 
 	@Override

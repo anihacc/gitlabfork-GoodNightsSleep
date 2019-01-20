@@ -1,7 +1,7 @@
 package com.legacy.goodnightsleep.client.renders.entities;
 
 import com.legacy.goodnightsleep.client.models.entities.ModelGummyBear;
-import com.legacy.goodnightsleep.common.entities.dream.EntityGummyBear;
+import com.legacy.goodnightsleep.entities.dream.EntityGummyBear;
 
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;

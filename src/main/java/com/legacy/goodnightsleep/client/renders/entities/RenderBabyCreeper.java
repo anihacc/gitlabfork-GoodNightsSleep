@@ -1,7 +1,7 @@
 package com.legacy.goodnightsleep.client.renders.entities;
 
 import com.legacy.goodnightsleep.client.models.entities.ModelBabyCreeper;
-import com.legacy.goodnightsleep.common.entities.dream.EntityBabyCreeper;
+import com.legacy.goodnightsleep.entities.dream.EntityBabyCreeper;
 
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderLiving;
