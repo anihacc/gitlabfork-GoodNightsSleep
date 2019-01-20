@@ -3,7 +3,6 @@ package com.legacy.goodnightsleep.entities;
 import com.legacy.goodnightsleep.GoodNightSleep;
 import com.legacy.goodnightsleep.entities.dream.EntityBabyCreeper;
 import com.legacy.goodnightsleep.entities.dream.EntityGummyBear;
-import com.legacy.goodnightsleep.entities.nightmare.EntityGiant;
 import com.legacy.goodnightsleep.entities.nightmare.EntityHerobrine;
 import com.legacy.goodnightsleep.entities.nightmare.EntityTormenter;
 import com.legacy.goodnightsleep.registry.VariableConstants;
@@ -22,7 +21,7 @@ public class GNSEntities
 	{
 		register("tormenter", EntityTormenter.class, 10516796, 5525034);
 		register("baby_creeper", EntityBabyCreeper.class, 45079, 16711901);
-		register("giant", EntityGiant.class, 1598464, 30652);
+		//register("giant", EntityGiant.class, 1598464, 30652);
 		register("herobrine", EntityHerobrine.class);
 		register("gummy_bear", EntityGummyBear.class, 0xffffff, 0xffffff);
 		//DataSerializerRegistry.initialize();

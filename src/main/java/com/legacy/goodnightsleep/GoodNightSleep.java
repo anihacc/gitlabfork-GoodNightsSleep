@@ -1,16 +1,19 @@
 package com.legacy.goodnightsleep;
 
 import com.legacy.goodnightsleep.entities.GNSEntities;
+import com.legacy.goodnightsleep.entities.GNSEntityEvents;
 import com.legacy.goodnightsleep.registry.RegistryEventHandler;
 import com.legacy.goodnightsleep.registry.VariableConstants;
 import com.legacy.goodnightsleep.world.GNSWorld;
 
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.registry.EntityRegistry;
 
 @Mod(name = VariableConstants.NAME, version = VariableConstants.VERSION, modid = VariableConstants.MODID)
 public class GoodNightSleep 
@@ -29,13 +32,16 @@ public class GoodNightSleep
 		//AetherConfig.autoDeveloperMode(version);
 		VariableConstants.registerEvent(new RegistryEventHandler());
 		//AetherNetworkingManager.preInitialization();
-
+		VariableConstants.registerEvent(new GNSEntityEvents());
 		proxy.preInitialization();
 	}
 
 	@EventHandler
 	public void initialization(FMLInitializationEvent event)
 	{
+		EntityRegistry.registerEgg(new ResourceLocation("minecraft:giant"), 1598464, 30652);
+
+		
 		//PlayerAetherManager.initialization();
 		//SoundsAether.initialization();
 		GNSEntities.initialization();

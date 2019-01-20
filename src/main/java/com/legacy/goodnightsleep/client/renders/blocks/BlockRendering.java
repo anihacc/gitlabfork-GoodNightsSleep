@@ -30,6 +30,10 @@ public class BlockRendering
 		register(BlocksGNS.dead_plank, "dead_plank");
 		register(BlocksGNS.blood_plank, "blood_plank");
 		
+		register(BlocksGNS.dream_leaves, "dream_leaves");
+		register(BlocksGNS.candy_leaves, "candy_leaves");
+		register(BlocksGNS.diamond_leaves, "diamond_leaves");
+
 		register(BlocksGNS.dream_log, "dream_log");
 		register(BlocksGNS.white_log, "white_log");
 		register(BlocksGNS.dead_log, "dead_log");

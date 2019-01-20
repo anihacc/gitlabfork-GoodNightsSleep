@@ -108,8 +108,8 @@ public class BlocksGNS
 		lolipop_bush = register("lolipop_bush", new BlockGNSFlower());
 		dead_flower = register("dead_flower", new BlockGNSFlower());
 		
-		luxurious_bed = register("luxurious_bed", new BlockGNSBed());
-		wretched_bed = register("wretched_bed", new BlockGNSBed());
+		luxurious_bed = register("luxurious_bed", new BlockGNSBed().setCreativeTab(null));
+		wretched_bed = register("wretched_bed", new BlockGNSBed().setCreativeTab(null));
 
 		
 		//present = register("present", new BlockPresent());
@@ -162,7 +162,10 @@ public class BlocksGNS
 		iBlockRegistry.register(block);
 		iItemRegistry.register(item);
 
-		block.setCreativeTab(GNSCreativeTabs.blocks);
+		if (block != luxurious_bed || block != wretched_bed)
+		{
+			block.setCreativeTab(GNSCreativeTabs.blocks);
+		}
 
 		return block;
 	}

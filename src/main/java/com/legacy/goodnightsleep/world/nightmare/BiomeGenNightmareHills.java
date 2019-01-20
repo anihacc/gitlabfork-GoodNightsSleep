@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import com.legacy.goodnightsleep.blocks.BlocksGNS;
-import com.legacy.goodnightsleep.entities.nightmare.EntityGiant;
 import com.legacy.goodnightsleep.entities.nightmare.EntityTormenter;
 import com.legacy.goodnightsleep.world.genfeatures.WorldGenTallGrass;
 
 import net.minecraft.entity.monster.EntityBlaze;
 import net.minecraft.entity.monster.EntityGhast;
+import net.minecraft.entity.monster.EntityGiantZombie;
 import net.minecraft.entity.monster.EntityMagmaCube;
 import net.minecraft.entity.monster.EntityPigZombie;
 import net.minecraft.entity.monster.EntitySilverfish;
@@ -48,7 +48,7 @@ public class BiomeGenNightmareHills extends Biome
 	     this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntitySilverfish.class, 10, 4, 4));
 	     this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityWitch.class, 10, 4, 4));
 	     this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityTormenter.class, 50, 10, 10));
-	     this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityGiant.class, 95, 1, 1));
+	     this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityGiantZombie.class, 95, 1, 1));
 	}
 
 	@Override
