@@ -1,0 +1,100 @@
+# Blocks
+tile.luxurious_bed.name=Luxurious Bed
+tile.wretched_bed.name=Wretched Bed
+tile.tall_dream_grass=Dream Grass
+tile.tall_nightmare_grass.name=Nightmare Grass
+tile.dream_grass.name=Dream Grass Block
+tile.dream_dirt.name=Dream Dirt
+tile.nightmare_grass.name=Nightmare Grass Block
+tile.hope_mushroom_cap.name=Hope Mushroom Block
+tile.despair_mushroom_cap.name=Despair Mushroom Block
+tile.zitrite_ore.name=Zitrite Ore
+tile.necrum_ore.name=Necrum Ore
+tile.candy_ore.name=Candy Ore
+tile.rainbow_ore.name=Rainbow Ore
+tile.positite_ore.name=Positite Ore
+tile.negatite_ore.name=Negatite Ore
+tile.dream_leaves.name=Dream Leaves
+tile.candy_leaves.name=Candy Leaves
+tile.diamond_leaves.name=Diamond Leaves
+tile.dream_log.name=Dream Wood
+tile.white_log.name=White Wood
+tile.dead_log.name=Dead Wood
+tile.blood_log.name=Blood Wood
+tile.dream_plank.name=Dream Wood Planks
+tile.white_plank.name=White Wood Planks
+tile.dead_plank.name=Dead Wood Planks
+tile.blood_plank.name=Blood Wood Planks
+tile.orange_flower.name=Orange Flower
+tile.cyan_flower.name=Cyan Flower
+tile.lolipop_bush.name=Lolipop Bush
+tile.dead_flower.name=Dead Flower
+
+# Items
+item.positite_gem.name=Positite Gem
+item.zitrite.name=Zitrite
+item.rainbow_ingot.name=Rainbow Ingot
+item.necrum.name=Necrum
+item.negatite_gem.name=Negatite Gem
+
+item.luxurious_bed_item.name=Luxurious Bed
+item.wretched_bed_item.name=Wretched Bed
+
+item.candy_sword.name=Candy Sword
+item.candy_pickaxe.name=Candy Pickaxe
+item.candy_axe.name=Candy Axe
+item.candy_shovel.name=Candy Shovel
+
+item.rainbow_sword.name=Rainbow Sword
+item.rainbow_pickaxe.name=Rainbow Pickaxe
+item.rainbow_axe.name=Rainbow Axe
+item.rainbow_shovel.name=Rainbow Shovel
+
+item.necrum_sword.name=Necrum Sword
+item.necrum_pickaxe.name=Necrum Pickaxe
+item.necrum_axe.name=Necrum Axe
+item.necrum_shovel.name=Necrum Shovel
+
+item.zitrite_sword.name=Zitrite Sword
+item.zitrite_pickaxe.name=Zitrite Pickaxe
+item.zitrite_axe.name=Zitrite Axe
+item.zitrite_shovel.name=Zitrite Shovel
+
+item.positite_sword.name=Positite Sword
+item.positite_pickaxe.name=Positite Pickaxe
+item.positite_axe.name=Positite Axe
+item.positite_shovel.name=Positite Shovel
+
+item.negatite_sword.name=Negatite Sword
+item.negatite_pickaxe.name=Negatite Pickaxe
+item.negatite_axe.name=Negatite Axe
+item.negatite_shovel.name=Negatite Shovel
+
+item.rainbow_helmet.name=Rainbow Helmet
+item.rainbow_chestplate.name=Rainbow Chestplate
+item.rainbow_leggings.name=Rainbow Leggings
+item.rainbow_boots.name=Rainbow Boots
+item.positite_helmet.name=Positite Helmet
+item.positite_chestplate.name=Positite Chestplate
+item.positite_leggings.name=Positite Leggings
+item.positite_boots.name=Positite Boots
+item.negatite_helmet.name=Negatite Helmet
+item.negatite_chestplate.name=Negatite Chestplate
+item.negatite_leggings.name=Negatite Leggings
+item.negatite_boots.name=Negatite Boots
+item.candy_helmet.name=Candy Helmet
+item.candy_chestplate.name=Candy Chestplate
+item.candy_leggings.name=Candy Leggings
+item.candy_boots.name=Candy Boots
+
+# Entities
+entity.tormenter.name=Tormenter
+entity.baby_creeper.name=Baby Creeper
+entity.giant.name=Giant
+entity.gummy_bear.name=Gummy Bear
+
+# Tabs
+itemGroup.gns_blocks=Good Night Sleep Blocks
+itemGroup.gns_tools=Good Night Sleep Tools
+itemGroup.gns_armor=Good Night Sleep Armor
+itemGroup.gns_items=Good Night Sleep Items
