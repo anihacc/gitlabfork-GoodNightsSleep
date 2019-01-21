@@ -35,6 +35,8 @@ public class GoodDreamBiomeDecorator extends BiomeDecorator
 	public WorldGenSponge spongeGen = new WorldGenSponge();
 	
 	public boolean generateLakes = true;
+	
+	public int bigMushroomsPerChunk = 1;
 
 	public GoodDreamBiomeDecorator()
 	{
@@ -68,13 +70,13 @@ public class GoodDreamBiomeDecorator extends BiomeDecorator
     {    	
 		if (this.shouldSpawn(2))
 		{
-			this.getTree().generate(this.world, this.rand, this.world.getHeight(this.chunkPos.add(this.nextInt(16) + 8, 0, this.nextInt(16) + 8)));
+			this.getTree().generate(this.world, this.rand, this.world.getHeight(this.chunkPos.add(this.nextInt(8) + 8, 0, this.nextInt(8) + 8)));
 		}
-
-        for (int i3 = 0; i3 < 5; ++i3)
+		
+		for (int i3 = 0; i3 < 5; ++i3)
         {
-            int j7 = random.nextInt(10) + 5;
-            int i11 = random.nextInt(10) + 5;
+            int j7 = random.nextInt(16) + 8;
+            int i11 = random.nextInt(16) + 8;
             int k14 = worldIn.getHeight(this.chunkPos.add(j7, 0, i11)).getY() * 2;
 
             if (k14 > 0)
@@ -84,46 +86,46 @@ public class GoodDreamBiomeDecorator extends BiomeDecorator
             }
         }
         
-        if(TerrainGen.decorate(worldIn, random, chunkPos, EventType.BIG_SHROOM))
-            for (int k2 = 0; k2 < this.bigMushroomsPerChunk; ++k2)
-            {
-                int l6 = random.nextInt(500) + 20;
-                int k10 = random.nextInt(500) + 20;
-                this.bigMushroomGen.generate(worldIn, random, worldIn.getHeight(this.chunkPos.add(l6, 0, k10)));
-            }
+        if(TerrainGen.decorate(worldIn, random, chunkPos, EventType.BIG_SHROOM) && rand.nextInt(7) == 0)
+        {
+	        for (int k2 = 0; k2 < this.bigMushroomsPerChunk; ++k2)
+	        {
+	            int l6 = random.nextInt(8) + 8;
+	            int k10 = random.nextInt(8) + 8;
+	            this.bigMushroomGen.generate(worldIn, random, worldIn.getHeight(this.chunkPos.add(l6, 0, k10)));
+	        }
+        }
         
-            if(TerrainGen.decorate(worldIn, random, chunkPos, EventType.LAKE_WATER))
-            for (int k5 = 0; k5 < 50; ++k5)
-            {
-                int i10 = random.nextInt(16) + 8;
-                int l13 = random.nextInt(16) + 8;
-                int i17 = random.nextInt(248) + 8;
-
-                if (i17 > 0)
-                {
-                    int k19 = random.nextInt(i17);
-                    BlockPos blockpos6 = this.chunkPos.add(i10, k19, l13);
-                    (new WorldGenLiquids(Blocks.FLOWING_WATER)).generate(worldIn, random, blockpos6);
-                }
-            }
-
-            // if (random.nextInt(2) == 0)
-            {
-                
-            }
+        if(TerrainGen.decorate(worldIn, random, chunkPos, EventType.LAKE_WATER))
+        {
+	        for (int k5 = 0; k5 < 50; ++k5)
+	        {
+	            int i10 = random.nextInt(16) + 8;
+	            int l13 = random.nextInt(16) + 8;
+	            int i17 = random.nextInt(248) + 8;
+	
+	            if (i17 > 0)
+	            {
+	                int k19 = random.nextInt(i17);
+	                BlockPos blockpos6 = this.chunkPos.add(i10, k19, l13);
+	                (new WorldGenLiquids(Blocks.FLOWING_WATER)).generate(worldIn, random, blockpos6);
+	            }
+	        }
+        }
             
-            int j7 = random.nextInt(16) + 8;
-            int i11 = random.nextInt(16) + 8;
-            int k14 = worldIn.getHeight(this.chunkPos.add(j7, 0, i11)).getY() * 2;
-            
-            //int y = random.nextInt(2) + 61;
-            
-            //if (k14 > 0)
-            {
-                int l17 = random.nextInt(k14);
-                this.spongeGen.generate(worldIn, random, this.chunkPos.add(j7, l17, i11));
-            }
-
+        for (int amount = 0; amount < 4; ++amount)
+        {
+	        int j7 = random.nextInt(8) + 8;
+	        int i11 = random.nextInt(8) + 8;
+	        int k14 = worldIn.getHeight(this.chunkPos.add(j7, 0, i11)).getY() * 2;
+	        
+	        if (k14 > 0)
+	        {
+	            int l17 = random.nextInt(k14);
+	            this.spongeGen.generate(worldIn, random, this.chunkPos.add(j7, l17 -2 , i11));
+	        }
+        }
+        
 		this.spawnOres();
 
     	this.generateFoilage(BlocksGNS.orange_flower.getDefaultState());

@@ -24,6 +24,9 @@ public class GNSEntities
 		//register("giant", EntityGiant.class, 1598464, 30652);
 		register("herobrine", EntityHerobrine.class);
 		register("gummy_bear", EntityGummyBear.class, 0xffffff, 0xffffff);
+		
+		register("gns_spawner", EntityGNSSpawner.class);
+		
 		//DataSerializerRegistry.initialize();
 	}
 

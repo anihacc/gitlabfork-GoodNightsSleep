@@ -47,7 +47,7 @@ public class ItemsGNS
 	public static Item luxurious_bed_item, wretched_bed_item;
 
 	
-	public static ToolMaterial NEGATITE = EnumHelper.addToolMaterial("NEGATITE", 3, 1561, 8.5F, 3.2F, 10);
+	public static ToolMaterial NEGATITE = EnumHelper.addToolMaterial("NEGATITE", 3, 1561, 8.5F, 4.0F, 10);
 	
 	public static void initialization()
 	{
@@ -81,6 +81,7 @@ public class ItemsGNS
 		negatite_axe = register("negatite_axe", new ItemGNSAxe(ToolMaterial.DIAMOND));
 		negatite_shovel = register("negatite_shovel", new ItemGNSShovel(NEGATITE));
 		
+		candy_sword = register("candy_sword", new ItemGNSSword(ToolMaterial.WOOD));
 		necrum_sword = register("necrum_sword", new ItemGNSSword(ToolMaterial.WOOD));
 		zitrite_sword = register("zitrite_sword", new ItemGNSSword(ToolMaterial.STONE));
 		rainbow_sword = register("rainbow_sword", new ItemGNSSword(ToolMaterial.IRON));

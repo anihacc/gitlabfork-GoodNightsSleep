@@ -23,12 +23,12 @@ public class ItemRendering
 		register(ItemsGNS.candy_shovel, "candy_shovel");
 		register(ItemsGNS.candy_axe, "candy_axe");
 		
-		//register(ItemsGNS.zitrite_sword, "zitrite_sword");
+		register(ItemsGNS.zitrite_sword, "zitrite_sword");
 		register(ItemsGNS.zitrite_pickaxe, "zitrite_pickaxe");
 		register(ItemsGNS.zitrite_shovel, "zitrite_shovel");
 		register(ItemsGNS.zitrite_axe, "zitrite_axe");
 		
-		//register(ItemsGNS.necrum_sword, "necrum_sword");
+		register(ItemsGNS.necrum_sword, "necrum_sword");
 		register(ItemsGNS.necrum_pickaxe, "necrum_pickaxe");
 		register(ItemsGNS.necrum_shovel, "necrum_shovel");
 		register(ItemsGNS.necrum_axe, "necrum_axe");
@@ -38,12 +38,12 @@ public class ItemRendering
 		register(ItemsGNS.rainbow_shovel, "rainbow_shovel");
 		register(ItemsGNS.rainbow_axe, "rainbow_axe");
 		
-		//register(ItemsGNS.positite_sword, "positite_sword");
+		register(ItemsGNS.positite_sword, "positite_sword");
 		register(ItemsGNS.positite_pickaxe, "positite_pickaxe");
 		register(ItemsGNS.positite_shovel, "positite_shovel");
 		register(ItemsGNS.positite_axe, "positite_axe");
 		
-		//register(ItemsGNS.negatite_sword, "negatite_sword");
+		register(ItemsGNS.negatite_sword, "negatite_sword");
 		register(ItemsGNS.negatite_pickaxe, "negatite_pickaxe");
 		register(ItemsGNS.negatite_shovel, "negatite_shovel");
 		register(ItemsGNS.negatite_axe, "negatite_axe");
