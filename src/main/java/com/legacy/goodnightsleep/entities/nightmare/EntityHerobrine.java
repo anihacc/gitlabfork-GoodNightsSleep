@@ -10,6 +10,7 @@ import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
@@ -47,7 +48,7 @@ public class EntityHerobrine extends EntityMob
 	        return null;
 	    }
 
-	    protected SoundEvent getHurtSound()
+	    protected SoundEvent getHurtSound(DamageSource source)
 	    {
 	        return SoundEvents.ENTITY_WITHER_HURT;
 	    }

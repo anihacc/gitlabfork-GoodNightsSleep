@@ -14,18 +14,18 @@ public class EntityTormenter extends EntityZombie
         this.setSize(0.6F, 1.95F);
     }
 
-	 protected SoundEvent getAmbientSound()
-	    {
-	        return SoundEvents.AMBIENT_CAVE;
-	    }
+	protected SoundEvent getAmbientSound()
+    {
+        return SoundEvents.AMBIENT_CAVE;
+    }
 
-	    protected SoundEvent getHurtSound(DamageSource source)
-	    {
-	        return SoundEvents.AMBIENT_CAVE;
-	    }
+    protected SoundEvent getHurtSound(DamageSource source)
+    {
+        return SoundEvents.AMBIENT_CAVE;
+    }
 
-	    protected SoundEvent getDeathSound()
-	    {
-	        return SoundEvents.ENTITY_ZOMBIE_HORSE_DEATH;
-	    }
+    protected SoundEvent getDeathSound()
+    {
+        return SoundEvents.ENTITY_ZOMBIE_HORSE_DEATH;
+    }
 }
