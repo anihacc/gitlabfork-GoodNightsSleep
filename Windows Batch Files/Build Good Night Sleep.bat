@@ -1,5 +1,5 @@
 @echo off
-title Building Glacidus..
+title Building Good Night Sleep Reawakened...
 cd ..
-gradlew build
+call gradlew build
 pause
