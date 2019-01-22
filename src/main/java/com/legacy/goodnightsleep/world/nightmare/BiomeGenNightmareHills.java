@@ -23,7 +23,7 @@ public class BiomeGenNightmareHills extends Biome
 {
 	public BiomeGenNightmareHills()
 	{
-		super(new BiomeProperties("Nightmare Hills").setRainDisabled().setBaseHeight(0.1F).setHeightVariation(1.6F).setTemperature(2.0F).setRainfall(0.0F));
+		super(new BiomeProperties("Nightmare Hills").setRainDisabled().setBaseHeight(0.1F).setHeightVariation(1.0F).setTemperature(2.0F).setRainfall(0.0F));
 		this.spawnableCreatureList.clear();
 		
 		ArrayList<SpawnListEntry> list = new ArrayList<SpawnListEntry>();
@@ -64,7 +64,7 @@ public class BiomeGenNightmareHills extends Biome
 	
 	public float getSpawningChance()
     {
-        return 0.1F;
+        return 0.4F;
     }
 
 }

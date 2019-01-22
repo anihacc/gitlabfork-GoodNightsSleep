@@ -8,6 +8,7 @@ import com.legacy.goodnightsleep.world.genfeatures.WorldGenBigMushroomGNS;
 import com.legacy.goodnightsleep.world.genfeatures.WorldGenFoilage;
 import com.legacy.goodnightsleep.world.genfeatures.WorldGenGNSTree;
 import com.legacy.goodnightsleep.world.genfeatures.WorldGenTallGrass;
+import com.legacy.goodnightsleep.world.structures.nightmare.DeadTreeGenerator;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -61,7 +62,7 @@ public class NightmareBiomeDecorator extends BiomeDecorator
 	@Override
     protected void genDecorations(Biome biomeGenBaseIn, World worldIn, Random random)
     {    	
-		if (this.shouldSpawn(2))
+		if (this.shouldSpawn(4))
 		{
 			this.getTree().generate(this.world, this.rand, this.world.getHeight(this.chunkPos.add(this.nextInt(16) + 8, 0, this.nextInt(16) + 8)));
 		}
@@ -161,7 +162,7 @@ public class NightmareBiomeDecorator extends BiomeDecorator
     
     public WorldGenerator getTree()
     {
-       return this.shouldSpawn(10) ? new WorldGenGNSTree(false, 4 + rand.nextInt(4), BlocksGNS.blood_log.getDefaultState(), Blocks.AIR.getDefaultState(), false) : new WorldGenGNSTree(false, 4 + rand.nextInt(4), BlocksGNS.dead_log.getDefaultState(), Blocks.AIR.getDefaultState(), false);
+       return this.shouldSpawn(10) ? new WorldGenGNSTree(false, 4 + rand.nextInt(4), BlocksGNS.blood_log.getDefaultState(), Blocks.AIR.getDefaultState(), false) : new DeadTreeGenerator(false);
     }
     
     public WorldGenerator getRandomWorldGenForGrass(Random rand)
