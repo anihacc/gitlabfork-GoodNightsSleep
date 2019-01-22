@@ -9,6 +9,7 @@ import com.legacy.goodnightsleep.world.genfeatures.WorldGenTallGrass;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraftforge.fml.common.Loader;
 
 public class BiomeGenGoodDreamPlains extends Biome
 {
@@ -64,7 +65,14 @@ public class BiomeGenGoodDreamPlains extends Biome
 	
 	public float getSpawningChance()
     {
-        return 1.0F;
+		if (Loader.isModLoaded("sponge"))
+		{
+			return 1.0F;
+		}
+		else
+		{
+			return 2.0F;
+		}
     }
 
 }

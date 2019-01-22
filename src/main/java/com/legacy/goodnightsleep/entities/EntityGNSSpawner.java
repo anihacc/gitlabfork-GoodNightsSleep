@@ -29,9 +29,9 @@ public class EntityGNSSpawner extends EntityLiving
     	int type = rand.nextInt(5);
     	int chance = rand.nextInt(4) + 1;
     	
-    	//BlockPos block2pos = (new BlockPos(this)).add(-2 + this.rand.nextInt(5), 1, -2 + this.rand.nextInt(5));
+    	BlockPos blockpos = (new BlockPos(this)).add(-1 + this.rand.nextInt(1), 1, -1 + this.rand.nextInt(1));
     	
-    	BlockPos blockpos = (new BlockPos(this));
+    	//BlockPos blockpos = (new BlockPos(this));
     	
     	if (type == 0)
     	{
