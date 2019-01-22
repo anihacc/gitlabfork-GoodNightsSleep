@@ -1,6 +1,6 @@
 {
 	"parent": "item/generated",
 	"textures": {
-		"layer0": "goodnightsleep:items/armor/positite_leggings"
+		"layer0": "goodnightsleep:items/armor/negatite_leggings"
 	}
 }

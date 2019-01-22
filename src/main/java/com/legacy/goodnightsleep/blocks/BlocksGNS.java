@@ -1,7 +1,10 @@
 
 package com.legacy.goodnightsleep.blocks;
 
+import com.legacy.goodnightsleep.blocks.construction.BlockGNSFence;
 import com.legacy.goodnightsleep.blocks.construction.BlockGNSPlank;
+import com.legacy.goodnightsleep.blocks.construction.BlockGNSSlab;
+import com.legacy.goodnightsleep.blocks.construction.BlockGNSStairs;
 import com.legacy.goodnightsleep.blocks.natural.BlockGNSDirt;
 import com.legacy.goodnightsleep.blocks.natural.BlockGNSFlower;
 import com.legacy.goodnightsleep.blocks.natural.BlockGNSGrass;
@@ -10,12 +13,15 @@ import com.legacy.goodnightsleep.blocks.natural.BlockGNSLog;
 import com.legacy.goodnightsleep.blocks.natural.BlockGNSMushroom;
 import com.legacy.goodnightsleep.blocks.natural.BlockGNSTallGrass;
 import com.legacy.goodnightsleep.blocks.natural.ores.BlockGNSOre;
+import com.legacy.goodnightsleep.blocks.util.ItemGNSSlab;
 import com.legacy.goodnightsleep.items.ItemsGNS;
 import com.legacy.goodnightsleep.registry.GNSCreativeTabs;
 import com.legacy.goodnightsleep.registry.VariableConstants;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -43,22 +49,16 @@ public class BlocksGNS
 	
 	public static Block hope_mushroom_cap, despair_mushroom_cap;
 
-	//public static Block skyroot_sapling, golden_oak_sapling;
-
-	//public static Block rainbow_berries;
+	public static Block rainbow_berries;
 
 	public static Block white_log, dream_log, blood_log, dead_log;
 
-	//public static Block dream_fence, white_fence, dead_fence, blood_fence;
-
-	//public static Block carved_stairs, angelic_stairs, hellfire_stairs, skyroot_stairs, mossy_holystone_stairs, holystone_stairs, holystone_brick_stairs, aerogel_stairs;
-
-	//public static Block carved_slab, angelic_slab, hellfire_slab, skyroot_slab, holystone_slab, holystone_brick_slab, mossy_holystone_slab, aerogel_slab;
-
-	//public static Block carved_double_slab, angelic_double_slab, hellfire_double_slab, skyroot_double_slab, holystone_double_slab, holystone_brick_double_slab, mossy_holystone_double_slab, aerogel_double_slab;
-
-	//public static Block holystone_wall, mossy_holystone_wall, holystone_brick_wall, carved_wall, angelic_wall, hellfire_wall, aerogel_wall;
-
+	public static Block dream_fence, white_fence, dead_fence, blood_fence;
+	
+	public static Block dream_slab, white_slab, dead_slab, blood_slab;
+	
+	public static Block dead_stairs, blood_stairs, white_stairs, dream_stairs;
+	
 	public static Block pot_of_gold, present;
 	
 	public static Block luxurious_bed, wretched_bed;
@@ -111,20 +111,26 @@ public class BlocksGNS
 		luxurious_bed = register("luxurious_bed", new BlockGNSBed().setCreativeTab(null));
 		wretched_bed = register("wretched_bed", new BlockGNSBed().setCreativeTab(null));
 
+		dream_fence = register("dream_fence", new BlockGNSFence());
+		white_fence = register("white_fence", new BlockGNSFence());
+		dead_fence = register("dead_fence", new BlockGNSFence());
+		blood_fence = register("blood_fence", new BlockGNSFence());
 		
-		//present = register("present", new BlockPresent());
-
-		//skyroot_fence = register("skyroot_fence", new BlockAetherFence());
-
-		//skyroot_fence_gate = register("skyroot_fence_gate", new BlockAetherFenceGate());
-
-		//carved_wall = register("carved_wall", new BlockAetherWall(dungeon_block.getDefaultState()));
-
-		//carved_stairs = register("carved_stairs", new BlockAetherStairs(dungeon_block.getDefaultState()));
-
-		//skyroot_double_slab = register("skyroot_double_slab", new BlockAetherSlab("skyroot_double_slab", true, Material.WOOD).setHardness(2.0F).setResistance(5.0F)).setCreativeTab(null);
+		dream_stairs = register("dream_stairs", new BlockGNSStairs(dream_plank.getDefaultState()));
+		white_stairs = register("white_stairs", new BlockGNSStairs(white_plank.getDefaultState()));
+		dead_stairs = register("dead_stairs", new BlockGNSStairs(dead_plank.getDefaultState()));
+		blood_stairs = register("blood_stairs", new BlockGNSStairs(blood_plank.getDefaultState()));
 		
-		//skyroot_slab = registerSlab("skyroot_slab", new BlockAetherSlab("skyroot_slab", false, Material.WOOD).setHardness(2.0F).setResistance(5.0F), skyroot_double_slab);
+		dream_slab = registerSlab("dream_slab", new BlockGNSSlab(Material.WOOD).setHardness(2.0F).setResistance(5.0F), GNSCreativeTabs.blocks);
+		white_slab = registerSlab("white_slab", new BlockGNSSlab(Material.WOOD).setHardness(2.0F).setResistance(5.0F), GNSCreativeTabs.blocks);
+		dead_slab = registerSlab("dead_slab", new BlockGNSSlab(Material.WOOD).setHardness(2.0F).setResistance(5.0F), GNSCreativeTabs.blocks);
+		blood_slab = registerSlab("blood_slab", new BlockGNSSlab(Material.WOOD).setHardness(2.0F).setResistance(5.0F), GNSCreativeTabs.blocks);
+		
+		/*bluebright_fence_gate = registerBright("bluebright_fence_gate", new BlockSkyFenceGate());
+		lunar_fence_gate = registerDawn("lunar_fence_gate", new BlockSkyFenceGate());
+		cherry_fence_gate = register("cherry_fence_gate", new BlockSkyFenceGate());
+		starlit_fence_gate = registerBright("starlit_fence_gate", new BlockSkyFenceGate());
+		dusk_fence_gate = registerDawn("dusk_fence_gate", new BlockSkyFenceGate());*/
 	}
 
 	/*public static Block registerSlab(String name, Block slab1, Block slab2)
@@ -151,6 +157,11 @@ public class BlocksGNS
 	{
 		return register(name, block, new ItemBlock(block));
 	}
+	
+	public static Block registerSlab(String name, Block block, CreativeTabs tab)
+	{
+		return registerSlab(name, block, new ItemGNSSlab(block), tab);
+	}
 
 	public static Block register(String name, Block block, ItemBlock item)
 	{
@@ -162,10 +173,25 @@ public class BlocksGNS
 		iBlockRegistry.register(block);
 		iItemRegistry.register(item);
 
-		if (block != luxurious_bed || block != wretched_bed)
+		if (name != "luxurious_bed" || name != "wretched_bed")
 		{
 			block.setCreativeTab(GNSCreativeTabs.blocks);
 		}
+
+		return block;
+	}
+	
+	public static Block registerSlab(String name, Block block, ItemBlock item, CreativeTabs tab)
+	{
+		block.setUnlocalizedName(name);
+
+		block.setRegistryName(VariableConstants.locate(name));
+		item.setRegistryName(VariableConstants.locate(name));
+
+		iBlockRegistry.register(block);
+		iItemRegistry.register(item);
+
+		block.setCreativeTab(tab);
 
 		return block;
 	}

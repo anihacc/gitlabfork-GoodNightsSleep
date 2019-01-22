@@ -50,6 +50,21 @@ public class BlockRendering
 		register(BlocksGNS.rainbow_ore, "rainbow_ore");
 		register(BlocksGNS.positite_ore, "positite_ore");
 		register(BlocksGNS.negatite_ore, "negatite_ore");
+		
+		register(BlocksGNS.dream_fence, "dream_fence");
+		register(BlocksGNS.white_fence, "white_fence");
+		register(BlocksGNS.dead_fence, "dead_fence");
+		register(BlocksGNS.blood_fence, "blood_fence");
+		
+		register(BlocksGNS.dream_slab, "dream_slab");
+		register(BlocksGNS.white_slab, "white_slab");
+		register(BlocksGNS.dead_slab, "dead_slab");
+		register(BlocksGNS.blood_slab, "blood_slab");
+		
+		register(BlocksGNS.dream_stairs, "dream_stairs");
+		register(BlocksGNS.white_stairs, "white_stairs");
+		register(BlocksGNS.dead_stairs, "dead_stairs");
+		register(BlocksGNS.blood_stairs, "blood_stairs");
 	}
 
 	public static void register(Block block, String model)

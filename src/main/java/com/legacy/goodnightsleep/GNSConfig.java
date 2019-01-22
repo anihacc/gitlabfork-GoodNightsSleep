@@ -28,10 +28,10 @@ public class GNSConfig
 
 		config.load();
 
-		dream_dimension_id = config.get("World Identification", "Dream Dimension ID", 4).getInt(4);
+		dream_dimension_id = config.get("World Identification", "Dream Dimension ID", 44).getInt(4);
 		dream_biome_id = config.get("World Identification", "Dream Plains Biome ID", 127).getInt(127);
 		
-		nightmare_dimension_id = config.get("World Identification", "Nightmare Dimension ID", 5).getInt(5);
+		nightmare_dimension_id = config.get("World Identification", "Nightmare Dimension ID", 45).getInt(5);
 		nightmare_biome_id = config.get("World Identification", "Nightmare Hills Biome ID", 128).getInt(128);
 		
 		config.save();
