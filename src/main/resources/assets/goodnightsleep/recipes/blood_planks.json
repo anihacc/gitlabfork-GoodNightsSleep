@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "plank",
+  "pattern": [
+    "#"
+  ],
+  "key": {
+
+    "#": {
+      "item": "goodnightsleep:blood_log"
+    }
+  },
+  "result": {
+    "item": "goodnightsleep:blood_plank",
+    "count": 4
+  }
+}

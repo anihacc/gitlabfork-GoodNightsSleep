@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "goodnightsleep:negatite_block"
+    }
+  },
+  "result": {
+    "item": "goodnightsleep:negatite_gem",
+    "count": 9
+  }
+}

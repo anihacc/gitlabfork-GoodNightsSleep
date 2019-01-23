@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "goodnightsleep:white_plank"
+    }
+  },
+  "result": {
+    "item": "goodnightsleep:white_slab",
+    "data": 0,
+    "count": 6
+  }
+}

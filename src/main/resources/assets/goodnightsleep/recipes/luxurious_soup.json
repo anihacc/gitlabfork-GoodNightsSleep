@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:bowl"
+    },
+	{
+      "item": "goodnightsleep:hope_mushroom_cap"
+    },
+	{
+      "item": "goodnightsleep:powdered_sugar"
+    }
+  ],
+  "result": {
+    "item": "goodnightsleep:luxurious_soup"
+  }
+}
