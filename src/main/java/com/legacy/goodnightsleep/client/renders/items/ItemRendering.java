@@ -18,7 +18,7 @@ public class ItemRendering
 		register(ItemsGNS.luxurious_bed_item, "luxurious_bed_item");
 		register(ItemsGNS.wretched_bed_item, "wretched_bed_item");
 		
-		//register(ItemsGNS.candy_sword, "candy_sword");
+		register(ItemsGNS.candy_sword, "candy_sword");
 		register(ItemsGNS.candy_pickaxe, "candy_pickaxe");
 		register(ItemsGNS.candy_shovel, "candy_shovel");
 		register(ItemsGNS.candy_axe, "candy_axe");
@@ -70,9 +70,18 @@ public class ItemRendering
 		
 		register(ItemsGNS.rainbow_ingot, "rainbow_ingot");
 		register(ItemsGNS.zitrite_ingot, "zitrite_ingot");
+		register(ItemsGNS.candy_ingot, "candy_ingot");
 		register(ItemsGNS.positite_gem, "positite_gem");
 		register(ItemsGNS.negatite_gem, "negatite_gem");
 		register(ItemsGNS.necrum, "necrum");
+		register(ItemsGNS.candy, "candy");
+		
+		register(ItemsGNS.lolipop, "lolipop");
+		register(ItemsGNS.rainbow_berries, "rainbow_berries");
+		register(ItemsGNS.luxurious_soup, "luxurious_soup");
+		register(ItemsGNS.wretched_soup, "wretched_soup");
+		
+		register(ItemsGNS.powdered_sugar, "powdered_sugar");
 	}
 
 	public static void register(Item item, String model)

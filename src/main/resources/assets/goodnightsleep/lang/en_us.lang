@@ -98,3 +98,6 @@ itemGroup.gns_blocks=Good Night Sleep Blocks
 itemGroup.gns_tools=Good Night Sleep Tools
 itemGroup.gns_armor=Good Night Sleep Armor
 itemGroup.gns_items=Good Night Sleep Items
+
+# Death Messages
+death.attack.nightmare_grass=%1$s was pricked by Nightmare Grass

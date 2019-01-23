@@ -79,7 +79,7 @@ public class EntityGNSSpawner extends EntityLiving
     	
     	if (type == 4)
     	{
-	    	for (int i = 0; i < chance + 3; ++i)
+	    	for (int i = 0; i < chance + 2; ++i)
 	        {
 	            EntityHorse horse = new EntityHorse(this.world);
 	            horse.moveToBlockPosAndAngles(blockpos, 0.0F, 0.0F);

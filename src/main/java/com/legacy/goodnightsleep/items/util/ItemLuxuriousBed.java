@@ -2,11 +2,11 @@ package com.legacy.goodnightsleep.items.util;
 
 import com.legacy.goodnightsleep.blocks.BlockGNSBed;
 import com.legacy.goodnightsleep.blocks.BlocksGNS;
+import com.legacy.goodnightsleep.registry.GNSCreativeTabs;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -17,12 +17,14 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemLuxuriousBed extends Item
 {
     public ItemLuxuriousBed()
     {
-        this.setCreativeTab(CreativeTabs.DECORATIONS);
+        this.setCreativeTab(GNSCreativeTabs.blocks);
     }
 
     /**
@@ -84,5 +86,11 @@ public class ItemLuxuriousBed extends Item
                 return EnumActionResult.FAIL;
             }
         }
+    }
+    
+    @SideOnly(Side.CLIENT)
+    public boolean hasEffect(ItemStack stack)
+    {
+        return true;
     }
 }

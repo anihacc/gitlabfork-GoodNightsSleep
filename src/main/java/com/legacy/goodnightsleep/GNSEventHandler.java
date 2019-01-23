@@ -1,22 +1,28 @@
 package com.legacy.goodnightsleep;
 
 import com.legacy.goodnightsleep.blocks.BlocksGNS;
+import com.legacy.goodnightsleep.client.gui.GuiLoadingDreams;
 import com.legacy.goodnightsleep.player.PlayerGNS;
 import com.legacy.goodnightsleep.player.capability.GNSProvider;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiDownloadTerrain;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.RightClickBlock;
+import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class GNSEventHandler 
 {	
 	private static final ResourceLocation PLAYER_LOCATION = new ResourceLocation("goodnightsleep", "gns_player");
 
+	private final Minecraft mc = FMLClientHandler.instance().getClient();
+	
 	@SubscribeEvent
 	public void PlayerConstructingEvent(AttachCapabilitiesEvent<Entity> event)
 	{
@@ -49,7 +55,7 @@ public class GNSEventHandler
 				if (event.getEntityLiving() instanceof EntityPlayer)
 				{
 					PlayerGNS.get((EntityPlayer) event.getEntityLiving()).teleportPlayer(true);
-					System.out.println("Entering your Dreams");
+					//System.out.println("Entering your Dreams");
 					
 				}
 			}
@@ -63,9 +69,29 @@ public class GNSEventHandler
 				if (event.getEntityLiving() instanceof EntityPlayer)
 				{
 					PlayerGNS.get((EntityPlayer) event.getEntityLiving()).teleportPlayerNightmare(true);
-					System.out.println("Entering your Nightmares");
+					//System.out.println("Entering your Nightmares");
 					
 				}
 			}
+	}
+	
+	@SubscribeEvent
+	public void onOpenGui(GuiOpenEvent event)
+	{
+		if (event.getGui() instanceof GuiDownloadTerrain && mc.player != null) 
+		{
+			GuiLoadingDreams guiEnterDream = new GuiLoadingDreams(false);
+			GuiLoadingDreams guiEnterNightmare = new GuiLoadingDreams(true);
+			
+			if (mc.player.dimension == GNSConfig.getNightmareDimensionID())
+			{
+				event.setGui(guiEnterNightmare);
+			}
+			
+			if (mc.player.dimension == GNSConfig.getDreamDimensionID())
+			{
+				event.setGui(guiEnterDream);
+			}
+		}
 	}
 }

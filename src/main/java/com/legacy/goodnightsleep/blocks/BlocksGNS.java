@@ -2,6 +2,7 @@
 package com.legacy.goodnightsleep.blocks;
 
 import com.legacy.goodnightsleep.blocks.construction.BlockGNSFence;
+import com.legacy.goodnightsleep.blocks.construction.BlockGNSOreBlock;
 import com.legacy.goodnightsleep.blocks.construction.BlockGNSPlank;
 import com.legacy.goodnightsleep.blocks.construction.BlockGNSSlab;
 import com.legacy.goodnightsleep.blocks.construction.BlockGNSStairs;
@@ -14,7 +15,6 @@ import com.legacy.goodnightsleep.blocks.natural.BlockGNSMushroom;
 import com.legacy.goodnightsleep.blocks.natural.BlockGNSTallGrass;
 import com.legacy.goodnightsleep.blocks.natural.ores.BlockGNSOre;
 import com.legacy.goodnightsleep.blocks.util.ItemGNSSlab;
-import com.legacy.goodnightsleep.items.ItemsGNS;
 import com.legacy.goodnightsleep.registry.GNSCreativeTabs;
 import com.legacy.goodnightsleep.registry.VariableConstants;
 
@@ -23,7 +23,6 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraftforge.registries.IForgeRegistry;
@@ -39,7 +38,7 @@ public class BlocksGNS
 
 	public static Block candy_leaves, dream_leaves, diamond_leaves;
 
-	public static Block candy_block, rainbow_block, negatite_block, zitrite_block, necrum_block;
+	public static Block candy_block, rainbow_block, positite_block, necrum_block, zitrite_block, negatite_block; 
 
 	public static Block dead_plank, blood_plank, white_plank, dream_plank;
 
@@ -82,12 +81,12 @@ public class BlocksGNS
 		hope_mushroom_cap = register("hope_mushroom_cap", new BlockGNSMushroom());
 		despair_mushroom_cap = register("despair_mushroom_cap", new BlockGNSMushroom());
 		
-		zitrite_ore = register("zitrite_ore", new BlockGNSOre(ItemsGNS.zitrite_ingot));
-		necrum_ore = register("necrum_ore", new BlockGNSOre(ItemsGNS.necrum));
-		candy_ore = register("candy_ore", new BlockGNSOre(Items.APPLE));
-		rainbow_ore = register("rainbow_ore", new BlockGNSOre(ItemsGNS.rainbow_ingot));
-		positite_ore = register("positite_ore", new BlockGNSOre(ItemsGNS.positite_gem));
-		negatite_ore = register("negatite_ore", new BlockGNSOre(ItemsGNS.negatite_gem));
+		zitrite_ore = register("zitrite_ore", new BlockGNSOre());
+		necrum_ore = register("necrum_ore", new BlockGNSOre());
+		candy_ore = register("candy_ore", new BlockGNSOre());
+		rainbow_ore = register("rainbow_ore", new BlockGNSOre());
+		positite_ore = register("positite_ore", new BlockGNSOre());
+		negatite_ore = register("negatite_ore", new BlockGNSOre());
 		
 		dream_leaves = register("dream_leaves", new BlockGNSLeaves());
 		candy_leaves = register("candy_leaves", new BlockGNSLeaves());
@@ -108,8 +107,8 @@ public class BlocksGNS
 		lolipop_bush = register("lolipop_bush", new BlockGNSFlower());
 		dead_flower = register("dead_flower", new BlockGNSFlower());
 		
-		luxurious_bed = register("luxurious_bed", new BlockGNSBed().setCreativeTab(null));
-		wretched_bed = register("wretched_bed", new BlockGNSBed().setCreativeTab(null));
+		luxurious_bed = registerNoTab("luxurious_bed", new BlockGNSBed().setCreativeTab(null));
+		wretched_bed = registerNoTab("wretched_bed", new BlockGNSBed().setCreativeTab(null));
 
 		dream_fence = register("dream_fence", new BlockGNSFence());
 		white_fence = register("white_fence", new BlockGNSFence());
@@ -125,6 +124,13 @@ public class BlocksGNS
 		white_slab = registerSlab("white_slab", new BlockGNSSlab(Material.WOOD).setHardness(2.0F).setResistance(5.0F), GNSCreativeTabs.blocks);
 		dead_slab = registerSlab("dead_slab", new BlockGNSSlab(Material.WOOD).setHardness(2.0F).setResistance(5.0F), GNSCreativeTabs.blocks);
 		blood_slab = registerSlab("blood_slab", new BlockGNSSlab(Material.WOOD).setHardness(2.0F).setResistance(5.0F), GNSCreativeTabs.blocks);
+		
+		candy_block = register("candy_block", new BlockGNSOreBlock());
+		rainbow_block = register("rainbow_block", new BlockGNSOreBlock());
+		positite_block = register("positite_block", new BlockGNSOreBlock());
+		necrum_block = register("necrum_block", new BlockGNSOreBlock());
+		zitrite_block = register("zitrite_block", new BlockGNSOreBlock());
+		negatite_block = register("negatite_block", new BlockGNSOreBlock());
 		
 		/*bluebright_fence_gate = registerBright("bluebright_fence_gate", new BlockSkyFenceGate());
 		lunar_fence_gate = registerDawn("lunar_fence_gate", new BlockSkyFenceGate());
@@ -158,6 +164,11 @@ public class BlocksGNS
 		return register(name, block, new ItemBlock(block));
 	}
 	
+	public static Block registerNoTab(String name, Block block)
+	{
+		return registerNoTab(name, block, new ItemBlock(block));
+	}
+	
 	public static Block registerSlab(String name, Block block, CreativeTabs tab)
 	{
 		return registerSlab(name, block, new ItemGNSSlab(block), tab);
@@ -170,13 +181,25 @@ public class BlocksGNS
 		block.setRegistryName(VariableConstants.locate(name));
 		item.setRegistryName(VariableConstants.locate(name));
 
+		block.setCreativeTab(GNSCreativeTabs.blocks);
+		
 		iBlockRegistry.register(block);
 		iItemRegistry.register(item);
 
-		if (name != "luxurious_bed" || name != "wretched_bed")
-		{
-			block.setCreativeTab(GNSCreativeTabs.blocks);
-		}
+		return block;
+	}
+	
+	public static Block registerNoTab(String name, Block block, ItemBlock item)
+	{
+		block.setUnlocalizedName(name);
+
+		block.setRegistryName(VariableConstants.locate(name));
+		item.setRegistryName(VariableConstants.locate(name));
+
+		block.setCreativeTab(null);
+		
+		iBlockRegistry.register(block);
+		iItemRegistry.register(item);
 
 		return block;
 	}

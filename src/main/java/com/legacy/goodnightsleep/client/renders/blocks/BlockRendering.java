@@ -65,6 +65,13 @@ public class BlockRendering
 		register(BlocksGNS.white_stairs, "white_stairs");
 		register(BlocksGNS.dead_stairs, "dead_stairs");
 		register(BlocksGNS.blood_stairs, "blood_stairs");
+		
+		register(BlocksGNS.candy_block, "candy_block");
+		register(BlocksGNS.rainbow_block, "rainbow_block");
+		register(BlocksGNS.positite_block, "positite_block");
+		register(BlocksGNS.necrum_block, "necrum_block");
+		register(BlocksGNS.zitrite_block, "zitrite_block");
+		register(BlocksGNS.negatite_block, "negatite_block");
 	}
 
 	public static void register(Block block, String model)

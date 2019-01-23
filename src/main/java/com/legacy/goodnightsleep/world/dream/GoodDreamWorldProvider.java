@@ -39,6 +39,17 @@ public class GoodDreamWorldProvider extends WorldProvider
     }
 
 	@Override
+	public void updateWeather()
+    {
+    }
+	
+	@SideOnly(Side.CLIENT)
+    public void setWeatherRenderer(net.minecraftforge.client.IRenderHandler renderer)
+    {
+        renderer = null;
+    }
+	
+	@Override
 	public float calculateCelestialAngle(long worldTime, float partialTicks)
 	{
 		return 0;

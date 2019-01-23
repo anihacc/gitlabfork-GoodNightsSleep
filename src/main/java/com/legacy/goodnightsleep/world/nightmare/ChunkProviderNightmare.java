@@ -292,7 +292,7 @@ public class ChunkProviderNightmare implements IChunkGenerator
 				IBlockState topBlock = BlocksGNS.nightmare_grass.getDefaultState();
 				IBlockState fillerBlock = Blocks.DIRT.getDefaultState();
 				
-				for (int var16 = 127; var16 >= 0; var16--)
+				for (int var16 = 200; var16 >= 0; var16--)
 				{
 					 if (var16 <= 0 + this.random.nextInt(5))
 					 {
