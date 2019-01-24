@@ -31,6 +31,11 @@ public class GNSOreDictionary
 		register("treeLeaves", new ItemStack(BlocksGNS.dream_leaves, 1, WILDCARD));
 		register("treeLeaves", new ItemStack(BlocksGNS.diamond_leaves, 1, WILDCARD));
 		register("treeLeaves", new ItemStack(BlocksGNS.candy_leaves, 1, WILDCARD));
+		
+		register("plankWood", BlocksGNS.dream_plank);
+		register("plankWood", BlocksGNS.white_plank);
+		register("plankWood", BlocksGNS.dead_plank);
+		register("plankWood", BlocksGNS.blood_plank);
 
 		//ores
 		register("oreCandy", BlocksGNS.candy_ore);
