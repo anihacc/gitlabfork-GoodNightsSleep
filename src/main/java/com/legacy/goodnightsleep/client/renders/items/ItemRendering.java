@@ -82,6 +82,7 @@ public class ItemRendering
 		register(ItemsGNS.wretched_soup, "wretched_soup");
 		
 		register(ItemsGNS.powdered_sugar, "powdered_sugar");
+		register(ItemsGNS.necrotic_extract, "necrotic_extract");
 	}
 
 	public static void register(Item item, String model)

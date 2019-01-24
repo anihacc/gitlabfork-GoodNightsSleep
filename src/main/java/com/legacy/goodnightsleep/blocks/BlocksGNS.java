@@ -81,11 +81,11 @@ public class BlocksGNS
 		hope_mushroom_cap = register("hope_mushroom_cap", new BlockGNSMushroom());
 		despair_mushroom_cap = register("despair_mushroom_cap", new BlockGNSMushroom());
 		
-		zitrite_ore = register("zitrite_ore", new BlockGNSOre());
-		necrum_ore = register("necrum_ore", new BlockGNSOre());
 		candy_ore = register("candy_ore", new BlockGNSOre());
 		rainbow_ore = register("rainbow_ore", new BlockGNSOre());
 		positite_ore = register("positite_ore", new BlockGNSOre());
+		necrum_ore = register("necrum_ore", new BlockGNSOre());
+		zitrite_ore = register("zitrite_ore", new BlockGNSOre());
 		negatite_ore = register("negatite_ore", new BlockGNSOre());
 		
 		dream_leaves = register("dream_leaves", new BlockGNSLeaves());
@@ -101,7 +101,9 @@ public class BlocksGNS
 		white_plank = register("white_plank", new BlockGNSPlank());
 		dead_plank = register("dead_plank", new BlockGNSPlank());
 		blood_plank = register("blood_plank", new BlockGNSPlank());
-				
+
+		hope_mushroom = register("hope_mushroom", new BlockGNSFlower());
+		despair_mushroom = register("despair_mushroom", new BlockGNSFlower());
 		orange_flower = register("orange_flower", new BlockGNSFlower());
 		cyan_flower = register("cyan_flower", new BlockGNSFlower());
 		lolipop_bush = register("lolipop_bush", new BlockGNSFlower());
@@ -131,23 +133,7 @@ public class BlocksGNS
 		necrum_block = register("necrum_block", new BlockGNSOreBlock());
 		zitrite_block = register("zitrite_block", new BlockGNSOreBlock());
 		negatite_block = register("negatite_block", new BlockGNSOreBlock());
-		
-		/*bluebright_fence_gate = registerBright("bluebright_fence_gate", new BlockSkyFenceGate());
-		lunar_fence_gate = registerDawn("lunar_fence_gate", new BlockSkyFenceGate());
-		cherry_fence_gate = register("cherry_fence_gate", new BlockSkyFenceGate());
-		starlit_fence_gate = registerBright("starlit_fence_gate", new BlockSkyFenceGate());
-		dusk_fence_gate = registerDawn("dusk_fence_gate", new BlockSkyFenceGate());*/
 	}
-
-	/*public static Block registerSlab(String name, Block slab1, Block slab2)
-	{
-		slab1.setCreativeTab(AetherCreativeTabs.blocks);
-
-		GameRegistry.register(slab1.setRegistryName(Aether.locate(name)));
-		GameRegistry.register(new ItemAetherSlab(slab1, (BlockSlab) slab1, (BlockSlab) slab2).setRegistryName(Aether.locate(name)));
-
-		return slab1;
-	}*/
 	
 	public static void setItemRegistry(IForgeRegistry<Item> iItemRegistry)
 	{

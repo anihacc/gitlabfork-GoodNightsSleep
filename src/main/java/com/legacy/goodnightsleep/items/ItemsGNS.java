@@ -88,36 +88,35 @@ public class ItemsGNS
 		luxurious_soup = register("luxurious_soup", new ItemFood(0, false).setMaxStackSize(0));
 		wretched_soup = register("wretched_soup", new ItemFood(0, false).setMaxStackSize(0));
 		
+		candy_sword = register("candy_sword", new ItemGNSSword(CANDY));
 		candy_pickaxe = register("candy_pickaxe", new ItemGNSPickaxe(CANDY));
 		candy_axe = register("candy_axe", new ItemGNSAxe(ToolMaterial.STONE));
 		candy_shovel = register("candy_shovel", new ItemGNSShovel(CANDY));
 
+		necrum_sword = register("necrum_sword", new ItemGNSSword(NECRUM));
 		necrum_pickaxe = register("necrum_pickaxe", new ItemGNSPickaxe(NECRUM));
 		necrum_axe = register("necrum_axe", new ItemGNSAxe(ToolMaterial.STONE));
 		necrum_shovel = register("necrum_shovel", new ItemGNSShovel(NECRUM));
 
+		zitrite_sword = register("zitrite_sword", new ItemGNSSword(ZITRITE));
 		zitrite_pickaxe = register("zitrite_pickaxe", new ItemGNSPickaxe(ZITRITE));
 		zitrite_axe = register("zitrite_axe", new ItemGNSAxe(ToolMaterial.IRON));
 		zitrite_shovel = register("zitrite_shovel", new ItemGNSShovel(ZITRITE));
 
+		rainbow_sword = register("rainbow_sword", new ItemGNSSword(RAINBOW));
 		rainbow_pickaxe = register("rainbow_pickaxe", new ItemGNSPickaxe(RAINBOW));
 		rainbow_axe = register("rainbow_axe", new ItemGNSAxe(ToolMaterial.IRON));
 		rainbow_shovel = register("rainbow_shovel", new ItemGNSShovel(RAINBOW));
 
+		positite_sword = register("positite_sword", new ItemGNSSword(POSITITE));
 		positite_pickaxe = register("positite_pickaxe", new ItemGNSPickaxe(POSITITE));
 		positite_axe = register("positite_axe", new ItemGNSAxe(ToolMaterial.DIAMOND));
 		positite_shovel = register("positite_shovel", new ItemGNSShovel(POSITITE));
 
+		negatite_sword = register("negatite_sword", new ItemGNSSword(NEGATITE));
 		negatite_pickaxe = register("negatite_pickaxe", new ItemGNSPickaxe(NEGATITE));
 		negatite_axe = register("negatite_axe", new ItemGNSAxe(ToolMaterial.DIAMOND));
 		negatite_shovel = register("negatite_shovel", new ItemGNSShovel(NEGATITE));
-		
-		candy_sword = register("candy_sword", new ItemGNSSword(CANDY));
-		necrum_sword = register("necrum_sword", new ItemGNSSword(NECRUM));
-		zitrite_sword = register("zitrite_sword", new ItemGNSSword(ZITRITE));
-		rainbow_sword = register("rainbow_sword", new ItemGNSSword(RAINBOW));
-		positite_sword = register("positite_sword", new ItemGNSSword(POSITITE));
-		negatite_sword = register("negatite_sword", new ItemGNSSword(NEGATITE));
 
 		rainbow_helmet = register("rainbow_helmet", new ItemGNSArmor(EntityEquipmentSlot.HEAD, RAINBOW_ARMOR, "rainbow"));
 		rainbow_chestplate = register("rainbow_chestplate", new ItemGNSArmor(EntityEquipmentSlot.CHEST, RAINBOW_ARMOR, "rainbow"));

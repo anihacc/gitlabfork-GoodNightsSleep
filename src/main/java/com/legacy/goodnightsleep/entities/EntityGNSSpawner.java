@@ -88,7 +88,7 @@ public class EntityGNSSpawner extends EntityLiving
 	        }
     	}
     	
-    	this.setDead();
+    	//this.setDead();
     	
         return super.onInitialSpawn(difficulty, livingdata);
     }
@@ -97,6 +97,16 @@ public class EntityGNSSpawner extends EntityLiving
     public int getMaxSpawnedInChunk()
     {
         return 1;
+    }
+    
+    @Override
+    public void onUpdate()
+    {
+    	if (this.ticksExisted > 5)
+    	{
+    		this.setDead();
+    	}
+    	super.onUpdate();
     }
     
     @Override

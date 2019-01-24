@@ -4,6 +4,8 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
+import com.legacy.goodnightsleep.blocks.BlocksGNS;
+
 import net.minecraft.block.BlockHugeMushroom;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.MapColor;
@@ -28,12 +30,38 @@ public class BlockGNSMushroom extends BlockHugeMushroom
     @Nullable
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return  Item.getItemFromBlock(Blocks.RED_MUSHROOM);
+    	if (this == BlocksGNS.hope_mushroom_cap)
+    	{
+    		return  Item.getItemFromBlock(BlocksGNS.hope_mushroom);
+    	}
+    	
+    	else if (this == BlocksGNS.despair_mushroom_cap)
+    	{
+    		return  Item.getItemFromBlock(BlocksGNS.despair_mushroom);
+    	}
+    	
+    	else
+    	{
+            return Item.getItemFromBlock(Blocks.RED_MUSHROOM);
+    	}
     }
 
+    @Override
     public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
     {
-        return new ItemStack(Blocks.RED_MUSHROOM);
+    	if (this == BlocksGNS.hope_mushroom_cap)
+    	{
+    		return  new ItemStack(BlocksGNS.hope_mushroom);
+    	}
+    	
+    	else if (this == BlocksGNS.despair_mushroom_cap)
+    	{
+    		return  new ItemStack(BlocksGNS.despair_mushroom);
+    	}
+    	else
+    	{
+    		return new ItemStack(Blocks.RED_MUSHROOM);
+    	}
     }
 
 }

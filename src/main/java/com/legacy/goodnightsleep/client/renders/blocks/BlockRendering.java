@@ -39,6 +39,8 @@ public class BlockRendering
 		register(BlocksGNS.dead_log, "dead_log");
 		register(BlocksGNS.blood_log, "blood_log");
 		
+		register(BlocksGNS.hope_mushroom, "hope_mushroom_small");
+		register(BlocksGNS.despair_mushroom, "despair_mushroom_small");
 		register(BlocksGNS.orange_flower, "orange_flower");
 		register(BlocksGNS.cyan_flower, "cyan_flower");
 		register(BlocksGNS.dead_flower, "dead_flower");
