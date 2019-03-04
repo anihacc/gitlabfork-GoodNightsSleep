@@ -3,7 +3,6 @@ package com.legacy.goodnightsleep.client.renders.entities;
 import com.legacy.goodnightsleep.client.models.entities.ModelTormenter;
 import com.legacy.goodnightsleep.entities.nightmare.EntityTormenter;
 
-import net.minecraft.client.model.ModelZombie;
 import net.minecraft.client.renderer.entity.RenderBiped;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.layers.LayerBipedArmor;
@@ -18,13 +17,13 @@ public class RenderTormenter extends RenderBiped<EntityTormenter>
 
     public RenderTormenter(RenderManager renderManagerIn)
     {
-        super(renderManagerIn, new ModelTormenter(), 0.5F);
+        super(renderManagerIn, new ModelTormenter(0.0F, true), 0.5F);
         LayerBipedArmor layerbipedarmor = new LayerBipedArmor(this)
         {
             protected void initArmor()
             {
-                this.modelLeggings = new ModelZombie(0.5F, true);
-                this.modelArmor = new ModelZombie(1.0F, true);
+                this.modelLeggings = new ModelTormenter(0.5F, true);
+                this.modelArmor = new ModelTormenter(1.0F, true);
             }
         };
         this.addLayer(layerbipedarmor);
