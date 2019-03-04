@@ -6,6 +6,7 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.ai.EntityAIAttackMelee;
 import net.minecraft.entity.ai.EntityAIAvoidEntity;
 import net.minecraft.entity.ai.EntityAILookIdle;
+import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWanderAvoidWater;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
@@ -57,6 +58,7 @@ public class GNSEntityEvents
 			giant.tasks.addTask(7, new EntityAIWanderAvoidWater(giant, 1.0D));
 			giant.tasks.addTask(8, new EntityAIWatchClosest(giant, EntityPlayer.class, 8.0F));
 			giant.tasks.addTask(8, new EntityAILookIdle(giant));
+			giant.targetTasks.addTask(2, new EntityAINearestAttackableTarget(giant, EntityPlayer.class, true));
 		}
 	}
 	
