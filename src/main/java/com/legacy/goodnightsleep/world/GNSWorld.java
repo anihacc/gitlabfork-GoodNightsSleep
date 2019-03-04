@@ -1,10 +1,10 @@
 package com.legacy.goodnightsleep.world;
 
 import com.legacy.goodnightsleep.GNSConfig;
-import com.legacy.goodnightsleep.world.dream.BiomeGenGoodDreamPlains;
 import com.legacy.goodnightsleep.world.dream.GoodDreamWorldProvider;
-import com.legacy.goodnightsleep.world.nightmare.BiomeGenNightmareHills;
+import com.legacy.goodnightsleep.world.dream.biome.BiomeGoodDreamPlains;
 import com.legacy.goodnightsleep.world.nightmare.NightmareWorldProvider;
+import com.legacy.goodnightsleep.world.nightmare.biome.BiomeNightmareHills;
 
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.biome.Biome;
@@ -13,9 +13,9 @@ import net.minecraftforge.common.DimensionManager;
 public class GNSWorld
 {
 
-	public static Biome good_dream_plains = new BiomeGenGoodDreamPlains();
+	public static Biome good_dream_plains = new BiomeGoodDreamPlains();
 	
-	public static Biome nightmare_hills = new BiomeGenNightmareHills();
+	public static Biome nightmare_hills = new BiomeNightmareHills();
 
 	public static DimensionType dream_dimension_type, nightmare_dimension_type;
 

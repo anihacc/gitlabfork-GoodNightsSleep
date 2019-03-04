@@ -8,11 +8,11 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
-public class WorldGenTallGrass extends WorldGenerator
+public class WorldGenGNSTallGrass extends WorldGenerator
 {
     private final IBlockState tallGrassState;
 
-    public WorldGenTallGrass(IBlockState state)
+    public WorldGenGNSTallGrass(IBlockState state)
     {
         this.tallGrassState = state;
     }
@@ -26,7 +26,6 @@ public class WorldGenTallGrass extends WorldGenerator
         }
 
         for (int i = 0; i < 128; ++i)
-        //for (int i = 0; i < 50; ++i)
         {
             BlockPos blockpos = position.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
 

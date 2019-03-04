@@ -1,11 +1,11 @@
-package com.legacy.goodnightsleep.world.nightmare;
+package com.legacy.goodnightsleep.world.nightmare.biome;
 
 import java.util.ArrayList;
 import java.util.Random;
 
 import com.legacy.goodnightsleep.blocks.BlocksGNS;
 import com.legacy.goodnightsleep.entities.nightmare.EntityTormenter;
-import com.legacy.goodnightsleep.world.genfeatures.WorldGenTallGrass;
+import com.legacy.goodnightsleep.world.genfeatures.WorldGenGNSTallGrass;
 
 import net.minecraft.entity.monster.EntityBlaze;
 import net.minecraft.entity.monster.EntityGhast;
@@ -19,9 +19,9 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
-public class BiomeGenNightmareHills extends Biome
+public class BiomeNightmareHills extends Biome
 {
-	public BiomeGenNightmareHills()
+	public BiomeNightmareHills()
 	{
 		super(new BiomeProperties("Nightmare Hills").setRainDisabled().setBaseHeight(0.1F).setHeightVariation(1.0F).setTemperature(2.0F).setRainfall(0.0F));
 		this.spawnableCreatureList.clear();
@@ -54,7 +54,7 @@ public class BiomeGenNightmareHills extends Biome
 	@Override
     public WorldGenerator getRandomWorldGenForGrass(Random rand)
     {
-    	return new WorldGenTallGrass(BlocksGNS.tall_nightmare_grass.getDefaultState());
+    	return new WorldGenGNSTallGrass(BlocksGNS.tall_nightmare_grass.getDefaultState());
     }
 	
 	public BiomeDecorator createBiomeDecorator()

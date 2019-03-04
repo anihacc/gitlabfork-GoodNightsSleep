@@ -15,7 +15,7 @@ import net.minecraft.entity.Entity;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 
-public class GNSEntityRenderingRegistry 
+public class GNSEntityRenderingRegistry
 {
 
 	public static void initialize()
@@ -24,24 +24,17 @@ public class GNSEntityRenderingRegistry
 		register(EntityBabyCreeper.class, RenderBabyCreeper.class);
 		register(EntityHerobrine.class, RenderHerobrine.class);
 		register(EntityGummyBear.class, RenderGummyBear.class);
-
-		//register(EntityGNSSpawner.class, RenderGNSSpawner.class);
-
 	}
 
-	/*public static <ENTITY extends Entity> void register(Class<ENTITY> classes, IRenderFactory<? super ENTITY> factory)
+	private static <T extends Entity> void register(Class<T> clazz, Class<? extends Render<T>> render)
 	{
-		RenderingRegistry.registerEntityRenderingHandler(classes, factory);
-	}*/
-
-	private static<T extends Entity> void register(Class<T> clazz, Class<? extends Render<T>> render)
-	{
-		RenderingRegistry.registerEntityRenderingHandler(clazz, new IRenderFactory<T>() 
+		RenderingRegistry.registerEntityRenderingHandler(clazz, new IRenderFactory<T>()
 		{
+
 			@Override
-			public Render<T> createRenderFor(RenderManager manager) 
+			public Render<T> createRenderFor(RenderManager manager)
 			{
-				try 
+				try
 				{
 					return render.getConstructor(RenderManager.class).newInstance(manager);
 				}
@@ -49,10 +42,8 @@ public class GNSEntityRenderingRegistry
 				{
 					e.printStackTrace();
 				}
-
 				return null;
 			}
 		});
 	}
-	
 }
