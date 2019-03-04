@@ -14,6 +14,7 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.FMLClientHandler;
 
 public class ClientProxy extends CommonProxy
@@ -26,7 +27,7 @@ public class ClientProxy extends CommonProxy
 		registerEvent(new ItemRendering());
 		GNSEntityRenderingRegistry.initialize();
 
-		//MinecraftForge.EVENT_BUS.register(new GNSClientEvent());
+		MinecraftForge.EVENT_BUS.register(new GNSClientEventHandler());
 	}
 
 	@Override
