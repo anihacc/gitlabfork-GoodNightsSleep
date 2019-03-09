@@ -1,14 +1,14 @@
 [
 {
   "modid": "goodnightsleep",
-  "name": "Good Night Sleep",
-  "description": "Good Night Sleep Mod",
+  "name": "Good Night's Sleep",
+  "description": "The Good Night's Sleep mod adds two new dimensions, the good dream and the nightmare. Each dream land is accessed through sleeping in its corresponding bed, rather than stepping through a portal.",
   "version": "0.0.1",
   "mcversion": "1.12.2",
   "url": "http://moddinglegacy.com",
   "updateUrl": "",
   "authorList": ["KingPhygieBoo"],
-  "credits": "tippyfoo/bob0productions  for the original mod, and letting us port it!",
+  "credits": "tippyfoo/bob0productions for the original mod, and letting us port it!",
   "logoFile": "",
   "screenshots": [],
   "dependencies": []
