@@ -70,6 +70,9 @@ item.powdered_sugar.name=Powdered Sugar
 item.luxurious_bed_item.name=Luxurious Bed
 item.wretched_bed_item.name=Wretched Bed
 
+item.luxurious_soup.name=Luxurious Soup
+item.wretched_soup.name=Wretched Soup
+
 item.candy_sword.name=Candy Sword
 item.candy_pickaxe.name=Candy Pickaxe
 item.candy_axe.name=Candy Axe

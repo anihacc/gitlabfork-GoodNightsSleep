@@ -1,6 +1,7 @@
 package com.legacy.goodnightsleep.client.renders.blocks;
 
 import com.legacy.goodnightsleep.blocks.BlocksGNS;
+import com.legacy.goodnightsleep.client.renders.GNSEntityRenderingRegistry;
 import com.legacy.goodnightsleep.registry.VariableConstants;
 
 import net.minecraft.block.Block;
@@ -74,6 +75,8 @@ public class BlockRendering
 		register(BlocksGNS.necrum_block, "necrum_block");
 		register(BlocksGNS.zitrite_block, "zitrite_block");
 		register(BlocksGNS.negatite_block, "negatite_block");
+		
+		GNSEntityRenderingRegistry.registerTileEntities();
 	}
 
 	public static void register(Block block, String model)

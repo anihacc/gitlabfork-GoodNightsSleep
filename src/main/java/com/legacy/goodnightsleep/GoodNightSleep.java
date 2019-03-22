@@ -2,9 +2,11 @@ package com.legacy.goodnightsleep;
 
 import com.legacy.goodnightsleep.entities.GNSEntities;
 import com.legacy.goodnightsleep.entities.GNSEntityEvents;
+import com.legacy.goodnightsleep.entities.tile.TileEntityRegistry;
 import com.legacy.goodnightsleep.registry.GNSSmelting;
 import com.legacy.goodnightsleep.registry.RegistryEventHandler;
 import com.legacy.goodnightsleep.registry.VariableConstants;
+import com.legacy.goodnightsleep.world.GNSOverworldWorldEvent;
 import com.legacy.goodnightsleep.world.GNSWorld;
 
 import net.minecraft.util.ResourceLocation;
@@ -41,10 +43,12 @@ public class GoodNightSleep
 		EntityRegistry.registerEgg(new ResourceLocation("minecraft:giant"), 1598464, 30652);
 
 		GNSEntities.initialization();
+		TileEntityRegistry.initialization();
 		GNSWorld.initialization();
 		GNSSmelting.initialization();
 
 		proxy.initialization();
+		CommonProxy.registerEvent(new GNSOverworldWorldEvent());
 		CommonProxy.registerEvent(new GNSEventHandler());
 	}
 

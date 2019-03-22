@@ -1,19 +1,19 @@
-package com.legacy.goodnightsleep.world.dream;
+package com.legacy.goodnightsleep.world.dream.biome;
 
 import java.util.Random;
 
 import com.legacy.goodnightsleep.blocks.BlocksGNS;
 import com.legacy.goodnightsleep.entities.EntityGNSSpawner;
-import com.legacy.goodnightsleep.world.genfeatures.WorldGenTallGrass;
+import com.legacy.goodnightsleep.world.genfeatures.WorldGenGNSTallGrass;
 
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.fml.common.Loader;
 
-public class BiomeGenGoodDreamPlains extends Biome
+public class BiomeGoodDreamPlains extends Biome
 {
-	public BiomeGenGoodDreamPlains()
+	public BiomeGoodDreamPlains()
 	{
 		super(new BiomeProperties("Good Dream Plains").setRainDisabled().setBaseHeight(0.1F).setHeightVariation(0.5F).setTemperature(0.8F).setRainfall(0.0F));
 		this.spawnableMonsterList.clear();
@@ -25,7 +25,7 @@ public class BiomeGenGoodDreamPlains extends Biome
 	@Override
     public WorldGenerator getRandomWorldGenForGrass(Random rand)
     {
-    	return new WorldGenTallGrass(BlocksGNS.tall_dream_grass.getDefaultState());
+    	return new WorldGenGNSTallGrass(BlocksGNS.tall_dream_grass.getDefaultState());
     }
 
 	public BiomeDecorator createBiomeDecorator()

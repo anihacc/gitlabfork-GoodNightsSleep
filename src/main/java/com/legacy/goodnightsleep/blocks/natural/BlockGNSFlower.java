@@ -29,12 +29,11 @@ public class BlockGNSFlower extends BlockBush
 	@Override
 	protected boolean canSustainBush(IBlockState state)
 	{
-		return 
-			state.getBlock() == BlocksGNS.dream_grass || 
-			state.getBlock() == BlocksGNS.nightmare_grass || 
-			state.getBlock() == BlocksGNS.dream_dirt ||
-			state.getBlock() == Blocks.DIRT ||
-			state.getBlock() == Blocks.GRASS;
+		if (this == BlocksGNS.hope_mushroom || this == BlocksGNS.despair_mushroom)
+		{
+			return state.getBlock() == Blocks.STONE;
+		}
+		return state.getBlock() == BlocksGNS.dream_grass || state.getBlock() == BlocksGNS.nightmare_grass || state.getBlock() == BlocksGNS.dream_dirt || state.getBlock() == Blocks.DIRT || state.getBlock() == Blocks.GRASS;
 	}
 	
 	@Override

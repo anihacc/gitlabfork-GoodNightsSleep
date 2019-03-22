@@ -20,7 +20,6 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
-import net.minecraft.world.gen.ChunkGeneratorSettings;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.MapGenBase;
 import net.minecraft.world.gen.MapGenCaves;
@@ -44,10 +43,10 @@ public class ChunkProviderGoodDream implements IChunkGenerator
 	public NoiseGeneratorOctaves scaleNoise;
 	public NoiseGeneratorOctaves depthNoise;
 
-	private double[] noiseArray;
+	//private double[] noiseArray;
 	private double[] stoneNoise = new double[256];
 	
-	private ChunkGeneratorSettings settings;
+	//private ChunkGeneratorSettings settings;
     private IBlockState oceanBlock = Blocks.WATER.getDefaultState();
 
 	private WorldType terrainType;
@@ -124,7 +123,6 @@ public class ChunkProviderGoodDream implements IChunkGenerator
 
                 for (int i2 = 0; i2 < 32; ++i2)
                 {
-                    double d0 = 0.125D;
                     double d1 = this.heightMap[i1 + i2];
                     double d2 = this.heightMap[j1 + i2];
                     double d3 = this.heightMap[k1 + i2];
@@ -136,7 +134,6 @@ public class ChunkProviderGoodDream implements IChunkGenerator
 
                     for (int j2 = 0; j2 < 8; ++j2)
                     {
-                        double d9 = 0.25D;
                         double d10 = d1;
                         double d11 = d2;
                         double d12 = (d3 - d1) * 0.25D;
@@ -144,7 +141,6 @@ public class ChunkProviderGoodDream implements IChunkGenerator
 
                         for (int k2 = 0; k2 < 4; ++k2)
                         {
-                            double d14 = 0.25D;
                             double d16 = (d11 - d10) * 0.25D;
                             double lvt_45_1_ = d10 - d16;
 
@@ -277,15 +273,12 @@ public class ChunkProviderGoodDream implements IChunkGenerator
 	
 	public void replaceBlocksForBiome(int x, int z, ChunkPrimer chunkPrimer)
 	{
-		double var6 = 0.03125D;
-		//this.stoneNoise = this.surfaceNoise.getRegion(this.stoneNoise, x * 16, z * 16, 0, 16, 16, 1, var6 * 2.0D, var6 * 2.0D);
 		this.stoneNoise = this.surfaceNoise.getRegion(this.stoneNoise, (double)(x * 16), (double)(z * 16), 16, 16, 0.0625D, 0.0625D, 1.0D);
 
 		for (int var8 = 0; var8 < 16; var8++)
 		{
 			for (int var9 = 0; var9 < 16; var9++)
 			{
-				Biome biome = biomesForGeneration[var9 + var8 * 16];
 				int var12 = (int)(this.stoneNoise[(var8 + var9 * 16)] / 3.0D + 3.0D + this.random.nextDouble() * 0.25D);
 				int var13 = -1;
 				
@@ -362,7 +355,7 @@ public class ChunkProviderGoodDream implements IChunkGenerator
             abyte[i] = (byte)Biome.getIdForBiome(this.biomesForGeneration[i]);
         }
 		
-		chunk.generateSkylightMap(); // Light, that's all
+		chunk.generateSkylightMap();
 
 		return chunk;
 	}
@@ -382,7 +375,7 @@ public class ChunkProviderGoodDream implements IChunkGenerator
         
         boolean flag = false;
 
-        ChunkPos chunkpos = new ChunkPos(x, z);
+        //ChunkPos chunkpos = new ChunkPos(x, z);
         
 		this.worldObj.getBiome(blockpos.add(16, 0, 16)).decorate(this.worldObj, this.random, new BlockPos(i, 0, j));
 		

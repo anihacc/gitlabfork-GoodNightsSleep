@@ -8,11 +8,11 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.Teleporter;
 import net.minecraft.world.WorldServer;
 
-public class TeleporterHeck extends Teleporter
+public class TeleporterGNS extends Teleporter
 {
 	Random random;
 
-	public TeleporterHeck(WorldServer worldIn)
+	public TeleporterGNS(WorldServer worldIn)
 	{
 		super(worldIn);
 
