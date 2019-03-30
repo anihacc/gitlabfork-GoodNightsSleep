@@ -24,48 +24,49 @@ public class TileEntityWretchedBedRenderer extends TileEntitySpecialRenderer<Til
 
     public void render(TileEntityWretchedBed te, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
     {
-        if (this.version != this.model.getModelVersion())
-        {
-            this.model = new ModelBed();
-            this.version = this.model.getModelVersion();
-        }
 
-        boolean flag = te.getWorld() != null;
-        boolean flag1 = flag ? te.isHeadPiece() : true;
-        int i = flag ? te.getBlockMetadata() & 3 : 0;
-
-        if (destroyStage >= 0)
-        {
-            this.bindTexture(DESTROY_STAGES[destroyStage]);
-            GlStateManager.matrixMode(5890);
-            GlStateManager.pushMatrix();
-            GlStateManager.scale(4.0F, 4.0F, 1.0F);
-            GlStateManager.translate(0.0625F, 0.0625F, 0.0625F);
-            GlStateManager.matrixMode(5888);
-        }
-        else
-        {
-        	this.bindTexture(NIGHTMARE_BED);
-        }
-
-        if (flag)
-        {
-            this.renderPiece(flag1, x, y, z, i, alpha);
-        }
-        else
-        {
-            GlStateManager.pushMatrix();
-            this.renderPiece(true, x, y, z, i, alpha);
-            this.renderPiece(false, x, y, z - 1.0D, i, alpha);
-            GlStateManager.popMatrix();
-        }
-
-        if (destroyStage >= 0)
-        {
-            GlStateManager.matrixMode(5890);
-            GlStateManager.popMatrix();
-            GlStateManager.matrixMode(5888);
-        }
+	        if (this.version != this.model.getModelVersion())
+	        {
+	            this.model = new ModelBed();
+	            this.version = this.model.getModelVersion();
+	        }
+	
+	        boolean flag = te != null;
+	        boolean flag1 = flag ? te.isHeadPiece() : true;
+	        int i = flag ? te.getBlockMetadata() & 3 : 0;
+	
+	        if (destroyStage >= 0)
+	        {
+	            this.bindTexture(DESTROY_STAGES[destroyStage]);
+	            GlStateManager.matrixMode(5890);
+	            GlStateManager.pushMatrix();
+	            GlStateManager.scale(4.0F, 4.0F, 1.0F);
+	            GlStateManager.translate(0.0625F, 0.0625F, 0.0625F);
+	            GlStateManager.matrixMode(5888);
+	        }
+	        else
+	        {
+	        	this.bindTexture(NIGHTMARE_BED);
+	        }
+	
+	        if (flag)
+	        {
+	            this.renderPiece(flag1, x, y, z, i, alpha);
+	        }
+	        else
+	        {
+				GlStateManager.pushMatrix();
+				this.renderPiece(true, x, y, z, i, alpha);
+				this.renderPiece(false, x, y, z - 1.0D, i, alpha);
+				GlStateManager.popMatrix();
+	        }
+	
+	        if (destroyStage >= 0)
+	        {
+	            GlStateManager.matrixMode(5890);
+	            GlStateManager.popMatrix();
+	            GlStateManager.matrixMode(5888);
+	        }
     }
 
     private void renderPiece(boolean p_193847_1_, double x, double y, double z, int p_193847_8_, float alpha)

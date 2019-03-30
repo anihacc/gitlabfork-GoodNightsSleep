@@ -12,10 +12,12 @@ import com.legacy.goodnightsleep.entities.nightmare.EntityHerobrine;
 import com.legacy.goodnightsleep.entities.nightmare.EntityTormenter;
 import com.legacy.goodnightsleep.entities.tile.TileEntityLuxuriousBed;
 import com.legacy.goodnightsleep.entities.tile.TileEntityWretchedBed;
+import com.legacy.goodnightsleep.items.ItemsGNS;
 
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
+import net.minecraftforge.client.ForgeHooksClient;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
@@ -31,10 +33,14 @@ public class GNSEntityRenderingRegistry
 		register(EntityGummyBear.class, RenderGummyBear.class);
 	}
 	
+	@SuppressWarnings("deprecation")
 	public static void registerTileEntities()
 	{
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityLuxuriousBed.class, new TileEntityLuxuriousBedRenderer());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityWretchedBed.class, new TileEntityWretchedBedRenderer());
+
+		ForgeHooksClient.registerTESRItemStack(ItemsGNS.luxurious_bed_item, 0, TileEntityLuxuriousBed.class);
+		ForgeHooksClient.registerTESRItemStack(ItemsGNS.wretched_bed_item, 0, TileEntityWretchedBed.class);
 	}
 
 	private static <T extends Entity> void register(Class<T> clazz, Class<? extends Render<T>> render)

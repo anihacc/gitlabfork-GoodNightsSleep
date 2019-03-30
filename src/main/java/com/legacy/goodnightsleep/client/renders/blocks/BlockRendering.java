@@ -76,6 +76,9 @@ public class BlockRendering
 		register(BlocksGNS.zitrite_block, "zitrite_block");
 		register(BlocksGNS.negatite_block, "negatite_block");
 		
+		register(BlocksGNS.luxurious_bed, "luxurious_bed");
+		register(BlocksGNS.wretched_bed, "wretched_bed");
+		
 		GNSEntityRenderingRegistry.registerTileEntities();
 	}
 
