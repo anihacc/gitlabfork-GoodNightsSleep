@@ -186,7 +186,7 @@ public class GoodDreamBiomeDecorator extends BiomeDecorator
     
     public WorldGenerator getTree()
     {
-       return this.shouldSpawn(3) ? new WorldGenGNSTree(false, 4 + rand.nextInt(4), BlocksGNS.white_log.getDefaultState(), BlocksGNS.candy_leaves.getDefaultState(), false) : this.shouldSpawn(7) ? new WorldGenBigTreeDream(false) : new WorldGenGNSTree(false, 4 + rand.nextInt(4), BlocksGNS.dream_log.getDefaultState(), BlocksGNS.dream_leaves.getDefaultState(), false);
+       return this.shouldSpawn(3) ? new WorldGenGNSTree(false, 4 + rand.nextInt(4), BlocksGNS.white_log.getDefaultState(), BlocksGNS.candy_leaves.getDefaultState(), false) : this.shouldSpawn(5) ? new WorldGenBigTreeDream(true) : new WorldGenGNSTree(false, 4 + rand.nextInt(4), BlocksGNS.dream_log.getDefaultState(), BlocksGNS.dream_leaves.getDefaultState(), false);
     }
     
     public WorldGenerator getRandomWorldGenForGrass(Random rand)

@@ -121,12 +121,12 @@ public class WorldGenBigTreeDream extends WorldGenerator
 		System.arraycopy(var2, 0, this.leafNodes, 0, var4);
 	}
 
-	void genTreeLayer(int par1, int par2, int par3, float par4, byte par5, IBlockState par6)
+	void genTreeLayer(int x, int y, int z, float par4, byte par5, IBlockState par6)
 	{
 		int var7 = (int) ((double) par4 + 0.618D);
 		byte var8 = otherCoordPairs[par5];
 		byte var9 = otherCoordPairs[par5 + 3];
-		int[] var10 = new int[] { par1, par2, par3 };
+		int[] var10 = new int[] { x, y, z };
 		int[] var11 = new int[] { 0, 0, 0 };
 		int var12 = -var7;
 		int var13 = -var7;
@@ -145,7 +145,7 @@ public class WorldGenBigTreeDream extends WorldGenerator
 				{
 					var11[var9] = var10[var9] + var13;
 					IBlockState var14 = this.worldObj.getBlockState(new BlockPos(var11[0], var11[1], var11[2]));
-					if (var14 != Blocks.AIR && var14 != BlocksGNS.diamond_leaves.getDefaultState())
+					if (var14 != BlocksGNS.diamond_leaves.getDefaultState())
 					{
 						++var13;
 					}
@@ -356,7 +356,7 @@ public class WorldGenBigTreeDream extends WorldGenerator
 				var13[var7] = MathHelper.floor((double) par1ArrayOfInteger[var7] + (double) var14 * var11);
 				IBlockState var16 = this.worldObj.getBlockState(new BlockPos(var13[0], var13[1], var13[2]));
 
-				if (var16 != Blocks.AIR && var16 != BlocksGNS.diamond_leaves.getDefaultState())
+				if (var16 != Blocks.AIR.getDefaultState() && var16 != BlocksGNS.diamond_leaves.getDefaultState())
 				{
 					break;
 				}
