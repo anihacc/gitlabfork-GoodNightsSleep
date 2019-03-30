@@ -5,10 +5,10 @@ import java.util.Random;
 import com.legacy.goodnightsleep.blocks.BlocksGNS;
 import com.legacy.goodnightsleep.world.genfeatures.GNSGenMinable;
 import com.legacy.goodnightsleep.world.genfeatures.WorldGenBigMushroomGNS;
+import com.legacy.goodnightsleep.world.genfeatures.WorldGenBigTreeNightmare;
 import com.legacy.goodnightsleep.world.genfeatures.WorldGenFoilage;
-import com.legacy.goodnightsleep.world.genfeatures.WorldGenGNSTree;
 import com.legacy.goodnightsleep.world.genfeatures.WorldGenGNSTallGrass;
-import com.legacy.goodnightsleep.world.structures.nightmare.DeadTreeGenerator;
+import com.legacy.goodnightsleep.world.genfeatures.WorldGenGNSTree;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -18,8 +18,8 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.gen.feature.WorldGenPumpkin;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import net.minecraftforge.event.terraingen.TerrainGen;
 import net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType;
+import net.minecraftforge.event.terraingen.TerrainGen;
 
 public class NightmareBiomeDecorator extends BiomeDecorator 
 {
@@ -63,7 +63,7 @@ public class NightmareBiomeDecorator extends BiomeDecorator
 	@Override
     protected void genDecorations(Biome biomeGenBaseIn, World worldIn, Random random)
     {    	
-		if (this.shouldSpawn(4))
+		if (this.shouldSpawn(3))
 		{
 			this.getTree().generate(this.world, this.rand, this.world.getHeight(this.chunkPos.add(this.nextInt(16) + 8, 0, this.nextInt(16) + 8)));
 		}
@@ -163,7 +163,7 @@ public class NightmareBiomeDecorator extends BiomeDecorator
     
     public WorldGenerator getTree()
     {
-       return this.shouldSpawn(10) ? new WorldGenGNSTree(false, 4 + rand.nextInt(4), BlocksGNS.blood_log.getDefaultState(), Blocks.AIR.getDefaultState(), false) : new DeadTreeGenerator(false);
+       return this.shouldSpawn(10) ? new WorldGenGNSTree(false, 4 + rand.nextInt(4), BlocksGNS.blood_log.getDefaultState(), Blocks.AIR.getDefaultState(), false) : new WorldGenBigTreeNightmare(false); //new DeadTreeGenerator(false)
     }
     
     public WorldGenerator getRandomWorldGenForGrass(Random rand)
