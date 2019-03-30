@@ -15,7 +15,6 @@ public class BlockGNSFence extends BlockFence
 		this.setHardness(2.0F);
 		this.setResistance(5.0F);
 		this.setSoundType(SoundType.WOOD);
-		//this.setCreativeTab(GlacidusCreativeTabs.BLOCKS);
 	}
 
 	/*public MapColor getMapColor(IBlockState state, IBlockAccess worldIn, BlockPos pos)

@@ -1,5 +1,6 @@
 package com.legacy.goodnightsleep.blocks.natural;
 
+import com.legacy.goodnightsleep.blocks.BlocksGNS;
 import com.legacy.goodnightsleep.registry.GNSCreativeTabs;
 
 import net.minecraft.block.BlockLog;
@@ -22,7 +23,10 @@ public class BlockGNSLog extends BlockLog
     {
         super();
 
-        Blocks.FIRE.setFireInfo(this, 5, 5);
+        if (this != BlocksGNS.dead_log && this != BlocksGNS.blood_log)
+        {
+        	Blocks.FIRE.setFireInfo(this, 5, 5);	
+        }
 
         this.setHardness(2.0F);
         this.setSoundType(SoundType.WOOD);
