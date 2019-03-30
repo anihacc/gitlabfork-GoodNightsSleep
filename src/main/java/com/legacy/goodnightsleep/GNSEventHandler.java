@@ -43,30 +43,24 @@ public class GNSEventHandler
 	}
 	
 	@SubscribeEvent
-	public void haveGoodDream(RightClickBlock event)
+	public void haveDream(RightClickBlock event)
 	{					
 		if (event.getWorld().getBlockState(event.getPos()).getBlock() == BlocksGNS.luxurious_bed)
+		{
+			if (event.getEntityLiving() instanceof EntityPlayer)
 			{
-				if (event.getEntityLiving() instanceof EntityPlayer)
-				{
-					PlayerGNS.get((EntityPlayer) event.getEntityLiving()).teleportPlayer(true);
-					//System.out.println("Entering your Dreams");
-					
-				}
+				PlayerGNS.get((EntityPlayer) event.getEntityLiving()).teleportPlayer(true);
+				// System.out.println("Entering your Dreams");
 			}
-	}
-	
-	@SubscribeEvent
-	public void haveBadDream(RightClickBlock event)
-	{
+		}
+
 		if (event.getWorld().getBlockState(event.getPos()).getBlock() == BlocksGNS.wretched_bed)
+		{
+			if (event.getEntityLiving() instanceof EntityPlayer)
 			{
-				if (event.getEntityLiving() instanceof EntityPlayer)
-				{
-					PlayerGNS.get((EntityPlayer) event.getEntityLiving()).teleportPlayerNightmare(true);
-					//System.out.println("Entering your Nightmares");
-					
-				}
+				PlayerGNS.get((EntityPlayer) event.getEntityLiving()).teleportPlayerNightmare(true);
+				// System.out.println("Entering your Nightmares");
 			}
+		}
 	}
 }

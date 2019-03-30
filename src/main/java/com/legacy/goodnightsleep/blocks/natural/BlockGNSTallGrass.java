@@ -13,6 +13,7 @@ import net.minecraft.block.BlockBush;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.monster.IMob;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -65,7 +66,7 @@ public class BlockGNSTallGrass extends BlockBush
 	 @Override
 	 public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn)
 	 {
-		 if (this == BlocksGNS.tall_nightmare_grass)
+		 if (this == BlocksGNS.tall_nightmare_grass && !(entityIn instanceof IMob))
 		 {
 			 entityIn.attackEntityFrom(new DamageSource("nightmare_grass"), 1.0F);
 		 }
