@@ -9,6 +9,7 @@ import com.legacy.goodnightsleep.world.genfeatures.WorldGenBigTreeNightmare;
 import com.legacy.goodnightsleep.world.genfeatures.WorldGenFoilage;
 import com.legacy.goodnightsleep.world.genfeatures.WorldGenGNSTallGrass;
 import com.legacy.goodnightsleep.world.genfeatures.WorldGenGNSTree;
+import com.legacy.goodnightsleep.world.genfeatures.WorldGenNetherSplash;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -106,6 +107,19 @@ public class NightmareBiomeDecorator extends BiomeDecorator
                 int l17 = random.nextInt(k14);
                 biomeGenBaseIn.getRandomWorldGenForGrass(random).generate(worldIn, random, this.chunkPos.add(j7, l17, i11));
             }
+        }
+        
+        for (int amount = 0; amount < 8; ++amount)
+        {
+	        int j7 = random.nextInt(8) + 8;
+	        int i11 = random.nextInt(8) + 8;
+	        int k14 = worldIn.getHeight(this.chunkPos.add(j7, 0, i11)).getY() * 2;
+	        
+	        if (k14 > 0)
+	        {
+	            int l17 = random.nextInt(k14);
+	            new WorldGenNetherSplash().generate(worldIn, random, this.chunkPos.add(j7, l17 -2 , i11));
+	        }
         }
 
 		this.spawnOres();

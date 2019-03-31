@@ -27,6 +27,10 @@ public class BlockGNSLog extends BlockLog
         {
         	Blocks.FIRE.setFireInfo(this, 5, 5);	
         }
+        else
+        {
+        	Blocks.FIRE.setFireInfo(this, 0, 0);
+        }
 
         this.setHardness(2.0F);
         this.setSoundType(SoundType.WOOD);
