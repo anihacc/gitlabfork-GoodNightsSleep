@@ -76,6 +76,8 @@ public class ItemRendering
 		register(ItemsGNS.necrum, "necrum");
 		register(ItemsGNS.candy, "candy");
 		
+		register(ItemsGNS.rainbow_seeds, "rainbow_seeds");
+		
 		register(ItemsGNS.lolipop, "lolipop");
 		register(ItemsGNS.rainbow_berries, "rainbow_berries");
 		register(ItemsGNS.luxurious_soup, "luxurious_soup");
