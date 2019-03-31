@@ -123,15 +123,15 @@ public class ItemsGNS
 		rainbow_leggings = register("rainbow_leggings", new ItemGNSArmor(EntityEquipmentSlot.LEGS, RAINBOW_ARMOR, "rainbow"));
 		rainbow_boots = register("rainbow_boots", new ItemGNSArmor(EntityEquipmentSlot.FEET, RAINBOW_ARMOR, "rainbow"));
 
-		positite_helmet = register("positite_helmet", new ItemGNSArmor(EntityEquipmentSlot.HEAD, POSITITE_ARMOR, "positite"));
-		positite_chestplate = register("positite_chestplate", new ItemGNSArmor(EntityEquipmentSlot.CHEST, POSITITE_ARMOR, "positite"));
-		positite_leggings = register("positite_leggings", new ItemGNSArmor(EntityEquipmentSlot.LEGS, POSITITE_ARMOR, "positite"));
-		positite_boots = register("positite_boots", new ItemGNSArmor(EntityEquipmentSlot.FEET, POSITITE_ARMOR, "positite"));
+		positite_helmet = register("positite_helmet", new ItemGNSArmor(EntityEquipmentSlot.HEAD, ArmorMaterial.DIAMOND, "positite"));
+		positite_chestplate = register("positite_chestplate", new ItemGNSArmor(EntityEquipmentSlot.CHEST, ArmorMaterial.DIAMOND, "positite"));
+		positite_leggings = register("positite_leggings", new ItemGNSArmor(EntityEquipmentSlot.LEGS, ArmorMaterial.DIAMOND, "positite"));
+		positite_boots = register("positite_boots", new ItemGNSArmor(EntityEquipmentSlot.FEET, ArmorMaterial.DIAMOND, "positite"));
 
-		negatite_helmet = register("negatite_helmet", new ItemGNSArmor(EntityEquipmentSlot.HEAD, NEGATITE_ARMOR, "negatite"));
-		negatite_chestplate = register("negatite_chestplate", new ItemGNSArmor(EntityEquipmentSlot.CHEST, NEGATITE_ARMOR, "negatite"));
-		negatite_leggings = register("negatite_leggings", new ItemGNSArmor(EntityEquipmentSlot.LEGS, NEGATITE_ARMOR, "negatite"));
-		negatite_boots = register("negatite_boots", new ItemGNSArmor(EntityEquipmentSlot.FEET, NEGATITE_ARMOR, "negatite"));
+		negatite_helmet = register("negatite_helmet", new ItemGNSArmor(EntityEquipmentSlot.HEAD, ArmorMaterial.DIAMOND, "negatite"));
+		negatite_chestplate = register("negatite_chestplate", new ItemGNSArmor(EntityEquipmentSlot.CHEST, ArmorMaterial.DIAMOND, "negatite"));
+		negatite_leggings = register("negatite_leggings", new ItemGNSArmor(EntityEquipmentSlot.LEGS, ArmorMaterial.DIAMOND, "negatite"));
+		negatite_boots = register("negatite_boots", new ItemGNSArmor(EntityEquipmentSlot.FEET, ArmorMaterial.DIAMOND, "negatite"));
 
 		candy_helmet = register("candy_helmet", new ItemGNSArmor(EntityEquipmentSlot.HEAD, CANDY_ARMOR, "candy"));
 		candy_chestplate = register("candy_chestplate", new ItemGNSArmor(EntityEquipmentSlot.CHEST, CANDY_ARMOR, "candy"));
