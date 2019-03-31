@@ -18,7 +18,7 @@ public class WorldGenBigTreeDream extends WorldGenerator
 
 	Random rand = new Random();
 
-	World worldObj;
+	World world;
 
 	int[] basePos = new int[] { 0, 0, 0 };
 
@@ -121,8 +121,12 @@ public class WorldGenBigTreeDream extends WorldGenerator
 		System.arraycopy(var2, 0, this.leafNodes, 0, var4);
 	}
 
-	void genTreeLayer(int x, int y, int z, float par4, byte par5, IBlockState par6)
+	void genTreeLayer(BlockPos pos, float par4, byte par5, IBlockState par6)
 	{
+		int x = pos.getX();
+		int y = pos.getY();
+		int z = pos.getZ();
+		
 		int var7 = (int) ((double) par4 + 0.618D);
 		byte var8 = otherCoordPairs[par5];
 		byte var9 = otherCoordPairs[par5 + 3];
@@ -144,14 +148,14 @@ public class WorldGenBigTreeDream extends WorldGenerator
 				else
 				{
 					var11[var9] = var10[var9] + var13;
-					IBlockState var14 = this.worldObj.getBlockState(new BlockPos(var11[0], var11[1], var11[2]));
-					if (var14 != BlocksGNS.diamond_leaves.getDefaultState())
+					IBlockState var14 = this.world.getBlockState(new BlockPos(var11[0], var11[1], var11[2]));
+					if (var14 != Blocks.AIR.getDefaultState() && var14 != BlocksGNS.diamond_leaves.getDefaultState())
 					{
 						++var13;
 					}
 					else
 					{
-						this.worldObj.setBlockState(new BlockPos(var11[0], var11[1], var11[2]), Blocks.AIR.getDefaultState());
+						this.world.setBlockState(new BlockPos(var11[0], var11[1], var11[2]), par6); //Blocks.AIR
 						++var13;
 					}
 				}
@@ -198,7 +202,7 @@ public class WorldGenBigTreeDream extends WorldGenerator
 		for (int var5 = par2 + this.leafDistanceLimit; var4 < var5; ++var4)
 		{
 			float var6 = this.leafSize(var4 - par2);
-			this.genTreeLayer(par1, var4, par3, var6, (byte) 1, BlocksGNS.diamond_leaves.getDefaultState());
+			this.genTreeLayer(new BlockPos(par1, var4, par3), var6, (byte) 1, BlocksGNS.diamond_leaves.getDefaultState());
 		}
 	}
 
@@ -252,7 +256,7 @@ public class WorldGenBigTreeDream extends WorldGenerator
 						var17 = true;
 					}
 				}
-				this.worldObj.setBlockState(new BlockPos(var14[0], var14[1], var14[2]), par3);
+				this.world.setBlockState(new BlockPos(var14[0], var14[1], var14[2]), par3);
 			}
 		}
 	}
@@ -354,8 +358,7 @@ public class WorldGenBigTreeDream extends WorldGenerator
 				var13[var5] = par1ArrayOfInteger[var5] + var14;
 				var13[var6] = MathHelper.floor((double) par1ArrayOfInteger[var6] + (double) var14 * var9);
 				var13[var7] = MathHelper.floor((double) par1ArrayOfInteger[var7] + (double) var14 * var11);
-				IBlockState var16 = this.worldObj.getBlockState(new BlockPos(var13[0], var13[1], var13[2]));
-
+				IBlockState var16 = this.world.getBlockState(new BlockPos(var13[0], var13[1], var13[2]));
 				if (var16 != Blocks.AIR.getDefaultState() && var16 != BlocksGNS.diamond_leaves.getDefaultState())
 				{
 					break;
@@ -369,7 +372,7 @@ public class WorldGenBigTreeDream extends WorldGenerator
 	{
 		int[] var1 = new int[] { this.basePos[0], this.basePos[1], this.basePos[2] };
 		int[] var2 = new int[] { this.basePos[0], this.basePos[1] + this.heightLimit - 1, this.basePos[2] };
-		IBlockState var3 = this.worldObj.getBlockState(new BlockPos(this.basePos[0], this.basePos[1] - 1, this.basePos[2]));
+		IBlockState var3 = this.world.getBlockState(new BlockPos(this.basePos[0], this.basePos[1] - 1, this.basePos[2]));
 		if (var3 != BlocksGNS.dream_grass.getDefaultState() && var3 != BlocksGNS.dream_dirt.getDefaultState())
 		{
 			return false;
@@ -404,29 +407,26 @@ public class WorldGenBigTreeDream extends WorldGenerator
 		this.leafDensity = par5;
 	}
 
-	public boolean generate(World world, Random rand, BlockPos pos)
+	public boolean generate(World par1World, Random par2Random, BlockPos pos)
 	{
 		int x = pos.getX();
 		int y = pos.getY();
 		int z = pos.getZ();
-
-		this.worldObj = world;
-		long var6 = rand.nextLong();
+		
+		this.world = par1World;
+		long var6 = par2Random.nextLong();
 		this.rand.setSeed(var6);
 		this.basePos[0] = x;
 		this.basePos[1] = y;
 		this.basePos[2] = z;
-
 		if (this.heightLimit == 0)
 		{
 			this.heightLimit = 5 + this.rand.nextInt(this.heightLimitLimit);
 		}
-
 		if (!this.validTreeLocation())
 		{
 			return false;
 		}
-
 		else
 		{
 			this.generateLeafNodeList();
