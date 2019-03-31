@@ -7,11 +7,13 @@ import com.legacy.goodnightsleep.blocks.construction.BlockGNSPlank;
 import com.legacy.goodnightsleep.blocks.construction.BlockGNSSlab;
 import com.legacy.goodnightsleep.blocks.construction.BlockGNSStairs;
 import com.legacy.goodnightsleep.blocks.natural.BlockGNSDirt;
+import com.legacy.goodnightsleep.blocks.natural.BlockGNSFarmland;
 import com.legacy.goodnightsleep.blocks.natural.BlockGNSFlower;
 import com.legacy.goodnightsleep.blocks.natural.BlockGNSGrass;
 import com.legacy.goodnightsleep.blocks.natural.BlockGNSLeaves;
 import com.legacy.goodnightsleep.blocks.natural.BlockGNSLog;
 import com.legacy.goodnightsleep.blocks.natural.BlockGNSMushroom;
+import com.legacy.goodnightsleep.blocks.natural.BlockGNSRainbowCrop;
 import com.legacy.goodnightsleep.blocks.natural.BlockGNSTallGrass;
 import com.legacy.goodnightsleep.blocks.natural.ores.BlockGNSOre;
 import com.legacy.goodnightsleep.blocks.util.ItemGNSSlab;
@@ -29,8 +31,7 @@ import net.minecraftforge.registries.IForgeRegistry;
 
 public class BlocksGNS
 {
-
-	public static Block dream_grass, dream_dirt, nightmare_grass;
+	public static Block dream_grass, dream_dirt, dream_farmland, nightmare_grass;
 
 	public static Block tall_dream_grass, tall_nightmare_grass, lolipop_bush;
 
@@ -42,13 +43,11 @@ public class BlocksGNS
 
 	public static Block dead_plank, blood_plank, white_plank, dream_plank;
 
-	public static Block nightmare_test_portal, dream_test_portal;
-
 	public static Block orange_flower, cyan_flower, dead_flower, despair_mushroom, hope_mushroom;
 	
 	public static Block hope_mushroom_cap, despair_mushroom_cap;
 
-	public static Block rainbow_berries;
+	public static Block rainbow_crop;
 
 	public static Block white_log, dream_log, blood_log, dead_log;
 
@@ -58,7 +57,7 @@ public class BlocksGNS
 	
 	public static Block dead_stairs, blood_stairs, white_stairs, dream_stairs;
 	
-	public static Block pot_of_gold, present;
+	public static Block pot_of_gold, present, rainbow;
 	
 	public static Block luxurious_bed, wretched_bed;
 	
@@ -73,10 +72,14 @@ public class BlocksGNS
 			return;
 		}
 		
+		luxurious_bed = registerNoTab("luxurious_bed", new BlockGNSBed()).setCreativeTab(null);
+		wretched_bed = registerNoTab("wretched_bed", new BlockGNSBed()).setCreativeTab(null);
+
 		tall_dream_grass = register("tall_dream_grass", new BlockGNSTallGrass());
 		tall_nightmare_grass = register("tall_nightmare_grass", new BlockGNSTallGrass());
 		dream_grass = register("dream_grass", new BlockGNSGrass());
 		dream_dirt = register("dream_dirt", new BlockGNSDirt());
+		dream_farmland = register("dream_farmland", new BlockGNSFarmland());
 		nightmare_grass = register("nightmare_grass", new BlockGNSGrass());
 		hope_mushroom_cap = register("hope_mushroom_cap", new BlockGNSMushroom());
 		despair_mushroom_cap = register("despair_mushroom_cap", new BlockGNSMushroom());
@@ -109,8 +112,7 @@ public class BlocksGNS
 		lolipop_bush = register("lolipop_bush", new BlockGNSFlower());
 		dead_flower = register("dead_flower", new BlockGNSFlower());
 		
-		luxurious_bed = registerNoTab("luxurious_bed", new BlockGNSBed().setCreativeTab(null));
-		wretched_bed = registerNoTab("wretched_bed", new BlockGNSBed().setCreativeTab(null));
+		rainbow_crop = registerNoTab("rainbow_crop", new BlockGNSRainbowCrop()).setCreativeTab(null);
 
 		dream_fence = register("dream_fence", new BlockGNSFence());
 		white_fence = register("white_fence", new BlockGNSFence());

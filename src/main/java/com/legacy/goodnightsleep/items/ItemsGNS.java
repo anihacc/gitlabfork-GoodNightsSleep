@@ -1,5 +1,6 @@
 package com.legacy.goodnightsleep.items;
 
+import com.legacy.goodnightsleep.blocks.BlocksGNS;
 import com.legacy.goodnightsleep.items.tools.ItemGNSArmor;
 import com.legacy.goodnightsleep.items.tools.ItemGNSAxe;
 import com.legacy.goodnightsleep.items.tools.ItemGNSPickaxe;
@@ -17,8 +18,8 @@ import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraft.item.ItemFood;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.registries.IForgeRegistry;
 
@@ -83,6 +84,8 @@ public class ItemsGNS
 		lolipop = register("lolipop", new ItemGNS(GNSCreativeTabs.items));
 		
 		candy = register("candy", new ItemFood(2, false));
+		
+		rainbow_seeds = register("rainbow_seeds", new ItemGNSSeeds(BlocksGNS.rainbow_crop)).setCreativeTab(GNSCreativeTabs.items);
 		rainbow_berries = register("rainbow_berries", new ItemFood(4, 0.6F, true));
 		
 		luxurious_soup = register("luxurious_soup", new ItemFood(0, false).setMaxStackSize(0));
