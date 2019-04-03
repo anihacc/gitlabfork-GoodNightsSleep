@@ -30,6 +30,7 @@ public class ItemWretchedBed extends Item
 	public ItemWretchedBed()
 	{
 		this.setCreativeTab(GNSCreativeTabs.blocks);
+		this.setMaxStackSize(1);
 	}
 
 	/**

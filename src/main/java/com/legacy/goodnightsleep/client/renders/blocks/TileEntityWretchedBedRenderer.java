@@ -51,13 +51,13 @@ public class TileEntityWretchedBedRenderer extends TileEntitySpecialRenderer<Til
 	
 	        if (flag)
 	        {
-	            this.renderPiece(flag1, x, y, z, i, alpha);
+	            this.renderPiece(flag1, x, y, z, i, alpha, false);
 	        }
 	        else
 	        {
 				GlStateManager.pushMatrix();
-				this.renderPiece(true, x, y, z, i, alpha);
-				this.renderPiece(false, x, y, z - 1.0D, i, alpha);
+				this.renderPiece(true, x, y, z, i, alpha, true);
+				//this.renderPiece(false, x, y, z - 1.0D, i, alpha);
 				GlStateManager.popMatrix();
 	        }
 	
@@ -69,9 +69,25 @@ public class TileEntityWretchedBedRenderer extends TileEntitySpecialRenderer<Til
 	        }
     }
 
-    private void renderPiece(boolean p_193847_1_, double x, double y, double z, int p_193847_8_, float alpha)
+    private void renderPiece(boolean head, double x, double y, double z, int p_193847_8_, float alpha, boolean item)
     {
-        this.model.preparePiece(p_193847_1_);
+    	if (item)
+    	{
+    		GlStateManager.pushMatrix();
+    		this.model.headPiece.showModel = true;
+    		this.model.footPiece.showModel = true;
+    		
+            this.model.legs[0].showModel = true;
+            this.model.legs[1].showModel = true;
+            this.model.legs[2].showModel = true;
+            this.model.legs[3].showModel = true;
+            GlStateManager.popMatrix();
+    		//this.model.render();
+    	}
+    	else
+    	{
+    		this.model.preparePiece(head);
+    	}
         GlStateManager.pushMatrix();
         float f = 0.0F;
         float f1 = 0.0F;
@@ -103,7 +119,20 @@ public class TileEntityWretchedBedRenderer extends TileEntitySpecialRenderer<Til
         GlStateManager.rotate(f, 0.0F, 0.0F, 1.0F);
         GlStateManager.enableRescaleNormal();
         GlStateManager.pushMatrix();
-        this.model.render();
+        if (item)
+        {
+        	this.model.headPiece.render(0.0625F);
+        	this.model.legs[1].render(0.0625F);
+        	this.model.legs[3].render(0.0625F);
+        	GlStateManager.translate(0, 1.0F, 0);
+    		this.model.footPiece.render(0.0625F);
+    		this.model.legs[0].render(0.0625F);
+    		this.model.legs[2].render(0.0625F);
+        }
+        else
+        {
+        	this.model.render();
+        }
         GlStateManager.popMatrix();
         GlStateManager.color(1.0F, 1.0F, 1.0F, alpha);
         GlStateManager.popMatrix();

@@ -3,6 +3,7 @@ package com.legacy.goodnightsleep.items;
 import com.legacy.goodnightsleep.blocks.BlocksGNS;
 import com.legacy.goodnightsleep.items.tools.ItemGNSArmor;
 import com.legacy.goodnightsleep.items.tools.ItemGNSAxe;
+import com.legacy.goodnightsleep.items.tools.ItemGNSHoe;
 import com.legacy.goodnightsleep.items.tools.ItemGNSPickaxe;
 import com.legacy.goodnightsleep.items.tools.ItemGNSShovel;
 import com.legacy.goodnightsleep.items.tools.ItemGNSSword;
@@ -29,17 +30,17 @@ public class ItemsGNS
 
 	public static Item positite_gem, zitrite_ingot, negatite_gem, necrum, rainbow_ingot, candy_ingot;
 	
-	public static Item candy_pickaxe, candy_axe, candy_shovel, candy_sword;
+	public static Item candy_pickaxe, candy_axe, candy_shovel, candy_hoe, candy_sword;
 	
-	public static Item necrum_pickaxe, necrum_axe, necrum_shovel, necrum_sword;
+	public static Item necrum_pickaxe, necrum_axe, necrum_shovel, necrum_hoe, necrum_sword;
 
-	public static Item zitrite_pickaxe, zitrite_axe, zitrite_shovel, zitrite_sword;
+	public static Item zitrite_pickaxe, zitrite_axe, zitrite_shovel, zitrite_hoe, zitrite_sword;
 
-	public static Item rainbow_pickaxe, rainbow_axe, rainbow_shovel, rainbow_sword;
+	public static Item rainbow_pickaxe, rainbow_axe, rainbow_shovel, rainbow_hoe, rainbow_sword;
 
-	public static Item positite_pickaxe, positite_axe, positite_shovel, positite_sword;
+	public static Item positite_pickaxe, positite_axe, positite_shovel, positite_hoe, positite_sword;
 
-	public static Item negatite_pickaxe, negatite_axe, negatite_shovel, negatite_sword;
+	public static Item negatite_pickaxe, negatite_axe, negatite_shovel, negatite_hoe, negatite_sword;
 	
 	public static Item candy_helmet, candy_chestplate, candy_leggings, candy_boots;
 
@@ -95,31 +96,37 @@ public class ItemsGNS
 		candy_pickaxe = register("candy_pickaxe", new ItemGNSPickaxe(CANDY));
 		candy_axe = register("candy_axe", new ItemGNSAxe(ToolMaterial.STONE));
 		candy_shovel = register("candy_shovel", new ItemGNSShovel(CANDY));
-
+		candy_hoe = register("candy_hoe", new ItemGNSHoe(CANDY));
+		
 		necrum_sword = register("necrum_sword", new ItemGNSSword(NECRUM));
 		necrum_pickaxe = register("necrum_pickaxe", new ItemGNSPickaxe(NECRUM));
 		necrum_axe = register("necrum_axe", new ItemGNSAxe(ToolMaterial.STONE));
 		necrum_shovel = register("necrum_shovel", new ItemGNSShovel(NECRUM));
+		necrum_hoe = register("necrum_hoe", new ItemGNSHoe(NECRUM));
 
 		zitrite_sword = register("zitrite_sword", new ItemGNSSword(ZITRITE));
 		zitrite_pickaxe = register("zitrite_pickaxe", new ItemGNSPickaxe(ZITRITE));
 		zitrite_axe = register("zitrite_axe", new ItemGNSAxe(ToolMaterial.IRON));
 		zitrite_shovel = register("zitrite_shovel", new ItemGNSShovel(ZITRITE));
+		zitrite_hoe = register("zitrite_hoe", new ItemGNSHoe(ZITRITE));
 
 		rainbow_sword = register("rainbow_sword", new ItemGNSSword(RAINBOW));
 		rainbow_pickaxe = register("rainbow_pickaxe", new ItemGNSPickaxe(RAINBOW));
 		rainbow_axe = register("rainbow_axe", new ItemGNSAxe(ToolMaterial.IRON));
 		rainbow_shovel = register("rainbow_shovel", new ItemGNSShovel(RAINBOW));
+		rainbow_hoe = register("rainbow_hoe", new ItemGNSHoe(RAINBOW));
 
 		positite_sword = register("positite_sword", new ItemGNSSword(POSITITE));
 		positite_pickaxe = register("positite_pickaxe", new ItemGNSPickaxe(POSITITE));
 		positite_axe = register("positite_axe", new ItemGNSAxe(ToolMaterial.DIAMOND));
 		positite_shovel = register("positite_shovel", new ItemGNSShovel(POSITITE));
+		positite_hoe = register("positite_hoe", new ItemGNSHoe(POSITITE));
 
 		negatite_sword = register("negatite_sword", new ItemGNSSword(NEGATITE));
 		negatite_pickaxe = register("negatite_pickaxe", new ItemGNSPickaxe(NEGATITE));
 		negatite_axe = register("negatite_axe", new ItemGNSAxe(ToolMaterial.DIAMOND));
 		negatite_shovel = register("negatite_shovel", new ItemGNSShovel(NEGATITE));
+		negatite_hoe = register("negatite_hoe", new ItemGNSHoe(NEGATITE));
 
 		rainbow_helmet = register("rainbow_helmet", new ItemGNSArmor(EntityEquipmentSlot.HEAD, RAINBOW_ARMOR, "rainbow"));
 		rainbow_chestplate = register("rainbow_chestplate", new ItemGNSArmor(EntityEquipmentSlot.CHEST, RAINBOW_ARMOR, "rainbow"));

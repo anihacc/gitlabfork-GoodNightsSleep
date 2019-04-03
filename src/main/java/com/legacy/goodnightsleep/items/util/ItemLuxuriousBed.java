@@ -30,6 +30,7 @@ public class ItemLuxuriousBed extends Item
 	public ItemLuxuriousBed()
 	{
 		this.setCreativeTab(GNSCreativeTabs.blocks);
+		this.setMaxStackSize(1);
 	}
 
 	/**

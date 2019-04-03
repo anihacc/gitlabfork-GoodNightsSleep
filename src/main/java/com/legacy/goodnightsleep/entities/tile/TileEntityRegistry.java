@@ -11,7 +11,6 @@ public class TileEntityRegistry
 	public static void initialization()
 	{
 		register(TileEntityLuxuriousBed.class, VariableConstants.MODID + ":" + "luxurious_bed");
-		
 		register(TileEntityWretchedBed.class, VariableConstants.MODID + ":" + "wretched_bed");
 	}
 
