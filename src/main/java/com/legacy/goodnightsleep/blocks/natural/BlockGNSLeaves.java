@@ -81,44 +81,13 @@ public class BlockGNSLeaves extends BlockLeaves
 	@Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-		/*if (this == BlocksSkies.turquoise_leaves)
-		{
-			return Item.getItemFromBlock(BlocksSkies.bluebright_sapling);
-		}
-		
-		if (this == BlocksSkies.lunar_leaves)
-		{
-			return Item.getItemFromBlock(BlocksSkies.lunar_sapling);
-		}
-		
-		if (this == BlocksSkies.cherry_leaves)
-		{
-			return Item.getItemFromBlock(BlocksSkies.cherry_sapling);
-		}
-		
-		if (this == BlocksSkies.blue_leaves)
-		{
-			return Item.getItemFromBlock(BlocksSkies.old_blue_sapling);
-		}
-		
-		if (this == BlocksSkies.purple_leaves)
-		{
-			return Item.getItemFromBlock(BlocksSkies.old_purple_sapling);
-		}
-		
-		else
-		{
-			return Item.getItemFromBlock(Blocks.SAPLING);
-		}*/
-		
 		return Item.getItemFromBlock(Blocks.SAPLING);
-		
     }
 
 	@Override
     protected void dropApple(World worldIn, BlockPos pos, IBlockState state, int chance)
     {
-		if (this == BlocksGNS.diamond_leaves && RANDOM.nextInt(5) == 0)
+		if (this == BlocksGNS.diamond_leaves && RANDOM.nextInt(100) == 0)
 		{
 			spawnAsEntity(worldIn, pos, new ItemStack(Items.DIAMOND));
 		}
