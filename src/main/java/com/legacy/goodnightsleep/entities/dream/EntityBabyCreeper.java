@@ -13,6 +13,7 @@ public class EntityBabyCreeper extends EntityCreeper
     {
         super(worldIn);
         this.setSize(0.6F, 1.3F);
+        this.setGlowing(true);
     }
 	
 	@Override
@@ -22,6 +23,11 @@ public class EntityBabyCreeper extends EntityCreeper
         this.tasks.addTask(2, new EntityAIBabyCreeperSwell(this));
     }
 	
+	@Override
+	public boolean getCanSpawnHere()
+    {
+		return this.rand.nextInt(150) == 0 && super.getCanSpawnHere();
+    }
 	public void writeEntityToNBT(NBTTagCompound compound)
     {
         super.writeEntityToNBT(compound);
