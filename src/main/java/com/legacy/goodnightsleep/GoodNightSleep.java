@@ -18,7 +18,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 
-@Mod(name = VariableConstants.NAME, version = VariableConstants.VERSION, modid = VariableConstants.MODID)
+@Mod(name = VariableConstants.NAME, version = VariableConstants.VERSION, modid = VariableConstants.MODID, updateJSON = "https://gist.githubusercontent.com/Lachney/30ab83d5fe6bd534880ba6efb8f958a3/raw/good-nights-sleep-changelog.json")
 public class GoodNightSleep 
 {
 
