@@ -9,45 +9,47 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
-public class WorldGenSponge extends WorldGenerator 
+public class WorldGenSponge extends WorldGenerator
 {
-   private IBlockState spongeBlockId;
 
-   @SuppressWarnings("deprecation")
-   public WorldGenSponge()
-   {
-      this.spongeBlockId = Blocks.SPONGE.getStateFromMeta(1);
-   }
+	private IBlockState spongeBlockId;
 
-   @Override
-   public boolean generate(World worldIn, Random random, BlockPos pos) 
-   {
-	   
-	   if((worldIn.getBlockState(pos).getMaterial() == Material.WATER || worldIn.getBlockState(pos.down()).getMaterial() == Material.WATER || worldIn.getBlockState(pos.up()).getMaterial() == Material.WATER) && worldIn.getBlockState(pos.up()).getMaterial() == Material.AIR) 	    
-      {
-         int varSize = random.nextInt(6);
-         int varSpace = 1 + random.nextInt(3);
-         this.generateStalk(worldIn, pos.getX(), pos.getY(), pos.getZ() + varSpace, varSize);
-         this.generateStalk(worldIn, pos.getX() + varSpace, pos.getY(), pos.getZ(), varSize - 1);
-         this.generateStalk(worldIn, pos.getX() + varSpace, pos.getY(), pos.getZ() + varSpace, varSize - 2);
-         this.generateStalk(worldIn, pos.getX(), pos.getY(), pos.getZ(), varSize - 3);
-         return true;
-         
-      }
-	   else
-	   {
-		   return false;
-	   }
-   }
+	@SuppressWarnings("deprecation")
+	public WorldGenSponge()
+	{
+		this.spongeBlockId = Blocks.SPONGE.getStateFromMeta(1);
+	}
 
-   private void generateStalk(World world, int j, int k, int l, int varSize) 
-   {
-      //if(!world.isAirBlock(new BlockPos(j, k - 1, l))) 
-    		  {
-         for(int i = 0; i < varSize; ++i) 
-         {
-        	 world.setBlockState(new BlockPos(j, k + i, l), this.spongeBlockId);
-         }
-      }
-   }
+	public boolean generate(World par1World, Random par2Random, BlockPos pos)
+	{
+		int x = pos.getX();
+		int y = pos.getY();
+		int z = pos.getZ();
+		
+		if (par1World.getBlockState(new BlockPos(x, y, z)).getMaterial() != Material.WATER)
+		{
+			return false;
+		}
+		else
+		{
+			int varSize = par2Random.nextInt(6);
+			int varSpace = 1 + par2Random.nextInt(3);
+			this.generateStalk(par1World, x, y, z + varSpace, varSize);
+			this.generateStalk(par1World, x + varSpace, y, z, varSize - 1);
+			this.generateStalk(par1World, x + varSpace, y, z + varSpace, varSize - 2);
+			this.generateStalk(par1World, x, y, z, varSize - 3);
+			return true;
+		}
+	}
+
+	private void generateStalk(World world, int x, int y, int z, int size)
+	{
+		if (!world.isAirBlock(new BlockPos(x, y - 1, z)))
+		{
+			for (int i = 0; i < size; ++i)
+			{
+				world.setBlockState(new BlockPos(x, y + i, z), this.spongeBlockId);
+			}
+		}
+	}
 }
