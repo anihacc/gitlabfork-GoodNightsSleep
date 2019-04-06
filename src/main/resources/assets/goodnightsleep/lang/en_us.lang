@@ -1,10 +1,11 @@
 # Blocks
 tile.luxurious_bed.name=Luxurious Bed
 tile.wretched_bed.name=Wretched Bed
-tile.tall_dream_grass=Dream Grass
+tile.tall_dream_grass.name=Dream Grass
 tile.tall_nightmare_grass.name=Nightmare Grass
 tile.dream_grass.name=Dream Grass Block
 tile.dream_dirt.name=Dream Dirt
+tile.dream_farmland.name=Dream Farmland
 tile.nightmare_grass.name=Nightmare Grass Block
 tile.hope_mushroom_cap.name=Hope Mushroom Block
 tile.despair_mushroom_cap.name=Despair Mushroom Block
@@ -58,7 +59,7 @@ tile.blood_slab.name=Blood Slab
 item.candy.name=Candy
 item.lolipop.name=Lolipop
 item.positite_gem.name=Positite Gem
-item.zitrite.name=Zitrite Ingot
+item.zitrite_ingot.name=Zitrite Ingot
 item.rainbow_ingot.name=Rainbow Ingot
 item.candy_ingot.name=Candy Ingot
 item.necrum.name=Necrum
@@ -66,6 +67,8 @@ item.necrotic_extract.name=Necrotic Extract
 item.negatite_gem.name=Negatite Gem
 
 item.powdered_sugar.name=Powdered Sugar
+item.rainbow_seeds.name=Rainbow Seeds
+item.rainbow_berries.name=Rainbow Berries
 
 item.luxurious_bed_item.name=Luxurious Bed
 item.wretched_bed_item.name=Wretched Bed
@@ -77,31 +80,37 @@ item.candy_sword.name=Candy Sword
 item.candy_pickaxe.name=Candy Pickaxe
 item.candy_axe.name=Candy Axe
 item.candy_shovel.name=Candy Shovel
+item.candy_hoe.name=Candy Shovel
 
 item.rainbow_sword.name=Rainbow Sword
 item.rainbow_pickaxe.name=Rainbow Pickaxe
 item.rainbow_axe.name=Rainbow Axe
 item.rainbow_shovel.name=Rainbow Shovel
+item.rainbow_hoe.name=Rainbow Hoe
 
 item.necrum_sword.name=Necrum Sword
 item.necrum_pickaxe.name=Necrum Pickaxe
 item.necrum_axe.name=Necrum Axe
 item.necrum_shovel.name=Necrum Shovel
+item.necrum_hoe.name=Necrum Hoe
 
 item.zitrite_sword.name=Zitrite Sword
 item.zitrite_pickaxe.name=Zitrite Pickaxe
 item.zitrite_axe.name=Zitrite Axe
 item.zitrite_shovel.name=Zitrite Shovel
+item.zitrite_hoe.name=Zitrite Hoe
 
 item.positite_sword.name=Positite Sword
 item.positite_pickaxe.name=Positite Pickaxe
 item.positite_axe.name=Positite Axe
 item.positite_shovel.name=Positite Shovel
+item.positite_hoe.name=Positite Hoe
 
 item.negatite_sword.name=Negatite Sword
 item.negatite_pickaxe.name=Negatite Pickaxe
 item.negatite_axe.name=Negatite Axe
 item.negatite_shovel.name=Negatite Shovel
+item.negatite_hoe.name=Negatite Hoe
 
 item.rainbow_helmet.name=Rainbow Helmet
 item.rainbow_chestplate.name=Rainbow Chestplate
@@ -127,10 +136,10 @@ entity.giant.name=Giant
 entity.gummy_bear.name=Gummy Bear
 
 # Tabs
-itemGroup.gns_blocks=Good Night Sleep Blocks
-itemGroup.gns_tools=Good Night Sleep Tools
-itemGroup.gns_armor=Good Night Sleep Armor
-itemGroup.gns_items=Good Night Sleep Items
+itemGroup.gns_blocks=Good Night's Sleep Blocks
+itemGroup.gns_tools=Good Night's Sleep Tools
+itemGroup.gns_armor=Good Night's Sleep Armor
+itemGroup.gns_items=Good Night's Sleep Items
 
 # Death Messages
 death.attack.nightmare_grass=%1$s was pricked by Nightmare Grass

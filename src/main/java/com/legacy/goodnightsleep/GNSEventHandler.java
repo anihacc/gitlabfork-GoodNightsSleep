@@ -80,7 +80,7 @@ public class GNSEventHandler
 		ItemStack stack = event.getItemStack();
 		
 		
-		if (stack.getItem() instanceof ItemHoe && !(stack.getItem() instanceof ItemGNSHoe) && world.isAirBlock(pos.up()))
+		if ((stack.getItem() instanceof ItemHoe || stack.getItem() instanceof ItemGNSHoe) && world.isAirBlock(pos.up()))
 		{
 			Block block = state.getBlock();
 
