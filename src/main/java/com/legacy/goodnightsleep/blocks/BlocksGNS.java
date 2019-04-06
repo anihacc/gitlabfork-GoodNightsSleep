@@ -79,7 +79,7 @@ public class BlocksGNS
 		tall_nightmare_grass = register("tall_nightmare_grass", new BlockGNSTallGrass());
 		dream_grass = register("dream_grass", new BlockGNSGrass());
 		dream_dirt = register("dream_dirt", new BlockGNSDirt());
-		dream_farmland = register("dream_farmland", new BlockGNSFarmland());
+		dream_farmland = register("dream_farmland", new BlockGNSFarmland()).setCreativeTab(null);
 		nightmare_grass = register("nightmare_grass", new BlockGNSGrass());
 		hope_mushroom_cap = register("hope_mushroom_cap", new BlockGNSMushroom());
 		despair_mushroom_cap = register("despair_mushroom_cap", new BlockGNSMushroom());

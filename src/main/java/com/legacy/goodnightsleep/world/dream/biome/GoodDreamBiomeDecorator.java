@@ -9,7 +9,6 @@ import com.legacy.goodnightsleep.world.genfeatures.WorldGenBigTreeDream;
 import com.legacy.goodnightsleep.world.genfeatures.WorldGenFoilage;
 import com.legacy.goodnightsleep.world.genfeatures.WorldGenGNSTallGrass;
 import com.legacy.goodnightsleep.world.genfeatures.WorldGenGNSTree;
-import com.legacy.goodnightsleep.world.genfeatures.WorldGenNetherSplash;
 import com.legacy.goodnightsleep.world.genfeatures.WorldGenSponge;
 
 import net.minecraft.block.state.IBlockState;
