@@ -74,9 +74,13 @@ public class ItemsGNS
 	
 	public static void initialization()
 	{
+		// Block Items
+		luxurious_bed_item = register("luxurious_bed_item", new ItemLuxuriousBed());
+		wretched_bed_item = register("wretched_bed_item", new ItemWretchedBed());
+				
 		positite_gem = register("positite_gem", new ItemGNS(GNSCreativeTabs.items));
 		rainbow_ingot = register("rainbow_ingot", new ItemGNS(GNSCreativeTabs.items));
-		candy_ingot = register("candy_ingot", new ItemGNS(GNSCreativeTabs.items));
+		candy_ingot = register("candy_ingot", new ItemGNS(null));
 		zitrite_ingot = register("zitrite_ingot", new ItemGNS(GNSCreativeTabs.items));
 		negatite_gem = register("negatite_gem", new ItemGNS(GNSCreativeTabs.items));
 		necrum = register("necrum", new ItemGNS(GNSCreativeTabs.items));
@@ -147,10 +151,6 @@ public class ItemsGNS
 		candy_chestplate = register("candy_chestplate", new ItemGNSArmor(EntityEquipmentSlot.CHEST, CANDY_ARMOR, "candy"));
 		candy_leggings = register("candy_leggings", new ItemGNSArmor(EntityEquipmentSlot.LEGS, CANDY_ARMOR, "candy"));
 		candy_boots = register("candy_boots", new ItemGNSArmor(EntityEquipmentSlot.FEET, CANDY_ARMOR, "candy"));
-		
-		//Block Items
-		luxurious_bed_item = register("luxurious_bed_item", new ItemLuxuriousBed());
-		wretched_bed_item = register("wretched_bed_item", new ItemWretchedBed());
 	}
 
 	private static Item register(String unlocalizedName, Item item)

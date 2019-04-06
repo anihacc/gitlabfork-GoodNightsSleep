@@ -81,6 +81,20 @@ public class BlockGNSLeaves extends BlockLeaves
 	@Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
+		/*if (this == BlocksGNS.dream_leaves)
+		{
+			return Item.getItemFromBlock(BlocksGNS.dream_sapling);
+
+		}
+		else if (this == BlocksGNS.candy_leaves)
+		{
+			return Item.getItemFromBlock(BlocksGNS.candy_sapling);
+
+		}
+		else
+		{
+			return Item.getItemFromBlock(Blocks.SAPLING);
+		}*/
 		return Item.getItemFromBlock(Blocks.SAPLING);
     }
 
@@ -90,6 +104,10 @@ public class BlockGNSLeaves extends BlockLeaves
 		if (this == BlocksGNS.diamond_leaves && RANDOM.nextInt(100) == 0)
 		{
 			spawnAsEntity(worldIn, pos, new ItemStack(Items.DIAMOND));
+		}
+		else if (this == BlocksGNS.dream_leaves && RANDOM.nextInt(200) == 0)
+		{
+			spawnAsEntity(worldIn, pos, new ItemStack(Items.EMERALD));
 		}
     }
 

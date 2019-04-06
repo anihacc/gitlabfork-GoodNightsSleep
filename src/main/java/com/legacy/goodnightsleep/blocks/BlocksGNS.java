@@ -14,11 +14,13 @@ import com.legacy.goodnightsleep.blocks.natural.BlockGNSLeaves;
 import com.legacy.goodnightsleep.blocks.natural.BlockGNSLog;
 import com.legacy.goodnightsleep.blocks.natural.BlockGNSMushroom;
 import com.legacy.goodnightsleep.blocks.natural.BlockGNSRainbowCrop;
+import com.legacy.goodnightsleep.blocks.natural.BlockGNSSapling;
 import com.legacy.goodnightsleep.blocks.natural.BlockGNSTallGrass;
 import com.legacy.goodnightsleep.blocks.natural.ores.BlockGNSOre;
 import com.legacy.goodnightsleep.blocks.util.ItemGNSSlab;
 import com.legacy.goodnightsleep.registry.GNSCreativeTabs;
 import com.legacy.goodnightsleep.registry.VariableConstants;
+import com.legacy.goodnightsleep.world.genfeatures.WorldGenGNSTree;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -43,6 +45,8 @@ public class BlocksGNS
 
 	public static Block dead_plank, blood_plank, white_plank, dream_plank;
 
+	public static Block dream_sapling, candy_sapling;
+	
 	public static Block orange_flower, cyan_flower, dead_flower, despair_mushroom, hope_mushroom;
 	
 	public static Block hope_mushroom_cap, despair_mushroom_cap;
@@ -105,6 +109,9 @@ public class BlocksGNS
 		dead_plank = register("dead_plank", new BlockGNSPlank());
 		blood_plank = register("blood_plank", new BlockGNSPlank());
 
+		dream_sapling = register("dream_sapling", new BlockGNSSapling(new WorldGenGNSTree(false, 6, BlocksGNS.dream_log.getDefaultState(), BlocksGNS.dream_leaves.getDefaultState(), false)));
+		candy_sapling = register("candy_sapling", new BlockGNSSapling(new WorldGenGNSTree(false, 6, BlocksGNS.white_log.getDefaultState(), BlocksGNS.candy_leaves.getDefaultState(), false)));
+		
 		hope_mushroom = register("hope_mushroom", new BlockGNSFlower());
 		despair_mushroom = register("despair_mushroom", new BlockGNSFlower());
 		orange_flower = register("orange_flower", new BlockGNSFlower());

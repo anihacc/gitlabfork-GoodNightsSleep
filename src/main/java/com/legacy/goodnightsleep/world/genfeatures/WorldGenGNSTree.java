@@ -117,7 +117,7 @@ public class WorldGenGNSTree extends WorldGenTrees
                         BlockPos upN = position.up(j3);
                         state = worldIn.getBlockState(upN);
 
-                        if (state.getBlock().isAir(state, worldIn, upN) || state.getBlock().isLeaves(state, worldIn, upN))
+                        if (state.getBlock().isAir(state, worldIn, upN) || state.getBlock().isLeaves(state, worldIn, upN) || state.getMaterial() == Material.PLANTS || state.getMaterial() == Material.VINE)
                         {
                             this.setBlockAndNotifyAdequately(worldIn, position.up(j3), this.metaWood);
                         }
