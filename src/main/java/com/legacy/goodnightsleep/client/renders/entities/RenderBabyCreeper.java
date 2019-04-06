@@ -6,7 +6,6 @@ import com.legacy.goodnightsleep.entities.dream.EntityBabyCreeper;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
@@ -23,10 +22,7 @@ public class RenderBabyCreeper extends RenderLiving<EntityBabyCreeper>
         //this.addLayer(new LayerCreeperCharge(this));
     }
 
-    /**
-     * Allows the render to do state modifications necessary before the model is rendered.
-     */
-    protected void preRenderCallback(EntityCreeper entitylivingbaseIn, float partialTickTime)
+    protected void preRenderCallback(EntityBabyCreeper entitylivingbaseIn, float partialTickTime)
     {
         float f = entitylivingbaseIn.getCreeperFlashIntensity(partialTickTime);
         float f1 = 1.0F + MathHelper.sin(f * 100.0F) * f * 0.01F;
@@ -38,10 +34,7 @@ public class RenderBabyCreeper extends RenderLiving<EntityBabyCreeper>
         GlStateManager.scale(f2, f3, f2);
     }
 
-    /**
-     * Gets an RGBA int color multiplier to apply.
-     */
-    protected int getColorMultiplier(EntityCreeper entitylivingbaseIn, float lightBrightness, float partialTickTime)
+    protected int getColorMultiplier(EntityBabyCreeper entitylivingbaseIn, float lightBrightness, float partialTickTime)
     {
         float f = entitylivingbaseIn.getCreeperFlashIntensity(partialTickTime);
 
@@ -57,9 +50,6 @@ public class RenderBabyCreeper extends RenderLiving<EntityBabyCreeper>
         }
     }
 
-    /**
-     * Returns the location of an entity's texture. Doesn't seem to be called unless you call Render.bindEntityTexture.
-     */
     protected ResourceLocation getEntityTexture(EntityBabyCreeper entity)
     {
         return TEXTURE;

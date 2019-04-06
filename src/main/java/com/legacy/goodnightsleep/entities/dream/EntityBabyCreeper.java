@@ -12,7 +12,14 @@ public class EntityBabyCreeper extends EntityCreeper
 	public EntityBabyCreeper(World worldIn)
     {
         super(worldIn);
-        this.setSize(0.6F, 0.7F);
+        this.setSize(0.6F, 1.3F);
+    }
+	
+	@Override
+	protected void initEntityAI()
+    {
+        super.initEntityAI();
+        this.tasks.addTask(2, new EntityAIBabyCreeperSwell(this));
     }
 	
 	public void writeEntityToNBT(NBTTagCompound compound)
