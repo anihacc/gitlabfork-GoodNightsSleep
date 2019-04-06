@@ -142,6 +142,13 @@ public class BlocksGNS
 		necrum_block = register("necrum_block", new BlockGNSOreBlock());
 		zitrite_block = register("zitrite_block", new BlockGNSOreBlock());
 		negatite_block = register("negatite_block", new BlockGNSOreBlock());
+		
+		candy_ore.setHarvestLevel("pickaxe", 0);
+		rainbow_ore.setHarvestLevel("pickaxe", 2);
+		positite_ore.setHarvestLevel("pickaxe", 3);
+		necrum_ore.setHarvestLevel("pickaxe", 0);
+		zitrite_ore.setHarvestLevel("pickaxe", 2);
+		negatite_ore.setHarvestLevel("pickaxe", 3);
 	}
 	
 	public static void setItemRegistry(IForgeRegistry<Item> iItemRegistry)
