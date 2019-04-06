@@ -18,6 +18,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -85,11 +86,7 @@ public class BlockGNSTallGrass extends BlockBush
 		 }
 	 }
 	   
-	 @Override
-	 public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
-	 {
-	        return new ArrayList<ItemStack>();
-	 }
+	 
 
 	 @Override
 	 public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
@@ -103,5 +100,15 @@ public class BlockGNSTallGrass extends BlockBush
 	 {
 		 return Block.EnumOffsetType.XYZ;
 	 }
+	 
+	@Override
+	public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
+	{
+		if (RANDOM.nextInt(8) != 0)
+			return;
+		ItemStack seed = new ItemStack(ItemsGNS.rainbow_seeds);
+		if (!seed.isEmpty())
+			drops.add(seed);
+	}
 
 }
