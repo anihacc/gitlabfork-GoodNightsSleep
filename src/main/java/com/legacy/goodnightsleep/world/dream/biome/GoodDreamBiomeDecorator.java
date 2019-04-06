@@ -9,6 +9,7 @@ import com.legacy.goodnightsleep.world.genfeatures.WorldGenBigTreeDream;
 import com.legacy.goodnightsleep.world.genfeatures.WorldGenFoilage;
 import com.legacy.goodnightsleep.world.genfeatures.WorldGenGNSTallGrass;
 import com.legacy.goodnightsleep.world.genfeatures.WorldGenGNSTree;
+import com.legacy.goodnightsleep.world.genfeatures.WorldGenNetherSplash;
 import com.legacy.goodnightsleep.world.genfeatures.WorldGenSponge;
 
 import net.minecraft.block.state.IBlockState;
@@ -115,6 +116,19 @@ public class GoodDreamBiomeDecorator extends BiomeDecorator
 	        }
         }
 
+        for (int amount = 0; amount < 5; ++amount)
+        {
+	        int j7 = random.nextInt(8) + 8;
+	        int i11 = random.nextInt(8) + 8;
+	        int k14 = worldIn.getHeight(this.chunkPos.add(j7, 0, i11)).getY() * 2;
+	        
+	        if (k14 > 0)
+	        {
+	            int l17 = random.nextInt(k14);
+	            this.spongeGen.generate(worldIn, random, this.chunkPos.add(j7, l17 -2 , i11));
+	        }
+        }
+        
 		this.spawnOres();
 
     	this.generateFoilage(BlocksGNS.orange_flower.getDefaultState());
