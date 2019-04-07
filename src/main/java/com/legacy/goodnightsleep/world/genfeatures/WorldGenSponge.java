@@ -2,6 +2,8 @@ package com.legacy.goodnightsleep.world.genfeatures;
 
 import java.util.Random;
 
+import com.legacy.goodnightsleep.blocks.BlocksGNS;
+
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -44,7 +46,7 @@ public class WorldGenSponge extends WorldGenerator
 
 	private void generateStalk(World world, int x, int y, int z, int size)
 	{
-		if (!world.isAirBlock(new BlockPos(x, y - 1, z)))
+		if (world.getBlockState(new BlockPos(x, y - 1, z)).getBlock() == BlocksGNS.dream_dirt)
 		{
 			for (int i = 0; i < size; ++i)
 			{

@@ -115,7 +115,7 @@ public class GoodDreamBiomeDecorator extends BiomeDecorator
 	        }
         }
 
-        for (int amount = 0; amount < 5; ++amount)
+        for (int amount = 0; amount < 25; ++amount)
         {
 	        int j7 = random.nextInt(8) + 8;
 	        int i11 = random.nextInt(8) + 8;
