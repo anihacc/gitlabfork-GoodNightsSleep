@@ -25,7 +25,7 @@ public class EntityBabyCreeper extends EntityCreeper
 	@Override
 	public boolean getCanSpawnHere()
     {
-		return this.rand.nextInt(150) == 0 && super.getCanSpawnHere();
+		return this.rand.nextInt(130) == 0 && super.getCanSpawnHere();
     }
 	public void writeEntityToNBT(NBTTagCompound compound)
     {
