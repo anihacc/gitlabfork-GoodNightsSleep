@@ -148,7 +148,7 @@ public class ChunkProviderGoodDream implements IChunkGenerator
                             {
                                 if ((lvt_45_1_ += d16) > 0.0D)
                                 {
-                                    primer.setBlockState(i * 4 + k2, i2 * 8 + j2, l * 4 + l2, Blocks.STONE.getDefaultState());
+                                    primer.setBlockState(i * 4 + k2, i2 * 8 + j2, l * 4 + l2, BlocksGNS.delusion_stone.getDefaultState());
                                 }
                                 else if (i2 * 8 + j2 < b2)
                                 {
@@ -301,7 +301,7 @@ public class ChunkProviderGoodDream implements IChunkGenerator
 							 continue;
 						 }
 
-						 if (var18.getBlock() != Blocks.STONE)
+						 if (var18.getBlock() != BlocksGNS.delusion_stone)
 						 {
 							 continue;
 						 }

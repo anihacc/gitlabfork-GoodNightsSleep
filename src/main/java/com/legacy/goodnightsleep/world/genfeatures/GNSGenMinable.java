@@ -2,8 +2,9 @@ package com.legacy.goodnightsleep.world.genfeatures;
 
 import java.util.Random;
 
+import com.legacy.goodnightsleep.blocks.BlocksGNS;
+
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
@@ -72,7 +73,7 @@ public class GNSGenMinable extends WorldGenerator
                                 double d14 = ((double)i3 + 0.5D - d8) / (d10 / 2.0D);
                                 BlockPos newPos = new BlockPos(k2, l2, i3);
 
-                                if (d12 * d12 + d13 * d13 + d14 * d14 < 1.0D && world.getBlockState(newPos).getBlock() == Blocks.STONE)
+                                if (d12 * d12 + d13 * d13 + d14 * d14 < 1.0D && world.getBlockState(newPos).getBlock() == BlocksGNS.delusion_stone)
                                 {
                                     world.setBlockState(newPos, this.oreBlock);
                                 }

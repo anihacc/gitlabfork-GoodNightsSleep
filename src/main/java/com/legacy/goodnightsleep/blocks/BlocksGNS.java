@@ -1,6 +1,7 @@
 
 package com.legacy.goodnightsleep.blocks;
 
+import com.legacy.goodnightsleep.blocks.construction.BlockGNSCobblestone;
 import com.legacy.goodnightsleep.blocks.construction.BlockGNSFence;
 import com.legacy.goodnightsleep.blocks.construction.BlockGNSOreBlock;
 import com.legacy.goodnightsleep.blocks.construction.BlockGNSPlank;
@@ -15,6 +16,7 @@ import com.legacy.goodnightsleep.blocks.natural.BlockGNSLog;
 import com.legacy.goodnightsleep.blocks.natural.BlockGNSMushroom;
 import com.legacy.goodnightsleep.blocks.natural.BlockGNSRainbowCrop;
 import com.legacy.goodnightsleep.blocks.natural.BlockGNSSapling;
+import com.legacy.goodnightsleep.blocks.natural.BlockGNSStone;
 import com.legacy.goodnightsleep.blocks.natural.BlockGNSTallGrass;
 import com.legacy.goodnightsleep.blocks.natural.ores.BlockGNSOre;
 import com.legacy.goodnightsleep.blocks.util.ItemGNSSlab;
@@ -55,6 +57,8 @@ public class BlocksGNS
 
 	public static Block white_log, dream_log, blood_log, dead_log;
 
+	public static Block delusion_stone, delusion_cobblestone;
+	
 	public static Block dream_fence, white_fence, dead_fence, blood_fence;
 	
 	public static Block dream_slab, white_slab, dead_slab, blood_slab;
@@ -84,6 +88,8 @@ public class BlocksGNS
 		dream_grass = register("dream_grass", new BlockGNSGrass());
 		dream_dirt = register("dream_dirt", new BlockGNSDirt());
 		dream_farmland = register("dream_farmland", new BlockGNSFarmland()).setCreativeTab(null);
+		delusion_stone = register("delusion_stone", new BlockGNSStone());
+		delusion_cobblestone = register("delusion_cobblestone", new BlockGNSCobblestone());
 		nightmare_grass = register("nightmare_grass", new BlockGNSGrass());
 		hope_mushroom_cap = register("hope_mushroom_cap", new BlockGNSMushroom());
 		despair_mushroom_cap = register("despair_mushroom_cap", new BlockGNSMushroom());

@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "normal": [
+            { "model": "goodnightsleep:delusion_stone" },
+            { "model": "goodnightsleep:delusion_stone_mirrored" },
+            { "model": "goodnightsleep:delusion_stone", "y": 180 },
+            { "model": "goodnightsleep:delusion_stone_mirrored", "y": 180 }
+        ]
+    }
+}

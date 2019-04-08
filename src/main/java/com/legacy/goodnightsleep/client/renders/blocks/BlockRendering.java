@@ -24,6 +24,9 @@ public class BlockRendering
 		register(BlocksGNS.dream_dirt, "dream_dirt");
 		register(BlocksGNS.dream_farmland, "dream_farmland");
 		
+		register(BlocksGNS.delusion_stone, "delusion_stone");
+		register(BlocksGNS.delusion_cobblestone, "delusion_cobblestone");
+		
 		register(BlocksGNS.hope_mushroom_cap, "hope_mushroom");
 		register(BlocksGNS.despair_mushroom_cap, "despair_mushroom");
 		
