@@ -1,4 +1,4 @@
-package com.legacy.goodnightsleep.world.genfeatures;
+package com.legacy.goodnightsleep.world.features;
 
 import java.util.Random;
 

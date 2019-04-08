@@ -46,7 +46,10 @@ public class GNSOreDictionary
 		register("oreNegatite", BlocksGNS.negatite_ore);
 
 		register("gemPositite", ItemsGNS.positite_gem);
-		register("gemPositite", ItemsGNS.negatite_gem);
+		register("gemNegatite", ItemsGNS.negatite_gem);
+		
+		register("gemDiamond", ItemsGNS.positite_gem);
+		register("gemDiamond", ItemsGNS.negatite_gem);
 		
 		register("ingotCandy", ItemsGNS.candy_ingot);
 		register("ingotRainbow", ItemsGNS.rainbow_ingot);

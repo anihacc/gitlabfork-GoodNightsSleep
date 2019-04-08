@@ -18,11 +18,12 @@ import com.legacy.goodnightsleep.blocks.natural.BlockGNSRainbowCrop;
 import com.legacy.goodnightsleep.blocks.natural.BlockGNSSapling;
 import com.legacy.goodnightsleep.blocks.natural.BlockGNSStone;
 import com.legacy.goodnightsleep.blocks.natural.BlockGNSTallGrass;
+import com.legacy.goodnightsleep.blocks.natural.ores.BlockDelusionOre;
 import com.legacy.goodnightsleep.blocks.natural.ores.BlockGNSOre;
 import com.legacy.goodnightsleep.blocks.util.ItemGNSSlab;
 import com.legacy.goodnightsleep.registry.GNSCreativeTabs;
 import com.legacy.goodnightsleep.registry.VariableConstants;
-import com.legacy.goodnightsleep.world.genfeatures.WorldGenGNSTree;
+import com.legacy.goodnightsleep.world.features.WorldGenGNSTree;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -40,7 +41,9 @@ public class BlocksGNS
 	public static Block tall_dream_grass, tall_nightmare_grass, lolipop_bush;
 
 	public static Block zitrite_ore, candy_ore, rainbow_ore, positite_ore, negatite_ore, necrum_ore;
-
+	
+	public static Block coal_ore, lapis_ore;
+	
 	public static Block candy_leaves, dream_leaves, diamond_leaves;
 
 	public static Block candy_block, rainbow_block, positite_block, necrum_block, zitrite_block, negatite_block; 
@@ -100,6 +103,9 @@ public class BlocksGNS
 		necrum_ore = register("necrum_ore", new BlockGNSOre());
 		zitrite_ore = register("zitrite_ore", new BlockGNSOre());
 		negatite_ore = register("negatite_ore", new BlockGNSOre());
+		
+		coal_ore = register("coal_ore", new BlockDelusionOre());
+		lapis_ore = register("lapis_ore", new BlockDelusionOre());
 		
 		dream_leaves = register("dream_leaves", new BlockGNSLeaves());
 		candy_leaves = register("candy_leaves", new BlockGNSLeaves());

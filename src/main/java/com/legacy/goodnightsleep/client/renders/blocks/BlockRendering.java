@@ -61,6 +61,9 @@ public class BlockRendering
 		register(BlocksGNS.positite_ore, "positite_ore");
 		register(BlocksGNS.negatite_ore, "negatite_ore");
 		
+		register(BlocksGNS.coal_ore, "coal_ore");
+		register(BlocksGNS.lapis_ore, "lapis_ore");
+		
 		register(BlocksGNS.dream_fence, "dream_fence");
 		register(BlocksGNS.white_fence, "white_fence");
 		register(BlocksGNS.dead_fence, "dead_fence");

@@ -3,13 +3,13 @@ package com.legacy.goodnightsleep.world.nightmare.biome;
 import java.util.Random;
 
 import com.legacy.goodnightsleep.blocks.BlocksGNS;
-import com.legacy.goodnightsleep.world.genfeatures.GNSGenMinable;
-import com.legacy.goodnightsleep.world.genfeatures.WorldGenBigMushroomGNS;
-import com.legacy.goodnightsleep.world.genfeatures.WorldGenBigTreeNightmare;
-import com.legacy.goodnightsleep.world.genfeatures.WorldGenFoilage;
-import com.legacy.goodnightsleep.world.genfeatures.WorldGenGNSTallGrass;
-import com.legacy.goodnightsleep.world.genfeatures.WorldGenGNSTree;
-import com.legacy.goodnightsleep.world.genfeatures.WorldGenNetherSplash;
+import com.legacy.goodnightsleep.world.features.GNSGenMinable;
+import com.legacy.goodnightsleep.world.features.WorldGenBigMushroomGNS;
+import com.legacy.goodnightsleep.world.features.WorldGenBigTreeNightmare;
+import com.legacy.goodnightsleep.world.features.WorldGenFoilage;
+import com.legacy.goodnightsleep.world.features.WorldGenGNSTallGrass;
+import com.legacy.goodnightsleep.world.features.WorldGenGNSTree;
+import com.legacy.goodnightsleep.world.features.WorldGenNetherSplash;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;

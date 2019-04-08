@@ -1,10 +1,12 @@
-/*package com.legacy.goodnightsleep.blocks.natural.ores;
+package com.legacy.goodnightsleep.blocks.natural.ores;
 
 import java.util.Random;
-import net.minecraft.block.material.MapColor;
+
+import com.legacy.goodnightsleep.blocks.BlocksGNS;
+
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.EnumDyeColor;
@@ -18,11 +20,11 @@ public class BlockDelusionOre extends Block
 {
     public BlockDelusionOre()
     {
-        this(Material.ROCK.getMaterialMapColor());
+        super(Material.ROCK);
     }
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        if (this == Blocks.COAL_ORE)
+        if (this == BlocksGNS.coal_ore)
         {
             return Items.COAL;
         }
@@ -30,7 +32,7 @@ public class BlockDelusionOre extends Block
         {
             return Items.DIAMOND;
         }
-        else if (this == Blocks.LAPIS_ORE)
+        else if (this == BlocksGNS.lapis_ore)
         {
             return Items.DYE;
         }
@@ -40,14 +42,14 @@ public class BlockDelusionOre extends Block
         }
         else
         {
-            return this == Blocks.QUARTZ_ORE ? Items.QUARTZ : Item.getItemFromBlock(this);
+        	return Items.COOKIE;
         }
     }
 
 
     public int quantityDropped(Random random)
     {
-        return this == Blocks.LAPIS_ORE ? 4 + random.nextInt(5) : 1;
+        return this == BlocksGNS.lapis_ore ? 4 + random.nextInt(5) : 1;
     }
 
     public int quantityDroppedWithBonus(int fortune, Random random)
@@ -55,7 +57,7 @@ public class BlockDelusionOre extends Block
         if (fortune > 0 && Item.getItemFromBlock(this) != this.getItemDropped((IBlockState)this.getBlockState().getValidStates().iterator().next(), random, fortune))
         {
             int i = random.nextInt(fortune + 2) - 1;
-t
+
             if (i < 0)
             {
                 i = 0;
@@ -81,7 +83,7 @@ t
         {
             int i = 0;
 
-            if (this == Blocks.COAL_ORE)
+            if (this == BlocksGNS.coal_ore)
             {
                 i = MathHelper.getInt(rand, 0, 2);
             }
@@ -93,11 +95,7 @@ t
             {
                 i = MathHelper.getInt(rand, 3, 7);
             }
-            else if (this == Blocks.LAPIS_ORE)
-            {
-                i = MathHelper.getInt(rand, 2, 5);
-            }
-            else if (this == Blocks.QUARTZ_ORE)
+            else if (this == BlocksGNS.lapis_ore)
             {
                 i = MathHelper.getInt(rand, 2, 5);
             }
@@ -114,6 +112,6 @@ t
 
     public int damageDropped(IBlockState state)
     {
-        return this == Blocks.LAPIS_ORE ? EnumDyeColor.BLUE.getDyeDamage() : 0;
+        return this == BlocksGNS.lapis_ore ? EnumDyeColor.BLUE.getDyeDamage() : 0;
     }
-}*/
+}

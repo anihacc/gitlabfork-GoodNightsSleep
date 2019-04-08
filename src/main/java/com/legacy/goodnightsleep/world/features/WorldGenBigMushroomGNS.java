@@ -1,4 +1,4 @@
-package com.legacy.goodnightsleep.world.genfeatures;
+package com.legacy.goodnightsleep.world.features;
 
 import java.util.Random;
 
@@ -7,20 +7,37 @@ import com.legacy.goodnightsleep.blocks.BlocksGNS;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockHugeMushroom;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
-public class WorldGenHopeMushroom extends WorldGenerator
+public class WorldGenBigMushroomGNS extends WorldGenerator
 {
+    /** The mushroom type. 0 for despair, 1 for hope. */
+    private final Block mushroomType;
 
-    public WorldGenHopeMushroom()
+    public WorldGenBigMushroomGNS(Block p_i46449_1_)
     {
         super(true);
+        this.mushroomType = p_i46449_1_;
+    }
+
+    public WorldGenBigMushroomGNS()
+    {
+        super(false);
+        this.mushroomType = null;
     }
 
     public boolean generate(World worldIn, Random rand, BlockPos position)
     {
+        Block block = this.mushroomType;
+
+        if (block == null)
+        {
+            block = rand.nextBoolean() ? BlocksGNS.despair_mushroom_cap : BlocksGNS.hope_mushroom_cap;
+        }
+
         int i = rand.nextInt(3) + 4;
 
         if (rand.nextInt(12) == 0)
@@ -72,7 +89,7 @@ public class WorldGenHopeMushroom extends WorldGenerator
             {
                 Block block1 = worldIn.getBlockState(position.down()).getBlock();
 
-                if (block1 != BlocksGNS.dream_grass)
+                if (block1 != BlocksGNS.dream_dirt && block1 != BlocksGNS.dream_grass && block1 != Blocks.DIRT && block1 != BlocksGNS.nightmare_grass)
                 {
                     return false;
                 }
@@ -80,7 +97,10 @@ public class WorldGenHopeMushroom extends WorldGenerator
                 {
                     int k2 = position.getY() + i;
 
-                    k2 = position.getY() + i - 3;
+                    if (block == BlocksGNS.hope_mushroom_cap)
+                    {
+                        k2 = position.getY() + i - 3;
+                    }
 
                     for (int l2 = k2; l2 <= position.getY() + i; ++l2)
                     {
@@ -89,6 +109,11 @@ public class WorldGenHopeMushroom extends WorldGenerator
                         if (l2 < position.getY() + i)
                         {
                             ++j3;
+                        }
+
+                        if (block == BlocksGNS.despair_mushroom_cap)
+                        {
+                            j3 = 3;
                         }
 
                         int k3 = position.getX() - j3;
@@ -122,7 +147,7 @@ public class WorldGenHopeMushroom extends WorldGenerator
 
                                 BlockHugeMushroom.EnumType blockhugemushroom$enumtype = BlockHugeMushroom.EnumType.byMetadata(j2);
 
-                                if (l2 < position.getY() + i)
+                                if (block == BlocksGNS.despair_mushroom_cap || l2 < position.getY() + i)
                                 {
                                     if ((l1 == k3 || l1 == l3) && (i2 == j1 || i2 == k1))
                                     {
@@ -182,7 +207,7 @@ public class WorldGenHopeMushroom extends WorldGenerator
 
                                     if (state.getBlock().canBeReplacedByLeaves(state, worldIn, blockpos))
                                     {
-                                        this.setBlockAndNotifyAdequately(worldIn, blockpos, BlocksGNS.hope_mushroom_cap.getDefaultState().withProperty(BlockHugeMushroom.VARIANT, blockhugemushroom$enumtype));
+                                        this.setBlockAndNotifyAdequately(worldIn, blockpos, block.getDefaultState().withProperty(BlockHugeMushroom.VARIANT, blockhugemushroom$enumtype));
                                     }
                                 }
                             }
@@ -195,7 +220,7 @@ public class WorldGenHopeMushroom extends WorldGenerator
 
                         if (iblockstate.getBlock().canBeReplacedByLeaves(iblockstate, worldIn, position.up(i3)))
                         {
-                            this.setBlockAndNotifyAdequately(worldIn, position.up(i3), BlocksGNS.hope_mushroom_cap.getDefaultState().withProperty(BlockHugeMushroom.VARIANT, BlockHugeMushroom.EnumType.STEM));
+                            this.setBlockAndNotifyAdequately(worldIn, position.up(i3), block.getDefaultState().withProperty(BlockHugeMushroom.VARIANT, BlockHugeMushroom.EnumType.STEM));
                         }
                     }
 
@@ -208,5 +233,4 @@ public class WorldGenHopeMushroom extends WorldGenerator
             return false;
         }
     }
-
 }

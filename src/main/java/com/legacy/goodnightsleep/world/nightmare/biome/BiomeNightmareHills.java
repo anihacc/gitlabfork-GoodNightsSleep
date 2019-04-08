@@ -5,7 +5,7 @@ import java.util.Random;
 
 import com.legacy.goodnightsleep.blocks.BlocksGNS;
 import com.legacy.goodnightsleep.entities.nightmare.EntityTormenter;
-import com.legacy.goodnightsleep.world.genfeatures.WorldGenGNSTallGrass;
+import com.legacy.goodnightsleep.world.features.WorldGenGNSTallGrass;
 
 import net.minecraft.entity.monster.EntityBlaze;
 import net.minecraft.entity.monster.EntityGhast;
