@@ -2,6 +2,8 @@ package com.legacy.goodnightsleep.world.dream;
 
 import com.legacy.goodnightsleep.world.GNSWorld;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.WorldProvider;
@@ -39,6 +41,11 @@ public class GoodDreamWorldProvider extends WorldProvider
         return false;
     }
 	
+	public float getCurrentMoonPhaseFactor()
+    {
+        return 2.0F;
+    }
+	
 	@Override
 	public float calculateCelestialAngle(long worldTime, float partialTicks)
 	{
@@ -48,9 +55,34 @@ public class GoodDreamWorldProvider extends WorldProvider
 	@SideOnly(Side.CLIENT)
 	public float getStarBrightness(float brightness) 
 	{
-		return 1.0F;
+		return 10.0F;
+	}
+	
+	@SideOnly(Side.CLIENT)
+    public float getCloudHeight()
+    {
+        return -100F;
+    }
+	
+	@Override
+	public boolean shouldMapSpin(String entity, double x, double z, double rotation)
+    {
+        return true;
+    }
+	
+	@Override
+    public WorldSleepResult canSleepAt(EntityPlayer player, BlockPos pos)
+    {
+        return WorldSleepResult.DENY;
+    }
+	
+	@SideOnly(Side.CLIENT)
+	public String getWelcomeMessage()
+	{
+		return "You dream of peaceful lands...";
 	}
 	 
+	
 	@Override
 	public DimensionType getDimensionType()
 	{

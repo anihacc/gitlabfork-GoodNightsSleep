@@ -2,6 +2,9 @@ package com.legacy.goodnightsleep.world.nightmare;
 
 import com.legacy.goodnightsleep.world.GNSWorld;
 
+import net.minecraft.client.audio.MusicTicker;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.WorldProvider;
@@ -15,7 +18,7 @@ public class NightmareWorldProvider extends WorldProvider
 	@Override
 	protected void init()
 	{
-		// this.doesWaterVaporize = true;
+		//this.doesWaterVaporize = true;
 		this.hasSkyLight = true;
 		this.biomeProvider = new WorldChunkManagerNightmare();
 	}
@@ -36,8 +39,21 @@ public class NightmareWorldProvider extends WorldProvider
 	@SideOnly(Side.CLIENT)
 	public boolean doesXZShowFog(int x, int z)
 	{
-		return true;
+        return true;
 	}
+	
+	@Override
+    @SideOnly(Side.CLIENT)
+    public net.minecraft.client.audio.MusicTicker.MusicType getMusicType()
+    {
+		return MusicTicker.MusicType.NETHER;
+    }
+
+	@Override
+    public WorldSleepResult canSleepAt(EntityPlayer player, BlockPos pos)
+    {
+        return WorldSleepResult.DENY;
+    }
 
 	@Override
 	public float calculateCelestialAngle(long worldTime, float partialTicks)
@@ -48,7 +64,7 @@ public class NightmareWorldProvider extends WorldProvider
 	@SideOnly(Side.CLIENT)
 	public String getWelcomeMessage()
 	{
-		return this instanceof NightmareWorldProvider ? "You dream of horrible things." : null;
+		return "You dream of horrible things...";
 	}
 
 	@Override
