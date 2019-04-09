@@ -26,7 +26,7 @@ public class EntityGNSSpawner extends EntityLiving
     @Override
     public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, IEntityLivingData livingdata)
     {
-    	int type = rand.nextInt(5);
+    	int type = rand.nextInt(4);
     	int chance = rand.nextInt(4) + 1;
     	
     	BlockPos blockpos = (new BlockPos(this)).add(-1 + this.rand.nextInt(1), 1, -1 + this.rand.nextInt(1));
@@ -74,17 +74,6 @@ public class EntityGNSSpawner extends EntityLiving
 	            chicken.moveToBlockPosAndAngles(blockpos, 0.0F, 0.0F);
 	            chicken.onInitialSpawn(this.world.getDifficultyForLocation(blockpos), (IEntityLivingData)null);
 	            this.world.spawnEntity(chicken);
-	        }
-    	}
-    	
-    	if (type == 4)
-    	{
-	    	for (int i = 0; i < chance + 2; ++i)
-	        {
-	            EntityHorse horse = new EntityHorse(this.world);
-	            horse.moveToBlockPosAndAngles(blockpos, 0.0F, 0.0F);
-	            horse.onInitialSpawn(this.world.getDifficultyForLocation(blockpos), (IEntityLivingData)null);
-	            this.world.spawnEntity(horse);
 	        }
     	}
     	

@@ -3,6 +3,7 @@ package com.legacy.goodnightsleep.entities;
 import com.legacy.goodnightsleep.GoodNightSleep;
 import com.legacy.goodnightsleep.entities.dream.EntityBabyCreeper;
 import com.legacy.goodnightsleep.entities.dream.EntityGummyBear;
+import com.legacy.goodnightsleep.entities.dream.EntityUnicorn;
 import com.legacy.goodnightsleep.entities.nightmare.EntityHerobrine;
 import com.legacy.goodnightsleep.entities.nightmare.EntityTormenter;
 import com.legacy.goodnightsleep.registry.VariableConstants;
@@ -20,6 +21,8 @@ public class GNSEntities
 		register("baby_creeper", EntityBabyCreeper.class, 45079, 16711901);
 		register("herobrine", EntityHerobrine.class);
 		register("gummy_bear", EntityGummyBear.class); //, 0xffffff, 0xffffff
+		
+		register("unicorn_gns", EntityUnicorn.class, 0xffffff, 0xffffff);
 		
 		register("gns_spawner", EntityGNSSpawner.class);
 	}

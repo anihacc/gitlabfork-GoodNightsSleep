@@ -6,8 +6,10 @@ import com.legacy.goodnightsleep.client.renders.entities.RenderBabyCreeper;
 import com.legacy.goodnightsleep.client.renders.entities.RenderGummyBear;
 import com.legacy.goodnightsleep.client.renders.entities.RenderHerobrine;
 import com.legacy.goodnightsleep.client.renders.entities.RenderTormenter;
+import com.legacy.goodnightsleep.client.renders.entities.RenderUnicorn;
 import com.legacy.goodnightsleep.entities.dream.EntityBabyCreeper;
 import com.legacy.goodnightsleep.entities.dream.EntityGummyBear;
+import com.legacy.goodnightsleep.entities.dream.EntityUnicorn;
 import com.legacy.goodnightsleep.entities.nightmare.EntityHerobrine;
 import com.legacy.goodnightsleep.entities.nightmare.EntityTormenter;
 import com.legacy.goodnightsleep.entities.tile.TileEntityLuxuriousBed;
@@ -31,6 +33,7 @@ public class GNSEntityRenderingRegistry
 		register(EntityBabyCreeper.class, RenderBabyCreeper.class);
 		register(EntityHerobrine.class, RenderHerobrine.class);
 		register(EntityGummyBear.class, RenderGummyBear.class);
+		register(EntityUnicorn.class, RenderUnicorn.class);
 	}
 	
 	@SuppressWarnings("deprecation")
