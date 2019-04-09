@@ -2,8 +2,11 @@ package com.legacy.goodnightsleep.entities.dream;
 
 import javax.annotation.Nullable;
 
+import com.legacy.goodnightsleep.blocks.BlocksGNS;
+
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.passive.AbstractHorse;
+import net.minecraft.entity.passive.HorseArmorType;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
@@ -27,6 +30,7 @@ public class EntityUnicorn extends AbstractHorse
     public EntityUnicorn(World worldIn)
     {
         super(worldIn);
+        this.spawnableBlock = BlocksGNS.dream_grass;
     }
 
     @Override
@@ -97,30 +101,31 @@ public class EntityUnicorn extends AbstractHorse
         {
             return super.processInteract(player, hand);
         }
-        else if (!this.isTame())
-        {
-            return false;
-        }
-        else if (this.isChild())
-        {
-            return super.processInteract(player, hand);
-        }
-        else if (player.isSneaking())
-        {
-            this.openGUI(player);
-            return true;
-        }
-        else if (this.isBeingRidden())
-        {
-            return super.processInteract(player, hand);
-        }
         else
         {
-            if (flag)
+            if (!this.isChild())
             {
-                if (!this.isHorseSaddled() && itemstack.getItem() == Items.SADDLE)
+                if (this.isTame() && player.isSneaking())
                 {
                     this.openGUI(player);
+                    return true;
+                }
+
+                if (this.isBeingRidden())
+                {
+                    return super.processInteract(player, hand);
+                }
+            }
+
+            if (flag)
+            {
+                if (this.handleEating(player, itemstack))
+                {
+                    if (!player.capabilities.isCreativeMode)
+                    {
+                        itemstack.shrink(1);
+                    }
+
                     return true;
                 }
 
@@ -128,10 +133,32 @@ public class EntityUnicorn extends AbstractHorse
                 {
                     return true;
                 }
+
+                if (!this.isTame())
+                {
+                    this.makeMad();
+                    return true;
+                }
+
+                boolean flag1 = HorseArmorType.getByItemStack(itemstack) != HorseArmorType.NONE;
+                boolean flag2 = !this.isChild() && !this.isHorseSaddled() && itemstack.getItem() == Items.SADDLE;
+
+                if (flag1 || flag2)
+                {
+                    this.openGUI(player);
+                    return true;
+                }
             }
 
-            this.mountTo(player);
-            return true;
+            if (this.isChild())
+            {
+                return super.processInteract(player, hand);
+            }
+            else
+            {
+                this.mountTo(player);
+                return true;
+            }
         }
     }
     

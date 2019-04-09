@@ -377,6 +377,12 @@ public class ModelUnicorn extends ModelBase
         boolean flag = abstracthorse.tailCounter != 0;
         boolean flag1 = abstracthorse.isHorseSaddled();
         boolean flag2 = abstracthorse.isBeingRidden();
+        
+        if (flag2)
+        {
+        	limbSwing = limbSwing / 2;
+        }
+
         float f9 = (float)entitylivingbaseIn.ticksExisted + partialTickTime;
         float f10 = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI);
         float f11 = f10 * 0.8F * limbSwingAmount;

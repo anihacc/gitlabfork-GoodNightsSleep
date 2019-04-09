@@ -5,6 +5,7 @@ import java.util.Random;
 import com.legacy.goodnightsleep.blocks.BlocksGNS;
 import com.legacy.goodnightsleep.entities.EntityGNSSpawner;
 import com.legacy.goodnightsleep.entities.dream.EntityBabyCreeper;
+import com.legacy.goodnightsleep.entities.dream.EntityUnicorn;
 import com.legacy.goodnightsleep.world.features.WorldGenGNSTallGrass;
 
 import net.minecraft.world.biome.Biome;
@@ -22,7 +23,9 @@ public class BiomeGoodDreamPlains extends Biome
 		this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityBabyCreeper.class, 1, 1, 1));
 		
 		this.spawnableCreatureList.clear();
-		this.spawnableCreatureList.add(new Biome.SpawnListEntry(EntityGNSSpawner.class, 100, 1, 1));
+		this.spawnableCreatureList.add(new Biome.SpawnListEntry(EntityGNSSpawner.class, 110, 1, 1));
+		
+		this.spawnableCreatureList.add(new Biome.SpawnListEntry(EntityUnicorn.class, 70, 1, 3));
 	}
 
 	@Override

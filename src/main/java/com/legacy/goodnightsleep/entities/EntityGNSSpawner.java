@@ -6,9 +6,9 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.passive.EntityCow;
-import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.entity.passive.EntitySheep;
+import net.minecraft.item.EnumDyeColor;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DifficultyInstance;
@@ -62,6 +62,8 @@ public class EntityGNSSpawner extends EntityLiving
 	            EntitySheep sheep = new EntitySheep(this.world);
 	            sheep.moveToBlockPosAndAngles(blockpos, 0.0F, 0.0F);
 	            sheep.onInitialSpawn(this.world.getDifficultyForLocation(blockpos), (IEntityLivingData)null);
+	            
+	            sheep.setFleeceColor(EnumDyeColor.byMetadata(rand.nextInt(15)));
 	            this.world.spawnEntity(sheep);
 	        }
     	}
