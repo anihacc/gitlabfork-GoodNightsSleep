@@ -2,7 +2,6 @@ package com.legacy.goodnightsleep.world.nightmare;
 
 import com.legacy.goodnightsleep.world.GNSWorld;
 
-import net.minecraft.client.audio.MusicTicker;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
@@ -41,13 +40,6 @@ public class NightmareWorldProvider extends WorldProvider
 	{
         return true;
 	}
-	
-	@Override
-    @SideOnly(Side.CLIENT)
-    public net.minecraft.client.audio.MusicTicker.MusicType getMusicType()
-    {
-		return MusicTicker.MusicType.NETHER;
-    }
 
 	@Override
     public WorldSleepResult canSleepAt(EntityPlayer player, BlockPos pos)

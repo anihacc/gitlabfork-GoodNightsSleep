@@ -8,12 +8,21 @@ import com.legacy.goodnightsleep.world.GNSWorld;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class RegistryEventHandler 
 {
+
+	@SubscribeEvent
+	public void onRegisterSounds(RegistryEvent.Register<SoundEvent> event)
+	{
+		GNSSounds.soundRegistry = event.getRegistry();
+
+		GNSSounds.initialization();
+	}
 
 	@SubscribeEvent
 	public void onRegisterBlocks(RegistryEvent.Register<Block> event)

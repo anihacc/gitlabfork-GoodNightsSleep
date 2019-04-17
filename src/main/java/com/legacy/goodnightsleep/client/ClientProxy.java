@@ -3,6 +3,7 @@ package com.legacy.goodnightsleep.client;
 import java.util.Random;
 
 import com.legacy.goodnightsleep.CommonProxy;
+import com.legacy.goodnightsleep.client.audio.GNSMusicHandler;
 import com.legacy.goodnightsleep.client.renders.GNSEntityRenderingRegistry;
 import com.legacy.goodnightsleep.client.renders.blocks.BlockRendering;
 import com.legacy.goodnightsleep.client.renders.items.ItemRendering;
@@ -27,6 +28,8 @@ public class ClientProxy extends CommonProxy
 		registerEvent(new ItemRendering());
 		GNSEntityRenderingRegistry.initialize();
 
+		registerEvent(new GNSMusicHandler());
+		
 		MinecraftForge.EVENT_BUS.register(new GNSClientEventHandler());
 	}
 
