@@ -26,6 +26,7 @@ import com.legacy.goodnightsleep.registry.VariableConstants;
 import com.legacy.goodnightsleep.world.features.WorldGenGNSTree;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
@@ -148,12 +149,12 @@ public class BlocksGNS
 		dead_slab = registerSlab("dead_slab", new BlockGNSSlab(Material.WOOD).setHardness(2.0F).setResistance(5.0F), GNSCreativeTabs.blocks);
 		blood_slab = registerSlab("blood_slab", new BlockGNSSlab(Material.WOOD).setHardness(2.0F).setResistance(5.0F), GNSCreativeTabs.blocks);
 		
-		candy_block = register("candy_block", new BlockGNSOreBlock());
-		rainbow_block = register("rainbow_block", new BlockGNSOreBlock());
-		positite_block = register("positite_block", new BlockGNSOreBlock());
-		necrum_block = register("necrum_block", new BlockGNSOreBlock());
-		zitrite_block = register("zitrite_block", new BlockGNSOreBlock());
-		negatite_block = register("negatite_block", new BlockGNSOreBlock());
+		candy_block = register("candy_block", new BlockGNSOreBlock(SoundType.METAL));
+		rainbow_block = register("rainbow_block", new BlockGNSOreBlock(SoundType.METAL));
+		positite_block = register("positite_block", new BlockGNSOreBlock(SoundType.METAL));
+		necrum_block = register("necrum_block", new BlockGNSOreBlock(SoundType.GROUND));
+		zitrite_block = register("zitrite_block", new BlockGNSOreBlock(SoundType.METAL));
+		negatite_block = register("negatite_block", new BlockGNSOreBlock(SoundType.METAL));
 		
 		candy_ore.setHarvestLevel("pickaxe", 0);
 		rainbow_ore.setHarvestLevel("pickaxe", 1);

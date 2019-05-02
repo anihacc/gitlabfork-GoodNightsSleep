@@ -9,13 +9,13 @@ import net.minecraft.world.IBlockAccess;
 public class BlockGNSOreBlock extends Block 
 {
 
-	public BlockGNSOreBlock() 
+	public BlockGNSOreBlock(SoundType soundType) 
 	{
 		super(Material.IRON);
 
 		this.setHardness(5.0F);
 		this.setResistance(10.0F);
-		this.setSoundType(SoundType.METAL);
+		this.setSoundType(soundType);
 	}
 	
 	public boolean isBeaconBase(IBlockAccess worldObj, BlockPos pos, BlockPos beacon)
