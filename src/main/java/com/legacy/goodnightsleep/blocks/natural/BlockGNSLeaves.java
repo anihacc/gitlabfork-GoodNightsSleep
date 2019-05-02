@@ -29,7 +29,6 @@ public class BlockGNSLeaves extends BlockLeaves
 	public BlockGNSLeaves()
 	{
 		super();
-
 		this.setCreativeTab(GNSCreativeTabs.blocks);
 	}
 
@@ -45,8 +44,6 @@ public class BlockGNSLeaves extends BlockLeaves
     {
         return false;
     }
-
-  
 
 	@Override
     public IBlockState getStateFromMeta(int meta)
@@ -81,7 +78,7 @@ public class BlockGNSLeaves extends BlockLeaves
 	@Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-		/*if (this == BlocksGNS.dream_leaves)
+		if (this == BlocksGNS.dream_leaves)
 		{
 			return Item.getItemFromBlock(BlocksGNS.dream_sapling);
 
@@ -94,18 +91,18 @@ public class BlockGNSLeaves extends BlockLeaves
 		else
 		{
 			return Item.getItemFromBlock(Blocks.SAPLING);
-		}*/
-		return Item.getItemFromBlock(Blocks.SAPLING);
+		}
+		//return Item.getItemFromBlock(Blocks.SAPLING);
     }
 
 	@Override
     protected void dropApple(World worldIn, BlockPos pos, IBlockState state, int chance)
     {
-		if (this == BlocksGNS.diamond_leaves && RANDOM.nextInt(100) == 0)
+		if (this == BlocksGNS.diamond_leaves && worldIn.rand.nextInt(100) == 0)
 		{
 			spawnAsEntity(worldIn, pos, new ItemStack(Items.DIAMOND));
 		}
-		else if (this == BlocksGNS.dream_leaves && RANDOM.nextInt(200) == 0)
+		else if (this == BlocksGNS.dream_leaves && worldIn.rand.nextInt(200) == 0)
 		{
 			spawnAsEntity(worldIn, pos, new ItemStack(Items.EMERALD));
 		}

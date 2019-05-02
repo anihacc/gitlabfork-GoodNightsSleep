@@ -59,6 +59,11 @@ public class GNSEventHandler
 		{
 			if (event.getEntityLiving() instanceof EntityPlayer)
 			{
+				if (event.getEntityLiving().dimension == 0)
+				{
+					PlayerGNS.get((EntityPlayer) event.getEntityLiving()).lastBedPos = event.getEntityLiving().getPosition();
+				}
+				
 				PlayerGNS.get((EntityPlayer) event.getEntityLiving()).teleportPlayer(true);
 				// System.out.println("Entering your Dreams");
 			}
@@ -68,6 +73,11 @@ public class GNSEventHandler
 		{
 			if (event.getEntityLiving() instanceof EntityPlayer)
 			{
+				if (event.getEntityLiving().dimension == 0)
+				{
+					PlayerGNS.get((EntityPlayer) event.getEntityLiving()).lastBedPos = event.getEntityLiving().getPosition();
+				}
+				
 				PlayerGNS.get((EntityPlayer) event.getEntityLiving()).teleportPlayerNightmare(true);
 				// System.out.println("Entering your Nightmares");
 			}
