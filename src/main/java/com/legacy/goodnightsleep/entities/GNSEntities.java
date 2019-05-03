@@ -20,9 +20,9 @@ public class GNSEntities
 		register("tormenter", EntityTormenter.class, 10516796, 5525034);
 		register("baby_creeper", EntityBabyCreeper.class, 45079, 16711901);
 		register("herobrine", EntityHerobrine.class);
-		register("gummy_bear", EntityGummyBear.class); //, 0xffffff, 0xffffff
+		register("gummy_bear", EntityGummyBear.class);
 		
-		register("unicorn_gns", EntityUnicorn.class, 0xffffff, 0xffffff);
+		register("unicorn_gns", EntityUnicorn.class, 0xffffff, 0xdf8cf8);
 		
 		register("gns_spawner", EntityGNSSpawner.class);
 	}

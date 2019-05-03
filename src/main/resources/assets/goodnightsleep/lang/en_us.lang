@@ -136,6 +136,7 @@ entity.tormenter.name=Tormenter
 entity.baby_creeper.name=Baby Creeper
 entity.giant.name=Giant
 entity.gummy_bear.name=Gummy Bear
+entity.unicorn_gns.name=Unicorn
 
 # Tabs
 itemGroup.gns_blocks=Good Night's Sleep Blocks
