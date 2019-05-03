@@ -12,6 +12,7 @@ public class TileEntityRegistry
 	{
 		register(TileEntityLuxuriousBed.class, VariableConstants.MODID + ":" + "luxurious_bed");
 		register(TileEntityWretchedBed.class, VariableConstants.MODID + ":" + "wretched_bed");
+		register(TileEntityStrangeBed.class, VariableConstants.MODID + ":" + "strange_bed");
 	}
 
 	@SuppressWarnings("deprecation")

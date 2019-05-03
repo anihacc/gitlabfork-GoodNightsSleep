@@ -88,6 +88,7 @@ public class BlockRendering
 		
 		register(BlocksGNS.luxurious_bed, "luxurious_bed");
 		register(BlocksGNS.wretched_bed, "wretched_bed");
+		register(BlocksGNS.strange_bed, "strange_bed");
 		
 		GNSEntityRenderingRegistry.registerTileEntities();
 	}

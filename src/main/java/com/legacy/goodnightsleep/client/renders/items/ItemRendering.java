@@ -17,7 +17,8 @@ public class ItemRendering
 	{
 		register(ItemsGNS.luxurious_bed_item, "luxurious_bed_item");
 		register(ItemsGNS.wretched_bed_item, "wretched_bed_item");
-		
+		register(ItemsGNS.strange_bed_item, "strange_bed_item");
+
 		register(ItemsGNS.candy_sword, "candy_sword");
 		register(ItemsGNS.candy_pickaxe, "candy_pickaxe");
 		register(ItemsGNS.candy_shovel, "candy_shovel");

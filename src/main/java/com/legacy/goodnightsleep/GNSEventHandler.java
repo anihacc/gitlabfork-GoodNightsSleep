@@ -83,6 +83,26 @@ public class GNSEventHandler
 			}
 		}
 		
+		if (event.getWorld().getBlockState(event.getPos()).getBlock() == BlocksGNS.strange_bed)
+		{
+			if (event.getEntityLiving() instanceof EntityPlayer)
+			{
+				if (event.getEntityLiving().dimension == 0)
+				{
+					PlayerGNS.get((EntityPlayer) event.getEntityLiving()).lastBedPos = event.getEntityLiving().getPosition();
+				}
+				
+				if (event.getWorld().rand.nextBoolean())
+				{
+					PlayerGNS.get((EntityPlayer) event.getEntityLiving()).teleportPlayer(true);
+				}
+				else
+				{
+					PlayerGNS.get((EntityPlayer) event.getEntityLiving()).teleportPlayerNightmare(true);
+				}
+			}
+		}
+		
 		World world = event.getWorld();
 		BlockPos pos = event.getPos();
 		IBlockState state = world.getBlockState(pos);

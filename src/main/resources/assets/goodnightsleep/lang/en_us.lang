@@ -1,6 +1,7 @@
 # Blocks
 tile.luxurious_bed.name=Luxurious Bed
 tile.wretched_bed.name=Wretched Bed
+tile.strange_bed.name=Strange Bed
 tile.tall_dream_grass.name=Dream Grass
 tile.tall_nightmare_grass.name=Nightmare Grass
 tile.dream_grass.name=Dream Grass Block
@@ -74,6 +75,7 @@ item.rainbow_berries.name=Rainbow Berries
 
 item.luxurious_bed_item.name=Luxurious Bed
 item.wretched_bed_item.name=Wretched Bed
+item.strange_bed_item.name=Strange Bed
 
 item.luxurious_soup.name=Luxurious Soup
 item.wretched_soup.name=Wretched Soup

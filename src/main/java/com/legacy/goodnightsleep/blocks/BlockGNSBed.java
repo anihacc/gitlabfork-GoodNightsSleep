@@ -3,6 +3,7 @@ package com.legacy.goodnightsleep.blocks;
 import java.util.Random;
 
 import com.legacy.goodnightsleep.entities.tile.TileEntityLuxuriousBed;
+import com.legacy.goodnightsleep.entities.tile.TileEntityStrangeBed;
 import com.legacy.goodnightsleep.entities.tile.TileEntityWretchedBed;
 import com.legacy.goodnightsleep.items.ItemsGNS;
 
@@ -184,6 +185,10 @@ public class BlockGNSBed extends BlockHorizontal implements ITileEntityProvider
             {
             	spawnAsEntity(worldIn, pos, new ItemStack(ItemsGNS.luxurious_bed_item, 1));	
             }
+            else if (this == BlocksGNS.strange_bed)
+            {
+            	spawnAsEntity(worldIn, pos, new ItemStack(ItemsGNS.strange_bed_item, 1));	
+            }
             else
             {
             	spawnAsEntity(worldIn, pos, new ItemStack(ItemsGNS.wretched_bed_item, 1));	
@@ -348,6 +353,10 @@ public class BlockGNSBed extends BlockHorizontal implements ITileEntityProvider
     	if (this == BlocksGNS.luxurious_bed)
     	{
     		return new TileEntityLuxuriousBed();
+    	}
+    	else if (this == BlocksGNS.strange_bed)
+    	{
+    		return new TileEntityStrangeBed();
     	}
     	else
     	{

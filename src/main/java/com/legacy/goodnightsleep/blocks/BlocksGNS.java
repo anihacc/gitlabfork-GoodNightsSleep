@@ -71,7 +71,7 @@ public class BlocksGNS
 	
 	public static Block pot_of_gold, present, rainbow;
 	
-	public static Block luxurious_bed, wretched_bed;
+	public static Block luxurious_bed, wretched_bed, strange_bed;
 	
 	private static IForgeRegistry<Block> iBlockRegistry;
 
@@ -86,6 +86,7 @@ public class BlocksGNS
 		
 		luxurious_bed = registerNoTab("luxurious_bed", new BlockGNSBed()).setCreativeTab(null);
 		wretched_bed = registerNoTab("wretched_bed", new BlockGNSBed()).setCreativeTab(null);
+		strange_bed = registerNoTab("strange_bed", new BlockGNSBed()).setCreativeTab(null);
 
 		tall_dream_grass = register("tall_dream_grass", new BlockGNSTallGrass());
 		tall_nightmare_grass = register("tall_nightmare_grass", new BlockGNSTallGrass());

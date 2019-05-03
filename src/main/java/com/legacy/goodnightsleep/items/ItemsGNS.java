@@ -9,6 +9,7 @@ import com.legacy.goodnightsleep.items.tools.ItemGNSShovel;
 import com.legacy.goodnightsleep.items.tools.ItemGNSSword;
 import com.legacy.goodnightsleep.items.util.ItemGNS;
 import com.legacy.goodnightsleep.items.util.ItemLuxuriousBed;
+import com.legacy.goodnightsleep.items.util.ItemStrangeBed;
 import com.legacy.goodnightsleep.items.util.ItemWretchedBed;
 import com.legacy.goodnightsleep.registry.GNSCreativeTabs;
 import com.legacy.goodnightsleep.registry.VariableConstants;
@@ -54,7 +55,7 @@ public class ItemsGNS
 	
 	public static Item powdered_sugar, necrotic_extract, rainbow_seeds;
 	
-	public static Item luxurious_bed_item, wretched_bed_item;
+	public static Item luxurious_bed_item, wretched_bed_item, strange_bed_item;
 	
 	public static EnumRarity NIGHTMARE = EnumHelper.addRarity("NIGHTMARE", TextFormatting.DARK_RED, "Nightmare");
 	
@@ -77,7 +78,8 @@ public class ItemsGNS
 		// Block Items
 		luxurious_bed_item = register("luxurious_bed_item", new ItemLuxuriousBed());
 		wretched_bed_item = register("wretched_bed_item", new ItemWretchedBed());
-				
+		strange_bed_item = register("strange_bed_item", new ItemStrangeBed());
+
 		positite_gem = register("positite_gem", new ItemGNS(GNSCreativeTabs.items));
 		rainbow_ingot = register("rainbow_ingot", new ItemGNS(GNSCreativeTabs.items));
 		candy_ingot = register("candy_ingot", new ItemGNS(null));
