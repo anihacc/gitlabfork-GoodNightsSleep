@@ -1,20 +1,22 @@
 package com.legacy.goodnightsleep.player;
 
-import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.server.management.PlayerList;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import java.util.Random;
 
 import com.legacy.goodnightsleep.GNSConfig;
 import com.legacy.goodnightsleep.player.capability.GNSManager;
 import com.legacy.goodnightsleep.world.TeleporterGNS;
 
-public class PlayerGNS 
+import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.server.management.PlayerList;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraftforge.fml.common.FMLCommonHandler;
+
+public class PlayerGNS implements INBT
 {
 	public EntityPlayer player;
 	
@@ -23,10 +25,13 @@ public class PlayerGNS
 	public Minecraft mc;
 	
 	public BlockPos lastBedPos;
+	
+	private int bedX, bedY, bedZ;
 
 	public PlayerGNS(EntityPlayer player)
 	{
 		this.player = player;
+		this.lastBedPos = new BlockPos(bedX, bedY, bedZ);
 	}
 
 	public static PlayerGNS get(EntityPlayer player)
@@ -38,6 +43,22 @@ public class PlayerGNS
 	{	
 	}
 	
+	@Override
+	public void writeEntityToNBT(NBTTagCompound compound)
+	{
+		compound.setInteger("bedX", this.bedX);
+		compound.setInteger("bedY", this.bedY);
+		compound.setInteger("bedZ", this.bedZ);
+	}
+
+	@Override
+	public void readEntityFromNBT(NBTTagCompound compound) 
+	{
+		this.bedX = compound.getInteger("bedX");
+		this.bedY = compound.getInteger("bedY");
+		this.bedZ = compound.getInteger("bedZ");
+	}
+
 	public void teleportPlayer(boolean shouldSpawnPortal) 
 	{
 		this.player.dismountRidingEntity();

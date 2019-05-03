@@ -12,12 +12,14 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemHoe;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent.Clone;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.RightClickBlock;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -40,6 +42,22 @@ public class GNSEventHandler
 			{
 				event.addCapability(PLAYER_LOCATION,  provider);
 			}
+		}
+	}
+	
+	@SubscribeEvent
+	public void onPlayerCloned(Clone event)
+	{
+		PlayerGNS original = PlayerGNS.get(event.getOriginal());
+
+		PlayerGNS clone = PlayerGNS.get(event.getEntityPlayer());
+
+		NBTTagCompound compound = new NBTTagCompound();
+
+		if (original != null && clone != null)
+		{
+			original.writeEntityToNBT(compound);
+			clone.readEntityFromNBT(compound);
 		}
 	}
 
