@@ -78,7 +78,7 @@ public class BlockGNSLeaves extends BlockLeaves
 	@Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-		if (this == BlocksGNS.dream_leaves)
+		if (this == BlocksGNS.dream_leaves ||this == BlocksGNS.diamond_leaves)
 		{
 			return Item.getItemFromBlock(BlocksGNS.dream_sapling);
 
