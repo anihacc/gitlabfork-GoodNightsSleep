@@ -9,9 +9,9 @@ import net.minecraft.world.IBlockAccess;
 public class BlockGNSOreBlock extends Block 
 {
 
-	public BlockGNSOreBlock(SoundType soundType) 
+	public BlockGNSOreBlock(Material material, SoundType soundType) 
 	{
-		super(Material.IRON);
+		super(material);
 
 		this.setHardness(5.0F);
 		this.setResistance(10.0F);

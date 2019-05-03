@@ -149,12 +149,12 @@ public class BlocksGNS
 		dead_slab = registerSlab("dead_slab", new BlockGNSSlab(Material.WOOD).setHardness(2.0F).setResistance(5.0F), GNSCreativeTabs.blocks);
 		blood_slab = registerSlab("blood_slab", new BlockGNSSlab(Material.WOOD).setHardness(2.0F).setResistance(5.0F), GNSCreativeTabs.blocks);
 		
-		candy_block = register("candy_block", new BlockGNSOreBlock(SoundType.METAL));
-		rainbow_block = register("rainbow_block", new BlockGNSOreBlock(SoundType.METAL));
-		positite_block = register("positite_block", new BlockGNSOreBlock(SoundType.METAL));
-		necrum_block = register("necrum_block", new BlockGNSOreBlock(SoundType.GROUND));
-		zitrite_block = register("zitrite_block", new BlockGNSOreBlock(SoundType.METAL));
-		negatite_block = register("negatite_block", new BlockGNSOreBlock(SoundType.METAL));
+		candy_block = register("candy_block", new BlockGNSOreBlock(Material.IRON, SoundType.METAL));
+		rainbow_block = register("rainbow_block", new BlockGNSOreBlock(Material.IRON, SoundType.METAL));
+		positite_block = register("positite_block", new BlockGNSOreBlock(Material.IRON, SoundType.METAL));
+		necrum_block = register("necrum_block", new BlockGNSOreBlock(Material.GROUND, SoundType.GROUND));
+		zitrite_block = register("zitrite_block", new BlockGNSOreBlock(Material.IRON, SoundType.METAL));
+		negatite_block = register("negatite_block", new BlockGNSOreBlock(Material.IRON, SoundType.METAL));
 		
 		candy_ore.setHarvestLevel("pickaxe", 0);
 		rainbow_ore.setHarvestLevel("pickaxe", 1);
@@ -233,11 +233,4 @@ public class BlocksGNS
 
 		return block;
 	}
-
-	public static boolean isEarth(IBlockState state)
-	{
-		Block block = state.getBlock();
-        return block == dream_dirt || block == dream_grass || block == nightmare_grass || block == Blocks.DIRT || block == Blocks.STONE;
-    }
-
 }
