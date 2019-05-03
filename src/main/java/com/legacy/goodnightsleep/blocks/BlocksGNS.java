@@ -192,7 +192,7 @@ public class BlocksGNS
 
 	public static Block register(String name, Block block, ItemBlock item)
 	{
-		block.setUnlocalizedName(name);
+		block.setTranslationKey(name);
 
 		block.setRegistryName(VariableConstants.locate(name));
 		item.setRegistryName(VariableConstants.locate(name));
@@ -207,7 +207,7 @@ public class BlocksGNS
 	
 	public static Block registerNoTab(String name, Block block, ItemBlock item)
 	{
-		block.setUnlocalizedName(name);
+		block.setTranslationKey(name);
 
 		block.setRegistryName(VariableConstants.locate(name));
 		item.setRegistryName(VariableConstants.locate(name));
@@ -222,7 +222,7 @@ public class BlocksGNS
 	
 	public static Block registerSlab(String name, Block block, ItemBlock item, CreativeTabs tab)
 	{
-		block.setUnlocalizedName(name);
+		block.setTranslationKey(name);
 
 		block.setRegistryName(VariableConstants.locate(name));
 		item.setRegistryName(VariableConstants.locate(name));

@@ -16,6 +16,8 @@ tile.candy_ore.name=Candy Ore
 tile.rainbow_ore.name=Rainbow Ore
 tile.positite_ore.name=Positite Ore
 tile.negatite_ore.name=Negatite Ore
+tile.coal_ore.name=Coal Ore
+tile.lapis_ore.name=Lapis Lazuli Ore
 tile.dream_leaves.name=Dream Leaves
 tile.candy_leaves.name=Candy Leaves
 tile.diamond_leaves.name=Diamond Leaves
@@ -35,6 +37,9 @@ tile.hope_mushroom.name=Hope Mushroom
 tile.despair_mushroom.name=Despair Mushroom
 tile.lolipop_bush.name=Lolipop Bush
 tile.dead_flower.name=Dead Flower
+
+tile.delusion_stone.name=Delusion Stone
+tile.delusion_cobblestone.name=Delusion Cobblestone
 
 tile.candy_block.name=Hard Candy
 tile.rainbow_block.name=Rainbow Block

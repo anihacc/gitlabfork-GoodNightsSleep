@@ -1,5 +1,5 @@
 {
-	"parent": "goodnightsleep:block/multi_texture_base",
+	"parent": "block/cube_bottom_top",
 	"textures": {
 		"particle": "goodnightsleep:blocks/natural/dream_dirt",
 		"bottom": "goodnightsleep:blocks/natural/dream_dirt",

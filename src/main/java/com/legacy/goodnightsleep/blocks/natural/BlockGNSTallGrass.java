@@ -63,7 +63,7 @@ public class BlockGNSTallGrass extends BlockBush
 	 }
 	 
 	 @Override
-	 public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn)
+	 public void onEntityCollision(World worldIn, BlockPos pos, IBlockState state, Entity entityIn)
 	 {
 		 if (this == BlocksGNS.tall_nightmare_grass && !(entityIn instanceof IMob))
 		 {

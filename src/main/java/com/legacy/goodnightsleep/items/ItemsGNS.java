@@ -157,7 +157,7 @@ public class ItemsGNS
 
 	private static Item register(String unlocalizedName, Item item)
 	{
-		item.setUnlocalizedName(unlocalizedName);
+		item.setTranslationKey(unlocalizedName);
 
 		item.setRegistryName(VariableConstants.locate(unlocalizedName));
 

@@ -39,6 +39,7 @@ public class BlockPotOfGold extends BlockCauldron
 		super();
 	}
 
+	@SuppressWarnings("deprecation")
 	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean isActualState)
     {
         addCollisionBoxToList(pos, entityBox, collidingBoxes, AABB_LEGS);
@@ -68,9 +69,10 @@ public class BlockPotOfGold extends BlockCauldron
 		return false;
 	}
 
+	@SuppressWarnings("deprecation")
 	public void func_71860_a(World world, int x, int y, int z, EntityLivingBase entity, ItemStack stack)
 	{
-		boolean modifyX = false;
+		//boolean modifyX = false;
 		byte modifyY = 0;
 		byte modifyZ = 0;
 		int var10;

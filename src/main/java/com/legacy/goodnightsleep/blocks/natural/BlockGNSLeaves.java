@@ -34,11 +34,11 @@ public class BlockGNSLeaves extends BlockLeaves
 
 	@Override
     @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer()
-    {
-        return BlockRenderLayer.CUTOUT;
+    public BlockRenderLayer getRenderLayer()
+    {	
+		return BlockRenderLayer.CUTOUT_MIPPED;
     }
-
+	
 	@Override
     public boolean isOpaqueCube(IBlockState state)
     {

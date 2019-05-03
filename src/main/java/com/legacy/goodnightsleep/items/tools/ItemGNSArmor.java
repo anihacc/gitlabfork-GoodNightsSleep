@@ -17,7 +17,7 @@ public class ItemGNSArmor extends ItemArmor
 		super(material, 0, armorType);
 
 		this.armorName = name;
-		this.setUnlocalizedName(name);
+		this.setTranslationKey(name);
 		this.setCreativeTab(GNSCreativeTabs.armor);
 		//this.setRegistryName(new ResourceLocation("goodnightsleep", "textures/armor/" + name));
 	}
@@ -25,7 +25,7 @@ public class ItemGNSArmor extends ItemArmor
 	@Override
     public String getArmorTexture(ItemStack stack, Entity entity, EntityEquipmentSlot slot, String type)
     {
-    	boolean leggings = this.getUnlocalizedName().contains("leggings");
+    	boolean leggings = this.getTranslationKey().contains("leggings");
     	String type1 = leggings ? "layer_2" : "layer_1";
 
         return VariableConstants.MODID + ":" + "textures/armor/" + this.armorName + "_" + type1 + ".png";

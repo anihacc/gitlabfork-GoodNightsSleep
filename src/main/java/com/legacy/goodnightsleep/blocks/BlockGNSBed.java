@@ -62,7 +62,6 @@ public class BlockGNSBed extends BlockHorizontal implements ITileEntityProvider
     {
         if (state.getValue(PART) == BlockGNSBed.EnumPartType.FOOT)
         {
-            TileEntity tileentity = worldIn.getTileEntity(pos);
 
 			/*
 			 * if (tileentity instanceof TileEntityGNSBed)
@@ -279,7 +278,7 @@ public class BlockGNSBed extends BlockHorizontal implements ITileEntityProvider
      */
     public IBlockState getStateFromMeta(int meta)
     {
-        EnumFacing enumfacing = EnumFacing.getHorizontal(meta);
+        EnumFacing enumfacing = EnumFacing.byHorizontalIndex(meta);
         return (meta & 8) > 0 ? this.getDefaultState().withProperty(PART, BlockGNSBed.EnumPartType.HEAD).withProperty(FACING, enumfacing) : this.getDefaultState().withProperty(PART, BlockGNSBed.EnumPartType.FOOT).withProperty(FACING, enumfacing);
     }
 
