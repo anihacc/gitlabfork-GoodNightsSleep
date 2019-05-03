@@ -36,7 +36,10 @@ public class GNSOreDictionary
 		register("plankWood", BlocksGNS.white_plank);
 		register("plankWood", BlocksGNS.dead_plank);
 		register("plankWood", BlocksGNS.blood_plank);
-
+		
+		register("cobblestone", BlocksGNS.delusion_cobblestone);
+		register("stone", BlocksGNS.delusion_stone);
+		
 		//ores
 		register("oreCandy", BlocksGNS.candy_ore);
 		register("oreRainbow", BlocksGNS.rainbow_ore);
@@ -48,8 +51,8 @@ public class GNSOreDictionary
 		register("gemPositite", ItemsGNS.positite_gem);
 		register("gemNegatite", ItemsGNS.negatite_gem);
 		
-		register("gemDiamond", ItemsGNS.positite_gem);
-		register("gemDiamond", ItemsGNS.negatite_gem);
+		//register("gemDiamond", ItemsGNS.positite_gem);
+		//register("gemDiamond", ItemsGNS.negatite_gem);
 		
 		register("ingotCandy", ItemsGNS.candy_ingot);
 		register("ingotRainbow", ItemsGNS.rainbow_ingot);
@@ -57,7 +60,8 @@ public class GNSOreDictionary
 		
         // crops
 		register("cropRainbowBerries", ItemsGNS.rainbow_berries);
-
+		register("listAllFruit", ItemsGNS.rainbow_berries);
+		
 		//blocks
 		register("blockCandy", BlocksGNS.candy_block);
 		register("blockRainbow", BlocksGNS.rainbow_block);
