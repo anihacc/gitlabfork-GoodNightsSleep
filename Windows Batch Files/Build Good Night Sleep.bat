@@ -1,5 +1,5 @@
 @echo off
-title Building Good Night Sleep Reawakened...
+title Building Good Night Sleep...
 cd ..
 call gradlew build
 pause

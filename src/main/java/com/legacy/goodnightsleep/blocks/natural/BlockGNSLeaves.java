@@ -93,7 +93,6 @@ public class BlockGNSLeaves extends BlockLeaves
 		{
 			return Item.getItemFromBlock(Blocks.SAPLING);
 		}
-		//return Item.getItemFromBlock(Blocks.SAPLING);
     }
 
 	@Override
