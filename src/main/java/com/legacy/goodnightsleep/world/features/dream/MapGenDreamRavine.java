@@ -210,7 +210,7 @@ public class MapGenDreamRavine extends MapGenBase
     protected boolean isOceanBlock(ChunkPrimer data, int x, int y, int z, int chunkX, int chunkZ)
     {
         net.minecraft.block.Block block = data.getBlockState(x, y, z).getBlock();
-        return block== Blocks.FLOWING_WATER || block == Blocks.WATER;
+        return block == Blocks.FLOWING_WATER || block == Blocks.WATER || block == Blocks.FLOWING_LAVA || block == Blocks.LAVA;
     }
 
     //Exception biomes to make sure we generate like vanilla
@@ -229,7 +229,7 @@ public class MapGenDreamRavine extends MapGenBase
     {
         net.minecraft.world.biome.Biome biome = world.getBiome(new BlockPos(x + chunkX * 16, 0, z + chunkZ * 16));
         IBlockState state = data.getBlockState(x, y, z);
-        return (isExceptionBiome(biome) ? state.getBlock() == BlocksGNS.dream_grass : state.getBlock() == biome.topBlock);
+        return (isExceptionBiome(biome) ? state.getBlock() == BlocksGNS.dream_grass : isExceptionBiome(biome) ? state.getBlock() == BlocksGNS.nightmare_grass : state.getBlock() == biome.topBlock);
     }
 
     /**
@@ -251,10 +251,10 @@ public class MapGenDreamRavine extends MapGenBase
     {
         net.minecraft.world.biome.Biome biome = world.getBiome(new BlockPos(x + chunkX * 16, 0, z + chunkZ * 16));
         IBlockState state = data.getBlockState(x, y, z);
-        IBlockState top = isExceptionBiome(biome) ? BlocksGNS.dream_grass.getDefaultState() : biome.topBlock;
-        IBlockState filler = isExceptionBiome(biome) ? BlocksGNS.dream_dirt.getDefaultState() : biome.fillerBlock;
+        IBlockState top = isExceptionBiome(biome) ? BlocksGNS.dream_grass.getDefaultState() : isExceptionBiome(biome) ? BlocksGNS.nightmare_grass.getDefaultState() : biome.topBlock;
+        IBlockState filler = isExceptionBiome(biome) ? BlocksGNS.dream_dirt.getDefaultState() : isExceptionBiome(biome) ? Blocks.DIRT.getDefaultState() : biome.fillerBlock;
 
-        if (state.getBlock() == BlocksGNS.delusion_stone || state.getBlock() == top.getBlock() || state.getBlock() == filler.getBlock())
+        if (state.getBlock() == BlocksGNS.delusion_stone || state.getBlock() == Blocks.STONE || state.getBlock() == top.getBlock() || state.getBlock() == filler.getBlock())
         {
             if (y - 1 < 10)
             {

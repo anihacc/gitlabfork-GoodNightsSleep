@@ -236,7 +236,7 @@ public class MapGenDreamCaves extends MapGenBase
         }
         else
         {
-            return (state.getBlock() == Blocks.SAND || state.getBlock() == Blocks.GRAVEL) && state2.getMaterial() != Material.WATER;
+            return (state.getBlock() == Blocks.SAND || state.getBlock() == Blocks.GRAVEL) && state2.getMaterial() != Material.WATER && state2.getMaterial() != Material.LAVA;
         }
     }
 
@@ -284,7 +284,7 @@ public class MapGenDreamCaves extends MapGenBase
     protected boolean isOceanBlock(ChunkPrimer data, int x, int y, int z, int chunkX, int chunkZ)
     {
         net.minecraft.block.Block block = data.getBlockState(x, y, z).getBlock();
-        return block== Blocks.FLOWING_WATER || block == Blocks.WATER;
+        return block == Blocks.FLOWING_WATER || block == Blocks.WATER || block == Blocks.FLOWING_LAVA || block == Blocks.LAVA;
     }
 
     //Exception biomes to make sure we generate like vanilla
@@ -301,7 +301,7 @@ public class MapGenDreamCaves extends MapGenBase
     {
         net.minecraft.world.biome.Biome biome = world.getBiome(new BlockPos(x + chunkX * 16, 0, z + chunkZ * 16));
         IBlockState state = data.getBlockState(x, y, z);
-        return (state.getBlock() == BlocksGNS.dream_grass || state.getBlock() == biome.topBlock);
+        return (state.getBlock() == BlocksGNS.dream_grass || state.getBlock() == BlocksGNS.nightmare_grass || state.getBlock() == biome.topBlock);
     }
 
     /**

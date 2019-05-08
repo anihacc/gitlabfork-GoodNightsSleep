@@ -15,40 +15,32 @@ import net.minecraft.entity.monster.EntityPigZombie;
 import net.minecraft.entity.monster.EntitySilverfish;
 import net.minecraft.entity.monster.EntityWitch;
 import net.minecraft.entity.monster.EntityWitherSkeleton;
+import net.minecraft.init.Blocks;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
 public class BiomeNightmareHills extends Biome
 {
+
 	public BiomeNightmareHills()
 	{
 		super(new BiomeProperties("Nightmare Hills").setRainDisabled().setBaseHeight(0.1F).setHeightVariation(1.0F).setTemperature(2.0F).setRainfall(0.0F));
 		this.spawnableCreatureList.clear();
-		
+		this.topBlock = BlocksGNS.nightmare_grass.getDefaultState();
+		this.fillerBlock = Blocks.DIRT.getDefaultState();
+
 		ArrayList<SpawnListEntry> list = new ArrayList<SpawnListEntry>();
- 
 		list.clear();
-		
-		//this.topBlock = BlocksGNS.nightmare_grass.getDefaultState();
-		//this.fillerBlock = Blocks.DIRT.getDefaultState();
-		
-		 //this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntitySpider.class, 100, 4, 4));
-	     //this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityZombie.class, 95, 4, 4));
-	     //this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityZombieVillager.class, 5, 1, 1));
-	     //this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntitySkeleton.class, 100, 4, 4));
-	     //this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityCreeper.class, 100, 4, 4));
-	     //this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntitySlime.class, 100, 4, 4));
-	     //this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityEnderman.class, 10, 1, 4));
-	     this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityBlaze.class, 10, 3, 3));
-	     this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityPigZombie.class, 5, 1, 2));
-	     this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityWitherSkeleton.class, 10, 5, 5));
-	     this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityGhast.class, 50, 4, 4));
-	     this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityMagmaCube.class, 10, 4, 4));
-	     this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntitySilverfish.class, 10, 4, 4));
-	     this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityWitch.class, 10, 4, 4));
-	     this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityTormenter.class, 50, 10, 10));
-	     this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityGiantZombie.class, 95, 1, 1));
+		this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityBlaze.class, 10, 3, 3));
+		this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityPigZombie.class, 5, 1, 2));
+		this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityWitherSkeleton.class, 10, 5, 5));
+		this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityGhast.class, 50, 4, 4));
+		this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityMagmaCube.class, 10, 4, 4));
+		this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntitySilverfish.class, 10, 4, 4));
+		this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityWitch.class, 10, 4, 4));
+		this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityTormenter.class, 50, 10, 10));
+		this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityGiantZombie.class, 95, 1, 1));
 	}
 
 	@Override

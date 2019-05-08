@@ -18,7 +18,10 @@ public class BiomeGoodDreamPlains extends Biome
 	public BiomeGoodDreamPlains()
 	{
 		super(new BiomeProperties("Good Dream Plains").setRainDisabled().setBaseHeight(0.1F).setHeightVariation(0.5F).setTemperature(0.8F).setRainfall(0.0F));
-
+		
+		this.topBlock = BlocksGNS.dream_grass.getDefaultState();
+		this.fillerBlock = BlocksGNS.dream_dirt.getDefaultState();
+		
 		this.spawnableMonsterList.clear();
 		this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityBabyCreeper.class, 1, 1, 1));
 		
