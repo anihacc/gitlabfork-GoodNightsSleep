@@ -46,10 +46,11 @@ public class BlockGNSSapling extends BlockGNSFlower implements IGrowable
 
 	public void growTree(World world, BlockPos pos, Random rand)
 	{
-		world.setBlockState(pos, Blocks.AIR.getDefaultState());
+		
 		if (!this.treeGenObject.generate(world, world.rand, pos))
 		{
-			world.setBlockState(pos, this.getDefaultState());
+			//world.setBlockState(pos, Blocks.AIR.getDefaultState());
+			//world.setBlockState(pos, this.getDefaultState());
 		}
 	}
 

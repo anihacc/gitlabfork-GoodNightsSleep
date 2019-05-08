@@ -3,6 +3,7 @@ package com.legacy.goodnightsleep.world.features;
 import java.util.Random;
 
 import com.legacy.goodnightsleep.blocks.BlocksGNS;
+import com.legacy.goodnightsleep.blocks.natural.BlockGNSSapling;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -103,7 +104,7 @@ public class WorldGenGNSTree extends WorldGenTrees
                                     BlockPos blockpos = new BlockPos(k1, i3, i2);
                                     state = worldIn.getBlockState(blockpos);
 
-                                    if (state.getBlock().isAir(state, worldIn, blockpos) || state.getBlock().isLeaves(state, worldIn, blockpos) || state.getMaterial() == Material.VINE)
+                                    if (state.getBlock().isAir(state, worldIn, blockpos) || state.getBlock().isLeaves(state, worldIn, blockpos) || state.getMaterial() == Material.VINE || state.getBlock() instanceof BlockGNSSapling)
                                     {
                                         this.setBlockAndNotifyAdequately(worldIn, blockpos, this.metaLeaves);
                                     }
@@ -117,7 +118,7 @@ public class WorldGenGNSTree extends WorldGenTrees
                         BlockPos upN = position.up(j3);
                         state = worldIn.getBlockState(upN);
 
-                        if (state.getBlock().isAir(state, worldIn, upN) || state.getBlock().isLeaves(state, worldIn, upN) || state.getMaterial() == Material.PLANTS || state.getMaterial() == Material.VINE)
+                        if (state.getBlock().isAir(state, worldIn, upN) || state.getBlock().isLeaves(state, worldIn, upN) || state.getMaterial() == Material.PLANTS || state.getMaterial() == Material.VINE || state == BlocksGNS.dream_sapling.getDefaultState())
                         {
                             this.setBlockAndNotifyAdequately(worldIn, position.up(j3), this.metaWood);
                         }
@@ -132,6 +133,6 @@ public class WorldGenGNSTree extends WorldGenTrees
     protected boolean canGrowInto(Block blockType)
     {
         Material material = blockType.getDefaultState().getMaterial();
-        return material == Material.AIR || material == Material.LEAVES || material == Material.VINE ||  blockType ==  BlocksGNS.dream_grass || blockType == BlocksGNS.nightmare_grass || blockType == BlocksGNS.dream_dirt || blockType == Blocks.DIRT;
+        return material == Material.AIR || material == Material.LEAVES || material == Material.VINE ||  blockType ==  BlocksGNS.dream_grass || blockType == BlocksGNS.nightmare_grass || blockType == BlocksGNS.dream_dirt || blockType == Blocks.DIRT || blockType instanceof BlockGNSSapling;
     }
 }
