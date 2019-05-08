@@ -14,12 +14,16 @@ import com.legacy.goodnightsleep.world.features.WorldGenSponge;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.gen.feature.WorldGenLiquids;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
+import net.minecraftforge.event.terraingen.OreGenEvent;
 import net.minecraftforge.event.terraingen.TerrainGen;
 
 public class GoodDreamBiomeDecorator extends BiomeDecorator 
@@ -69,7 +73,11 @@ public class GoodDreamBiomeDecorator extends BiomeDecorator
 	@SuppressWarnings("deprecation")
 	@Override
     protected void genDecorations(Biome biomeGenBaseIn, World worldIn, Random random)
-    {    	
+    {
+		ChunkPos pos = new ChunkPos(this.chunkPos);
+
+		MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Pre(worldIn, random, pos));
+		
 		if (this.shouldSpawn(2))
 		{
 			this.getTree().generate(this.world, this.rand, this.world.getHeight(this.chunkPos.add(this.nextInt(8) + 8, 0, this.nextInt(8) + 8)));
@@ -128,11 +136,15 @@ public class GoodDreamBiomeDecorator extends BiomeDecorator
 	        }
         }
         
+        MinecraftForge.ORE_GEN_BUS.post(new OreGenEvent.Pre(worldIn, random, this.chunkPos));
 		this.spawnOres();
+		MinecraftForge.ORE_GEN_BUS.post(new OreGenEvent.Post(worldIn, random, this.chunkPos));
 
     	this.generateFoilage(BlocksGNS.orange_flower.getDefaultState());
     	this.generateFoilage(BlocksGNS.cyan_flower.getDefaultState());
     	this.generateFoilage(BlocksGNS.lolipop_bush.getDefaultState());
+    	
+    	MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Post(worldIn, random, pos));
     }
 
 	public int nextInt(int max)
