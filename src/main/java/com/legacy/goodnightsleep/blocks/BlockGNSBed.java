@@ -53,6 +53,8 @@ public class BlockGNSBed extends BlockHorizontal implements ITileEntityProvider
         this.setDefaultState(this.blockState.getBaseState().withProperty(PART, BlockGNSBed.EnumPartType.FOOT));
         this.hasTileEntity = true;
         this.setSoundType(SoundType.WOOD);
+        this.disableStats();
+        this.setHardness(0.2F);
     }
 
     /**
@@ -178,8 +180,6 @@ public class BlockGNSBed extends BlockHorizontal implements ITileEntityProvider
     {
         if (state.getValue(PART) == BlockGNSBed.EnumPartType.HEAD)
         {
-            TileEntity tileentity = worldIn.getTileEntity(pos);
-            
             if (this == BlocksGNS.luxurious_bed)
             {
             	spawnAsEntity(worldIn, pos, new ItemStack(ItemsGNS.luxurious_bed_item, 1));	
