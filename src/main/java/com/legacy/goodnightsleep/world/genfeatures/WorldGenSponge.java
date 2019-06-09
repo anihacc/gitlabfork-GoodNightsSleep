@@ -1,0 +1,54 @@
+package com.legacy.goodnightsleep.world.genfeatures;
+
+import java.util.Random;
+
+import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Blocks;
+import net.minecraft.util.BlockPos;
+import net.minecraft.world.World;
+import net.minecraft.world.gen.feature.WorldGenerator;
+
+public class WorldGenSponge extends WorldGenerator
+{
+
+	private IBlockState spongeBlockId;
+
+	public WorldGenSponge()
+	{
+		this.spongeBlockId = Blocks.sponge.getStateFromMeta(1);
+	}
+
+	public boolean generate(World par1World, Random par2Random, BlockPos pos)
+	{
+		int x = pos.getX();
+		int y = pos.getY();
+		int z = pos.getZ();
+		
+		if (par1World.getBlockState(new BlockPos(x, y, z)).getBlock().getMaterial() != Material.water)
+		{
+			return false;
+		}
+		else
+		{
+			int varSize = par2Random.nextInt(6);
+			int varSpace = 1 + par2Random.nextInt(3);
+			this.generateStalk(par1World, x, y, z + varSpace, varSize);
+			this.generateStalk(par1World, x + varSpace, y, z, varSize - 1);
+			this.generateStalk(par1World, x + varSpace, y, z + varSpace, varSize - 2);
+			this.generateStalk(par1World, x, y, z, varSize - 3);
+			return true;
+		}
+	}
+
+	private void generateStalk(World world, int x, int y, int z, int size)
+	{
+		if (!world.isAirBlock(new BlockPos(x, y - 1, z)))
+		{
+			for (int i = 0; i < size; ++i)
+			{
+				world.setBlockState(new BlockPos(x, y + i, z), this.spongeBlockId);
+			}
+		}
+	}
+}
