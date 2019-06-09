@@ -1,0 +1,6 @@
+{
+    "parent": "goodnightsleep:block/leaves_base",
+    "textures": {
+        "all": "goodnightsleep:blocks/natural/candy_leaves"
+    }
+}

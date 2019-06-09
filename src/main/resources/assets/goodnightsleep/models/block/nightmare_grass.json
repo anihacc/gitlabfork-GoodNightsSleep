@@ -1,0 +1,9 @@
+{
+	"parent": "goodnightsleep:block/multi_texture_base",
+	"textures": {
+		"particle": "blocks/dirt",
+		"bottom": "blocks/dirt",
+		"top": "goodnightsleep:blocks/natural/nightmare_grass_top",
+		"side": "goodnightsleep:blocks/natural/nightmare_grass_side"
+	}
+}
