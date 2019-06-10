@@ -52,7 +52,15 @@ public class BlockGNSBed extends BlockDirectional
         else
         {
 
-        	this.teleportPlayerDream(true, player);
+        	if (this == BlocksGNS.luxurious_bed)
+        	{
+            	this.teleportPlayerDream(true, player);
+
+        	}
+        	else
+        	{
+            	this.teleportPlayerNightmare(true, player);
+        	}
         
         	return true;
         }

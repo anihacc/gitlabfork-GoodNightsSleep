@@ -109,11 +109,16 @@ public class BlockGNSTallGrass extends BlockBush
 		}
 	}
 
-	@Override
+	/*@Override
 	public int getRenderType()
 	{
 		return CommonProxy.gnsTallgrassRenderID;
-	}
+	}*/
+	
+	public int getRenderType()
+    {
+        return 1;
+    }
 
 	@Override
 	public int getDamageValue(World world, int par2, int par3, int par4)

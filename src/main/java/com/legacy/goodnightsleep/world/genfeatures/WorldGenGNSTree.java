@@ -3,62 +3,80 @@ package com.legacy.goodnightsleep.world.genfeatures;
 import java.util.Random;
 
 import com.legacy.goodnightsleep.blocks.BlocksGNS;
+import com.legacy.goodnightsleep.blocks.natural.BlockGNSSapling;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.Direction;
 import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.WorldGenTrees;
+import net.minecraft.world.gen.feature.WorldGenAbstractTree;
+import net.minecraftforge.common.util.ForgeDirection;
 
-public class WorldGenGNSTree extends WorldGenTrees
+public class WorldGenGNSTree extends WorldGenAbstractTree
 {
-
     /** The minimum height of a generated tree. */
     private final int minTreeHeight;
-
+    /** True if this tree should grow Vines. */
+    private final boolean vinesGrow;
     /** The metadata value of the wood to use in tree generation. */
-    private final Block metaWood;
-
+    private final int metaWood;
     /** The metadata value of the leaves to use in tree generation. */
-    private final Block metaLeaves;
+    private final int metaLeaves;
+    
+    private final Block leafBlock;
+    
+    private final Block logBlock;
 
-	public WorldGenGNSTree(boolean p_i46446_1_, int p_i46446_2_, Block wood, Block leaves, boolean p_i46446_5_) 
-	{
-		super(p_i46446_1_, p_i46446_2_, 0, 0, p_i46446_5_);
-
-        this.minTreeHeight = p_i46446_2_;
-        this.metaWood = wood;
-        this.metaLeaves = leaves;
-	}
-
-	public boolean generate(World worldIn, Random rand, int x, int y, int z)
+    public WorldGenGNSTree(boolean p_i2027_1_, int height, Block log, Block leaves)
     {
-        int i = rand.nextInt(3) + this.minTreeHeight;
+        this(p_i2027_1_, height, log, 0, leaves, 0, false);
+    }
+
+    public WorldGenGNSTree(boolean p_i2028_1_, int p_i2028_2_, Block wood, int metaWood, Block leaves, int metaLeaves, boolean p_i2028_5_)
+    {
+        super(p_i2028_1_);
+        this.minTreeHeight = p_i2028_2_;
+        this.metaWood = metaWood;
+        this.metaLeaves = metaLeaves;
+        this.vinesGrow = p_i2028_5_;
+        this.leafBlock = leaves;
+        this.logBlock = wood;
+    }
+
+    public boolean generate(World p_76484_1_, Random p_76484_2_, int p_76484_3_, int p_76484_4_, int p_76484_5_)
+    {
+        int l = p_76484_2_.nextInt(3) + this.minTreeHeight;
         boolean flag = true;
 
-        if (y >= 1 && y + i + 1 <= worldIn.getHeight())
+        if (p_76484_4_ >= 1 && p_76484_4_ + l + 1 <= 256)
         {
-            for (int j = y; j <= y + 1 + i; ++j)
+            byte b0;
+            int k1;
+            Block block;
+
+            for (int i1 = p_76484_4_; i1 <= p_76484_4_ + 1 + l; ++i1)
             {
-                int k = 1;
+                b0 = 1;
 
-                if (j == y)
+                if (i1 == p_76484_4_)
                 {
-                    k = 0;
+                    b0 = 0;
                 }
 
-                if (j >= y + 1 + i - 2)
+                if (i1 >= p_76484_4_ + 1 + l - 2)
                 {
-                    k = 2;
+                    b0 = 2;
                 }
 
-                for (int l = z - k; l <= x + k && flag; ++l)
+                for (int j1 = p_76484_3_ - b0; j1 <= p_76484_3_ + b0 && flag; ++j1)
                 {
-                    for (int i1 = z - k; i1 <= z + k && flag; ++i1)
+                    for (k1 = p_76484_5_ - b0; k1 <= p_76484_5_ + b0 && flag; ++k1)
                     {
-                        if (j >= 0 && j < worldIn.getHeight())
+                        if (i1 >= 0 && i1 < 256)
                         {
-                            if (!this.isReplaceable(worldIn, l, j, i1))
+                            block = p_76484_1_.getBlock(j1, i1, k1);
+
+                            if (!this.isReplaceable(p_76484_1_, j1, i1, k1))
                             {
                                 flag = false;
                             }
@@ -77,55 +95,164 @@ public class WorldGenGNSTree extends WorldGenTrees
             }
             else
             {
-                Block state = worldIn.getBlock(x, y - 1, z);
+                Block block2 = p_76484_1_.getBlock(p_76484_3_, p_76484_4_ - 1, p_76484_5_);
 
-                if (this.canGrowInto(state))
+                boolean isSoil = block2.canSustainPlant(p_76484_1_, p_76484_3_, p_76484_4_ - 1, p_76484_5_, ForgeDirection.UP, (BlockGNSSapling)BlocksGNS.dream_sapling);
+                if (isSoil && p_76484_4_ < 256 - l - 1)
                 {
-                    for (int i3 = y - 3 + i; i3 <= y + i; ++i3)
+                    block2.onPlantGrow(p_76484_1_, p_76484_3_, p_76484_4_ - 1, p_76484_5_, p_76484_3_, p_76484_4_, p_76484_5_);
+                    b0 = 3;
+                    byte b1 = 0;
+                    int l1;
+                    int i2;
+                    int j2;
+                    int i3;
+
+                    for (k1 = p_76484_4_ - b0 + l; k1 <= p_76484_4_ + l; ++k1)
                     {
-                        int i4 = i3 - (y + i);
-                        int j1 = 1 - i4 / 2;
+                        i3 = k1 - (p_76484_4_ + l);
+                        l1 = b1 + 1 - i3 / 2;
 
-                        for (int k1 = x - j1; k1 <= x + j1; ++k1)
+                        for (i2 = p_76484_3_ - l1; i2 <= p_76484_3_ + l1; ++i2)
                         {
-                            int l1 = k1 - x;
+                            j2 = i2 - p_76484_3_;
 
-                            for (int i2 = z - j1; i2 <= z + j1; ++i2)
+                            for (int k2 = p_76484_5_ - l1; k2 <= p_76484_5_ + l1; ++k2)
                             {
-                                int j2 = i2 - z;
+                                int l2 = k2 - p_76484_5_;
 
-                                if (Math.abs(l1) != j1 || Math.abs(j2) != j1 || rand.nextInt(2) != 0 && i4 != 0)
+                                if (Math.abs(j2) != l1 || Math.abs(l2) != l1 || p_76484_2_.nextInt(2) != 0 && i3 != 0)
                                 {
-                                    state = worldIn.getBlock(k1, i3, i2);
+                                    Block block1 = p_76484_1_.getBlock(i2, k1, k2);
 
-                                    if (state.isAir(worldIn, k1, i3, i2) || state.isLeaves(worldIn, k1, i3, i2) || state.getMaterial() == Material.vine)
+                                    if (block1.isAir(p_76484_1_, i2, k1, k2) || block1.isLeaves(p_76484_1_, i2, k1, k2))
                                     {
-                                        this.setBlockAndNotifyAdequately(worldIn, k1, i3, i2, this.metaLeaves, 0);
+                                        this.setBlockAndNotifyAdequately(p_76484_1_, i2, k1, k2, this.leafBlock, this.metaLeaves);
                                     }
                                 }
                             }
                         }
                     }
 
-                    for (int j3 = 0; j3 < i; ++j3)
+                    for (k1 = 0; k1 < l; ++k1)
                     {
-                        state = worldIn.getBlock(x, y - 1 + j3, z);
+                        block = p_76484_1_.getBlock(p_76484_3_, p_76484_4_ + k1, p_76484_5_);
 
-                        if (state.isAir(worldIn, x, y - 1 + j3, z) || state.isLeaves(worldIn, x, y - 1 + j3, z) || state.getMaterial() == Material.plants || state.getMaterial() == Material.vine)
+                        if (block.isAir(p_76484_1_, p_76484_3_, p_76484_4_ + k1, p_76484_5_) || block.isLeaves(p_76484_1_, p_76484_3_, p_76484_4_ + k1, p_76484_5_))
                         {
-                            this.setBlockAndNotifyAdequately(worldIn, x, y - 1 + j3, z, this.metaWood, 0);
+                            this.setBlockAndNotifyAdequately(p_76484_1_, p_76484_3_, p_76484_4_ + k1, p_76484_5_, this.logBlock, this.metaWood);
+
+                            if (this.vinesGrow && k1 > 0)
+                            {
+                                if (p_76484_2_.nextInt(3) > 0 && p_76484_1_.isAirBlock(p_76484_3_ - 1, p_76484_4_ + k1, p_76484_5_))
+                                {
+                                    this.setBlockAndNotifyAdequately(p_76484_1_, p_76484_3_ - 1, p_76484_4_ + k1, p_76484_5_, Blocks.vine, 8);
+                                }
+
+                                if (p_76484_2_.nextInt(3) > 0 && p_76484_1_.isAirBlock(p_76484_3_ + 1, p_76484_4_ + k1, p_76484_5_))
+                                {
+                                    this.setBlockAndNotifyAdequately(p_76484_1_, p_76484_3_ + 1, p_76484_4_ + k1, p_76484_5_, Blocks.vine, 2);
+                                }
+
+                                if (p_76484_2_.nextInt(3) > 0 && p_76484_1_.isAirBlock(p_76484_3_, p_76484_4_ + k1, p_76484_5_ - 1))
+                                {
+                                    this.setBlockAndNotifyAdequately(p_76484_1_, p_76484_3_, p_76484_4_ + k1, p_76484_5_ - 1, Blocks.vine, 1);
+                                }
+
+                                if (p_76484_2_.nextInt(3) > 0 && p_76484_1_.isAirBlock(p_76484_3_, p_76484_4_ + k1, p_76484_5_ + 1))
+                                {
+                                    this.setBlockAndNotifyAdequately(p_76484_1_, p_76484_3_, p_76484_4_ + k1, p_76484_5_ + 1, Blocks.vine, 4);
+                                }
+                            }
                         }
                     }
+
+                    if (this.vinesGrow)
+                    {
+                        for (k1 = p_76484_4_ - 3 + l; k1 <= p_76484_4_ + l; ++k1)
+                        {
+                            i3 = k1 - (p_76484_4_ + l);
+                            l1 = 2 - i3 / 2;
+
+                            for (i2 = p_76484_3_ - l1; i2 <= p_76484_3_ + l1; ++i2)
+                            {
+                                for (j2 = p_76484_5_ - l1; j2 <= p_76484_5_ + l1; ++j2)
+                                {
+                                    if (p_76484_1_.getBlock(i2, k1, j2).isLeaves(p_76484_1_, i2, k1, j2))
+                                    {
+                                        if (p_76484_2_.nextInt(4) == 0 && p_76484_1_.getBlock(i2 - 1, k1, j2).isAir(p_76484_1_, i2 - 1, k1, j2))
+                                        {
+                                            this.growVines(p_76484_1_, i2 - 1, k1, j2, 8);
+                                        }
+
+                                        if (p_76484_2_.nextInt(4) == 0 && p_76484_1_.getBlock(i2 + 1, k1, j2).isAir(p_76484_1_, i2 + 1, k1, j2))
+                                        {
+                                            this.growVines(p_76484_1_, i2 + 1, k1, j2, 2);
+                                        }
+
+                                        if (p_76484_2_.nextInt(4) == 0 && p_76484_1_.getBlock(i2, k1, j2 - 1).isAir(p_76484_1_, i2, k1, j2 - 1))
+                                        {
+                                            this.growVines(p_76484_1_, i2, k1, j2 - 1, 1);
+                                        }
+
+                                        if (p_76484_2_.nextInt(4) == 0 && p_76484_1_.getBlock(i2, k1, j2 + 1).isAir(p_76484_1_, i2, k1, j2 + 1))
+                                        {
+                                            this.growVines(p_76484_1_, i2, k1, j2 + 1, 4);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        if (p_76484_2_.nextInt(5) == 0 && l > 5)
+                        {
+                            for (k1 = 0; k1 < 2; ++k1)
+                            {
+                                for (i3 = 0; i3 < 4; ++i3)
+                                {
+                                    if (p_76484_2_.nextInt(4 - k1) == 0)
+                                    {
+                                        l1 = p_76484_2_.nextInt(3);
+                                        this.setBlockAndNotifyAdequately(p_76484_1_, p_76484_3_ + Direction.offsetX[Direction.rotateOpposite[i3]], p_76484_4_ + l - 5 + k1, p_76484_5_ + Direction.offsetZ[Direction.rotateOpposite[i3]], Blocks.cocoa, l1 << 2 | i3);
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    return true;
+                }
+                else
+                {
+                    return false;
                 }
             }
         }
-
-       return false;
+        else
+        {
+            return false;
+        }
     }
 
-    protected boolean canGrowInto(Block blockType)
+    /**
+     * Grows vines downward from the given block for a given length. Args: World, x, starty, z, vine-length
+     */
+    private void growVines(World p_76529_1_, int p_76529_2_, int p_76529_3_, int p_76529_4_, int p_76529_5_)
     {
-        Material material = blockType.getMaterial();
-        return material == Material.air || material == Material.leaves || material == Material.vine ||  blockType ==  BlocksGNS.dream_grass || blockType == BlocksGNS.nightmare_grass || blockType == BlocksGNS.dream_dirt || blockType == Blocks.dirt;
+        this.setBlockAndNotifyAdequately(p_76529_1_, p_76529_2_, p_76529_3_, p_76529_4_, Blocks.vine, p_76529_5_);
+        int i1 = 4;
+
+        while (true)
+        {
+            --p_76529_3_;
+
+            if (!p_76529_1_.getBlock(p_76529_2_, p_76529_3_, p_76529_4_).isAir(p_76529_1_, p_76529_2_, p_76529_3_, p_76529_4_) || i1 <= 0)
+            {
+                return;
+            }
+
+            this.setBlockAndNotifyAdequately(p_76529_1_, p_76529_2_, p_76529_3_, p_76529_4_, Blocks.vine, p_76529_5_);
+            --i1;
+        }
     }
 }

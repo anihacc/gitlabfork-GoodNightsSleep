@@ -68,14 +68,14 @@ public class BlocksGNS
 		luxurious_bed = register("luxurious_bed", new BlockGNSBed().setBlockTextureName(VariableConstants.find("luxurious_bed"))).setCreativeTab(null);
 		wretched_bed = register("wretched_bed", new BlockGNSBed().setBlockTextureName(VariableConstants.find("wretched_bed"))).setCreativeTab(null);
 
-		tall_dream_grass = register("tall_dream_grass", new BlockGNSTallGrass());
-		tall_nightmare_grass = register("tall_nightmare_grass", new BlockGNSTallGrass());
+		tall_dream_grass = register("tall_dream_grass", new BlockGNSTallGrass().setBlockTextureName(VariableConstants.find("tall_dream_grass")));
+		tall_nightmare_grass = register("tall_nightmare_grass", new BlockGNSTallGrass().setBlockTextureName(VariableConstants.find("tall_nightmare_grass")));
 		dream_grass = register("dream_grass", new BlockGNSGrass());
 		dream_dirt = register("dream_dirt", new BlockGNSDirt());
 		dream_farmland = register("dream_farmland", new BlockGNSFarmland()).setCreativeTab(null);
 		nightmare_grass = register("nightmare_grass", new BlockGNSGrass());
-		hope_mushroom_cap = register("hope_mushroom_cap", new BlockGNSMushroom());
-		despair_mushroom_cap = register("despair_mushroom_cap", new BlockGNSMushroom());
+		hope_mushroom_cap = register("hope_mushroom_cap", new BlockGNSMushroom().setBlockTextureName(VariableConstants.find("hope_mushroom_cap")));
+		despair_mushroom_cap = register("despair_mushroom_cap", new BlockGNSMushroom().setBlockTextureName(VariableConstants.find("despair_mushroom_cap")));
 		
 		candy_ore = register("candy_ore", new BlockGNSOre().setBlockTextureName(VariableConstants.find("candy_ore")));
 		rainbow_ore = register("rainbow_ore", new BlockGNSOre().setBlockTextureName(VariableConstants.find("rainbow_ore")));
@@ -98,17 +98,17 @@ public class BlocksGNS
 		dead_plank = register("dead_plank", new BlockGNSPlank().setBlockTextureName(VariableConstants.find("dead_plank")));
 		blood_plank = register("blood_plank", new BlockGNSPlank().setBlockTextureName(VariableConstants.find("blood_plank")));
 
-		dream_sapling = register("dream_sapling", new BlockGNSSapling(new WorldGenGNSTree(false, 6, BlocksGNS.dream_log, BlocksGNS.dream_leaves, false)).setBlockTextureName(VariableConstants.find("dream_sapling")));
-		candy_sapling = register("candy_sapling", new BlockGNSSapling(new WorldGenGNSTree(false, 6, BlocksGNS.white_log, BlocksGNS.candy_leaves, false)).setBlockTextureName(VariableConstants.find("candy_sapling")));
+		dream_sapling = register("dream_sapling", new BlockGNSSapling(new WorldGenGNSTree(false, 6, BlocksGNS.dream_log, 0, BlocksGNS.dream_leaves, 0, false)).setBlockTextureName(VariableConstants.find("dream_sapling")));
+		candy_sapling = register("candy_sapling", new BlockGNSSapling(new WorldGenGNSTree(false, 6, BlocksGNS.white_log, 0, BlocksGNS.candy_leaves, 0, false)).setBlockTextureName(VariableConstants.find("candy_sapling")));
 		
-		hope_mushroom = register("hope_mushroom", new BlockGNSFlower());
-		despair_mushroom = register("despair_mushroom", new BlockGNSFlower());
-		orange_flower = register("orange_flower", new BlockGNSFlower());
-		cyan_flower = register("cyan_flower", new BlockGNSFlower());
-		lolipop_bush = register("lolipop_bush", new BlockGNSFlower());
-		dead_flower = register("dead_flower", new BlockGNSFlower());
+		hope_mushroom = register("hope_mushroom", new BlockGNSFlower().setBlockTextureName(VariableConstants.find("hope_mushroom")));
+		despair_mushroom = register("despair_mushroom", new BlockGNSFlower().setBlockTextureName(VariableConstants.find("despair_mushroom")));
+		orange_flower = register("orange_flower", new BlockGNSFlower().setBlockTextureName(VariableConstants.find("orange_flower")));
+		cyan_flower = register("cyan_flower", new BlockGNSFlower().setBlockTextureName(VariableConstants.find("cyan_flower")));
+		lolipop_bush = register("lolipop_bush", new BlockGNSFlower().setBlockTextureName(VariableConstants.find("lolipop_bush")));
+		dead_flower = register("dead_flower", new BlockGNSFlower().setBlockTextureName(VariableConstants.find("dead_flower")));
 		
-		rainbow_crop = register("rainbow_crop", new BlockGNSRainbowCrop()).setCreativeTab(null);
+		rainbow_crop = register("rainbow_crop", new BlockGNSRainbowCrop().setBlockTextureName(VariableConstants.find("rainbow_crop"))).setCreativeTab(null);
 
 		dream_fence = register("dream_fence", new BlockGNSFence("dream_plank"));
 		white_fence = register("white_fence", new BlockGNSFence("white_plank"));
@@ -120,10 +120,10 @@ public class BlocksGNS
 		dead_stairs = register("dead_stairs", new BlockGNSStairs(dead_plank));
 		blood_stairs = register("blood_stairs", new BlockGNSStairs(blood_plank));
 
-		dream_double_slab = register("dream_double_slab", new BlockGNSSlab("dream_double_slab", true, Material.wood).setHardness(2.0F).setResistance(5.0F)).setCreativeTab(null);
-		white_double_slab = register("white_double_slab", new BlockGNSSlab("white_double_slab", true, Material.wood).setHardness(2.0F).setResistance(5.0F)).setCreativeTab(null);
-		dead_double_slab = register("dead_double_slab", new BlockGNSSlab("dead_double_slab", true, Material.wood).setHardness(2.0F).setResistance(5.0F)).setCreativeTab(null);
-		blood_double_slab = register("blood_double_slab", new BlockGNSSlab("blood_double_slab", true, Material.wood).setHardness(2.0F).setResistance(5.0F)).setCreativeTab(null);
+		dream_double_slab = register("dream_double_slab", new BlockGNSSlab("dream_double_slab", true, Material.wood).setHardness(2.0F).setResistance(5.0F)).setCreativeTab(null).setBlockTextureName(VariableConstants.find("dream_plank"));
+		white_double_slab = register("white_double_slab", new BlockGNSSlab("white_double_slab", true, Material.wood).setHardness(2.0F).setResistance(5.0F)).setCreativeTab(null).setBlockTextureName(VariableConstants.find("white_plank"));
+		dead_double_slab = register("dead_double_slab", new BlockGNSSlab("dead_double_slab", true, Material.wood).setHardness(2.0F).setResistance(5.0F)).setCreativeTab(null).setBlockTextureName(VariableConstants.find("dead_plank"));
+		blood_double_slab = register("blood_double_slab", new BlockGNSSlab("blood_double_slab", true, Material.wood).setHardness(2.0F).setResistance(5.0F)).setCreativeTab(null).setBlockTextureName(VariableConstants.find("blood_plank"));
 				
 		dream_slab = registerSlab("dream_slab", new BlockGNSSlab("dream_slab", false, Material.wood).setHardness(2.0F).setResistance(5.0F), dream_double_slab).setBlockTextureName(VariableConstants.find("dream_plank"));
 		white_slab = registerSlab("white_slab", new BlockGNSSlab("white_slab", false, Material.wood).setHardness(2.0F).setResistance(5.0F), white_double_slab).setBlockTextureName(VariableConstants.find("white_plank"));

@@ -1,9 +1,12 @@
 package com.legacy.goodnightsleep.world.nightmare.biome;
 
+import static net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.BIG_SHROOM;
+
 import java.util.Random;
 
 import com.legacy.goodnightsleep.blocks.BlocksGNS;
 import com.legacy.goodnightsleep.world.genfeatures.GNSGenMinable;
+import com.legacy.goodnightsleep.world.genfeatures.WorldGenBigMushroomGNS;
 import com.legacy.goodnightsleep.world.genfeatures.WorldGenBigTreeNightmare;
 import com.legacy.goodnightsleep.world.genfeatures.WorldGenFoilage;
 import com.legacy.goodnightsleep.world.genfeatures.WorldGenGNSTallGrass;
@@ -17,7 +20,6 @@ import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.feature.WorldGenPumpkin;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType;
 import net.minecraftforge.event.terraingen.TerrainGen;
 
 public class NightmareBiomeDecorator extends BiomeDecorator 
@@ -31,6 +33,8 @@ public class NightmareBiomeDecorator extends BiomeDecorator
 	public NightmareBiomeDecorator()
 	{
 		super();
+		
+		this.bigMushroomGen = new WorldGenBigMushroomGNS(0);
 	}
 
 	@Override
@@ -53,66 +57,51 @@ public class NightmareBiomeDecorator extends BiomeDecorator
         }
     }
 
-	@SuppressWarnings("deprecation")
 	@Override
     protected void genDecorations(BiomeGenBase biomeGenBaseIn)
     {
-		if (this.shouldSpawn(3))
-		{
-			this.getTree().generate(this.currentWorld, this.randomGenerator, this.chunk_X + this.nextInt(8) + 8, this.currentWorld.getPrecipitationHeight(this.chunk_X + this.nextInt(8) + 8, this.chunk_Z + this.nextInt(8) + 8), this.chunk_Z + this.nextInt(8) + 8);
-		}
+		for (int amount = 0; amount < 2; ++amount)
+        {
+			if (this.shouldSpawn(3))
+			{
+				this.getTree().generate(this.currentWorld, this.randomGenerator, this.chunk_X + this.nextInt(8) + 8, this.currentWorld.getPrecipitationHeight(this.chunk_X + this.nextInt(8) + 8, this.chunk_Z + this.nextInt(8) + 8), this.chunk_Z + this.nextInt(8) + 8);
+			}
+        }
 		
-		if(this.randomGenerator.nextInt(5) == 0)
+		if (TerrainGen.decorate(currentWorld, randomGenerator, chunk_X, chunk_Z, BIG_SHROOM) && this.randomGenerator.nextInt(5) == 0)
 		{
-			if(TerrainGen.decorate(this.currentWorld, this.randomGenerator, chunk_X, chunk_Z, EventType.BIG_SHROOM))
-			for (int k2 = 0; k2 < this.bigMushroomsPerChunk; ++k2)
-		    {
-		        int l6 = this.randomGenerator.nextInt(16) + 8;
-		        int k10 = this.randomGenerator.nextInt(16) + 8;
-	            this.bigMushroomGen.generate(this.currentWorld, this.randomGenerator, l6, this.currentWorld.getPrecipitationHeight(l6, k10), k10);
-		    }
+	        for (int j = 0; j < this.bigMushroomsPerChunk; ++j)
+	        {
+	            int k = this.chunk_X + this.randomGenerator.nextInt(16) + 8;
+	            int l = this.chunk_Z + this.randomGenerator.nextInt(16) + 8;
+	            this.bigMushroomGen.generate(this.currentWorld, this.randomGenerator, k, this.currentWorld.getHeightValue(k, l), l);
+	        }
 		}
 		
 		if (this.randomGenerator.nextInt(32) == 0)
         {
-            int i5 = this.randomGenerator.nextInt(16) + 8;
-            int k9 = this.randomGenerator.nextInt(16) + 8;
-            int j13 = nextInt(this.currentWorld.getHeightValue(i5, k9) * 2);
-
-            if (j13 > 0)
-            {
-                int k16 = this.randomGenerator.nextInt(j13);
-                (new WorldGenPumpkin()).generate(this.currentWorld, this.randomGenerator, i5, k16, k9);
-            }
+            int j = this.chunk_X + this.randomGenerator.nextInt(16) + 8;
+            int k = this.chunk_Z + this.randomGenerator.nextInt(16) + 8;
+            int l = nextInt(this.currentWorld.getHeightValue(j, k) * 2);
+            (new WorldGenPumpkin()).generate(this.currentWorld, this.randomGenerator, j, l, k);
         }
-		
-			
-           
 
-        for (int i3 = 0; i3 < 1; ++i3)
+		for (int j = 0; j < 1; ++j)
         {
-            int j7 = this.randomGenerator.nextInt(16) + 8;
-            int i11 = this.randomGenerator.nextInt(16) + 8;
-            int k14 = nextInt(this.currentWorld.getHeightValue(j7, i11) * 2);
-
-            if (k14 > 0)
-            {
-                int l17 = this.randomGenerator.nextInt(k14);
-                biomeGenBaseIn.getRandomWorldGenForGrass(this.randomGenerator).generate(this.currentWorld, this.randomGenerator, j7, l17, i11);
-            }
+            int k = this.chunk_X + this.randomGenerator.nextInt(16) + 8;
+            int l = this.chunk_Z + this.randomGenerator.nextInt(16) + 8;
+            int i1 = nextInt(this.currentWorld.getHeightValue(k, l) * 2);
+            WorldGenerator worldgenerator = biomeGenBaseIn.getRandomWorldGenForGrass(this.randomGenerator);
+            worldgenerator.generate(this.currentWorld, this.randomGenerator, k, i1, l);
         }
         
         for (int amount = 0; amount < 8; ++amount)
         {
-	        int j7 = this.randomGenerator.nextInt(8) + 8;
-	        int i11 = this.randomGenerator.nextInt(8) + 8;
-            int k14 = nextInt(this.currentWorld.getHeightValue(j7, i11) * 2);
-	        
-	        if (k14 > 0)
-	        {
-	            int l17 = this.randomGenerator.nextInt(k14);
-	            new WorldGenNetherSplash().generate(this.currentWorld, this.randomGenerator, j7, l17 -2 , i11);
-	        }
+        	int j = this.chunk_X + this.randomGenerator.nextInt(16) + 8;
+            int k = this.chunk_Z + this.randomGenerator.nextInt(16) + 8;
+            int l = nextInt(this.currentWorld.getHeightValue(j, k) * 2);
+            (new WorldGenNetherSplash()).generate(this.currentWorld, this.randomGenerator, j, l, k);
+
         }
 
 		this.spawnOres();
@@ -122,7 +111,7 @@ public class NightmareBiomeDecorator extends BiomeDecorator
 
 	public int nextInt(int max)
     {
-    	return max < 2 ? this.randomGenerator.nextInt(max + 1) : this.randomGenerator.nextInt(max);
+    	return this.randomGenerator.nextInt(max);
     }
 
     public boolean shouldSpawn(int chance)
@@ -148,29 +137,29 @@ public class NightmareBiomeDecorator extends BiomeDecorator
     }
 
     public void spawnOre(Block state, int size, int chance, int y)
-    {
+	{
 		this.ores.setSize(size);
 		this.ores.setBlock(state);
 
-    	for (int chances = 0; chances < chance; chances++)
-    	{
-        	this.ores.generate(this.currentWorld, this.randomGenerator, this.nextInt(16), this.nextInt(y), this.nextInt(16));
-    	}
-    }
+		for (int chances = 0; chances < chance; chances++)
+		{
+			this.ores.generate(this.currentWorld, this.randomGenerator, this.chunk_X + this.nextInt(16), this.nextInt(y), this.chunk_Z + this.nextInt(16));
+		}
+	}
     
 	public void generateFoilage(Block block)
 	{
 		this.foilage.setPlantBlock(block);
 
-        for(int n = 0; n < 2; n++)
-        {
-        	foilage.generate(this.currentWorld, this.randomGenerator, this.nextInt(16) + 8, this.nextInt(100) + 60, this.nextInt(16) + 8);
-        }
+		for (int n = 0; n < 2; n++)
+		{
+			this.foilage.generate(this.currentWorld, this.randomGenerator, this.chunk_X + this.nextInt(16) + 8, this.nextInt(128), this.chunk_Z + this.nextInt(16) + 8);
+		}
 	}
     
     public WorldGenerator getTree()
     {
-       return this.shouldSpawn(10) ? new WorldGenGNSTree(false, 4 + randomGenerator.nextInt(4), BlocksGNS.blood_log, Blocks.air, false) : new WorldGenBigTreeNightmare(false); //new DeadTreeGenerator(false)
+       return this.shouldSpawn(10) ? new WorldGenGNSTree(false, 4 + randomGenerator.nextInt(4), BlocksGNS.blood_log, 0, Blocks.air, 0, false) : new WorldGenBigTreeNightmare(false); //new DeadTreeGenerator(false)
     }
     
     public WorldGenerator getRandomWorldGenForGrass(Random rand)

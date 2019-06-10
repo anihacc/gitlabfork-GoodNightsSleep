@@ -2,6 +2,7 @@ package com.legacy.goodnightsleep.world.genfeatures;
 
 import java.util.Random;
 
+import com.legacy.goodnightsleep.GNSConfig;
 import com.legacy.goodnightsleep.blocks.BlocksGNS;
 
 import net.minecraft.block.Block;
@@ -12,31 +13,26 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 public class WorldGenBigMushroomGNS extends WorldGenerator
 {
     /** The mushroom type. 0 for despair, 1 for hope. */
-    private final Block mushroomType;
+    private int mushroomType = -1;
+    private static final String __OBFID = "CL_00000415";
 
-    public WorldGenBigMushroomGNS(Block p_i46449_1_)
+    public WorldGenBigMushroomGNS(int p_i2017_1_)
     {
         super(true);
-        this.mushroomType = p_i46449_1_;
+        this.mushroomType = p_i2017_1_;
     }
 
     public WorldGenBigMushroomGNS()
     {
         super(false);
-        this.mushroomType = null;
     }
 
-    
     public boolean generate(World p_76484_1_, Random p_76484_2_, int p_76484_3_, int p_76484_4_, int p_76484_5_)
     {
         int l = p_76484_2_.nextInt(2);
-
-        
-    	Block shroomBlock = this.mushroomType;
-
-        if (shroomBlock == null)
+        if (this.mushroomType >= 0)
         {
-        	shroomBlock = p_76484_2_.nextBoolean() ? BlocksGNS.despair_mushroom_cap : BlocksGNS.hope_mushroom_cap;
+            l = this.mushroomType;
         }
 
         int i1 = p_76484_2_.nextInt(3) + 4;
@@ -193,7 +189,15 @@ public class WorldGenBigMushroomGNS extends WorldGenerator
 
                                 if ((j2 != 0 || p_76484_4_ >= p_76484_4_ + i1 - 1) && p_76484_1_.getBlock(l2, k1, i2).canBeReplacedByLeaves(p_76484_1_, l2, k1, i2))
                                 {
-                                    this.setBlockAndNotifyAdequately(p_76484_1_, l2, k1, i2, Block.getBlockById(Block.getIdFromBlock(shroomBlock) + l), j2);
+                                	if (p_76484_1_.provider.dimensionId == GNSConfig.getDreamDimensionID())
+                                	{
+                                        this.setBlockAndNotifyAdequately(p_76484_1_, l2, k1, i2, Block.getBlockById(Block.getIdFromBlock(BlocksGNS.hope_mushroom_cap)), j2);
+
+                                	}
+                                	else
+                                	{
+                                        this.setBlockAndNotifyAdequately(p_76484_1_, l2, k1, i2, Block.getBlockById(Block.getIdFromBlock(BlocksGNS.despair_mushroom_cap)), j2);
+                                	}
                                 }
                             }
                         }
@@ -205,7 +209,15 @@ public class WorldGenBigMushroomGNS extends WorldGenerator
 
                         if (block2.canBeReplacedByLeaves(p_76484_1_, p_76484_3_, p_76484_4_ + k1, p_76484_5_))
                         {
-                            this.setBlockAndNotifyAdequately(p_76484_1_, p_76484_3_, p_76484_4_ + k1, p_76484_5_, Block.getBlockById(Block.getIdFromBlock(shroomBlock) + l), 10);
+                        	if (p_76484_1_.provider.dimensionId == GNSConfig.getDreamDimensionID())
+                        	{
+                        		this.setBlockAndNotifyAdequately(p_76484_1_, p_76484_3_, p_76484_4_ + k1, p_76484_5_, Block.getBlockById(Block.getIdFromBlock(BlocksGNS.hope_mushroom_cap)), 10);
+                        	}
+                        	else
+                        	{
+                        		this.setBlockAndNotifyAdequately(p_76484_1_, p_76484_3_, p_76484_4_ + k1, p_76484_5_, Block.getBlockById(Block.getIdFromBlock(BlocksGNS.despair_mushroom_cap)), 10);
+
+                        	}
                         }
                     }
 

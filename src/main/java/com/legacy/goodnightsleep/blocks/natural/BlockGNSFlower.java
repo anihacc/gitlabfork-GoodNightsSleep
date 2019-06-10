@@ -57,10 +57,15 @@ public class BlockGNSFlower extends BlockBush
 		 }
 	 }
 
-	@Override
+	/*@Override
 	public int getRenderType()
 	{
 		return CommonProxy.gnsFlowerRenderID;
-	}
+	}*/
 
+	public int getRenderType()
+    {
+        return 1;
+    }
+	
 }
