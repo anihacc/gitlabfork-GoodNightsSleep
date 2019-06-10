@@ -14,8 +14,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumWorldBlockLayer;
@@ -28,20 +26,15 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class BlockGNSBed extends BlockDirectional
 {
     public static final PropertyEnum<BlockGNSBed.EnumPartType> PART = PropertyEnum.<BlockGNSBed.EnumPartType>create("part", BlockGNSBed.EnumPartType.class);
-    protected static final AxisAlignedBB BED_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.5625D, 1.0D);
 
     public BlockGNSBed()
     {
         super(Material.cloth);
         this.setDefaultState(this.blockState.getBaseState().withProperty(PART, BlockGNSBed.EnumPartType.FOOT));
-        this.setCreativeTab(null);
+        this.setBedBounds();
     }
-    
-    /**
-     * Called when the block is right clicked by a player.
-     */
 
-    public boolean isFullCube(IBlockState state)
+    public boolean isFullCube()
     {
         return false;
     }
@@ -49,17 +42,20 @@ public class BlockGNSBed extends BlockDirectional
     /**
      * Used to determine ambient occlusion and culling when rebuilding chunks for render
      */
-    public boolean isOpaqueCube(IBlockState state)
+    public boolean isOpaqueCube()
     {
         return false;
     }
 
+    public void setBlockBoundsBasedOnState(IBlockAccess worldIn, BlockPos pos)
+    {
+        this.setBedBounds();
+    }
+
     /**
-     * Called when a neighboring block was changed and marks that this state should perform any checks during a neighbor
-     * change. Cases may include when redstone power is updated, cactus blocks popping off due to a neighboring solid
-     * block, etc.
+     * Called when a neighboring block changes.
      */
-    public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn)
+    public void onNeighborBlockChange(World worldIn, BlockPos pos, IBlockState state, Block neighborBlock)
     {
         EnumFacing enumfacing = (EnumFacing)state.getValue(FACING);
 
@@ -101,9 +97,9 @@ public class BlockGNSBed extends BlockDirectional
         
     }
 
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+    private void setBedBounds()
     {
-        return BED_AABB;
+        this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.5625F, 1.0F);
     }
 
     /**
@@ -128,9 +124,10 @@ public class BlockGNSBed extends BlockDirectional
         return EnumWorldBlockLayer.CUTOUT;
     }
 
-    public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
+    @SideOnly(Side.CLIENT)
+    public Item getItem(World worldIn, BlockPos pos)
     {
-        return new ItemStack(Items.bed);
+        return Items.bed;
     }
 
     public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player)
@@ -156,12 +153,37 @@ public class BlockGNSBed extends BlockDirectional
     }
 
     /**
+     * Get the actual Block state of this Block at the given position. This applies properties not visible in the
+     * metadata, such as fence connections.
+     */
+    public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos)
+    {
+        if (state.getValue(PART) == BlockGNSBed.EnumPartType.FOOT)
+        {
+            IBlockState iblockstate = worldIn.getBlockState(pos.offset((EnumFacing)state.getValue(FACING)));
+
+            if (iblockstate.getBlock() == this)
+            {
+            }
+        }
+
+        return state;
+    }
+
+    /**
      * Convert the BlockState into the correct metadata value
      */
     public int getMetaFromState(IBlockState state)
     {
         int i = 0;
         i = i | ((EnumFacing)state.getValue(FACING)).getHorizontalIndex();
+
+        if (state.getValue(PART) == BlockGNSBed.EnumPartType.HEAD)
+        {
+            i |= 8;
+
+           
+        }
 
         return i;
     }
@@ -193,5 +215,4 @@ public class BlockGNSBed extends BlockDirectional
             return this.name;
         }
     }
-
 }

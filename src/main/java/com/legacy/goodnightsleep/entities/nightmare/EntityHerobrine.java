@@ -37,7 +37,7 @@ public class EntityHerobrine extends EntityMob
 		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(64.0D);
 	}
 
-	protected String getAmbientSound()
+	protected String getLivingSound()
 	{
 		return null;
 	}

@@ -11,7 +11,7 @@ public class EntityTormenter extends EntityZombie
         this.setSize(0.6F, 1.95F);
     }
 
-	protected String getAmbientSound()
+	protected String getLivingSound()
     {
         return "ambient.cave.cave";
     }

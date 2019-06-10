@@ -152,11 +152,11 @@ public class GoodDreamBiomeDecorator extends BiomeDecorator
     	this.spawnOre(Blocks.gravel.getDefaultState(), 32, 10, 128);
     	
     	this.spawnOre(Blocks.coal_ore.getDefaultState(), 16, 20, 128);
-    	this.spawnOre(Blocks.iron_ore.getDefaultState(), 8, 20, 64);
+    	//this.spawnOre(Blocks.iron_ore.getDefaultState(), 8, 20, 64);
     	this.spawnOre(Blocks.gold_ore.getDefaultState(), 8, 2, 32);
     	this.spawnOre(Blocks.redstone_ore.getDefaultState(), 7, 8, 16);
     	this.spawnOre(Blocks.lapis_ore.getDefaultState(), 6, 1, 16);
-    	this.spawnOre(Blocks.diamond_ore.getDefaultState(), 7, 1, 16);
+    	//this.spawnOre(Blocks.diamond_ore.getDefaultState(), 7, 1, 16);
     	this.spawnOre(Blocks.glowstone.getDefaultState(), 8, 15, 3);
     	
     	this.spawnOre(BlocksGNS.candy_ore.getDefaultState(), 8, 20, 128);
