@@ -1,9 +1,0 @@
-{
-	"parent": "block/cube_bottom_top",
-	"textures": {
-		"particle": "goodnightsleep:blocks/natural/dream_dirt",
-		"bottom": "goodnightsleep:blocks/natural/dream_dirt",
-		"top": "goodnightsleep:blocks/natural/dream_grass_top",
-		"side": "goodnightsleep:blocks/natural/dream_grass_side"
-	}
-}

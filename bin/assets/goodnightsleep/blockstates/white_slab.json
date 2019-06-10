@@ -1,7 +1,0 @@
-{
-    "variants": {
-        "half=bottom": { "model": "goodnightsleep:half_slab_white" },
-        "half=top": { "model": "goodnightsleep:upper_slab_white" },
-		"half=full": { "model": "goodnightsleep:white_plank" }
-    }
-}

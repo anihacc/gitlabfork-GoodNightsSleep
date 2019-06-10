@@ -1,6 +1,0 @@
-{
-    "parent": "block/fence_inventory",
-    "textures": {
-        "texture": "goodnightsleep:blocks/construction/blood_plank"
-    }
-}

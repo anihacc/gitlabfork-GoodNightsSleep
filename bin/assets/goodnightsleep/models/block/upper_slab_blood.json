@@ -1,8 +1,0 @@
-{
-    "parent": "block/upper_slab",
-    "textures": {
-        "bottom": "goodnightsleep:blocks/construction/blood_plank",
-        "top": "goodnightsleep:blocks/construction/blood_plank",
-        "side": "goodnightsleep:blocks/construction/blood_plank"
-    }
-}
