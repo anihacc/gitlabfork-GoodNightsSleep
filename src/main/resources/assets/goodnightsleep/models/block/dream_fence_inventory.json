@@ -1,0 +1,6 @@
+{
+    "parent": "block/fence_inventory",
+    "textures": {
+        "texture": "goodnightsleep:blocks/construction/dream_plank"
+    }
+}

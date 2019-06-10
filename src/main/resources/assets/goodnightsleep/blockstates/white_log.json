@@ -1,0 +1,8 @@
+{
+	"variants": {
+		"axis=y":  { "model": "goodnightsleep:white_log" },
+		"axis=z":   { "model": "goodnightsleep:white_log", "x": 90 },
+		"axis=x":   { "model": "goodnightsleep:white_log", "x": 90, "y": 90 },
+		"axis=none": { "model": "goodnightsleep:white_bark" }
+	}
+}

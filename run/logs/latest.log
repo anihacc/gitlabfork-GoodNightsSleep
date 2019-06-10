@@ -1,0 +1,45 @@
+[04:04:08] [main/INFO]: Setting user: Player899
+[04:04:09] [Client thread/INFO]: LWJGL Version: 2.9.1
+[04:04:18] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Good Night's Sleep
+[04:04:19] [Sound Library Loader/INFO]: Sound engine started
+[04:04:20] [Client thread/INFO]: Created: 16x16 textures/blocks-atlas
+[04:04:20] [Client thread/INFO]: Created: 16x16 textures/items-atlas
+[04:04:20] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Good Night's Sleep
+[04:04:21] [Client thread/INFO]: Created: 512x256 textures/blocks-atlas
+[04:04:21] [Client thread/INFO]: Created: 256x256 textures/items-atlas
+[04:04:22] [Sound Library Loader/INFO]: Sound engine started
+[04:04:27] [Server thread/INFO]: Starting integrated minecraft server version 1.7.10
+[04:04:27] [Server thread/INFO]: Generating keypair
+[04:04:28] [Server thread/INFO]: Preparing start region for level 0
+[04:04:28] [Server thread/INFO]: Changing view distance to 12, from 10
+[04:04:29] [Server thread/INFO]: Player899[local:E:f6fefe92] logged in with entity id 302 at (2451.234400939383, 80.0, 332.90609458860064)
+[04:04:29] [Server thread/INFO]: Player899 joined the game
+[04:04:31] [Server thread/INFO]: Player899 has just earned the achievement [Taking Inventory]
+[04:04:31] [Client thread/INFO]: [CHAT] Player899 has just earned the achievement [Taking Inventory]
+[04:13:12] [Server thread/INFO]: Saving and pausing game...
+[04:13:12] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[04:13:12] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[04:13:12] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[04:13:12] [Server thread/INFO]: Saving chunks for level 'New World'/Nightmare
+[04:13:12] [Server thread/INFO]: Saving chunks for level 'New World'/GoodDream
+[04:28:53] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Good Night's Sleep
+[04:28:54] [Client thread/INFO]: Created: 512x256 textures/blocks-atlas
+[04:28:54] [Client thread/INFO]: Created: 512x256 textures/items-atlas
+[04:28:55] [Sound Library Loader/INFO]: Sound engine started
+[04:35:44] [Server thread/INFO]: Saving and pausing game...
+[04:35:44] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[04:35:44] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[04:35:44] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[04:35:44] [Server thread/INFO]: Saving chunks for level 'New World'/Nightmare
+[04:35:44] [Server thread/INFO]: Saving chunks for level 'New World'/GoodDream
+[04:52:59] [Client thread/INFO]: Stopping!
+[04:52:59] [Server thread/INFO]: Stopping server
+[04:52:59] [Server thread/INFO]: Saving players
+[04:52:59] [Server thread/INFO]: Saving worlds
+[04:52:59] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[04:52:59] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[04:52:59] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[04:52:59] [Server thread/INFO]: Saving chunks for level 'New World'/Nightmare
+[04:52:59] [Server thread/INFO]: Saving chunks for level 'New World'/GoodDream
+[04:52:59] [Client Shutdown Thread/INFO]: Stopping server
+[04:52:59] [Client Shutdown Thread/INFO]: Saving players
