@@ -2,6 +2,8 @@ package com.legacy.goodnightsleep.blocks;
 
 import java.util.Random;
 
+import com.legacy.goodnightsleep.items.ItemsGNS;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.material.EnumPushReaction;
@@ -87,7 +89,19 @@ public class BlockGNSBed extends BlockHorizontal
      */
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return state.getValue(PART) == BlockGNSBed.EnumPartType.HEAD ? Items.AIR : Items.BED;
+    	if (this == BlocksGNS.luxurious_bed)
+    	{
+    		return state.getValue(PART) == BlockGNSBed.EnumPartType.HEAD ? Items.AIR : ItemsGNS.luxurious_bed_item;
+    	}
+    	else if (this == BlocksGNS.wretched_bed)
+    	{
+    		return state.getValue(PART) == BlockGNSBed.EnumPartType.HEAD ? Items.AIR : ItemsGNS.wretched_bed_item;
+    	}
+    	else
+    	{
+    		return state.getValue(PART) == BlockGNSBed.EnumPartType.HEAD ? Items.AIR : Items.BED;
+    	}
+        
     }
 
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
