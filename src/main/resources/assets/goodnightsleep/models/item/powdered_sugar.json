@@ -1,6 +1,6 @@
 {
 	"parent": "item/generated",
 	"textures": {
-		"layer0": "goodnightsleep:items/misc/powdered_sugar"
+		"layer0": "goodnightsleep:item/misc/powdered_sugar"
 	}
 }

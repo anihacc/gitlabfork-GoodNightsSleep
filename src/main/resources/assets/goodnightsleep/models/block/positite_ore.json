@@ -1,6 +1,6 @@
 {
 	"parent": "block/cube_all",
 	"textures": {
-		"all": "goodnightsleep:blocks/ore/positite_ore"
+		"all": "goodnightsleep:block/ore/positite_ore"
 	}
 }

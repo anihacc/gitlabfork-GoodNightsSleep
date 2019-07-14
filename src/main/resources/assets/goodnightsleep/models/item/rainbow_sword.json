@@ -1,7 +1,7 @@
 {
 	"parent": "item/handheld",
 	"textures": {
-		"layer0": "goodnightsleep:items/weapons/rainbow_sword"
+		"layer0": "goodnightsleep:item/weapons/rainbow_sword"
 	},
 	"display": {
 		"thirdperson": {

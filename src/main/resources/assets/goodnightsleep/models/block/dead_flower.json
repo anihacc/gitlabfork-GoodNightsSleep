@@ -1,7 +1,7 @@
 {
     "parent": "block/cross",
     "textures": {
-        "particle": "goodnightsleep:blocks/natural/dead_flower",
-        "cross": "goodnightsleep:blocks/natural/dead_flower"
+        "particle": "goodnightsleep:block/natural/dead_flower",
+        "cross": "goodnightsleep:block/natural/dead_flower"
     }
 }

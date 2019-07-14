@@ -45,6 +45,8 @@ public class BlocksGNS
 
 	public static Block white_log, dream_log, blood_log, dead_log;
 
+	public static Block stripped_white_log, stripped_dream_log, stripped_blood_log, stripped_dead_log;
+
 	public static Block delusion_stone, delusion_cobblestone;
 	
 	public static Block dream_fence, white_fence, dead_fence, blood_fence;
@@ -102,6 +104,11 @@ public class BlocksGNS
 		dead_log = register("dead_log", new BlockLog(MaterialColor.GRAY, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)));
 		blood_log = register("blood_log", new BlockLog(MaterialColor.RED, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)));
 		
+		stripped_dream_log = register("stripped_dream_log", new BlockLog(MaterialColor.CYAN, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)));
+		stripped_white_log = register("stripped_white_log", new BlockLog(MaterialColor.LIGHT_GRAY, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)));
+		stripped_dead_log = register("stripped_dead_log", new BlockLog(MaterialColor.GRAY, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)));
+		stripped_blood_log = register("stripped_blood_log", new BlockLog(MaterialColor.RED, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)));
+		
 		dream_plank = register("dream_plank", new Block(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
 		white_plank = register("white_plank", new Block(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
 		dead_plank = register("dead_plank", new Block(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
@@ -110,12 +117,12 @@ public class BlocksGNS
 		//dream_sapling = register("dream_sapling", new BlockGNSSapling(new WorldGenGNSTree(false, 6, BlocksGNS.dream_log.getDefaultState(), BlocksGNS.dream_leaves.getDefaultState(), false)));
 		//candy_sapling = register("candy_sapling", new BlockGNSSapling(new WorldGenGNSTree(false, 6, BlocksGNS.white_log.getDefaultState(), BlocksGNS.candy_leaves.getDefaultState(), false)));
 		
-		hope_mushroom = register("hope_mushroom", new BlockFlower(Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0.0F).sound(SoundType.PLANT)));
-		despair_mushroom = register("despair_mushroom", new BlockFlower(Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0.0F).sound(SoundType.PLANT)));
-		orange_flower = register("orange_flower", new BlockFlower(Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0.0F).sound(SoundType.PLANT)));
-		cyan_flower = register("cyan_flower", new BlockFlower(Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0.0F).sound(SoundType.PLANT)));
-		lolipop_bush = register("lolipop_bush", new BlockFlower(Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0.0F).sound(SoundType.PLANT)));
-		dead_flower = register("dead_flower", new BlockFlower(Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0.0F).sound(SoundType.PLANT)));
+		hope_mushroom = register("hope_mushroom", new BlockGNSFlower(Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0.0F).sound(SoundType.PLANT)));
+		despair_mushroom = register("despair_mushroom", new BlockGNSFlower(Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0.0F).sound(SoundType.PLANT)));
+		orange_flower = register("orange_flower", new BlockGNSFlower(Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0.0F).sound(SoundType.PLANT)));
+		cyan_flower = register("cyan_flower", new BlockGNSFlower(Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0.0F).sound(SoundType.PLANT)));
+		lolipop_bush = register("lolipop_bush", new BlockGNSFlower(Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0.0F).sound(SoundType.PLANT)));
+		dead_flower = register("dead_flower", new BlockGNSFlower(Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0.0F).sound(SoundType.PLANT)));
 		
 		//rainbow_crop = registerWithoutItem("rainbow_crop", new BlockGNSRainbowCrop()).setCreativeTab(null);
 

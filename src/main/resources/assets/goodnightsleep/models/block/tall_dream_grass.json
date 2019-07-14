@@ -1,6 +1,6 @@
 {
     "parent": "block/cross",
     "textures": {
-        "cross": "goodnightsleep:blocks/natural/tall_dream_grass"
+        "cross": "goodnightsleep:block/natural/tall_dream_grass"
     }
 }

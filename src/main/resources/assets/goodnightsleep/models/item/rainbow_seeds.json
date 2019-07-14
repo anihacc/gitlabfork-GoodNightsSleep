@@ -1,6 +1,6 @@
 {
 	"parent": "item/generated",
 	"textures": {
-		"layer0": "goodnightsleep:items/misc/rainbow_seeds"
+		"layer0": "goodnightsleep:item/misc/rainbow_seeds"
 	}
 }

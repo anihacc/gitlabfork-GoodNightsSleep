@@ -1,7 +1,7 @@
 {
 	"parent": "item/handheld",
 	"textures": {
-		"layer0": "goodnightsleep:items/tools/candy_pickaxe"
+		"layer0": "goodnightsleep:item/tools/candy_pickaxe"
 	},
 	"display": {
 		"thirdperson": {

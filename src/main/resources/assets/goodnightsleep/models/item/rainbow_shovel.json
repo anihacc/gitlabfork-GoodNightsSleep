@@ -1,7 +1,7 @@
 {
 	"parent": "item/handheld",
 	"textures": {
-		"layer0": "goodnightsleep:items/tools/rainbow_shovel"
+		"layer0": "goodnightsleep:item/tools/rainbow_shovel"
 	},
 	"display": {
 		"thirdperson": {

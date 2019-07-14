@@ -1,6 +1,6 @@
 {
     "parent": "block/fence_side",
     "textures": {
-        "texture": "goodnightsleep:blocks/construction/blood_plank"
+        "texture": "goodnightsleep:block/construction/blood_plank"
     }
 }

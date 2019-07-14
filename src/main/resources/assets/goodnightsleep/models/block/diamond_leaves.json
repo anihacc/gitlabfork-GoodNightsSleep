@@ -1,6 +1,6 @@
 {
-    "parent": "block/cube_all",
+    "parent": "block/leaves",
     "textures": {
-        "all": "goodnightsleep:blocks/natural/diamond_leaves"
+        "all": "goodnightsleep:block/natural/diamond_leaves"
     }
 }

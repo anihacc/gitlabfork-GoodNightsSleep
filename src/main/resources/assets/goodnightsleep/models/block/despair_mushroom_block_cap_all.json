@@ -1,6 +1,6 @@
 {
     "parent": "block/cube_all",
     "textures": {
-        "all": "goodnightsleep:blocks/despair_outside"
+        "all": "goodnightsleep:block/despair_outside"
     }
 }

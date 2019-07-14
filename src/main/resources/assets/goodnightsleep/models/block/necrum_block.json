@@ -1,6 +1,6 @@
 {
 	"parent": "block/cube_all",
 	"textures": {
-		"all": "goodnightsleep:blocks/construction/necrum_block"
+		"all": "goodnightsleep:block/construction/necrum_block"
 	}
 }

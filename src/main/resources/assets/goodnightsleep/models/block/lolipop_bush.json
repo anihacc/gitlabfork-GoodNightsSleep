@@ -1,7 +1,7 @@
 {
     "parent": "block/cross",
     "textures": {
-        "particle": "goodnightsleep:blocks/natural/lolipop_bush",
-        "cross": "goodnightsleep:blocks/natural/lolipop_bush"
+        "particle": "goodnightsleep:block/natural/lolipop_bush",
+        "cross": "goodnightsleep:block/natural/lolipop_bush"
     }
 }

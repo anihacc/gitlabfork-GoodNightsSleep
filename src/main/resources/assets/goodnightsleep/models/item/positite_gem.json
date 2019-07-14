@@ -1,6 +1,6 @@
 {
 	"parent": "item/generated",
 	"textures": {
-		"layer0": "goodnightsleep:items/misc/positite_gem"
+		"layer0": "goodnightsleep:item/misc/positite_gem"
 	}
 }

@@ -3,10 +3,10 @@
     "textures": {
         "particle": "blocks/mushroom_block_inside",
         "down": "blocks/mushroom_block_inside",
-        "up": "goodnightsleep:blocks/despair_outside",
-        "north": "goodnightsleep:blocks/despair_outside",
+        "up": "goodnightsleep:block/despair_outside",
+        "north": "goodnightsleep:block/despair_outside",
         "east": "blocks/mushroom_block_inside",
         "south": "blocks/mushroom_block_inside",
-        "west": "goodnightsleep:blocks/despair_outside"
+        "west": "goodnightsleep:block/despair_outside"
     }
 }

@@ -1,7 +1,7 @@
 {
 	"parent": "item/handheld",
 	"textures": {
-		"layer0": "goodnightsleep:items/weapons/negatite_sword"
+		"layer0": "goodnightsleep:item/weapons/negatite_sword"
 	},
 	"display": {
 		"thirdperson": {

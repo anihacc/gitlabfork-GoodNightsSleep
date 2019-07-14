@@ -1,6 +1,6 @@
 {
     "parent": "block/crop",
     "textures": {
-        "crop": "goodnightsleep:blocks/natural/rainbow_berries_3"
+        "crop": "goodnightsleep:block/natural/rainbow_berries_3"
     }
 }

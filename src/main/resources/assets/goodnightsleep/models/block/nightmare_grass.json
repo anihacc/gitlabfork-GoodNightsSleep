@@ -3,7 +3,7 @@
 	"textures": {
 		"particle": "blocks/dirt",
 		"bottom": "blocks/dirt",
-		"top": "goodnightsleep:blocks/natural/nightmare_grass_top",
-		"side": "goodnightsleep:blocks/natural/nightmare_grass_side"
+		"top": "goodnightsleep:block/natural/nightmare_grass_top",
+		"side": "goodnightsleep:block/natural/nightmare_grass_side"
 	}
 }

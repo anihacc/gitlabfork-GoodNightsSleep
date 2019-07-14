@@ -1,7 +1,7 @@
 {
     "parent": "block/cross",
     "textures": {
-        "particle": "goodnightsleep:blocks/natural/orange_flower",
-        "cross": "goodnightsleep:blocks/natural/orange_flower"
+        "particle": "goodnightsleep:block/natural/orange_flower",
+        "cross": "goodnightsleep:block/natural/orange_flower"
     }
 }

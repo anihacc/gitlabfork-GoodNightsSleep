@@ -1,6 +1,6 @@
 {
 	"parent": "item/generated",
 	"textures": {
-		"layer0": "goodnightsleep:items/armor/rainbow_chestplate"
+		"layer0": "goodnightsleep:item/armor/rainbow_chestplate"
 	}
 }

@@ -1,7 +1,7 @@
 {
 	"parent": "item/handheld",
 	"textures": {
-		"layer0": "goodnightsleep:items/weapons/zitrite_sword"
+		"layer0": "goodnightsleep:item/weapons/zitrite_sword"
 	},
 	"display": {
 		"thirdperson": {

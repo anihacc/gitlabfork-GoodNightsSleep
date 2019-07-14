@@ -1,6 +1,5 @@
 package com.legacy.goodnightsleep.world.dream;
 
-import com.legacy.goodnightsleep.GNSRegistryHandler;
 import com.legacy.goodnightsleep.blocks.BlocksGNS;
 
 import net.minecraft.util.math.BlockPos;
@@ -73,7 +72,7 @@ public class GoodDreamDimension extends Dimension
 	@OnlyIn(Dist.CLIENT)
     public float getCloudHeight()
     {
-        return 100F;
+        return 150F;
     }
 	
 	@Override

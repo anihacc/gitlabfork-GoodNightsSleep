@@ -1,6 +1,6 @@
 {
 	"parent": "item/generated",
 	"textures": {
-		"layer0": "goodnightsleep:items/food/rainbow_berries"
+		"layer0": "goodnightsleep:item/food/rainbow_berries"
 	}
 }

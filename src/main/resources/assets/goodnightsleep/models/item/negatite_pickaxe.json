@@ -1,7 +1,7 @@
 {
 	"parent": "item/handheld",
 	"textures": {
-		"layer0": "goodnightsleep:items/tools/negatite_pickaxe"
+		"layer0": "goodnightsleep:item/tools/negatite_pickaxe"
 	},
 	"display": {
 		"thirdperson": {
