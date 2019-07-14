@@ -2,6 +2,7 @@ package com.legacy.goodnightsleep.blocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.monster.IMob;
@@ -10,11 +11,11 @@ import net.minecraft.init.Items;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
+import net.minecraft.world.IWorldReaderBase;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -36,24 +37,26 @@ public class BlockGNSTallGrass extends BlockBush
 		return SHAPE;
 	}
 
-	 @Override
-	 public boolean canSustainPlant(IBlockState state, IBlockReader world, BlockPos pos, EnumFacing facing, net.minecraftforge.common.IPlantable plantable)
-	 {
-		 if (this == BlocksGNS.tall_dream_grass)
-			{
-			 return state.getBlock() == BlocksGNS.dream_grass || state.getBlock() == BlocksGNS.dream_dirt;
-			}
-		 
-		 if (this == BlocksGNS.tall_nightmare_grass)
-			{
-			 return state.getBlock() == BlocksGNS.nightmare_grass || state.getBlock() == Blocks.DIRT;
-			}
-		 
-		 else
-			{
-			 return state.getBlock() == Blocks.GRASS;
-			}
-	 }
+	@Override
+	public boolean isValidPosition(IBlockState state, IWorldReaderBase worldIn, BlockPos pos)
+	{
+		BlockPos blockpos = pos.down();
+		IBlockState iblockstate = worldIn.getBlockState(blockpos);
+		Block block = iblockstate.getBlock();
+		
+		if (this == BlocksGNS.tall_dream_grass)
+		{
+			return block == BlocksGNS.dream_grass || block == BlocksGNS.dream_dirt;
+		}
+		if (this == BlocksGNS.tall_nightmare_grass)
+		{
+			return block == BlocksGNS.nightmare_grass || block == Blocks.DIRT;
+		}
+		else
+		{
+			return block == Blocks.GRASS;
+		}
+	}
 	 
 	 @Override
 	 public boolean isReplaceable(IBlockState state, BlockItemUseContext useContext)
