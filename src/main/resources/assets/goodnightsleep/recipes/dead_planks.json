@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "plank",
+  "pattern": [
+    "#"
+  ],
+  "key": {
+
+    "#": {
+      "item": "goodnightsleep:dead_log"
+    }
+  },
+  "result": {
+    "item": "goodnightsleep:dead_plank",
+    "count": 4
+  }
+}

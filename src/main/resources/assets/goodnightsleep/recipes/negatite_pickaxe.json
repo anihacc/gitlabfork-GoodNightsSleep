@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    " # ",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "X": [
+      {
+        "item": "goodnightsleep:negatite_gem"
+      }
+    ]
+  },
+  "result": {
+    "item": "goodnightsleep:negatite_pickaxe"
+  }
+}

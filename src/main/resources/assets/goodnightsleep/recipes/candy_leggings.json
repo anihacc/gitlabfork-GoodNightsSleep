@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "X X",
+    "X X"
+  ],
+  "key": {
+    "X": {
+      "item": "goodnightsleep:candy_block"
+    }
+  },
+  "result": {
+    "item": "goodnightsleep:candy_leggings"
+  }
+}

@@ -1,0 +1,8 @@
+{
+	"variants": {
+		"check_decay=true,decayable=true": { "model": "goodnightsleep:block/dream_leaves" },
+		"check_decay=true,decayable=false": { "model": "goodnightsleep:block/dream_leaves" },
+		"check_decay=false,decayable=true": { "model": "goodnightsleep:block/dream_leaves" },
+		"check_decay=false,decayable=false": { "model": "goodnightsleep:block/dream_leaves" }
+	}
+}

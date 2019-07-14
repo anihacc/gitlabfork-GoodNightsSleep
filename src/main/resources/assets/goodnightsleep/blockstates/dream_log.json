@@ -1,0 +1,8 @@
+{
+	"variants": {
+		"axis=y":  { "model": "goodnightsleep:block/dream_log" },
+		"axis=z":   { "model": "goodnightsleep:block/dream_log", "x": 90 },
+		"axis=x":   { "model": "goodnightsleep:block/dream_log", "x": 90, "y": 90 },
+		"axis=none": { "model": "goodnightsleep:block/dream_bark" }
+	}
+}

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X X",
+    "XXX",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "goodnightsleep:positite_gem"
+    }
+  },
+  "result": {
+    "item": "goodnightsleep:positite_chestplate"
+  }
+}

@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "half=bottom": { "model": "goodnightsleep:block/half_slab_dead" },
+        "half=top": { "model": "goodnightsleep:block/upper_slab_dead" },
+		"half=full": { "model": "goodnightsleep:block/dead_plank" }
+    }
+}

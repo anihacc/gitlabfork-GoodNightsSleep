@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    " # ",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "X": [
+      {
+        "item": "goodnightsleep:rainbow_ingot"
+      }
+    ]
+  },
+  "result": {
+    "item": "goodnightsleep:rainbow_pickaxe"
+  }
+}
