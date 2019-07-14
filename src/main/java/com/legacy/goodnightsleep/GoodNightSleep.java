@@ -14,6 +14,7 @@ public class GoodNightSleep
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::initialization);
 		//FMLJavaModLoadingContext.get().getModEventBus().addListener(GoodNightSleepClient::initialization);
 		MinecraftForge.EVENT_BUS.register(this);
+		MinecraftForge.EVENT_BUS.register(new GNSEvents());
 	}
 	
 	private void initialization(final FMLCommonSetupEvent event)
