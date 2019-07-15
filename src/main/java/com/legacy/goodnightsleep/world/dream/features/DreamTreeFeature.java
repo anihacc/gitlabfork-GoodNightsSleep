@@ -87,7 +87,7 @@ public class DreamTreeFeature extends AbstractTreeFeature<NoFeatureConfig>
 			}
 			else
 			{
-				if (worldIn.getBlockState(position.down()).getBlock() == BlocksGNS.dream_grass && position.getY() < worldIn.getWorld().getHeight() - i - 1)
+				if ((worldIn.getBlockState(position.down()).getBlock() == BlocksGNS.dream_grass || worldIn.getBlockState(position.down()).getBlock() == BlocksGNS.nightmare_grass) && position.getY() < worldIn.getWorld().getHeight() - i - 1)
 				{
 					this.setDirtAt(worldIn, position.down(), position);
 					int k2 = 3;

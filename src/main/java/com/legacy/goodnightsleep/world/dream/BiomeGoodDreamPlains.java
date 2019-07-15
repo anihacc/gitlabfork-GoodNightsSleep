@@ -1,6 +1,7 @@
 package com.legacy.goodnightsleep.world.dream;
 
 import com.legacy.goodnightsleep.blocks.BlocksGNS;
+import com.legacy.goodnightsleep.world.dream.features.DreamSpongeFeature;
 import com.legacy.goodnightsleep.world.dream.features.DreamTreeFeature;
 import com.legacy.goodnightsleep.world.dream.features.GNSBigTreeFeature;
 import com.legacy.goodnightsleep.world.dream.features.GNSFlowersFeature;
@@ -33,6 +34,8 @@ public class BiomeGoodDreamPlains extends Biome
 		this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, createCompositeFeature(new DreamTreeFeature(false), IFeatureConfig.NO_FEATURE_CONFIG, AT_SURFACE_WITH_EXTRA, new AtSurfaceWithExtraConfig(0, 0.6F, 1)));
 		this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, createCompositeFeature(new DreamTreeFeature(false, 5, BlocksGNS.white_log.getDefaultState(), BlocksGNS.candy_leaves.getDefaultState()), IFeatureConfig.NO_FEATURE_CONFIG, AT_SURFACE_WITH_EXTRA, new AtSurfaceWithExtraConfig(0, 0.4F, 1)));
 		this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, createCompositeFeature(new GNSBigTreeFeature(false, BlocksGNS.dream_log.getDefaultState(), BlocksGNS.diamond_leaves.getDefaultState()), IFeatureConfig.NO_FEATURE_CONFIG, AT_SURFACE_WITH_EXTRA, new AtSurfaceWithExtraConfig(0, 0.2F, 1)));
+
+		this.addFeature(GenerationStage.Decoration.RAW_GENERATION, createCompositeFeature(new DreamSpongeFeature(), IFeatureConfig.NO_FEATURE_CONFIG, SURFACE_PLUS_32, new FrequencyConfig(20)));
 
 		this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, createCompositeFlowerFeature(new GNSFlowersFeature(), SURFACE_PLUS_32, new FrequencyConfig(5)));
 

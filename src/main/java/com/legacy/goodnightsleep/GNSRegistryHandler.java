@@ -1,26 +1,18 @@
 package com.legacy.goodnightsleep;
 
-import java.util.function.Function;
-
-import com.google.common.base.Preconditions;
 import com.legacy.goodnightsleep.blocks.BlocksGNS;
 import com.legacy.goodnightsleep.world.dream.BiomeGoodDreamPlains;
 import com.legacy.goodnightsleep.world.dream.DreamWorldManager;
-import com.legacy.goodnightsleep.world.dream.GoodDreamDimension;
+import com.legacy.goodnightsleep.world.nightmare.BiomeNightmareHills;
+import com.legacy.goodnightsleep.world.nightmare.NightmareWorldManager;
 
-import io.netty.buffer.Unpooled;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemGroup;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.dimension.Dimension;
-import net.minecraft.world.dimension.DimensionType;
-import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.ModDimension;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.RegistryEvent.Register;
@@ -73,7 +65,7 @@ public class GNSRegistryHandler
 	public static void onRegisterBiomes(Register<Biome> event)
 	{
 		register(event.getRegistry(), "good_dream_plains", new BiomeGoodDreamPlains());
-		//register(event.getRegistry(), "nightmare_hills", new BiomeNightmareHills());
+		register(event.getRegistry(), "nightmare_hills", new BiomeNightmareHills());
 	}
 
 	@SubscribeEvent
@@ -88,6 +80,8 @@ public class GNSRegistryHandler
 			}
 		};*/
 		register(event.getRegistry(), "good_dream", new DreamWorldManager());
+		register(event.getRegistry(), "nightmare", new NightmareWorldManager());
+
 		//DimensionManager.registerDimension(VariableConstants.locate("good_dream"), dream, new PacketBuffer(Unpooled.buffer()));
 		
 		/*ModDimension nightmare = new ModDimension()
