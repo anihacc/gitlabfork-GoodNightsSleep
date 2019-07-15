@@ -1,6 +1,7 @@
 package com.legacy.goodnightsleep;
 
 import com.legacy.goodnightsleep.blocks.BlocksGNS;
+import com.legacy.goodnightsleep.client.audio.GNSSounds;
 import com.legacy.goodnightsleep.world.dream.BiomeGoodDreamPlains;
 import com.legacy.goodnightsleep.world.dream.DreamWorldManager;
 import com.legacy.goodnightsleep.world.nightmare.BiomeNightmareHills;
@@ -29,8 +30,8 @@ public class GNSRegistryHandler
 	@SubscribeEvent
 	public static void onRegisterSounds(RegistryEvent.Register<SoundEvent> event)
 	{
-		//SkiesSounds.soundRegistry = event.getRegistry();
-		//SkiesSounds.initialization();
+		GNSSounds.soundRegistry = event.getRegistry();
+		GNSSounds.initialization();
 	}
 
 	@SubscribeEvent
