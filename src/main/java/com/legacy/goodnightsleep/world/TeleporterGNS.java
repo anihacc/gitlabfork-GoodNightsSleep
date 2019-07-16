@@ -7,7 +7,6 @@ import com.legacy.goodnightsleep.world.nightmare.NightmareWorldManager;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.Teleporter;
 import net.minecraft.world.WorldServer;
@@ -35,11 +34,11 @@ public class TeleporterGNS extends Teleporter
 		
 		if (player.getBedLocation(DimensionType.OVERWORLD) != null && !(entityIn.dimension == DreamWorldManager.getDimensionType() || entityIn.dimension == NightmareWorldManager.getDimensionType()))
 		{
-			entityIn.setLocationAndAngles((double) player.getBedLocation(DimensionType.OVERWORLD).getX(), this.world.getHeight(Type.MOTION_BLOCKING_NO_LEAVES, player.getBedLocation(DimensionType.OVERWORLD)).getY(), (double) player.getBedLocation(DimensionType.OVERWORLD).getZ(), entityIn.rotationYaw, 0.0F);
+			entityIn.setLocationAndAngles((double) player.getBedLocation(DimensionType.OVERWORLD).getX(), entityIn.world.getHeight(Type.MOTION_BLOCKING_NO_LEAVES, player.getPosition()).getY(), (double) player.getBedLocation(DimensionType.OVERWORLD).getZ(), entityIn.rotationYaw, 0.0F);
 		}
 		else
 		{
-			entityIn.setLocationAndAngles((double) i, this.world.getHeight(Type.MOTION_BLOCKING_NO_LEAVES, new BlockPos(player.getPosition())).getY(), (double) k, entityIn.rotationYaw, 0.0F);
+			entityIn.setLocationAndAngles((double) i, entityIn.world.getHeight(Type.MOTION_BLOCKING_NO_LEAVES, player.getPosition()).getY(), (double) k, entityIn.rotationYaw, 0.0F);
 		}
         
 		entityIn.motionX = 0.0D;
@@ -49,7 +48,7 @@ public class TeleporterGNS extends Teleporter
 	@Override
 	public boolean placeInExistingPortal(Entity entityIn, float rotationYaw)
 	{
-		return false;
+		return true;
 	}
 
 	@Override

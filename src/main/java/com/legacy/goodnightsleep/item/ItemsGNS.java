@@ -3,13 +3,11 @@ package com.legacy.goodnightsleep.item;
 import com.legacy.goodnightsleep.VariableConstants;
 import com.legacy.goodnightsleep.blocks.BlocksGNS;
 
-import net.minecraft.init.Blocks;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemBed;
 import net.minecraft.item.ItemFood;
-import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemHoe;
 import net.minecraft.item.ItemSpade;
 import net.minecraft.item.ItemSword;
