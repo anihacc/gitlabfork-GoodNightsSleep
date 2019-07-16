@@ -1,9 +1,0 @@
-{
-	"replace": false,
-	"values": [
-		"#goodnightsleep:logs/dream",
-		"#goodnightsleep:logs/white",
-		"#goodnightsleep:logs/dead",
-		"#goodnightsleep:logs/blood"
-	]
-}
