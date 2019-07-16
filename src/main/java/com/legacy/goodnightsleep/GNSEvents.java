@@ -1,5 +1,6 @@
 package com.legacy.goodnightsleep;
 
+import com.legacy.goodnightsleep.world.dream.DreamWorldManager;
 import com.legacy.goodnightsleep.world.nightmare.NightmareWorldManager;
 
 import io.netty.buffer.Unpooled;
@@ -23,7 +24,14 @@ public class GNSEvents
 	@SubscribeEvent
 	public void onRegisteredDimension(RegisterDimensionsEvent event)
 	{
-		//DimensionManager.registerDimension(VariableConstants.locate("good_dream"), DreamWorldManager.INSTANCE, new PacketBuffer(Unpooled.buffer()));
-		DimensionManager.registerDimension(VariableConstants.locate("nightmare"), NightmareWorldManager.INSTANCE, new PacketBuffer(Unpooled.buffer()));
+		if (DreamWorldManager.getDimensionType() == null)
+		{
+			DimensionManager.registerDimension(VariableConstants.locate("good_dream"), DreamWorldManager.INSTANCE, new PacketBuffer(Unpooled.buffer()));
+		}
+		
+		if (NightmareWorldManager.getDimensionType() == null)
+		{
+			DimensionManager.registerDimension(VariableConstants.locate("nightmare"), NightmareWorldManager.INSTANCE, new PacketBuffer(Unpooled.buffer()));
+		}
 	}
 }

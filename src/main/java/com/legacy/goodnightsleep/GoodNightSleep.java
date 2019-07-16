@@ -1,6 +1,6 @@
 package com.legacy.goodnightsleep;
 
-import com.legacy.goodnightsleep.client.audio.GoodNightSleepClient;
+import com.legacy.goodnightsleep.client.GoodNightSleepClient;
 
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
@@ -17,6 +17,7 @@ public class GoodNightSleep
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(GoodNightSleepClient::initialization);
 		MinecraftForge.EVENT_BUS.register(this);
 		MinecraftForge.EVENT_BUS.register(new GNSEvents());
+		MinecraftForge.EVENT_BUS.register(new GoodNightSleepClient());
 	}
 	
 	private void initialization(final FMLCommonSetupEvent event)

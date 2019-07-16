@@ -2,7 +2,9 @@ package com.legacy.goodnightsleep;
 
 import com.legacy.goodnightsleep.blocks.BlocksGNS;
 import com.legacy.goodnightsleep.client.audio.GNSSounds;
+import com.legacy.goodnightsleep.item.GNSCreativeTabs;
 import com.legacy.goodnightsleep.item.ItemsGNS;
+import com.legacy.goodnightsleep.tile_entity.GNSTileEntityTypes;
 import com.legacy.goodnightsleep.world.dream.BiomeGoodDreamPlains;
 import com.legacy.goodnightsleep.world.dream.DreamWorldManager;
 import com.legacy.goodnightsleep.world.nightmare.BiomeNightmareHills;
@@ -12,7 +14,7 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemGroup;
+import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.ModDimension;
@@ -50,7 +52,7 @@ public class GNSRegistryHandler
 		
 		for (int i3 = 0; i3 < BlocksGNS.gnsBlockList.size(); ++i3)
 		{
-			register(event.getRegistry(), BlocksGNS.gnsBlockList.get(i3).getRegistryName().toString().replace("goodnightsleep:", ""), new ItemBlock(BlocksGNS.gnsBlockList.get(i3), (new Item.Properties().group(ItemGroup.BUILDING_BLOCKS))));
+			register(event.getRegistry(), BlocksGNS.gnsBlockList.get(i3).getRegistryName().toString().replace("goodnightsleep:", ""), new ItemBlock(BlocksGNS.gnsBlockList.get(i3), (new Item.Properties().group(GNSCreativeTabs.blocks))));
 		}
 	}
 	
@@ -61,6 +63,12 @@ public class GNSRegistryHandler
 
     	//EntitySpawnPlacementRegistry.register(SkiesEntityTypes.TORMENTOR, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES);
    
+	}
+	
+	@SubscribeEvent
+	public static void onRegisterTileEntityTypes(Register<TileEntityType<?>> event)
+	{
+		event.getRegistry().register(GNSTileEntityTypes.LUXURIOUS_BED);
 	}
 
 	@SubscribeEvent

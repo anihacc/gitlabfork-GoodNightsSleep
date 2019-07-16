@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import com.google.common.collect.Lists;
 import com.legacy.goodnightsleep.VariableConstants;
+import com.legacy.goodnightsleep.blocks.tile.BlockGNSBed;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.Block.Properties;
@@ -67,10 +68,10 @@ public class BlocksGNS
 		{
 			return;
 		}
-		
-		//luxurious_bed = registerWithoutItem("luxurious_bed", new BlockGNSBed()).setCreativeTab(null);
-		//wretched_bed = registerWithoutItem("wretched_bed", new BlockGNSBed()).setCreativeTab(null);
-		//strange_bed = registerWithoutItem("strange_bed", new BlockGNSBed()).setCreativeTab(null);
+
+		luxurious_bed = registerWithoutItem("luxurious_bed", new BlockGNSBed(Block.Properties.create(Material.WOOD).hardnessAndResistance(2.0F).sound(SoundType.WOOD)));
+		wretched_bed = registerWithoutItem("wretched_bed", new BlockGNSBed(Block.Properties.create(Material.WOOD).hardnessAndResistance(2.0F).sound(SoundType.WOOD)));
+		strange_bed = registerWithoutItem("strange_bed", new BlockGNSBed(Block.Properties.create(Material.WOOD).hardnessAndResistance(2.0F).sound(SoundType.WOOD)));
 
 		tall_dream_grass = register("tall_dream_grass", new BlockGNSTallGrass(Block.Properties.create(Material.ROCK).hardnessAndResistance(0.0F).doesNotBlockMovement().sound(SoundType.PLANT)));
 		tall_nightmare_grass = register("tall_nightmare_grass", new BlockGNSTallGrass(Block.Properties.create(Material.ROCK).hardnessAndResistance(0.0F).doesNotBlockMovement().sound(SoundType.PLANT)));

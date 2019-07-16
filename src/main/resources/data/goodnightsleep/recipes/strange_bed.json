@@ -3,68 +3,52 @@
   "ingredients": [
   [
       {
-        "item": "minecraft:bed",
-	    "data": 0
+        "item": "minecraft:white_bed"
       },
 	  {
-        "item": "minecraft:bed",
-	    "data": 1
+        "item": "minecraft:orange_bed"
       },
 	  {
-        "item": "minecraft:bed",
-	    "data": 2
+        "item": "minecraft:magenta_bed"
       },
 	  {
-        "item": "minecraft:bed",
-	    "data": 3
+        "item": "minecraft:light_blue_bed"
       },
 	  {
-        "item": "minecraft:bed",
-	    "data": 4
+        "item": "minecraft:yellow_bed"
       },
 	  {
-        "item": "minecraft:bed",
-	    "data": 5
+        "item": "minecraft:lime_bed"
       },
 	  {
-        "item": "minecraft:bed",
-	    "data": 6
+        "item": "minecraft:pink_bed"
       },
 	  {
-        "item": "minecraft:bed",
-	    "data": 7
+        "item": "minecraft:gray_bed"
       },
 	  {
-        "item": "minecraft:bed",
-	    "data": 8
+        "item": "minecraft:light_gray_bed"
       },
 	  {
-        "item": "minecraft:bed",
-	    "data": 9
+        "item": "minecraft:cyan_bed"
       },
 	  {
-        "item": "minecraft:bed",
-	    "data": 10
+        "item": "minecraft:purple_bed"
       },
 	  {
-        "item": "minecraft:bed",
-	    "data": 11
+        "item": "minecraft:blue_bed"
       },
 	  {
-        "item": "minecraft:bed",
-	    "data": 12
+        "item": "minecraft:brown_bed"
       },
 	  {
-        "item": "minecraft:bed",
-	    "data": 13
+        "item": "minecraft:green_bed"
       },
 	  {
-        "item": "minecraft:bed",
-	    "data": 14
+        "item": "minecraft:red_bed"
       },
 	  {
-        "item": "minecraft:bed",
-	    "data": 15
+        "item": "minecraft:black_bed"
       }
 	],
 	{
