@@ -10,7 +10,7 @@ import com.legacy.goodnightsleep.blocks.tile.BlockGNSBed;
 import net.minecraft.block.Block;
 import net.minecraft.block.Block.Properties;
 import net.minecraft.block.BlockFence;
-import net.minecraft.block.BlockLeaves;
+import net.minecraft.block.BlockHugeMushroom;
 import net.minecraft.block.BlockLog;
 import net.minecraft.block.BlockSlab;
 import net.minecraft.block.SoundType;
@@ -38,7 +38,7 @@ public class BlocksGNS
 	
 	public static Block orange_flower, cyan_flower, dead_flower, despair_mushroom, hope_mushroom;
 	
-	public static Block hope_mushroom_cap, despair_mushroom_cap;
+	public static Block hope_mushroom_block, despair_mushroom_block;
 
 	public static Block rainbow_crop;
 
@@ -81,8 +81,8 @@ public class BlocksGNS
 		delusion_stone = register("delusion_stone", new BlockGNSStone(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F)));
 		delusion_cobblestone = register("delusion_cobblestone", new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(2.0F, 6.0F)));
 		nightmare_grass_block = register("nightmare_grass", new BlockGNSGrass());
-		//hope_mushroom_cap = register("hope_mushroom_cap", new BlockGNSMushroom());
-		//despair_mushroom_cap = register("despair_mushroom_cap", new BlockGNSMushroom());
+		hope_mushroom_block = register("hope_mushroom_block", new BlockHugeMushroom(BlocksGNS.hope_mushroom, Block.Properties.create(Material.WOOD, MaterialColor.YELLOW).hardnessAndResistance(0.2F).sound(SoundType.WOOD)));
+		despair_mushroom_block = register("despair_mushroom_block", new BlockHugeMushroom(BlocksGNS.despair_mushroom, Block.Properties.create(Material.WOOD, MaterialColor.GRAY).hardnessAndResistance(0.2F).sound(SoundType.WOOD)));
 		
 		candy_ore = register("candy_ore", new BlockGNSOre(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0F, 3.0F)));
 		rainbow_ore = register("rainbow_ore", new BlockGNSOre(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0F, 3.0F)));
@@ -94,9 +94,9 @@ public class BlocksGNS
 		coal_ore = register("coal_ore", new BlockGNSOre(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0F, 3.0F)));
 		lapis_ore = register("lapis_ore", new BlockGNSOre(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0F, 3.0F)));
 		
-		dream_leaves = register("dream_leaves", new BlockLeaves(Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.2F).needsRandomTick().sound(SoundType.PLANT)));
-		candy_leaves = register("candy_leaves", new BlockLeaves(Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.2F).needsRandomTick().sound(SoundType.PLANT)));
-		diamond_leaves = register("diamond_leaves", new BlockLeaves(Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.2F).needsRandomTick().sound(SoundType.PLANT)));
+		dream_leaves = register("dream_leaves", new BlockGNSLeaves(Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.2F).needsRandomTick().sound(SoundType.PLANT)));
+		candy_leaves = register("candy_leaves", new BlockGNSLeaves(Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.2F).needsRandomTick().sound(SoundType.PLANT)));
+		diamond_leaves = register("diamond_leaves", new BlockGNSLeaves(Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.2F).needsRandomTick().sound(SoundType.PLANT)));
 		
 		dream_log = register("dream_log", new BlockLog(MaterialColor.CYAN, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)));
 		white_log = register("white_log", new BlockLog(MaterialColor.LIGHT_GRAY, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)));
@@ -113,8 +113,8 @@ public class BlocksGNS
 		dead_plank = register("dead_plank", new Block(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
 		blood_plank = register("blood_plank", new Block(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
 
-		//dream_sapling = register("dream_sapling", new BlockGNSSapling(new WorldGenGNSTree(false, 6, BlocksGNS.dream_log.getDefaultState(), BlocksGNS.dream_leaves.getDefaultState(), false)));
-		//candy_sapling = register("candy_sapling", new BlockGNSSapling(new WorldGenGNSTree(false, 6, BlocksGNS.white_log.getDefaultState(), BlocksGNS.candy_leaves.getDefaultState(), false)));
+		//dream_sapling = register("dream_sapling", new BlockGNSSapling(new DreamTreeFeature(false), Block.Properties.create(Material.ROCK).hardnessAndResistance(0.0F).doesNotBlockMovement().sound(SoundType.PLANT)));
+		//candy_sapling = register("candy_sapling", new BlockGNSSapling(new DreamTreeFeature(false, 5, BlocksGNS.white_log.getDefaultState(), BlocksGNS.candy_leaves.getDefaultState()), new Block.Properties.create(Material.ROCK).hardnessAndResistance(0.0F).doesNotBlockMovement().sound(SoundType.PLANT)));
 		
 		hope_mushroom = register("hope_mushroom", new BlockGNSFlower(Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0.0F).sound(SoundType.PLANT)));
 		despair_mushroom = register("despair_mushroom", new BlockGNSFlower(Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0.0F).sound(SoundType.PLANT)));

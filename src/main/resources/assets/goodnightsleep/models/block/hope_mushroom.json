@@ -1,6 +1,7 @@
 {
     "parent": "block/cross",
     "textures": {
-        "cross": "blocks/hope_outside"
+        "particle": "goodnightsleep:block/natural/hope_mushroom",
+        "cross": "goodnightsleep:block/natural/hope_mushroom"
     }
 }

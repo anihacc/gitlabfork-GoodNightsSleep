@@ -5,6 +5,7 @@ import com.legacy.goodnightsleep.world.GNSCanyonWorldCarver;
 import com.legacy.goodnightsleep.world.GNSCaveWorldCarver;
 import com.legacy.goodnightsleep.world.dream.features.DreamTreeFeature;
 import com.legacy.goodnightsleep.world.dream.features.GNSBigTreeFeature;
+import com.legacy.goodnightsleep.world.nightmare.features.BigDespairMushroomFeature;
 import com.legacy.goodnightsleep.world.nightmare.features.NetherSplashFeature;
 import com.legacy.goodnightsleep.world.nightmare.features.NightmareFlowersFeature;
 
@@ -40,6 +41,7 @@ public class BiomeNightmareHills extends Biome
 		this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, createCompositeFeature(new DreamTreeFeature(false, 5, BlocksGNS.blood_log.getDefaultState(), Blocks.AIR.getDefaultState()), IFeatureConfig.NO_FEATURE_CONFIG, AT_SURFACE_WITH_EXTRA, new AtSurfaceWithExtraConfig(0, 0.4F, 1)));
 		this.addFeature(GenerationStage.Decoration.RAW_GENERATION, createCompositeFeature(new NetherSplashFeature(), IFeatureConfig.NO_FEATURE_CONFIG, SURFACE_PLUS_32, new FrequencyConfig(20)));
 		this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, createCompositeFlowerFeature(new NightmareFlowersFeature(), SURFACE_PLUS_32, new FrequencyConfig(5)));
+		this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, createCompositeFeature(new BigDespairMushroomFeature(), IFeatureConfig.NO_FEATURE_CONFIG, AT_SURFACE_WITH_EXTRA, new AtSurfaceWithExtraConfig(0, 0.4F, 1)));
 
 		this.addCarver(GenerationStage.Carving.AIR, createWorldCarverWrapper(new GNSCaveWorldCarver(), new ProbabilityConfig(0.14285715F)));
 		this.addCarver(GenerationStage.Carving.AIR, createWorldCarverWrapper(new GNSCanyonWorldCarver(), new ProbabilityConfig(0.02F)));

@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 import com.legacy.goodnightsleep.blocks.BlocksGNS;
 import com.legacy.goodnightsleep.world.GNSCanyonWorldCarver;
 import com.legacy.goodnightsleep.world.GNSCaveWorldCarver;
+import com.legacy.goodnightsleep.world.dream.features.BigHopeMushroomFeature;
 import com.legacy.goodnightsleep.world.dream.features.DreamSpongeFeature;
 import com.legacy.goodnightsleep.world.dream.features.DreamTreeFeature;
 import com.legacy.goodnightsleep.world.dream.features.GNSBigTreeFeature;
@@ -36,14 +37,14 @@ public class BiomeGoodDreamPlains extends Biome
 	@ObjectHolder("goodnightsleep:good_dream_plains")
 	public static final BiomeGoodDreamPlains INSTANCE = null;
 
-	public static final Predicate<IBlockState> IS_ROCK = (p_210462_0_) -> {
-		if (p_210462_0_ == null)
+	public static final Predicate<IBlockState> IS_ROCK = (state) -> {
+		if (state == null)
 		{
 			return false;
 		}
 		else
 		{
-			Block block = p_210462_0_.getBlock();
+			Block block = state.getBlock();
 			return block == BlocksGNS.delusion_stone;
 		}
 	};
@@ -58,6 +59,7 @@ public class BiomeGoodDreamPlains extends Biome
 		this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, createCompositeFeature(new GNSBigTreeFeature(false, BlocksGNS.dream_log.getDefaultState(), BlocksGNS.diamond_leaves.getDefaultState()), IFeatureConfig.NO_FEATURE_CONFIG, AT_SURFACE_WITH_EXTRA, new AtSurfaceWithExtraConfig(0, 0.2F, 1)));
 		this.addFeature(GenerationStage.Decoration.RAW_GENERATION, createCompositeFeature(new DreamSpongeFeature(), IFeatureConfig.NO_FEATURE_CONFIG, SURFACE_PLUS_32, new FrequencyConfig(20)));
 		this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, createCompositeFlowerFeature(new GNSFlowersFeature(), SURFACE_PLUS_32, new FrequencyConfig(5)));
+		this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, createCompositeFeature(new BigHopeMushroomFeature(), IFeatureConfig.NO_FEATURE_CONFIG, AT_SURFACE_WITH_EXTRA, new AtSurfaceWithExtraConfig(0, 0.3F, 1)));
 
 		this.addCarver(GenerationStage.Carving.AIR, createWorldCarverWrapper(new GNSCaveWorldCarver(), new ProbabilityConfig(0.14285715F)));
 		this.addCarver(GenerationStage.Carving.AIR, createWorldCarverWrapper(new GNSCanyonWorldCarver(), new ProbabilityConfig(0.02F)));
