@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "goodnightsleep:blocks/natural/lolipop_bush"
+        "layer0": "goodnightsleep:block/natural/lolipop_bush"
     }
 }

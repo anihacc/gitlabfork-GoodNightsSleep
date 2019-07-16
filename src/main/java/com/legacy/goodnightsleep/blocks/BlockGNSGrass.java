@@ -39,11 +39,11 @@ public class BlockGNSGrass extends Block
 			if (!worldIn.isAreaLoaded(pos, 3))
 				return; // Forge: prevent loading unloaded chunks when checking
 						// neighbor's light and spreading
-			if (!func_196383_a(worldIn, pos) && this == BlocksGNS.dream_grass)
+			if (!func_196383_a(worldIn, pos) && this == BlocksGNS.dream_grass_block)
 			{
 				worldIn.setBlockState(pos, BlocksGNS.dream_dirt.getDefaultState());
 			}
-			else if (!func_196383_a(worldIn, pos) && this == BlocksGNS.nightmare_grass)
+			else if (!func_196383_a(worldIn, pos) && this == BlocksGNS.nightmare_grass_block)
 			{
 				worldIn.setBlockState(pos, Blocks.DIRT.getDefaultState());
 			}
@@ -58,11 +58,11 @@ public class BlockGNSGrass extends Block
 						{
 							return;
 						}
-						if (worldIn.getBlockState(blockpos).getBlock() == BlocksGNS.dream_dirt && func_196384_b(worldIn, blockpos) && this == BlocksGNS.dream_grass)
+						if (worldIn.getBlockState(blockpos).getBlock() == BlocksGNS.dream_dirt && func_196384_b(worldIn, blockpos) && this == BlocksGNS.dream_grass_block)
 						{
 							worldIn.setBlockState(blockpos, this.getDefaultState());
 						}
-						else if (worldIn.getBlockState(blockpos).getBlock() == Blocks.DIRT && func_196384_b(worldIn, blockpos) && this == BlocksGNS.nightmare_grass)
+						else if (worldIn.getBlockState(blockpos).getBlock() == Blocks.DIRT && func_196384_b(worldIn, blockpos) && this == BlocksGNS.nightmare_grass_block)
 						{
 							worldIn.setBlockState(blockpos, this.getDefaultState());
 						}

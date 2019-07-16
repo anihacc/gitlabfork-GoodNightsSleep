@@ -9,11 +9,9 @@ import com.legacy.goodnightsleep.VariableConstants;
 import net.minecraft.block.Block;
 import net.minecraft.block.Block.Properties;
 import net.minecraft.block.BlockFence;
-import net.minecraft.block.BlockFlower;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockLog;
 import net.minecraft.block.BlockSlab;
-import net.minecraft.block.BlockStone;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
@@ -21,7 +19,7 @@ import net.minecraftforge.registries.IForgeRegistry;
 
 public class BlocksGNS
 {
-	public static Block dream_grass, dream_dirt, dream_farmland, nightmare_grass;
+	public static Block dream_grass_block, dream_dirt, dream_farmland, nightmare_grass_block;
 
 	public static Block tall_dream_grass, tall_nightmare_grass, lolipop_bush;
 
@@ -76,12 +74,12 @@ public class BlocksGNS
 
 		tall_dream_grass = register("tall_dream_grass", new BlockGNSTallGrass(Block.Properties.create(Material.ROCK).hardnessAndResistance(0.0F).doesNotBlockMovement().sound(SoundType.PLANT)));
 		tall_nightmare_grass = register("tall_nightmare_grass", new BlockGNSTallGrass(Block.Properties.create(Material.ROCK).hardnessAndResistance(0.0F).doesNotBlockMovement().sound(SoundType.PLANT)));
-		dream_grass = register("dream_grass", new BlockGNSGrass());
+		dream_grass_block = register("dream_grass", new BlockGNSGrass());
 		dream_dirt = register("dream_dirt", new Block(Properties.create(Material.GROUND).hardnessAndResistance(0.5F).sound(SoundType.GROUND)));
 		//dream_farmland = register("dream_farmland", new BlockGNSFarmland()).setCreativeTab(null);
 		delusion_stone = register("delusion_stone", new BlockGNSStone(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F)));
 		delusion_cobblestone = register("delusion_cobblestone", new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(2.0F, 6.0F)));
-		nightmare_grass = register("nightmare_grass", new BlockGNSGrass());
+		nightmare_grass_block = register("nightmare_grass", new BlockGNSGrass());
 		//hope_mushroom_cap = register("hope_mushroom_cap", new BlockGNSMushroom());
 		//despair_mushroom_cap = register("despair_mushroom_cap", new BlockGNSMushroom());
 		

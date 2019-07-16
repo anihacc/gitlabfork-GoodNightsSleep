@@ -260,7 +260,7 @@ public class GNSBigTreeFeature extends AbstractTreeFeature<NoFeatureConfig>
 
 	private int checkLocation(Set<BlockPos> p_208528_1_, IWorld world, BlockPos pos, int p_208528_4_)
 	{
-		if (world.getBlockState(pos.down()).getBlock() != BlocksGNS.dream_grass && world.getBlockState(pos.down()).getBlock() != BlocksGNS.nightmare_grass)
+		if (world.getBlockState(pos.down()).getBlock() != BlocksGNS.dream_grass_block && world.getBlockState(pos.down()).getBlock() != BlocksGNS.nightmare_grass_block)
 		{
 			return -1;
 		}

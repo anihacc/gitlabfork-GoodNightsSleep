@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "goodnightsleep:blocks/natural/prickly_nightmare_grass"
+        "layer0": "goodnightsleep:block/natural/prickly_nightmare_grass"
     }
 }

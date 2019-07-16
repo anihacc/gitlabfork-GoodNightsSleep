@@ -33,7 +33,7 @@ public class BlockGNSFlower extends BlockBush
 		IBlockState iblockstate = worldIn.getBlockState(blockpos);
 		Block block = iblockstate.getBlock();
 		
-		return block == BlocksGNS.dream_grass || block == BlocksGNS.dream_dirt || block == Blocks.GRASS || block == Blocks.DIRT || block == BlocksGNS.nightmare_grass;
+		return block == BlocksGNS.dream_grass_block || block == BlocksGNS.dream_dirt || block == Blocks.GRASS || block == Blocks.DIRT || block == BlocksGNS.nightmare_grass_block;
 	}
 
 	public Block.EnumOffsetType getOffsetType()

@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "goodnightsleep:blocks/natural/cyan_flower"
+        "layer0": "goodnightsleep:block/natural/cyan_flower"
     }
 }

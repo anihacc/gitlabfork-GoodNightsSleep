@@ -45,11 +45,11 @@ public class BlockGNSTallGrass extends BlockBush
 		
 		if (this == BlocksGNS.tall_dream_grass)
 		{
-			return block == BlocksGNS.dream_grass || block == BlocksGNS.dream_dirt;
+			return block == BlocksGNS.dream_grass_block || block == BlocksGNS.dream_dirt;
 		}
 		if (this == BlocksGNS.tall_nightmare_grass)
 		{
-			return block == BlocksGNS.nightmare_grass || block == Blocks.DIRT;
+			return block == BlocksGNS.nightmare_grass_block || block == Blocks.DIRT;
 		}
 		else
 		{
