@@ -83,15 +83,15 @@ public class BlocksGNS
 		//hope_mushroom_cap = register("hope_mushroom_cap", new BlockGNSMushroom());
 		//despair_mushroom_cap = register("despair_mushroom_cap", new BlockGNSMushroom());
 		
-		candy_ore = register("candy_ore", new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0F, 3.0F)));
-		rainbow_ore = register("rainbow_ore", new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0F, 3.0F)));
-		positite_ore = register("positite_ore", new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0F, 3.0F)));
-		necrum_ore = register("necrum_ore", new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0F, 3.0F)));
-		zitrite_ore = register("zitrite_ore", new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0F, 3.0F)));
-		negatite_ore = register("negatite_ore", new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0F, 3.0F)));
+		candy_ore = register("candy_ore", new BlockGNSOre(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0F, 3.0F)));
+		rainbow_ore = register("rainbow_ore", new BlockGNSOre(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0F, 3.0F)));
+		positite_ore = register("positite_ore", new BlockGNSOre(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0F, 3.0F)));
+		necrum_ore = register("necrum_ore", new BlockGNSOre(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0F, 3.0F)));
+		zitrite_ore = register("zitrite_ore", new BlockGNSOre(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0F, 3.0F)));
+		negatite_ore = register("negatite_ore", new BlockGNSOre(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0F, 3.0F)));
 		
-		coal_ore = register("coal_ore", new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0F, 3.0F)));
-		lapis_ore = register("lapis_ore", new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0F, 3.0F)));
+		coal_ore = register("coal_ore", new BlockGNSOre(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0F, 3.0F)));
+		lapis_ore = register("lapis_ore", new BlockGNSOre(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0F, 3.0F)));
 		
 		dream_leaves = register("dream_leaves", new BlockLeaves(Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.2F).needsRandomTick().sound(SoundType.PLANT)));
 		candy_leaves = register("candy_leaves", new BlockLeaves(Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.2F).needsRandomTick().sound(SoundType.PLANT)));
