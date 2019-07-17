@@ -10,7 +10,6 @@ import net.minecraft.entity.monster.IMob;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.math.BlockPos;
@@ -77,9 +76,9 @@ public class BlockGNSTallGrass extends BlockBush
 	 @Override
 	 public IItemProvider getItemDropped(IBlockState state, World worldIn, BlockPos pos, int fortune)
 	 {
-		 if (this == BlocksGNS.lolipop_bush)
+		 if (state.getBlock() == BlocksGNS.tall_dream_grass && worldIn.rand.nextInt(8) == 0)
 		 {
-			 return ItemsGNS.lolipop;
+			 return ItemsGNS.rainbow_seeds;
 		 }
 		 else
 		 {
@@ -93,17 +92,5 @@ public class BlockGNSTallGrass extends BlockBush
 	 {
 		 return Block.EnumOffsetType.XYZ;
 	 }
-	 
-	@Override
-	public void getDrops(IBlockState state, net.minecraft.util.NonNullList<ItemStack> drops, World world, BlockPos pos, int fortune)
-	{
-		{
-			if (RANDOM.nextInt(8) != 0 && this != BlocksGNS.tall_dream_grass)
-				return;
-			ItemStack seed = new ItemStack(ItemsGNS.rainbow_seeds);
-			if (!seed.isEmpty())
-				drops.add(seed);
-		}
-	}
 
 }

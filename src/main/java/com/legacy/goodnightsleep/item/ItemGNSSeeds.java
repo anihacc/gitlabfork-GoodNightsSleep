@@ -1,6 +1,5 @@
 package com.legacy.goodnightsleep.item;
 
-import com.legacy.goodnightsleep.blocks.BlockGNSFarmland;
 import com.legacy.goodnightsleep.blocks.BlocksGNS;
 
 import net.minecraft.advancements.CriteriaTriggers;
