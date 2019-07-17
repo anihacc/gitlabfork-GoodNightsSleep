@@ -12,14 +12,12 @@ import com.legacy.goodnightsleep.world.nightmare.BiomeNightmareHills;
 import com.legacy.goodnightsleep.world.nightmare.NightmareWorldManager;
 
 import net.minecraft.block.Block;
-import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.gen.Heightmap;
 import net.minecraftforge.common.ModDimension;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.RegistryEvent.Register;
