@@ -1,6 +1,7 @@
 package com.legacy.goodnightsleep.client;
 
 import com.legacy.goodnightsleep.client.audio.GNSMusicHandler;
+import com.legacy.goodnightsleep.client.render.GNSEntityRendering;
 import com.legacy.goodnightsleep.client.render.TileEntityLuxuriousBedRenderer;
 import com.legacy.goodnightsleep.client.render.TileEntityStrangeBedRenderer;
 import com.legacy.goodnightsleep.client.render.TileEntityWretchedBedRenderer;
@@ -17,7 +18,7 @@ public class GoodNightSleepClient
 {
 	public static void initialization(FMLClientSetupEvent event)
 	{
-		//GNSEntityRendering.initialization();
+		GNSEntityRendering.initialization();
 		MinecraftForge.EVENT_BUS.register(new GNSMusicHandler());
 
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityLuxuriousBed.class, new TileEntityLuxuriousBedRenderer());

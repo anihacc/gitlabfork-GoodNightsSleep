@@ -1,8 +1,16 @@
 package com.legacy.goodnightsleep.item;
 
+import java.util.concurrent.Callable;
+
 import com.legacy.goodnightsleep.VariableConstants;
 import com.legacy.goodnightsleep.blocks.BlocksGNS;
+import com.legacy.goodnightsleep.client.render.item.LuxuriousBedItemRenderer;
+import com.legacy.goodnightsleep.client.render.item.StrangeBedItemRenderer;
+import com.legacy.goodnightsleep.client.render.item.WretchedBedItemRenderer;
+import com.legacy.goodnightsleep.entity.GNSEntityTypes;
 
+import net.minecraft.client.renderer.tileentity.TileEntityItemStackRenderer;
+import net.minecraft.entity.EntityType;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
@@ -10,7 +18,10 @@ import net.minecraft.item.ItemBed;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemHoe;
 import net.minecraft.item.ItemSpade;
+import net.minecraft.item.ItemSpawnEgg;
 import net.minecraft.item.ItemSword;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.registries.IForgeRegistry;
 
 public class ItemsGNS
@@ -45,14 +56,23 @@ public class ItemsGNS
 	
 	public static Item luxurious_bed_item, wretched_bed_item, strange_bed_item;
 	
+	public static Item unicorn_spawn_egg, gummy_bear_spawn_egg, baby_creeper_spawn_egg, tormenter_spawn_egg, herobrine_spawn_egg, giant_spawn_egg;
+
 	//public static EnumRarity NIGHTMARE = EnumHelper.addRarity("NIGHTMARE", TextFormatting.DARK_RED, "Nightmare");
 
 	public static void initialization()
 	{
 		// Block Items
-		luxurious_bed_item = register("luxurious_bed_item", new ItemBed(BlocksGNS.luxurious_bed, (new Item.Properties()).maxStackSize(1).group(GNSCreativeTabs.blocks)));
-		wretched_bed_item = register("wretched_bed_item", new ItemBed(BlocksGNS.wretched_bed, (new Item.Properties()).maxStackSize(1).group(GNSCreativeTabs.blocks)));
-		strange_bed_item = register("strange_bed_item", new ItemBed(BlocksGNS.strange_bed, (new Item.Properties()).maxStackSize(1).group(GNSCreativeTabs.blocks)));
+		luxurious_bed_item = register("luxurious_bed_item", new ItemBed(BlocksGNS.luxurious_bed, (new Item.Properties()).maxStackSize(1).group(GNSCreativeTabs.blocks).setTEISR(() -> bedItemRender(luxurious_bed_item))));
+		wretched_bed_item = register("wretched_bed_item", new ItemBed(BlocksGNS.wretched_bed, (new Item.Properties()).maxStackSize(1).group(GNSCreativeTabs.blocks).setTEISR(() -> bedItemRender(wretched_bed_item))));
+		strange_bed_item = register("strange_bed_item", new ItemBed(BlocksGNS.strange_bed, (new Item.Properties()).maxStackSize(1).group(GNSCreativeTabs.blocks).setTEISR(() -> bedItemRender(strange_bed_item))));
+
+		unicorn_spawn_egg = register("unicorn_spawn_egg", new ItemSpawnEgg(GNSEntityTypes.UNICORN, 0xffffff, 0xdf8cf8, new Item.Properties().group(GNSCreativeTabs.items)));
+		gummy_bear_spawn_egg = register("gummy_bear_spawn_egg", new ItemSpawnEgg(GNSEntityTypes.GUMMY_BEAR, 0xffffff, 0xffffff, new Item.Properties()));
+		baby_creeper_spawn_egg = register("baby_creeper_spawn_egg", new ItemSpawnEgg(GNSEntityTypes.BABY_CREEPER, 45079, 16711901, new Item.Properties().group(GNSCreativeTabs.items)));
+		tormenter_spawn_egg = register("tormenter_spawn_egg", new ItemSpawnEgg(GNSEntityTypes.TORMENTER, 10516796, 5525034, new Item.Properties().group(GNSCreativeTabs.items)));
+		herobrine_spawn_egg = register("herobrine_spawn_egg", new ItemSpawnEgg(GNSEntityTypes.HEROBRINE, 0xffffff, 0xffffff, new Item.Properties()));
+		giant_spawn_egg = register("giant_spawn_egg", new ItemSpawnEgg(EntityType.GIANT, 1598464, 30652, new Item.Properties().group(GNSCreativeTabs.items)));
 
 		positite_gem = register("positite_gem", new Item(new Item.Properties().group(GNSCreativeTabs.items)));
 		rainbow_ingot = register("rainbow_ingot", new Item(new Item.Properties().group(GNSCreativeTabs.items)));
@@ -123,10 +143,10 @@ public class ItemsGNS
 		positite_leggings = register("positite_leggings", new ItemArmor(GNSArmorMaterial.POSITITE, EntityEquipmentSlot.LEGS, new Item.Properties().group(GNSCreativeTabs.armor)));
 		positite_boots = register("positite_boots", new ItemArmor(GNSArmorMaterial.POSITITE, EntityEquipmentSlot.FEET, new Item.Properties().group(GNSCreativeTabs.armor)));
 
-		//negatite_helmet = register("negatite_helmet", new ItemArmor(GNSArmorMaterial.NEGATITE, EntityEquipmentSlot.HEAD, new Item.Properties().group(GNSCreativeTabs.armor)));
-		//negatite_chestplate = register("negatite_chestplate", new ItemArmor(GNSArmorMaterial.NEGATITE, EntityEquipmentSlot.CHEST, new Item.Properties().group(GNSCreativeTabs.armor)));
-		//negatite_leggings = register("negatite_leggings", new ItemArmor(GNSArmorMaterial.NEGATITE, EntityEquipmentSlot.LEGS, new Item.Properties().group(GNSCreativeTabs.armor)));
-		//negatite_boots = register("negatite_boots", new ItemArmor(GNSArmorMaterial.NEGATITE, EntityEquipmentSlot.FEET, new Item.Properties().group(GNSCreativeTabs.armor)));
+		negatite_helmet = register("negatite_helmet", new ItemArmor(GNSArmorMaterial.NEGATITE, EntityEquipmentSlot.HEAD, new Item.Properties()));
+		negatite_chestplate = register("negatite_chestplate", new ItemArmor(GNSArmorMaterial.NEGATITE, EntityEquipmentSlot.CHEST, new Item.Properties()));
+		negatite_leggings = register("negatite_leggings", new ItemArmor(GNSArmorMaterial.NEGATITE, EntityEquipmentSlot.LEGS, new Item.Properties()));
+		negatite_boots = register("negatite_boots", new ItemArmor(GNSArmorMaterial.NEGATITE, EntityEquipmentSlot.FEET, new Item.Properties()));
 	}
 
 	private static Item register(String unlocalizedName, Item item)
@@ -143,6 +163,23 @@ public class ItemsGNS
 	public static void setItemRegistry(IForgeRegistry<Item> iItemRegistry)
 	{
 		ItemsGNS.iItemRegistry = iItemRegistry;
+	}
+	
+	@OnlyIn(Dist.CLIENT)
+	private static Callable<TileEntityItemStackRenderer> bedItemRender(Item item)
+	{
+		if (item == luxurious_bed_item)
+		{
+			return () -> new LuxuriousBedItemRenderer();
+		}
+		else if (item == wretched_bed_item)
+		{
+			return () -> new WretchedBedItemRenderer();
+		}
+		else
+		{
+			return () -> new StrangeBedItemRenderer();
+		}
 	}
 
 }

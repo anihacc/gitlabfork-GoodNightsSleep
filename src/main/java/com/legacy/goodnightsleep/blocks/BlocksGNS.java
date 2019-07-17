@@ -103,10 +103,10 @@ public class BlocksGNS
 		dead_log = register("dead_log", new BlockLog(MaterialColor.GRAY, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)));
 		blood_log = register("blood_log", new BlockLog(MaterialColor.RED, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)));
 		
-		stripped_dream_log = register("stripped_dream_log", new BlockLog(MaterialColor.CYAN, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)));
-		stripped_white_log = register("stripped_white_log", new BlockLog(MaterialColor.LIGHT_GRAY, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)));
-		stripped_dead_log = register("stripped_dead_log", new BlockLog(MaterialColor.GRAY, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)));
-		stripped_blood_log = register("stripped_blood_log", new BlockLog(MaterialColor.RED, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)));
+		//stripped_dream_log = register("stripped_dream_log", new BlockLog(MaterialColor.CYAN, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)));
+		//stripped_white_log = register("stripped_white_log", new BlockLog(MaterialColor.LIGHT_GRAY, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)));
+		//stripped_dead_log = register("stripped_dead_log", new BlockLog(MaterialColor.GRAY, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)));
+		//stripped_blood_log = register("stripped_blood_log", new BlockLog(MaterialColor.RED, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)));
 		
 		dream_plank = register("dream_plank", new Block(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
 		white_plank = register("white_plank", new Block(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
@@ -135,10 +135,10 @@ public class BlocksGNS
 		dead_stairs = register("dead_stairs", new BlockGNSStairs(BlocksGNS.dead_plank.getDefaultState(), Block.Properties.from(BlocksGNS.dead_plank)));
 		blood_stairs = register("blood_stairs", new BlockGNSStairs(BlocksGNS.blood_plank.getDefaultState(), Block.Properties.from(BlocksGNS.blood_plank)));
 		
-		dream_slab = registerWithoutItem("dream_slab", new BlockSlab(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
-		white_slab = registerWithoutItem("white_slab", new BlockSlab(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
-		dead_slab = registerWithoutItem("dead_slab", new BlockSlab(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
-		blood_slab = registerWithoutItem("blood_slab", new BlockSlab(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
+		dream_slab = register("dream_slab", new BlockSlab(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
+		white_slab = register("white_slab", new BlockSlab(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
+		dead_slab = register("dead_slab", new BlockSlab(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
+		blood_slab = register("blood_slab", new BlockSlab(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
 		
 		candy_block = register("candy_block", new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0F, 6.0F).sound(SoundType.METAL)));
 		rainbow_block = register("rainbow_block", new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0F, 6.0F).sound(SoundType.METAL)));

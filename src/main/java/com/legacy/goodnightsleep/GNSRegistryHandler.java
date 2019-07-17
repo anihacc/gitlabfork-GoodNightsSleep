@@ -2,6 +2,7 @@ package com.legacy.goodnightsleep;
 
 import com.legacy.goodnightsleep.blocks.BlocksGNS;
 import com.legacy.goodnightsleep.client.audio.GNSSounds;
+import com.legacy.goodnightsleep.entity.GNSEntityTypes;
 import com.legacy.goodnightsleep.item.GNSCreativeTabs;
 import com.legacy.goodnightsleep.item.ItemsGNS;
 import com.legacy.goodnightsleep.tile_entity.GNSTileEntityTypes;
@@ -11,12 +12,14 @@ import com.legacy.goodnightsleep.world.nightmare.BiomeNightmareHills;
 import com.legacy.goodnightsleep.world.nightmare.NightmareWorldManager;
 
 import net.minecraft.block.Block;
+import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.gen.Heightmap;
 import net.minecraftforge.common.ModDimension;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.RegistryEvent.Register;
@@ -59,9 +62,13 @@ public class GNSRegistryHandler
 	@SubscribeEvent
 	public static void onRegisterEntityTypes(Register<EntityType<?>> event)
 	{
-		//event.getRegistry().register(GNSEntityTypes.TORMENTOR);
+		event.getRegistry().register(GNSEntityTypes.UNICORN);
+		event.getRegistry().register(GNSEntityTypes.GUMMY_BEAR);
+		event.getRegistry().register(GNSEntityTypes.BABY_CREEPER);
+		event.getRegistry().register(GNSEntityTypes.TORMENTER);
+		event.getRegistry().register(GNSEntityTypes.HEROBRINE);
 
-    	//EntitySpawnPlacementRegistry.register(SkiesEntityTypes.TORMENTOR, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES);
+    	//EntitySpawnPlacementRegistry.register(GNSEntityTypes.TORMENTER, EntitySpawnPlacementRegistry.SpawnPlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES);
    
 	}
 	
