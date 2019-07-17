@@ -16,6 +16,7 @@ import net.minecraft.block.BlockSlab;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
+import net.minecraft.init.Blocks;
 import net.minecraftforge.registries.IForgeRegistry;
 
 public class BlocksGNS
@@ -77,7 +78,7 @@ public class BlocksGNS
 		tall_nightmare_grass = register("tall_nightmare_grass", new BlockGNSTallGrass(Block.Properties.create(Material.ROCK).hardnessAndResistance(0.0F).doesNotBlockMovement().sound(SoundType.PLANT)));
 		dream_grass_block = register("dream_grass", new BlockGNSGrass());
 		dream_dirt = register("dream_dirt", new Block(Properties.create(Material.GROUND).hardnessAndResistance(0.5F).sound(SoundType.GROUND)));
-		//dream_farmland = register("dream_farmland", new BlockGNSFarmland()).setCreativeTab(null);
+		dream_farmland = register("dream_farmland", new BlockGNSFarmland(Properties.from(Blocks.FARMLAND)));
 		delusion_stone = register("delusion_stone", new BlockGNSStone(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F)));
 		delusion_cobblestone = register("delusion_cobblestone", new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(2.0F, 6.0F)));
 		nightmare_grass_block = register("nightmare_grass", new BlockGNSGrass());
@@ -123,7 +124,7 @@ public class BlocksGNS
 		lolipop_bush = register("lolipop_bush", new BlockGNSFlower(Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0.0F).sound(SoundType.PLANT)));
 		dead_flower = register("dead_flower", new BlockGNSFlower(Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0.0F).sound(SoundType.PLANT)));
 		
-		//rainbow_crop = registerWithoutItem("rainbow_crop", new BlockGNSRainbowCrop()).setCreativeTab(null);
+		rainbow_crop = registerWithoutItem("rainbow_crop", new BlockGNSRainbowCrop());
 
 		dream_fence = register("dream_fence", new BlockFence(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
 		white_fence = register("white_fence", new BlockFence(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));

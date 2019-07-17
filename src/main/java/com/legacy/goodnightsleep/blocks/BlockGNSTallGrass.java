@@ -1,5 +1,7 @@
 package com.legacy.goodnightsleep.blocks;
 
+import com.legacy.goodnightsleep.item.ItemsGNS;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.state.IBlockState;
@@ -77,7 +79,7 @@ public class BlockGNSTallGrass extends BlockBush
 	 {
 		 if (this == BlocksGNS.lolipop_bush)
 		 {
-			 return Items.AIR;//ItemsGNS.lolipop;
+			 return ItemsGNS.lolipop;
 		 }
 		 else
 		 {
@@ -96,9 +98,9 @@ public class BlockGNSTallGrass extends BlockBush
 	public void getDrops(IBlockState state, net.minecraft.util.NonNullList<ItemStack> drops, World world, BlockPos pos, int fortune)
 	{
 		{
-			if (RANDOM.nextInt(8) != 0)
+			if (RANDOM.nextInt(8) != 0 && this != BlocksGNS.tall_dream_grass)
 				return;
-			ItemStack seed = new ItemStack(Items.WHEAT_SEEDS);
+			ItemStack seed = new ItemStack(ItemsGNS.rainbow_seeds);
 			if (!seed.isEmpty())
 				drops.add(seed);
 		}

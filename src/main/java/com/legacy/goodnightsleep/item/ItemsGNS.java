@@ -17,6 +17,7 @@ import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemBed;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemHoe;
+import net.minecraft.item.ItemSeeds;
 import net.minecraft.item.ItemSpade;
 import net.minecraft.item.ItemSpawnEgg;
 import net.minecraft.item.ItemSword;
@@ -86,7 +87,7 @@ public class ItemsGNS
 
 		candy = register("candy", new ItemFood(2, 0.2F, false, new Item.Properties().group(GNSCreativeTabs.items)));
 		
-		//rainbow_seeds = register("rainbow_seeds", new ItemGNSSeeds(BlocksGNS.rainbow_crop)).setCreativeTab(GNSCreativeTabs.items);
+		rainbow_seeds = register("rainbow_seeds", new ItemGNSSeeds(BlocksGNS.rainbow_crop, new Item.Properties().group(GNSCreativeTabs.items)));
 		rainbow_berries = register("rainbow_berries", new ItemFood(4, 0.6F, true, new Item.Properties().group(GNSCreativeTabs.items)));
 		
 		luxurious_soup = register("luxurious_soup", new ItemFood(0, 0, false, new Item.Properties().maxStackSize(1).group(GNSCreativeTabs.items)));

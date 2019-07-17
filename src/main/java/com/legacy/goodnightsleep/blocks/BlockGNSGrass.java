@@ -8,6 +8,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.tags.FluidTags;
+import net.minecraft.util.IItemProvider;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
@@ -37,8 +38,7 @@ public class BlockGNSGrass extends Block
 		if (!worldIn.isRemote)
 		{
 			if (!worldIn.isAreaLoaded(pos, 3))
-				return; // Forge: prevent loading unloaded chunks when checking
-						// neighbor's light and spreading
+				return;
 			if (!func_196383_a(worldIn, pos) && this == BlocksGNS.dream_grass_block)
 			{
 				worldIn.setBlockState(pos, BlocksGNS.dream_dirt.getDefaultState());
@@ -71,4 +71,18 @@ public class BlockGNSGrass extends Block
 			}
 		}
 	}
+	
+	@Override
+	public IItemProvider getItemDropped(IBlockState state, World worldIn, BlockPos pos, int fortune)
+    {
+		if (this == BlocksGNS.dream_grass_block)
+		{
+			return BlocksGNS.dream_dirt.asItem();
+		}
+		
+		else
+		{
+			return Blocks.DIRT.asItem();
+		}
+    }
 }
