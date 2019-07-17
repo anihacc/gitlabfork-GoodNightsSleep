@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XX",
+    "X#",
+    " #"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "X": [
+	  {
+        "item": "goodnightsleep:delusion_cobblestone"
+	  }
+    ]
+  },
+  "result": {
+    "item": "minecraft:stone_axe"
+  }
+}
