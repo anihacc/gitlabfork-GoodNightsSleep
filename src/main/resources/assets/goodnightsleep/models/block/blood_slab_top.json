@@ -1,5 +1,5 @@
 {
-    "parent": "block/half_slab",
+    "parent": "block/slab_top",
     "textures": {
         "bottom": "goodnightsleep:block/construction/blood_plank",
         "top": "goodnightsleep:block/construction/blood_plank",

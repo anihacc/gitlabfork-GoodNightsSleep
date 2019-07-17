@@ -1,7 +1,7 @@
 {
     "variants": {
-        "half=bottom": { "model": "goodnightsleep:block/half_slab_blood" },
-        "half=top": { "model": "goodnightsleep:block/upper_slab_blood" },
-		"half=full": { "model": "goodnightsleep:block/blood_plank" }
+        "type=bottom": { "model": "goodnightsleep:block/blood_slab" },
+        "type=top": { "model": "goodnightsleep:block/blood_slab_top" },
+        "type=double": { "model": "goodnightsleep:block/blood_plank" }
     }
 }
