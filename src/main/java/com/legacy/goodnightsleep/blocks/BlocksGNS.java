@@ -70,9 +70,9 @@ public class BlocksGNS
 			return;
 		}
 
-		luxurious_bed = registerWithoutItem("luxurious_bed", new BlockGNSBed(Block.Properties.create(Material.WOOD).hardnessAndResistance(2.0F).sound(SoundType.WOOD)));
-		wretched_bed = registerWithoutItem("wretched_bed", new BlockGNSBed(Block.Properties.create(Material.WOOD).hardnessAndResistance(2.0F).sound(SoundType.WOOD)));
-		strange_bed = registerWithoutItem("strange_bed", new BlockGNSBed(Block.Properties.create(Material.WOOD).hardnessAndResistance(2.0F).sound(SoundType.WOOD)));
+		luxurious_bed = registerWithoutItem("luxurious_bed", new BlockGNSBed(Block.Properties.from(Blocks.RED_BED)));
+		wretched_bed = registerWithoutItem("wretched_bed", new BlockGNSBed(Block.Properties.from(Blocks.RED_BED)));
+		strange_bed = registerWithoutItem("strange_bed", new BlockGNSBed(Block.Properties.from(Blocks.RED_BED)));
 
 		tall_dream_grass = register("tall_dream_grass", new BlockGNSTallGrass(Block.Properties.create(Material.ROCK).hardnessAndResistance(0.0F).doesNotBlockMovement().sound(SoundType.PLANT)));
 		tall_nightmare_grass = register("tall_nightmare_grass", new BlockGNSTallGrass(Block.Properties.create(Material.ROCK).hardnessAndResistance(0.0F).doesNotBlockMovement().sound(SoundType.PLANT)));

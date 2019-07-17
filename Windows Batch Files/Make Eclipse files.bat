@@ -1,5 +1,5 @@
 @echo off
 title Making required Eclipse files...
 cd..
-call gradlew eclipse
+call gradlew.bat eclipse
 pause
