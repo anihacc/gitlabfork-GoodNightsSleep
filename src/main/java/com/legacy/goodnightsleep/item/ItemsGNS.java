@@ -86,13 +86,13 @@ public class ItemsGNS
 		powdered_sugar = register("powdered_sugar", new Item(new Item.Properties().group(GNSCreativeTabs.items)));
 		lolipop = register("lolipop", new Item(new Item.Properties().group(GNSCreativeTabs.items)));
 
-		//candy = register("candy", new Item(2, 0.2F, false, new Item.Properties().group(GNSCreativeTabs.items)));
+		candy = register("candy", new Item(new Item.Properties().group(GNSCreativeTabs.items))); //2, 0.2F, false, 
 
 		rainbow_seeds = register("rainbow_seeds", new BlockNamedItem(BlocksGNS.rainbow_crop, new Item.Properties().group(GNSCreativeTabs.items)));
-		//rainbow_berries = register("rainbow_berries", new ItemFood(4, 0.6F, true, new Item.Properties().group(GNSCreativeTabs.items)));
+		rainbow_berries = register("rainbow_berries", new Item(new Item.Properties().group(GNSCreativeTabs.items))); //4, 0.6F, true, 
 
-		//luxurious_soup = register("luxurious_soup", new ItemFood(0, 0, false, new Item.Properties().maxStackSize(1).group(GNSCreativeTabs.items)));
-		//wretched_soup = register("wretched_soup", new ItemFood(0, 0, false, new Item.Properties().maxStackSize(1).group(GNSCreativeTabs.items)));
+		luxurious_soup = register("luxurious_soup", new Item(new Item.Properties().maxStackSize(1).group(GNSCreativeTabs.items)));
+		wretched_soup = register("wretched_soup", new Item(new Item.Properties().maxStackSize(1).group(GNSCreativeTabs.items)));
 
 		candy_sword = register("candy_sword", new SwordItem(GNSItemTier.CANDY, 3, -2.4F, (new Item.Properties()).group(GNSCreativeTabs.tools)));
 		candy_pickaxe = register("candy_pickaxe", new PickaxeItem(GNSItemTier.CANDY, 1, -2.8F, (new Item.Properties()).group(GNSCreativeTabs.tools)));
