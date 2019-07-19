@@ -5,10 +5,12 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.BushBlock;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorldReader;
@@ -24,11 +26,10 @@ public class BlockGNSTallGrass extends BushBlock
 	 public BlockGNSTallGrass(Properties properties)
 	 {
 		 super(properties);
-
-		 //this.setCreativeTab(GNSCreativeTabs.blocks);
 	 }
-	 
-	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos)
+
+	@Override
+	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context)
 	{
 		return SHAPE;
 	}
@@ -63,7 +64,7 @@ public class BlockGNSTallGrass extends BushBlock
 	 @Override
 	 public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn)
 	 {
-		 if (this == BlocksGNS.tall_nightmare_grass && !(entityIn instanceof IMob))
+		 if (this == BlocksGNS.tall_nightmare_grass && !(entityIn instanceof IMob && entityIn instanceof ItemEntity))
 		 {
 			 entityIn.attackEntityFrom(new DamageSource("nightmare_grass"), 1.0F);
 		 }
