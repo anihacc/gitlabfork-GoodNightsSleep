@@ -64,7 +64,7 @@ public class BlockGNSTallGrass extends BushBlock
 	 @Override
 	 public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn)
 	 {
-		 if (this == BlocksGNS.tall_nightmare_grass && !(entityIn instanceof IMob && entityIn instanceof ItemEntity))
+		 if (this == BlocksGNS.tall_nightmare_grass && !(entityIn instanceof IMob || entityIn instanceof ItemEntity))
 		 {
 			 entityIn.attackEntityFrom(new DamageSource("nightmare_grass"), 1.0F);
 		 }

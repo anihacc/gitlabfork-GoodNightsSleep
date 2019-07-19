@@ -4,6 +4,8 @@ import com.legacy.goodnightsleep.blocks.BlocksGNS;
 import com.legacy.goodnightsleep.world.GNSCanyonWorldCarver;
 import com.legacy.goodnightsleep.world.GNSCaveWorldCarver;
 import com.legacy.goodnightsleep.world.dream.features.BigHopeMushroomFeature;
+import com.legacy.goodnightsleep.world.dream.features.DreamOreFeature;
+import com.legacy.goodnightsleep.world.dream.features.DreamOreFeatureConfig;
 import com.legacy.goodnightsleep.world.dream.features.DreamSpongeFeature;
 import com.legacy.goodnightsleep.world.dream.features.DreamTreeFeature;
 import com.legacy.goodnightsleep.world.dream.features.GNSBigTreeFeature;
@@ -16,7 +18,6 @@ import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.GrassFeatureConfig;
 import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
-import net.minecraft.world.gen.feature.OreFeatureConfig;
 import net.minecraft.world.gen.feature.ProbabilityConfig;
 import net.minecraft.world.gen.placement.AtSurfaceWithExtraConfig;
 import net.minecraft.world.gen.placement.CountRangeConfig;
@@ -47,13 +48,13 @@ public class BiomeGoodDreamPlains extends Biome
 		this.addCarver(GenerationStage.Carving.AIR, Biome.createCarver(new GNSCaveWorldCarver(ProbabilityConfig::deserialize, 256), new ProbabilityConfig(0.14285715F)));
 		this.addCarver(GenerationStage.Carving.AIR, Biome.createCarver(new GNSCanyonWorldCarver(ProbabilityConfig::deserialize), new ProbabilityConfig(0.02F)));
 		
-		this.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, createDecoratedFeature(Feature.ORE, new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, BlocksGNS.dream_dirt.getDefaultState(), 33), Placement.COUNT_RANGE, new CountRangeConfig(10, 0, 0, 256)));
-		this.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, createDecoratedFeature(Feature.ORE, new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, BlocksGNS.coal_ore.getDefaultState(), 17), Placement.COUNT_RANGE, new CountRangeConfig(20, 0, 0, 128)));
-		this.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, createDecoratedFeature(Feature.ORE, new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, BlocksGNS.candy_ore.getDefaultState(), 14), Placement.COUNT_RANGE, new CountRangeConfig(20, 0, 0, 128)));
-		this.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, createDecoratedFeature(Feature.ORE, new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, BlocksGNS.rainbow_ore.getDefaultState(), 9), Placement.COUNT_RANGE, new CountRangeConfig(20, 0, 0, 64)));
-		this.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, createDecoratedFeature(Feature.ORE, new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, BlocksGNS.positite_ore.getDefaultState(), 8), Placement.COUNT_RANGE, new CountRangeConfig(1, 0, 0, 16)));
-		this.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, createDecoratedFeature(Feature.ORE, new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, BlocksGNS.lapis_ore.getDefaultState(), 7), Placement.COUNT_DEPTH_AVERAGE, new DepthAverageConfig(1, 16, 16)));
-		this.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, createDecoratedFeature(Feature.ORE, new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, Blocks.GLOWSTONE.getDefaultState(), 8), Placement.COUNT_RANGE, new CountRangeConfig(1, 0, 0, 7)));
+		this.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, createDecoratedFeature(new DreamOreFeature(DreamOreFeatureConfig::deserialize), new DreamOreFeatureConfig(DreamOreFeatureConfig.FillerBlockType.DELUSION, BlocksGNS.dream_dirt.getDefaultState(), 33), Placement.COUNT_RANGE, new CountRangeConfig(10, 0, 0, 256)));
+		this.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, createDecoratedFeature(new DreamOreFeature(DreamOreFeatureConfig::deserialize), new DreamOreFeatureConfig(DreamOreFeatureConfig.FillerBlockType.DELUSION, BlocksGNS.coal_ore.getDefaultState(), 17), Placement.COUNT_RANGE, new CountRangeConfig(20, 0, 0, 128)));
+		this.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, createDecoratedFeature(new DreamOreFeature(DreamOreFeatureConfig::deserialize), new DreamOreFeatureConfig(DreamOreFeatureConfig.FillerBlockType.DELUSION, BlocksGNS.candy_ore.getDefaultState(), 14), Placement.COUNT_RANGE, new CountRangeConfig(20, 0, 0, 128)));
+		this.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, createDecoratedFeature(new DreamOreFeature(DreamOreFeatureConfig::deserialize), new DreamOreFeatureConfig(DreamOreFeatureConfig.FillerBlockType.DELUSION, BlocksGNS.rainbow_ore.getDefaultState(), 9), Placement.COUNT_RANGE, new CountRangeConfig(20, 0, 0, 64)));
+		this.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, createDecoratedFeature(new DreamOreFeature(DreamOreFeatureConfig::deserialize), new DreamOreFeatureConfig(DreamOreFeatureConfig.FillerBlockType.DELUSION, BlocksGNS.positite_ore.getDefaultState(), 8), Placement.COUNT_RANGE, new CountRangeConfig(1, 0, 0, 16)));
+		this.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, createDecoratedFeature(new DreamOreFeature(DreamOreFeatureConfig::deserialize), new DreamOreFeatureConfig(DreamOreFeatureConfig.FillerBlockType.DELUSION, BlocksGNS.lapis_ore.getDefaultState(), 7), Placement.COUNT_DEPTH_AVERAGE, new DepthAverageConfig(1, 16, 16)));
+		this.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, createDecoratedFeature(new DreamOreFeature(DreamOreFeatureConfig::deserialize), new DreamOreFeatureConfig(DreamOreFeatureConfig.FillerBlockType.DELUSION, Blocks.GLOWSTONE.getDefaultState(), 8), Placement.COUNT_RANGE, new CountRangeConfig(1, 0, 0, 7)));
 
 		//this.addSpawn(EntityClassification.CREATURE, new Biome.SpawnListEntry(EntityType.COW, 8, 3, 5));
 	}
