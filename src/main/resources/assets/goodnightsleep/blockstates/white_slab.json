@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "type=bottom": { "model": "goodnightsleep:block/white_slab" },
+        "type=top": { "model": "goodnightsleep:block/white_slab_top" },
+        "type=double": { "model": "goodnightsleep:block/white_plank" }
+    }
+}

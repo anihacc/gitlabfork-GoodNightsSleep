@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+	[
+	  {
+        "item": "goodnightsleep:dream_plank"
+	  },
+	  {
+        "item": "goodnightsleep:white_plank"
+	  },
+	  {
+        "item": "goodnightsleep:dead_plank"
+	  },
+	  {
+        "item": "goodnightsleep:blood_plank"
+	  }
+    ]
+  ],
+  "result": {
+    "item": "minecraft:oak_button"
+  }
+}

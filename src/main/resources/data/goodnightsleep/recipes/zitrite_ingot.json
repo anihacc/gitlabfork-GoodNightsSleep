@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "goodnightsleep:zitrite_ore"
+  },
+  "result": "goodnightsleep:zitrite_ingot",
+  "experience": 0.7,
+  "cookingtime": 200
+}
