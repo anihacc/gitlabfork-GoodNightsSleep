@@ -9,6 +9,7 @@ import com.legacy.goodnightsleep.blocks.BlocksGNS;
 import com.legacy.goodnightsleep.tile_entity.TileEntityLuxuriousBed;
 import com.legacy.goodnightsleep.tile_entity.TileEntityStrangeBed;
 import com.legacy.goodnightsleep.tile_entity.TileEntityWretchedBed;
+import com.legacy.goodnightsleep.world.TeleporterGNS;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
@@ -22,6 +23,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.pathfinding.PathType;
@@ -36,6 +38,7 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -46,6 +49,7 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
+import net.minecraft.world.gen.Heightmap.Type;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -92,7 +96,8 @@ public class BlockGNSBed extends HorizontalBlock implements ITileEntityProvider
 		return blockstate.getBlock() instanceof BlockGNSBed ? blockstate.get(HORIZONTAL_FACING) : null;
 	}
 
-	public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand hand, Direction side, float hitX, float hitY, float hitZ)
+	@Override
+	public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit)
 	{
 		if (worldIn.isRemote)
 		{
@@ -100,11 +105,16 @@ public class BlockGNSBed extends HorizontalBlock implements ITileEntityProvider
 		}
 		else
 		{
+			ServerPlayerEntity serverPlayer = (ServerPlayerEntity) player;
+
 			if (this == BlocksGNS.luxurious_bed)
 			{
 				DimensionType previousDimension = player.dimension;
 				DimensionType transferDimension = previousDimension == GNSRegistryHandler.dreamType() ? DimensionType.OVERWORLD : GNSRegistryHandler.dreamType();
 				
+				serverPlayer.teleport(player.getServer().getWorld(transferDimension), serverPlayer.posX, serverPlayer.world.getHeight(Type.MOTION_BLOCKING_NO_LEAVES, player.getPosition()).getY(), serverPlayer.posZ, serverPlayer.rotationYaw, serverPlayer.rotationPitch);
+
+				TeleporterGNS.INSTANCE.teleport(player, player.rotationYawHead);
 				//player.changeDimension(transferDimension, new TeleporterGNS(ServerLifecycleHooks.getCurrentServer().getWorld(transferDimension)));	
 			}
 			
@@ -113,6 +123,9 @@ public class BlockGNSBed extends HorizontalBlock implements ITileEntityProvider
 				DimensionType previousDimension = player.dimension;
 				DimensionType transferDimension = previousDimension == GNSRegistryHandler.nightmareType() ? DimensionType.OVERWORLD : GNSRegistryHandler.nightmareType();
 				
+				serverPlayer.teleport(player.getServer().getWorld(transferDimension), serverPlayer.posX, serverPlayer.world.getHeight(Type.MOTION_BLOCKING_NO_LEAVES, player.getPosition()).getY(), serverPlayer.posZ, serverPlayer.rotationYaw, serverPlayer.rotationPitch);
+
+				TeleporterGNS.INSTANCE.teleport(player, player.rotationYawHead);
 				//player.changeDimension(transferDimension, new TeleporterGNS(ServerLifecycleHooks.getCurrentServer().getWorld(transferDimension)));	
 			}
 			
@@ -123,6 +136,9 @@ public class BlockGNSBed extends HorizontalBlock implements ITileEntityProvider
 					DimensionType previousDimension = player.dimension;
 					DimensionType transferDimension = previousDimension == GNSRegistryHandler.dreamType() ? DimensionType.OVERWORLD : GNSRegistryHandler.dreamType();
 					
+					serverPlayer.teleport(player.getServer().getWorld(transferDimension), serverPlayer.posX, serverPlayer.world.getHeight(Type.MOTION_BLOCKING_NO_LEAVES, player.getPosition()).getY(), serverPlayer.posZ, serverPlayer.rotationYaw, serverPlayer.rotationPitch);
+
+					//TeleporterGNS.INSTANCE.teleport(player, player.rotationYawHead);
 					//player.changeDimension(transferDimension, new TeleporterGNS(ServerLifecycleHooks.getCurrentServer().getWorld(transferDimension)));	
 				}
 				else
@@ -130,6 +146,10 @@ public class BlockGNSBed extends HorizontalBlock implements ITileEntityProvider
 					DimensionType previousDimension = player.dimension;
 					DimensionType transferDimension = previousDimension == GNSRegistryHandler.nightmareType() ? DimensionType.OVERWORLD : GNSRegistryHandler.nightmareType();
 					
+					serverPlayer.teleport(player.getServer().getWorld(transferDimension), serverPlayer.posX, serverPlayer.world.getHeight(Type.MOTION_BLOCKING_NO_LEAVES, player.getPosition()).getY(), serverPlayer.posZ, serverPlayer.rotationYaw, serverPlayer.rotationPitch);
+
+					//TeleporterGNS.INSTANCE.teleport(player, player.rotationYawHead);
+
 					//player.changeDimension(transferDimension, new TeleporterGNS(ServerLifecycleHooks.getCurrentServer().getWorld(transferDimension)));	
 				}
 			}

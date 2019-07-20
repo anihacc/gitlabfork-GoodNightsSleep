@@ -32,7 +32,7 @@ public class GNSEntityTypes
 	
 	public static final EntityType<HerobrineEntity> HEROBRINE = register("herobrine", EntityType.Builder.create(HerobrineEntity::new, EntityClassification.MONSTER));
 
-	public static final EntityType<GNSSpawnerEntity> SPAWNER_ENTITY = register("gns_spawner", EntityType.Builder.create(GNSSpawnerEntity::new, EntityClassification.CREATURE).size(0.1F, 0.1F));
+	public static final EntityType<GNSSpawnerEntity> SPAWNER_ENTITY = register("gns_spawner", EntityType.Builder.create(GNSSpawnerEntity::new, EntityClassification.CREATURE).size(0.1F, 0.1F).disableSummoning());
 
 	@SuppressWarnings("deprecation")
 	private static <T extends Entity> EntityType<T> register(String id, EntityType.Builder<T> builder)
@@ -54,22 +54,4 @@ public class GNSEntityTypes
 	{
 		return (p_223316_1_.getBlockState(p_223316_3_.down()).getBlock() == BlocksGNS.nightmare_grass_block || p_223316_1_.getBlockState(p_223316_3_.down()).getBlock() == BlocksGNS.dream_grass_block) && p_223316_1_.canBlockSeeSky(p_223316_3_);
 	}
-	
-	/*public static boolean animalSpawnConditions(EntityType<? extends AnimalEntity> type, IWorld world, SpawnReason reason, BlockPos pos, Random rand)
-	{
-		Block block = world.getBlockState(pos.down()).getBlock();
-		return (block == BlocksSkies.turquoise_grass_block || block == BlocksSkies.lunar_grass_block || block == BlocksSkies.crystal_sand) && world.getLightSubtracted(pos, 0) > 8;
-	}
-	
-	public static boolean mobSpawnConditions(EntityType<? extends MobEntity> type, IWorld world, SpawnReason reason, BlockPos pos, Random rand)
-	{
-		Block block = world.getBlockState(pos.down()).getBlock();
-		return (block == BlocksSkies.turquoise_grass_block || block == BlocksSkies.lunar_grass_block || block == BlocksSkies.crystal_sand) && world.getLightSubtracted(pos, 0) > 8;
-	}
-	
-	public static boolean monsterSpawnConditions(EntityType<? extends MobEntity> type, IWorld world, SpawnReason reason, BlockPos pos, Random rand)
-	{
-		Block block = world.getBlockState(pos.down()).getBlock();
-		return (block == BlocksSkies.turquoise_grass_block || block == BlocksSkies.lunar_grass_block || block == BlocksSkies.crystal_sand || block.getRegistryName().toString().contains("stone")) && rand.nextInt(200) == 0 && world.getDifficulty() != Difficulty.PEACEFUL;
-	}*/
 }
