@@ -19,7 +19,7 @@ archivesBaseName = 'goodnightsleep-1.14.3'
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
 
 minecraft {
-    mappings channel: 'snapshot', version: '20190717-1.14.3'
+    mappings channel: 'snapshot', version: '20190720-1.14.3'
     accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
     runs {
         client {
@@ -65,7 +65,7 @@ minecraft {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.14.3-27.0.57'
+    minecraft 'net.minecraftforge:forge:1.14.4-28.0.1'
 }
 
 jar {

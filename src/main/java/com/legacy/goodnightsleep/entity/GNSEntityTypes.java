@@ -37,7 +37,7 @@ public class GNSEntityTypes
 	@SuppressWarnings("deprecation")
 	private static <T extends Entity> EntityType<T> register(String id, EntityType.Builder<T> builder)
 	{
-		return Registry.register(Registry.ENTITY_TYPE, "goodnightsleep:" + id, builder.build(id));
+		return Registry.register(Registry.ENTITY_TYPE, "goodnightsleep:" + id, builder.disableSerialization().build(id));
 	}
 	
 	public static boolean dreamAnimalSpawnConditions(EntityType<? extends AnimalEntity> p_223316_0_, IWorld p_223316_1_, SpawnReason p_223316_2_, BlockPos p_223316_3_, Random p_223316_4_)
