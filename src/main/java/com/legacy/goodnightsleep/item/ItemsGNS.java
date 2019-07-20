@@ -60,7 +60,7 @@ public class ItemsGNS
 	
 	public static Item luxurious_bed_item, wretched_bed_item, strange_bed_item;
 	
-	public static Item unicorn_spawn_egg, gummy_bear_spawn_egg, baby_creeper_spawn_egg, tormenter_spawn_egg, herobrine_spawn_egg, giant_spawn_egg, spawner_spawn_egg;
+	public static Item unicorn_spawn_egg, gummy_bear_spawn_egg, baby_creeper_spawn_egg, tormenter_spawn_egg, herobrine_spawn_egg, giant_spawn_egg;
 
 	public static void initialization()
 	{
@@ -75,8 +75,6 @@ public class ItemsGNS
 		tormenter_spawn_egg = register("tormenter_spawn_egg", new SpawnEggItem(GNSEntityTypes.TORMENTER, 10516796, 5525034, new Item.Properties().group(GNSCreativeTabs.items)));
 		herobrine_spawn_egg = register("herobrine_spawn_egg", new SpawnEggItem(GNSEntityTypes.HEROBRINE, 0xffffff, 0xffffff, new Item.Properties()));
 		giant_spawn_egg = register("giant_spawn_egg", new SpawnEggItem(EntityType.GIANT, 1598464, 30652, new Item.Properties().group(GNSCreativeTabs.items)));
-
-		spawner_spawn_egg = register("spawner_spawn_egg", new SpawnEggItem(GNSEntityTypes.SPAWNER_ENTITY, 0xffffff, 0xffffff, new Item.Properties().group(GNSCreativeTabs.items)));
 
 		positite_gem = register("positite_gem", new Item(new Item.Properties().group(GNSCreativeTabs.items)));
 		rainbow_ingot = register("rainbow_ingot", new Item(new Item.Properties().group(GNSCreativeTabs.items)));
