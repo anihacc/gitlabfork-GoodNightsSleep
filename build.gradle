@@ -14,7 +14,7 @@ apply plugin: 'maven-publish'
 
 version = '0.0.1'
 group = 'com.legacy.goodnightsleep'
-archivesBaseName = 'goodnightsleep-1.14.3'
+archivesBaseName = 'goodnightsleep-1.14.4'
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
 
