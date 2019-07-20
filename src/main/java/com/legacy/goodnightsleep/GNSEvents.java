@@ -35,12 +35,12 @@ public class GNSEvents
 	@SubscribeEvent
 	public void onRegisteredDimension(RegisterDimensionsEvent event)
 	{
-		if (DreamWorldManager.getDimensionType() == null)
+		//if (DreamWorldManager.getDimensionType() == null)
 		{
 			DimensionManager.registerDimension(VariableConstants.locate("good_dream"), DreamWorldManager.INSTANCE, new PacketBuffer(Unpooled.buffer()), true);
 		}
 		
-		if (NightmareWorldManager.getDimensionType() == null)
+		//if (NightmareWorldManager.getDimensionType() == null)
 		{
 			DimensionManager.registerDimension(VariableConstants.locate("nightmare"), NightmareWorldManager.INSTANCE, new PacketBuffer(Unpooled.buffer()), true);
 		}
