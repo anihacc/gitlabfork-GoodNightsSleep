@@ -1,6 +1,7 @@
 package com.legacy.goodnightsleep.world.dream;
 
 import com.legacy.goodnightsleep.blocks.BlocksGNS;
+import com.legacy.goodnightsleep.entity.GNSEntityTypes;
 import com.legacy.goodnightsleep.world.GNSCanyonWorldCarver;
 import com.legacy.goodnightsleep.world.GNSCaveWorldCarver;
 import com.legacy.goodnightsleep.world.dream.features.BigHopeMushroomFeature;
@@ -12,6 +13,7 @@ import com.legacy.goodnightsleep.world.dream.features.GNSBigTreeFeature;
 import com.legacy.goodnightsleep.world.dream.features.GNSFlowersFeature;
 
 import net.minecraft.block.Blocks;
+import net.minecraft.entity.EntityClassification;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.Feature;
@@ -56,6 +58,8 @@ public class BiomeGoodDreamPlains extends Biome
 		this.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, createDecoratedFeature(new DreamOreFeature(DreamOreFeatureConfig::deserialize), new DreamOreFeatureConfig(DreamOreFeatureConfig.FillerBlockType.DELUSION, BlocksGNS.lapis_ore.getDefaultState(), 7), Placement.COUNT_DEPTH_AVERAGE, new DepthAverageConfig(1, 16, 16)));
 		this.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, createDecoratedFeature(new DreamOreFeature(DreamOreFeatureConfig::deserialize), new DreamOreFeatureConfig(DreamOreFeatureConfig.FillerBlockType.DELUSION, Blocks.GLOWSTONE.getDefaultState(), 8), Placement.COUNT_RANGE, new CountRangeConfig(1, 0, 0, 7)));
 
-		//this.addSpawn(EntityClassification.CREATURE, new Biome.SpawnListEntry(EntityType.COW, 8, 3, 5));
+		this.addSpawn(EntityClassification.CREATURE, new Biome.SpawnListEntry(GNSEntityTypes.SPAWNER_ENTITY, 40, 1, 1));
+		
+		this.addSpawn(EntityClassification.MONSTER, new Biome.SpawnListEntry(GNSEntityTypes.BABY_CREEPER, 10, 1, 4));
 	}
 }
