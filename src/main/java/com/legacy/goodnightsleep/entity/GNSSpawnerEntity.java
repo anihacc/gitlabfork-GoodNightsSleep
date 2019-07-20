@@ -1,10 +1,7 @@
 package com.legacy.goodnightsleep.entity;
 
-import javax.annotation.Nullable;
+import com.legacy.goodnightsleep.GNSRegistryHandler;
 
-import com.legacy.goodnightsleep.world.nightmare.NightmareWorldManager;
-
-import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.MobEntity;
@@ -19,7 +16,6 @@ import net.minecraft.item.DyeColor;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.Heightmap.Type;
 
@@ -53,7 +49,7 @@ public class GNSSpawnerEntity extends MobEntity
     	
     	//BlockPos blockpos = (new BlockPos(this));
     	
-    	if (worldIn.getDimension().getType() != NightmareWorldManager.getDimensionType())
+    	if (worldIn.getDimension().getType() != GNSRegistryHandler.nightmareType())
     	{
 	    	if (type == 0)
 	    	{

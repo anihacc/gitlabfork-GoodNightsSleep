@@ -4,12 +4,11 @@ import java.util.Optional;
 
 import javax.annotation.Nullable;
 
+import com.legacy.goodnightsleep.GNSRegistryHandler;
 import com.legacy.goodnightsleep.blocks.BlocksGNS;
 import com.legacy.goodnightsleep.tile_entity.TileEntityLuxuriousBed;
 import com.legacy.goodnightsleep.tile_entity.TileEntityStrangeBed;
 import com.legacy.goodnightsleep.tile_entity.TileEntityWretchedBed;
-import com.legacy.goodnightsleep.world.dream.DreamWorldManager;
-import com.legacy.goodnightsleep.world.nightmare.NightmareWorldManager;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
@@ -104,7 +103,7 @@ public class BlockGNSBed extends HorizontalBlock implements ITileEntityProvider
 			if (this == BlocksGNS.luxurious_bed)
 			{
 				DimensionType previousDimension = player.dimension;
-				DimensionType transferDimension = previousDimension == DreamWorldManager.getDimensionType() ? DimensionType.OVERWORLD : DreamWorldManager.getDimensionType();
+				DimensionType transferDimension = previousDimension == GNSRegistryHandler.dreamType() ? DimensionType.OVERWORLD : GNSRegistryHandler.dreamType();
 				
 				//player.changeDimension(transferDimension, new TeleporterGNS(ServerLifecycleHooks.getCurrentServer().getWorld(transferDimension)));	
 			}
@@ -112,7 +111,7 @@ public class BlockGNSBed extends HorizontalBlock implements ITileEntityProvider
 			else if (this == BlocksGNS.wretched_bed)
 			{
 				DimensionType previousDimension = player.dimension;
-				DimensionType transferDimension = previousDimension == NightmareWorldManager.getDimensionType() ? DimensionType.OVERWORLD : NightmareWorldManager.getDimensionType();
+				DimensionType transferDimension = previousDimension == GNSRegistryHandler.nightmareType() ? DimensionType.OVERWORLD : GNSRegistryHandler.nightmareType();
 				
 				//player.changeDimension(transferDimension, new TeleporterGNS(ServerLifecycleHooks.getCurrentServer().getWorld(transferDimension)));	
 			}
@@ -122,14 +121,14 @@ public class BlockGNSBed extends HorizontalBlock implements ITileEntityProvider
 				if (worldIn.rand.nextBoolean())
 				{
 					DimensionType previousDimension = player.dimension;
-					DimensionType transferDimension = previousDimension == DreamWorldManager.getDimensionType() ? DimensionType.OVERWORLD : DreamWorldManager.getDimensionType();
+					DimensionType transferDimension = previousDimension == GNSRegistryHandler.dreamType() ? DimensionType.OVERWORLD : GNSRegistryHandler.dreamType();
 					
 					//player.changeDimension(transferDimension, new TeleporterGNS(ServerLifecycleHooks.getCurrentServer().getWorld(transferDimension)));	
 				}
 				else
 				{
 					DimensionType previousDimension = player.dimension;
-					DimensionType transferDimension = previousDimension == NightmareWorldManager.getDimensionType() ? DimensionType.OVERWORLD : NightmareWorldManager.getDimensionType();
+					DimensionType transferDimension = previousDimension == GNSRegistryHandler.nightmareType() ? DimensionType.OVERWORLD : GNSRegistryHandler.nightmareType();
 					
 					//player.changeDimension(transferDimension, new TeleporterGNS(ServerLifecycleHooks.getCurrentServer().getWorld(transferDimension)));	
 				}

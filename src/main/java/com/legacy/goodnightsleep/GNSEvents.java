@@ -1,21 +1,16 @@
 package com.legacy.goodnightsleep;
 
 import com.legacy.goodnightsleep.blocks.BlocksGNS;
-import com.legacy.goodnightsleep.world.dream.DreamWorldManager;
-import com.legacy.goodnightsleep.world.nightmare.NightmareWorldManager;
 
-import io.netty.buffer.Unpooled;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.HoeItem;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.RightClickBlock;
 import net.minecraftforge.event.world.RegisterDimensionsEvent;
@@ -37,12 +32,12 @@ public class GNSEvents
 	{
 		//if (DreamWorldManager.getDimensionType() == null)
 		{
-			DimensionManager.registerDimension(VariableConstants.locate("good_dream"), DreamWorldManager.INSTANCE, new PacketBuffer(Unpooled.buffer()), true);
+			//DimensionManager.registerDimension(VariableConstants.locate("good_dream"), new DreamWorldManager(), new PacketBuffer(Unpooled.buffer()), true);
 		}
 		
 		//if (NightmareWorldManager.getDimensionType() == null)
 		{
-			DimensionManager.registerDimension(VariableConstants.locate("nightmare"), NightmareWorldManager.INSTANCE, new PacketBuffer(Unpooled.buffer()), true);
+			//DimensionManager.registerDimension(VariableConstants.locate("nightmare"), new NightmareWorldManager(), new PacketBuffer(Unpooled.buffer()), true);
 		}
 	}
 	

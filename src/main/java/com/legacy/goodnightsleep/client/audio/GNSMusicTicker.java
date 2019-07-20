@@ -2,8 +2,7 @@ package com.legacy.goodnightsleep.client.audio;
 
 import java.util.Random;
 
-import com.legacy.goodnightsleep.world.dream.DreamWorldManager;
-import com.legacy.goodnightsleep.world.nightmare.NightmareWorldManager;
+import com.legacy.goodnightsleep.GNSRegistryHandler;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.ISound;
@@ -35,7 +34,7 @@ public class GNSMusicTicker implements ITickable
       	if (this.mc.player != null && !this.mc.getSoundHandler().isPlaying(this.playingRecord))
       	{
       		
-      		if (this.mc.player.dimension == DreamWorldManager.getDimensionType())
+      		if (this.mc.player.dimension == GNSRegistryHandler.dreamType())
           	{
       			
       			if (this.ambientMusic != null)
@@ -55,7 +54,7 @@ public class GNSMusicTicker implements ITickable
                 }
           	}
           	
-          	else if (this.mc.player.dimension == NightmareWorldManager.getDimensionType())
+          	else if (this.mc.player.dimension == GNSRegistryHandler.nightmareType())
           	{
       			if (this.ambientMusic != null)
                 {

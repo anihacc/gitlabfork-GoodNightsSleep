@@ -2,8 +2,7 @@ package com.legacy.goodnightsleep.world;
 
 import java.util.Random;
 
-import com.legacy.goodnightsleep.world.dream.DreamWorldManager;
-import com.legacy.goodnightsleep.world.nightmare.NightmareWorldManager;
+import com.legacy.goodnightsleep.GNSRegistryHandler;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -34,7 +33,7 @@ public class TeleporterGNS extends Teleporter
 
 		PlayerEntity player = (PlayerEntity) entityIn;
 		
-		if (player.getBedLocation(DimensionType.OVERWORLD) != null && !(entityIn.dimension == DreamWorldManager.getDimensionType() || entityIn.dimension == NightmareWorldManager.getDimensionType()))
+		if (player.getBedLocation(DimensionType.OVERWORLD) != null && !(entityIn.dimension == GNSRegistryHandler.dreamType() || entityIn.dimension == GNSRegistryHandler.nightmareType()))
 		{
 			entityIn.setLocationAndAngles((double) player.getBedLocation(DimensionType.OVERWORLD).getX(), entityIn.world.getHeight(Type.MOTION_BLOCKING_NO_LEAVES, player.getPosition()).getY(), (double) player.getBedLocation(DimensionType.OVERWORLD).getZ(), entityIn.rotationYaw, 0.0F);
 		}

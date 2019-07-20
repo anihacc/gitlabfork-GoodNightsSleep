@@ -1,5 +1,8 @@
 package com.legacy.goodnightsleep;
 
+import java.util.function.BiFunction;
+
+import com.google.common.base.Preconditions;
 import com.legacy.goodnightsleep.blocks.BlocksGNS;
 import com.legacy.goodnightsleep.client.audio.GNSSounds;
 import com.legacy.goodnightsleep.entity.GNSEntityTypes;
@@ -7,20 +10,27 @@ import com.legacy.goodnightsleep.item.GNSCreativeTabs;
 import com.legacy.goodnightsleep.item.ItemsGNS;
 import com.legacy.goodnightsleep.tile_entity.GNSTileEntityTypes;
 import com.legacy.goodnightsleep.world.dream.BiomeGoodDreamPlains;
-import com.legacy.goodnightsleep.world.dream.DreamWorldManager;
+import com.legacy.goodnightsleep.world.dream.GoodDreamDimension;
 import com.legacy.goodnightsleep.world.nightmare.BiomeNightmareHills;
-import com.legacy.goodnightsleep.world.nightmare.NightmareWorldManager;
+import com.legacy.goodnightsleep.world.nightmare.NightmareDimension;
 
+import io.netty.buffer.Unpooled;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
+import net.minecraft.network.PacketBuffer;
 import net.minecraft.tileentity.TileEntityType;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.dimension.Dimension;
+import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.gen.Heightmap;
+import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.ModDimension;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.RegistryEvent.Register;
@@ -103,9 +113,43 @@ public class GNSRegistryHandler
 	@SubscribeEvent
 	public static void onRegisterDimensions(RegistryEvent.Register<ModDimension> event)
 	{
-		register(event.getRegistry(), "good_dream", new DreamWorldManager());
-		register(event.getRegistry(), "nightmare", new NightmareWorldManager());
+		ModDimension dreamDim = new ModDimension()
+		{
+			@Override
+			public BiFunction<World, DimensionType, ? extends Dimension> getFactory()
+			{
+				return GoodDreamDimension::new;
+			}
+		};
+		register(event.getRegistry(), "good_dream", dreamDim);
+		DimensionManager.registerDimension(VariableConstants.locate("good_dream"), dreamDim, new PacketBuffer(Unpooled.buffer()), true);
+		
+		// Everdawn
+		ModDimension nightmareDim = new ModDimension()
+		{
+			@Override
+			public BiFunction<World, DimensionType, ? extends Dimension> getFactory()
+			{
+				return NightmareDimension::new;
+			}
+		};
+		register(event.getRegistry(), "nightmare", nightmareDim);
+		DimensionManager.registerDimension(VariableConstants.locate("nightmare"), nightmareDim, new PacketBuffer(Unpooled.buffer()), true);
 	}
+
+	public static DimensionType dreamType()
+    {
+        DimensionType dimension = DimensionType.byName(new ResourceLocation(VariableConstants.MODID, "good_dream"));
+        Preconditions.checkNotNull(dimension, "Dimension hasn't been initialized.");
+        return dimension;
+    }
+
+    public static DimensionType nightmareType()
+    {
+        DimensionType dimension = DimensionType.byName(new ResourceLocation(VariableConstants.MODID, "nightmare"));
+        Preconditions.checkNotNull(dimension, "Dimension hasn't been initialized.");
+        return dimension;
+    }
 
 	private static <T extends IForgeRegistryEntry<T>> void register(IForgeRegistry<T> registry, String name, T object)
 	{

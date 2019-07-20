@@ -1,5 +1,6 @@
 package com.legacy.goodnightsleep.world.dream;
 
+import com.legacy.goodnightsleep.GNSRegistryHandler;
 import com.legacy.goodnightsleep.blocks.BlocksGNS;
 
 import net.minecraft.util.math.BlockPos;
@@ -84,7 +85,7 @@ public class GoodDreamDimension extends Dimension
 	@Override
 	public DimensionType getType()
 	{
-		return DreamWorldManager.getDimensionType();
+		return GNSRegistryHandler.dreamType();
 	}
 	
 	@Override
