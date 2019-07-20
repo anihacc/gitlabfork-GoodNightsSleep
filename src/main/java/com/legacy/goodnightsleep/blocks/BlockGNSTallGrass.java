@@ -7,6 +7,8 @@ import net.minecraft.block.BushBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.monster.IMob;
+import net.minecraft.entity.passive.horse.SkeletonHorseEntity;
+import net.minecraft.entity.passive.horse.ZombieHorseEntity;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.BlockPos;
@@ -64,7 +66,7 @@ public class BlockGNSTallGrass extends BushBlock
 	 @Override
 	 public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn)
 	 {
-		 if (this == BlocksGNS.tall_nightmare_grass && !(entityIn instanceof IMob || entityIn instanceof ItemEntity))
+		 if (this == BlocksGNS.tall_nightmare_grass && !(entityIn instanceof IMob || entityIn instanceof ItemEntity || entityIn instanceof ZombieHorseEntity || entityIn instanceof SkeletonHorseEntity))
 		 {
 			 entityIn.attackEntityFrom(new DamageSource("nightmare_grass"), 1.0F);
 		 }

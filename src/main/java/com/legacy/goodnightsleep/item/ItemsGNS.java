@@ -50,6 +50,8 @@ public class ItemsGNS
 
 	public static Item positite_helmet, positite_chestplate, positite_leggings, positite_boots;
 
+	public static Item zitrite_helmet, zitrite_chestplate, zitrite_leggings, zitrite_boots;
+
 	public static Item negatite_helmet, negatite_chestplate, negatite_leggings, negatite_boots;
 	
 	public static Item candy, lolipop, rainbow_berries, luxurious_soup, wretched_soup;
@@ -58,9 +60,7 @@ public class ItemsGNS
 	
 	public static Item luxurious_bed_item, wretched_bed_item, strange_bed_item;
 	
-	public static Item unicorn_spawn_egg, gummy_bear_spawn_egg, baby_creeper_spawn_egg, tormenter_spawn_egg, herobrine_spawn_egg, giant_spawn_egg;
-
-	//public static EnumRarity NIGHTMARE = EnumHelper.addRarity("NIGHTMARE", TextFormatting.DARK_RED, "Nightmare");
+	public static Item unicorn_spawn_egg, gummy_bear_spawn_egg, baby_creeper_spawn_egg, tormenter_spawn_egg, herobrine_spawn_egg, giant_spawn_egg, spawner_spawn_egg;
 
 	public static void initialization()
 	{
@@ -76,6 +76,8 @@ public class ItemsGNS
 		herobrine_spawn_egg = register("herobrine_spawn_egg", new SpawnEggItem(GNSEntityTypes.HEROBRINE, 0xffffff, 0xffffff, new Item.Properties()));
 		giant_spawn_egg = register("giant_spawn_egg", new SpawnEggItem(EntityType.GIANT, 1598464, 30652, new Item.Properties().group(GNSCreativeTabs.items)));
 
+		spawner_spawn_egg = register("spawner_spawn_egg", new SpawnEggItem(GNSEntityTypes.SPAWNER_ENTITY, 0xffffff, 0xffffff, new Item.Properties().group(GNSCreativeTabs.items)));
+
 		positite_gem = register("positite_gem", new Item(new Item.Properties().group(GNSCreativeTabs.items)));
 		rainbow_ingot = register("rainbow_ingot", new Item(new Item.Properties().group(GNSCreativeTabs.items)));
 		candy_ingot = register("candy_ingot", new Item(new Item.Properties()));
@@ -86,13 +88,13 @@ public class ItemsGNS
 		powdered_sugar = register("powdered_sugar", new Item(new Item.Properties().group(GNSCreativeTabs.items)));
 		lolipop = register("lolipop", new Item(new Item.Properties().group(GNSCreativeTabs.items)));
 
-		candy = register("candy", new Item(new Item.Properties().group(GNSCreativeTabs.items))); //2, 0.2F, false, 
+		candy = register("candy", new Item(new Item.Properties().group(GNSCreativeTabs.items).food(GNSFoods.CANDY)));
 
 		rainbow_seeds = register("rainbow_seeds", new BlockNamedItem(BlocksGNS.rainbow_crop, new Item.Properties().group(GNSCreativeTabs.items)));
-		rainbow_berries = register("rainbow_berries", new Item(new Item.Properties().group(GNSCreativeTabs.items))); //4, 0.6F, true, 
+		rainbow_berries = register("rainbow_berries", new Item(new Item.Properties().group(GNSCreativeTabs.items).food(GNSFoods.RAINBOW_BERRIES)));
 
-		luxurious_soup = register("luxurious_soup", new Item(new Item.Properties().maxStackSize(1).group(GNSCreativeTabs.items)));
-		wretched_soup = register("wretched_soup", new Item(new Item.Properties().maxStackSize(1).group(GNSCreativeTabs.items)));
+		luxurious_soup = register("luxurious_soup", new Item(new Item.Properties().maxStackSize(1).group(GNSCreativeTabs.items).food(GNSFoods.TELEPORTATION_STEW)));
+		wretched_soup = register("wretched_soup", new Item(new Item.Properties().maxStackSize(1).group(GNSCreativeTabs.items).food(GNSFoods.TELEPORTATION_STEW)));
 
 		candy_sword = register("candy_sword", new SwordItem(GNSItemTier.CANDY, 3, -2.4F, (new Item.Properties()).group(GNSCreativeTabs.tools)));
 		candy_pickaxe = register("candy_pickaxe", new PickaxeItem(GNSItemTier.CANDY, 1, -2.8F, (new Item.Properties()).group(GNSCreativeTabs.tools)));
@@ -145,6 +147,11 @@ public class ItemsGNS
 		positite_leggings = register("positite_leggings", new ArmorItem(GNSArmorMaterial.POSITITE, EquipmentSlotType.LEGS, new Item.Properties().group(GNSCreativeTabs.armor)));
 		positite_boots = register("positite_boots", new ArmorItem(GNSArmorMaterial.POSITITE, EquipmentSlotType.FEET, new Item.Properties().group(GNSCreativeTabs.armor)));
 
+		zitrite_helmet = register("zitrite_helmet", new ArmorItem(GNSArmorMaterial.ZITRITE, EquipmentSlotType.HEAD, new Item.Properties()));
+		zitrite_chestplate = register("zitrite_chestplate", new ArmorItem(GNSArmorMaterial.ZITRITE, EquipmentSlotType.CHEST, new Item.Properties()));
+		zitrite_leggings = register("zitrite_leggings", new ArmorItem(GNSArmorMaterial.ZITRITE, EquipmentSlotType.LEGS, new Item.Properties()));
+		zitrite_boots = register("zitrite_boots", new ArmorItem(GNSArmorMaterial.ZITRITE, EquipmentSlotType.FEET, new Item.Properties()));
+
 		negatite_helmet = register("negatite_helmet", new ArmorItem(GNSArmorMaterial.NEGATITE, EquipmentSlotType.HEAD, new Item.Properties()));
 		negatite_chestplate = register("negatite_chestplate", new ArmorItem(GNSArmorMaterial.NEGATITE, EquipmentSlotType.CHEST, new Item.Properties()));
 		negatite_leggings = register("negatite_leggings", new ArmorItem(GNSArmorMaterial.NEGATITE, EquipmentSlotType.LEGS, new Item.Properties()));
@@ -153,12 +160,8 @@ public class ItemsGNS
 
 	private static Item register(String unlocalizedName, Item item)
 	{
-		//item.setTranslationKey(unlocalizedName);
-
 		item.setRegistryName(VariableConstants.locate(unlocalizedName));
-
 		iItemRegistry.register(item);
-
 		return item;
 	}
 	
