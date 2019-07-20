@@ -18,6 +18,7 @@ import net.minecraft.block.SlabBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
+import net.minecraft.item.DyeColor;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.registries.IForgeRegistry;
 
@@ -72,7 +73,7 @@ public class BlocksGNS
 			return;
 		}
 
-		luxurious_bed = registerWithoutItem("luxurious_bed", new BlockGNSBed(Block.Properties.from(Blocks.RED_BED)));
+		luxurious_bed = registerWithoutItem("luxurious_bed", new BlockGNSBed(Block.Properties.from(Blocks.RED_BED)));//BlockGNSBed
 		wretched_bed = registerWithoutItem("wretched_bed", new BlockGNSBed(Block.Properties.from(Blocks.RED_BED)));
 		strange_bed = registerWithoutItem("strange_bed", new BlockGNSBed(Block.Properties.from(Blocks.RED_BED)));
 

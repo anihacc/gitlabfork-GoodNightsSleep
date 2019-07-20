@@ -1,14 +1,14 @@
 package com.legacy.goodnightsleep.entity;
 
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.world.World;
 
-public class HerobrineEntity extends MobEntity
+public class HerobrineEntity extends MonsterEntity
 {
 
 	public HerobrineEntity(EntityType<? extends HerobrineEntity> type, World worldIn)
@@ -22,8 +22,9 @@ public class HerobrineEntity extends MobEntity
 		this(GNSEntityTypes.HEROBRINE, worldIn);
 	}
 
-	protected void initEntityAI()
+	protected void registerGoals()
 	{
+		super.registerGoals();
 		//this.tasks.addTask(0, new EntityAISwimming(this));
 		//this.tasks.addTask(2, new EntityAIAttackMelee(this, 1.0D, false));
 		//this.tasks.addTask(7, new EntityAIWanderAvoidWater(this, 1.0D, 0.0F));

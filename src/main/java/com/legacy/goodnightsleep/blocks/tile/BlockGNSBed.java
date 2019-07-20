@@ -1,5 +1,7 @@
 package com.legacy.goodnightsleep.blocks.tile;
 
+import java.util.Optional;
+
 import javax.annotation.Nullable;
 
 import com.legacy.goodnightsleep.blocks.BlocksGNS;
@@ -18,6 +20,7 @@ import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.block.material.PushReaction;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
@@ -27,15 +30,21 @@ import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BedPart;
 import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.stats.Stats;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
+import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.api.distmarker.Dist;
@@ -47,19 +56,41 @@ public class BlockGNSBed extends HorizontalBlock implements ITileEntityProvider
 
 	public static final EnumProperty<BedPart> PART = BlockStateProperties.BED_PART;
 
-	protected static final VoxelShape SHAPE = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 9.0D, 16.0D);
+	protected static final VoxelShape field_220176_c = Block.makeCuboidShape(0.0D, 3.0D, 0.0D, 16.0D, 9.0D, 16.0D);
 
-	public BlockGNSBed(Block.Properties builder)
+	protected static final VoxelShape field_220177_d = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 3.0D, 3.0D, 3.0D);
+
+	protected static final VoxelShape field_220178_e = Block.makeCuboidShape(0.0D, 0.0D, 13.0D, 3.0D, 3.0D, 16.0D);
+
+	protected static final VoxelShape field_220179_f = Block.makeCuboidShape(13.0D, 0.0D, 0.0D, 16.0D, 3.0D, 3.0D);
+
+	protected static final VoxelShape field_220180_g = Block.makeCuboidShape(13.0D, 0.0D, 13.0D, 16.0D, 3.0D, 16.0D);
+
+	protected static final VoxelShape field_220181_h = VoxelShapes.or(field_220176_c, field_220177_d, field_220179_f);
+
+	protected static final VoxelShape field_220182_i = VoxelShapes.or(field_220176_c, field_220178_e, field_220180_g);
+
+	protected static final VoxelShape field_220183_j = VoxelShapes.or(field_220176_c, field_220177_d, field_220178_e);
+
+	protected static final VoxelShape field_220184_k = VoxelShapes.or(field_220176_c, field_220179_f, field_220180_g);
+
+	public BlockGNSBed(Block.Properties properties)
 	{
-		super(builder);
+		super(properties);
 		this.setDefaultState(this.stateContainer.getBaseState().with(PART, BedPart.FOOT));
 	}
 
-	public MaterialColor getMapColor(BlockState state, IBlockReader worldIn, BlockPos pos)
+	public MaterialColor getMaterialColor(BlockState state, IBlockReader worldIn, BlockPos pos)
 	{
 		return MaterialColor.WOOL;
+	}
 
-		//return state.get(PART) == BedPart.FOOT ? this.color.getMapColor() : MaterialColor.WOOL;
+	@Nullable
+	@OnlyIn(Dist.CLIENT)
+	public static Direction func_220174_a(IBlockReader p_220174_0_, BlockPos p_220174_1_)
+	{
+		BlockState blockstate = p_220174_0_.getBlockState(p_220174_1_);
+		return blockstate.getBlock() instanceof BlockGNSBed ? blockstate.get(HORIZONTAL_FACING) : null;
 	}
 
 	public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand hand, Direction side, float hitX, float hitY, float hitZ)
@@ -114,11 +145,6 @@ public class BlockGNSBed extends HorizontalBlock implements ITileEntityProvider
 		}
 	}
 
-	public boolean isFullCube(BlockState state)
-	{
-		return false;
-	}
-
 	public void onFallenUpon(World worldIn, BlockPos pos, Entity entityIn, float fallDistance)
 	{
 		super.onFallenUpon(worldIn, pos, entityIn, fallDistance * 0.5F);
@@ -130,19 +156,20 @@ public class BlockGNSBed extends HorizontalBlock implements ITileEntityProvider
 		{
 			super.onLanded(worldIn, entityIn);
 		}
-		else if (entityIn.getMotion().y < 0.0D)
+		else
 		{
-			//entityIn.getMotion().y = -entityIn.getMotion().y * (double) 0.66F;
-			if (!(entityIn instanceof LivingEntity))
+			Vec3d vec3d = entityIn.getMotion();
+			if (vec3d.y < 0.0D)
 			{
-				//entityIn.getMotion().y *= 0.8D;
+				double d0 = entityIn instanceof LivingEntity ? 1.0D : 0.8D;
+				entityIn.setMotion(vec3d.x, -vec3d.y * (double) 0.66F * d0, vec3d.z);
 			}
 		}
 	}
 
 	public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos)
 	{
-		if (facing == func_208070_a(stateIn.get(PART), stateIn.get(HORIZONTAL_FACING)))
+		if (facing == getDirectionToOther(stateIn.get(PART), stateIn.get(HORIZONTAL_FACING)))
 		{
 			return facingState.getBlock() == this && facingState.get(PART) != stateIn.get(PART) ? stateIn : Blocks.AIR.getDefaultState();
 		}
@@ -152,7 +179,7 @@ public class BlockGNSBed extends HorizontalBlock implements ITileEntityProvider
 		}
 	}
 
-	private static Direction func_208070_a(BedPart p_208070_0_, Direction p_208070_1_)
+	private static Direction getDirectionToOther(BedPart p_208070_0_, Direction p_208070_1_)
 	{
 		return p_208070_0_ == BedPart.FOOT ? p_208070_1_ : p_208070_1_.getOpposite();
 	}
@@ -162,37 +189,22 @@ public class BlockGNSBed extends HorizontalBlock implements ITileEntityProvider
 		super.harvestBlock(worldIn, player, pos, Blocks.AIR.getDefaultState(), te, stack);
 	}
 
-	public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving)
-	{
-		if (state.getBlock() != newState.getBlock())
-		{
-			super.onReplaced(state, worldIn, pos, newState, isMoving);
-			worldIn.removeTileEntity(pos);
-		}
-	}
-
 	public void onBlockHarvested(World worldIn, BlockPos pos, BlockState state, PlayerEntity player)
 	{
 		BedPart bedpart = state.get(PART);
-		boolean flag = bedpart == BedPart.HEAD;
-		BlockPos blockpos = pos.offset(func_208070_a(bedpart, state.get(HORIZONTAL_FACING)));
-		BlockState iblockstate = worldIn.getBlockState(blockpos);
-		if (iblockstate.getBlock() == this && iblockstate.get(PART) != bedpart)
+		BlockPos blockpos = pos.offset(getDirectionToOther(bedpart, state.get(HORIZONTAL_FACING)));
+		BlockState blockstate = worldIn.getBlockState(blockpos);
+		if (blockstate.getBlock() == this && blockstate.get(PART) != bedpart)
 		{
 			worldIn.setBlockState(blockpos, Blocks.AIR.getDefaultState(), 35);
-			worldIn.playEvent(player, 2001, blockpos, Block.getStateId(iblockstate));
+			worldIn.playEvent(player, 2001, blockpos, Block.getStateId(blockstate));
 			if (!worldIn.isRemote && !player.isCreative())
 			{
-				if (flag)
-				{
-					//state.dropBlockAsItem(worldIn, pos, 0);
-				}
-				else
-				{
-					//iblockstate.dropBlockAsItem(worldIn, blockpos, 0);
-				}
+				ItemStack itemstack = player.getHeldItemMainhand();
+				spawnDrops(state, worldIn, pos, (TileEntity) null, player, itemstack);
+				spawnDrops(blockstate, worldIn, blockpos, (TileEntity) null, player, itemstack);
 			}
-			//player.addStat(StatList.BLOCK_MINED.get(this));
+			player.addStat(Stats.BLOCK_MINED.get(this));
 		}
 		super.onBlockHarvested(worldIn, pos, state, player);
 	}
@@ -200,21 +212,101 @@ public class BlockGNSBed extends HorizontalBlock implements ITileEntityProvider
 	@Nullable
 	public BlockState getStateForPlacement(BlockItemUseContext context)
 	{
-		Direction enumfacing = context.getPlacementHorizontalFacing();
+		Direction direction = context.getPlacementHorizontalFacing();
 		BlockPos blockpos = context.getPos();
-		BlockPos blockpos1 = blockpos.offset(enumfacing);
-		return context.getWorld().getBlockState(blockpos1).isReplaceable(context) ? this.getDefaultState().with(HORIZONTAL_FACING, enumfacing) : null;
+		BlockPos blockpos1 = blockpos.offset(direction);
+		return context.getWorld().getBlockState(blockpos1).isReplaceable(context) ? this.getDefaultState().with(HORIZONTAL_FACING, direction) : null;
 	}
 
-	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos)
+	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context)
 	{
-		return SHAPE;
+		Direction direction = state.get(HORIZONTAL_FACING);
+		Direction direction1 = state.get(PART) == BedPart.HEAD ? direction : direction.getOpposite();
+		switch (direction1)
+		{
+			case NORTH:
+				return field_220181_h;
+			case SOUTH:
+				return field_220182_i;
+			case WEST:
+				return field_220183_j;
+			default:
+				return field_220184_k;
+		}
 	}
 
 	@OnlyIn(Dist.CLIENT)
 	public boolean hasCustomBreakingProgress(BlockState state)
 	{
 		return true;
+	}
+
+	public static Optional<Vec3d> func_220172_a(EntityType<?> p_220172_0_, IWorldReader p_220172_1_, BlockPos p_220172_2_, int p_220172_3_)
+	{
+		Direction direction = p_220172_1_.getBlockState(p_220172_2_).get(HORIZONTAL_FACING);
+		int i = p_220172_2_.getX();
+		int j = p_220172_2_.getY();
+		int k = p_220172_2_.getZ();
+		for (int l = 0; l <= 1; ++l)
+		{
+			int i1 = i - direction.getXOffset() * l - 1;
+			int j1 = k - direction.getZOffset() * l - 1;
+			int k1 = i1 + 2;
+			int l1 = j1 + 2;
+			for (int i2 = i1; i2 <= k1; ++i2)
+			{
+				for (int j2 = j1; j2 <= l1; ++j2)
+				{
+					BlockPos blockpos = new BlockPos(i2, j, j2);
+					Optional<Vec3d> optional = func_220175_a(p_220172_0_, p_220172_1_, blockpos);
+					if (optional.isPresent())
+					{
+						if (p_220172_3_ <= 0)
+						{
+							return optional;
+						}
+						--p_220172_3_;
+					}
+				}
+			}
+		}
+		return Optional.empty();
+	}
+
+	protected static Optional<Vec3d> func_220175_a(EntityType<?> p_220175_0_, IWorldReader p_220175_1_, BlockPos p_220175_2_)
+	{
+		VoxelShape voxelshape = p_220175_1_.getBlockState(p_220175_2_).getCollisionShape(p_220175_1_, p_220175_2_);
+		if (voxelshape.getEnd(Direction.Axis.Y) > 0.4375D)
+		{
+			return Optional.empty();
+		}
+		else
+		{
+			BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos(p_220175_2_);
+			while (blockpos$mutableblockpos.getY() >= 0 && p_220175_2_.getY() - blockpos$mutableblockpos.getY() <= 2 && p_220175_1_.getBlockState(blockpos$mutableblockpos).getCollisionShape(p_220175_1_, blockpos$mutableblockpos).isEmpty())
+			{
+				blockpos$mutableblockpos.move(Direction.DOWN);
+			}
+			VoxelShape voxelshape1 = p_220175_1_.getBlockState(blockpos$mutableblockpos).getCollisionShape(p_220175_1_, blockpos$mutableblockpos);
+			if (voxelshape1.isEmpty())
+			{
+				return Optional.empty();
+			}
+			else
+			{
+				double d0 = (double) blockpos$mutableblockpos.getY() + voxelshape1.getEnd(Direction.Axis.Y) + 2.0E-7D;
+				if ((double) p_220175_2_.getY() - d0 > 2.0D)
+				{
+					return Optional.empty();
+				}
+				else
+				{
+					float f = p_220175_0_.getWidth() / 2.0F;
+					Vec3d vec3d = new Vec3d((double) blockpos$mutableblockpos.getX() + 0.5D, d0, (double) blockpos$mutableblockpos.getZ() + 0.5D);
+					return p_220175_1_.areCollisionShapesEmpty(new AxisAlignedBB(vec3d.x - (double) f, vec3d.y, vec3d.z - (double) f, vec3d.x + (double) f, vec3d.y + (double) p_220175_0_.getHeight(), vec3d.z + (double) f)) ? Optional.of(vec3d) : Optional.empty();
+				}
+			}
+		}
 	}
 
 	public PushReaction getPushReaction(BlockState state)
@@ -230,11 +322,6 @@ public class BlockGNSBed extends HorizontalBlock implements ITileEntityProvider
 	public BlockRenderType getRenderType(BlockState state)
 	{
 		return BlockRenderType.ENTITYBLOCK_ANIMATED;
-	}
-
-	//public BlockFaceShape getBlockFaceShape(IBlockReader worldIn, BlockState state, BlockPos pos, Direction face)
-	{
-		//return BlockFaceShape.UNDEFINED;
 	}
 
 	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder)
@@ -262,7 +349,6 @@ public class BlockGNSBed extends HorizontalBlock implements ITileEntityProvider
 	public void onBlockPlacedBy(World worldIn, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack)
 	{
 		super.onBlockPlacedBy(worldIn, pos, state, placer, stack);
-
 		if (!worldIn.isRemote)
 		{
 			BlockPos blockpos = pos.offset(state.get(HORIZONTAL_FACING));

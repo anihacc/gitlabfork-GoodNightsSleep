@@ -10,6 +10,7 @@ public class TileEntityLuxuriousBed extends TileEntity
 		super(GNSTileEntityTypes.LUXURIOUS_BED);
 	}
 
+	@Override
 	public SUpdateTileEntityPacket getUpdatePacket()
 	{
 		return new SUpdateTileEntityPacket(this.pos, 11, this.getUpdateTag());
