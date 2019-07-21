@@ -3,6 +3,8 @@ package com.legacy.goodnightsleep.client;
 import com.legacy.goodnightsleep.client.audio.GNSMusicHandler;
 import com.legacy.goodnightsleep.client.render.GNSEntityRendering;
 
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -14,6 +16,7 @@ public class GoodNightSleepClient
 		GNSEntityRendering.initialization();
 		MinecraftForge.EVENT_BUS.register(new GNSMusicHandler());
 		
+		GoodNightSleepClient.cheese();
 		//ClientRegistry.bindTileEntitySpecialRenderer(TileEntityLuxuriousBed.class, new TileEntityLuxuriousBedRenderer());
 		//ClientRegistry.bindTileEntitySpecialRenderer(TileEntityWretchedBed.class, new TileEntityWretchedBedRenderer());
 		//ClientRegistry.bindTileEntitySpecialRenderer(TileEntityStrangeBed.class, new TileEntityStrangeBedRenderer());
@@ -24,5 +27,12 @@ public class GoodNightSleepClient
 		System.out.println("Register tile cheese");
 
 		
+		
+	}
+
+	@OnlyIn(Dist.CLIENT)
+	public static void cheese()
+	{
+		ClientSpecificStuff.fleep();
 	}
 }
