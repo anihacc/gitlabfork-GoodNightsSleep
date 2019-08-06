@@ -1,20 +1,28 @@
 {
-	"type": "minecraft:block",
-	"pools": [
-		{
-			"name": "block",
-			"rolls": 1,
-			"entries": [
-				{
-					"type": "minecraft:item",
-					"name": "goodnightsleep:strange_bed_item"
-				}
-			],
-			"conditions": [
-				{
-					"condition": "minecraft:survives_explosion"
-				}
-			]
-		}
-	]
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "goodnightsleep:strange_bed",
+              "properties": {
+                "part": "head"
+              }
+            }
+          ],
+          "name": "goodnightsleep:strange_bed_item"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ]
+    }
+  ]
 }
