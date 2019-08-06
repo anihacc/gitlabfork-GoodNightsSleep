@@ -50,7 +50,7 @@ public class BlocksGNS
 
 	public static Block stripped_white_log, stripped_dream_log, stripped_blood_log, stripped_dead_log;
 
-	public static Block delusion_stone, delusion_cobblestone;
+	public static Block delusion_stone, delusion_cobblestone, delusion_stonebrick;
 	
 	public static Block dream_fence, white_fence, dead_fence, blood_fence;
 	
@@ -84,6 +84,7 @@ public class BlocksGNS
 		dream_farmland = register("dream_farmland", new BlockGNSFarmland(Properties.from(Blocks.FARMLAND)));
 		delusion_stone = register("delusion_stone", new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F)));
 		delusion_cobblestone = register("delusion_cobblestone", new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(2.0F, 6.0F)));
+		delusion_stonebrick = register("delusion_stonebrick", new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(2.0F, 6.0F)));
 		nightmare_grass_block = register("nightmare_grass", new BlockGNSGrass());
 		hope_mushroom_block = register("hope_mushroom_block", new HugeMushroomBlock(Block.Properties.create(Material.WOOD, MaterialColor.YELLOW).hardnessAndResistance(0.2F).sound(SoundType.WOOD)));
 		despair_mushroom_block = register("despair_mushroom_block", new HugeMushroomBlock(Block.Properties.create(Material.WOOD, MaterialColor.GRAY).hardnessAndResistance(0.2F).sound(SoundType.WOOD)));
