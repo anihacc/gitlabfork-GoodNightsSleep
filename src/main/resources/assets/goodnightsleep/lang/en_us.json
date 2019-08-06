@@ -40,6 +40,7 @@
 
 	"block.goodnightsleep.delusion_stone": "Delusion Stone",
 	"block.goodnightsleep.delusion_cobblestone": "Delusion Cobblestone",
+	"block.goodnightsleep.delusion_stonebrick": "Delusion Stone Bricks",
 
 	"block.goodnightsleep.candy_block": "Hard Candy",
 	"block.goodnightsleep.rainbow_block": "Rainbow Block",
@@ -120,6 +121,10 @@
 	"item.goodnightsleep.negatite_shovel": "Negatite Shovel",
 	"item.goodnightsleep.negatite_hoe": "Negatite Hoe",
 
+	"item.goodnightsleep.candy_helmet": "Candy Helmet",
+	"item.goodnightsleep.candy_chestplate": "Candy Chestplate",
+	"item.goodnightsleep.candy_leggings": "Candy Leggings",
+	"item.goodnightsleep.candy_boots": "Candy Boots",
 	"item.goodnightsleep.rainbow_helmet": "Rainbow Helmet",
 	"item.goodnightsleep.rainbow_chestplate": "Rainbow Chestplate",
 	"item.goodnightsleep.rainbow_leggings": "Rainbow Leggings",
@@ -128,14 +133,14 @@
 	"item.goodnightsleep.positite_chestplate": "Positite Chestplate",
 	"item.goodnightsleep.positite_leggings": "Positite Leggings",
 	"item.goodnightsleep.positite_boots": "Positite Boots",
+	"item.goodnightsleep.zitrite_helmet": "Zitrite Helmet",
+	"item.goodnightsleep.zitrite_chestplate": "Zitrite Chestplate",
+	"item.goodnightsleep.zitrite_leggings": "Zitrite Leggings",
+	"item.goodnightsleep.zitrite_boots": "Zitrite Boots",
 	"item.goodnightsleep.negatite_helmet": "Negatite Helmet",
 	"item.goodnightsleep.negatite_chestplate": "Negatite Chestplate",
 	"item.goodnightsleep.negatite_leggings": "Negatite Leggings",
 	"item.goodnightsleep.negatite_boots": "Negatite Boots",
-	"item.goodnightsleep.candy_helmet": "Candy Helmet",
-	"item.goodnightsleep.candy_chestplate": "Candy Chestplate",
-	"item.goodnightsleep.candy_leggings": "Candy Leggings",
-	"item.goodnightsleep.candy_boots": "Candy Boots",
 	"item.goodnightsleep.unicorn_spawn_egg": "Unicorn Spawn Egg",
 	"item.goodnightsleep.gummy_bear_spawn_egg": "Gummy Bear Spawn Egg",
 	"item.goodnightsleep.baby_creeper_spawn_egg": "Baby Creeper Spawn Egg",
@@ -154,5 +159,13 @@
 	"itemGroup.gns_armor": "Good Night's Sleep Armor",
 	"itemGroup.gns_items": "Good Night's Sleep Items",
 
-	"death.attack.nightmare_grass": "%1$s was pricked by Nightmare Grass"
+	"death.attack.nightmare_grass": "%1$s was pricked by Nightmare Grass",
+
+	"advancements.goodnightsleep.root.title": "Good Night's Sleep",
+	"advancements.goodnightsleep.dream.title": "Rainbows and Unicorns!",
+	"advancements.goodnightsleep.nightmare.title": "A Night of Torment",
+
+	"advancements.goodnightsleep.root.desc": "A Dreamy Mod",
+	"advancements.goodnightsleep.dream.desc": "Have a Good Dream",
+	"advancements.goodnightsleep.nightmare.desc": "Have a Nightmare"
 }

@@ -145,15 +145,15 @@ public class ItemsGNS
 		positite_leggings = register("positite_leggings", new ArmorItem(GNSArmorMaterial.POSITITE, EquipmentSlotType.LEGS, new Item.Properties().group(GNSCreativeTabs.armor)));
 		positite_boots = register("positite_boots", new ArmorItem(GNSArmorMaterial.POSITITE, EquipmentSlotType.FEET, new Item.Properties().group(GNSCreativeTabs.armor)));
 
-		zitrite_helmet = register("zitrite_helmet", new ArmorItem(GNSArmorMaterial.ZITRITE, EquipmentSlotType.HEAD, new Item.Properties()));
-		zitrite_chestplate = register("zitrite_chestplate", new ArmorItem(GNSArmorMaterial.ZITRITE, EquipmentSlotType.CHEST, new Item.Properties()));
-		zitrite_leggings = register("zitrite_leggings", new ArmorItem(GNSArmorMaterial.ZITRITE, EquipmentSlotType.LEGS, new Item.Properties()));
-		zitrite_boots = register("zitrite_boots", new ArmorItem(GNSArmorMaterial.ZITRITE, EquipmentSlotType.FEET, new Item.Properties()));
+		zitrite_helmet = register("zitrite_helmet", new ArmorItem(GNSArmorMaterial.ZITRITE, EquipmentSlotType.HEAD, new Item.Properties().group(GNSCreativeTabs.armor)));
+		zitrite_chestplate = register("zitrite_chestplate", new ArmorItem(GNSArmorMaterial.ZITRITE, EquipmentSlotType.CHEST, new Item.Properties().group(GNSCreativeTabs.armor)));
+		zitrite_leggings = register("zitrite_leggings", new ArmorItem(GNSArmorMaterial.ZITRITE, EquipmentSlotType.LEGS, new Item.Properties().group(GNSCreativeTabs.armor)));
+		zitrite_boots = register("zitrite_boots", new ArmorItem(GNSArmorMaterial.ZITRITE, EquipmentSlotType.FEET, new Item.Properties().group(GNSCreativeTabs.armor)));
 
-		negatite_helmet = register("negatite_helmet", new ArmorItem(GNSArmorMaterial.NEGATITE, EquipmentSlotType.HEAD, new Item.Properties()));
-		negatite_chestplate = register("negatite_chestplate", new ArmorItem(GNSArmorMaterial.NEGATITE, EquipmentSlotType.CHEST, new Item.Properties()));
-		negatite_leggings = register("negatite_leggings", new ArmorItem(GNSArmorMaterial.NEGATITE, EquipmentSlotType.LEGS, new Item.Properties()));
-		negatite_boots = register("negatite_boots", new ArmorItem(GNSArmorMaterial.NEGATITE, EquipmentSlotType.FEET, new Item.Properties()));
+		negatite_helmet = register("negatite_helmet", new ArmorItem(GNSArmorMaterial.NEGATITE, EquipmentSlotType.HEAD, new Item.Properties().group(GNSCreativeTabs.armor)));
+		negatite_chestplate = register("negatite_chestplate", new ArmorItem(GNSArmorMaterial.NEGATITE, EquipmentSlotType.CHEST, new Item.Properties().group(GNSCreativeTabs.armor)));
+		negatite_leggings = register("negatite_leggings", new ArmorItem(GNSArmorMaterial.NEGATITE, EquipmentSlotType.LEGS, new Item.Properties().group(GNSCreativeTabs.armor)));
+		negatite_boots = register("negatite_boots", new ArmorItem(GNSArmorMaterial.NEGATITE, EquipmentSlotType.FEET, new Item.Properties().group(GNSCreativeTabs.armor)));
 	}
 
 	private static Item register(String unlocalizedName, Item item)
