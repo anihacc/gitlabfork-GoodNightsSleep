@@ -22,7 +22,7 @@ import net.minecraftforge.registries.ObjectHolder;
 public class GNSEntityTypes
 {
 
-	public static final EntityType<UnicornEntity> UNICORN = register("unicorn", EntityType.Builder.<UnicornEntity>create(UnicornEntity::new, EntityClassification.CREATURE).size(1.3964844F, 1.6F));
+	public static final EntityType<UnicornEntity> UNICORN = register("unicorn", EntityType.Builder.<UnicornEntity>create(UnicornEntity::new, EntityClassification.CREATURE).disableSummoning().size(1.3964844F, 1.6F));
 
 	public static final EntityType<GummyBearEntity> GUMMY_BEAR = register("gummy_bear", EntityType.Builder.<GummyBearEntity>create(GummyBearEntity::new, EntityClassification.CREATURE).size(0.6F, 0.7F));
 	
