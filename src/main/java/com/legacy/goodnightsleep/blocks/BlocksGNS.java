@@ -18,7 +18,6 @@ import net.minecraft.block.SlabBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
-import net.minecraft.item.DyeColor;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.registries.IForgeRegistry;
 
@@ -56,8 +55,12 @@ public class BlocksGNS
 	
 	public static Block dream_slab, white_slab, dead_slab, blood_slab;
 	
+	public static Block delusion_stone_slab, delusion_cobblestone_slab, delusion_stonebrick_slab;
+
 	public static Block dead_stairs, blood_stairs, white_stairs, dream_stairs;
-	
+
+	public static Block delusion_stone_stairs, delusion_cobblestone_stairs, delusion_stonebrick_stairs;
+
 	public static Block pot_of_gold, present, rainbow;
 	
 	public static Block luxurious_bed, wretched_bed, strange_bed;
@@ -140,10 +143,18 @@ public class BlocksGNS
 		dead_stairs = register("dead_stairs", new BlockGNSStairs(BlocksGNS.dead_plank.getDefaultState(), Block.Properties.from(BlocksGNS.dead_plank)));
 		blood_stairs = register("blood_stairs", new BlockGNSStairs(BlocksGNS.blood_plank.getDefaultState(), Block.Properties.from(BlocksGNS.blood_plank)));
 		
+		delusion_stone_stairs = register("delusion_stone_stairs", new BlockGNSStairs(BlocksGNS.delusion_stone.getDefaultState(), Block.Properties.from(BlocksGNS.delusion_stone)));
+		delusion_cobblestone_stairs = register("delusion_cobblestone_stairs", new BlockGNSStairs(BlocksGNS.delusion_cobblestone.getDefaultState(), Block.Properties.from(BlocksGNS.delusion_cobblestone)));
+		delusion_stonebrick_stairs = register("delusion_stonebrick_stairs", new BlockGNSStairs(BlocksGNS.delusion_stonebrick.getDefaultState(), Block.Properties.from(BlocksGNS.delusion_stonebrick)));
+
 		dream_slab = register("dream_slab", new SlabBlock(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
 		white_slab = register("white_slab", new SlabBlock(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
 		dead_slab = register("dead_slab", new SlabBlock(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
 		blood_slab = register("blood_slab", new SlabBlock(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
+		
+		delusion_stone_slab = register("delusion_stone_slab", new SlabBlock(Block.Properties.from(BlocksGNS.delusion_stone)));
+		delusion_cobblestone_slab = register("delusion_cobblestone_slab", new SlabBlock(Block.Properties.from(BlocksGNS.delusion_cobblestone)));
+		delusion_stonebrick_slab = register("delusion_stonebrick_slab", new SlabBlock(Block.Properties.from(BlocksGNS.delusion_stonebrick)));
 		
 		candy_block = register("candy_block", new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0F, 6.0F).sound(SoundType.METAL)));
 		rainbow_block = register("rainbow_block", new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0F, 6.0F).sound(SoundType.METAL)));

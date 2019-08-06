@@ -58,11 +58,17 @@
 	"block.goodnightsleep.white_stairs": "White Stairs",
 	"block.goodnightsleep.dead_stairs": "Dead Stairs",
 	"block.goodnightsleep.blood_stairs": "Blood Stairs",
+	"block.goodnightsleep.delusion_stone_stairs": "Delusion Stone Stairs",
+	"block.goodnightsleep.delusion_cobblestone_stairs": "Delusion Cobblestone Stairs",
+	"block.goodnightsleep.delusion_stonebrick_stairs": "Delusion Stone Brick Stairs",
 
 	"block.goodnightsleep.dream_slab": "Dream Slab",
 	"block.goodnightsleep.white_slab": "White Slab",
 	"block.goodnightsleep.dead_slab": "Dead Slab",
 	"block.goodnightsleep.blood_slab": "Blood Slab",
+	"block.goodnightsleep.delusion_stone_slab": "Delusion Stone Slab",
+	"block.goodnightsleep.delusion_cobblestone_slab": "Delusion Cobblestone Slab",
+	"block.goodnightsleep.delusion_stonebrick_slab": "Delusion Stone Brick Slab",
 
 	"item.goodnightsleep.candy": "Candy",
 	"item.goodnightsleep.lolipop": "Lolipop",
