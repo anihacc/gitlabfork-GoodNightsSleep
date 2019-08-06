@@ -43,6 +43,13 @@ public class UnicornEntity extends AbstractHorseEntity
     }
     
     @Override
+    public void tick()
+    {
+    	super.tick();
+    	this.remove();
+    }
+    
+    @Override
     public void writeAdditional(CompoundNBT compound)
     {
         super.writeAdditional(compound);
