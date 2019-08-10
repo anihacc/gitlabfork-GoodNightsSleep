@@ -1,6 +1,6 @@
 package com.legacy.goodnightsleep.client.render.entity;
 
-import com.legacy.goodnightsleep.client.render.models.ModelTormenter;
+import com.legacy.goodnightsleep.client.render.models.TormenterModel;
 import com.legacy.goodnightsleep.entity.TormenterEntity;
 
 import net.minecraft.client.renderer.entity.EntityRendererManager;
@@ -10,13 +10,13 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class RenderTormenter extends MobRenderer<TormenterEntity, ModelTormenter<TormenterEntity>>
+public class RenderTormenter extends MobRenderer<TormenterEntity, TormenterModel<TormenterEntity>>
 {
     private static final ResourceLocation TEXTURE = new ResourceLocation("goodnightsleep", "textures/entities/tormenter.png");
 
     public RenderTormenter(EntityRendererManager renderManagerIn)
     {
-        super(renderManagerIn, new ModelTormenter<>(0.0F, true), 0.5F);
+        super(renderManagerIn, new TormenterModel<>(0.0F, true), 0.5F);
         /*LayerBipedArmor layerbipedarmor = new LayerBipedArmor(this)
         {
             protected void initArmor()

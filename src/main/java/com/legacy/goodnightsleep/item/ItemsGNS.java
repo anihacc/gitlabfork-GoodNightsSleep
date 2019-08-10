@@ -69,7 +69,7 @@ public class ItemsGNS
 		wretched_bed_item = register("wretched_bed_item", new BedItem(BlocksGNS.wretched_bed, (new Item.Properties()).maxStackSize(1).group(GNSCreativeTabs.blocks).setTEISR(() -> bedItemRender(wretched_bed_item))));
 		strange_bed_item = register("strange_bed_item", new BedItem(BlocksGNS.strange_bed, (new Item.Properties()).maxStackSize(1).group(GNSCreativeTabs.blocks).setTEISR(() -> bedItemRender(strange_bed_item))));
 
-		//unicorn_spawn_egg = register("unicorn_spawn_egg", new SpawnEggItem(GNSEntityTypes.UNICORN, 0xffffff, 0xdf8cf8, new Item.Properties().group(GNSCreativeTabs.items)));
+		unicorn_spawn_egg = register("unicorn_spawn_egg", new SpawnEggItem(GNSEntityTypes.UNICORN, 0xffffff, 0xdf8cf8, new Item.Properties().group(GNSCreativeTabs.items)));
 		gummy_bear_spawn_egg = register("gummy_bear_spawn_egg", new SpawnEggItem(GNSEntityTypes.GUMMY_BEAR, 0xffffff, 0xffffff, new Item.Properties()));
 		baby_creeper_spawn_egg = register("baby_creeper_spawn_egg", new SpawnEggItem(GNSEntityTypes.BABY_CREEPER, 45079, 16711901, new Item.Properties().group(GNSCreativeTabs.items)));
 		tormenter_spawn_egg = register("tormenter_spawn_egg", new SpawnEggItem(GNSEntityTypes.TORMENTER, 10516796, 5525034, new Item.Properties().group(GNSCreativeTabs.items)));

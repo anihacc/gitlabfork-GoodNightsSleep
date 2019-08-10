@@ -1,6 +1,6 @@
 package com.legacy.goodnightsleep.client.render.entity;
 
-import com.legacy.goodnightsleep.client.render.models.ModelBabyCreeper;
+import com.legacy.goodnightsleep.client.render.models.BabyCreeperModel;
 import com.legacy.goodnightsleep.entity.dream.BabyCreeperEntity;
 import com.mojang.blaze3d.platform.GlStateManager;
 
@@ -12,13 +12,13 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class RenderBabyCreeper extends MobRenderer<BabyCreeperEntity, ModelBabyCreeper<BabyCreeperEntity>>
+public class RenderBabyCreeper extends MobRenderer<BabyCreeperEntity, BabyCreeperModel<BabyCreeperEntity>>
 {
     private static final ResourceLocation TEXTURE = new ResourceLocation("goodnightsleep", "textures/entities/baby_creeper.png");
 
     public RenderBabyCreeper(EntityRendererManager renderManagerIn)
     {
-        super(renderManagerIn, new ModelBabyCreeper<>(), 0.5F);
+        super(renderManagerIn, new BabyCreeperModel<>(), 0.5F);
         //this.addLayer(new LayerCreeperCharge(this));
     }
 

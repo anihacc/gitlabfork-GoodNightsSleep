@@ -5,7 +5,7 @@ import net.minecraft.client.renderer.entity.model.RendererModel;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.MathHelper;
 
-public class ModelBabyCreeper<T extends Entity> extends EntityModel<T>
+public class BabyCreeperModel<T extends Entity> extends EntityModel<T>
 {
 
 	RendererModel head;
@@ -20,7 +20,7 @@ public class ModelBabyCreeper<T extends Entity> extends EntityModel<T>
 
 	RendererModel leg2;
 
-	public ModelBabyCreeper()
+	public BabyCreeperModel()
 	{
 		this.textureWidth = 64;
 		this.textureHeight = 32;

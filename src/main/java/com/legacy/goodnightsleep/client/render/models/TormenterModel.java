@@ -4,10 +4,10 @@ import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.math.MathHelper;
 
-public class ModelTormenter<T extends LivingEntity> extends BipedModel<T>
+public class TormenterModel<T extends LivingEntity> extends BipedModel<T>
 {
 	
-	public ModelTormenter(float modelSize, boolean p_i1168_2_)
+	public TormenterModel(float modelSize, boolean p_i1168_2_)
     {
         super(modelSize, 0.0F, 64, p_i1168_2_ ? 32 : 64);
     }

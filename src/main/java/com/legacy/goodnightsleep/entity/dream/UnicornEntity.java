@@ -46,7 +46,7 @@ public class UnicornEntity extends AbstractHorseEntity
     public void tick()
     {
     	super.tick();
-    	this.remove();
+    	//this.remove();
     }
     
     @Override
@@ -88,6 +88,17 @@ public class UnicornEntity extends AbstractHorseEntity
         super.getHurtSound(damageSourceIn);
         return SoundEvents.ENTITY_HORSE_HURT;
     }
+    
+	protected SoundEvent getAngrySound()
+	{
+		super.getAngrySound();
+		return SoundEvents.ENTITY_HORSE_ANGRY;
+	}
+
+	public double getMountedYOffset()
+	{
+		return super.getMountedYOffset() - 0.07D;
+	}
 
     public boolean processInteract(PlayerEntity player, Hand hand)
     {

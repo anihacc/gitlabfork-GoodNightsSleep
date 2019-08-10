@@ -4,7 +4,7 @@ import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.entity.model.RendererModel;
 import net.minecraft.entity.Entity;
 
-public class ModelGummyBear<T extends Entity> extends EntityModel<T>
+public class GummyBearModel<T extends Entity> extends EntityModel<T>
 {
 
 	RendererModel head;
@@ -27,7 +27,7 @@ public class ModelGummyBear<T extends Entity> extends EntityModel<T>
 
 	RendererModel belly;
 
-	public ModelGummyBear()
+	public GummyBearModel()
 	{
 		this.textureWidth = 64;
 		this.textureHeight = 32;
