@@ -1,9 +1,18 @@
 package com.legacy.goodnightsleep;
 
+import com.legacy.goodnightsleep.blocks.BlocksGNS;
 import com.legacy.goodnightsleep.client.GoodNightSleepClient;
+import com.legacy.goodnightsleep.world.dream.BiomeGoodDreamPlains;
+import com.legacy.goodnightsleep.world.nightmare.BiomeNightmareHills;
 
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.Biomes;
+import net.minecraft.world.gen.GenerationStage;
+import net.minecraft.world.gen.feature.BushConfig;
+import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.gen.placement.ChanceConfig;
+import net.minecraft.world.gen.placement.Placement;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -29,10 +38,10 @@ public class GoodNightSleep
 		
 		for (Biome biome : ForgeRegistries.BIOMES.getValues())
 		{
-			//if (biome != BiomeNightmareHills.INSTANCE && biome != BiomeGoodDreamPlains.INSTANCE && biome != Biome.NETHER && !biome.getRegistryName().toString().contains("end"))
+			if (biome != BiomeNightmareHills.INSTANCE && biome != BiomeGoodDreamPlains.INSTANCE && biome != Biomes.NETHER && !biome.getRegistryName().toString().contains("end"))
 			{
-				//biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Biome.createCompositeFeature(Feature.BUSH, new BushConfig(BlocksGNS.despair_mushroom), Biome.TWICE_SURFACE_WITH_CHANCE, new ChanceConfig(4)));
-				//biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Biome.createCompositeFeature(Feature.BUSH, new BushConfig(BlocksGNS.hope_mushroom), Biome.TWICE_SURFACE_WITH_CHANCE, new ChanceConfig(8)));
+				biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Biome.createDecoratedFeature(Feature.BUSH, new BushConfig(BlocksGNS.despair_mushroom.getDefaultState()), Placement.CHANCE_HEIGHTMAP_DOUBLE, new ChanceConfig(4)));
+				biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Biome.createDecoratedFeature(Feature.BUSH, new BushConfig(BlocksGNS.hope_mushroom.getDefaultState()), Placement.CHANCE_HEIGHTMAP_DOUBLE, new ChanceConfig(8)));
 			}
 		}
     }
