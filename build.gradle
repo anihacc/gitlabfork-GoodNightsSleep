@@ -17,7 +17,7 @@ buildscript {
 
 apply plugin: 'forge'
 
-version = "v0.0.1"
+version = "v0.0.2"
 group = "com.legacy.goodnightsleep"
 archivesBaseName = "good-nights-sleep-1.7.10"
 

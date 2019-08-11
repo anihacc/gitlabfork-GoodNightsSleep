@@ -3,7 +3,7 @@
   "modid": "goodnightsleep",
   "name": "Good Night's Sleep",
   "description": "The Good Night's Sleep mod adds two new dimensions, the good dream and the nightmare. Each dream land is accessed through sleeping in its corresponding bed, rather than stepping through a portal.",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "mcversion": "1.7.10",
   "url": "http://moddinglegacy.com",
   "updateUrl": "",
