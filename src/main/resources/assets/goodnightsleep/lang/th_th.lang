@@ -1,9 +1,8 @@
 # Blocks
 tile.luxurious_bed.name=เตียงสุดหรู
-tile.tall_dream_grass=หญ้าแห่งความฝัน
 tile.wretched_bed.name=เตียงผุพัง
-tile.dream_grass.name=บล๊อกหญ้าแห่งความฝัน
 tile.tall_nightmare_grass.name=หญ้าแห่งฝันร้าย
+tile.dream_grass.name=บล๊อกหญ้าแห่งความฝัน
 tile.dream_dirt.name=ดินในแดนฝัน
 tile.nightmare_grass.name=บล๊อกหญ้าแห่งฝันร้าย
 tile.hope_mushroom_cap.name=บล๊อกเห็ดแห่งความหวัง
@@ -40,8 +39,8 @@ tile.negatite_block.name=บล๊อกขั้วลบ
 tile.dream_fence.name=รั้วแดนฝัน
 tile.white_fence.name=รั้วไม้สีขาว
 tile.dead_fence.name=รั้วไม้แห่งความตาย
-tile.dream_stairs.name=บันไดแดนฝัน
 tile.blood_fence.name=รั้วไม้เลือด
+tile.dream_stairs.name=บันไดแดนฝัน
 tile.white_stairs.name=บันไดสีขาว
 tile.dead_stairs.name=บันไดแห่งความตาย
 tile.blood_stairs.name=บันไดเลือด
@@ -53,7 +52,6 @@ tile.blood_slab.name=แผ่นไม้เลือด
 item.candy.name=ลูกกวาด
 item.lolipop.name=โลลิป๊อบ
 item.positite_gem.name=เพชรโพซิไทด์
-item.zitrite.name=แท่งซิไทรซ์
 item.rainbow_ingot.name=แท่งสายรุ้ง
 item.candy_ingot.name=แท่งลูกกวาด
 item.necrum.name=เนคัม
@@ -104,8 +102,8 @@ item.candy_leggings.name=กางเกงลูกกวาด
 item.candy_boots.name=รองเท้าลูกกวาด
 # Entities
 entity.tormenter.name=ความทรมาณ
-entity.giant.name=ยักษ์
 entity.baby_creeper.name=ทารกครีปเปอร์
+entity.giant.name=ยักษ์
 entity.gummy_bear.name=หมีหมากฝรั่ง
 # Tabs
 itemGroup.gns_blocks=บล๊อกฝันดี
