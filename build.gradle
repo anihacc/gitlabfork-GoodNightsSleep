@@ -20,7 +20,7 @@ plugins {
     id "net.minecraftforge.gradle.forge" version "2.0.2"
 }
 */
-version = "v0.0.1"
+version = "v0.0.2"
 group = "com.legacy.goodnightsleep"
 archivesBaseName = "good-nights-sleep-1.9.4"
 
