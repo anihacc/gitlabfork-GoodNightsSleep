@@ -4,6 +4,7 @@
 	"block.goodnightsleep.strange_bed": "Strange Bed",
 	"block.goodnightsleep.tall_dream_grass": "Dream Grass",
 	"block.goodnightsleep.tall_nightmare_grass": "Nightmare Grass",
+	"block.goodnightsleep.prickly_nightmare_grass": "Prickly Nightmare Grass",
 	"block.goodnightsleep.dream_grass": "Dream Grass Block",
 	"block.goodnightsleep.dream_dirt": "Dream Dirt",
 	"block.goodnightsleep.dream_farmland": "Dream Farmland",
@@ -48,6 +49,8 @@
 	"block.goodnightsleep.necrum_block": "Necrum Block",
 	"block.goodnightsleep.zitrite_block": "Zitrite Block",
 	"block.goodnightsleep.negatite_block": "Negatite Block",
+
+	"block.goodnightsleep.present": "Present",
 
 	"block.goodnightsleep.dream_fence": "Dream Fence",
 	"block.goodnightsleep.white_fence": "White Fence",

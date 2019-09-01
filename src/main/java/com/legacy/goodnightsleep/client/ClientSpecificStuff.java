@@ -14,7 +14,6 @@ import net.minecraftforge.fml.client.registry.ClientRegistry;
 @OnlyIn(Dist.CLIENT)
 public class ClientSpecificStuff
 {
-	@OnlyIn(Dist.CLIENT)
 	public static void fleep()
 	{
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityLuxuriousBed.class, new TileEntityLuxuriousBedRenderer());
