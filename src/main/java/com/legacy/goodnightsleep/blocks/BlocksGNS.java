@@ -25,7 +25,7 @@ public class BlocksGNS
 {
 	public static Block dream_grass_block, dream_dirt, dream_farmland, nightmare_grass_block;
 
-	public static Block tall_dream_grass, tall_nightmare_grass, lolipop_bush;
+	public static Block tall_dream_grass, lolipop_bush, tall_nightmare_grass, prickly_nightmare_grass;
 
 	public static Block zitrite_ore, candy_ore, rainbow_ore, positite_ore, negatite_ore, necrum_ore;
 	
@@ -76,12 +76,13 @@ public class BlocksGNS
 			return;
 		}
 
-		luxurious_bed = registerWithoutItem("luxurious_bed", new BlockGNSBed(Block.Properties.from(Blocks.RED_BED)));//BlockGNSBed
-		wretched_bed = registerWithoutItem("wretched_bed", new BlockGNSBed(Block.Properties.from(Blocks.RED_BED)));
+		luxurious_bed = registerWithoutItem("luxurious_bed", new BlockGNSBed(Block.Properties.from(Blocks.CYAN_BED)));
+		wretched_bed = registerWithoutItem("wretched_bed", new BlockGNSBed(Block.Properties.from(Blocks.GRAY_BED)));
 		strange_bed = registerWithoutItem("strange_bed", new BlockGNSBed(Block.Properties.from(Blocks.RED_BED)));
 
 		tall_dream_grass = register("tall_dream_grass", new BlockGNSTallGrass(Block.Properties.create(Material.ROCK).hardnessAndResistance(0.0F).doesNotBlockMovement().sound(SoundType.PLANT)));
 		tall_nightmare_grass = register("tall_nightmare_grass", new BlockGNSTallGrass(Block.Properties.create(Material.ROCK).hardnessAndResistance(0.0F).doesNotBlockMovement().sound(SoundType.PLANT)));
+		prickly_nightmare_grass = register("prickly_nightmare_grass", new BlockGNSTallGrass(Block.Properties.create(Material.ROCK).hardnessAndResistance(0.0F).doesNotBlockMovement().sound(SoundType.PLANT)));
 		dream_grass_block = register("dream_grass", new BlockGNSGrass());
 		dream_dirt = register("dream_dirt", new Block(Properties.create(Material.ORGANIC).hardnessAndResistance(0.5F).sound(SoundType.GROUND)));
 		dream_farmland = register("dream_farmland", new BlockGNSFarmland(Properties.from(Blocks.FARMLAND)));
@@ -157,11 +158,13 @@ public class BlocksGNS
 		delusion_stonebrick_slab = register("delusion_stonebrick_slab", new SlabBlock(Block.Properties.from(BlocksGNS.delusion_stonebrick)));
 		
 		candy_block = register("candy_block", new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0F, 6.0F).sound(SoundType.METAL)));
-		rainbow_block = register("rainbow_block", new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0F, 6.0F).sound(SoundType.METAL)));
+		rainbow_block = register("rainbow_block", new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0F, 6.0F).sound(SoundType.METAL).lightValue(15)));
 		positite_block = register("positite_block", new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0F, 6.0F).sound(SoundType.METAL)));
 		necrum_block = register("necrum_block", new Block(Block.Properties.create(Material.ORGANIC).hardnessAndResistance(3.0F, 6.0F).sound(SoundType.GROUND)));
 		zitrite_block = register("zitrite_block", new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0F, 6.0F).sound(SoundType.METAL)));
 		negatite_block = register("negatite_block", new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0F, 6.0F).sound(SoundType.METAL)));
+		
+		present = register("present", new Block(Block.Properties.create(Material.ROCK, MaterialColor.RED).hardnessAndResistance(1.0F, 0.0F).sound(SoundType.WOOD)));
 	}
 
 	public static void setBlockRegistry(IForgeRegistry<Block> iBlockRegistry)
