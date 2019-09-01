@@ -31,12 +31,10 @@ public class GNSMusicTicker implements ITickable
        TrackType tracktypeB = this.getRandomTrackDream();
        TrackType tracktypeD = this.getRandomTrackNightmare();
        
-      	if (this.mc.player != null && !this.mc.getSoundHandler().isPlaying(this.playingRecord))
+      	if (this.mc.player != null && !this.mc.getSoundHandler().isPlaying(this.playingRecord) && GNSRegistryHandler.dreamType() != null && GNSRegistryHandler.nightmareType() != null)
       	{
-      		
       		if (this.mc.player.dimension == GNSRegistryHandler.dreamType())
-          	{
-      			
+          	{		
       			if (this.ambientMusic != null)
                 {
                     if (!this.mc.getSoundHandler().isPlaying(this.ambientMusic))

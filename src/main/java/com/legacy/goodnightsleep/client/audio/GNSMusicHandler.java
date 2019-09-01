@@ -53,7 +53,7 @@ public class GNSMusicHandler
 			}
 		}
 
-		else if (category == SoundCategory.RECORDS)
+		/*else if (category == SoundCategory.RECORDS)
 		{
 			this.musicTicker.stopMusic();
 			this.mc.getSoundHandler().stop();
@@ -62,7 +62,7 @@ public class GNSMusicHandler
 			
 			this.musicTicker.playingRecord = event.getSound();
 			return;
-		}
+		}*/
 	}
 
 }
