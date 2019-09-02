@@ -6,13 +6,13 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "necrum",
+          "name": "leather",
           "functions": [
             {
               "function": "minecraft:set_count",
               "count": {
                 "min": 0.0,
-                "max": 1.0,
+                "max": 2.0,
                 "type": "minecraft:uniform"
               }
             },
@@ -24,7 +24,7 @@
               }
             }
           ],
-          "name": "goodnightsleep:negatite_gem"
+          "name": "minecraft:leather"
         }
       ]
     }

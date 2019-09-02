@@ -1,6 +1,6 @@
 modLoader="javafml"
 loaderVersion="[28,)"
-issueTrackerURL="https://gitlab.com/modding-legacy/Good-Night-Sleep/issues"
+issueTrackerURL="https://www.curseforge.com/minecraft/mc-mods/good-nights-sleep/issues"
 [[mods]]
 modId="goodnightsleep"
 version="${file.jarVersion}"
@@ -9,7 +9,7 @@ updateJSONURL="https://gist.githubusercontent.com/Lachney/30ab83d5fe6bd534880ba6
 displayURL="https://moddinglegacy.com/"
 logoFile="logo.png"
 credits="tippyfoo/bob0productions for being so passonate about the mod, and allowing us to continue it!"
-authors="KingPhygieBoo, Silver_David"
+authors="tippyfoo, KingPhygieBoo, Silver_David, MCVinnyq"
 description='''
 The Good Night's Sleep mod adds two new dimensions, the good dream and the nightmare. Each dream land is accessed through sleeping in its corresponding bed, rather than stepping through a portal.
 '''
