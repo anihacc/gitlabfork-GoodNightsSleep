@@ -9,9 +9,9 @@ import com.legacy.goodnightsleep.entity.GNSEntityTypes;
 import com.legacy.goodnightsleep.item.GNSCreativeTabs;
 import com.legacy.goodnightsleep.item.ItemsGNS;
 import com.legacy.goodnightsleep.tile_entity.GNSTileEntityTypes;
-import com.legacy.goodnightsleep.world.dream.BiomeGoodDreamPlains;
+import com.legacy.goodnightsleep.world.dream.GoodDreamPlainsBiome;
 import com.legacy.goodnightsleep.world.dream.GoodDreamDimension;
-import com.legacy.goodnightsleep.world.nightmare.BiomeNightmareHills;
+import com.legacy.goodnightsleep.world.nightmare.NightmareHillsBiome;
 import com.legacy.goodnightsleep.world.nightmare.NightmareDimension;
 
 import io.netty.buffer.Unpooled;
@@ -40,7 +40,7 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 
-@EventBusSubscriber(modid = "goodnightsleep", bus = Bus.MOD)
+@EventBusSubscriber(modid = GoodNightSleep.MODID, bus = Bus.MOD)
 public class GNSRegistryHandler
 {
 
@@ -100,8 +100,8 @@ public class GNSRegistryHandler
 	@SubscribeEvent
 	public static void onRegisterBiomes(Register<Biome> event)
 	{
-		register(event.getRegistry(), "good_dream_plains", new BiomeGoodDreamPlains());
-		register(event.getRegistry(), "nightmare_hills", new BiomeNightmareHills());
+		register(event.getRegistry(), "good_dream_plains", new GoodDreamPlainsBiome());
+		register(event.getRegistry(), "nightmare_hills", new NightmareHillsBiome());
 	}
 
 	@SubscribeEvent
@@ -116,7 +116,7 @@ public class GNSRegistryHandler
 			}
 		};
 		register(event.getRegistry(), "good_dream", dreamDim);
-		DimensionManager.registerDimension(VariableConstants.locate("good_dream"), dreamDim, new PacketBuffer(Unpooled.buffer()), true);
+		DimensionManager.registerDimension(GoodNightSleep.locate("good_dream"), dreamDim, new PacketBuffer(Unpooled.buffer()), true);
 		
 		// Everdawn
 		ModDimension nightmareDim = new ModDimension()
@@ -128,26 +128,26 @@ public class GNSRegistryHandler
 			}
 		};
 		register(event.getRegistry(), "nightmare", nightmareDim);
-		DimensionManager.registerDimension(VariableConstants.locate("nightmare"), nightmareDim, new PacketBuffer(Unpooled.buffer()), true);
+		DimensionManager.registerDimension(GoodNightSleep.locate("nightmare"), nightmareDim, new PacketBuffer(Unpooled.buffer()), true);
 	}
 
 	public static DimensionType dreamType()
     {
-        DimensionType dimension = DimensionType.byName(new ResourceLocation(VariableConstants.MODID, "good_dream"));
+        DimensionType dimension = DimensionType.byName(new ResourceLocation(GoodNightSleep.MODID, "good_dream"));
         Preconditions.checkNotNull(dimension, "Dimension hasn't been initialized.");
         return dimension;
     }
 
     public static DimensionType nightmareType()
     {
-        DimensionType dimension = DimensionType.byName(new ResourceLocation(VariableConstants.MODID, "nightmare"));
+        DimensionType dimension = DimensionType.byName(new ResourceLocation(GoodNightSleep.MODID, "nightmare"));
         Preconditions.checkNotNull(dimension, "Dimension hasn't been initialized.");
         return dimension;
     }
 
 	private static <T extends IForgeRegistryEntry<T>> void register(IForgeRegistry<T> registry, String name, T object)
 	{
-		object.setRegistryName(VariableConstants.locate(name));
+		object.setRegistryName(GoodNightSleep.locate(name));
 		registry.register(object);
 	}
 }

@@ -47,7 +47,7 @@ public class GNSEvents
 		World world = event.getWorld();
 		BlockPos pos = event.getPos();
 		BlockState state = world.getBlockState(pos);
-		PlayerEntity player = event.getEntityPlayer();
+		PlayerEntity player = event.getPlayer();
 		ItemStack stack = event.getItemStack();
 		if ((stack.getItem() instanceof HoeItem) && world.isAirBlock(pos.up()))
 		{

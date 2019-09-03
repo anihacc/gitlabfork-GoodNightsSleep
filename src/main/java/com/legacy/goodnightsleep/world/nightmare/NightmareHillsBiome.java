@@ -30,12 +30,12 @@ import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 import net.minecraftforge.registries.ObjectHolder;
 
-public class BiomeNightmareHills extends Biome
+public class NightmareHillsBiome extends Biome
 {
 	@ObjectHolder("goodnightsleep:nightmare_hills")
-	public static final BiomeNightmareHills INSTANCE = null;
+	public static final NightmareHillsBiome INSTANCE = null;
 
-	public BiomeNightmareHills()
+	public NightmareHillsBiome()
 	{
 		super((new Biome.Builder()).surfaceBuilder(SurfaceBuilder.DEFAULT, new SurfaceBuilderConfig(BlocksGNS.nightmare_grass_block.getDefaultState(), Blocks.DIRT.getDefaultState(), Blocks.GRAVEL.getDefaultState())).precipitation(Biome.RainType.NONE).category(Biome.Category.EXTREME_HILLS).depth(0.1F).scale(1.0F).temperature(0.8F).downfall(0.0F).waterColor(4159204).waterFogColor(329011).parent((String) null));
 		

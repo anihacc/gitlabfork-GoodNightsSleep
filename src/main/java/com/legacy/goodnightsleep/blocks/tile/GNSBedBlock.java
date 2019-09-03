@@ -54,7 +54,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @SuppressWarnings("deprecation")
-public class BlockGNSBed extends HorizontalBlock implements ITileEntityProvider
+public class GNSBedBlock extends HorizontalBlock implements ITileEntityProvider
 {
 
 	public static final EnumProperty<BedPart> PART = BlockStateProperties.BED_PART;
@@ -77,7 +77,7 @@ public class BlockGNSBed extends HorizontalBlock implements ITileEntityProvider
 
 	protected static final VoxelShape field_220184_k = VoxelShapes.or(field_220176_c, field_220179_f, field_220180_g);
 
-	public BlockGNSBed(Block.Properties properties)
+	public GNSBedBlock(Block.Properties properties)
 	{
 		super(properties);
 		this.setDefaultState(this.stateContainer.getBaseState().with(PART, BedPart.FOOT));
@@ -93,7 +93,7 @@ public class BlockGNSBed extends HorizontalBlock implements ITileEntityProvider
 	public static Direction func_220174_a(IBlockReader p_220174_0_, BlockPos p_220174_1_)
 	{
 		BlockState blockstate = p_220174_0_.getBlockState(p_220174_1_);
-		return blockstate.getBlock() instanceof BlockGNSBed ? blockstate.get(HORIZONTAL_FACING) : null;
+		return blockstate.getBlock() instanceof GNSBedBlock ? blockstate.get(HORIZONTAL_FACING) : null;
 	}
 
 	@Override

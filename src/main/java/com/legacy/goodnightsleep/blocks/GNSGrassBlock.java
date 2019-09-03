@@ -2,11 +2,9 @@ package com.legacy.goodnightsleep.blocks;
 
 import java.util.Random;
 
-import net.minecraft.block.Block.Properties;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.GrassBlock;
-import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.Direction;
@@ -16,10 +14,10 @@ import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraftforge.common.PlantType;
 
-public class BlockGNSGrass extends GrassBlock
+public class GNSGrassBlock extends GrassBlock
 {
 
-	public BlockGNSGrass()
+	public GNSGrassBlock()
 	{
 		super(Properties.from(Blocks.GRASS_BLOCK));
 	}

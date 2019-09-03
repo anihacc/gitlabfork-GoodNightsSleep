@@ -30,7 +30,7 @@ public class NightmareDimension extends Dimension
 		OverworldGenSettings genSettings = ChunkGeneratorType.SURFACE.createSettings();
 		genSettings.setDefaultBlock(Blocks.STONE.getDefaultState());
 		genSettings.setDefaultFluid(Blocks.LAVA.getDefaultState());
-		return ChunkGeneratorType.SURFACE.create(this.world, BiomeProviderType.FIXED.create(BiomeProviderType.FIXED.createSettings().setBiome(BiomeNightmareHills.INSTANCE)), genSettings);
+		return ChunkGeneratorType.SURFACE.create(this.world, BiomeProviderType.FIXED.create(BiomeProviderType.FIXED.createSettings().setBiome(NightmareHillsBiome.INSTANCE)), genSettings);
 	}
 
 	@Override

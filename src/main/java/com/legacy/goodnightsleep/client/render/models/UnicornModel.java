@@ -5,7 +5,6 @@ import com.mojang.blaze3d.platform.GlStateManager;
 import net.minecraft.client.renderer.entity.model.HorseModel;
 import net.minecraft.client.renderer.entity.model.RendererModel;
 import net.minecraft.entity.passive.horse.AbstractHorseEntity;
-import net.minecraft.util.math.MathHelper;
 
 public class UnicornModel<T extends AbstractHorseEntity> extends HorseModel<T>
 {
@@ -44,9 +43,6 @@ public class UnicornModel<T extends AbstractHorseEntity> extends HorseModel<T>
 
     }
 
-    /**
-     * Fixes and offsets a rotation in the ModelHorse class.
-     */
     private float updateHorseRotation(float p_110683_1_, float p_110683_2_, float p_110683_3_)
     {
         float f;
@@ -70,9 +66,9 @@ public class UnicornModel<T extends AbstractHorseEntity> extends HorseModel<T>
         super.setLivingAnimations((T) entitylivingbaseIn, limbSwing, limbSwingAmount, partialTickTime);
         float f = this.updateHorseRotation(entitylivingbaseIn.prevRenderYawOffset, entitylivingbaseIn.renderYawOffset, partialTickTime);
         float f1 = this.updateHorseRotation(entitylivingbaseIn.prevRotationYawHead, entitylivingbaseIn.rotationYawHead, partialTickTime);
-        float f2 = entitylivingbaseIn.prevRotationPitch + (entitylivingbaseIn.rotationPitch - entitylivingbaseIn.prevRotationPitch) * partialTickTime;
+        //float f2 = entitylivingbaseIn.prevRotationPitch + (entitylivingbaseIn.rotationPitch - entitylivingbaseIn.prevRotationPitch) * partialTickTime;
         float f3 = f1 - f;
-        float f4 = f2 * 0.017453292F;
+        //float f4 = f2 * 0.017453292F;
 
         if (f3 > 20.0F)
         {
@@ -86,7 +82,7 @@ public class UnicornModel<T extends AbstractHorseEntity> extends HorseModel<T>
 
         if (limbSwingAmount > 0.2F)
         {
-            f4 += MathHelper.cos(limbSwing * 0.4F) * 0.15F * limbSwingAmount;
+            //f4 += MathHelper.cos(limbSwing * 0.4F) * 0.15F * limbSwingAmount;
         }
 
         AbstractHorseEntity abstracthorse = (AbstractHorseEntity)entitylivingbaseIn;

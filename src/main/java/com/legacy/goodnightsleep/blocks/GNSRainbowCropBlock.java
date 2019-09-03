@@ -10,9 +10,9 @@ import net.minecraft.util.IItemProvider;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 
-public class BlockGNSRainbowCrop extends BeetrootBlock
+public class GNSRainbowCropBlock extends BeetrootBlock
 {
-	public BlockGNSRainbowCrop() 
+	public GNSRainbowCropBlock() 
 	{
 		super(Properties.from(Blocks.BEETROOTS));
 	}

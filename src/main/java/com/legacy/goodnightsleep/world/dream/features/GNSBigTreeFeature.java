@@ -217,7 +217,6 @@ public class GNSBigTreeFeature extends AbstractTreeFeature<NoFeatureConfig>
 			{
 				j = i - 1;
 			}
-			double d0 = 1.0D;
 			int k = (int) (1.382D + Math.pow(1.0D * (double) i / 13.0D, 2.0D));
 			if (k < 1)
 			{
@@ -234,7 +233,6 @@ public class GNSBigTreeFeature extends AbstractTreeFeature<NoFeatureConfig>
 				{
 					for (int j1 = 0; j1 < k; ++j1)
 					{
-						double d1 = 1.0D;
 						double d2 = 1.0D * (double) f * ((double) random.nextFloat() + 0.328D);
 						double d3 = (double) (random.nextFloat() * 2.0F) * Math.PI;
 						double d4 = d2 * Math.sin(d3) + 0.5D;
@@ -283,6 +281,7 @@ public class GNSBigTreeFeature extends AbstractTreeFeature<NoFeatureConfig>
 		}
 	}
 	
+	@SuppressWarnings("deprecation")
 	protected static boolean func_214587_a(IWorldGenerationBaseReader p_214587_0_, BlockPos p_214587_1_)
 	{
 		if (!(p_214587_0_ instanceof net.minecraft.world.IWorldReader))

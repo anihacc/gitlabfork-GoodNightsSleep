@@ -4,8 +4,10 @@ package com.legacy.goodnightsleep.blocks;
 import java.util.ArrayList;
 
 import com.google.common.collect.Lists;
-import com.legacy.goodnightsleep.VariableConstants;
-import com.legacy.goodnightsleep.blocks.tile.BlockGNSBed;
+import com.legacy.goodnightsleep.GoodNightSleep;
+import com.legacy.goodnightsleep.blocks.tile.GNSBedBlock;
+import com.legacy.goodnightsleep.item.sapling.CandyTree;
+import com.legacy.goodnightsleep.item.sapling.DreamTree;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.Block.Properties;
@@ -14,8 +16,10 @@ import net.minecraft.block.FenceBlock;
 import net.minecraft.block.HugeMushroomBlock;
 import net.minecraft.block.LeavesBlock;
 import net.minecraft.block.LogBlock;
+import net.minecraft.block.SaplingBlock;
 import net.minecraft.block.SlabBlock;
 import net.minecraft.block.SoundType;
+import net.minecraft.block.StairsBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraftforge.common.ToolType;
@@ -76,20 +80,20 @@ public class BlocksGNS
 			return;
 		}
 
-		luxurious_bed = registerWithoutItem("luxurious_bed", new BlockGNSBed(Block.Properties.from(Blocks.CYAN_BED)));
-		wretched_bed = registerWithoutItem("wretched_bed", new BlockGNSBed(Block.Properties.from(Blocks.GRAY_BED)));
-		strange_bed = registerWithoutItem("strange_bed", new BlockGNSBed(Block.Properties.from(Blocks.RED_BED)));
+		luxurious_bed = registerWithoutItem("luxurious_bed", new GNSBedBlock(Block.Properties.from(Blocks.CYAN_BED)));
+		wretched_bed = registerWithoutItem("wretched_bed", new GNSBedBlock(Block.Properties.from(Blocks.GRAY_BED)));
+		strange_bed = registerWithoutItem("strange_bed", new GNSBedBlock(Block.Properties.from(Blocks.RED_BED)));
 
-		tall_dream_grass = register("tall_dream_grass", new BlockGNSTallGrass(Block.Properties.create(Material.ROCK).hardnessAndResistance(0.0F).doesNotBlockMovement().sound(SoundType.PLANT)));
-		tall_nightmare_grass = register("tall_nightmare_grass", new BlockGNSTallGrass(Block.Properties.create(Material.ROCK).hardnessAndResistance(0.0F).doesNotBlockMovement().sound(SoundType.PLANT)));
-		prickly_nightmare_grass = register("prickly_nightmare_grass", new BlockGNSTallGrass(Block.Properties.create(Material.ROCK).hardnessAndResistance(0.0F).doesNotBlockMovement().sound(SoundType.PLANT)));
-		dream_grass_block = register("dream_grass", new BlockGNSGrass());
+		tall_dream_grass = register("tall_dream_grass", new GNSTallGrassBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(0.0F).doesNotBlockMovement().sound(SoundType.PLANT)));
+		tall_nightmare_grass = register("tall_nightmare_grass", new GNSTallGrassBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(0.0F).doesNotBlockMovement().sound(SoundType.PLANT)));
+		prickly_nightmare_grass = register("prickly_nightmare_grass", new GNSTallGrassBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(0.0F).doesNotBlockMovement().sound(SoundType.PLANT)));
+		dream_grass_block = register("dream_grass", new GNSGrassBlock());
 		dream_dirt = register("dream_dirt", new Block(Properties.create(Material.ORGANIC).hardnessAndResistance(0.5F).sound(SoundType.GROUND)));
-		dream_farmland = register("dream_farmland", new BlockGNSFarmland(Properties.from(Blocks.FARMLAND)));
+		dream_farmland = register("dream_farmland", new GNSFarmlandBlock(Properties.from(Blocks.FARMLAND)));
 		delusion_stone = register("delusion_stone", new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F)));
 		delusion_cobblestone = register("delusion_cobblestone", new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(2.0F, 6.0F)));
 		delusion_stonebrick = register("delusion_stonebrick", new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(2.0F, 6.0F)));
-		nightmare_grass_block = register("nightmare_grass", new BlockGNSGrass());
+		nightmare_grass_block = register("nightmare_grass", new GNSGrassBlock());
 		hope_mushroom_block = register("hope_mushroom_block", new HugeMushroomBlock(Block.Properties.create(Material.WOOD, MaterialColor.YELLOW).hardnessAndResistance(0.2F).sound(SoundType.WOOD)));
 		despair_mushroom_block = register("despair_mushroom_block", new HugeMushroomBlock(Block.Properties.create(Material.WOOD, MaterialColor.GRAY).hardnessAndResistance(0.2F).sound(SoundType.WOOD)));
 		
@@ -122,31 +126,31 @@ public class BlocksGNS
 		dead_plank = register("dead_plank", new Block(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
 		blood_plank = register("blood_plank", new Block(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
 
-		//dream_sapling = register("dream_sapling", new BlockGNSSapling(new DreamTreeFeature(false), Block.Properties.create(Material.ROCK).hardnessAndResistance(0.0F).doesNotBlockMovement().sound(SoundType.PLANT)));
-		//candy_sapling = register("candy_sapling", new BlockGNSSapling(new DreamTreeFeature(false, 5, BlocksGNS.white_log.getDefaultState(), BlocksGNS.candy_leaves.getDefaultState()), new Block.Properties.create(Material.ROCK).hardnessAndResistance(0.0F).doesNotBlockMovement().sound(SoundType.PLANT)));
+		dream_sapling = register("dream_sapling", new SaplingBlock(new DreamTree(), Block.Properties.create(Material.ROCK).hardnessAndResistance(0.0F).doesNotBlockMovement().sound(SoundType.PLANT)) {});
+		candy_sapling = register("candy_sapling", new SaplingBlock(new CandyTree(), Block.Properties.create(Material.ROCK).hardnessAndResistance(0.0F).doesNotBlockMovement().sound(SoundType.PLANT)) {});
 		
-		hope_mushroom = register("hope_mushroom", new BlockGNSFlower(Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0.0F).sound(SoundType.PLANT)));
-		despair_mushroom = register("despair_mushroom", new BlockGNSFlower(Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0.0F).sound(SoundType.PLANT)));
-		orange_flower = register("orange_flower", new BlockGNSFlower(Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0.0F).sound(SoundType.PLANT)));
-		cyan_flower = register("cyan_flower", new BlockGNSFlower(Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0.0F).sound(SoundType.PLANT)));
-		lolipop_bush = register("lolipop_bush", new BlockGNSFlower(Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0.0F).sound(SoundType.PLANT)));
-		dead_flower = register("dead_flower", new BlockGNSFlower(Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0.0F).sound(SoundType.PLANT)));
+		hope_mushroom = register("hope_mushroom", new GNSFlowerBlock(Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0.0F).sound(SoundType.PLANT)));
+		despair_mushroom = register("despair_mushroom", new GNSFlowerBlock(Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0.0F).sound(SoundType.PLANT)));
+		orange_flower = register("orange_flower", new GNSFlowerBlock(Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0.0F).sound(SoundType.PLANT)));
+		cyan_flower = register("cyan_flower", new GNSFlowerBlock(Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0.0F).sound(SoundType.PLANT)));
+		lolipop_bush = register("lolipop_bush", new GNSFlowerBlock(Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0.0F).sound(SoundType.PLANT)));
+		dead_flower = register("dead_flower", new GNSFlowerBlock(Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0.0F).sound(SoundType.PLANT)));
 		
-		rainbow_crop = registerWithoutItem("rainbow_crop", new BlockGNSRainbowCrop());
+		rainbow_crop = registerWithoutItem("rainbow_crop", new GNSRainbowCropBlock());
 
 		dream_fence = register("dream_fence", new FenceBlock(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
 		white_fence = register("white_fence", new FenceBlock(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
 		dead_fence = register("dead_fence", new FenceBlock(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
 		blood_fence = register("blood_fence", new FenceBlock(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
 		
-		dream_stairs = register("dream_stairs", new BlockGNSStairs(BlocksGNS.dream_plank.getDefaultState(), Block.Properties.from(BlocksGNS.dream_plank)));
-		white_stairs = register("white_stairs", new BlockGNSStairs(BlocksGNS.white_plank.getDefaultState(), Block.Properties.from(BlocksGNS.white_plank)));
-		dead_stairs = register("dead_stairs", new BlockGNSStairs(BlocksGNS.dead_plank.getDefaultState(), Block.Properties.from(BlocksGNS.dead_plank)));
-		blood_stairs = register("blood_stairs", new BlockGNSStairs(BlocksGNS.blood_plank.getDefaultState(), Block.Properties.from(BlocksGNS.blood_plank)));
+		dream_stairs = register("dream_stairs", new StairsBlock(BlocksGNS.dream_plank.getDefaultState(), Block.Properties.from(BlocksGNS.dream_plank)) {});
+		white_stairs = register("white_stairs", new StairsBlock(BlocksGNS.white_plank.getDefaultState(), Block.Properties.from(BlocksGNS.white_plank)) {});
+		dead_stairs = register("dead_stairs", new StairsBlock(BlocksGNS.dead_plank.getDefaultState(), Block.Properties.from(BlocksGNS.dead_plank)) {});
+		blood_stairs = register("blood_stairs", new StairsBlock(BlocksGNS.blood_plank.getDefaultState(), Block.Properties.from(BlocksGNS.blood_plank)) {});
 		
-		delusion_stone_stairs = register("delusion_stone_stairs", new BlockGNSStairs(BlocksGNS.delusion_stone.getDefaultState(), Block.Properties.from(BlocksGNS.delusion_stone)));
-		delusion_cobblestone_stairs = register("delusion_cobblestone_stairs", new BlockGNSStairs(BlocksGNS.delusion_cobblestone.getDefaultState(), Block.Properties.from(BlocksGNS.delusion_cobblestone)));
-		delusion_stonebrick_stairs = register("delusion_stonebrick_stairs", new BlockGNSStairs(BlocksGNS.delusion_stonebrick.getDefaultState(), Block.Properties.from(BlocksGNS.delusion_stonebrick)));
+		delusion_stone_stairs = register("delusion_stone_stairs", new StairsBlock(BlocksGNS.delusion_stone.getDefaultState(), Block.Properties.from(BlocksGNS.delusion_stone)) {});
+		delusion_cobblestone_stairs = register("delusion_cobblestone_stairs", new StairsBlock(BlocksGNS.delusion_cobblestone.getDefaultState(), Block.Properties.from(BlocksGNS.delusion_cobblestone)) {});
+		delusion_stonebrick_stairs = register("delusion_stonebrick_stairs", new StairsBlock(BlocksGNS.delusion_stonebrick.getDefaultState(), Block.Properties.from(BlocksGNS.delusion_stonebrick)) {});
 
 		dream_slab = register("dream_slab", new SlabBlock(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
 		white_slab = register("white_slab", new SlabBlock(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
@@ -164,7 +168,7 @@ public class BlocksGNS
 		zitrite_block = register("zitrite_block", new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0F, 6.0F).sound(SoundType.METAL)));
 		negatite_block = register("negatite_block", new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0F, 6.0F).sound(SoundType.METAL)));
 		
-		present = register("present", new Block(Block.Properties.create(Material.ROCK, MaterialColor.RED).hardnessAndResistance(1.0F, 0.0F).sound(SoundType.WOOD)));
+		present = register("present", new Block(Block.Properties.create(Material.MISCELLANEOUS, MaterialColor.RED).hardnessAndResistance(0.5F, 0.0F).sound(SoundType.PLANT)));
 	}
 
 	public static void setBlockRegistry(IForgeRegistry<Block> iBlockRegistry)
@@ -176,7 +180,7 @@ public class BlocksGNS
 	{
 		if (iBlockRegistry != null) 
 		{
-			block.setRegistryName(VariableConstants.locate(name));
+			block.setRegistryName(GoodNightSleep.locate(name));
 			gnsBlockList.add(block);
 			iBlockRegistry.register(block);
 		}
@@ -188,7 +192,7 @@ public class BlocksGNS
 	{
 		if (iBlockRegistry != null) 
 		{
-			block.setRegistryName(VariableConstants.locate(name));
+			block.setRegistryName(GoodNightSleep.locate(name));
 			iBlockRegistry.register(block);
 		}
 

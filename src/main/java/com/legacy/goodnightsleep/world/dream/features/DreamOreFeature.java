@@ -31,7 +31,6 @@ public class DreamOreFeature extends Feature<DreamOreFeatureConfig>
 		double d1 = (double) ((float) pos.getX() - MathHelper.sin(f) * f1);
 		double d2 = (double) ((float) pos.getZ() + MathHelper.cos(f) * f1);
 		double d3 = (double) ((float) pos.getZ() - MathHelper.cos(f) * f1);
-		int j = 2;
 		double d4 = (double) (pos.getY() + rand.nextInt(3) - 2);
 		double d5 = (double) (pos.getY() + rand.nextInt(3) - 2);
 		int k = pos.getX() - MathHelper.ceil(f1) - i;

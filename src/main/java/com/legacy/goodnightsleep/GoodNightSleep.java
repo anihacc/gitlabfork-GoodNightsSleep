@@ -2,8 +2,8 @@ package com.legacy.goodnightsleep;
 
 import com.legacy.goodnightsleep.blocks.BlocksGNS;
 import com.legacy.goodnightsleep.client.GoodNightSleepClient;
-import com.legacy.goodnightsleep.world.dream.BiomeGoodDreamPlains;
-import com.legacy.goodnightsleep.world.nightmare.BiomeNightmareHills;
+import com.legacy.goodnightsleep.world.dream.GoodDreamPlainsBiome;
+import com.legacy.goodnightsleep.world.nightmare.NightmareHillsBiome;
 
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
@@ -19,9 +19,14 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.ForgeRegistries;
 
-@Mod("goodnightsleep")
+@Mod(GoodNightSleep.MODID)
 public class GoodNightSleep
 {
+	
+	public static final String NAME = "Good Night's Sleep";
+
+	public static final String MODID = "goodnightsleep";
+
 	public GoodNightSleep()
 	{
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::initialization);
@@ -32,13 +37,10 @@ public class GoodNightSleep
 	}
 	
 	private void initialization(final FMLCommonSetupEvent event)
-    {
-		//MinecraftForge.EVENT_BUS.register(new GNSEntityEvents());
-		//MinecraftForge.EVENT_BUS.register(new GNSPlayerEvents());
-		
+    {		
 		for (Biome biome : ForgeRegistries.BIOMES.getValues())
 		{
-			if (biome != BiomeNightmareHills.INSTANCE && biome != BiomeGoodDreamPlains.INSTANCE && biome != Biomes.NETHER && !biome.getRegistryName().toString().contains("end"))
+			if (biome != NightmareHillsBiome.INSTANCE && biome != GoodDreamPlainsBiome.INSTANCE && biome != Biomes.NETHER && !biome.getRegistryName().toString().contains("end"))
 			{
 				biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Biome.createDecoratedFeature(Feature.BUSH, new BushConfig(BlocksGNS.despair_mushroom.getDefaultState()), Placement.CHANCE_HEIGHTMAP_DOUBLE, new ChanceConfig(4)));
 				biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Biome.createDecoratedFeature(Feature.BUSH, new BushConfig(BlocksGNS.hope_mushroom.getDefaultState()), Placement.CHANCE_HEIGHTMAP_DOUBLE, new ChanceConfig(8)));
@@ -48,6 +50,11 @@ public class GoodNightSleep
 
 	public static ResourceLocation locate(String name)
 	{
-		return new ResourceLocation("goodnightsleep", name);
+		return new ResourceLocation(MODID, name);
+	}
+	
+	public static String find(String name)
+	{
+		return MODID + ":" + name;
 	}
 }

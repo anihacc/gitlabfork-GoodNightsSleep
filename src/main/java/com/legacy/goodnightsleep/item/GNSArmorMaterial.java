@@ -2,6 +2,8 @@ package com.legacy.goodnightsleep.item;
 
 import java.util.function.Supplier;
 
+import com.legacy.goodnightsleep.GoodNightSleep;
+
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.crafting.Ingredient;
@@ -50,7 +52,7 @@ public enum GNSArmorMaterial implements IArmorMaterial
 
 	private GNSArmorMaterial(String nameIn, int p_i48533_4_, int[] p_i48533_5_, int p_i48533_6_, SoundEvent p_i48533_7_, float p_i48533_8_, Supplier<Ingredient> p_i48533_9_)
 	{
-		this.name = "goodnightsleep:" + nameIn;
+		this.name = GoodNightSleep.find(nameIn);
 		this.maxDamageFactor = p_i48533_4_;
 		this.damageReductionAmountArray = p_i48533_5_;
 		this.enchantability = p_i48533_6_;

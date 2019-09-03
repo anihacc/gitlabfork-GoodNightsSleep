@@ -1,6 +1,6 @@
 package com.legacy.goodnightsleep.client.render;
 
-import com.legacy.goodnightsleep.blocks.tile.BlockGNSBed;
+import com.legacy.goodnightsleep.blocks.tile.GNSBedBlock;
 import com.legacy.goodnightsleep.tile_entity.TileEntityLuxuriousBed;
 import com.mojang.blaze3d.platform.GlStateManager;
 
@@ -44,7 +44,7 @@ public class TileEntityLuxuriousBedRenderer extends TileEntityRenderer<TileEntit
 			if (tileEntityIn.hasWorld())
 			{
 				BlockState blockstate = tileEntityIn.getBlockState();
-				this.func_199343_a(blockstate.get(BlockGNSBed.PART) == BedPart.HEAD, x, y, z, blockstate.get(BlockGNSBed.HORIZONTAL_FACING));
+				this.func_199343_a(blockstate.get(GNSBedBlock.PART) == BedPart.HEAD, x, y, z, blockstate.get(GNSBedBlock.HORIZONTAL_FACING));
 			}
 			else
 			{

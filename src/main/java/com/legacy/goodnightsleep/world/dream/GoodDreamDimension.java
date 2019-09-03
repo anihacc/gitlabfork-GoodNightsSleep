@@ -30,7 +30,7 @@ public class GoodDreamDimension extends Dimension
 		OverworldGenSettings genSettings = ChunkGeneratorType.SURFACE.createSettings();
 		genSettings.setDefaultBlock(BlocksGNS.delusion_stone.getDefaultState());
 		
-		return ChunkGeneratorType.SURFACE.create(this.world, BiomeProviderType.FIXED.create(BiomeProviderType.FIXED.createSettings().setBiome(BiomeGoodDreamPlains.INSTANCE)), genSettings);
+		return ChunkGeneratorType.SURFACE.create(this.world, BiomeProviderType.FIXED.create(BiomeProviderType.FIXED.createSettings().setBiome(GoodDreamPlainsBiome.INSTANCE)), genSettings);
 	}
 
 	@Override

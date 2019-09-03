@@ -22,14 +22,14 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 
-public class BlockGNSFarmland extends Block
+public class GNSFarmlandBlock extends Block
 {
 
 	public static final IntegerProperty MOISTURE = BlockStateProperties.MOISTURE_0_7;
 
 	protected static final VoxelShape SHAPE = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 15.0D, 16.0D);
 
-	protected BlockGNSFarmland(Block.Properties builder)
+	protected GNSFarmlandBlock(Block.Properties builder)
 	{
 		super(builder);
 		this.setDefaultState(this.stateContainer.getBaseState().with(MOISTURE, Integer.valueOf(0)));

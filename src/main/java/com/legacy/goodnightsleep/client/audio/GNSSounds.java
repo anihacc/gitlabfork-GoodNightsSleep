@@ -1,6 +1,6 @@
 package com.legacy.goodnightsleep.client.audio;
 
-import com.legacy.goodnightsleep.VariableConstants;
+import com.legacy.goodnightsleep.GoodNightSleep;
 
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
@@ -22,7 +22,7 @@ public class GNSSounds
 
 	private static SoundEvent register(String name)
 	{
-		ResourceLocation location = VariableConstants.locate(name);
+		ResourceLocation location = GoodNightSleep.locate(name);
 
 		SoundEvent sound = new SoundEvent(location);
 

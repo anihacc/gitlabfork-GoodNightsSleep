@@ -1,8 +1,5 @@
-package com.legacy.goodnightsleep.client;
+package com.legacy.goodnightsleep.client.render;
 
-import com.legacy.goodnightsleep.client.render.TileEntityLuxuriousBedRenderer;
-import com.legacy.goodnightsleep.client.render.TileEntityStrangeBedRenderer;
-import com.legacy.goodnightsleep.client.render.TileEntityWretchedBedRenderer;
 import com.legacy.goodnightsleep.tile_entity.TileEntityLuxuriousBed;
 import com.legacy.goodnightsleep.tile_entity.TileEntityStrangeBed;
 import com.legacy.goodnightsleep.tile_entity.TileEntityWretchedBed;
@@ -12,9 +9,9 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 
 @OnlyIn(Dist.CLIENT)
-public class ClientSpecificStuff
+public class GNSTileEntityRendering
 {
-	public static void fleep()
+	public static void initialization()
 	{
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityLuxuriousBed.class, new TileEntityLuxuriousBedRenderer());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityWretchedBed.class, new TileEntityWretchedBedRenderer());

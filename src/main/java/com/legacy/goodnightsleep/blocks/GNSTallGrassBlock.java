@@ -20,12 +20,12 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class BlockGNSTallGrass extends BushBlock
+public class GNSTallGrassBlock extends BushBlock
 {
 
 	protected static final VoxelShape SHAPE = Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 13.0D, 14.0D);
 
-	 public BlockGNSTallGrass(Properties properties)
+	 public GNSTallGrassBlock(Properties properties)
 	 {
 		 super(properties);
 	 }

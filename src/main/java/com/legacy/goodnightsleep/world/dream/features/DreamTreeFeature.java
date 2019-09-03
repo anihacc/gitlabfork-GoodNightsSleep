@@ -88,8 +88,6 @@ public class DreamTreeFeature extends AbstractTreeFeature<NoFeatureConfig>
 			else if (isSoil(worldIn, position.down(), getSapling()) && position.getY() < worldIn.getMaxHeight() - i - 1)
 			{
 				this.setDirtAt(worldIn, position.down(), position);
-				int j2 = 3;
-				int k2 = 0;
 				for (int l2 = position.getY() - 3 + i; l2 <= position.getY() + i; ++l2)
 				{
 					int l3 = l2 - (position.getY() + i);
@@ -136,6 +134,7 @@ public class DreamTreeFeature extends AbstractTreeFeature<NoFeatureConfig>
 		return this.minTreeHeight + random.nextInt(3);
 	}
 	
+	@SuppressWarnings("deprecation")
 	protected static boolean func_214587_a(IWorldGenerationBaseReader p_214587_0_, BlockPos p_214587_1_)
 	{
 		if (!(p_214587_0_ instanceof net.minecraft.world.IWorldReader))

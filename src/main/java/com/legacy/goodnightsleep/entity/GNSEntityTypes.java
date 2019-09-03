@@ -52,6 +52,6 @@ public class GNSEntityTypes
 	
 	public static boolean otherSpawnConditions(EntityType<? extends MobEntity> p_223316_0_, IWorld p_223316_1_, SpawnReason p_223316_2_, BlockPos p_223316_3_, Random p_223316_4_)
 	{
-		return (p_223316_1_.getBlockState(p_223316_3_.down()).getBlock() == BlocksGNS.nightmare_grass_block || p_223316_1_.getBlockState(p_223316_3_.down()).getBlock() == BlocksGNS.dream_grass_block) && p_223316_1_.canBlockSeeSky(p_223316_3_);
+		return (p_223316_1_.getBlockState(p_223316_3_.down()).getBlock() == BlocksGNS.nightmare_grass_block || p_223316_1_.getBlockState(p_223316_3_.down()).getBlock() == BlocksGNS.dream_grass_block) && p_223316_1_.isSkyLightMax(p_223316_3_);
 	}
 }
