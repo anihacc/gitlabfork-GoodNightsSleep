@@ -101,7 +101,7 @@ public class DreamTreeFeature extends AbstractTreeFeature<NoFeatureConfig>
 							if (Math.abs(k1) != j4 || Math.abs(i2) != j4 || rand.nextInt(2) != 0 && l3 != 0)
 							{
 								BlockPos blockpos = new BlockPos(j1, l2, l1);
-								if (isAirOrLeaves(worldIn, blockpos) || func_214576_j(worldIn, blockpos))
+								if (isAirOrLeaves(worldIn, blockpos) || isAir(worldIn, blockpos))
 								{
 									this.setLogState(changedBlocks, worldIn, blockpos, this.leaf, p_208519_5_);
 								}
@@ -111,7 +111,7 @@ public class DreamTreeFeature extends AbstractTreeFeature<NoFeatureConfig>
 				}
 				for (int i3 = 0; i3 < i; ++i3)
 				{
-					if (isAirOrLeaves(worldIn, position.up(i3)) || func_214576_j(worldIn, position.up(i3)))
+					if (isAirOrLeaves(worldIn, position.up(i3)) || isAir(worldIn, position.up(i3)))
 					{
 						this.setLogState(changedBlocks, worldIn, position.up(i3), this.trunk, p_208519_5_);
 					}

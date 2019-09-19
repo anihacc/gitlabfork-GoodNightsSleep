@@ -37,7 +37,7 @@ public class GNSEntityTypes
 	
 	public static final EntityType<HerobrineEntity> HEROBRINE = buildEntity("herobrine", EntityType.Builder.create(HerobrineEntity::new, EntityClassification.MONSTER));
 
-	public static final EntityType<GNSSpawnerEntity> SPAWNER_ENTITY = buildEntity("gns_spawner", EntityType.Builder.create(GNSSpawnerEntity::new, EntityClassification.CREATURE).size(1.0F, 1.0F).disableSummoning());
+	public static final EntityType<GNSSpawnerEntity> SPAWNER_ENTITY = buildEntity("gns_spawner", EntityType.Builder.create(GNSSpawnerEntity::new, EntityClassification.CREATURE).size(1.0F, 1.0F));
 
 	public static void init(Register<EntityType<?>> event)
 	{
