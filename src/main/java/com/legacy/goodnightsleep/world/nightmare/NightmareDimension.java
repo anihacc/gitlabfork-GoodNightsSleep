@@ -1,6 +1,7 @@
 package com.legacy.goodnightsleep.world.nightmare;
 
-import com.legacy.goodnightsleep.GNSRegistryHandler;
+import com.legacy.goodnightsleep.GNSRegistry;
+import com.legacy.goodnightsleep.world.GNSDimensions;
 
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -84,7 +85,7 @@ public class NightmareDimension extends Dimension
 	@Override
 	public DimensionType getType()
 	{
-		return GNSRegistryHandler.nightmareType();
+		return GNSDimensions.dimensionType(false);
 	}
 	
 	@Override

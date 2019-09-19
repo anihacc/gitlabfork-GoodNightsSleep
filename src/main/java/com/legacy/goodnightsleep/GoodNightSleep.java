@@ -13,7 +13,9 @@ import net.minecraft.world.gen.feature.BushConfig;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.placement.ChanceConfig;
 import net.minecraft.world.gen.placement.Placement;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -30,10 +32,16 @@ public class GoodNightSleep
 	public GoodNightSleep()
 	{
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::initialization);
-		FMLJavaModLoadingContext.get().getModEventBus().addListener(GoodNightSleepClient::initialization);
+		//FMLJavaModLoadingContext.get().getModEventBus().addListener(GoodNightSleepClient::initialization);
 		MinecraftForge.EVENT_BUS.register(this);
 		MinecraftForge.EVENT_BUS.register(new GNSEvents());
-		MinecraftForge.EVENT_BUS.register(new GoodNightSleepClient());
+		//MinecraftForge.EVENT_BUS.register(new GoodNightSleepClient());
+		
+		DistExecutor.runWhenOn(Dist.CLIENT, () -> () ->
+		{
+			FMLJavaModLoadingContext.get().getModEventBus().addListener(GoodNightSleepClient::initialization);
+			MinecraftForge.EVENT_BUS.register(new GoodNightSleepClient());
+		});
 	}
 	
 	private void initialization(final FMLCommonSetupEvent event)

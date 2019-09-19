@@ -4,12 +4,11 @@ import java.util.Optional;
 
 import javax.annotation.Nullable;
 
-import com.legacy.goodnightsleep.GNSRegistryHandler;
 import com.legacy.goodnightsleep.blocks.BlocksGNS;
 import com.legacy.goodnightsleep.tile_entity.TileEntityLuxuriousBed;
 import com.legacy.goodnightsleep.tile_entity.TileEntityStrangeBed;
 import com.legacy.goodnightsleep.tile_entity.TileEntityWretchedBed;
-import com.legacy.goodnightsleep.world.TeleporterGNS;
+import com.legacy.goodnightsleep.world.GNSDimensions;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
@@ -105,61 +104,30 @@ public class GNSBedBlock extends HorizontalBlock implements ITileEntityProvider
 		}
 		else
 		{
-			ServerPlayerEntity serverPlayer = (ServerPlayerEntity) player;
-
 			if (this == BlocksGNS.luxurious_bed)
 			{
-				DimensionType previousDimension = player.dimension;
-				DimensionType transferDimension = previousDimension == GNSRegistryHandler.dreamType() ? DimensionType.OVERWORLD : GNSRegistryHandler.dreamType();
-				
-				serverPlayer.teleport(player.getServer().getWorld(transferDimension), serverPlayer.posX, serverPlayer.world.getHeight(Type.MOTION_BLOCKING_NO_LEAVES, player.getPosition()).getY(), serverPlayer.posZ, serverPlayer.rotationYaw, serverPlayer.rotationPitch);
-
-				TeleporterGNS.INSTANCE.teleport(player, player.rotationYawHead);
-				//player.changeDimension(transferDimension, new TeleporterGNS(ServerLifecycleHooks.getCurrentServer().getWorld(transferDimension)));	
+				this.travelToDream(player);
 			}
-			
 			else if (this == BlocksGNS.wretched_bed)
 			{
-				DimensionType previousDimension = player.dimension;
-				DimensionType transferDimension = previousDimension == GNSRegistryHandler.nightmareType() ? DimensionType.OVERWORLD : GNSRegistryHandler.nightmareType();
-				
-				serverPlayer.teleport(player.getServer().getWorld(transferDimension), serverPlayer.posX, serverPlayer.world.getHeight(Type.MOTION_BLOCKING_NO_LEAVES, player.getPosition()).getY(), serverPlayer.posZ, serverPlayer.rotationYaw, serverPlayer.rotationPitch);
-
-				TeleporterGNS.INSTANCE.teleport(player, player.rotationYawHead);
-				//player.changeDimension(transferDimension, new TeleporterGNS(ServerLifecycleHooks.getCurrentServer().getWorld(transferDimension)));	
+				this.travelToNightmare(player);
 			}
-			
 			else if (this == BlocksGNS.strange_bed)
 			{
 				if (worldIn.rand.nextBoolean())
 				{
-					DimensionType previousDimension = player.dimension;
-					DimensionType transferDimension = previousDimension == GNSRegistryHandler.dreamType() ? DimensionType.OVERWORLD : GNSRegistryHandler.dreamType();
-					
-					serverPlayer.teleport(player.getServer().getWorld(transferDimension), serverPlayer.posX, serverPlayer.world.getHeight(Type.MOTION_BLOCKING_NO_LEAVES, player.getPosition()).getY(), serverPlayer.posZ, serverPlayer.rotationYaw, serverPlayer.rotationPitch);
-
-					//TeleporterGNS.INSTANCE.teleport(player, player.rotationYawHead);
-					//player.changeDimension(transferDimension, new TeleporterGNS(ServerLifecycleHooks.getCurrentServer().getWorld(transferDimension)));	
+					this.travelToDream(player);
 				}
 				else
 				{
-					DimensionType previousDimension = player.dimension;
-					DimensionType transferDimension = previousDimension == GNSRegistryHandler.nightmareType() ? DimensionType.OVERWORLD : GNSRegistryHandler.nightmareType();
-					
-					serverPlayer.teleport(player.getServer().getWorld(transferDimension), serverPlayer.posX, serverPlayer.world.getHeight(Type.MOTION_BLOCKING_NO_LEAVES, player.getPosition()).getY(), serverPlayer.posZ, serverPlayer.rotationYaw, serverPlayer.rotationPitch);
-
-					//TeleporterGNS.INSTANCE.teleport(player, player.rotationYawHead);
-
-					//player.changeDimension(transferDimension, new TeleporterGNS(ServerLifecycleHooks.getCurrentServer().getWorld(transferDimension)));	
+					this.travelToNightmare(player);
 				}
 			}
-			
 			if (player.dimension == DimensionType.OVERWORLD)
 			{
 				player.setSpawnPoint(pos, true, DimensionType.OVERWORLD);
 				player.setBedPosition(pos);
 			}
-
 			return true;
 		}
 	}
@@ -387,5 +355,27 @@ public class GNSBedBlock extends HorizontalBlock implements ITileEntityProvider
 	public boolean allowsMovement(BlockState state, IBlockReader worldIn, BlockPos pos, PathType type)
 	{
 		return false;
+	}
+	
+	private void travelToDream(PlayerEntity player)
+	{
+		ServerPlayerEntity serverPlayer = (ServerPlayerEntity) player;
+
+		//TeleporterGNS.INSTANCE.teleport(player, player.rotationYawHead);
+		
+		DimensionType previousDimension = player.dimension;
+		DimensionType transferDimension = previousDimension == GNSDimensions.dimensionType(true) ? DimensionType.OVERWORLD : GNSDimensions.dimensionType(true);
+		
+		serverPlayer.teleport(player.getServer().getWorld(transferDimension), serverPlayer.posX, serverPlayer.world.getHeight(Type.MOTION_BLOCKING_NO_LEAVES, player.getPosition()).getY(), serverPlayer.posZ, serverPlayer.rotationYaw, serverPlayer.rotationPitch);
+	}
+	
+	private void travelToNightmare(PlayerEntity player)
+	{
+		ServerPlayerEntity serverPlayer = (ServerPlayerEntity) player;
+
+		DimensionType previousDimension = player.dimension;
+		DimensionType transferDimension = previousDimension == GNSDimensions.dimensionType(false) ? DimensionType.OVERWORLD : GNSDimensions.dimensionType(false);
+		
+		serverPlayer.teleport(player.getServer().getWorld(transferDimension), serverPlayer.posX, serverPlayer.world.getHeight(Type.MOTION_BLOCKING_NO_LEAVES, player.getPosition()).getY(), serverPlayer.posZ, serverPlayer.rotationYaw, serverPlayer.rotationPitch);
 	}
 }

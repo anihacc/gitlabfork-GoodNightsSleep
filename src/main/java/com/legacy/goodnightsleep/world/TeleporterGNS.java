@@ -2,7 +2,7 @@ package com.legacy.goodnightsleep.world;
 
 import java.util.Random;
 
-import com.legacy.goodnightsleep.GNSRegistryHandler;
+import com.legacy.goodnightsleep.GNSRegistry;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -35,7 +35,7 @@ public class TeleporterGNS
 
 		//PlayerEntity player = (PlayerEntity) entityIn;
 		
-		if (player.getBedLocation(DimensionType.OVERWORLD) != null && !(entityIn.dimension == GNSRegistryHandler.dreamType() || entityIn.dimension == GNSRegistryHandler.nightmareType()))
+		if (player.getBedLocation(DimensionType.OVERWORLD) != null && !(entityIn.dimension == GNSDimensions.dimensionType(true) || entityIn.dimension == GNSDimensions.dimensionType(false)))
 		{
 			entityIn.setLocationAndAngles((double) player.getBedLocation(DimensionType.OVERWORLD).getX(), entityIn.world.getHeight(Type.MOTION_BLOCKING_NO_LEAVES, player.getPosition()).getY(), (double) player.getBedLocation(DimensionType.OVERWORLD).getZ(), entityIn.rotationYaw, 0.0F);
 		}

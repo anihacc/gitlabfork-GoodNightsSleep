@@ -4,11 +4,8 @@ import com.legacy.goodnightsleep.tile_entity.TileEntityLuxuriousBed;
 import com.legacy.goodnightsleep.tile_entity.TileEntityStrangeBed;
 import com.legacy.goodnightsleep.tile_entity.TileEntityWretchedBed;
 
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 
-@OnlyIn(Dist.CLIENT)
 public class GNSTileEntityRendering
 {
 	public static void initialization()

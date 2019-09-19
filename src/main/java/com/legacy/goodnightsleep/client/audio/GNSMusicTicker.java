@@ -2,7 +2,7 @@ package com.legacy.goodnightsleep.client.audio;
 
 import java.util.Random;
 
-import com.legacy.goodnightsleep.GNSRegistryHandler;
+import com.legacy.goodnightsleep.world.GNSDimensions;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.ISound;
@@ -16,67 +16,72 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 @OnlyIn(Dist.CLIENT)
 public class GNSMusicTicker implements ITickable
 {
-    private final Random rand = new Random();
-    private final Minecraft mc;
-    public ISound ambientMusic, playingRecord;
-    private int timeUntilNextMusic = 100;
-    
-    public GNSMusicTicker(Minecraft mcIn)
-    {
-        this.mc = mcIn;
-    }
 
-    public void tick()
-    {	
-       TrackType tracktypeB = this.getRandomTrackDream();
-       TrackType tracktypeD = this.getRandomTrackNightmare();
-       
-      	if (this.mc.player != null && !this.mc.getSoundHandler().isPlaying(this.playingRecord) && GNSRegistryHandler.dreamType() != null && GNSRegistryHandler.nightmareType() != null)
-      	{
-      		if (this.mc.player.dimension == GNSRegistryHandler.dreamType())
-          	{		
-      			if (this.ambientMusic != null)
-                {
-                    if (!this.mc.getSoundHandler().isPlaying(this.ambientMusic))
-                    {
-                        this.ambientMusic = null;
-                        this.timeUntilNextMusic = Math.min(MathHelper.nextInt(this.rand, tracktypeB.getMinDelay(), tracktypeB.getMaxDelay()), this.timeUntilNextMusic);
-                    }
-                }
+	private final Random rand = new Random();
 
-                this.timeUntilNextMusic = Math.min(this.timeUntilNextMusic, tracktypeB.getMaxDelay());
+	private final Minecraft mc;
 
-                if (this.ambientMusic == null && this.timeUntilNextMusic-- <= 0)
-                {
-             	   this.playMusic(tracktypeB);
-                }
-          	}
-          	
-          	else if (this.mc.player.dimension == GNSRegistryHandler.nightmareType())
-          	{
-      			if (this.ambientMusic != null)
-                {
-                    if (!this.mc.getSoundHandler().isPlaying(this.ambientMusic))
-                    {
-                        this.ambientMusic = null;
-                        this.timeUntilNextMusic = Math.min(MathHelper.nextInt(this.rand, tracktypeD.getMinDelay(), tracktypeD.getMaxDelay()), this.timeUntilNextMusic);
-                    }
-                }
+	public ISound ambientMusic, playingRecord;
 
-                this.timeUntilNextMusic = Math.min(this.timeUntilNextMusic, tracktypeD.getMaxDelay());
+	private int timeUntilNextMusic = 100;
 
-                if (this.ambientMusic == null && this.timeUntilNextMusic-- <= 0)
-                {
-             	   this.playMusic(tracktypeD);
-                }
-          	}
+	public GNSMusicTicker(Minecraft mcIn)
+	{
+		this.mc = mcIn;
+	}
 
-          	else
-          	{
-          		this.stopMusic();
-          	}
-      	}
-    }
+	public void tick()
+	{
+		TrackType tracktypeB = this.getRandomTrackDream();
+		TrackType tracktypeD = this.getRandomTrackNightmare();
+
+		try
+		{
+			if (this.mc.player != null && !this.mc.getSoundHandler().isPlaying(this.playingRecord) && GNSDimensions.dimensionType(true) != null && GNSDimensions.dimensionType(false) != null)
+			{
+				if (this.mc.player.dimension == GNSDimensions.dimensionType(true))
+				{
+					if (this.ambientMusic != null)
+					{
+						if (!this.mc.getSoundHandler().isPlaying(this.ambientMusic))
+						{
+							this.ambientMusic = null;
+							this.timeUntilNextMusic = Math.min(MathHelper.nextInt(this.rand, tracktypeB.getMinDelay(), tracktypeB.getMaxDelay()), this.timeUntilNextMusic);
+						}
+					}
+					this.timeUntilNextMusic = Math.min(this.timeUntilNextMusic, tracktypeB.getMaxDelay());
+					if (this.ambientMusic == null && this.timeUntilNextMusic-- <= 0)
+					{
+						this.playMusic(tracktypeB);
+					}
+				}
+				else if (this.mc.player.dimension == GNSDimensions.dimensionType(false))
+				{
+					if (this.ambientMusic != null)
+					{
+						if (!this.mc.getSoundHandler().isPlaying(this.ambientMusic))
+						{
+							this.ambientMusic = null;
+							this.timeUntilNextMusic = Math.min(MathHelper.nextInt(this.rand, tracktypeD.getMinDelay(), tracktypeD.getMaxDelay()), this.timeUntilNextMusic);
+						}
+					}
+					this.timeUntilNextMusic = Math.min(this.timeUntilNextMusic, tracktypeD.getMaxDelay());
+					if (this.ambientMusic == null && this.timeUntilNextMusic-- <= 0)
+					{
+						this.playMusic(tracktypeD);
+					}
+				}
+				else
+				{
+					this.stopMusic();
+				}
+			}
+		}
+		catch (NullPointerException e)
+		{
+			e.printStackTrace();
+		}
+	}
 
     public boolean playingMusic()
     {

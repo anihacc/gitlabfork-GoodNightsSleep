@@ -1,6 +1,7 @@
 package com.legacy.goodnightsleep;
 
 import com.legacy.goodnightsleep.blocks.BlocksGNS;
+import com.legacy.goodnightsleep.world.GNSDimensions;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -26,21 +27,14 @@ public class GNSEvents
 	public int timeInPortal;
 
 	public float prevPortalAnimTime, portalAnimTime;
-	
+
 	@SubscribeEvent
 	public void onRegisteredDimension(RegisterDimensionsEvent event)
 	{
-		//if (DreamWorldManager.getDimensionType() == null)
-		{
-			//DimensionManager.registerDimension(VariableConstants.locate("good_dream"), new DreamWorldManager(), new PacketBuffer(Unpooled.buffer()), true);
-		}
-		
-		//if (NightmareWorldManager.getDimensionType() == null)
-		{
-			//DimensionManager.registerDimension(VariableConstants.locate("nightmare"), new NightmareWorldManager(), new PacketBuffer(Unpooled.buffer()), true);
-		}
+    	System.out.println("initDimensions");
+    	GNSDimensions.initDimensions();
 	}
-	
+
 	@SubscribeEvent
 	public void onBlockRightClick(RightClickBlock event)
 	{

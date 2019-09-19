@@ -1,6 +1,7 @@
 package com.legacy.goodnightsleep.client.audio;
 
-import com.legacy.goodnightsleep.GNSRegistryHandler;
+import com.legacy.goodnightsleep.GNSRegistry;
+import com.legacy.goodnightsleep.world.GNSDimensions;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.ISound;
@@ -42,7 +43,7 @@ public class GNSMusicHandler
 
 		if (category == SoundCategory.MUSIC)
 		{
-			if (this.mc.player != null && this.mc.player.dimension == GNSRegistryHandler.dreamType() || this.mc.player != null && this.mc.player.dimension == GNSRegistryHandler.nightmareType())
+			if (this.mc.player != null && this.mc.player.dimension == GNSDimensions.dimensionType(true) || this.mc.player != null && this.mc.player.dimension == GNSDimensions.dimensionType(false))
 			{
 				if (!sound.getSoundLocation().toString().contains("goodnightsleep") && (this.musicTicker.playingMusic() || !this.musicTicker.playingMusic()))
 				{

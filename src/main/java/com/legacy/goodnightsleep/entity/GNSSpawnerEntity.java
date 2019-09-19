@@ -1,11 +1,12 @@
 package com.legacy.goodnightsleep.entity;
 
-import com.legacy.goodnightsleep.GNSRegistryHandler;
+import com.legacy.goodnightsleep.world.GNSDimensions;
 
+import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
-import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.ChickenEntity;
 import net.minecraft.entity.passive.CowEntity;
 import net.minecraft.entity.passive.PigEntity;
@@ -19,7 +20,7 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.Heightmap.Type;
 
-public class GNSSpawnerEntity extends MobEntity
+public class GNSSpawnerEntity extends AnimalEntity
 {
 	private boolean spawnedMobs;
 
@@ -49,7 +50,7 @@ public class GNSSpawnerEntity extends MobEntity
     	
     	//BlockPos blockpos = (new BlockPos(this));
     	
-    	if (worldIn.getDimension().getType() != GNSRegistryHandler.nightmareType())
+    	if (worldIn.getDimension().getType() != GNSDimensions.dimensionType(false))
     	{
 	    	if (type == 0)
 	    	{
@@ -142,7 +143,7 @@ public class GNSSpawnerEntity extends MobEntity
     public void tick()
     {
     	super.tick();
-    	if (this.ticksExisted > 20 || this.spawnedMobs)
+    	if (this.ticksExisted > 50 || this.spawnedMobs)
     	{
     		this.remove();
     	}
@@ -153,4 +154,10 @@ public class GNSSpawnerEntity extends MobEntity
     		this.spawnedMobs = true;
     	}
     }
+
+	@Override
+	public AgeableEntity createChild(AgeableEntity ageable)
+	{
+		return null;
+	}
 }

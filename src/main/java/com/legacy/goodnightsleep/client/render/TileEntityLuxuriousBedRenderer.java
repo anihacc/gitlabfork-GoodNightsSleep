@@ -40,7 +40,6 @@ public class TileEntityLuxuriousBedRenderer extends TileEntityRenderer<TileEntit
 				this.bindTexture(DREAM_BED);
 			}
 
-			//System.out.println(tileEntityIn.getWorld());
 			if (tileEntityIn.hasWorld())
 			{
 				BlockState blockstate = tileEntityIn.getBlockState();
