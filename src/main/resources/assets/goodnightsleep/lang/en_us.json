@@ -176,5 +176,8 @@
 
 	"advancements.goodnightsleep.root.desc": "A Dreamy Mod",
 	"advancements.goodnightsleep.dream.desc": "Have a Good Dream",
-	"advancements.goodnightsleep.nightmare.desc": "Have a Nightmare"
+	"advancements.goodnightsleep.nightmare.desc": "Have a Nightmare",
+
+	"biome.goodnightsleep.good_dream_plains": "Good Dream Plains",
+	"biome.goodnightsleep.nightmare_hills": "Nightmare Hills"
 }
