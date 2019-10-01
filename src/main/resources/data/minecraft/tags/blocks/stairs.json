@@ -1,0 +1,12 @@
+{
+	"replace": false,
+	"values": [
+		"goodnightsleep:dream_stairs",
+		"goodnightsleep:white_stairs",
+		"goodnightsleep:dead_stairs",
+		"goodnightsleep:blood_stairs",
+		"goodnightsleep:delusion_stone_stairs",
+		"goodnightsleep:delusion_cobblestone_stairs",
+		"goodnightsleep:delusion_stonebrick_stairs"
+	]
+}
