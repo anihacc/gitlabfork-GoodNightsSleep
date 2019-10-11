@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.BushBlock;
+import net.minecraft.block.material.Material;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -36,7 +37,7 @@ public class GNSFlowerBlock extends BushBlock
 		
 		if (this == BlocksGNS.hope_mushroom || this == BlocksGNS.despair_mushroom)
 		{
-			return block == Blocks.CHISELED_RED_SANDSTONE || block == BlocksGNS.delusion_stone || block == BlocksGNS.dream_grass_block || block == BlocksGNS.dream_dirt || block == Blocks.DIRT || block == BlocksGNS.nightmare_grass_block;
+			return iblockstate.getMaterial() == Material.ROCK || block == BlocksGNS.delusion_stone || block == BlocksGNS.dream_grass_block || block == BlocksGNS.dream_dirt || block == Blocks.DIRT || block == BlocksGNS.nightmare_grass_block;
 		}
 
 		return block == BlocksGNS.dream_grass_block || block == BlocksGNS.dream_dirt || block == Blocks.GRASS_BLOCK || block == Blocks.DIRT || block == BlocksGNS.nightmare_grass_block;

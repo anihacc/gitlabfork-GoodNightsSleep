@@ -31,7 +31,6 @@ public class GNSEvents
 	@SubscribeEvent
 	public void onRegisteredDimension(RegisterDimensionsEvent event)
 	{
-    	System.out.println("initDimensions");
     	GNSDimensions.initDimensions();
 	}
 
