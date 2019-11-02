@@ -1,5 +1,6 @@
 package com.legacy.goodnightsleep.client.render.entity;
 
+import com.legacy.goodnightsleep.GoodNightSleep;
 import com.legacy.goodnightsleep.client.render.models.GummyBearModel;
 import com.legacy.goodnightsleep.entity.dream.GummyBearEntity;
 
@@ -10,11 +11,11 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class RenderGummyBear extends MobRenderer<GummyBearEntity, GummyBearModel<GummyBearEntity>>
+public class GummyBearRenderer extends MobRenderer<GummyBearEntity, GummyBearModel<GummyBearEntity>>
 {
-    private static final ResourceLocation TEXTURE = new ResourceLocation("goodnightsleep", "textures/entities/gummy_bear.png");
+    private static final ResourceLocation TEXTURE = GoodNightSleep.locate("textures/entities/gummy_bear.png");
 
-    public RenderGummyBear(EntityRendererManager renderManagerIn)
+    public GummyBearRenderer(EntityRendererManager renderManagerIn)
     {
         super(renderManagerIn, new GummyBearModel<>(), 0.5F);
     }

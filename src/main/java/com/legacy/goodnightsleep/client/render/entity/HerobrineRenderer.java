@@ -1,5 +1,7 @@
 package com.legacy.goodnightsleep.client.render.entity;
 
+import com.legacy.goodnightsleep.GoodNightSleep;
+import com.legacy.goodnightsleep.client.render.entity.layer.GlowingEyeLayer;
 import com.legacy.goodnightsleep.entity.HerobrineEntity;
 
 import net.minecraft.client.renderer.entity.EntityRendererManager;
@@ -10,13 +12,14 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class RenderHerobrine extends MobRenderer<HerobrineEntity, BipedModel<HerobrineEntity>>
+public class HerobrineRenderer extends MobRenderer<HerobrineEntity, BipedModel<HerobrineEntity>>
 {
-    private static final ResourceLocation TEXTURE = new ResourceLocation("goodnightsleep", "textures/entities/herobrine.png");
+    private static final ResourceLocation TEXTURE = GoodNightSleep.locate("textures/entities/herobrine.png");
 
-    public RenderHerobrine(EntityRendererManager renderManagerIn)
+    public HerobrineRenderer(EntityRendererManager renderManagerIn)
     {
         super(renderManagerIn, new BipedModel<>(), 0.5F);
+		this.addLayer(new GlowingEyeLayer<>(this, GoodNightSleep.locate("textures/entities/herobrine_eyes.png")));
     }
 
     protected ResourceLocation getEntityTexture(HerobrineEntity entity)

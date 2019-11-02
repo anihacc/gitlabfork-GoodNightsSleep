@@ -1,17 +1,13 @@
 package com.legacy.goodnightsleep.world;
 
-import java.lang.reflect.Field;
 import java.util.function.BiFunction;
-import java.util.function.IntSupplier;
 
-import org.apache.commons.lang3.tuple.Pair;
-
-import com.google.common.collect.ImmutableList;
 import com.legacy.goodnightsleep.GNSRegistry;
 import com.legacy.goodnightsleep.GoodNightSleep;
 import com.legacy.goodnightsleep.world.dream.GoodDreamDimension;
 import com.legacy.goodnightsleep.world.nightmare.NightmareDimension;
 
+import io.netty.buffer.Unpooled;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
@@ -19,13 +15,8 @@ import net.minecraft.world.dimension.Dimension;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.ModDimension;
-import net.minecraftforge.fml.network.FMLHandshakeMessages;
-import net.minecraftforge.fml.network.FMLNetworkConstants;
-import net.minecraftforge.fml.network.simple.SimpleChannel;
-import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.IForgeRegistry;
 
-@SuppressWarnings("deprecation")
 public class GNSDimensions
 {
 
@@ -52,20 +43,20 @@ public class GNSDimensions
 	public static void initModDimensions(IForgeRegistry<ModDimension> registry)
 	{
 		GNSRegistry.register(registry, "good_dream", dreamDim);
-		DimensionManager.registerDimension(GoodNightSleep.locate("good_dream"), dreamDim, null, true);
+		DimensionManager.registerDimension(GoodNightSleep.locate("good_dream"), dreamDim, new PacketBuffer(Unpooled.buffer()), true);
 		GNSRegistry.register(registry, "nightmare", nightmareDim);
-		DimensionManager.registerDimension(GoodNightSleep.locate("nightmare"), nightmareDim, null, true);
+		DimensionManager.registerDimension(GoodNightSleep.locate("nightmare"), nightmareDim, new PacketBuffer(Unpooled.buffer()), true);
 	}
 
 	public static void initDimensions()
 	{
 		if (GNSDimensions.dimensionType(true) == null)
 		{
-			DimensionManager.registerDimension(GoodNightSleep.locate("good_dream"), dreamDim, null, true);
+			DimensionManager.registerDimension(GoodNightSleep.locate("good_dream"), dreamDim, new PacketBuffer(Unpooled.buffer()), true);
 		}
 		if (GNSDimensions.dimensionType(false) == null)
 		{
-			DimensionManager.registerDimension(GoodNightSleep.locate("nightmare"), nightmareDim, null, true);
+			DimensionManager.registerDimension(GoodNightSleep.locate("nightmare"), nightmareDim, new PacketBuffer(Unpooled.buffer()), true);
 		}
 	}
 
@@ -83,7 +74,7 @@ public class GNSDimensions
 		return dimension;
 	}
 
-	static
+	/*static
 	{
 		try
 		{
@@ -96,7 +87,7 @@ public class GNSDimensions
 				{
 					return ImmutableList.of();
 				}
-
+	
 				return ImmutableList.of(Pair.of("Dream Dimension Sync", new S2CDimensionSync(GNSDimensions.dimensionType(true))));
 			}).consumer((msg, ctx) ->
 			{
@@ -113,20 +104,20 @@ public class GNSDimensions
 			e.printStackTrace();
 		}
 	}
-
+	
 	public static class S2CDimensionSync implements IntSupplier
 	{
-
+	
 		final int id;
-
+	
 		final ResourceLocation name;
-
+	
 		final ModDimension dimension;
-
+	
 		final boolean skyLight;
-
+	
 		private int loginIndex;
-
+	
 		public S2CDimensionSync(DimensionType dimensionType)
 		{
 			this.id = dimensionType.getId() + 1;
@@ -134,7 +125,7 @@ public class GNSDimensions
 			this.dimension = dimensionType.getModType();
 			this.skyLight = dimensionType.hasSkyLight();
 		}
-
+	
 		S2CDimensionSync(int id, ResourceLocation name, ModDimension dimension, boolean skyLight)
 		{
 			this.id = id;
@@ -142,23 +133,23 @@ public class GNSDimensions
 			this.dimension = dimension;
 			this.skyLight = skyLight;
 		}
-
+	
 		@Override
 		public int getAsInt()
 		{
 			return this.loginIndex;
 		}
-
+	
 		void setLoginIndex(final int loginIndex)
 		{
 			this.loginIndex = loginIndex;
 		}
-
+	
 		int getLoginIndex()
 		{
 			return this.loginIndex;
 		}
-
+	
 		void encode(PacketBuffer buffer)
 		{
 			buffer.writeInt(this.id);
@@ -166,7 +157,7 @@ public class GNSDimensions
 			buffer.writeResourceLocation(this.dimension.getRegistryName());
 			buffer.writeBoolean(this.skyLight);
 		}
-
+	
 		public static S2CDimensionSync decode(PacketBuffer buffer)
 		{
 			int id = buffer.readInt();
@@ -175,5 +166,5 @@ public class GNSDimensions
 			boolean skyLight = buffer.readBoolean();
 			return new S2CDimensionSync(id, name, dimension, skyLight);
 		}
-	}
+	}*/
 }

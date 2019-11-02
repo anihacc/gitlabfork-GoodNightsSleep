@@ -1,5 +1,6 @@
 package com.legacy.goodnightsleep.client.render.entity;
 
+import com.legacy.goodnightsleep.GoodNightSleep;
 import com.legacy.goodnightsleep.client.render.models.UnicornModel;
 import com.legacy.goodnightsleep.entity.dream.UnicornEntity;
 
@@ -10,9 +11,9 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class RenderUnicorn extends MobRenderer<UnicornEntity, UnicornModel<UnicornEntity>>
+public class UnicornRenderer extends MobRenderer<UnicornEntity, UnicornModel<UnicornEntity>>
 {	
-    public RenderUnicorn(EntityRendererManager manager)
+    public UnicornRenderer(EntityRendererManager manager)
     {
         super(manager, new UnicornModel<>(0.0F), 0.75F); 
     }
@@ -20,6 +21,6 @@ public class RenderUnicorn extends MobRenderer<UnicornEntity, UnicornModel<Unico
 	protected ResourceLocation getEntityTexture(UnicornEntity entity)
 	{
 		String type = entity.getUnicornType() == 1 ? "green" : entity.getUnicornType() == 2 ? "yellow" : entity.getUnicornType() == 3 ? "blue" : "pink";
-		return new ResourceLocation("goodnightsleep", "textures/entities/unicorn/unicorn_" + type + ".png");
+		return GoodNightSleep.locate("textures/entities/unicorn/unicorn_" + type + ".png");
 	}
 }
