@@ -2,7 +2,14 @@ package com.legacy.goodnightsleep.entity;
 
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.goal.HurtByTargetGoal;
+import net.minecraft.entity.ai.goal.LookAtGoal;
+import net.minecraft.entity.ai.goal.LookRandomlyGoal;
+import net.minecraft.entity.ai.goal.MeleeAttackGoal;
+import net.minecraft.entity.ai.goal.SwimGoal;
+import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
 import net.minecraft.entity.monster.MonsterEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
@@ -14,9 +21,8 @@ public class HerobrineEntity extends MonsterEntity
 	public HerobrineEntity(EntityType<? extends HerobrineEntity> type, World worldIn)
 	{
 		super(type, worldIn);
-		//this.setSize(0.6F, 1.95F);
 	}
-	
+
 	public HerobrineEntity(World worldIn)
 	{
 		this(GNSEntityTypes.HEROBRINE, worldIn);
@@ -25,13 +31,12 @@ public class HerobrineEntity extends MonsterEntity
 	protected void registerGoals()
 	{
 		super.registerGoals();
-		//this.tasks.addTask(0, new EntityAISwimming(this));
-		//this.tasks.addTask(2, new EntityAIAttackMelee(this, 1.0D, false));
-		//this.tasks.addTask(7, new EntityAIWanderAvoidWater(this, 1.0D, 0.0F));
-		//this.tasks.addTask(8, new EntityAIWatchClosest(this, PlayerEntity.class, 8.0F));
-		//this.tasks.addTask(8, new EntityAILookIdle(this));
-		// this.targetTasks.addTask(1, new EntityHerobrine.AIFindPlayer(this));
-		//this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, false, new Class[0]));
+		this.goalSelector.addGoal(0, new SwimGoal(this));
+		this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.0D, false));
+		this.goalSelector.addGoal(7, new WaterAvoidingRandomWalkingGoal(this, 1.0D, 0.0F));
+		this.goalSelector.addGoal(8, new LookAtGoal(this, PlayerEntity.class, 127.0F, 99999.0F));
+		this.goalSelector.addGoal(8, new LookRandomlyGoal(this));
+		this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)));
 	}
 
 	protected void registerAttributes()
@@ -57,10 +62,4 @@ public class HerobrineEntity extends MonsterEntity
 	{
 		return SoundEvents.ENTITY_WITHER_DEATH;
 	}
-	
-	/*@Override
-    protected ResourceLocation getLootTable()
-    {
-        return GNSLootTables.herobrine;
-    }*/
 }
