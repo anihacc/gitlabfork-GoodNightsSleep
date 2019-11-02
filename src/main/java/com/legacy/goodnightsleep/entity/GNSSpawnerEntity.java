@@ -93,7 +93,7 @@ public class GNSSpawnerEntity extends AnimalEntity
 				}
 			}
 		}
-		else
+		else if (rand.nextBoolean() && worldIn.getDimension().getType() == GNSDimensions.dimensionType(false))
 		{
 			int nType = rand.nextInt(2);
 			int nChance = rand.nextInt(4) + 1;
