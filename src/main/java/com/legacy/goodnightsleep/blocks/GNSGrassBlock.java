@@ -40,11 +40,11 @@ public class GNSGrassBlock extends GrassBlock
 		{
 			if (!worldIn.isAreaLoaded(pos, 3))
 				return;
-			if (!func_196383_a(worldIn, pos) && this == BlocksGNS.dream_grass_block)
+			if (!func_196383_a(worldIn, pos) && this == GNSBlocks.dream_grass_block)
 			{
-				worldIn.setBlockState(pos, BlocksGNS.dream_dirt.getDefaultState());
+				worldIn.setBlockState(pos, GNSBlocks.dream_dirt.getDefaultState());
 			}
-			else if (!func_196383_a(worldIn, pos) && this == BlocksGNS.nightmare_grass_block)
+			else if (!func_196383_a(worldIn, pos) && this == GNSBlocks.nightmare_grass_block)
 			{
 				worldIn.setBlockState(pos, Blocks.DIRT.getDefaultState());
 			}
@@ -59,11 +59,11 @@ public class GNSGrassBlock extends GrassBlock
 						{
 							return;
 						}
-						if (worldIn.getBlockState(blockpos).getBlock() == BlocksGNS.dream_dirt && func_196384_b(worldIn, blockpos) && this == BlocksGNS.dream_grass_block)
+						if (worldIn.getBlockState(blockpos).getBlock() == GNSBlocks.dream_dirt && func_196384_b(worldIn, blockpos) && this == GNSBlocks.dream_grass_block)
 						{
 							worldIn.setBlockState(blockpos, this.getDefaultState());
 						}
-						else if (worldIn.getBlockState(blockpos).getBlock() == Blocks.DIRT && func_196384_b(worldIn, blockpos) && this == BlocksGNS.nightmare_grass_block)
+						else if (worldIn.getBlockState(blockpos).getBlock() == Blocks.DIRT && func_196384_b(worldIn, blockpos) && this == GNSBlocks.nightmare_grass_block)
 						{
 							worldIn.setBlockState(blockpos, this.getDefaultState());
 						}

@@ -35,12 +35,12 @@ public class GNSFlowerBlock extends BushBlock
 		BlockState iblockstate = worldIn.getBlockState(blockpos);
 		Block block = iblockstate.getBlock();
 		
-		if (this == BlocksGNS.hope_mushroom || this == BlocksGNS.despair_mushroom)
+		if (this == GNSBlocks.hope_mushroom || this == GNSBlocks.despair_mushroom)
 		{
-			return iblockstate.getMaterial() == Material.ROCK || block == BlocksGNS.delusion_stone || block == BlocksGNS.dream_grass_block || block == BlocksGNS.dream_dirt || block == Blocks.DIRT || block == BlocksGNS.nightmare_grass_block;
+			return iblockstate.getMaterial() == Material.ROCK || block == GNSBlocks.delusion_stone || block == GNSBlocks.dream_grass_block || block == GNSBlocks.dream_dirt || block == Blocks.DIRT || block == GNSBlocks.nightmare_grass_block;
 		}
 
-		return block == BlocksGNS.dream_grass_block || block == BlocksGNS.dream_dirt || block == Blocks.GRASS_BLOCK || block == Blocks.DIRT || block == BlocksGNS.nightmare_grass_block;
+		return block == GNSBlocks.dream_grass_block || block == GNSBlocks.dream_dirt || block == Blocks.GRASS_BLOCK || block == Blocks.DIRT || block == GNSBlocks.nightmare_grass_block;
 	}
 
 	public Block.OffsetType getOffsetType()

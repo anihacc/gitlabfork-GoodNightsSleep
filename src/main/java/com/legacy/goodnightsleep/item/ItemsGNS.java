@@ -3,7 +3,7 @@ package com.legacy.goodnightsleep.item;
 import java.util.concurrent.Callable;
 
 import com.legacy.goodnightsleep.GoodNightSleep;
-import com.legacy.goodnightsleep.blocks.BlocksGNS;
+import com.legacy.goodnightsleep.blocks.GNSBlocks;
 import com.legacy.goodnightsleep.client.render.item.LuxuriousBedItemRenderer;
 import com.legacy.goodnightsleep.client.render.item.StrangeBedItemRenderer;
 import com.legacy.goodnightsleep.client.render.item.WretchedBedItemRenderer;
@@ -65,9 +65,9 @@ public class ItemsGNS
 	public static void initialization()
 	{
 		// Block Items
-		luxurious_bed_item = register("luxurious_bed_item", new BedItem(BlocksGNS.luxurious_bed, (new Item.Properties()).maxStackSize(1).group(GNSCreativeTabs.blocks).setTEISR(() -> bedItemRender(luxurious_bed_item))));
-		wretched_bed_item = register("wretched_bed_item", new BedItem(BlocksGNS.wretched_bed, (new Item.Properties()).maxStackSize(1).group(GNSCreativeTabs.blocks).setTEISR(() -> bedItemRender(wretched_bed_item))));
-		strange_bed_item = register("strange_bed_item", new BedItem(BlocksGNS.strange_bed, (new Item.Properties()).maxStackSize(1).group(GNSCreativeTabs.blocks).setTEISR(() -> bedItemRender(strange_bed_item))));
+		luxurious_bed_item = register("luxurious_bed_item", new BedItem(GNSBlocks.luxurious_bed, (new Item.Properties()).maxStackSize(1).group(GNSCreativeTabs.blocks).setTEISR(() -> bedItemRender(luxurious_bed_item))));
+		wretched_bed_item = register("wretched_bed_item", new BedItem(GNSBlocks.wretched_bed, (new Item.Properties()).maxStackSize(1).group(GNSCreativeTabs.blocks).setTEISR(() -> bedItemRender(wretched_bed_item))));
+		strange_bed_item = register("strange_bed_item", new BedItem(GNSBlocks.strange_bed, (new Item.Properties()).maxStackSize(1).group(GNSCreativeTabs.blocks).setTEISR(() -> bedItemRender(strange_bed_item))));
 
 		unicorn_spawn_egg = register("unicorn_spawn_egg", new SpawnEggItem(GNSEntityTypes.UNICORN, 0xffffff, 0xdf8cf8, new Item.Properties().group(GNSCreativeTabs.items)));
 		gummy_bear_spawn_egg = register("gummy_bear_spawn_egg", new SpawnEggItem(GNSEntityTypes.GUMMY_BEAR, 0xffffff, 0xffffff, new Item.Properties()));
@@ -88,7 +88,7 @@ public class ItemsGNS
 
 		candy = register("candy", new Item(new Item.Properties().group(GNSCreativeTabs.items).food(GNSFoods.CANDY)));
 
-		rainbow_seeds = register("rainbow_seeds", new BlockNamedItem(BlocksGNS.rainbow_crop, new Item.Properties().group(GNSCreativeTabs.items)));
+		rainbow_seeds = register("rainbow_seeds", new BlockNamedItem(GNSBlocks.rainbow_crop, new Item.Properties().group(GNSCreativeTabs.items)));
 		rainbow_berries = register("rainbow_berries", new Item(new Item.Properties().group(GNSCreativeTabs.items).food(GNSFoods.RAINBOW_BERRIES)));
 
 		luxurious_soup = register("luxurious_soup", new Item(new Item.Properties().maxStackSize(1).group(GNSCreativeTabs.items).food(GNSFoods.TELEPORTATION_STEW)));

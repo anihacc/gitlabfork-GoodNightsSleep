@@ -1,6 +1,6 @@
 package com.legacy.goodnightsleep;
 
-import com.legacy.goodnightsleep.blocks.BlocksGNS;
+import com.legacy.goodnightsleep.blocks.GNSBlocks;
 import com.legacy.goodnightsleep.client.audio.GNSSounds;
 import com.legacy.goodnightsleep.entity.GNSEntityTypes;
 import com.legacy.goodnightsleep.item.GNSCreativeTabs;
@@ -40,8 +40,8 @@ public class GNSRegistry
 	@SubscribeEvent
 	public static void onRegisterBlocks(RegistryEvent.Register<Block> event)
 	{
-		BlocksGNS.setBlockRegistry(event.getRegistry());
-		BlocksGNS.initialization();
+		GNSBlocks.setBlockRegistry(event.getRegistry());
+		GNSBlocks.initialization();
 	}
 
 	@SubscribeEvent
@@ -50,9 +50,9 @@ public class GNSRegistry
 		ItemsGNS.setItemRegistry(event.getRegistry());
 		ItemsGNS.initialization();
 		
-		for (int i3 = 0; i3 < BlocksGNS.gnsBlockList.size(); ++i3)
+		for (int i3 = 0; i3 < GNSBlocks.gnsBlockList.size(); ++i3)
 		{
-			register(event.getRegistry(), BlocksGNS.gnsBlockList.get(i3).getRegistryName().toString().replace("goodnightsleep:", ""), new BlockItem(BlocksGNS.gnsBlockList.get(i3), (new Item.Properties().group(GNSCreativeTabs.blocks))));
+			register(event.getRegistry(), GNSBlocks.gnsBlockList.get(i3).getRegistryName().toString().replace("goodnightsleep:", ""), new BlockItem(GNSBlocks.gnsBlockList.get(i3), (new Item.Properties().group(GNSCreativeTabs.blocks))));
 		}
 	}
 	

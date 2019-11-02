@@ -26,6 +26,6 @@ public class GNSRainbowCropBlock extends BeetrootBlock
     @Override
 	protected boolean isValidGround(BlockState state, IBlockReader worldIn, BlockPos pos)
 	{
-		return state.getBlock() instanceof FarmlandBlock || state.getBlock() == BlocksGNS.dream_farmland;
+		return state.getBlock() instanceof FarmlandBlock || state.getBlock() == GNSBlocks.dream_farmland;
 	}
 }

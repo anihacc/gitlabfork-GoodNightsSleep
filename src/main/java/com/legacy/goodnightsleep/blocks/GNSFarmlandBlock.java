@@ -53,7 +53,7 @@ public class GNSFarmlandBlock extends Block
 
 	public BlockState getStateForPlacement(BlockItemUseContext context)
 	{
-		return !this.getDefaultState().isValidPosition(context.getWorld(), context.getPos()) ? BlocksGNS.dream_dirt.getDefaultState() : super.getStateForPlacement(context);
+		return !this.getDefaultState().isValidPosition(context.getWorld(), context.getPos()) ? GNSBlocks.dream_dirt.getDefaultState() : super.getStateForPlacement(context);
 	}
 
 	public int getOpacity(BlockState state, IBlockReader worldIn, BlockPos pos)
@@ -100,7 +100,7 @@ public class GNSFarmlandBlock extends Block
 
 	public void onFallenUpon(World worldIn, BlockPos pos, Entity entityIn, float fallDistance)
 	{
-		if (!worldIn.isRemote && net.minecraftforge.common.ForgeHooks.onFarmlandTrample(worldIn, pos, BlocksGNS.dream_dirt.getDefaultState(), fallDistance, entityIn))
+		if (!worldIn.isRemote && net.minecraftforge.common.ForgeHooks.onFarmlandTrample(worldIn, pos, GNSBlocks.dream_dirt.getDefaultState(), fallDistance, entityIn))
 		{
 			turnToDirt(worldIn.getBlockState(pos), worldIn, pos);
 		}
@@ -109,7 +109,7 @@ public class GNSFarmlandBlock extends Block
 
 	public static void turnToDirt(BlockState state, World worldIn, BlockPos pos)
 	{
-		worldIn.setBlockState(pos, nudgeEntitiesWithNewState(state, BlocksGNS.dream_dirt.getDefaultState(), worldIn, pos));
+		worldIn.setBlockState(pos, nudgeEntitiesWithNewState(state, GNSBlocks.dream_dirt.getDefaultState(), worldIn, pos));
 	}
 
 	private boolean hasCrops(IBlockReader p_176529_0_, BlockPos worldIn)
@@ -132,7 +132,7 @@ public class GNSFarmlandBlock extends Block
 
 	public IItemProvider getItemDropped(BlockState state, World worldIn, BlockPos pos, int fortune)
 	{
-		return BlocksGNS.dream_dirt;
+		return GNSBlocks.dream_dirt;
 	}
 
 	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder)

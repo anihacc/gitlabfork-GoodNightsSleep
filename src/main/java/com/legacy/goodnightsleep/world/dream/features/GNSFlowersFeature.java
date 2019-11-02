@@ -3,7 +3,7 @@ package com.legacy.goodnightsleep.world.dream.features;
 import java.util.Random;
 import java.util.function.Function;
 
-import com.legacy.goodnightsleep.blocks.BlocksGNS;
+import com.legacy.goodnightsleep.blocks.GNSBlocks;
 import com.mojang.datafixers.Dynamic;
 
 import net.minecraft.block.BlockState;
@@ -21,6 +21,6 @@ public class GNSFlowersFeature extends FlowersFeature
 
 	public BlockState getRandomFlower(Random rand, BlockPos pos)
 	{
-		return rand.nextInt(2) == 0 ? BlocksGNS.cyan_flower.getDefaultState() : rand.nextInt(3) == 0 ? BlocksGNS.lolipop_bush.getDefaultState() : BlocksGNS.orange_flower.getDefaultState();
+		return rand.nextInt(2) == 0 ? GNSBlocks.cyan_flower.getDefaultState() : rand.nextInt(3) == 0 ? GNSBlocks.lolipop_bush.getDefaultState() : GNSBlocks.orange_flower.getDefaultState();
 	}
 }

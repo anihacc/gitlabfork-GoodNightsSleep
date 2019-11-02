@@ -43,13 +43,13 @@ public class GNSTallGrassBlock extends BushBlock
 		BlockState iblockstate = worldIn.getBlockState(blockpos);
 		Block block = iblockstate.getBlock();
 		
-		if (this == BlocksGNS.tall_dream_grass)
+		if (this == GNSBlocks.tall_dream_grass)
 		{
-			return block == BlocksGNS.dream_grass_block || block == BlocksGNS.dream_dirt;
+			return block == GNSBlocks.dream_grass_block || block == GNSBlocks.dream_dirt;
 		}
-		if (this == BlocksGNS.tall_nightmare_grass || this == BlocksGNS.prickly_nightmare_grass)
+		if (this == GNSBlocks.tall_nightmare_grass || this == GNSBlocks.prickly_nightmare_grass)
 		{
-			return block == BlocksGNS.nightmare_grass_block || block == Blocks.DIRT;
+			return block == GNSBlocks.nightmare_grass_block || block == Blocks.DIRT;
 		}
 		else
 		{
@@ -66,7 +66,7 @@ public class GNSTallGrassBlock extends BushBlock
 	 @Override
 	 public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn)
 	 {
-		 if (this == BlocksGNS.prickly_nightmare_grass && !(entityIn instanceof IMob || entityIn instanceof ItemEntity || entityIn instanceof ZombieHorseEntity || entityIn instanceof SkeletonHorseEntity))
+		 if (this == GNSBlocks.prickly_nightmare_grass && !(entityIn instanceof IMob || entityIn instanceof ItemEntity || entityIn instanceof ZombieHorseEntity || entityIn instanceof SkeletonHorseEntity))
 		 {
 			 entityIn.attackEntityFrom(new DamageSource("nightmare_grass"), 1.0F);
 		 }

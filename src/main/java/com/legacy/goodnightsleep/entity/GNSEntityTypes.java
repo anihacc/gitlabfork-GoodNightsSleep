@@ -4,7 +4,7 @@ import java.util.Random;
 
 import com.legacy.goodnightsleep.GNSRegistry;
 import com.legacy.goodnightsleep.GoodNightSleep;
-import com.legacy.goodnightsleep.blocks.BlocksGNS;
+import com.legacy.goodnightsleep.blocks.GNSBlocks;
 import com.legacy.goodnightsleep.entity.dream.BabyCreeperEntity;
 import com.legacy.goodnightsleep.entity.dream.GummyBearEntity;
 import com.legacy.goodnightsleep.entity.dream.UnicornEntity;
@@ -60,17 +60,17 @@ public class GNSEntityTypes
 	
 	public static boolean dreamAnimalSpawnConditions(EntityType<? extends AnimalEntity> p_223316_0_, IWorld p_223316_1_, SpawnReason p_223316_2_, BlockPos p_223316_3_, Random p_223316_4_)
 	{
-		return p_223316_1_.getBlockState(p_223316_3_.down()).getBlock() == BlocksGNS.dream_grass_block && p_223316_1_.getLightSubtracted(p_223316_3_, 0) > 8;
+		return p_223316_1_.getBlockState(p_223316_3_.down()).getBlock() == GNSBlocks.dream_grass_block && p_223316_1_.getLightSubtracted(p_223316_3_, 0) > 8;
 	}
 	
 	public static boolean nightmareAnimalSpawnConditions(EntityType<? extends AnimalEntity> p_223316_0_, IWorld p_223316_1_, SpawnReason p_223316_2_, BlockPos p_223316_3_, Random p_223316_4_)
 	{
-		return p_223316_1_.getBlockState(p_223316_3_.down()).getBlock() == BlocksGNS.nightmare_grass_block && p_223316_1_.isSkyLightMax(p_223316_3_);
+		return p_223316_1_.getBlockState(p_223316_3_.down()).getBlock() == GNSBlocks.nightmare_grass_block && p_223316_1_.isSkyLightMax(p_223316_3_);
 	}
 	
 	public static boolean otherSpawnConditions(EntityType<? extends MobEntity> p_223316_0_, IWorld p_223316_1_, SpawnReason p_223316_2_, BlockPos p_223316_3_, Random p_223316_4_)
 	{
-		return (p_223316_1_.getBlockState(p_223316_3_.down()).getBlock() == BlocksGNS.nightmare_grass_block || p_223316_1_.getBlockState(p_223316_3_.down()).getBlock() == BlocksGNS.dream_grass_block) && p_223316_1_.isSkyLightMax(p_223316_3_);
+		return (p_223316_1_.getBlockState(p_223316_3_.down()).getBlock() == GNSBlocks.nightmare_grass_block || p_223316_1_.getBlockState(p_223316_3_.down()).getBlock() == GNSBlocks.dream_grass_block) && p_223316_1_.isSkyLightMax(p_223316_3_);
 	}
 	
 	private static <T extends Entity> EntityType<T> buildEntity(String key, EntityType.Builder<T> builder)

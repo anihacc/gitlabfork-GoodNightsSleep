@@ -3,7 +3,7 @@ package com.legacy.goodnightsleep.world.nightmare.features;
 import java.util.Random;
 import java.util.function.Function;
 
-import com.legacy.goodnightsleep.blocks.BlocksGNS;
+import com.legacy.goodnightsleep.blocks.GNSBlocks;
 import com.mojang.datafixers.Dynamic;
 
 import net.minecraft.block.BlockState;
@@ -21,6 +21,6 @@ public class NightmareFlowersFeature extends FlowersFeature
 
 	public BlockState getRandomFlower(Random rand, BlockPos pos)
 	{
-		return BlocksGNS.dead_flower.getDefaultState();
+		return GNSBlocks.dead_flower.getDefaultState();
 	}
 }

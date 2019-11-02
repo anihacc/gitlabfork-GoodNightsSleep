@@ -25,7 +25,7 @@ import net.minecraft.block.material.MaterialColor;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.registries.IForgeRegistry;
 
-public class BlocksGNS
+public class GNSBlocks
 {
 	public static Block dream_grass_block, dream_dirt, dream_farmland, nightmare_grass_block;
 
@@ -73,6 +73,7 @@ public class BlocksGNS
 
 	public static ArrayList<Block> gnsBlockList = Lists.newArrayList();
 
+	@SuppressWarnings("deprecation")
 	public static void initialization()
 	{		
 		if (iBlockRegistry == null)
@@ -116,10 +117,10 @@ public class BlocksGNS
 		dead_log = register("dead_log", new LogBlock(MaterialColor.GRAY, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)));
 		blood_log = register("blood_log", new LogBlock(MaterialColor.RED, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)));
 		
-		//stripped_dream_log = register("stripped_dream_log", new BlockLog(MaterialColor.CYAN, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)));
-		//stripped_white_log = register("stripped_white_log", new BlockLog(MaterialColor.LIGHT_GRAY, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)));
-		//stripped_dead_log = register("stripped_dead_log", new BlockLog(MaterialColor.GRAY, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)));
-		//stripped_blood_log = register("stripped_blood_log", new BlockLog(MaterialColor.RED, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)));
+		stripped_dream_log = register("stripped_dream_log", new LogBlock(MaterialColor.CYAN, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)));
+		stripped_white_log = register("stripped_white_log", new LogBlock(MaterialColor.LIGHT_GRAY, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)));
+		stripped_dead_log = register("stripped_dead_log", new LogBlock(MaterialColor.GRAY, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)));
+		stripped_blood_log = register("stripped_blood_log", new LogBlock(MaterialColor.RED, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)));
 		
 		dream_plank = register("dream_plank", new Block(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
 		white_plank = register("white_plank", new Block(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
@@ -143,23 +144,23 @@ public class BlocksGNS
 		dead_fence = register("dead_fence", new FenceBlock(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
 		blood_fence = register("blood_fence", new FenceBlock(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
 		
-		dream_stairs = register("dream_stairs", new StairsBlock(BlocksGNS.dream_plank.getDefaultState(), Block.Properties.from(BlocksGNS.dream_plank)) {});
-		white_stairs = register("white_stairs", new StairsBlock(BlocksGNS.white_plank.getDefaultState(), Block.Properties.from(BlocksGNS.white_plank)) {});
-		dead_stairs = register("dead_stairs", new StairsBlock(BlocksGNS.dead_plank.getDefaultState(), Block.Properties.from(BlocksGNS.dead_plank)) {});
-		blood_stairs = register("blood_stairs", new StairsBlock(BlocksGNS.blood_plank.getDefaultState(), Block.Properties.from(BlocksGNS.blood_plank)) {});
+		dream_stairs = register("dream_stairs", new StairsBlock(GNSBlocks.dream_plank.getDefaultState(), Block.Properties.from(GNSBlocks.dream_plank)) {});
+		white_stairs = register("white_stairs", new StairsBlock(GNSBlocks.white_plank.getDefaultState(), Block.Properties.from(GNSBlocks.white_plank)) {});
+		dead_stairs = register("dead_stairs", new StairsBlock(GNSBlocks.dead_plank.getDefaultState(), Block.Properties.from(GNSBlocks.dead_plank)) {});
+		blood_stairs = register("blood_stairs", new StairsBlock(GNSBlocks.blood_plank.getDefaultState(), Block.Properties.from(GNSBlocks.blood_plank)) {});
 		
-		delusion_stone_stairs = register("delusion_stone_stairs", new StairsBlock(BlocksGNS.delusion_stone.getDefaultState(), Block.Properties.from(BlocksGNS.delusion_stone)) {});
-		delusion_cobblestone_stairs = register("delusion_cobblestone_stairs", new StairsBlock(BlocksGNS.delusion_cobblestone.getDefaultState(), Block.Properties.from(BlocksGNS.delusion_cobblestone)) {});
-		delusion_stonebrick_stairs = register("delusion_stonebrick_stairs", new StairsBlock(BlocksGNS.delusion_stonebrick.getDefaultState(), Block.Properties.from(BlocksGNS.delusion_stonebrick)) {});
+		delusion_stone_stairs = register("delusion_stone_stairs", new StairsBlock(GNSBlocks.delusion_stone.getDefaultState(), Block.Properties.from(GNSBlocks.delusion_stone)) {});
+		delusion_cobblestone_stairs = register("delusion_cobblestone_stairs", new StairsBlock(GNSBlocks.delusion_cobblestone.getDefaultState(), Block.Properties.from(GNSBlocks.delusion_cobblestone)) {});
+		delusion_stonebrick_stairs = register("delusion_stonebrick_stairs", new StairsBlock(GNSBlocks.delusion_stonebrick.getDefaultState(), Block.Properties.from(GNSBlocks.delusion_stonebrick)) {});
 
 		dream_slab = register("dream_slab", new SlabBlock(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
 		white_slab = register("white_slab", new SlabBlock(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
 		dead_slab = register("dead_slab", new SlabBlock(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
 		blood_slab = register("blood_slab", new SlabBlock(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
 		
-		delusion_stone_slab = register("delusion_stone_slab", new SlabBlock(Block.Properties.from(BlocksGNS.delusion_stone)));
-		delusion_cobblestone_slab = register("delusion_cobblestone_slab", new SlabBlock(Block.Properties.from(BlocksGNS.delusion_cobblestone)));
-		delusion_stonebrick_slab = register("delusion_stonebrick_slab", new SlabBlock(Block.Properties.from(BlocksGNS.delusion_stonebrick)));
+		delusion_stone_slab = register("delusion_stone_slab", new SlabBlock(Block.Properties.from(GNSBlocks.delusion_stone)));
+		delusion_cobblestone_slab = register("delusion_cobblestone_slab", new SlabBlock(Block.Properties.from(GNSBlocks.delusion_cobblestone)));
+		delusion_stonebrick_slab = register("delusion_stonebrick_slab", new SlabBlock(Block.Properties.from(GNSBlocks.delusion_stonebrick)));
 		
 		candy_block = register("candy_block", new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0F, 6.0F).sound(SoundType.METAL)));
 		rainbow_block = register("rainbow_block", new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0F, 6.0F).sound(SoundType.METAL).lightValue(15)));
@@ -173,7 +174,7 @@ public class BlocksGNS
 
 	public static void setBlockRegistry(IForgeRegistry<Block> iBlockRegistry)
 	{
-		BlocksGNS.iBlockRegistry = iBlockRegistry;
+		GNSBlocks.iBlockRegistry = iBlockRegistry;
 	}
 	
 	public static Block register(String name, Block block)
@@ -190,7 +191,7 @@ public class BlocksGNS
 	
 	public static Block registerWithoutItem(String name, Block block)
 	{
-		if (iBlockRegistry != null) 
+		if (iBlockRegistry != null)
 		{
 			block.setRegistryName(GoodNightSleep.locate(name));
 			iBlockRegistry.register(block);

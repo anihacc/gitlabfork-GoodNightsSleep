@@ -3,7 +3,7 @@ package com.legacy.goodnightsleep.world.dream.features;
 import java.util.Random;
 import java.util.function.Function;
 
-import com.legacy.goodnightsleep.blocks.BlocksGNS;
+import com.legacy.goodnightsleep.blocks.GNSBlocks;
 import com.mojang.datafixers.Dynamic;
 
 import net.minecraft.block.BlockState;
@@ -52,7 +52,7 @@ public class DreamSpongeFeature extends Feature<NoFeatureConfig>
 
 	private void generateStalk(IWorld world, int x, int y, int z, int size)
 	{
-		if (world.getBlockState(new BlockPos(x, y - 1, z)).getBlock() == BlocksGNS.dream_dirt)
+		if (world.getBlockState(new BlockPos(x, y - 1, z)).getBlock() == GNSBlocks.dream_dirt)
 		{
 			for (int i = 0; i < size; ++i)
 			{

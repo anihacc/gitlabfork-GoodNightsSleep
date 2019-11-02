@@ -3,7 +3,7 @@ package com.legacy.goodnightsleep.world.nightmare.features;
 import java.util.Random;
 import java.util.function.Function;
 
-import com.legacy.goodnightsleep.blocks.BlocksGNS;
+import com.legacy.goodnightsleep.blocks.GNSBlocks;
 import com.mojang.datafixers.Dynamic;
 
 import net.minecraft.block.Block;
@@ -38,7 +38,7 @@ public class BigDespairMushroomFeature extends Feature<NoFeatureConfig>
 		if (j >= 1 && j + i + 1 < 256)
 		{
 			Block block = p_212245_1_.getBlockState(p_212245_4_.down()).getBlock();
-			if (!Block.isDirt(block) && block != BlocksGNS.nightmare_grass_block)
+			if (!Block.isDirt(block) && block != GNSBlocks.nightmare_grass_block)
 			{
 				return false;
 			}
@@ -60,7 +60,7 @@ public class BigDespairMushroomFeature extends Feature<NoFeatureConfig>
 						}
 					}
 				}
-				BlockState iblockstate1 = BlocksGNS.despair_mushroom_block.getDefaultState().with(HugeMushroomBlock.UP, Boolean.valueOf(true)).with(HugeMushroomBlock.DOWN, Boolean.valueOf(false));
+				BlockState iblockstate1 = GNSBlocks.despair_mushroom_block.getDefaultState().with(HugeMushroomBlock.UP, Boolean.valueOf(true)).with(HugeMushroomBlock.DOWN, Boolean.valueOf(false));
 				for (int l1 = -3; l1 <= 3; ++l1)
 				{
 					for (int i2 = -3; i2 <= 3; ++i2)

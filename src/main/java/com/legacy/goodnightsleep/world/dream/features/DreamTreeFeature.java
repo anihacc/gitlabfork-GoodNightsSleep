@@ -4,7 +4,7 @@ import java.util.Random;
 import java.util.Set;
 import java.util.function.Function;
 
-import com.legacy.goodnightsleep.blocks.BlocksGNS;
+import com.legacy.goodnightsleep.blocks.GNSBlocks;
 import com.mojang.datafixers.Dynamic;
 
 import net.minecraft.block.Block;
@@ -22,9 +22,9 @@ import net.minecraft.world.gen.feature.NoFeatureConfig;
 public class DreamTreeFeature extends AbstractTreeFeature<NoFeatureConfig>
 {
 
-	private static final BlockState DEFAULT_TRUNK = BlocksGNS.dream_log.getDefaultState();
+	private static final BlockState DEFAULT_TRUNK = GNSBlocks.dream_log.getDefaultState();
 
-	private static final BlockState DEFAULT_LEAF = BlocksGNS.dream_leaves.getDefaultState();
+	private static final BlockState DEFAULT_LEAF = GNSBlocks.dream_leaves.getDefaultState();
 
 	protected final int minTreeHeight;
 
@@ -140,7 +140,7 @@ public class DreamTreeFeature extends AbstractTreeFeature<NoFeatureConfig>
 		if (!(p_214587_0_ instanceof net.minecraft.world.IWorldReader))
 			return p_214587_0_.hasBlockState(p_214587_1_, (p_214573_0_) -> {
 				Block block = p_214573_0_.getBlock();
-				return p_214573_0_.isAir() || p_214573_0_.isIn(BlockTags.LEAVES) || block == BlocksGNS.dream_grass_block || block == BlocksGNS.nightmare_grass_block || block == BlocksGNS.nightmare_grass_block || Block.isDirt(block) || block.isIn(BlockTags.LOGS) || block.isIn(BlockTags.SAPLINGS) || block == Blocks.VINE;
+				return p_214573_0_.isAir() || p_214573_0_.isIn(BlockTags.LEAVES) || block == GNSBlocks.dream_grass_block || block == GNSBlocks.nightmare_grass_block || block == GNSBlocks.nightmare_grass_block || Block.isDirt(block) || block.isIn(BlockTags.LOGS) || block.isIn(BlockTags.SAPLINGS) || block == Blocks.VINE;
 			});
 		else
 			return p_214587_0_.hasBlockState(p_214587_1_, state -> state.canBeReplacedByLogs((net.minecraft.world.IWorldReader) p_214587_0_, p_214587_1_));
@@ -155,7 +155,7 @@ public class DreamTreeFeature extends AbstractTreeFeature<NoFeatureConfig>
 	{
 		return worldIn.hasBlockState(pos, (p_214582_0_) -> {
 			Block block = p_214582_0_.getBlock();
-			return Block.isDirt(block) || block == BlocksGNS.dream_grass_block || block == BlocksGNS.dream_dirt || block == BlocksGNS.nightmare_grass_block;
+			return Block.isDirt(block) || block == GNSBlocks.dream_grass_block || block == GNSBlocks.dream_dirt || block == GNSBlocks.nightmare_grass_block;
 		});
 	}
 }

@@ -1,6 +1,6 @@
 package com.legacy.goodnightsleep;
 
-import com.legacy.goodnightsleep.blocks.BlocksGNS;
+import com.legacy.goodnightsleep.blocks.GNSBlocks;
 import com.legacy.goodnightsleep.world.GNSDimensions;
 
 import net.minecraft.block.Block;
@@ -46,9 +46,9 @@ public class GNSEvents
 		{
 			Block block = state.getBlock();
 
-			if (block == BlocksGNS.dream_grass_block || block == BlocksGNS.dream_dirt)
+			if (block == GNSBlocks.dream_grass_block || block == GNSBlocks.dream_dirt)
 			{
-				hoeDirt(stack, player, world, pos, BlocksGNS.dream_farmland.getDefaultState(), event);
+				hoeDirt(stack, player, world, pos, GNSBlocks.dream_farmland.getDefaultState(), event);
 			}
 		}
 	}

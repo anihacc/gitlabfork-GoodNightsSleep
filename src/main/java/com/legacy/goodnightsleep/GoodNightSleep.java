@@ -1,6 +1,6 @@
 package com.legacy.goodnightsleep;
 
-import com.legacy.goodnightsleep.blocks.BlocksGNS;
+import com.legacy.goodnightsleep.blocks.GNSBlocks;
 import com.legacy.goodnightsleep.client.GoodNightSleepClient;
 import com.legacy.goodnightsleep.world.dream.GoodDreamPlainsBiome;
 import com.legacy.goodnightsleep.world.nightmare.NightmareHillsBiome;
@@ -50,8 +50,8 @@ public class GoodNightSleep
 		{
 			if (biome != NightmareHillsBiome.INSTANCE && biome != GoodDreamPlainsBiome.INSTANCE && biome != Biomes.NETHER && !biome.getRegistryName().toString().contains("end"))
 			{
-				biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Biome.createDecoratedFeature(Feature.BUSH, new BushConfig(BlocksGNS.despair_mushroom.getDefaultState()), Placement.CHANCE_HEIGHTMAP_DOUBLE, new ChanceConfig(4)));
-				biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Biome.createDecoratedFeature(Feature.BUSH, new BushConfig(BlocksGNS.hope_mushroom.getDefaultState()), Placement.CHANCE_HEIGHTMAP_DOUBLE, new ChanceConfig(8)));
+				biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Biome.createDecoratedFeature(Feature.BUSH, new BushConfig(GNSBlocks.despair_mushroom.getDefaultState()), Placement.CHANCE_HEIGHTMAP_DOUBLE, new ChanceConfig(4)));
+				biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Biome.createDecoratedFeature(Feature.BUSH, new BushConfig(GNSBlocks.hope_mushroom.getDefaultState()), Placement.CHANCE_HEIGHTMAP_DOUBLE, new ChanceConfig(8)));
 			}
 		}
     }

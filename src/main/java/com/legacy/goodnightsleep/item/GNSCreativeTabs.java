@@ -1,6 +1,6 @@
 package com.legacy.goodnightsleep.item;
 
-import com.legacy.goodnightsleep.blocks.BlocksGNS;
+import com.legacy.goodnightsleep.blocks.GNSBlocks;
 
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -18,7 +18,7 @@ public abstract class GNSCreativeTabs extends ItemGroup
 		@Override
 		public ItemStack createIcon() 
 		{
-			return new ItemStack(BlocksGNS.dream_grass_block);
+			return new ItemStack(GNSBlocks.dream_grass_block);
 		}
 	};
 	public static final ItemGroup tools = new ItemGroup("gns_tools")

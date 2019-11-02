@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import com.google.common.collect.ImmutableMap;
-import com.legacy.goodnightsleep.blocks.BlocksGNS;
+import com.legacy.goodnightsleep.blocks.GNSBlocks;
 import com.mojang.datafixers.Dynamic;
 import com.mojang.datafixers.types.DynamicOps;
 
@@ -46,7 +46,7 @@ public class DreamOreFeatureConfig implements IFeatureConfig
 
 	public static enum FillerBlockType
 	{
-		DELUSION("delusion", new BlockMatcher(BlocksGNS.delusion_stone));
+		DELUSION("delusion", new BlockMatcher(GNSBlocks.delusion_stone));
 
 		private static final Map<String, DreamOreFeatureConfig.FillerBlockType> field_214741_c = Arrays.stream(values()).collect(Collectors.toMap(DreamOreFeatureConfig.FillerBlockType::func_214737_a, (p_214740_0_) -> {
 			return p_214740_0_;
