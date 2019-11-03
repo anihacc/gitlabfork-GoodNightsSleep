@@ -1,7 +1,7 @@
 package com.legacy.goodnightsleep.world.dream;
 
-import com.legacy.goodnightsleep.GNSRegistry;
 import com.legacy.goodnightsleep.blocks.GNSBlocks;
+import com.legacy.goodnightsleep.world.GNSBiomes;
 import com.legacy.goodnightsleep.world.GNSDimensions;
 
 import net.minecraft.util.math.BlockPos;
@@ -31,7 +31,7 @@ public class GoodDreamDimension extends Dimension
 		OverworldGenSettings genSettings = ChunkGeneratorType.SURFACE.createSettings();
 		genSettings.setDefaultBlock(GNSBlocks.delusion_stone.getDefaultState());
 		
-		return ChunkGeneratorType.SURFACE.create(this.world, BiomeProviderType.FIXED.create(BiomeProviderType.FIXED.createSettings().setBiome(GoodDreamPlainsBiome.INSTANCE)), genSettings);
+		return ChunkGeneratorType.SURFACE.create(this.world, BiomeProviderType.FIXED.create(BiomeProviderType.FIXED.createSettings().setBiome(GNSBiomes.GOOD_DREAM_PLAINS)), genSettings);
 	}
 
 	@Override

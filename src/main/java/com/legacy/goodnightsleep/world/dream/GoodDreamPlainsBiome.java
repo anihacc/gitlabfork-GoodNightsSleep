@@ -11,6 +11,7 @@ import com.legacy.goodnightsleep.world.dream.features.DreamSpongeFeature;
 import com.legacy.goodnightsleep.world.dream.features.DreamTreeFeature;
 import com.legacy.goodnightsleep.world.dream.features.GNSBigTreeFeature;
 import com.legacy.goodnightsleep.world.dream.features.GNSFlowersFeature;
+import com.legacy.goodnightsleep.world.general_features.DreamScatteredPlantFeature;
 
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityClassification;
@@ -22,6 +23,7 @@ import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.ProbabilityConfig;
 import net.minecraft.world.gen.placement.AtSurfaceWithExtraConfig;
+import net.minecraft.world.gen.placement.ChanceConfig;
 import net.minecraft.world.gen.placement.CountRangeConfig;
 import net.minecraft.world.gen.placement.DepthAverageConfig;
 import net.minecraft.world.gen.placement.FrequencyConfig;
@@ -29,13 +31,10 @@ import net.minecraft.world.gen.placement.NoiseDependant;
 import net.minecraft.world.gen.placement.Placement;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
-import net.minecraftforge.registries.ObjectHolder;
 
 public class GoodDreamPlainsBiome extends Biome
 {
-	@ObjectHolder("goodnightsleep:good_dream_plains")
-	public static final GoodDreamPlainsBiome INSTANCE = null;
-	   
+
 	public GoodDreamPlainsBiome()
 	{
 		super((new Biome.Builder()).surfaceBuilder(SurfaceBuilder.DEFAULT, new SurfaceBuilderConfig(GNSBlocks.dream_grass_block.getDefaultState(), GNSBlocks.dream_dirt.getDefaultState(), Blocks.GRAVEL.getDefaultState())).precipitation(Biome.RainType.NONE).category(Biome.Category.PLAINS).depth(0.1F).scale(0.5F).temperature(0.8F).downfall(0.0F).waterColor(4159204).waterFogColor(329011).parent((String) null));
@@ -47,10 +46,11 @@ public class GoodDreamPlainsBiome extends Biome
 		this.addFeature(GenerationStage.Decoration.RAW_GENERATION, createDecoratedFeature(new DreamSpongeFeature(NoFeatureConfig::deserialize), IFeatureConfig.NO_FEATURE_CONFIG, Placement.COUNT_HEIGHTMAP_32, new FrequencyConfig(20)));
 		this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, createDecoratedFeature(new GNSFlowersFeature(NoFeatureConfig::deserialize), IFeatureConfig.NO_FEATURE_CONFIG, Placement.COUNT_HEIGHTMAP_32, new FrequencyConfig(5)));
 		this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, createDecoratedFeature(new BigHopeMushroomFeature(NoFeatureConfig::deserialize), IFeatureConfig.NO_FEATURE_CONFIG, Placement.COUNT_EXTRA_HEIGHTMAP, new AtSurfaceWithExtraConfig(0, 0.3F, 1)));
+		this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Biome.createDecoratedFeature(new DreamScatteredPlantFeature(NoFeatureConfig::deserialize, GNSBlocks.present.getDefaultState()), IFeatureConfig.NO_FEATURE_CONFIG, Placement.CHANCE_HEIGHTMAP_DOUBLE, new ChanceConfig(32)));
 
 		this.addCarver(GenerationStage.Carving.AIR, Biome.createCarver(new GNSCaveWorldCarver(ProbabilityConfig::deserialize, 256), new ProbabilityConfig(0.14285715F)));
 		this.addCarver(GenerationStage.Carving.AIR, Biome.createCarver(new GNSCanyonWorldCarver(ProbabilityConfig::deserialize), new ProbabilityConfig(0.02F)));
-		
+
 		this.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, createDecoratedFeature(new DreamOreFeature(DreamOreFeatureConfig::deserialize), new DreamOreFeatureConfig(DreamOreFeatureConfig.FillerBlockType.DELUSION, GNSBlocks.dream_dirt.getDefaultState(), 33), Placement.COUNT_RANGE, new CountRangeConfig(10, 0, 0, 256)));
 		this.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, createDecoratedFeature(new DreamOreFeature(DreamOreFeatureConfig::deserialize), new DreamOreFeatureConfig(DreamOreFeatureConfig.FillerBlockType.DELUSION, GNSBlocks.coal_ore.getDefaultState(), 17), Placement.COUNT_RANGE, new CountRangeConfig(20, 0, 0, 128)));
 		this.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, createDecoratedFeature(new DreamOreFeature(DreamOreFeatureConfig::deserialize), new DreamOreFeatureConfig(DreamOreFeatureConfig.FillerBlockType.DELUSION, GNSBlocks.candy_ore.getDefaultState(), 14), Placement.COUNT_RANGE, new CountRangeConfig(20, 0, 0, 128)));

@@ -6,9 +6,8 @@ import com.legacy.goodnightsleep.entity.GNSEntityTypes;
 import com.legacy.goodnightsleep.item.GNSCreativeTabs;
 import com.legacy.goodnightsleep.item.ItemsGNS;
 import com.legacy.goodnightsleep.tile_entity.GNSTileEntityTypes;
+import com.legacy.goodnightsleep.world.GNSBiomes;
 import com.legacy.goodnightsleep.world.GNSDimensions;
-import com.legacy.goodnightsleep.world.dream.GoodDreamPlainsBiome;
-import com.legacy.goodnightsleep.world.nightmare.NightmareHillsBiome;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityType;
@@ -49,19 +48,19 @@ public class GNSRegistry
 	{
 		ItemsGNS.setItemRegistry(event.getRegistry());
 		ItemsGNS.initialization();
-		
+
 		for (int i3 = 0; i3 < GNSBlocks.gnsBlockList.size(); ++i3)
 		{
 			register(event.getRegistry(), GNSBlocks.gnsBlockList.get(i3).getRegistryName().toString().replace("goodnightsleep:", ""), new BlockItem(GNSBlocks.gnsBlockList.get(i3), (new Item.Properties().group(GNSCreativeTabs.blocks))));
 		}
 	}
-	
+
 	@SubscribeEvent
 	public static void onRegisterEntityTypes(Register<EntityType<?>> event)
 	{
 		GNSEntityTypes.init(event);
 	}
-	
+
 	@SubscribeEvent
 	public static void registerTileEntityTypes(Register<TileEntityType<?>> event)
 	{
@@ -71,8 +70,7 @@ public class GNSRegistry
 	@SubscribeEvent
 	public static void onRegisterBiomes(Register<Biome> event)
 	{
-		register(event.getRegistry(), "good_dream_plains", new GoodDreamPlainsBiome());
-		register(event.getRegistry(), "nightmare_hills", new NightmareHillsBiome());
+		GNSBiomes.init(event);
 	}
 
 	@SubscribeEvent

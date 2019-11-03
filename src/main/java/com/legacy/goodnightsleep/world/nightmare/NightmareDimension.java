@@ -1,6 +1,6 @@
 package com.legacy.goodnightsleep.world.nightmare;
 
-import com.legacy.goodnightsleep.GNSRegistry;
+import com.legacy.goodnightsleep.world.GNSBiomes;
 import com.legacy.goodnightsleep.world.GNSDimensions;
 
 import net.minecraft.block.Blocks;
@@ -31,7 +31,7 @@ public class NightmareDimension extends Dimension
 		OverworldGenSettings genSettings = ChunkGeneratorType.SURFACE.createSettings();
 		genSettings.setDefaultBlock(Blocks.STONE.getDefaultState());
 		genSettings.setDefaultFluid(Blocks.LAVA.getDefaultState());
-		return ChunkGeneratorType.SURFACE.create(this.world, BiomeProviderType.FIXED.create(BiomeProviderType.FIXED.createSettings().setBiome(NightmareHillsBiome.INSTANCE)), genSettings);
+		return ChunkGeneratorType.SURFACE.create(this.world, BiomeProviderType.FIXED.create(BiomeProviderType.FIXED.createSettings().setBiome(GNSBiomes.NIGHTMARE_HILLS)), genSettings);
 	}
 
 	@Override
