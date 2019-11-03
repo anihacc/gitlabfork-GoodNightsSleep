@@ -14,7 +14,9 @@ import net.minecraft.world.gen.placement.Placement;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.DistExecutor;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -29,6 +31,8 @@ public class GoodNightSleep
 
 	public GoodNightSleep()
 	{
+		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, GNSConfig.SERVER_SPEC);
+
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::initialization);
 
 		DistExecutor.runWhenOn(Dist.CLIENT, () -> () ->
@@ -42,8 +46,6 @@ public class GoodNightSleep
 	{
 		for (Biome biome : ForgeRegistries.BIOMES.getValues())
 		{
-			//if (biome != GNSBiomes.GOOD_DREAM_PLAINS && biome != GNSBiomes.NIGHTMARE_HILLS && biome != Biomes.NETHER && !biome.getRegistryName().toString().contains("end"))
-
 			if (biome.getRegistryName().getNamespace().equalsIgnoreCase("minecraft") && !biome.getRegistryName().toString().contains("end") && biome != Biomes.NETHER && biome != Biomes.THE_VOID)
 			{
 				biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Biome.createDecoratedFeature(Feature.BUSH, new BushConfig(GNSBlocks.despair_mushroom.getDefaultState()), Placement.CHANCE_HEIGHTMAP_DOUBLE, new ChanceConfig(4)));

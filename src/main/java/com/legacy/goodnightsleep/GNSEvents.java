@@ -5,6 +5,8 @@ import com.legacy.goodnightsleep.world.GNSDimensions;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.command.Commands;
+import net.minecraft.command.impl.WeatherCommand;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.HoeItem;
 import net.minecraft.item.ItemStack;
@@ -12,6 +14,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.event.CommandEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.RightClickBlock;
 import net.minecraftforge.event.world.RegisterDimensionsEvent;
@@ -19,7 +22,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class GNSEvents
 {
-	
+
 	public PlayerEntity player;
 
 	public boolean hasTeleported = false, inPortal = false;
@@ -31,7 +34,7 @@ public class GNSEvents
 	@SubscribeEvent
 	public void onRegisteredDimension(RegisterDimensionsEvent event)
 	{
-    	GNSDimensions.initDimensions();
+		GNSDimensions.initDimensions();
 	}
 
 	@SubscribeEvent
@@ -59,7 +62,7 @@ public class GNSEvents
 		if (!worldIn.isRemote)
 		{
 			worldIn.setBlockState(pos, state, 11);
-			//stack.damageItem(1, player);
+			// stack.damageItem(1, player);
 		}
 		player.swingArm(event.getHand());
 	}
@@ -73,5 +76,15 @@ public class GNSEvents
 			if (!player.isCreative())
 				stack.shrink(1);
 		}
+	}
+	
+	@SubscribeEvent
+	public void onCommandSentEvent(CommandEvent event)
+	{
+		if (event.getParseResults().getContext().getCommand() instanceof WeatherCommand)
+		{
+			event.setCanceled(true);
+		}
+		//System.out.println();
 	}
 }
