@@ -2,10 +2,10 @@
     "ambientocclusion": false,
     "textures": {
         "particle": "block/cauldron_side",
-        "top": "goodnightsleep:block/other/pot_of_gold",
+        "top": "block/cauldron_top",
         "bottom": "block/cauldron_bottom",
         "side": "block/cauldron_side",
-        "inside": "goodnightsleep:block/other/pot_of_gold",
+        "inside": "block/cauldron_inner",
         "water": "goodnightsleep:block/other/pot_of_gold"
     },
     "elements": [
