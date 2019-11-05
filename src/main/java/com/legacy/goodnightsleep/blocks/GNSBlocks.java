@@ -92,7 +92,7 @@ public class GNSBlocks
 		tall_nightmare_grass = register("tall_nightmare_grass", new GNSTallGrassBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(0.0F).doesNotBlockMovement().sound(SoundType.PLANT)));
 		prickly_nightmare_grass = register("prickly_nightmare_grass", new GNSTallGrassBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(0.0F).doesNotBlockMovement().sound(SoundType.PLANT)));
 		dream_grass_block = register("dream_grass", new GNSGrassBlock());
-		dream_dirt = register("dream_dirt", new Block(Properties.create(Material.ORGANIC).hardnessAndResistance(0.5F).sound(SoundType.GROUND)));
+		dream_dirt = register("dream_dirt", new Block(Block.Properties.from(Blocks.DIRT)));
 		dream_farmland = register("dream_farmland", new GNSFarmlandBlock(Properties.from(Blocks.FARMLAND)));
 		delusion_stone = register("delusion_stone", new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F)));
 		delusion_cobblestone = register("delusion_cobblestone", new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(2.0F, 6.0F)));
