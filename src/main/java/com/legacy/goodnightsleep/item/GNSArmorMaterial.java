@@ -16,22 +16,22 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public enum GNSArmorMaterial implements IArmorMaterial
 {
 	CANDY("candy", 7, new int[]{1, 2, 2, 1}, 5, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0F, () -> {
-		return Ingredient.fromItems(ItemsGNS.candy);
+		return Ingredient.fromItems(GNSItems.candy);
 	}),
 	RAINBOW("rainbow", 22, new int[]{2, 6, 5, 2}, 14, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, () -> {
-		return Ingredient.fromItems(ItemsGNS.rainbow_ingot);
+		return Ingredient.fromItems(GNSItems.rainbow_ingot);
 	}),
 	POSITITE("positite", 49, new int[]{3, 8, 6, 3}, 10, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.0F, () -> {
-		return Ingredient.fromItems(ItemsGNS.positite_gem);
+		return Ingredient.fromItems(GNSItems.positite_gem);
 	}),
 	NECRUM("necrum", 5, new int[]{2, 3, 3, 2}, 0, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0F, () -> {
-		return Ingredient.fromItems(ItemsGNS.necrum);
+		return Ingredient.fromItems(GNSItems.necrum);
 	}),
 	ZITRITE("zitrite", 15, new int[]{3, 7, 6, 3}, 0, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, () -> {
-		return Ingredient.fromItems(ItemsGNS.zitrite_ingot);
+		return Ingredient.fromItems(GNSItems.zitrite_ingot);
 	}),
 	NEGATITE("negatite", 33, new int[]{4, 9, 7, 4}, 0, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 3.0F, () -> {
-		return Ingredient.fromItems(ItemsGNS.negatite_gem);
+		return Ingredient.fromItems(GNSItems.negatite_gem);
 	});
 
 	private static final int[] MAX_DAMAGE_ARRAY = new int[] { 13, 15, 16, 11 };

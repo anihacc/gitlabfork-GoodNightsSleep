@@ -25,7 +25,7 @@ public class GoldPotBlock extends Block
 	public GoldPotBlock(Block.Properties properties)
 	{
 		super(properties);
-		this.setDefaultState(this.stateContainer.getBaseState()/*.with(LEVEL, Integer.valueOf(0)*/);
+		this.setDefaultState(this.stateContainer.getBaseState());
 	}
 
 	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context)
@@ -43,6 +43,7 @@ public class GoldPotBlock extends Block
 		return INSIDE;
 	}
 
+	@SuppressWarnings("deprecation")
 	public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit)
 	{
 		return super.onBlockActivated(state, worldIn, pos, player, handIn, hit);
@@ -52,53 +53,47 @@ public class GoldPotBlock extends Block
 	@Override
 	public void onBlockPlacedBy(World worldIn, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack)
 	{
-		int par2 = pos.getX();
-		int par3 = pos.getY();
-		int par4 = pos.getZ();
+		int xPos = pos.getX();
+		int yPos = pos.getY();
+		int zPos = pos.getZ();
 
-		boolean modifyX = false;
 		byte modifyY = 0;
 		byte modifyZ = 0;
 
 		int var10;
 
-		for (var10 = modifyY + 1; var10 < 20 && worldIn.getBlockState(new BlockPos(par2, par3 + var10, par4 + modifyZ)).isAir(); ++var10)
+		for (var10 = modifyY + 1; var10 < 20 && worldIn.getBlockState(new BlockPos(xPos, yPos + var10, zPos + modifyZ)).isAir(); ++var10)
 		{
 			// Beginning Line
-			worldIn.setBlockState(new BlockPos(par2, par3 + var10, par4), GNSBlocks.rainbow.getDefaultState().with(RainbowBlock.AXIS, Axis.Z).with(RainbowBlock.SIDE_TYPE, 0), 2); // 0
+			worldIn.setBlockState(new BlockPos(xPos, yPos + var10, zPos), GNSBlocks.rainbow.getDefaultState().with(RainbowBlock.AXIS, Axis.Z).with(RainbowBlock.SIDE_TYPE, 0), 2); // 0
 		}
 
-		if (worldIn.getBlockState(new BlockPos(par2, par3 + var10, par4 + modifyZ)).isAir())
+		if (worldIn.getBlockState(new BlockPos(xPos, yPos + var10, zPos + modifyZ)).isAir())
 		{
-			worldIn.setBlockState(new BlockPos(par2, par3 + var10, par4), GNSBlocks.rainbow.getDefaultState().with(RainbowBlock.AXIS, Axis.Z).with(RainbowBlock.CORNER_TYPE, 1).with(RainbowBlock.SIDE_TYPE, 0), 2); // 2
+			worldIn.setBlockState(new BlockPos(xPos, yPos + var10, zPos), GNSBlocks.rainbow.getDefaultState().with(RainbowBlock.AXIS, Axis.Z).with(RainbowBlock.CORNER_TYPE, 1).with(RainbowBlock.SIDE_TYPE, 0), 2); // 2
 
 			int var11;
-			for (var11 = modifyZ + 1; var11 < 40 && worldIn.getBlockState(new BlockPos(par2, par3 + var10, par4 + var11)).isAir(); ++var11)
+			for (var11 = modifyZ + 1; var11 < 40 && worldIn.getBlockState(new BlockPos(xPos, yPos + var10, zPos + var11)).isAir(); ++var11)
 			{
-				worldIn.setBlockState(new BlockPos(par2, par3 + var10, par4 + var11), GNSBlocks.rainbow.getDefaultState().with(RainbowBlock.AXIS, Axis.Z).with(RainbowBlock.SIDE_TYPE, 1), 2); // 1
+				worldIn.setBlockState(new BlockPos(xPos, yPos + var10, zPos + var11), GNSBlocks.rainbow.getDefaultState().with(RainbowBlock.AXIS, Axis.Z).with(RainbowBlock.SIDE_TYPE, 1), 2); // 1
 			}
 
-			if (worldIn.getBlockState(new BlockPos(par2, par3 + var10, par4 + var11)).isAir())
+			if (worldIn.getBlockState(new BlockPos(xPos, yPos + var10, zPos + var11)).isAir())
 			{
 				// 3 End Corner
-				worldIn.setBlockState(new BlockPos(par2, par3 + var10, par4 + var11), GNSBlocks.rainbow.getDefaultState().with(RainbowBlock.AXIS, Axis.Z).with(RainbowBlock.CORNER_TYPE, 2), 2);
+				worldIn.setBlockState(new BlockPos(xPos, yPos + var10, zPos + var11), GNSBlocks.rainbow.getDefaultState().with(RainbowBlock.AXIS, Axis.Z).with(RainbowBlock.CORNER_TYPE, 2), 2);
 				--var10;
 
-				while (worldIn.getBlockState(new BlockPos(par2, par3 + var10, par4 + var11)).isAir())
+				while (worldIn.getBlockState(new BlockPos(xPos, yPos + var10, zPos + var11)).isAir())
 				{
 					// End Line
-					worldIn.setBlockState(new BlockPos(par2, par3 + var10, par4 + var11), GNSBlocks.rainbow.getDefaultState().with(RainbowBlock.AXIS, Axis.Z).with(RainbowBlock.SIDE_TYPE, 2), 2); // 4
+					worldIn.setBlockState(new BlockPos(xPos, yPos + var10, zPos + var11), GNSBlocks.rainbow.getDefaultState().with(RainbowBlock.AXIS, Axis.Z).with(RainbowBlock.SIDE_TYPE, 2), 2); // 4
 					--var10;
 				}
 			}
 		}
 
 		super.onBlockPlacedBy(worldIn, pos, state, placer, stack);
-	}
-
-	public boolean hasComparatorInputOverride(BlockState state)
-	{
-		return true;
 	}
 
 	public boolean allowsMovement(BlockState state, IBlockReader worldIn, BlockPos pos, PathType type)

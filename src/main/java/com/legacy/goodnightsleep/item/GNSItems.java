@@ -24,9 +24,10 @@ import net.minecraft.item.SpawnEggItem;
 import net.minecraft.item.SwordItem;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.registries.IForgeRegistry;
 
-public class ItemsGNS
+public class GNSItems
 {
 	private static IForgeRegistry<Item> iItemRegistry;
 
@@ -62,8 +63,10 @@ public class ItemsGNS
 	
 	public static Item unicorn_spawn_egg, gummy_bear_spawn_egg, baby_creeper_spawn_egg, tormenter_spawn_egg, herobrine_spawn_egg, giant_spawn_egg;
 
-	public static void initialization()
+	public static void init(RegistryEvent.Register<Item> event)
 	{
+		iItemRegistry = event.getRegistry();
+
 		// Block Items
 		luxurious_bed_item = register("luxurious_bed_item", new BedItem(GNSBlocks.luxurious_bed, (new Item.Properties()).maxStackSize(1).group(GNSCreativeTabs.blocks).setTEISR(() -> bedItemRender(luxurious_bed_item))));
 		wretched_bed_item = register("wretched_bed_item", new BedItem(GNSBlocks.wretched_bed, (new Item.Properties()).maxStackSize(1).group(GNSCreativeTabs.blocks).setTEISR(() -> bedItemRender(wretched_bed_item))));
@@ -162,12 +165,7 @@ public class ItemsGNS
 		iItemRegistry.register(item);
 		return item;
 	}
-	
-	public static void setItemRegistry(IForgeRegistry<Item> iItemRegistry)
-	{
-		ItemsGNS.iItemRegistry = iItemRegistry;
-	}
-	
+
 	@OnlyIn(Dist.CLIENT)
 	private static Callable<ItemStackTileEntityRenderer> bedItemRender(Item item)
 	{

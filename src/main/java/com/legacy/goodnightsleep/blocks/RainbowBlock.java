@@ -20,8 +20,14 @@ import net.minecraft.world.World;
 public class RainbowBlock extends Block
 {
 	public static final EnumProperty<Direction.Axis> AXIS = BlockStateProperties.HORIZONTAL_AXIS;
+
 	protected static final VoxelShape X_AABB = Block.makeCuboidShape(0.0D, 0.0D, 6.0D, 16.0D, 16.0D, 10.0D);
 	protected static final VoxelShape Z_AABB = Block.makeCuboidShape(6.0D, 0.0D, 0.0D, 10.0D, 16.0D, 16.0D);
+
+	/*
+	 * Corner Types: 0 = none, 1 = starting corner, 2 = ending corner Side Types: 0
+	 * = starting, 1 = top, 2 = ending
+	 */
 	public static final IntegerProperty CORNER_TYPE = IntegerProperty.create("corner_type", 0, 2);
 	public static final IntegerProperty SIDE_TYPE = IntegerProperty.create("side_type", 0, 2);
 

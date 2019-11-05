@@ -14,7 +14,7 @@ public class GNSSounds
 
     public static IForgeRegistry<SoundEvent> soundRegistry;
     
-	public static void initialization()
+	public static void init()
 	{
 		MUSIC_GOOD_DREAM = register("music.good_dream");
 		MUSIC_NIGHTMARE = register("music.tfarcenim");

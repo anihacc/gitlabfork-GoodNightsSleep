@@ -1,7 +1,7 @@
 package com.legacy.goodnightsleep.blocks.natural;
 
 import com.legacy.goodnightsleep.blocks.GNSBlocks;
-import com.legacy.goodnightsleep.item.ItemsGNS;
+import com.legacy.goodnightsleep.item.GNSItems;
 
 import net.minecraft.block.BeetrootBlock;
 import net.minecraft.block.BlockState;
@@ -21,7 +21,7 @@ public class GNSRainbowCropBlock extends BeetrootBlock
 	@Override
 	protected IItemProvider getSeedsItem()
     {
-        return ItemsGNS.rainbow_seeds;
+        return GNSItems.rainbow_seeds;
     }
 
     @Override

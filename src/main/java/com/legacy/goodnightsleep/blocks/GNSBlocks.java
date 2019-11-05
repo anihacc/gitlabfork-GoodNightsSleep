@@ -28,6 +28,7 @@ import net.minecraft.block.StairsBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraftforge.common.ToolType;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.registries.IForgeRegistry;
 
 public class GNSBlocks
@@ -79,12 +80,9 @@ public class GNSBlocks
 	public static ArrayList<Block> gnsBlockList = Lists.newArrayList();
 
 	@SuppressWarnings("deprecation")
-	public static void initialization()
-	{		
-		if (iBlockRegistry == null)
-		{
-			return;
-		}
+	public static void init(RegistryEvent.Register<Block> event)
+	{
+		iBlockRegistry = event.getRegistry();
 
 		luxurious_bed = registerWithoutItem("luxurious_bed", new GNSBedBlock(Block.Properties.from(Blocks.CYAN_BED)));
 		wretched_bed = registerWithoutItem("wretched_bed", new GNSBedBlock(Block.Properties.from(Blocks.GRAY_BED)));
@@ -181,11 +179,6 @@ public class GNSBlocks
 		rainbow = register("rainbow", new RainbowBlock(Block.Properties.from(Blocks.NETHER_PORTAL)));
 	}
 
-	public static void setBlockRegistry(IForgeRegistry<Block> iBlockRegistry)
-	{
-		GNSBlocks.iBlockRegistry = iBlockRegistry;
-	}
-	
 	public static Block register(String name, Block block)
 	{
 		if (iBlockRegistry != null) 

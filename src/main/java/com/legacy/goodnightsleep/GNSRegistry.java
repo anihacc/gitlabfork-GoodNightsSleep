@@ -4,7 +4,7 @@ import com.legacy.goodnightsleep.blocks.GNSBlocks;
 import com.legacy.goodnightsleep.client.audio.GNSSounds;
 import com.legacy.goodnightsleep.entity.GNSEntityTypes;
 import com.legacy.goodnightsleep.item.GNSCreativeTabs;
-import com.legacy.goodnightsleep.item.ItemsGNS;
+import com.legacy.goodnightsleep.item.GNSItems;
 import com.legacy.goodnightsleep.tile_entity.GNSTileEntityTypes;
 import com.legacy.goodnightsleep.world.GNSBiomes;
 import com.legacy.goodnightsleep.world.GNSDimensions;
@@ -33,21 +33,19 @@ public class GNSRegistry
 	public static void onRegisterSounds(RegistryEvent.Register<SoundEvent> event)
 	{
 		GNSSounds.soundRegistry = event.getRegistry();
-		GNSSounds.initialization();
+		GNSSounds.init();
 	}
 
 	@SubscribeEvent
 	public static void onRegisterBlocks(RegistryEvent.Register<Block> event)
 	{
-		GNSBlocks.setBlockRegistry(event.getRegistry());
-		GNSBlocks.initialization();
+		GNSBlocks.init(event);
 	}
 
 	@SubscribeEvent
 	public static void onRegisterItems(RegistryEvent.Register<Item> event)
 	{
-		ItemsGNS.setItemRegistry(event.getRegistry());
-		ItemsGNS.initialization();
+		GNSItems.init(event);
 
 		for (int i3 = 0; i3 < GNSBlocks.gnsBlockList.size(); ++i3)
 		{

@@ -1,7 +1,7 @@
 package com.legacy.goodnightsleep.entity.dream;
 
 import com.legacy.goodnightsleep.entity.GNSEntityTypes;
-import com.legacy.goodnightsleep.item.ItemsGNS;
+import com.legacy.goodnightsleep.item.GNSItems;
 
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -105,7 +105,7 @@ public class UnicornEntity extends AbstractHorseEntity
         ItemStack itemstack = player.getHeldItem(hand);
         boolean flag = !itemstack.isEmpty();
 
-        if (flag && itemstack.getItem() == ItemsGNS.candy_axe)
+        if (flag && itemstack.getItem() == GNSItems.candy_axe)
         {
             return super.processInteract(player, hand);
         }
