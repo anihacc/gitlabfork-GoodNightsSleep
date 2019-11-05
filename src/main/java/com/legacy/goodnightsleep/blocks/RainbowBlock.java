@@ -1,5 +1,7 @@
 package com.legacy.goodnightsleep.blocks;
 
+import java.util.Random;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
@@ -15,6 +17,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 
 public class RainbowBlock extends Block
@@ -30,6 +33,7 @@ public class RainbowBlock extends Block
 	 */
 	public static final IntegerProperty CORNER_TYPE = IntegerProperty.create("corner_type", 0, 2);
 	public static final IntegerProperty SIDE_TYPE = IntegerProperty.create("side_type", 0, 2);
+	public static final IntegerProperty DISTANCE = IntegerProperty.create("distance", 0, 100);
 
 	public RainbowBlock(Block.Properties properties)
 	{
@@ -49,13 +53,58 @@ public class RainbowBlock extends Block
 		}
 	}
 
-	/*public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos)
+	public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos)
 	{
-		Direction.Axis direction$axis = facing.getAxis();
-		Direction.Axis direction$axis1 = stateIn.get(AXIS);
-		boolean flag = direction$axis1 != direction$axis && direction$axis.isHorizontal();
-		return !flag && facingState.getBlock() != this && !(new NetherPortalBlock.Size(worldIn, currentPos, direction$axis1)).func_208508_f() ? Blocks.AIR.getDefaultState() : super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
-	}*/
+		int i = getDistance(facingState) + 1;
+		if (i != 1 || stateIn.get(DISTANCE) != i)
+		{
+			worldIn.getPendingBlockTicks().scheduleTick(currentPos, this, 1);
+		}
+
+		return stateIn;
+	}
+
+	private static int getDistance(BlockState neighbor)
+	{
+		if (neighbor.getBlock() == GNSBlocks.pot_of_gold)
+		{
+			return 0;
+		}
+		else
+		{
+			return neighbor.getBlock() instanceof RainbowBlock ? neighbor.get(DISTANCE) : 100;
+		}
+	}
+
+	private static BlockState updateDistance(BlockState state, IWorld worldIn, BlockPos pos)
+	{
+		int i = 100;
+
+		try (BlockPos.PooledMutableBlockPos blockpos$pooledmutableblockpos = BlockPos.PooledMutableBlockPos.retain())
+		{
+			for (Direction direction : Direction.values())
+			{
+				blockpos$pooledmutableblockpos.setPos(pos).move(direction);
+				i = Math.min(i, getDistance(worldIn.getBlockState(blockpos$pooledmutableblockpos)) + 1);
+				if (i == 1)
+				{
+					break;
+				}
+			}
+		}
+
+		return state.with(DISTANCE, Integer.valueOf(i));
+	}
+
+	public void tick(BlockState state, World worldIn, BlockPos pos, Random random)
+	{
+		worldIn.setBlockState(pos, updateDistance(state, worldIn, pos), 3);
+
+		if (state.get(DISTANCE) >= 100)
+		{
+			worldIn.destroyBlock(pos, false);
+		}
+	}
 
 	public BlockRenderLayer getRenderLayer()
 	{
@@ -93,6 +142,6 @@ public class RainbowBlock extends Block
 
 	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder)
 	{
-		builder.add(AXIS, CORNER_TYPE, SIDE_TYPE);
+		builder.add(AXIS, CORNER_TYPE, SIDE_TYPE, DISTANCE);
 	}
 }
