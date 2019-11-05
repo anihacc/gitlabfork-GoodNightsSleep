@@ -6,6 +6,8 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.pathfinding.PathType;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
 import net.minecraft.util.Direction.Axis;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
@@ -43,10 +45,12 @@ public class GoldPotBlock extends Block
 		return INSIDE;
 	}
 
-	@SuppressWarnings("deprecation")
 	public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit)
 	{
-		return super.onBlockActivated(state, worldIn, pos, player, handIn, hit);
+		if (!worldIn.isRemote)
+			player.addPotionEffect(new EffectInstance(Effects.REGENERATION, 180, 0, true, true));
+
+		return true;
 	}
 
 	@SuppressWarnings("deprecation")
