@@ -74,7 +74,6 @@ public class GNSRegistry
 	@SubscribeEvent
 	public static void onRegisterModDimensions(RegistryEvent.Register<ModDimension> event)
 	{
-		System.out.println("initModDimensions");
 		GNSDimensions.initModDimensions(event.getRegistry());
 	}
 
