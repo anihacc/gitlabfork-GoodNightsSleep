@@ -1,5 +1,6 @@
-package com.legacy.goodnightsleep.blocks;
+package com.legacy.goodnightsleep.blocks.natural;
 
+import com.legacy.goodnightsleep.blocks.GNSBlocks;
 import com.legacy.goodnightsleep.item.ItemsGNS;
 
 import net.minecraft.block.BeetrootBlock;

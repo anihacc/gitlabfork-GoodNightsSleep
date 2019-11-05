@@ -1,6 +1,8 @@
-package com.legacy.goodnightsleep.blocks;
+package com.legacy.goodnightsleep.blocks.natural;
 
 import java.util.Random;
+
+import com.legacy.goodnightsleep.blocks.GNSBlocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -29,7 +31,7 @@ public class GNSFarmlandBlock extends Block
 
 	protected static final VoxelShape SHAPE = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 15.0D, 16.0D);
 
-	protected GNSFarmlandBlock(Block.Properties builder)
+	public GNSFarmlandBlock(Block.Properties builder)
 	{
 		super(builder);
 		this.setDefaultState(this.stateContainer.getBaseState().with(MOISTURE, Integer.valueOf(0)));

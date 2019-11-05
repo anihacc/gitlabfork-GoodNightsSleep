@@ -1,4 +1,6 @@
-package com.legacy.goodnightsleep.blocks;
+package com.legacy.goodnightsleep.blocks.natural;
+
+import com.legacy.goodnightsleep.blocks.GNSBlocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

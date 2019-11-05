@@ -1,6 +1,8 @@
-package com.legacy.goodnightsleep.blocks;
+package com.legacy.goodnightsleep.blocks.natural;
 
 import java.util.Random;
+
+import com.legacy.goodnightsleep.blocks.GNSBlocks;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
