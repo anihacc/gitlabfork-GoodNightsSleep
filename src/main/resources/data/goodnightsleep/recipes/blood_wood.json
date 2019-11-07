@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "bark",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "goodnightsleeo:blood_log"
+    }
+  },
+  "result": {
+    "item": "goodnightsleeo:blood_wood",
+    "count": 3
+  }
+}
