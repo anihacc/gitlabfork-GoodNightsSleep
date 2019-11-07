@@ -150,12 +150,9 @@ public class NightmareDimension extends Dimension
 				for (int var14 = 0; var14 < nightmarePlayerList.size(); ++var14)
 				{
 					playerMP = (ServerPlayerEntity) nightmarePlayerList.get(var14);
-					int x = playerMP.getPosition().getX();
-					int y = playerMP.getPosition().getY();
-					int z = playerMP.getPosition().getZ();
-					// System.out.println("nightmare time up");
 
-					GNSTeleportationUtil.changeDimension(DimensionType.OVERWORLD, playerMP);
+					BlockPos pos = playerMP.getBedLocation(DimensionType.OVERWORLD) != null ? playerMP.getBedLocation(DimensionType.OVERWORLD) : playerMP.world.getSpawnPoint();
+					GNSTeleportationUtil.changeDimension(DimensionType.OVERWORLD, playerMP, pos);
 				}
 			}
 

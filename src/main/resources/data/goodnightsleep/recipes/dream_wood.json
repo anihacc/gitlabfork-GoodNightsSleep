@@ -7,11 +7,11 @@
   ],
   "key": {
     "#": {
-      "item": "goodnightsleeo:dream_log"
+      "item": "goodnightsleep:dream_log"
     }
   },
   "result": {
-    "item": "goodnightsleeo:dream_wood",
+    "item": "goodnightsleep:dream_wood",
     "count": 3
   }
 }

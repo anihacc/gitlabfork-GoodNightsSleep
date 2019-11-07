@@ -148,12 +148,9 @@ public class GoodDreamDimension extends Dimension
 				for (int var14 = 0; var14 < dreamPlayerList.size(); ++var14)
 				{
 					playerMP = (ServerPlayerEntity) dreamPlayerList.get(var14);
-					int x = playerMP.getPosition().getX();
-					int y = playerMP.getPosition().getY();
-					int z = playerMP.getPosition().getZ();
-					// System.out.println("dream time up");
-
-					GNSTeleportationUtil.changeDimension(DimensionType.OVERWORLD, playerMP);
+					
+					BlockPos pos = playerMP.getBedLocation(DimensionType.OVERWORLD) != null ? playerMP.getBedLocation(DimensionType.OVERWORLD) : playerMP.world.getSpawnPoint();
+					GNSTeleportationUtil.changeDimension(DimensionType.OVERWORLD, playerMP, pos);
 				}
 			}
 

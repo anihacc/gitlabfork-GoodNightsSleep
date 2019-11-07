@@ -7,11 +7,11 @@
   ],
   "key": {
     "#": {
-      "item": "goodnightsleeo:white_log"
+      "item": "goodnightsleep:white_log"
     }
   },
   "result": {
-    "item": "goodnightsleeo:white_wood",
+    "item": "goodnightsleep:white_wood",
     "count": 3
   }
 }

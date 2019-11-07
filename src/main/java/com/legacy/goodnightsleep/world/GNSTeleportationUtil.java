@@ -3,6 +3,7 @@ package com.legacy.goodnightsleep.world;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.chunk.IChunk;
 import net.minecraft.world.dimension.DimensionType;
@@ -14,7 +15,7 @@ import net.minecraftforge.fml.LogicalSidedProvider;
 
 public class GNSTeleportationUtil
 {
-	public static void changeDimension(DimensionType type, Entity entity)
+	public static void changeDimension(DimensionType type, Entity entity, BlockPos pos)
 	{
 		MinecraftServer server = LogicalSidedProvider.INSTANCE.get(LogicalSide.SERVER);
 
@@ -31,10 +32,10 @@ public class GNSTeleportationUtil
 			return;
 		}
 
-		IChunk chunk = transferWorld.getChunk(entity.getPosition());
-		int transferY = chunk.getTopBlockY(Heightmap.Type.MOTION_BLOCKING, entity.getPosition().getX(), entity.getPosition().getZ()) + 1;
+		IChunk chunk = transferWorld.getChunk(pos);
+		int transferY = chunk.getTopBlockY(Heightmap.Type.MOTION_BLOCKING, pos.getX(), pos.getZ()) + 1;
 
-		Vec3d endpointPos = new Vec3d(entity.getPosition().getX() + 0.5, transferY, entity.getPosition().getZ() + 0.5);
+		Vec3d endpointPos = new Vec3d(pos.getX() + 0.5, transferY, pos.getZ() + 0.5);
 		Entity teleportedEntity = teleportEntity(entity, transferWorld, endpointPos);
 
 		/*if (entity instanceof ServerPlayerEntity)

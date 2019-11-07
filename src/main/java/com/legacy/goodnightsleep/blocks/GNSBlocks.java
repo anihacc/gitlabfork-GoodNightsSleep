@@ -84,9 +84,9 @@ public class GNSBlocks
 	{
 		iBlockRegistry = event.getRegistry();
 
-		luxurious_bed = registerWithoutItem("luxurious_bed", new GNSBedBlock(Block.Properties.from(Blocks.CYAN_BED)));
-		wretched_bed = registerWithoutItem("wretched_bed", new GNSBedBlock(Block.Properties.from(Blocks.GRAY_BED)));
-		strange_bed = registerWithoutItem("strange_bed", new GNSBedBlock(Block.Properties.from(Blocks.RED_BED)));
+		luxurious_bed = registerBlock("luxurious_bed", new GNSBedBlock(Block.Properties.from(Blocks.CYAN_BED)));
+		wretched_bed = registerBlock("wretched_bed", new GNSBedBlock(Block.Properties.from(Blocks.GRAY_BED)));
+		strange_bed = registerBlock("strange_bed", new GNSBedBlock(Block.Properties.from(Blocks.RED_BED)));
 
 		tall_dream_grass = register("tall_dream_grass", new GNSTallGrassBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(0.0F).doesNotBlockMovement().sound(SoundType.PLANT)));
 		tall_nightmare_grass = register("tall_nightmare_grass", new GNSTallGrassBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(0.0F).doesNotBlockMovement().sound(SoundType.PLANT)));
@@ -150,7 +150,7 @@ public class GNSBlocks
 		lolipop_bush = register("lolipop_bush", new GNSFlowerBlock(Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0.0F).sound(SoundType.PLANT)));
 		dead_flower = register("dead_flower", new GNSFlowerBlock(Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0.0F).sound(SoundType.PLANT)));
 
-		rainbow_crop = registerWithoutItem("rainbow_crop", new GNSRainbowCropBlock());
+		rainbow_crop = registerBlock("rainbow_crop", new GNSRainbowCropBlock());
 
 		dream_fence = register("dream_fence", new FenceBlock(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
 		white_fence = register("white_fence", new FenceBlock(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
@@ -185,7 +185,7 @@ public class GNSBlocks
 		present = register("present", new Block(Block.Properties.create(Material.MISCELLANEOUS, MaterialColor.RED).hardnessAndResistance(0.5F, 0.0F).sound(SoundType.PLANT)));
 
 		pot_of_gold = register("pot_of_gold", new GoldPotBlock(Block.Properties.from(Blocks.CAULDRON)));
-		rainbow = register("rainbow", new RainbowBlock(Block.Properties.from(Blocks.NETHER_PORTAL)));
+		rainbow = registerBlock("rainbow", new RainbowBlock(Block.Properties.from(Blocks.NETHER_PORTAL)));
 	}
 
 	public static Block register(String name, Block block)
@@ -200,7 +200,7 @@ public class GNSBlocks
 		return block;
 	}
 
-	public static Block registerWithoutItem(String name, Block block)
+	public static Block registerBlock(String name, Block block)
 	{
 		if (iBlockRegistry != null)
 		{

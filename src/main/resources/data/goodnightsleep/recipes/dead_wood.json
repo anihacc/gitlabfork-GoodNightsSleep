@@ -7,11 +7,11 @@
   ],
   "key": {
     "#": {
-      "item": "goodnightsleeo:dead_log"
+      "item": "goodnightsleep:dead_log"
     }
   },
   "result": {
-    "item": "goodnightsleeo:dead_wood",
+    "item": "goodnightsleep:dead_wood",
     "count": 3
   }
 }

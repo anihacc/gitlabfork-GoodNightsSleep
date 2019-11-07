@@ -108,6 +108,12 @@ public class GNSBedBlock extends HorizontalBlock implements ITileEntityProvider
 		}
 		else
 		{
+			if (player.dimension == DimensionType.OVERWORLD)
+			{
+				player.setSpawnPoint(pos, false, DimensionType.OVERWORLD);
+				player.setBedPosition(pos);
+			}
+
 			if (this == GNSBlocks.luxurious_bed)
 			{
 				this.travelToDream(player, true);
@@ -119,12 +125,6 @@ public class GNSBedBlock extends HorizontalBlock implements ITileEntityProvider
 			else if (this == GNSBlocks.strange_bed)
 			{
 				this.travelToDream(player, worldIn.rand.nextBoolean());
-			}
-
-			if (player.dimension == DimensionType.OVERWORLD)
-			{
-				player.setSpawnPoint(pos, true, DimensionType.OVERWORLD);
-				player.setBedPosition(pos);
 			}
 
 			return true;
@@ -389,7 +389,14 @@ public class GNSBedBlock extends HorizontalBlock implements ITileEntityProvider
 			}
 		}
 
-		GNSTeleportationUtil.changeDimension(transferDimension, player);
-
+		try
+		{
+			BlockPos pos = player.dimension != DimensionType.OVERWORLD ? player.getBedLocation(DimensionType.OVERWORLD) : player.world.getSpawnPoint();
+			GNSTeleportationUtil.changeDimension(transferDimension, player, pos);
+		}
+		catch (NullPointerException e)
+		{
+			e.printStackTrace();
+		}
 	}
 }
