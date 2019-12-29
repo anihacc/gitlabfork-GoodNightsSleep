@@ -30,7 +30,7 @@ public enum GNSArmorMaterial implements IArmorMaterial
 	ZITRITE("zitrite", 15, new int[]{3, 7, 6, 3}, 0, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, () -> {
 		return Ingredient.fromItems(GNSItems.zitrite_ingot);
 	}),
-	NEGATITE("negatite", 33, new int[]{4, 9, 7, 4}, 0, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 3.0F, () -> {
+	NEGATITE("negatite", 29, new int[]{4, 9, 7, 4}, 0, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 4.0F, () -> {
 		return Ingredient.fromItems(GNSItems.negatite_gem);
 	});
 

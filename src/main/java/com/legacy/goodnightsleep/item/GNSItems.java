@@ -127,7 +127,7 @@ public class GNSItems
 		positite_shovel = register("positite_shovel", new ShovelItem(GNSItemTier.POSITITE, 1.5F, -3.0F, (new Item.Properties()).group(GNSCreativeTabs.tools)));
 		positite_hoe = register("positite_hoe", new HoeItem(GNSItemTier.POSITITE, 0.0F, (new Item.Properties()).group(GNSCreativeTabs.tools)));
 
-		negatite_sword = register("negatite_sword", new SwordItem(GNSItemTier.NEGATITE, 4, -2.4F, (new Item.Properties()).group(GNSCreativeTabs.tools)));
+		negatite_sword = register("negatite_sword", new SwordItem(GNSItemTier.NEGATITE, 4, -2.5F, (new Item.Properties()).group(GNSCreativeTabs.tools)));
 		negatite_pickaxe = register("negatite_pickaxe", new PickaxeItem(GNSItemTier.NEGATITE, 1, -2.8F, (new Item.Properties()).group(GNSCreativeTabs.tools)));
 		negatite_axe = register("negatite_axe", new AxeItem(GNSItemTier.NEGATITE, 5.0F, -3.0F, (new Item.Properties()).group(GNSCreativeTabs.tools)));
 		negatite_shovel = register("negatite_shovel", new ShovelItem(GNSItemTier.NEGATITE, 1.5F, -3.0F, (new Item.Properties()).group(GNSCreativeTabs.tools)));
