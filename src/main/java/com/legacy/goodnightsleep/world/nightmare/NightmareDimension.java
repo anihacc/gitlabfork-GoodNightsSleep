@@ -9,6 +9,7 @@ import com.legacy.goodnightsleep.world.GNSDimensions;
 import com.legacy.goodnightsleep.world.GNSTeleportationUtil;
 
 import net.minecraft.block.Blocks;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
@@ -22,8 +23,9 @@ import net.minecraft.world.gen.ChunkGeneratorType;
 import net.minecraft.world.gen.OverworldGenSettings;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.common.extensions.IForgeDimension;
 
-public class NightmareDimension extends Dimension
+public class NightmareDimension extends Dimension implements IForgeDimension
 {
 	public ArrayList<ServerPlayerEntity> nightmarePlayerList = new ArrayList<ServerPlayerEntity>();
 
@@ -175,5 +177,11 @@ public class NightmareDimension extends Dimension
 	public boolean hasSkyLight()
 	{
 		return true;
+	}
+
+	@Override
+	public SleepResult canSleepAt(PlayerEntity player, BlockPos pos)
+	{
+		return SleepResult.DENY;
 	}
 }
