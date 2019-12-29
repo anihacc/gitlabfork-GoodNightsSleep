@@ -13,7 +13,6 @@ import net.minecraft.block.RotatedPillarBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.HoeItem;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.Direction;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
@@ -24,7 +23,7 @@ import net.minecraft.util.math.RayTraceContext;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent.RightClickBlock;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.RegisterDimensionsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
@@ -48,26 +47,25 @@ public class GNSEvents
 	}
 
 	@SubscribeEvent
-	public void onBlockRightClick(RightClickBlock event)
+	public void onPlayerRightClickItem(PlayerInteractEvent.RightClickItem event)
 	{
-		World world = event.getWorld();
-		BlockPos pos = event.getPos();
 		PlayerEntity player = event.getPlayer();
-		ItemStack stack = event.getItemStack();
+		World world = event.getWorld();
+		BlockRayTraceResult rayTraceResult = (BlockRayTraceResult) rayTrace(world, player);
+		BlockPos pos = rayTraceResult.getPos();
 
-		if (stack.getItem() instanceof AxeItem)
+		if (event.getItemStack().getItem() instanceof AxeItem)
 		{
-			BlockRayTraceResult rayTraceResult = (BlockRayTraceResult) rayTrace(world, player);
-			BlockPos pos1 = rayTraceResult.getPos();
-			BlockState blockState = world.getBlockState(pos1);
+			BlockState blockState = world.getBlockState(pos);
 			Block block = BLOCK_STRIPPING_MAP.get(blockState.getBlock());
+
 			if (block != null)
 			{
-				player.getEntityWorld().playSound(player, pos1, SoundEvents.ITEM_AXE_STRIP, SoundCategory.BLOCKS, 1.0F, 1.0F);
+				player.getEntityWorld().playSound(player, pos, SoundEvents.ITEM_AXE_STRIP, SoundCategory.BLOCKS, 1.0F, 1.0F);
 				player.swingArm(event.getHand());
 				if (!world.isRemote)
 				{
-					world.setBlockState(pos1, block.getDefaultState().with(RotatedPillarBlock.AXIS, blockState.get(RotatedPillarBlock.AXIS)), 11);
+					world.setBlockState(pos, block.getDefaultState().with(RotatedPillarBlock.AXIS, blockState.get(RotatedPillarBlock.AXIS)), 11);
 					if (player != null)
 					{
 						event.getItemStack().damageItem(1, player, (playerEntity) ->
@@ -77,6 +75,7 @@ public class GNSEvents
 					}
 				}
 			}
+			event.setCanceled(true);
 		}
 
 		if (event.getItemStack().getItem() instanceof HoeItem)
