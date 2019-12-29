@@ -5,13 +5,13 @@ import com.legacy.goodnightsleep.client.GoodNightSleepClient;
 
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.BushConfig;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.placement.ChanceConfig;
 import net.minecraft.world.gen.placement.Placement;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -46,7 +46,7 @@ public class GoodNightSleep
 	{
 		for (Biome biome : ForgeRegistries.BIOMES.getValues())
 		{
-			if (biome.getRegistryName().getNamespace().equalsIgnoreCase("minecraft") && !biome.getRegistryName().toString().contains("end") && biome != Biomes.NETHER && biome != Biomes.THE_VOID)
+			if (biome.getRegistryName().getNamespace().equalsIgnoreCase("minecraft") && BiomeDictionary.hasType(biome, BiomeDictionary.Type.NETHER) && BiomeDictionary.hasType(biome, BiomeDictionary.Type.END) && BiomeDictionary.hasType(biome, BiomeDictionary.Type.VOID))
 			{
 				biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Biome.createDecoratedFeature(Feature.BUSH, new BushConfig(GNSBlocks.despair_mushroom.getDefaultState()), Placement.CHANCE_HEIGHTMAP_DOUBLE, new ChanceConfig(4)));
 				biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Biome.createDecoratedFeature(Feature.BUSH, new BushConfig(GNSBlocks.hope_mushroom.getDefaultState()), Placement.CHANCE_HEIGHTMAP_DOUBLE, new ChanceConfig(8)));
