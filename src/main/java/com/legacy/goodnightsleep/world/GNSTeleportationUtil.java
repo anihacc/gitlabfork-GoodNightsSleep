@@ -1,6 +1,8 @@
 package com.legacy.goodnightsleep.world;
 
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockPos;
@@ -33,9 +35,15 @@ public class GNSTeleportationUtil
 		}
 
 		IChunk chunk = transferWorld.getChunk(pos);
-		int transferY = chunk.getTopBlockY(Heightmap.Type.MOTION_BLOCKING, pos.getX(), pos.getZ()) + 1;
+		int transferY = type == DimensionType.OVERWORLD && entity instanceof PlayerEntity && ((PlayerEntity) entity).getBedLocation(DimensionType.OVERWORLD) != null ? ((PlayerEntity) entity).getBedLocation(DimensionType.OVERWORLD).getY() : chunk.getTopBlockY(Heightmap.Type.MOTION_BLOCKING, pos.getX(), pos.getZ()) + 1;
 
 		Vec3d endpointPos = new Vec3d(pos.getX() + 0.5, transferY, pos.getZ() + 0.5);
+
+		if (transferWorld.getBlockState(new BlockPos(endpointPos)).getBlock() == Blocks.LAVA || transferWorld.getBlockState(new BlockPos(endpointPos).down()).getBlock() == Blocks.LAVA)
+		{
+			transferWorld.setBlockState(new BlockPos(endpointPos), Blocks.COBBLESTONE.getDefaultState());
+		}
+
 		Entity teleportedEntity = teleportEntity(entity, transferWorld, endpointPos);
 
 		/*if (entity instanceof ServerPlayerEntity)
