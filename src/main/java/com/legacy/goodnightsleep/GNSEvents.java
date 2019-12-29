@@ -30,7 +30,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 public class GNSEvents
 {
 	public static final Map<Block, Block> BLOCK_STRIPPING_MAP = (new Builder<Block, Block>()).put(GNSBlocks.dream_log, GNSBlocks.stripped_dream_log).put(GNSBlocks.dream_wood, GNSBlocks.stripped_dream_wood).put(GNSBlocks.white_log, GNSBlocks.stripped_white_log).put(GNSBlocks.white_wood, GNSBlocks.stripped_white_wood).put(GNSBlocks.dead_log, GNSBlocks.stripped_dead_log).put(GNSBlocks.dead_wood, GNSBlocks.stripped_dead_wood).put(GNSBlocks.blood_log, GNSBlocks.stripped_blood_log).put(GNSBlocks.blood_wood, GNSBlocks.stripped_blood_wood).build();
-	public static final Map<Block, BlockState> BLOCK_TILL_MAP = (new Builder<Block, BlockState>()).put(GNSBlocks.dream_dirt, GNSBlocks.dream_farmland.getDefaultState()).put(GNSBlocks.nightmare_grass_block, Blocks.FARMLAND.getDefaultState()).build();
+	public static final Map<Block, BlockState> BLOCK_TILL_MAP = (new Builder<Block, BlockState>()).put(GNSBlocks.dream_grass_block, GNSBlocks.dream_farmland.getDefaultState()).put(GNSBlocks.dream_dirt, GNSBlocks.dream_farmland.getDefaultState()).put(GNSBlocks.nightmare_grass_block, Blocks.FARMLAND.getDefaultState()).build();
 
 	public PlayerEntity player;
 
