@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+  {
+      "item": "goodnightsleep:strange_bed_item"
+  },
+  {
+      "item": "goodnightsleep:negatite_gem"
+  }
+  ],
+  "result": {
+    "item": "goodnightsleep:wretched_bed_item"
+  }
+}

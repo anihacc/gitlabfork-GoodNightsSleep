@@ -1,0 +1,12 @@
+{
+	"replace": false,
+	"values": [
+		"goodnightsleep:dream_slab",
+		"goodnightsleep:white_slab",
+		"goodnightsleep:dead_slab",
+		"goodnightsleep:blood_slab",
+		"goodnightsleep:delusion_stone_slab",
+		"goodnightsleep:delusion_cobblestone_slab",
+		"goodnightsleep:delusion_stonebrick_slab"
+	]
+}

@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "type=bottom": { "model": "goodnightsleep:block/delusion_stonebrick_slab" },
+        "type=top": { "model": "goodnightsleep:block/delusion_stonebrick_slab_top" },
+        "type=double": { "model": "goodnightsleep:block/delusion_stonebrick" }
+    }
+}

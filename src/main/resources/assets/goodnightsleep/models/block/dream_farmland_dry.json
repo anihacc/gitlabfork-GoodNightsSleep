@@ -1,0 +1,8 @@
+{
+    "parent": "block/farmland",
+    "textures": {
+        "particle": "goodnightsleep:block/natural/dream_dirt",
+        "dirt": "goodnightsleep:block/natural/dream_dirt",
+        "top": "goodnightsleep:block/natural/dream_farmland_dry"
+    }
+}

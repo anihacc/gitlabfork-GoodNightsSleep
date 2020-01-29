@@ -1,0 +1,27 @@
+{
+  "parent": "goodnightsleep:root",
+  "display": {
+    "icon": {
+      "item": "goodnightsleep:luxurious_bed_item"
+    },
+    "title": {
+      "translate": "advancements.goodnightsleep.dream.title"
+    },
+    "description": {
+      "translate": "advancements.goodnightsleep.dream.desc"
+    }
+  },
+  "criteria": {
+    "entered_dream": {
+      "trigger": "minecraft:changed_dimension",
+      "conditions": {
+        "to": "goodnightsleep:good_dream"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "entered_dream"
+    ]
+  ]
+}

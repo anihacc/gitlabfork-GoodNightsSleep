@@ -1,0 +1,51 @@
+{
+	"type": "minecraft:block",
+	"pools": [
+		{
+			"name": "block",
+			"rolls": 1,
+			"entries": [
+				{
+					"type": "minecraft:item",
+					"weight": 50,
+					"name": "goodnightsleep:rainbow_ore"
+				},
+				{
+					"type": "minecraft:item",
+					"weight": 10,
+					"name": "minecraft:gold_ore"
+				},
+				{
+					"type": "minecraft:item",
+					"weight": 10,
+					"name": "minecraft:iron_ore"
+				},
+				{
+					"type": "minecraft:item",
+					"weight": 10,
+					"name": "minecraft:redstone"
+				},
+				{
+					"type": "minecraft:item",
+					"weight": 5,
+					"name": "minecraft:emerald"
+				},
+				{
+					"type": "minecraft:item",
+					"weight": 10,
+					"name": "goodnightsleep:candy"
+				},
+				{
+					"type": "minecraft:item",
+					"weight": 5,
+					"name": "minecraft:diamond"
+				}
+			],
+			"conditions": [
+				{
+					"condition": "minecraft:survives_explosion"
+				}
+			]
+		}
+	]
+}

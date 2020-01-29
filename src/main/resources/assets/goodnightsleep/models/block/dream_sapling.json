@@ -1,0 +1,7 @@
+{
+    "parent": "block/cross",
+    "textures": {
+        "particle": "goodnightsleep:block/natural/dream_sapling",
+        "cross": "goodnightsleep:block/natural/dream_sapling"
+    }
+}

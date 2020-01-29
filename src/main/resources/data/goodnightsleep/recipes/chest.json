@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "X X",
+    "XXX"
+  ],
+  "key": {
+    "X": [
+	  {
+        "item": "goodnightsleep:dream_plank"
+	  },
+	  {
+        "item": "goodnightsleep:white_plank"
+	  },
+	  {
+        "item": "goodnightsleep:dead_plank"
+	  },
+	  {
+        "item": "goodnightsleep:blood_plank"
+	  }
+    ]
+  },
+  "result": {
+    "item": "minecraft:chest"
+  }
+}

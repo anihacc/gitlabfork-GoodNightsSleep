@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XX",
+    "X#",
+    " #"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "X": [
+      {
+        "item": "goodnightsleep:positite_gem"
+      }
+    ]
+  },
+  "result": {
+    "item": "goodnightsleep:positite_axe"
+  }
+}

@@ -1,0 +1,8 @@
+{
+    "parent": "block/inner_stairs",
+    "textures": {
+        "bottom": "goodnightsleep:block/construction/dead_plank",
+        "top": "goodnightsleep:block/construction/dead_plank",
+        "side": "goodnightsleep:block/construction/dead_plank"
+    }
+}

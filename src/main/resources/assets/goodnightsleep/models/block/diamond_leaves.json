@@ -1,0 +1,6 @@
+{
+    "parent": "block/leaves",
+    "textures": {
+        "all": "goodnightsleep:block/natural/diamond_leaves"
+    }
+}

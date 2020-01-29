@@ -1,0 +1,10 @@
+{
+	"variants": {
+		"": [
+			{ "model": "goodnightsleep:block/nightmare_grass" },
+			{ "model": "goodnightsleep:block/nightmare_grass", "y": 90 },
+			{ "model": "goodnightsleep:block/nightmare_grass", "y": 180 },
+			{ "model": "goodnightsleep:block/nightmare_grass", "y": 270 }
+		]
+	}
+}
