@@ -25,54 +25,15 @@ public class UnicornModel<T extends AbstractHorseEntity> extends HorseModel<T>
 	}
 
 	@Override
-	public void render(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch)
+	public void setRotationAngles(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch)
 	{
-		super.render(entityIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
+		super.setRotationAngles(entityIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
 	}
-
-	/*private float updateHorseRotation(float p_110683_1_, float p_110683_2_, float p_110683_3_)
-	{
-		float f;
-	
-		for (f = p_110683_2_ - p_110683_1_; f < -180.0F; f += 360.0F)
-		{
-			;
-		}
-	
-		while (f >= 180.0F)
-		{
-			f -= 360.0F;
-		}
-	
-		return p_110683_1_ + p_110683_3_ * f;
-	}*/
 
 	@Override
 	public void setLivingAnimations(T entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTickTime)
 	{
 		super.setLivingAnimations((T) entitylivingbaseIn, limbSwing, limbSwingAmount, partialTickTime);
-		/*float f = this.updateHorseRotation(entitylivingbaseIn.prevRenderYawOffset, entitylivingbaseIn.renderYawOffset, partialTickTime);
-		float f1 = this.updateHorseRotation(entitylivingbaseIn.prevRotationYawHead, entitylivingbaseIn.rotationYawHead, partialTickTime);
-		float f3 = f1 - f;
-		
-		if (f3 > 20.0F)
-		{
-			f3 = 20.0F;
-		}
-		
-		if (f3 < -20.0F)
-		{
-			f3 = -20.0F;
-		}
-		
-		AbstractHorseEntity abstracthorse = (AbstractHorseEntity) entitylivingbaseIn;
-		boolean flag2 = abstracthorse.isBeingRidden();
-		
-		if (flag2)
-		{
-			limbSwing = limbSwing / 2;
-		}*/
-
 		this.horn.rotationPointY = this.field_217128_b.rotationPointY;
 		this.horn.rotationPointZ = this.field_217128_b.rotationPointZ;
 		this.horn.rotateAngleX = this.field_217128_b.rotateAngleX;

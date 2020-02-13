@@ -62,7 +62,7 @@ public class GoodDreamDimension extends Dimension implements IForgeDimension
 	}
 
 	@OnlyIn(Dist.CLIENT)
-	//@Override
+	// @Override
 	public float getStarBrightness(float brightness)
 	{
 		return 1.0F;

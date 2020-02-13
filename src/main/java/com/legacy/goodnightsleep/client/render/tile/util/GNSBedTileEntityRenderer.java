@@ -60,7 +60,7 @@ public class GNSBedTileEntityRenderer extends TileEntityRenderer<TileEntity>
 	@Override
 	public void render(TileEntity tileEntityIn, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int combinedLightIn, int combinedOverlayIn)
 	{
-		IVertexBuilder ivertexbuilder = bufferIn.getBuffer(RenderType.entitySolid(this.getBedTexture()));
+		IVertexBuilder ivertexbuilder = bufferIn.getBuffer(RenderType.getEntitySolid(this.getBedTexture()));
 
 		World world = tileEntityIn.getWorld();
 		if (world != null)

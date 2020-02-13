@@ -8,6 +8,7 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.placement.ChanceConfig;
+import net.minecraft.world.gen.placement.ChanceRangeConfig;
 import net.minecraft.world.gen.placement.Placement;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.BiomeDictionary;
@@ -23,7 +24,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 @Mod(GoodNightSleep.MODID)
 public class GoodNightSleep
 {
-
 	public static final String NAME = "Good Night's Sleep";
 
 	public static final String MODID = "goodnightsleep";
@@ -45,10 +45,18 @@ public class GoodNightSleep
 	{
 		for (Biome biome : ForgeRegistries.BIOMES.getValues())
 		{
-			if (biome.getRegistryName().getNamespace().equalsIgnoreCase("minecraft") && !BiomeDictionary.hasType(biome, BiomeDictionary.Type.NETHER) && !BiomeDictionary.hasType(biome, BiomeDictionary.Type.END) && !BiomeDictionary.hasType(biome, BiomeDictionary.Type.VOID))
+			if (biome.getRegistryName().getNamespace().equalsIgnoreCase("minecraft") && !BiomeDictionary.hasType(biome, BiomeDictionary.Type.END) && !BiomeDictionary.hasType(biome, BiomeDictionary.Type.VOID))
 			{
-				biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.field_227248_z_.withConfiguration(GNSFeatures.HOPE_MUSHROOM_CONFIG).func_227228_a_(Placement.CHANCE_HEIGHTMAP_DOUBLE.func_227446_a_(new ChanceConfig(8))));
-				biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.field_227248_z_.withConfiguration(GNSFeatures.DESPAIR_MUSHROOM_CONFIG).func_227228_a_(Placement.CHANCE_HEIGHTMAP_DOUBLE.func_227446_a_(new ChanceConfig(4))));
+				if (BiomeDictionary.hasType(biome, BiomeDictionary.Type.NETHER))
+				{
+					biome.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.RANDOM_PATCH.withConfiguration(GNSFeatures.HOPE_MUSHROOM_CONFIG).withPlacement(Placement.CHANCE_RANGE.configure(new ChanceRangeConfig(0.3F, 0, 0, 128))));
+					biome.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.RANDOM_PATCH.withConfiguration(GNSFeatures.DESPAIR_MUSHROOM_CONFIG).withPlacement(Placement.CHANCE_RANGE.configure(new ChanceRangeConfig(0.3F, 0, 0, 128))));
+				}
+				else
+				{
+					biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.RANDOM_PATCH.withConfiguration(GNSFeatures.HOPE_MUSHROOM_CONFIG).withPlacement(Placement.CHANCE_HEIGHTMAP_DOUBLE.configure(new ChanceConfig(8))));
+					biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.RANDOM_PATCH.withConfiguration(GNSFeatures.DESPAIR_MUSHROOM_CONFIG).withPlacement(Placement.CHANCE_HEIGHTMAP_DOUBLE.configure(new ChanceConfig(4))));
+				}
 			}
 		}
 

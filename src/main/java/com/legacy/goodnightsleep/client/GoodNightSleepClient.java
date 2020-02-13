@@ -39,14 +39,14 @@ public class GoodNightSleepClient
 		renderCutout(GNSBlocks.potted_hope_mushroom);
 		renderCutout(GNSBlocks.potted_despair_mushroom);
 
-		RenderTypeLookup.setRenderLayer(GNSBlocks.rainbow, RenderType.translucent());
-		RenderTypeLookup.setRenderLayer(GNSBlocks.dream_leaves, RenderType.cutoutMipped());
-		RenderTypeLookup.setRenderLayer(GNSBlocks.candy_leaves, RenderType.cutoutMipped());
-		RenderTypeLookup.setRenderLayer(GNSBlocks.diamond_leaves, RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(GNSBlocks.rainbow, RenderType.getTranslucent());
+		RenderTypeLookup.setRenderLayer(GNSBlocks.dream_leaves, RenderType.getCutoutMipped());
+		RenderTypeLookup.setRenderLayer(GNSBlocks.candy_leaves, RenderType.getCutoutMipped());
+		RenderTypeLookup.setRenderLayer(GNSBlocks.diamond_leaves, RenderType.getCutoutMipped());
 	}
 
 	private static void renderCutout(Block block)
 	{
-		RenderTypeLookup.setRenderLayer(block, RenderType.cutout());
+		RenderTypeLookup.setRenderLayer(block, RenderType.getCutout());
 	}
 }
