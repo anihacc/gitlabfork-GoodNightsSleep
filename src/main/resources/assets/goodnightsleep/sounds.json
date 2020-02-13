@@ -8,6 +8,15 @@
       }
     ]
   },
+  "music.sky_blue": {
+    "category": "music",
+    "sounds":[
+      {
+        "name": "goodnightsleep:music/sky_blue",
+        "stream": true
+      }
+    ]
+  },
   "music.tfarcenim": {
     "category": "music",
     "sounds":[

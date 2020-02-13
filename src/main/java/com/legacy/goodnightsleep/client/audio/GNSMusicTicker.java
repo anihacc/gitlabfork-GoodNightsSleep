@@ -83,74 +83,77 @@ public class GNSMusicTicker implements ITickable
 		}
 	}
 
-    public boolean playingMusic()
-    {
-    	return this.ambientMusic != null;
-    }
-    
-    public boolean playingRecord()
-    {
-    	return this.playingRecord != null;
-    }
+	public boolean playingMusic()
+	{
+		return this.ambientMusic != null;
+	}
 
-    public GNSMusicTicker.TrackType getRandomTrackDream()
-    {    	
-		return TrackType.DREAM;
-    }
-    
-    public GNSMusicTicker.TrackType getRandomTrackNightmare()
-    {
+	public boolean playingRecord()
+	{
+		return this.playingRecord != null;
+	}
+
+	public GNSMusicTicker.TrackType getRandomTrackDream()
+	{
+		return this.rand.nextBoolean() ? TrackType.SKY_BLUE : TrackType.DREAM;
+	}
+
+	public GNSMusicTicker.TrackType getRandomTrackNightmare()
+	{
 		return TrackType.NIGHTMARE;
-    }
+	}
 
-    public void playMusic(TrackType requestedMusicType)
-    {
-        this.ambientMusic = SimpleSound.music(requestedMusicType.getMusicLocation());
-        this.mc.getSoundHandler().play(this.ambientMusic);
-        this.timeUntilNextMusic = Integer.MAX_VALUE;
-    }
+	public void playMusic(TrackType requestedMusicType)
+	{
+		this.ambientMusic = SimpleSound.music(requestedMusicType.getMusicLocation());
+		this.mc.getSoundHandler().play(this.ambientMusic);
+		this.timeUntilNextMusic = Integer.MAX_VALUE;
+	}
 
-    public void stopMusic()
-    {
-        if (this.ambientMusic != null)
-        {
-            this.mc.getSoundHandler().stop(this.ambientMusic);
-            this.ambientMusic = null;
-            this.timeUntilNextMusic = 0;
-        }
-    }
+	public void stopMusic()
+	{
+		if (this.ambientMusic != null)
+		{
+			this.mc.getSoundHandler().stop(this.ambientMusic);
+			this.ambientMusic = null;
+			this.timeUntilNextMusic = 0;
+		}
+	}
 
-    @OnlyIn(Dist.CLIENT)
-    public static enum TrackType
-    {
+	@OnlyIn(Dist.CLIENT)
+	public static enum TrackType
+	{
+		// @formatter:off
     	DREAM(GNSSounds.MUSIC_GOOD_DREAM, 1200, 1500),
+    	SKY_BLUE(GNSSounds.MUSIC_SKY_BLUE, 1200, 1500),
     	NIGHTMARE(GNSSounds.MUSIC_NIGHTMARE, 1200, 1500);
-    	
-        private final SoundEvent musicLocation;
-        private final int minDelay;
-        private final int maxDelay;
+    	// @formatter:on
 
-        private TrackType(SoundEvent musicLocationIn, int minDelayIn, int maxDelayIn)
-        {
-            this.musicLocation = musicLocationIn;
-            this.minDelay = minDelayIn;
-            this.maxDelay = maxDelayIn;
-        }
+		private final SoundEvent musicLocation;
+		private final int minDelay;
+		private final int maxDelay;
 
-        public SoundEvent getMusicLocation()
-        {
-            return this.musicLocation;
-        }
+		private TrackType(SoundEvent musicLocationIn, int minDelayIn, int maxDelayIn)
+		{
+			this.musicLocation = musicLocationIn;
+			this.minDelay = minDelayIn;
+			this.maxDelay = maxDelayIn;
+		}
 
-        public int getMinDelay()
-        {
-            return this.minDelay;
-        }
+		public SoundEvent getMusicLocation()
+		{
+			return this.musicLocation;
+		}
 
-        public int getMaxDelay()
-        {
-            return this.maxDelay;
-        }
-    }
+		public int getMinDelay()
+		{
+			return this.minDelay;
+		}
+
+		public int getMaxDelay()
+		{
+			return this.maxDelay;
+		}
+	}
 
 }

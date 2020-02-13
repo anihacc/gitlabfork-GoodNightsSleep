@@ -1,6 +1,6 @@
 package com.legacy.goodnightsleep.client.audio;
 
-import com.legacy.goodnightsleep.GNSRegistry;
+import com.legacy.goodnightsleep.GoodNightSleep;
 import com.legacy.goodnightsleep.world.GNSDimensions;
 
 import net.minecraft.client.Minecraft;
@@ -10,13 +10,13 @@ import net.minecraftforge.client.event.sound.PlaySoundEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
-public class GNSMusicHandler 
+public class GNSMusicHandler
 {
 
 	private Minecraft mc = Minecraft.getInstance();
 
 	private GNSMusicTicker musicTicker = new GNSMusicTicker(mc);
-	
+
 	@SubscribeEvent
 	public void onClientTick(TickEvent.ClientTickEvent event) throws Exception
 	{
@@ -45,7 +45,7 @@ public class GNSMusicHandler
 		{
 			if (this.mc.player != null && this.mc.player.dimension == GNSDimensions.dimensionType(true) || this.mc.player != null && this.mc.player.dimension == GNSDimensions.dimensionType(false))
 			{
-				if (!sound.getSoundLocation().toString().contains("goodnightsleep") && (this.musicTicker.playingMusic() || !this.musicTicker.playingMusic()))
+				if (!sound.getSoundLocation().toString().contains(GoodNightSleep.MODID) && (this.musicTicker.playingMusic() || !this.musicTicker.playingMusic()))
 				{
 					event.setResultSound(null);
 
@@ -58,7 +58,7 @@ public class GNSMusicHandler
 		{
 			this.musicTicker.stopMusic();
 			this.mc.getSoundHandler().stop();
-
+		
 			this.musicTicker.ambientMusic = null;
 			
 			this.musicTicker.playingRecord = event.getSound();

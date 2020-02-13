@@ -6,7 +6,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.BushBlock;
-import net.minecraft.block.material.Material;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -24,6 +23,7 @@ public class GNSFlowerBlock extends BushBlock
 		super(builder);
 	}
 
+	@Override
 	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context)
 	{
 		Vec3d vec3d = state.getOffset(worldIn, pos);
@@ -36,15 +36,11 @@ public class GNSFlowerBlock extends BushBlock
 		BlockPos blockpos = pos.down();
 		BlockState iblockstate = worldIn.getBlockState(blockpos);
 		Block block = iblockstate.getBlock();
-		
-		if (this == GNSBlocks.hope_mushroom || this == GNSBlocks.despair_mushroom)
-		{
-			return iblockstate.getMaterial() == Material.ROCK || block == GNSBlocks.delusion_stone || block == GNSBlocks.dream_grass_block || block == GNSBlocks.dream_dirt || block == Blocks.DIRT || block == GNSBlocks.nightmare_grass_block;
-		}
 
 		return block == GNSBlocks.dream_grass_block || block == GNSBlocks.dream_dirt || block == Blocks.GRASS_BLOCK || block == Blocks.DIRT || block == GNSBlocks.nightmare_grass_block;
 	}
 
+	@Override
 	public Block.OffsetType getOffsetType()
 	{
 		return Block.OffsetType.XZ;
