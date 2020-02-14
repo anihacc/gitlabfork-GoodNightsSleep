@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "goodnightsleep:positite_ore"
+  },
+  "result": "goodnightsleep:positite",
+  "experience": 1.0,
+  "cookingtime": 100
+}
