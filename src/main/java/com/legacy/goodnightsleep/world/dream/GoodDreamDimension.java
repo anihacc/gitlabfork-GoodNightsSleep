@@ -23,9 +23,8 @@ import net.minecraft.world.gen.ChunkGeneratorType;
 import net.minecraft.world.gen.OverworldGenSettings;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.extensions.IForgeDimension;
 
-public class GoodDreamDimension extends Dimension implements IForgeDimension
+public class GoodDreamDimension extends Dimension
 {
 	public ArrayList<ServerPlayerEntity> dreamPlayerList = new ArrayList<ServerPlayerEntity>();
 
@@ -41,6 +40,13 @@ public class GoodDreamDimension extends Dimension implements IForgeDimension
 		genSettings.setDefaultBlock(GNSBlocks.delusion_stone.getDefaultState());
 		return ChunkGeneratorType.SURFACE.create(this.world, BiomeProviderType.FIXED.create(BiomeProviderType.FIXED.func_226840_a_(this.world.getWorldInfo()).setBiome(GNSBiomes.GOOD_DREAM_PLAINS)), genSettings);
 	}
+
+	/*@OnlyIn(Dist.CLIENT)
+	@Override
+	public IRenderHandler getSkyRenderer()
+	{
+		return DreamSkyRenderer.INSTANCE;
+	}*/
 
 	@Override
 	public boolean canRespawnHere()
