@@ -3,16 +3,13 @@ package com.legacy.goodnightsleep.world.dream;
 import java.util.Random;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.platform.GLX;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.FogRenderer;
-import net.minecraft.client.renderer.GLAllocation;
 import net.minecraft.client.renderer.Matrix4f;
-import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.Vector3f;
 import net.minecraft.client.renderer.WorldVertexBufferUploader;
@@ -24,20 +21,15 @@ import net.minecraft.client.world.ClientWorld;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.client.IRenderHandler;
 
 public class DreamSkyRenderer implements IRenderHandler
 {
 	private static final ResourceLocation MOON_PHASES_TEXTURES = new ResourceLocation("textures/environment/moon_phases.png");
 	private static final ResourceLocation SUN_TEXTURES = new ResourceLocation("textures/environment/sun.png");
-	private static final ResourceLocation CLOUDS_TEXTURES = new ResourceLocation("textures/environment/clouds.png");
-	private static final ResourceLocation END_SKY_TEXTURES = new ResourceLocation("textures/environment/end_sky.png");
-	private static final ResourceLocation FORCEFIELD_TEXTURES = new ResourceLocation("textures/misc/forcefield.png");
-	private TextureManager textureManager;
+	private TextureManager textureManager = Minecraft.getInstance().textureManager;
 	private MatrixStack matrixStackIn = new MatrixStack();
 
-	private int ticks;
 	private VertexBuffer starVBO, skyVBO, sky2VBO;
 
 	private final VertexFormat skyVertexFormat = DefaultVertexFormats.POSITION;
@@ -54,23 +46,6 @@ public class DreamSkyRenderer implements IRenderHandler
 	@Override
 	public void render(int ticks, float partialTicks, ClientWorld world, Minecraft mc)
 	{
-		// TODO Auto-generated method stub
-
-		// }
-		// public void renderSky(MatrixStack matrixStackIn, float partialTicks)
-		// {
-		/*net.minecraftforge.client.IRenderHandler renderer = this.world.getDimension().getSkyRenderer();
-		if (renderer != null)
-		{
-			renderer.render(this.ticks, partialTicks, this.world, mc);
-			return;
-		}*/
-
-		this.textureManager = mc.textureManager;
-
-		if (this.textureManager == null)
-			return;
-
 		RenderSystem.disableTexture();
 		Vec3d vec3d = world.getSkyColor(mc.gameRenderer.getActiveRenderInfo().getBlockPos(), partialTicks);
 		float f = (float) vec3d.x;
@@ -106,7 +81,6 @@ public class DreamSkyRenderer implements IRenderHandler
 			Matrix4f matrix4f = matrixStackIn.getLast().getMatrix();
 			bufferbuilder.begin(6, DefaultVertexFormats.POSITION_COLOR);
 			bufferbuilder.pos(matrix4f, 0.0F, 100.0F, 0.0F).color(f4, f5, f6, afloat[3]).endVertex();
-			int i = 16;
 
 			for (int j = 0; j <= 16; ++j)
 			{
@@ -251,10 +225,8 @@ public class DreamSkyRenderer implements IRenderHandler
 
 				for (int j = 0; j < 4; ++j)
 				{
-					double d17 = 0.0D;
 					double d18 = (double) ((j & 2) - 1) * d3;
 					double d19 = (double) ((j + 1 & 2) - 1) * d3;
-					double d20 = 0.0D;
 					double d21 = d18 * d16 - d19 * d15;
 					double d22 = d19 * d16 + d18 * d15;
 					double d23 = d21 * d12 + 0.0D * d13;
@@ -300,8 +272,6 @@ public class DreamSkyRenderer implements IRenderHandler
 
 	private void renderSky(BufferBuilder bufferBuilderIn, float posY, boolean reverseX)
 	{
-		int i = 64;
-		int j = 6;
 		bufferBuilderIn.begin(7, DefaultVertexFormats.POSITION);
 
 		for (int k = -384; k <= 384; k += 64)
@@ -324,27 +294,4 @@ public class DreamSkyRenderer implements IRenderHandler
 		}
 
 	}
-
-	/*private void renderSky(BufferBuilder bufferBuilderIn, float posY, boolean reverseX) {
-	      int i = 64;
-	      int j = 6;
-	      bufferBuilderIn.begin(7, DefaultVertexFormats.POSITION);
-	
-	      for(int k = -384; k <= 384; k += 64) {
-	         for(int l = -384; l <= 384; l += 64) {
-	            float f = (float)k;
-	            float f1 = (float)(k + 64);
-	            if (reverseX) {
-	               f1 = (float)k;
-	               f = (float)(k + 64);
-	            }
-	
-	            bufferBuilderIn.pos((double)f, (double)posY, (double)l).endVertex();
-	            bufferBuilderIn.pos((double)f1, (double)posY, (double)l).endVertex();
-	            bufferBuilderIn.pos((double)f1, (double)posY, (double)(l + 64)).endVertex();
-	            bufferBuilderIn.pos((double)f, (double)posY, (double)(l + 64)).endVertex();
-	         }
-	      }
-	
-	   }*/
 }
