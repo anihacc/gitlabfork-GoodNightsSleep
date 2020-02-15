@@ -27,18 +27,13 @@
 				},
 				{
 					"type": "minecraft:item",
-					"weight": 5,
+					"weight": 1,
 					"name": "minecraft:emerald"
 				},
 				{
 					"type": "minecraft:item",
-					"weight": 10,
+					"weight": 20,
 					"name": "goodnightsleep:candy"
-				},
-				{
-					"type": "minecraft:item",
-					"weight": 5,
-					"name": "minecraft:diamond"
 				}
 			],
 			"conditions": [
