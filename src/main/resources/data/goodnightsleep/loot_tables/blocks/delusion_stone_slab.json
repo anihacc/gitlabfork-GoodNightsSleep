@@ -7,7 +7,7 @@
 			"entries": [
 				{
 					"type": "minecraft:item",
-					"name": "goodnightsleep:blood_slab",
+					"name": "goodnightsleep:delusion_stone_slab",
 					"functions": [
 						{
 							"function": "minecraft:set_count",

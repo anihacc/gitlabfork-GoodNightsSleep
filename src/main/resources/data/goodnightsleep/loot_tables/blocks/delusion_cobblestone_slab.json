@@ -7,7 +7,7 @@
 			"entries": [
 				{
 					"type": "minecraft:item",
-					"name": "goodnightsleep:dead_slab",
+					"name": "goodnightsleep:delusion_cobblestone_slab",
 					"functions": [
 						{
 							"function": "minecraft:set_count",

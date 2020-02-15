@@ -7,7 +7,7 @@
 			"entries": [
 				{
 					"type": "minecraft:item",
-					"name": "goodnightsleep:dream_slab",
+					"name": "goodnightsleep:delusion_stonebrick_slab",
 					"functions": [
 						{
 							"function": "minecraft:set_count",
