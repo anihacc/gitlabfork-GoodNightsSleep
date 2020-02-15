@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "goodnightsleep:negatite_ore"
   },
-  "result": "goodnightsleep:negatite",
+  "result": "goodnightsleep:negatite_gem",
   "experience": 1.0,
   "cookingtime": 100
 }

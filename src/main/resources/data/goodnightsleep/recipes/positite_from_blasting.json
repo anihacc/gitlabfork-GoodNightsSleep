@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "goodnightsleep:positite_ore"
   },
-  "result": "goodnightsleep:positite",
+  "result": "goodnightsleep:positite_gem",
   "experience": 1.0,
   "cookingtime": 100
 }
