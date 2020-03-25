@@ -41,7 +41,7 @@ public class GNSTeleportationUtil
 
 		if (transferWorld.getBlockState(new BlockPos(endpointPos)).getBlock() == Blocks.LAVA || transferWorld.getBlockState(new BlockPos(endpointPos).down()).getBlock() == Blocks.LAVA)
 		{
-			transferWorld.setBlockState(new BlockPos(endpointPos), Blocks.COBBLESTONE.getDefaultState());
+			transferWorld.setBlockState(new BlockPos(endpointPos.add(0, -1, 0)), Blocks.COBBLESTONE.getDefaultState());
 		}
 
 		Entity teleportedEntity = teleportEntity(entity, transferWorld, endpointPos);

@@ -8,6 +8,7 @@ import com.legacy.goodnightsleep.item.GNSItems;
 import com.legacy.goodnightsleep.tile_entity.GNSTileEntityTypes;
 import com.legacy.goodnightsleep.world.GNSBiomes;
 import com.legacy.goodnightsleep.world.GNSDimensions;
+import com.legacy.goodnightsleep.world.general_features.GNSFeatures;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityType;
@@ -16,6 +17,7 @@ import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.gen.feature.Feature;
 import net.minecraftforge.common.ModDimension;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.RegistryEvent.Register;
@@ -69,6 +71,12 @@ public class GNSRegistry
 	public static void onRegisterBiomes(Register<Biome> event)
 	{
 		GNSBiomes.init(event);
+	}
+
+	@SubscribeEvent
+	public static void registerFeatures(Register<Feature<?>> event)
+	{
+		GNSFeatures.init(event);
 	}
 
 	@SubscribeEvent

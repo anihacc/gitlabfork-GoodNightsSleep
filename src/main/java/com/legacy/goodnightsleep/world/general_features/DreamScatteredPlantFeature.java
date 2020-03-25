@@ -28,7 +28,6 @@ public class DreamScatteredPlantFeature extends Feature<NoFeatureConfig>
 	{
 		int i = 0;
 
-
 		if (this.plant.getBlock() == GNSBlocks.present && worldIn.isAirBlock(pos) && worldIn.getBlockState(pos.down()).getBlock() == GNSBlocks.dream_grass_block)
 		{
 			worldIn.setBlockState(pos, this.plant, 2);
