@@ -3,16 +3,15 @@ package com.legacy.goodnightsleep.entity.dream;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.Goal;
 
-public class EntityAIBabyCreeperSwell extends Goal
+public class BabyCreeperSwellGoal extends Goal
 {
 	BabyCreeperEntity swellingCreeper;
 
 	LivingEntity creeperAttackTarget;
 
-	public EntityAIBabyCreeperSwell(BabyCreeperEntity par1EntityCreeper)
+	public BabyCreeperSwellGoal(BabyCreeperEntity par1EntityCreeper)
 	{
 		this.swellingCreeper = par1EntityCreeper;
-		//this.setMutexBits(1);
 	}
 
 	@Override

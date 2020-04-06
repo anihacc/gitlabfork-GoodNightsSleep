@@ -54,7 +54,7 @@ public class GNSSounds
 
 		ENTITY_HEROBRINE_HURT = register("entity.herobrine.hurt");
 		ENTITY_HEROBRINE_DEATH = register("entity.herobrine.death");
-		
+
 		GNSRegistry.register(soundRegistry, "item.armor.equip_candy", ITEM_ARMOR_EQUIP_CANDY);
 		GNSRegistry.register(soundRegistry, "item.armor.equip_rainbow", ITEM_ARMOR_EQUIP_RAINBOW);
 		GNSRegistry.register(soundRegistry, "item.armor.equip_positite", ITEM_ARMOR_EQUIP_POSITITE);
