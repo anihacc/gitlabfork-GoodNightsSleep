@@ -8,6 +8,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.MushroomBlock;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorldReader;
 
 public class GNSMushroomBlock extends MushroomBlock
@@ -32,5 +33,11 @@ public class GNSMushroomBlock extends MushroomBlock
 		{
 			return true;
 		}
+	}
+
+	@Override
+	public boolean canGrow(IBlockReader worldIn, BlockPos pos, BlockState state, boolean isClient)
+	{
+		return false;
 	}
 }
