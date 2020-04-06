@@ -3,6 +3,7 @@ package com.legacy.goodnightsleep.item;
 import java.util.function.Supplier;
 
 import com.legacy.goodnightsleep.GoodNightSleep;
+import com.legacy.goodnightsleep.client.audio.GNSSounds;
 
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.IArmorMaterial;
@@ -15,22 +16,23 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 public enum GNSArmorMaterial implements IArmorMaterial
 {
-	CANDY("candy", 7, new int[]{1, 2, 2, 1}, 5, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0F, () -> {
+	CANDY("candy", 7, new int[] { 1, 2, 2, 1 }, 5, GNSSounds.ITEM_ARMOR_EQUIP_CANDY, 0.0F, () ->
+	{
 		return Ingredient.fromItems(GNSItems.candy);
-	}),
-	RAINBOW("rainbow", 22, new int[]{2, 6, 5, 2}, 14, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, () -> {
+	}), RAINBOW("rainbow", 22, new int[] { 2, 6, 5, 2 }, 14, GNSSounds.ITEM_ARMOR_EQUIP_RAINBOW, 0.0F, () ->
+	{
 		return Ingredient.fromItems(GNSItems.rainbow_ingot);
-	}),
-	POSITITE("positite", 49, new int[]{3, 8, 6, 3}, 10, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.0F, () -> {
+	}), POSITITE("positite", 49, new int[] { 3, 8, 6, 3 }, 10, GNSSounds.ITEM_ARMOR_EQUIP_POSITITE, 2.0F, () ->
+	{
 		return Ingredient.fromItems(GNSItems.positite_gem);
-	}),
-	NECRUM("necrum", 5, new int[]{2, 3, 3, 2}, 0, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0F, () -> {
+	}), NECRUM("necrum", 5, new int[] { 2, 3, 3, 2 }, 0, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0F, () ->
+	{
 		return Ingredient.fromItems(GNSItems.necrum);
-	}),
-	ZITRITE("zitrite", 15, new int[]{3, 7, 6, 3}, 0, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, () -> {
+	}), ZITRITE("zitrite", 15, new int[] { 3, 7, 6, 3 }, 0, GNSSounds.ITEM_ARMOR_EQUIP_ZITRITE, 0.0F, () ->
+	{
 		return Ingredient.fromItems(GNSItems.zitrite_ingot);
-	}),
-	NEGATITE("negatite", 29, new int[]{4, 9, 7, 4}, 0, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 4.0F, () -> {
+	}), NEGATITE("negatite", 29, new int[] { 4, 9, 7, 4 }, 0, GNSSounds.ITEM_ARMOR_EQUIP_NEGATITE, 4.0F, () ->
+	{
 		return Ingredient.fromItems(GNSItems.negatite_gem);
 	});
 
@@ -61,7 +63,7 @@ public enum GNSArmorMaterial implements IArmorMaterial
 		this.repairMaterial = new LazyValue<>(p_i48533_9_);
 	}
 
-	public int getDurability(EquipmentSlotType slotIn) 
+	public int getDurability(EquipmentSlotType slotIn)
 	{
 		return MAX_DAMAGE_ARRAY[slotIn.getIndex()] * this.maxDamageFactor;
 	}

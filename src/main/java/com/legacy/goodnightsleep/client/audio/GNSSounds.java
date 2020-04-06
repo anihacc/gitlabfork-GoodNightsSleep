@@ -1,5 +1,6 @@
 package com.legacy.goodnightsleep.client.audio;
 
+import com.legacy.goodnightsleep.GNSRegistry;
 import com.legacy.goodnightsleep.GoodNightSleep;
 
 import net.minecraft.util.ResourceLocation;
@@ -27,6 +28,12 @@ public class GNSSounds
 	public static SoundEvent ENTITY_HEROBRINE_HURT;
 	public static SoundEvent ENTITY_HEROBRINE_DEATH;
 
+	public static SoundEvent ITEM_ARMOR_EQUIP_CANDY = new SoundEvent(GoodNightSleep.locate("item.armor.equip_candy"));
+	public static SoundEvent ITEM_ARMOR_EQUIP_RAINBOW = new SoundEvent(GoodNightSleep.locate("item.armor.equip_rainbow"));
+	public static SoundEvent ITEM_ARMOR_EQUIP_POSITITE = new SoundEvent(GoodNightSleep.locate("item.armor.equip_positite"));
+	public static SoundEvent ITEM_ARMOR_EQUIP_ZITRITE = new SoundEvent(GoodNightSleep.locate("item.armor.equip_zitrite"));
+	public static SoundEvent ITEM_ARMOR_EQUIP_NEGATITE = new SoundEvent(GoodNightSleep.locate("item.armor.equip_negatite"));
+
 	public static IForgeRegistry<SoundEvent> soundRegistry;
 
 	public static void init()
@@ -47,6 +54,12 @@ public class GNSSounds
 
 		ENTITY_HEROBRINE_HURT = register("entity.herobrine.hurt");
 		ENTITY_HEROBRINE_DEATH = register("entity.herobrine.death");
+		
+		GNSRegistry.register(soundRegistry, "item.armor.equip_candy", ITEM_ARMOR_EQUIP_CANDY);
+		GNSRegistry.register(soundRegistry, "item.armor.equip_rainbow", ITEM_ARMOR_EQUIP_RAINBOW);
+		GNSRegistry.register(soundRegistry, "item.armor.equip_positite", ITEM_ARMOR_EQUIP_POSITITE);
+		GNSRegistry.register(soundRegistry, "item.armor.equip_zitrite", ITEM_ARMOR_EQUIP_ZITRITE);
+		GNSRegistry.register(soundRegistry, "item.armor.equip_negatite", ITEM_ARMOR_EQUIP_NEGATITE);
 	}
 
 	private static SoundEvent register(String name)

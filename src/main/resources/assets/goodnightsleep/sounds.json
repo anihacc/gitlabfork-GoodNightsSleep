@@ -108,5 +108,55 @@
         "type": "event"
       }
     ]
+  },
+  "item.armor.equip_candy": {
+    "category": "hostile",
+    "subtitle": "subtitles.item.armor.equip_candy",
+    "sounds": [
+      {
+        "name": "item.armor.equip_leather",
+        "type": "event"
+      }
+    ]
+  },
+  "item.armor.equip_rainbow": {
+    "category": "hostile",
+    "subtitle": "subtitles.item.armor.equip_rainbow",
+    "sounds": [
+      {
+        "name": "item.armor.equip_iron",
+        "type": "event"
+      }
+    ]
+  },
+  "item.armor.equip_positite": {
+    "category": "hostile",
+    "subtitle": "subtitles.item.armor.equip_positite",
+    "sounds": [
+      {
+        "name": "item.armor.equip_diamond",
+        "type": "event"
+      }
+    ]
+  },
+  "item.armor.equip_zitrite": {
+    "category": "hostile",
+    "subtitle": "subtitles.item.armor.equip_zitrite",
+    "sounds": [
+      {
+        "name": "item.armor.equip_iron",
+        "type": "event"
+      }
+    ]
+  },
+  "item.armor.equip_negatite": {
+    "category": "hostile",
+    "subtitle": "subtitles.item.armor.equip_negatite",
+    "sounds": [
+      {
+        "name": "item.armor.equip_diamond",
+        "type": "event"
+      }
+    ]
   }
 }

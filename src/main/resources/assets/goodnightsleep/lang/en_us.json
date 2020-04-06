@@ -191,6 +191,12 @@
 	"subtitles.entity.herobrine.hurt": "Herobrine hurts",
 	"subtitles.entity.herobrine.death": "Herobrine dies",
 
+	"subtitles.item.armor.equip_candy": "Candy armor ruffles",
+	"subtitles.item.armor.equip_rainbow": "Rainbow armor clangs",
+	"subtitles.item.armor.equip_positite": "Positite armor clashes",
+	"subtitles.item.armor.equip_zitrite": "Zitrite armor clangs",
+	"subtitles.item.armor.equip_negatite": "Negatite armor clashes",
+
 	"death.attack.nightmare_grass": "%1$s was pricked by Nightmare Grass",
 
 	"advancements.goodnightsleep.root.title": "Good Night's Sleep",
