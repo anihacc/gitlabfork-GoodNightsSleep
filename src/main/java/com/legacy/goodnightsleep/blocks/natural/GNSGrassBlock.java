@@ -9,20 +9,22 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.GrassBlock;
 import net.minecraft.block.IGrowable;
+import net.minecraft.block.SaplingBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
-import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.DecoratedFeatureConfig;
 import net.minecraft.world.gen.feature.FlowersFeature;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.PlantType;
+import net.minecraftforge.common.extensions.IForgeBlockState;
 
-public class GNSGrassBlock extends GrassBlock
+public class GNSGrassBlock extends GrassBlock implements IForgeBlockState
 {
 
 	public GNSGrassBlock()
@@ -87,7 +89,7 @@ public class GNSGrassBlock extends GrassBlock
 	public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state)
 	{
 		BlockPos blockpos = pos.up();
-		BlockState blockstate = state.getBlock() == GNSBlocks.nightmare_grass_block ? GNSBlocks.tall_nightmare_grass.getDefaultState() : GNSBlocks.dream_grass_block.getDefaultState();
+		BlockState blockstate = state.getBlock() == GNSBlocks.nightmare_grass_block ? GNSBlocks.tall_nightmare_grass.getDefaultState() : GNSBlocks.tall_dream_grass.getDefaultState();
 
 		for (int i = 0; i < 128; ++i)
 		{
@@ -145,8 +147,12 @@ public class GNSGrassBlock extends GrassBlock
 
 	}
 
+	@Override
 	public boolean canSustainPlant(BlockState state, IBlockReader world, BlockPos pos, Direction facing, net.minecraftforge.common.IPlantable plantable)
 	{
+		if (plantable instanceof SaplingBlock)
+			return true;
+
 		PlantType plantType = plantable.getPlantType(world, pos.offset(facing));
 		switch (plantType)
 		{
@@ -159,5 +165,14 @@ public class GNSGrassBlock extends GrassBlock
 			break;
 		}
 		return super.canSustainPlant(state, world, pos, facing, plantable);
+	}
+
+	@Override
+	public void onPlantGrow(BlockState state, IWorld world, BlockPos pos, BlockPos source)
+	{
+		if (this == GNSBlocks.dream_grass_block)
+			world.setBlockState(pos, GNSBlocks.dream_dirt.getDefaultState(), 2);
+		else
+			world.setBlockState(pos, Blocks.DIRT.getDefaultState(), 2);
 	}
 }

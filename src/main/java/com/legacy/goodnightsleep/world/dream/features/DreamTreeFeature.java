@@ -14,6 +14,7 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MutableBoundingBox;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.gen.IWorldGenerationBaseReader;
 import net.minecraft.world.gen.IWorldGenerationReader;
 import net.minecraft.world.gen.feature.AbstractTreeFeature;
@@ -90,6 +91,7 @@ public class DreamTreeFeature extends AbstractTreeFeature<TreeFeatureConfig>
 			else if (isSoil(worldIn, position.down(), (IPlantable) GNSBlocks.dream_sapling) && position.getY() < worldIn.getMaxHeight() - i - 1)
 			{
 				this.setDirtAt(worldIn, position.down(), position);
+
 				for (int l2 = position.getY() - 3 + i; l2 <= position.getY() + i; ++l2)
 				{
 					int l3 = l2 - (position.getY() + i);
