@@ -10,6 +10,9 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.RotatedPillarBlock;
+import net.minecraft.entity.passive.horse.AbstractHorseEntity;
+import net.minecraft.entity.passive.horse.SkeletonHorseEntity;
+import net.minecraft.entity.passive.horse.ZombieHorseEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.HoeItem;
@@ -26,6 +29,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.RegisterDimensionsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.eventbus.api.Event.Result;
 
 public class GNSEvents
 {
@@ -100,6 +104,21 @@ public class GNSEvents
 				}
 			}
 			event.setCanceled(true);
+		}
+	}
+
+	@SubscribeEvent
+	public void onPlayerRightClickEntity(PlayerInteractEvent.EntityInteract event)
+	{
+		PlayerEntity player = event.getPlayer();
+
+		if ((event.getTarget() instanceof ZombieHorseEntity || event.getTarget() instanceof SkeletonHorseEntity) && player.dimension == GNSDimensions.dimensionType(false))
+		{
+			if (!((AbstractHorseEntity) event.getTarget()).isTame() && player.getHeldItemMainhand().isEmpty() && player.getHeldItemOffhand().isEmpty())
+			{
+				event.setResult(Result.ALLOW);
+				player.startRiding(event.getTarget());
+			}
 		}
 	}
 

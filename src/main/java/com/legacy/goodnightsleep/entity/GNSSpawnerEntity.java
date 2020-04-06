@@ -105,7 +105,6 @@ public class GNSSpawnerEntity extends AnimalEntity
 					ZombieHorseEntity zombhorse = new ZombieHorseEntity(EntityType.ZOMBIE_HORSE, this.world);
 					zombhorse.moveToBlockPosAndAngles(blockpos, 0.0F, 0.0F);
 					zombhorse.onInitialSpawn(worldIn, difficultyIn, SpawnReason.NATURAL, (ILivingEntityData) null, (CompoundNBT) null);
-					zombhorse.setHorseTamed(true);
 					this.world.addEntity(zombhorse);
 				}
 			}
@@ -117,7 +116,6 @@ public class GNSSpawnerEntity extends AnimalEntity
 					SkeletonHorseEntity skelehorse = new SkeletonHorseEntity(EntityType.SKELETON_HORSE, this.world);
 					skelehorse.moveToBlockPosAndAngles(blockpos, 0.0F, 0.0F);
 					skelehorse.onInitialSpawn(worldIn, difficultyIn, SpawnReason.NATURAL, (ILivingEntityData) null, (CompoundNBT) null);
-					skelehorse.setHorseTamed(true);
 					this.world.addEntity(skelehorse);
 				}
 			}
