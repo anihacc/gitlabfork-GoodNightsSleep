@@ -181,6 +181,16 @@
 	"itemGroup.gns_armor": "Good Night's Sleep Armor",
 	"itemGroup.gns_items": "Good Night's Sleep Items",
 
+	"subtitles.entity.unicorn.idle": "Unicorn neighs",
+	"subtitles.entity.unicorn.hurt": "Unicorn hurts",
+	"subtitles.entity.unicorn.death": "Unicorn dies",
+	"subtitles.entity.tormenter.idle": "Tormenter echoes",
+	"subtitles.entity.tormenter.hurt": "Tormenter hurts",
+	"subtitles.entity.tormenter.death": "Tormenter dies",
+	"subtitles.entity.tormenter.torment": "Tormenter torments",
+	"subtitles.entity.herobrine.hurt": "Herobrine hurts",
+	"subtitles.entity.herobrine.death": "Herobrine dies",
+
 	"death.attack.nightmare_grass": "%1$s was pricked by Nightmare Grass",
 
 	"advancements.goodnightsleep.root.title": "Good Night's Sleep",

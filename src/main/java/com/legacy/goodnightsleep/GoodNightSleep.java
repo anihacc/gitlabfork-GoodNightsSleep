@@ -1,5 +1,6 @@
 package com.legacy.goodnightsleep;
 
+import com.legacy.goodnightsleep.blocks.util.ToolCompat;
 import com.legacy.goodnightsleep.client.GoodNightSleepClient;
 import com.legacy.goodnightsleep.world.dream.features.GNSFeatures;
 
@@ -45,7 +46,7 @@ public class GoodNightSleep
 	{
 		for (Biome biome : ForgeRegistries.BIOMES.getValues())
 		{
-			if (biome.getRegistryName().getNamespace().equalsIgnoreCase("minecraft") && !BiomeDictionary.hasType(biome, BiomeDictionary.Type.END) && !BiomeDictionary.hasType(biome, BiomeDictionary.Type.VOID))
+			if ((biome.getRegistryName().getNamespace().equalsIgnoreCase("minecraft") || biome.getRegistryName().getNamespace().equalsIgnoreCase("biomesoplenty")) && !BiomeDictionary.hasType(biome, BiomeDictionary.Type.END) && !BiomeDictionary.hasType(biome, BiomeDictionary.Type.VOID))
 			{
 				if (BiomeDictionary.hasType(biome, BiomeDictionary.Type.NETHER))
 				{
@@ -60,6 +61,7 @@ public class GoodNightSleep
 			}
 		}
 
+		ToolCompat.init();
 		MinecraftForge.EVENT_BUS.register(new GNSEvents());
 	}
 

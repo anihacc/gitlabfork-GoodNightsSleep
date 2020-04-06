@@ -25,5 +25,88 @@
         "stream": true
       }
     ]
+  },
+  "entity.tormenter.idle": {
+      "category": "hostile",
+    "subtitle": "subtitles.entity.tormenter.idle",
+    "sounds": [
+        {
+        "name": "ambient.cave",
+        "type": "event"
+      }
+    ]
+  },
+  "entity.tormenter.hurt": {
+    "category": "hostile",
+    "subtitle": "subtitles.entity.tormenter.hurt",
+    "sounds": [
+      {
+        "name": "ambient.cave",
+        "type": "event"
+      }
+    ]
+  },
+  "entity.tormenter.death": {
+    "category": "hostile",
+    "subtitle": "subtitles.entity.tormenter.death",
+    "sounds": [
+      {
+        "name": "entity.zombie_horse.death",
+        "type": "event"
+      }
+    ]
+  },
+  "entity.tormenter.torment": {
+    "category": "hostile",
+    "subtitle": "subtitles.entity.tormenter.torment",
+    "sounds": [
+        "mob/guardian/curse"
+    ]
+  },
+  "entity.unicorn.idle": {
+    "category": "neutral",
+    "subtitle": "subtitles.entity.unicorn.idle",
+    "sounds": [
+        "mob/horse/idle1",
+        "mob/horse/idle2",
+        "mob/horse/idle3"
+    ]
+  },
+  "entity.unicorn.hurt": {
+    "category": "neutral",
+    "subtitle": "subtitles.entity.unicorn.hurt",
+    "sounds": [
+        "mob/horse/hit1",
+        "mob/horse/hit2",
+        "mob/horse/hit3",
+        "mob/horse/hit4"
+    ]
+  },
+  "entity.unicorn.death": {
+    "category": "neutral",
+    "subtitle": "subtitles.entity.unicorn.death",
+    "sounds": [
+        "mob/horse/death"
+    ]
+  },
+  "entity.herobrine.hurt": {
+    "category": "hostile",
+    "subtitle": "subtitles.entity.herobrine.hurt",
+    "sounds": [
+      {
+        "name": "entity.wither.hurt",
+        "type": "event"
+      }
+    ]
+  },
+  "entity.herobrine.death": {
+    "category": "hostile",
+    "subtitle": "subtitles.entity.herobrine.death",
+    "sounds": [
+      {
+        "name": "entity.wither.death",
+        "type": "event"
+      }
+    ]
   }
 }

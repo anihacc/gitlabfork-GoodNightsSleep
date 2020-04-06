@@ -1,5 +1,7 @@
 package com.legacy.goodnightsleep.entity;
 
+import com.legacy.goodnightsleep.client.audio.GNSSounds;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityPredicate;
 import net.minecraft.entity.EntitySize;
@@ -40,6 +42,7 @@ public class HerobrineEntity extends MonsterEntity
 		this(GNSEntityTypes.HEROBRINE, worldIn);
 	}
 
+	@Override
 	protected void registerGoals()
 	{
 		super.registerGoals();
@@ -52,6 +55,7 @@ public class HerobrineEntity extends MonsterEntity
 		this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)));
 	}
 
+	@Override
 	protected void registerAttributes()
 	{
 		super.registerAttributes();
@@ -62,21 +66,25 @@ public class HerobrineEntity extends MonsterEntity
 		this.getAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(64.0D);
 	}
 
+	@Override
 	protected SoundEvent getAmbientSound()
 	{
 		return null;
 	}
 
+	@Override
 	protected SoundEvent getHurtSound(DamageSource source)
 	{
-		return SoundEvents.ENTITY_WITHER_HURT;
+		return GNSSounds.ENTITY_HEROBRINE_HURT;
 	}
 
+	@Override
 	protected SoundEvent getDeathSound()
 	{
-		return SoundEvents.ENTITY_WITHER_DEATH;
+		return GNSSounds.ENTITY_HEROBRINE_DEATH;
 	}
 
+	@Override
 	public boolean attackEntityFrom(DamageSource source, float amount)
 	{
 		if (this.isInvulnerableTo(source))
