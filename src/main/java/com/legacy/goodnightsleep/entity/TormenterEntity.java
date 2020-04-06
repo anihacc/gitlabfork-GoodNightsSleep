@@ -14,7 +14,6 @@ import net.minecraft.world.World;
 
 public class TormenterEntity extends ZombieEntity
 {
-
 	public TormenterEntity(EntityType<? extends TormenterEntity> type, World worldIn)
 	{
 		super(type, worldIn);

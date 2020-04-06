@@ -22,9 +22,8 @@ import net.minecraft.world.gen.feature.DecoratedFeatureConfig;
 import net.minecraft.world.gen.feature.FlowersFeature;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.PlantType;
-import net.minecraftforge.common.extensions.IForgeBlockState;
 
-public class GNSGrassBlock extends GrassBlock implements IForgeBlockState
+public class GNSGrassBlock extends GrassBlock
 {
 
 	public GNSGrassBlock()
@@ -84,7 +83,7 @@ public class GNSGrassBlock extends GrassBlock implements IForgeBlockState
 		}
 	}
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@SuppressWarnings({ "unchecked", "rawtypes", "deprecation" })
 	@Override
 	public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state)
 	{

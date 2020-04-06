@@ -14,7 +14,6 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MutableBoundingBox;
-import net.minecraft.world.IWorld;
 import net.minecraft.world.gen.IWorldGenerationBaseReader;
 import net.minecraft.world.gen.IWorldGenerationReader;
 import net.minecraft.world.gen.feature.AbstractTreeFeature;
