@@ -19,13 +19,18 @@ import net.minecraft.block.Block;
 import net.minecraft.block.Block.Properties;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.FenceBlock;
+import net.minecraft.block.FenceGateBlock;
 import net.minecraft.block.HugeMushroomBlock;
 import net.minecraft.block.LeavesBlock;
 import net.minecraft.block.LogBlock;
+import net.minecraft.block.PressurePlateBlock;
 import net.minecraft.block.SaplingBlock;
 import net.minecraft.block.SlabBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.StairsBlock;
+import net.minecraft.block.StoneButtonBlock;
+import net.minecraft.block.WallBlock;
+import net.minecraft.block.WoodButtonBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraftforge.common.ToolType;
@@ -63,6 +68,18 @@ public class GNSBlocks
 	public static Block delusion_stone, delusion_cobblestone, delusion_stonebrick;
 
 	public static Block dream_fence, white_fence, dead_fence, blood_fence;
+	
+	public static Block delusion_cobblestone_wall, delusion_stonebrick_wall;
+
+	public static Block dream_fence_gate, white_fence_gate, dead_fence_gate, blood_fence_gate;
+
+	public static Block dream_button, white_button, dead_button, blood_button, delusion_button;
+
+	public static Block dream_pressure_plate, white_pressure_plate, dead_pressure_plate, blood_pressure_plate, delusion_pressure_plate;
+
+	public static Block dream_door, white_door, dead_door, blood_door;
+
+	public static Block dream_trapdoor, white_trapdoor, dead_trapdoor, blood_trapdoor;
 
 	public static Block dream_slab, white_slab, dead_slab, blood_slab;
 
@@ -82,7 +99,6 @@ public class GNSBlocks
 
 	public static ArrayList<Block> gnsBlockList = Lists.newArrayList();
 
-	@SuppressWarnings("deprecation")
 	public static void init(RegistryEvent.Register<Block> event)
 	{
 		iBlockRegistry = event.getRegistry();
@@ -160,14 +176,36 @@ public class GNSBlocks
 		dead_fence = register("dead_fence", new FenceBlock(Block.Properties.from(Blocks.OAK_FENCE)));
 		blood_fence = register("blood_fence", new FenceBlock(Block.Properties.from(Blocks.OAK_FENCE)));
 
-		dream_stairs = register("dream_stairs", new StairsBlock(GNSBlocks.dream_plank.getDefaultState(), Block.Properties.from(GNSBlocks.dream_plank)) {});
-		white_stairs = register("white_stairs", new StairsBlock(GNSBlocks.white_plank.getDefaultState(), Block.Properties.from(GNSBlocks.white_plank)) {});
-		dead_stairs = register("dead_stairs", new StairsBlock(GNSBlocks.dead_plank.getDefaultState(), Block.Properties.from(GNSBlocks.dead_plank)) {});
-		blood_stairs = register("blood_stairs", new StairsBlock(GNSBlocks.blood_plank.getDefaultState(), Block.Properties.from(GNSBlocks.blood_plank)) {});
+		delusion_cobblestone_wall = register("delusion_cobblestone_wall", new WallBlock(Block.Properties.from(Blocks.COBBLESTONE_WALL)));
+		delusion_stonebrick_wall = register("delusion_stonebrick_wall", new WallBlock(Block.Properties.from(Blocks.STONE_BRICK_WALL)));
 
-		delusion_stone_stairs = register("delusion_stone_stairs", new StairsBlock(GNSBlocks.delusion_stone.getDefaultState(), Block.Properties.from(GNSBlocks.delusion_stone)) {});
-		delusion_cobblestone_stairs = register("delusion_cobblestone_stairs", new StairsBlock(GNSBlocks.delusion_cobblestone.getDefaultState(), Block.Properties.from(GNSBlocks.delusion_cobblestone)) {});
-		delusion_stonebrick_stairs = register("delusion_stonebrick_stairs", new StairsBlock(GNSBlocks.delusion_stonebrick.getDefaultState(), Block.Properties.from(GNSBlocks.delusion_stonebrick)) {});
+		dream_fence_gate = register("dream_fence_gate", new FenceGateBlock(Block.Properties.from(Blocks.OAK_FENCE_GATE)));
+		white_fence_gate = register("white_fence_gate", new FenceGateBlock(Block.Properties.from(Blocks.OAK_FENCE_GATE)));
+		dead_fence_gate = register("dead_fence_gate", new FenceGateBlock(Block.Properties.from(Blocks.OAK_FENCE_GATE)));
+		blood_fence_gate = register("blood_fence_gate", new FenceGateBlock(Block.Properties.from(Blocks.OAK_FENCE_GATE)));
+
+		dream_button = register("dream_button", new WoodButtonBlock(Block.Properties.from(Blocks.OAK_BUTTON)) {});
+		white_button = register("white_button", new WoodButtonBlock(Block.Properties.from(Blocks.OAK_BUTTON)) {});
+		dead_button = register("dead_button", new WoodButtonBlock(Block.Properties.from(Blocks.OAK_BUTTON)) {});
+		blood_button = register("blood_button", new WoodButtonBlock(Block.Properties.from(Blocks.OAK_BUTTON)) {});
+
+		delusion_button = register("delusion_button", new StoneButtonBlock(Block.Properties.from(Blocks.STONE_BUTTON)) {});
+
+		dream_pressure_plate = register("dream_pressure_plate", new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, Block.Properties.from(Blocks.OAK_PRESSURE_PLATE)) {});
+		white_pressure_plate = register("white_pressure_plate", new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, Block.Properties.from(Blocks.OAK_PRESSURE_PLATE)) {});
+		dead_pressure_plate = register("dead_pressure_plate", new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, Block.Properties.from(Blocks.OAK_PRESSURE_PLATE)) {});
+		blood_pressure_plate = register("blood_pressure_plate", new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, Block.Properties.from(Blocks.OAK_PRESSURE_PLATE)) {});
+
+		delusion_pressure_plate = register("delusion_pressure_plate", new PressurePlateBlock(PressurePlateBlock.Sensitivity.MOBS, Block.Properties.from(Blocks.STONE_PRESSURE_PLATE)) {});
+
+		dream_stairs = register("dream_stairs", new StairsBlock(() -> GNSBlocks.dream_plank.getDefaultState(), Block.Properties.from(GNSBlocks.dream_plank)) {});
+		white_stairs = register("white_stairs", new StairsBlock(() -> GNSBlocks.white_plank.getDefaultState(), Block.Properties.from(GNSBlocks.white_plank)) {});
+		dead_stairs = register("dead_stairs", new StairsBlock(() -> GNSBlocks.dead_plank.getDefaultState(), Block.Properties.from(GNSBlocks.dead_plank)) {});
+		blood_stairs = register("blood_stairs", new StairsBlock(() -> GNSBlocks.blood_plank.getDefaultState(), Block.Properties.from(GNSBlocks.blood_plank)) {});
+
+		delusion_stone_stairs = register("delusion_stone_stairs", new StairsBlock(() -> GNSBlocks.delusion_stone.getDefaultState(), Block.Properties.from(GNSBlocks.delusion_stone)) {});
+		delusion_cobblestone_stairs = register("delusion_cobblestone_stairs", new StairsBlock(() -> GNSBlocks.delusion_cobblestone.getDefaultState(), Block.Properties.from(GNSBlocks.delusion_cobblestone)) {});
+		delusion_stonebrick_stairs = register("delusion_stonebrick_stairs", new StairsBlock(() -> GNSBlocks.delusion_stonebrick.getDefaultState(), Block.Properties.from(GNSBlocks.delusion_stonebrick)) {});
 
 		dream_slab = register("dream_slab", new SlabBlock(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
 		white_slab = register("white_slab", new SlabBlock(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
