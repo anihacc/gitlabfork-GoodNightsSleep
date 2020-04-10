@@ -26,7 +26,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class GoodNightSleep
 {
 	public static final String NAME = "Good Night's Sleep";
-
 	public static final String MODID = "goodnightsleep";
 
 	public GoodNightSleep()

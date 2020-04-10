@@ -39,6 +39,15 @@ public class GoodNightSleepClient
 		renderCutout(GNSBlocks.potted_hope_mushroom);
 		renderCutout(GNSBlocks.potted_despair_mushroom);
 
+		renderCutout(GNSBlocks.dream_door);
+		renderCutout(GNSBlocks.white_door);
+		renderCutout(GNSBlocks.dead_door);
+		renderCutout(GNSBlocks.blood_door);
+		renderCutout(GNSBlocks.dream_trapdoor);
+		renderCutout(GNSBlocks.white_trapdoor);
+		renderCutout(GNSBlocks.dead_trapdoor);
+		renderCutout(GNSBlocks.blood_trapdoor);
+
 		RenderTypeLookup.setRenderLayer(GNSBlocks.rainbow, RenderType.getTranslucent());
 		RenderTypeLookup.setRenderLayer(GNSBlocks.dream_leaves, RenderType.getCutoutMipped());
 		RenderTypeLookup.setRenderLayer(GNSBlocks.candy_leaves, RenderType.getCutoutMipped());

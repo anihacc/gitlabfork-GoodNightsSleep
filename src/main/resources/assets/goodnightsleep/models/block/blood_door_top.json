@@ -1,0 +1,7 @@
+{
+    "parent": "block/door_top",
+    "textures": {
+        "bottom": "goodnightsleep:block/construction/blood_door_bottom",
+        "top": "goodnightsleep:block/construction/blood_door_top"
+    }
+}

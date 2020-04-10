@@ -16,6 +16,7 @@ import net.minecraft.item.PickaxeItem;
 import net.minecraft.item.ShovelItem;
 import net.minecraft.item.SpawnEggItem;
 import net.minecraft.item.SwordItem;
+import net.minecraft.item.TallBlockItem;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.registries.IForgeRegistry;
 
@@ -53,6 +54,8 @@ public class GNSItems
 
 	public static Item luxurious_bed_item, wretched_bed_item, strange_bed_item;
 
+	public static Item dream_door, white_door, dead_door, blood_door;
+
 	public static Item unicorn_spawn_egg, gummy_bear_spawn_egg, baby_creeper_spawn_egg, tormenter_spawn_egg,
 			herobrine_spawn_egg, giant_spawn_egg;
 
@@ -64,6 +67,11 @@ public class GNSItems
 		luxurious_bed_item = register("luxurious_bed_item", new BedItem(GNSBlocks.luxurious_bed, (new Item.Properties()).maxStackSize(1).group(GNSCreativeTabs.blocks)));
 		wretched_bed_item = register("wretched_bed_item", new BedItem(GNSBlocks.wretched_bed, (new Item.Properties()).maxStackSize(1).group(GNSCreativeTabs.blocks)));
 		strange_bed_item = register("strange_bed_item", new BedItem(GNSBlocks.strange_bed, (new Item.Properties()).maxStackSize(1).group(GNSCreativeTabs.blocks)));
+
+		dream_door = register("dream_door", new TallBlockItem(GNSBlocks.dream_door, (new Item.Properties()).group(GNSCreativeTabs.blocks)));
+		white_door = register("white_door", new TallBlockItem(GNSBlocks.white_door, (new Item.Properties()).group(GNSCreativeTabs.blocks)));
+		dead_door = register("dead_door", new TallBlockItem(GNSBlocks.dead_door, (new Item.Properties()).group(GNSCreativeTabs.blocks)));
+		blood_door = register("blood_door", new TallBlockItem(GNSBlocks.blood_door, (new Item.Properties()).group(GNSCreativeTabs.blocks)));
 
 		unicorn_spawn_egg = register("unicorn_spawn_egg", new SpawnEggItem(GNSEntityTypes.UNICORN, 0xffffff, 0xdf8cf8, new Item.Properties().group(GNSCreativeTabs.items)));
 		gummy_bear_spawn_egg = register("gummy_bear_spawn_egg", new SpawnEggItem(GNSEntityTypes.GUMMY_BEAR, 0xffffff, 0xffffff, new Item.Properties()));

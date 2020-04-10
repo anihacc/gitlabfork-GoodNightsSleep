@@ -1,0 +1,16 @@
+{
+	"variants": {
+		"facing=north": {
+			"model": "goodnightsleep:block/dream_chest"
+		},
+		"facing=west": {
+			"model": "goodnightsleep:block/dream_chest"
+		},
+		"facing=east": {
+			"model": "goodnightsleep:block/dream_chest"
+		},
+		"facing=south": {
+			"model": "goodnightsleep:block/dream_chest"
+		}
+	}
+}

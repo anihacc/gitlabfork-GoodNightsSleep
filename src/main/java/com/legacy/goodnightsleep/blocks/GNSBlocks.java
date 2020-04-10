@@ -18,6 +18,7 @@ import com.legacy.goodnightsleep.item.sapling.DreamTree;
 import net.minecraft.block.Block;
 import net.minecraft.block.Block.Properties;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.DoorBlock;
 import net.minecraft.block.FenceBlock;
 import net.minecraft.block.FenceGateBlock;
 import net.minecraft.block.HugeMushroomBlock;
@@ -29,6 +30,7 @@ import net.minecraft.block.SlabBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.StairsBlock;
 import net.minecraft.block.StoneButtonBlock;
+import net.minecraft.block.TrapDoorBlock;
 import net.minecraft.block.WallBlock;
 import net.minecraft.block.WoodButtonBlock;
 import net.minecraft.block.material.Material;
@@ -171,6 +173,16 @@ public class GNSBlocks
 
 		rainbow_crop = registerBlock("rainbow_crop", new GNSRainbowCropBlock());
 
+		dream_door = registerBlock("dream_door", new DoorBlock(Block.Properties.from(Blocks.OAK_DOOR)) {});
+		white_door = registerBlock("white_door", new DoorBlock(Block.Properties.from(Blocks.OAK_DOOR)) {});
+		dead_door = registerBlock("dead_door", new DoorBlock(Block.Properties.from(Blocks.OAK_DOOR)) {});
+		blood_door = registerBlock("blood_door", new DoorBlock(Block.Properties.from(Blocks.OAK_DOOR)) {});
+
+		dream_trapdoor = register("dream_trapdoor", new TrapDoorBlock(Block.Properties.from(Blocks.OAK_TRAPDOOR)) {});
+		white_trapdoor = register("white_trapdoor", new TrapDoorBlock(Block.Properties.from(Blocks.OAK_TRAPDOOR)) {});
+		dead_trapdoor = register("dead_trapdoor", new TrapDoorBlock(Block.Properties.from(Blocks.OAK_TRAPDOOR)) {});
+		blood_trapdoor = register("blood_trapdoor", new TrapDoorBlock(Block.Properties.from(Blocks.OAK_TRAPDOOR)) {});
+		
 		dream_fence = register("dream_fence", new FenceBlock(Block.Properties.from(Blocks.OAK_FENCE)));
 		white_fence = register("white_fence", new FenceBlock(Block.Properties.from(Blocks.OAK_FENCE)));
 		dead_fence = register("dead_fence", new FenceBlock(Block.Properties.from(Blocks.OAK_FENCE)));

@@ -1,0 +1,12 @@
+{
+    "parent": "block/cube",
+    "textures": {
+        "particle": "goodnightsleep:block/construction/dead_crafting_table_front",
+        "down": "goodnightsleep:block/construction/dead_plank",
+        "up": "goodnightsleep:block/construction/dead_crafting_table_top",
+        "north": "goodnightsleep:block/construction/dead_crafting_table_front",
+        "east": "goodnightsleep:block/construction/dead_crafting_table_side",
+        "south": "goodnightsleep:block/construction/dead_crafting_table_side",
+        "west": "goodnightsleep:block/construction/dead_crafting_table_front"
+    }
+}
