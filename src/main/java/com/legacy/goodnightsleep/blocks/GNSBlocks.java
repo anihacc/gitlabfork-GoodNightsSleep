@@ -43,7 +43,7 @@ public class GNSBlocks
 {
 	public static Block dream_grass_block, dream_dirt, dream_farmland, nightmare_grass_block;
 
-	public static Block tall_dream_grass, lolipop_bush, tall_nightmare_grass, prickly_nightmare_grass;
+	public static Block dream_grass, lolipop_bush, nightmare_grass, prickly_nightmare_grass;
 
 	public static Block zitrite_ore, candy_ore, rainbow_ore, positite_ore, negatite_ore, necrum_ore;
 
@@ -53,7 +53,7 @@ public class GNSBlocks
 
 	public static Block candy_block, rainbow_block, positite_block, necrum_block, zitrite_block, negatite_block; 
 
-	public static Block dead_plank, blood_plank, white_plank, dream_plank;
+	public static Block dead_planks, blood_planks, white_planks, dream_planks;
 
 	public static Block dream_sapling, candy_sapling;
 
@@ -61,7 +61,7 @@ public class GNSBlocks
 
 	public static Block hope_mushroom_block, despair_mushroom_block;
 
-	public static Block rainbow_crop;
+	public static Block rainbow_berries;
 
 	public static Block dream_log, white_log, dead_log, blood_log, dream_wood, white_wood, dead_wood, blood_wood;
 
@@ -109,16 +109,16 @@ public class GNSBlocks
 		wretched_bed = registerBlock("wretched_bed", new GNSBedBlock(Block.Properties.from(Blocks.GRAY_BED)));
 		strange_bed = registerBlock("strange_bed", new GNSBedBlock(Block.Properties.from(Blocks.RED_BED)));
 
-		tall_dream_grass = register("tall_dream_grass", new GNSTallGrassBlock(Block.Properties.from(Blocks.GRASS)));
-		tall_nightmare_grass = register("tall_nightmare_grass", new GNSTallGrassBlock(Block.Properties.from(Blocks.GRASS)));
+		dream_grass = register("dream_grass", new GNSTallGrassBlock(Block.Properties.from(Blocks.GRASS)));
+		nightmare_grass = register("nightmare_grass", new GNSTallGrassBlock(Block.Properties.from(Blocks.GRASS)));
 		prickly_nightmare_grass = register("prickly_nightmare_grass", new GNSTallGrassBlock(Block.Properties.from(Blocks.GRASS)));
-		dream_grass_block = register("dream_grass", new GNSGrassBlock());
+		dream_grass_block = register("dream_grass_block", new GNSGrassBlock());
 		dream_dirt = register("dream_dirt", new Block(Block.Properties.from(Blocks.DIRT)));
 		dream_farmland = register("dream_farmland", new GNSFarmlandBlock(Properties.from(Blocks.FARMLAND)));
 		delusion_stone = register("delusion_stone", new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F)));
 		delusion_cobblestone = register("delusion_cobblestone", new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(2.0F, 6.0F)));
 		delusion_stonebrick = register("delusion_stonebrick", new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(2.0F, 6.0F)));
-		nightmare_grass_block = register("nightmare_grass", new GNSGrassBlock());
+		nightmare_grass_block = register("nightmare_grass_block", new GNSGrassBlock());
 		hope_mushroom_block = register("hope_mushroom_block", new HugeMushroomBlock(Block.Properties.create(Material.WOOD, MaterialColor.YELLOW).hardnessAndResistance(0.2F).sound(SoundType.WOOD)));
 		despair_mushroom_block = register("despair_mushroom_block", new HugeMushroomBlock(Block.Properties.create(Material.WOOD, MaterialColor.GRAY).hardnessAndResistance(0.2F).sound(SoundType.WOOD)));
 
@@ -156,10 +156,10 @@ public class GNSBlocks
 		stripped_dead_wood = register("stripped_dead_wood", new LogBlock(MaterialColor.GRAY, Block.Properties.from(Blocks.OAK_LOG)));
 		stripped_blood_wood = register("stripped_blood_wood", new LogBlock(MaterialColor.RED, Block.Properties.from(Blocks.OAK_LOG)));
 
-		dream_plank = register("dream_plank", new Block(Block.Properties.from(Blocks.OAK_PLANKS)));
-		white_plank = register("white_plank", new Block(Block.Properties.from(Blocks.OAK_PLANKS)));
-		dead_plank = register("dead_plank", new Block(Block.Properties.from(Blocks.OAK_PLANKS)));
-		blood_plank = register("blood_plank", new Block(Block.Properties.from(Blocks.OAK_PLANKS)));
+		dream_planks = register("dream_planks", new Block(Block.Properties.from(Blocks.OAK_PLANKS)));
+		white_planks = register("white_planks", new Block(Block.Properties.from(Blocks.OAK_PLANKS)));
+		dead_planks = register("dead_planks", new Block(Block.Properties.from(Blocks.OAK_PLANKS)));
+		blood_planks = register("blood_planks", new Block(Block.Properties.from(Blocks.OAK_PLANKS)));
 
 		dream_sapling = register("dream_sapling", new SaplingBlock(new DreamTree(), Block.Properties.from(Blocks.OAK_SAPLING)) {});
 		candy_sapling = register("candy_sapling", new SaplingBlock(new CandyTree(), Block.Properties.from(Blocks.OAK_SAPLING)) {});
@@ -171,7 +171,7 @@ public class GNSBlocks
 		lolipop_bush = register("lolipop_bush", new GNSFlowerBlock(Block.Properties.from(Blocks.POPPY)));
 		dead_flower = register("dead_flower", new GNSFlowerBlock(Block.Properties.from(Blocks.POPPY)));
 
-		rainbow_crop = registerBlock("rainbow_crop", new GNSRainbowCropBlock());
+		rainbow_berries = registerBlock("rainbow_berries", new GNSRainbowCropBlock());
 
 		dream_door = registerBlock("dream_door", new DoorBlock(Block.Properties.from(Blocks.OAK_DOOR)) {});
 		white_door = registerBlock("white_door", new DoorBlock(Block.Properties.from(Blocks.OAK_DOOR)) {});
@@ -210,10 +210,10 @@ public class GNSBlocks
 
 		delusion_pressure_plate = register("delusion_pressure_plate", new PressurePlateBlock(PressurePlateBlock.Sensitivity.MOBS, Block.Properties.from(Blocks.STONE_PRESSURE_PLATE)) {});
 
-		dream_stairs = register("dream_stairs", new StairsBlock(() -> GNSBlocks.dream_plank.getDefaultState(), Block.Properties.from(GNSBlocks.dream_plank)) {});
-		white_stairs = register("white_stairs", new StairsBlock(() -> GNSBlocks.white_plank.getDefaultState(), Block.Properties.from(GNSBlocks.white_plank)) {});
-		dead_stairs = register("dead_stairs", new StairsBlock(() -> GNSBlocks.dead_plank.getDefaultState(), Block.Properties.from(GNSBlocks.dead_plank)) {});
-		blood_stairs = register("blood_stairs", new StairsBlock(() -> GNSBlocks.blood_plank.getDefaultState(), Block.Properties.from(GNSBlocks.blood_plank)) {});
+		dream_stairs = register("dream_stairs", new StairsBlock(() -> GNSBlocks.dream_planks.getDefaultState(), Block.Properties.from(GNSBlocks.dream_planks)) {});
+		white_stairs = register("white_stairs", new StairsBlock(() -> GNSBlocks.white_planks.getDefaultState(), Block.Properties.from(GNSBlocks.white_planks)) {});
+		dead_stairs = register("dead_stairs", new StairsBlock(() -> GNSBlocks.dead_planks.getDefaultState(), Block.Properties.from(GNSBlocks.dead_planks)) {});
+		blood_stairs = register("blood_stairs", new StairsBlock(() -> GNSBlocks.blood_planks.getDefaultState(), Block.Properties.from(GNSBlocks.blood_planks)) {});
 
 		delusion_stone_stairs = register("delusion_stone_stairs", new StairsBlock(() -> GNSBlocks.delusion_stone.getDefaultState(), Block.Properties.from(GNSBlocks.delusion_stone)) {});
 		delusion_cobblestone_stairs = register("delusion_cobblestone_stairs", new StairsBlock(() -> GNSBlocks.delusion_cobblestone.getDefaultState(), Block.Properties.from(GNSBlocks.delusion_cobblestone)) {});

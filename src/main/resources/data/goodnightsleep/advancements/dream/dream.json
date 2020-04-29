@@ -2,7 +2,7 @@
   "parent": "goodnightsleep:root",
   "display": {
     "icon": {
-      "item": "goodnightsleep:luxurious_bed_item"
+      "item": "goodnightsleep:luxurious_bed"
     },
     "title": {
       "translate": "advancements.goodnightsleep.dream.title"

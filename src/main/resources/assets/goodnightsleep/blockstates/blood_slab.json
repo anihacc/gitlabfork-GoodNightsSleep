@@ -2,6 +2,6 @@
     "variants": {
         "type=bottom": { "model": "goodnightsleep:block/blood_slab" },
         "type=top": { "model": "goodnightsleep:block/blood_slab_top" },
-        "type=double": { "model": "goodnightsleep:block/blood_plank" }
+        "type=double": { "model": "goodnightsleep:block/blood_planks" }
     }
 }

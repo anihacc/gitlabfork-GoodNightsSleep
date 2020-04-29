@@ -7,16 +7,16 @@
   "key": {
     "#": [
 	  {
-        "item": "goodnightsleep:dream_plank"
+        "item": "goodnightsleep:dream_planks"
 	  },
 	  {
-        "item": "goodnightsleep:white_plank"
+        "item": "goodnightsleep:white_planks"
 	  },
 	  {
-        "item": "goodnightsleep:dead_plank"
+        "item": "goodnightsleep:dead_planks"
 	  },
 	  {
-        "item": "goodnightsleep:blood_plank"
+        "item": "goodnightsleep:blood_planks"
 	  }
     ]
   },

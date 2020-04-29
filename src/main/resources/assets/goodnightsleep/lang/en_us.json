@@ -99,11 +99,13 @@
 	"block.goodnightsleep.white_pressure_plate": "White Pressure Plate",
 	"block.goodnightsleep.dead_pressure_plate": "Dead Pressure Plate",
 	"block.goodnightsleep.blood_pressure_plate": "Blood Pressure Plate",
+	"block.goodnightsleep.delusion_pressure_plate": "Delusion Stone Pressure Plate",
 
 	"block.goodnightsleep.dream_button": "Dream Button",
 	"block.goodnightsleep.white_button": "White Button",
 	"block.goodnightsleep.dead_button": "Dead Button",
 	"block.goodnightsleep.blood_button": "Blood Button",
+	"block.goodnightsleep.delusion_button": "Delusion Stone Button",
 
 	"block.goodnightsleep.dream_stairs": "Dream Stairs",
 	"block.goodnightsleep.white_stairs": "White Stairs",

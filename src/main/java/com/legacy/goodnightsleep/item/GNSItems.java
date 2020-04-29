@@ -52,7 +52,7 @@ public class GNSItems
 
 	public static Item powdered_sugar, necrotic_extract, rainbow_seeds;
 
-	public static Item luxurious_bed_item, wretched_bed_item, strange_bed_item;
+	public static Item luxurious_bed, wretched_bed, strange_bed;
 
 	public static Item dream_door, white_door, dead_door, blood_door;
 
@@ -64,9 +64,9 @@ public class GNSItems
 		iItemRegistry = event.getRegistry();
 
 		// Block Items
-		luxurious_bed_item = register("luxurious_bed_item", new BedItem(GNSBlocks.luxurious_bed, (new Item.Properties()).maxStackSize(1).group(GNSCreativeTabs.blocks)));
-		wretched_bed_item = register("wretched_bed_item", new BedItem(GNSBlocks.wretched_bed, (new Item.Properties()).maxStackSize(1).group(GNSCreativeTabs.blocks)));
-		strange_bed_item = register("strange_bed_item", new BedItem(GNSBlocks.strange_bed, (new Item.Properties()).maxStackSize(1).group(GNSCreativeTabs.blocks)));
+		luxurious_bed = register("luxurious_bed", new BedItem(GNSBlocks.luxurious_bed, (new Item.Properties()).maxStackSize(1).group(GNSCreativeTabs.blocks)));
+		wretched_bed = register("wretched_bed", new BedItem(GNSBlocks.wretched_bed, (new Item.Properties()).maxStackSize(1).group(GNSCreativeTabs.blocks)));
+		strange_bed = register("strange_bed", new BedItem(GNSBlocks.strange_bed, (new Item.Properties()).maxStackSize(1).group(GNSCreativeTabs.blocks)));
 
 		dream_door = register("dream_door", new TallBlockItem(GNSBlocks.dream_door, (new Item.Properties()).group(GNSCreativeTabs.blocks)));
 		white_door = register("white_door", new TallBlockItem(GNSBlocks.white_door, (new Item.Properties()).group(GNSCreativeTabs.blocks)));
@@ -92,7 +92,7 @@ public class GNSItems
 
 		candy = register("candy", new Item(new Item.Properties().group(GNSCreativeTabs.items).food(GNSFoods.CANDY)));
 
-		rainbow_seeds = register("rainbow_seeds", new BlockNamedItem(GNSBlocks.rainbow_crop, new Item.Properties().group(GNSCreativeTabs.items)));
+		rainbow_seeds = register("rainbow_seeds", new BlockNamedItem(GNSBlocks.rainbow_berries, new Item.Properties().group(GNSCreativeTabs.items)));
 		rainbow_berries = register("rainbow_berries", new Item(new Item.Properties().group(GNSCreativeTabs.items).food(GNSFoods.RAINBOW_BERRIES)));
 
 		luxurious_soup = register("luxurious_soup", new Item(new Item.Properties().maxStackSize(1).group(GNSCreativeTabs.items).food(GNSFoods.TELEPORTATION_STEW)));

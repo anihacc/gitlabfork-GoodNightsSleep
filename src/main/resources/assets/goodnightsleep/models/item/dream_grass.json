@@ -1,3 +1,6 @@
 {
-	"parent": "goodnightsleep:block/dream_grass"
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "goodnightsleep:block/natural/tall_dream_grass"
+    }
 }

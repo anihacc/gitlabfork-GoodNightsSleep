@@ -25,12 +25,12 @@ public class GoodNightSleepClient
 		renderCutout(GNSBlocks.dead_flower);
 		renderCutout(GNSBlocks.orange_flower);
 		renderCutout(GNSBlocks.lolipop_bush);
-		renderCutout(GNSBlocks.tall_dream_grass);
-		renderCutout(GNSBlocks.tall_nightmare_grass);
+		renderCutout(GNSBlocks.dream_grass);
+		renderCutout(GNSBlocks.nightmare_grass);
 		renderCutout(GNSBlocks.prickly_nightmare_grass);
 		renderCutout(GNSBlocks.hope_mushroom);
 		renderCutout(GNSBlocks.despair_mushroom);
-		renderCutout(GNSBlocks.rainbow_crop);
+		renderCutout(GNSBlocks.rainbow_berries);
 		renderCutout(GNSBlocks.potted_candy_sapling);
 		renderCutout(GNSBlocks.potted_dream_sapling);
 		renderCutout(GNSBlocks.potted_cyan_flower);

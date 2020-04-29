@@ -49,11 +49,11 @@ public class GNSTallGrassBlock extends BushBlock implements IGrowable
 		BlockState iblockstate = worldIn.getBlockState(blockpos);
 		Block block = iblockstate.getBlock();
 
-		if (this == GNSBlocks.tall_dream_grass)
+		if (this == GNSBlocks.dream_grass)
 		{
 			return block == GNSBlocks.dream_grass_block || block == GNSBlocks.dream_dirt;
 		}
-		if (this == GNSBlocks.tall_nightmare_grass || this == GNSBlocks.prickly_nightmare_grass)
+		if (this == GNSBlocks.nightmare_grass || this == GNSBlocks.prickly_nightmare_grass)
 		{
 			return block == GNSBlocks.nightmare_grass_block || block == Blocks.DIRT;
 		}

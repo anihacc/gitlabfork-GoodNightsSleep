@@ -88,7 +88,7 @@ public class GNSGrassBlock extends GrassBlock
 	public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state)
 	{
 		BlockPos blockpos = pos.up();
-		BlockState blockstate = state.getBlock() == GNSBlocks.nightmare_grass_block ? GNSBlocks.tall_nightmare_grass.getDefaultState() : GNSBlocks.tall_dream_grass.getDefaultState();
+		BlockState blockstate = state.getBlock() == GNSBlocks.nightmare_grass_block ? GNSBlocks.nightmare_grass.getDefaultState() : GNSBlocks.dream_grass.getDefaultState();
 
 		for (int i = 0; i < 128; ++i)
 		{

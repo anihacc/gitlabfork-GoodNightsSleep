@@ -7,7 +7,7 @@
 			"entries": [
 				{
 					"type": "minecraft:item",
-					"name": "goodnightsleep:dead_plank"
+					"name": "goodnightsleep:dead_planks"
 				}
 			],
 			"conditions": [
