@@ -73,6 +73,16 @@
 	"block.goodnightsleep.present": "Present",
 	"block.goodnightsleep.pot_of_gold": "Pot of Gold",
 
+	"block.goodnightsleep.dream_chest": "Dream Chest",
+	"block.goodnightsleep.white_chest": "White Chest",
+	"block.goodnightsleep.dead_chest": "Dead Chest",
+	"block.goodnightsleep.blood_chest": "Blood Chest",
+
+	"block.goodnightsleep.dream_ladder": "Dream Ladder",
+	"block.goodnightsleep.white_ladder": "White Ladder",
+	"block.goodnightsleep.dead_ladder": "Dead Ladder",
+	"block.goodnightsleep.blood_ladder": "Blood Ladder",
+
 	"block.goodnightsleep.dream_fence": "Dream Fence",
 	"block.goodnightsleep.white_fence": "White Fence",
 	"block.goodnightsleep.dead_fence": "Dead Fence",
