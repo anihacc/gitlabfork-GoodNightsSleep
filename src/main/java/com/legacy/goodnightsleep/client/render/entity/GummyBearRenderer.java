@@ -13,7 +13,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 @OnlyIn(Dist.CLIENT)
 public class GummyBearRenderer extends MobRenderer<GummyBearEntity, GummyBearModel<GummyBearEntity>>
 {
-	private static final ResourceLocation TEXTURE = GoodNightSleep.locate("textures/entities/gummy_bear.png");
+	private static final ResourceLocation TEXTURE = GoodNightSleep.locate("textures/entity/gummy_bear.png");
 
 	public GummyBearRenderer(EntityRendererManager renderManagerIn)
 	{

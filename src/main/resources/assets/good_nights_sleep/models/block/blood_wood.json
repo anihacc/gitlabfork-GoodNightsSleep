@@ -1,6 +1,6 @@
 {
     "parent": "block/cube_all",
     "textures": {
-        "all": "good_nights_sleep:block/natural/blood_log_side"
+        "all": "good_nights_sleep:block/blood_log_side"
     }
 }

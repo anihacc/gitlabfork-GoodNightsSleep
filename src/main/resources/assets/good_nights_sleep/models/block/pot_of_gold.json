@@ -6,7 +6,7 @@
         "bottom": "block/cauldron_bottom",
         "side": "block/cauldron_side",
         "inside": "block/cauldron_inner",
-        "water": "good_nights_sleep:block/other/pot_of_gold"
+        "water": "good_nights_sleep:block/pot_of_gold"
     },
     "elements": [
         {

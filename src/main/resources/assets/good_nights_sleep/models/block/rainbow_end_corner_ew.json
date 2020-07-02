@@ -1,8 +1,8 @@
 {
     "textures": {
-        "particle": "good_nights_sleep:block/other/rainbow_end_corner",
-        "front": "good_nights_sleep:block/other/rainbow_end_corner",
-        "back": "good_nights_sleep:block/other/rainbow_start_corner"
+        "particle": "good_nights_sleep:block/rainbow_end_corner",
+        "front": "good_nights_sleep:block/rainbow_end_corner",
+        "back": "good_nights_sleep:block/rainbow_start_corner"
     },
     "elements": [
         {   "from": [ 6, 0, 0 ],

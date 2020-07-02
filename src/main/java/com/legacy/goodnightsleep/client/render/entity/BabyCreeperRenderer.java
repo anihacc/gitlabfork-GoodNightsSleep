@@ -15,7 +15,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 @OnlyIn(Dist.CLIENT)
 public class BabyCreeperRenderer extends MobRenderer<BabyCreeperEntity, BabyCreeperModel<BabyCreeperEntity>>
 {
-	private static final ResourceLocation TEXTURE = GoodNightSleep.locate("textures/entities/baby_creeper.png");
+	private static final ResourceLocation TEXTURE = GoodNightSleep.locate("textures/entity/baby_creeper.png");
 
 	public BabyCreeperRenderer(EntityRendererManager renderManagerIn)
 	{

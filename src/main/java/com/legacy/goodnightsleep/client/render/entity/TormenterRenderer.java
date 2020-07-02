@@ -13,7 +13,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 @OnlyIn(Dist.CLIENT)
 public class TormenterRenderer extends MobRenderer<TormenterEntity, TormenterModel<TormenterEntity>>
 {
-	private static final ResourceLocation TEXTURE = GoodNightSleep.locate("textures/entities/tormenter.png");
+	private static final ResourceLocation TEXTURE = GoodNightSleep.locate("textures/entity/tormenter.png");
 
 	public TormenterRenderer(EntityRendererManager renderManagerIn)
 	{

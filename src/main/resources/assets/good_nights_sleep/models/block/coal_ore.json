@@ -1,6 +1,6 @@
 {
 	"parent": "block/cube_all",
 	"textures": {
-		"all": "good_nights_sleep:block/ore/coal_ore"
+		"all": "good_nights_sleep:block/coal_ore"
 	}
 }

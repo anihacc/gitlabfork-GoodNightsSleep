@@ -2,8 +2,8 @@
 	"parent": "block/block",
 	"texture_size": [64, 64],
 	"textures": {
-		"bed_texture": "good_nights_sleep:entities/luxurious_bed",
-		"particle": "good_nights_sleep:entities/luxurious_bed"
+		"bed_texture": "good_nights_sleep:entity/luxurious_bed",
+		"particle": "good_nights_sleep:entity/luxurious_bed"
 	},
 	"elements": [
 		{

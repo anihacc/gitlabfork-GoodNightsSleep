@@ -14,7 +14,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 @OnlyIn(Dist.CLIENT)
 public class HerobrineRenderer<T extends HerobrineEntity, M extends BipedModel<T>> extends BipedRenderer<T, M>
 {
-    private static final ResourceLocation TEXTURE = GoodNightSleep.locate("textures/entities/herobrine.png");
+    private static final ResourceLocation TEXTURE = GoodNightSleep.locate("textures/entity/herobrine.png");
 
 	@SuppressWarnings("unchecked")
 	public HerobrineRenderer(EntityRendererManager renderManagerIn)

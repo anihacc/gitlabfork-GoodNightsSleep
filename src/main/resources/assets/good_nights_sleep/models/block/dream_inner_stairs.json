@@ -1,8 +1,8 @@
 {
     "parent": "block/inner_stairs",
     "textures": {
-        "bottom": "good_nights_sleep:block/construction/dream_plank",
-        "top": "good_nights_sleep:block/construction/dream_plank",
-        "side": "good_nights_sleep:block/construction/dream_plank"
+        "bottom": "good_nights_sleep:block/dream_planks",
+        "top": "good_nights_sleep:block/dream_planks",
+        "side": "good_nights_sleep:block/dream_planks"
     }
 }

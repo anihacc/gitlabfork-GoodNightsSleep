@@ -1,6 +1,6 @@
 {
     "parent": "block/template_orientable_trapdoor_open",
     "textures": {
-        "texture": "good_nights_sleep:block/construction/white_trapdoor"
+        "texture": "good_nights_sleep:block/white_trapdoor"
     }
 }

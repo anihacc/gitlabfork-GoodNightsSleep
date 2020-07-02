@@ -1,7 +1,7 @@
 {
     "parent": "block/cube_column",
     "textures": {
-        "end": "good_nights_sleep:block/construction/blood_plank",
-        "side": "good_nights_sleep:block/construction/blood_bookshelf"
+        "end": "good_nights_sleep:block/blood_planks",
+        "side": "good_nights_sleep:block/blood_bookshelf"
     }
 }

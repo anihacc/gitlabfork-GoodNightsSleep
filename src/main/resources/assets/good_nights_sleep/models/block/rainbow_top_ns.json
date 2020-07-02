@@ -1,7 +1,7 @@
 {
     "textures": {
-        "particle": "good_nights_sleep:block/other/rainbow_top",
-        "portal": "good_nights_sleep:block/other/rainbow_top"
+        "particle": "good_nights_sleep:block/rainbow_top",
+        "portal": "good_nights_sleep:block/rainbow_top"
     },
     "elements": [
         {   "from": [ 0, 0, 6 ],

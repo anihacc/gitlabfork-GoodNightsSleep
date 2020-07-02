@@ -19,6 +19,6 @@ public class TileEntityWretchedBedRenderer extends GNSBedTileEntityRenderer
 	@Override
 	protected ResourceLocation getBedTexture()
 	{
-		return GoodNightSleep.locate("textures/entities/wretched_bed.png");
+		return GoodNightSleep.locate("textures/entity/wretched_bed.png");
 	}
 }

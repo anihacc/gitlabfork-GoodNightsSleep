@@ -1,6 +1,6 @@
 {
 	"parent": "block/cube_all",
 	"textures": {
-		"all": "good_nights_sleep:block/construction/candy_block"
+		"all": "good_nights_sleep:block/candy_block"
 	}
 }

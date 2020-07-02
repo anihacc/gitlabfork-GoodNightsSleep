@@ -1,7 +1,7 @@
 {
     "parent": "block/cube_column",
     "textures": {
-        "end": "good_nights_sleep:block/construction/dream_plank",
-        "side": "good_nights_sleep:block/construction/dream_bookshelf"
+        "end": "good_nights_sleep:block/dream_planks",
+        "side": "good_nights_sleep:block/dream_bookshelf"
     }
 }

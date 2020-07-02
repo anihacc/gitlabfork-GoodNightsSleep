@@ -8,7 +8,7 @@
         }
     },
     "textures": {
-        "end": "good_nights_sleep:block/other/present_top",
-        "side": "good_nights_sleep:block/other/present_side"
+        "end": "good_nights_sleep:block/present_top",
+        "side": "good_nights_sleep:block/present_side"
     }
 }

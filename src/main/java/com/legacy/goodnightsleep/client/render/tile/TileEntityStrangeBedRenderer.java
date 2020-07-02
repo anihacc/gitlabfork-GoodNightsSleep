@@ -19,6 +19,6 @@ public class TileEntityStrangeBedRenderer extends GNSBedTileEntityRenderer
 	@Override
 	protected ResourceLocation getBedTexture()
 	{
-		return GoodNightSleep.locate("textures/entities/strange_bed.png");
+		return GoodNightSleep.locate("textures/entity/strange_bed.png");
 	}
 }

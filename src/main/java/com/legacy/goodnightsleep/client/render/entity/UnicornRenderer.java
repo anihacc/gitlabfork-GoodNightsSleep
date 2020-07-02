@@ -22,6 +22,6 @@ public class UnicornRenderer extends MobRenderer<UnicornEntity, UnicornModel<Uni
 	public ResourceLocation getEntityTexture(UnicornEntity entity)
 	{
 		String type = entity.getUnicornType() == 1 ? "green" : entity.getUnicornType() == 2 ? "yellow" : entity.getUnicornType() == 3 ? "blue" : "pink";
-		return GoodNightSleep.locate("textures/entities/unicorn/unicorn_" + type + ".png");
+		return GoodNightSleep.locate("textures/entity/unicorn/unicorn_" + type + ".png");
 	}
 }

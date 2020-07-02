@@ -1,6 +1,6 @@
 {
     "parent": "block/leaves",
     "textures": {
-        "all": "good_nights_sleep:block/natural/dream_leaves"
+        "all": "good_nights_sleep:block/dream_leaves"
     }
 }
