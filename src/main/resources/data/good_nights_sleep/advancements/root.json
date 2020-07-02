@@ -13,7 +13,7 @@
     "show_toast": false,
     "announce_to_chat": false,
     "hidden": false,
-    "background": "good_nights_sleep:textures/block/natural/dream_dirt.png"
+    "background": "good_nights_sleep:textures/block/dream_dirt.png"
   },
   "criteria": {
     "entered_dream": {

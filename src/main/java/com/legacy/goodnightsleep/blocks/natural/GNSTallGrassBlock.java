@@ -74,7 +74,7 @@ public class GNSTallGrassBlock extends BushBlock implements IGrowable
 	{
 		if (this == GNSBlocks.prickly_nightmare_grass && !(entityIn instanceof IMob || entityIn instanceof ItemEntity || entityIn instanceof ZombieHorseEntity || entityIn instanceof SkeletonHorseEntity))
 		{
-			entityIn.attackEntityFrom(new DamageSource("nightmare_grass"), 1.0F);
+			entityIn.attackEntityFrom(new DamageSource("nightmare_grass_block"), 1.0F);
 		}
 	}
 
