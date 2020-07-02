@@ -10,6 +10,7 @@ import com.legacy.goodnightsleep.item.GNSItems;
 import com.legacy.goodnightsleep.tile_entity.GNSTileEntityTypes;
 import com.legacy.goodnightsleep.world.GNSBiomes;
 import com.legacy.goodnightsleep.world.GNSDimensions;
+import com.legacy.goodnightsleep.world.general_features.GNSFeatures;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityType;
@@ -267,6 +268,29 @@ public class GNSMappingChanges
 		}
 	};
 
+	private static final Map<ResourceLocation, Feature<?>> featureRemappings = new HashMap<ResourceLocation, Feature<?>>()
+	{
+		private static final long serialVersionUID = -6593770258280881293L;
+
+		{
+			put(GoodNightSleep.locateOld("dream_tree"), GNSFeatures.DREAM_TREE);
+			put(GoodNightSleep.locateOld("candy_tree"), GNSFeatures.CANDY_TREE);
+			put(GoodNightSleep.locateOld("diamond_tree"), GNSFeatures.DIAMOND_TREE);
+			put(GoodNightSleep.locateOld("dead_tree"), GNSFeatures.CANDY_TREE);
+			put(GoodNightSleep.locateOld("blood_tree"), GNSFeatures.CANDY_TREE);
+
+			put(GoodNightSleep.locateOld("dream_sponge"), GNSFeatures.DREAM_SPONGE);
+			put(GoodNightSleep.locateOld("big_hope_mushroom"), GNSFeatures.BIG_HOPE_MUSHROOM);
+			put(GoodNightSleep.locateOld("scattered_presents"), GNSFeatures.SCATTERED_PRESENTS);
+			put(GoodNightSleep.locateOld("dream_ores"), GNSFeatures.DREAM_ORES);
+
+			put(GoodNightSleep.locateOld("nether_splash"), GNSFeatures.NETHER_SPLASH);
+			put(GoodNightSleep.locateOld("big_despair_mushroom"), GNSFeatures.BIG_DESPAIR_MUSHROOM);
+			put(GoodNightSleep.locateOld("scattered_pumpkins"), GNSFeatures.SCATTERED_PUMPKINS);
+
+		}
+	};
+
 	private static final Map<ResourceLocation, DimensionType> dimTypeRemappings = new HashMap<ResourceLocation, DimensionType>()
 	{
 		private static final long serialVersionUID = -9007380852518195235L;
@@ -414,8 +438,15 @@ public class GNSMappingChanges
 	{
 		if (event.getAllMappings().stream().filter(m -> m.key.getNamespace().equals(GoodNightSleep.OLD_MODID)).findAny().isPresent())
 		{
-			GoodNightSleep.LOGGER.warn("Found missing feature mappings. They do not need to be remapped, ignoring them.");
-			event.getAllMappings().stream().filter(m -> m.key.getNamespace().equals(GoodNightSleep.OLD_MODID)).forEach(m -> m.ignore());
+			GoodNightSleep.LOGGER.warn("Found missing world gen feature mappings. Attempting to replace them...");
+
+			event.getAllMappings().stream().filter(m -> m.key.getNamespace().equals(GoodNightSleep.OLD_MODID)).forEach(mapping ->
+			{
+				if (featureRemappings.containsKey(mapping.key))
+					remap(mapping, featureRemappings);
+			});
+
+			event.getAllMappings().stream().filter(m -> m.key.getNamespace().equals(GoodNightSleep.OLD_MODID)).forEach(m -> remap(m, featureRemappings));
 		}
 	}
 

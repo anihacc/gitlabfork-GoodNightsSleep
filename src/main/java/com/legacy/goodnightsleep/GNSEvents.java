@@ -1,7 +1,10 @@
 package com.legacy.goodnightsleep;
 
 import com.legacy.goodnightsleep.world.GNSDimensions;
+import com.legacy.goodnightsleep.world.GNSTeleportationUtil;
 
+import net.minecraft.block.BedBlock;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.passive.horse.AbstractHorseEntity;
 import net.minecraft.entity.passive.horse.SkeletonHorseEntity;
 import net.minecraft.entity.passive.horse.ZombieHorseEntity;
@@ -11,6 +14,7 @@ import net.minecraft.util.math.RayTraceContext;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.RegisterDimensionsEvent;
 import net.minecraftforge.eventbus.api.Event.Result;
@@ -36,6 +40,19 @@ public class GNSEvents
 				event.setResult(Result.ALLOW);
 				player.startRiding(event.getTarget());
 			}
+		}
+	}
+
+	@SubscribeEvent
+	public void onPlayerRightClickBlock(PlayerInteractEvent.RightClickBlock event)
+	{
+		PlayerEntity player = event.getPlayer();
+		World world = event.getWorld();
+		BlockState state = event.getWorld().getBlockState(event.getPos());
+
+		if (!world.isRemote && state.getBlock() instanceof BedBlock && (player.dimension == GNSDimensions.dimensionType(true) || player.dimension == GNSDimensions.dimensionType(false)))
+		{
+			GNSTeleportationUtil.changeDimension(DimensionType.OVERWORLD, player, event.getPos());
 		}
 	}
 

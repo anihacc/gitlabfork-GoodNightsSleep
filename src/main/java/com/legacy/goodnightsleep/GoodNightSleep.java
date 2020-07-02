@@ -6,15 +6,10 @@ import org.apache.logging.log4j.Logger;
 import com.legacy.goodnightsleep.blocks.util.ToolCompat;
 import com.legacy.goodnightsleep.client.GoodNightSleepClient;
 import com.legacy.goodnightsleep.data.GNSMappingChanges;
-import com.legacy.goodnightsleep.world.dream.features.GNSFeatures;
+import com.legacy.goodnightsleep.world.general_features.GNSFeatures;
 
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.gen.GenerationStage;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.placement.ChanceConfig;
-import net.minecraft.world.gen.placement.ChanceRangeConfig;
-import net.minecraft.world.gen.placement.Placement;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.MinecraftForge;
@@ -29,10 +24,10 @@ import net.minecraftforge.registries.ForgeRegistries;
 @Mod(GoodNightSleep.MODID)
 public class GoodNightSleep
 {
+	public static final Logger LOGGER = LogManager.getLogger();
 	public static final String NAME = "Good Night's Sleep";
 	public static final String MODID = "good_nights_sleep";
 	public static final String OLD_MODID = "goodnightsleep";
-	public static final Logger LOGGER = LogManager.getLogger();
 
 	public GoodNightSleep()
 	{
@@ -53,18 +48,9 @@ public class GoodNightSleep
 
 		for (Biome biome : ForgeRegistries.BIOMES.getValues())
 		{
-			if ((biome.getRegistryName().getNamespace().equalsIgnoreCase("minecraft") || biome.getRegistryName().getNamespace().equalsIgnoreCase("biomesoplenty")) && !BiomeDictionary.hasType(biome, BiomeDictionary.Type.END) && !BiomeDictionary.hasType(biome, BiomeDictionary.Type.VOID))
+			if (BiomeDictionary.hasType(biome, BiomeDictionary.Type.OVERWORLD) && !BiomeDictionary.hasType(biome, BiomeDictionary.Type.END) && !BiomeDictionary.hasType(biome, BiomeDictionary.Type.VOID))
 			{
-				if (BiomeDictionary.hasType(biome, BiomeDictionary.Type.NETHER))
-				{
-					biome.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.RANDOM_PATCH.withConfiguration(GNSFeatures.HOPE_MUSHROOM_CONFIG).withPlacement(Placement.CHANCE_RANGE.configure(new ChanceRangeConfig(0.3F, 0, 0, 128))));
-					biome.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.RANDOM_PATCH.withConfiguration(GNSFeatures.DESPAIR_MUSHROOM_CONFIG).withPlacement(Placement.CHANCE_RANGE.configure(new ChanceRangeConfig(0.3F, 0, 0, 128))));
-				}
-				else
-				{
-					biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.RANDOM_PATCH.withConfiguration(GNSFeatures.HOPE_MUSHROOM_CONFIG).withPlacement(Placement.CHANCE_HEIGHTMAP_DOUBLE.configure(new ChanceConfig(8))));
-					biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.RANDOM_PATCH.withConfiguration(GNSFeatures.DESPAIR_MUSHROOM_CONFIG).withPlacement(Placement.CHANCE_HEIGHTMAP_DOUBLE.configure(new ChanceConfig(4))));
-				}
+				GNSFeatures.addMushrooms(biome);
 			}
 		}
 
