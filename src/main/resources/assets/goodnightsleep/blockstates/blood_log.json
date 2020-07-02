@@ -1,7 +1,0 @@
-{
-	"variants": {
-		"axis=y":  { "model": "goodnightsleep:block/blood_log" },
-		"axis=z":   { "model": "goodnightsleep:block/blood_log", "x": 90 },
-		"axis=x":   { "model": "goodnightsleep:block/blood_log", "x": 90, "y": 90 }
-	}
-}

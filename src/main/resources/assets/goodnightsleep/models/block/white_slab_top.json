@@ -1,8 +1,0 @@
-{
-    "parent": "block/slab_top",
-    "textures": {
-        "bottom": "goodnightsleep:block/construction/white_plank",
-        "top": "goodnightsleep:block/construction/white_plank",
-        "side": "goodnightsleep:block/construction/white_plank"
-    }
-}

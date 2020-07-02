@@ -20,7 +20,7 @@ import net.minecraftforge.registries.IForgeRegistry;
 public class GNSDimensions
 {
 
-	private static final ModDimension dreamDim = new ModDimension()
+	public static final ModDimension dreamDim = new ModDimension()
 	{
 
 		@Override
@@ -30,7 +30,7 @@ public class GNSDimensions
 		}
 	};
 
-	private static final ModDimension nightmareDim = new ModDimension()
+	public static final ModDimension nightmareDim = new ModDimension()
 	{
 
 		@Override

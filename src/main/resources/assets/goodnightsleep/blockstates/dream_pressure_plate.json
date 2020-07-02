@@ -1,6 +1,0 @@
-{
-    "variants": {
-        "powered=false": { "model": "goodnightsleep:block/dream_pressure_plate_up" },
-        "powered=true": { "model": "goodnightsleep:block/dream_pressure_plate_down" }
-    }
-}

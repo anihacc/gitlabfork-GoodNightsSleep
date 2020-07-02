@@ -1,7 +1,0 @@
-{
-	"variants": {
-		"axis=y":  { "model": "goodnightsleep:block/stripped_blood_wood" },
-		"axis=z":   { "model": "goodnightsleep:block/stripped_blood_wood", "x": 90 },
-		"axis=x":   { "model": "goodnightsleep:block/stripped_blood_wood", "x": 90, "y": 90 }
-	}
-}

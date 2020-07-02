@@ -1,0 +1,6 @@
+{
+    "parent": "block/wall_inventory",
+    "textures": {
+        "wall": "good_nights_sleep:block/delusion_stonebrick"
+    }
+}

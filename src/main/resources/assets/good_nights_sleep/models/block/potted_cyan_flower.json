@@ -1,0 +1,6 @@
+{
+    "parent": "block/flower_pot_cross",
+    "textures": {
+        "plant": "good_nights_sleep:block/natural/cyan_flower"
+    }
+}

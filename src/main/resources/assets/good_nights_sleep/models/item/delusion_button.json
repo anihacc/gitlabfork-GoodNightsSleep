@@ -1,0 +1,6 @@
+{
+    "parent": "block/button_inventory",
+    "textures": {
+        "texture": "good_nights_sleep:block/delusion_stone"
+    }
+}

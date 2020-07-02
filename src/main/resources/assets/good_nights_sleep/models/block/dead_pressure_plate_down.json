@@ -1,0 +1,6 @@
+{
+    "parent": "block/pressure_plate_down",
+    "textures": {
+        "texture": "good_nights_sleep:block/construction/dead_plank"
+    }
+}

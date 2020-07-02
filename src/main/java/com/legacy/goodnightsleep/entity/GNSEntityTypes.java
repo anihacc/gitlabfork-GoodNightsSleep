@@ -26,17 +26,11 @@ import net.minecraftforge.registries.ObjectHolder;
 @ObjectHolder(GoodNightSleep.MODID)
 public class GNSEntityTypes
 {
-
 	public static final EntityType<UnicornEntity> UNICORN = buildEntity("unicorn", EntityType.Builder.<UnicornEntity>create(UnicornEntity::new, EntityClassification.CREATURE).size(1.3964844F, 1.6F));
-
 	public static final EntityType<GummyBearEntity> GUMMY_BEAR = buildEntity("gummy_bear", EntityType.Builder.<GummyBearEntity>create(GummyBearEntity::new, EntityClassification.CREATURE).size(0.6F, 0.7F));
-
 	public static final EntityType<BabyCreeperEntity> BABY_CREEPER = buildEntity("baby_creeper", EntityType.Builder.<BabyCreeperEntity>create(BabyCreeperEntity::new, EntityClassification.MONSTER).size(0.6F, 1.3F));
-
 	public static final EntityType<TormenterEntity> TORMENTER = buildEntity("tormenter", EntityType.Builder.create(TormenterEntity::new, EntityClassification.MONSTER));
-
 	public static final EntityType<HerobrineEntity> HEROBRINE = buildEntity("herobrine", EntityType.Builder.create(HerobrineEntity::new, EntityClassification.MONSTER));
-
 	public static final EntityType<GNSSpawnerEntity> SPAWNER_ENTITY = buildEntity("gns_spawner", EntityType.Builder.create(GNSSpawnerEntity::new, EntityClassification.CREATURE).size(1.0F, 1.0F));
 
 	public static void init(Register<EntityType<?>> event)

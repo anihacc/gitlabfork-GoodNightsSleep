@@ -1,8 +1,0 @@
-{
-    "parent": "block/stairs",
-    "textures": {
-        "bottom": "goodnightsleep:block/delusion_stone",
-        "top": "goodnightsleep:block/delusion_stone",
-        "side": "goodnightsleep:block/delusion_stone"
-    }
-}

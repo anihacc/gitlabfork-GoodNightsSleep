@@ -1,7 +1,0 @@
-{
-    "parent": "block/cube_column",
-    "textures": {
-        "end": "goodnightsleep:block/construction/white_plank",
-        "side": "goodnightsleep:block/construction/white_bookshelf"
-    }
-}

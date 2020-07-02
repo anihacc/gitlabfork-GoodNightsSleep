@@ -1,0 +1,27 @@
+{
+  "parent": "good_nights_sleep:root",
+  "display": {
+    "icon": {
+      "item": "good_nights_sleep:wretched_bed"
+    },
+    "title": {
+      "translate": "advancements.good_nights_sleep.nightmare.title"
+    },
+    "description": {
+      "translate": "advancements.good_nights_sleep.nightmare.desc"
+    }
+  },
+  "criteria": {
+    "entered_nightmare": {
+      "trigger": "minecraft:changed_dimension",
+      "conditions": {
+        "to": "good_nights_sleep:nightmare"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "entered_nightmare"
+    ]
+  ]
+}

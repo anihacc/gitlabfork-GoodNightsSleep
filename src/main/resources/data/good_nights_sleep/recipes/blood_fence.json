@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_fence",
+  "pattern": [
+    "W#W",
+    "W#W"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "W": {
+        "item": "good_nights_sleep:blood_planks"
+    }
+  },
+  "result": {
+    "item": "good_nights_sleep:blood_fence",
+    "count": 3
+  }
+}

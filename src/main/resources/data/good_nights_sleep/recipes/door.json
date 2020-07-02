@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XX",
+    "XX",
+    "XX"
+  ],
+  "key": {
+    "X": [
+	  {
+        "item": "good_nights_sleep:dream_planks"
+	  },
+	  {
+        "item": "good_nights_sleep:white_planks"
+	  },
+	  {
+        "item": "good_nights_sleep:dead_planks"
+	  },
+	  {
+        "item": "good_nights_sleep:blood_planks"
+	  }
+    ]
+  },
+  "result": {
+    "item": "minecraft:oak_door"
+  }
+}

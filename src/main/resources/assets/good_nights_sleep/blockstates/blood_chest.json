@@ -1,0 +1,16 @@
+{
+	"variants": {
+		"facing=north": {
+			"model": "good_nights_sleep:block/blood_chest"
+		},
+		"facing=west": {
+			"model": "good_nights_sleep:block/blood_chest"
+		},
+		"facing=east": {
+			"model": "good_nights_sleep:block/blood_chest"
+		},
+		"facing=south": {
+			"model": "good_nights_sleep:block/blood_chest"
+		}
+	}
+}

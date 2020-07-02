@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XX",
+    "X#",
+    " #"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "X": [
+	  {
+        "item": "good_nights_sleep:dream_planks"
+	  },
+	  {
+        "item": "good_nights_sleep:white_planks"
+	  },
+	  {
+        "item": "good_nights_sleep:dead_planks"
+	  },
+	  {
+        "item": "good_nights_sleep:blood_planks"
+	  }
+    ]
+  },
+  "result": {
+    "item": "minecraft:wooden_axe"
+  }
+}

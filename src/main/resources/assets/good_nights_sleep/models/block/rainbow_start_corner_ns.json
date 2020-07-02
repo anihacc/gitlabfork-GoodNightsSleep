@@ -1,0 +1,16 @@
+{
+    "textures": {
+        "particle": "good_nights_sleep:block/other/rainbow_start_corner",
+        "front": "good_nights_sleep:block/other/rainbow_end_corner",
+        "back": "good_nights_sleep:block/other/rainbow_start_corner"
+    },
+    "elements": [
+        {   "from": [ 0, 0, 6 ],
+            "to": [ 16, 16, 10 ],
+            "faces": {
+                "north": { "uv": [ 0, 0, 16, 16 ], "texture": "#front" },
+                "south": { "uv": [ 0, 0, 16, 16 ], "texture": "#back" }
+            }
+        }
+    ]
+}

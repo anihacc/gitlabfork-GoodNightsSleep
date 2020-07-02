@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+	{
+      "item": "good_nights_sleep:lolipop"
+    }
+  ],
+  "result": {
+    "item": "good_nights_sleep:candy"
+  }
+}

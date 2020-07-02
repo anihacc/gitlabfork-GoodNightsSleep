@@ -1,7 +1,7 @@
 {
 	"replace": false,
 	"values": [
-		"goodnightsleep:nightmare_grass",
-		"goodnightsleep:dream_grass"
+		"good_nights_sleep:nightmare_grass",
+		"good_nights_sleep:dream_grass"
 	]
 }

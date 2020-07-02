@@ -1,9 +1,9 @@
 {
 	"replace": false,
 	"values": [
-		"goodnightsleep:dream_fence",
-		"goodnightsleep:white_fence",
-		"goodnightsleep:dead_fence",
-		"goodnightsleep:blood_fence"
+		"good_nights_sleep:dream_fence",
+		"good_nights_sleep:white_fence",
+		"good_nights_sleep:dead_fence",
+		"good_nights_sleep:blood_fence"
 	]
 }

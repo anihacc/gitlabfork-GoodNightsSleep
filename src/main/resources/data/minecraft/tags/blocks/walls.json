@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-    "goodnightsleep:delusion_cobblestone_wall",
-    "goodnightsleep:delusion_stonebrick_wall"
+    "good_nights_sleep:delusion_cobblestone_wall",
+    "good_nights_sleep:delusion_stonebrick_wall"
   ]
 }

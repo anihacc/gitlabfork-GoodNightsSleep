@@ -1,0 +1,8 @@
+{
+    "parent": "block/slab_top",
+    "textures": {
+        "bottom": "good_nights_sleep:block/delusion_cobblestone",
+        "top": "good_nights_sleep:block/delusion_cobblestone",
+        "side": "good_nights_sleep:block/delusion_cobblestone"
+    }
+}

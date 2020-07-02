@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:blasting",
-  "ingredient": {
-    "item": "goodnightsleep:candy_ore"
-  },
-  "result": "goodnightsleep:candy",
-  "experience": 0.1,
-  "cookingtime": 100
-}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:bowl"
+    },
+	{
+      "item": "good_nights_sleep:despair_mushroom"
+    },
+	{
+      "item": "good_nights_sleep:necrotic_extract"
+    }
+  ],
+  "result": {
+    "item": "good_nights_sleep:wretched_soup"
+  }
+}

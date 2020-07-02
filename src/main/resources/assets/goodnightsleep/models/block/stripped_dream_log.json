@@ -1,7 +1,0 @@
-{
-	"parent": "block/cube_column",
-	"textures": {
-		"end": "goodnightsleep:block/natural/stripped_dream_log_top",
-		"side": "goodnightsleep:block/natural/stripped_dream_log_side"
-	}
-}

@@ -1,6 +1,0 @@
-{
-    "parent": "block/fence_post",
-    "textures": {
-        "texture": "goodnightsleep:block/construction/dead_plank"
-    }
-}

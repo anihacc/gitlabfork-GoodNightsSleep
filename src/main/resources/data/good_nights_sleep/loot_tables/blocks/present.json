@@ -1,0 +1,51 @@
+{
+	"type": "minecraft:block",
+	"pools": [
+		{
+			"name": "block",
+			"rolls": 1,
+			"entries": [
+				{
+					"type": "minecraft:item",
+					"weight": 30,
+					"name": "good_nights_sleep:rainbow_ingot"
+				},
+				{
+					"type": "minecraft:item",
+					"weight": 10,
+					"name": "minecraft:gold_ingot"
+				},
+				{
+					"type": "minecraft:item",
+					"weight": 10,
+					"name": "minecraft:iron_ingot"
+				},
+				{
+					"type": "minecraft:item",
+					"weight": 10,
+					"name": "minecraft:redstone"
+				},
+				{
+					"type": "minecraft:item",
+					"weight": 5,
+					"name": "minecraft:emerald"
+				},
+				{
+					"type": "minecraft:item",
+					"weight": 30,
+					"name": "good_nights_sleep:candy"
+				},
+				{
+					"type": "minecraft:item",
+					"weight": 5,
+					"name": "good_nights_sleep:positite_gem"
+				}
+			],
+			"conditions": [
+				{
+					"condition": "minecraft:survives_explosion"
+				}
+			]
+		}
+	]
+}

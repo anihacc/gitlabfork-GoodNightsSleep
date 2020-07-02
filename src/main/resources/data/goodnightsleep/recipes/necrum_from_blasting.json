@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:blasting",
-  "ingredient": {
-    "item": "goodnightsleep:necrum_ore"
-  },
-  "result": "goodnightsleep:necrum",
-  "experience": 0.1,
-  "cookingtime": 100
-}

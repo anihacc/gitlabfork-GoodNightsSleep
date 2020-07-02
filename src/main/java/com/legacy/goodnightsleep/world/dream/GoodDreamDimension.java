@@ -23,6 +23,7 @@ import net.minecraft.world.gen.ChunkGeneratorType;
 import net.minecraft.world.gen.OverworldGenSettings;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.client.IRenderHandler;
 
 public class GoodDreamDimension extends Dimension
 {
@@ -41,12 +42,12 @@ public class GoodDreamDimension extends Dimension
 		return ChunkGeneratorType.SURFACE.create(this.world, BiomeProviderType.FIXED.create(BiomeProviderType.FIXED.func_226840_a_(this.world.getWorldInfo()).setBiome(GNSBiomes.GOOD_DREAM_PLAINS)), genSettings);
 	}
 
-	/*@OnlyIn(Dist.CLIENT)
+	@OnlyIn(Dist.CLIENT)
 	@Override
 	public IRenderHandler getSkyRenderer()
 	{
 		return DreamSkyRenderer.INSTANCE;
-	}*/
+	}
 
 	@Override
 	public boolean canRespawnHere()

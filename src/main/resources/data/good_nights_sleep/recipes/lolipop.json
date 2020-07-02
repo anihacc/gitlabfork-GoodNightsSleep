@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+	"X"
+  ],
+  "key": {
+    "#": {
+      "item": "good_nights_sleep:candy"
+    },
+	"X": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "good_nights_sleep:lolipop"
+  }
+}

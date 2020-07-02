@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "": [
+            { "model": "good_nights_sleep:block/dream_dirt" },
+            { "model": "good_nights_sleep:block/dream_dirt", "y": 90 },
+            { "model": "good_nights_sleep:block/dream_dirt", "y": 180 },
+            { "model": "good_nights_sleep:block/dream_dirt", "y": 270 }
+        ]
+    }
+}

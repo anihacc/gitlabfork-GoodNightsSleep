@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XX ",
+    " # ",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "X": [
+      {
+        "item": "good_nights_sleep:necrum"
+      }
+    ]
+  },
+  "result": {
+    "item": "good_nights_sleep:necrum_hoe"
+  }
+}

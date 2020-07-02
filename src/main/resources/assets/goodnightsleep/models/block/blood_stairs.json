@@ -1,8 +1,0 @@
-{
-    "parent": "block/stairs",
-    "textures": {
-        "bottom": "goodnightsleep:block/construction/blood_plank",
-        "top": "goodnightsleep:block/construction/blood_plank",
-        "side": "goodnightsleep:block/construction/blood_plank"
-    }
-}

@@ -1,6 +1,0 @@
-{
-    "parent": "block/cross",
-    "textures": {
-        "cross": "goodnightsleep:block/natural/prickly_nightmare_grass"
-    }
-}

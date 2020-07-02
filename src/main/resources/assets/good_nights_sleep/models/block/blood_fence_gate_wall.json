@@ -1,0 +1,6 @@
+{
+    "parent": "block/template_fence_gate_wall",
+    "textures": {
+        "texture": "good_nights_sleep:block/construction/blood_plank"
+    }
+}

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XX ",
+    " # ",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "X": [
+      {
+        "item": "good_nights_sleep:rainbow_ingot"
+      }
+    ]
+  },
+  "result": {
+    "item": "good_nights_sleep:rainbow_hoe"
+  }
+}

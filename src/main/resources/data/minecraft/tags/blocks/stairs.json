@@ -1,12 +1,12 @@
 {
 	"replace": false,
 	"values": [
-		"goodnightsleep:dream_stairs",
-		"goodnightsleep:white_stairs",
-		"goodnightsleep:dead_stairs",
-		"goodnightsleep:blood_stairs",
-		"goodnightsleep:delusion_stone_stairs",
-		"goodnightsleep:delusion_cobblestone_stairs",
-		"goodnightsleep:delusion_stonebrick_stairs"
+		"good_nights_sleep:dream_stairs",
+		"good_nights_sleep:white_stairs",
+		"good_nights_sleep:dead_stairs",
+		"good_nights_sleep:blood_stairs",
+		"good_nights_sleep:delusion_stone_stairs",
+		"good_nights_sleep:delusion_cobblestone_stairs",
+		"good_nights_sleep:delusion_stonebrick_stairs"
 	]
 }

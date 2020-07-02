@@ -1,0 +1,12 @@
+{
+    "parent": "block/cube",
+    "textures": {
+        "particle": "good_nights_sleep:block/construction/blood_crafting_table_front",
+        "down": "good_nights_sleep:block/construction/blood_plank",
+        "up": "good_nights_sleep:block/construction/blood_crafting_table_top",
+        "north": "good_nights_sleep:block/construction/blood_crafting_table_front",
+        "east": "good_nights_sleep:block/construction/blood_crafting_table_side",
+        "south": "good_nights_sleep:block/construction/blood_crafting_table_side",
+        "west": "good_nights_sleep:block/construction/blood_crafting_table_front"
+    }
+}

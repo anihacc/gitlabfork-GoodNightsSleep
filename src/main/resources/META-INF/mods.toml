@@ -2,7 +2,7 @@ modLoader="javafml"
 loaderVersion="[31,)"
 issueTrackerURL="https://gitlab.com/groups/modding-legacy/-/issues"
 [[mods]]
-modId="goodnightsleep"
+modId="good_nights_sleep"
 version="${file.jarVersion}"
 displayName="Good Night's Sleep"
 updateJSONURL="https://gitlab.com/modding-legacy/supporters/-/raw/master/good-nights-sleep.json"
@@ -13,14 +13,13 @@ authors="tippyfoo, KingPhygieBoo, Silver_David, MCVinnyQ"
 description='''
 The Good Night's Sleep mod adds two new dimensions, the good dream and the nightmare. Each dream land is accessed through sleeping in its corresponding bed, rather than stepping through a portal.
 '''
-[[dependencies.goodnightsleep]] #optional
+[[dependencies.good_nights_sleep]]
     modId="forge"
     mandatory=true
     versionRange="[31.1.0,)"
     ordering="NONE"
     side="BOTH"
-# Here's another dependency
-[[dependencies.goodnightsleep]]
+[[dependencies.good_nights_sleep]]
     modId="minecraft"
     mandatory=true
     versionRange="[1.15.2]"

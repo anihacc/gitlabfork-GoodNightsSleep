@@ -1,8 +1,0 @@
-{
-    "parent": "block/slab_top",
-    "textures": {
-        "bottom": "goodnightsleep:block/delusion_cobblestone",
-        "top": "goodnightsleep:block/delusion_cobblestone",
-        "side": "goodnightsleep:block/delusion_cobblestone"
-    }
-}

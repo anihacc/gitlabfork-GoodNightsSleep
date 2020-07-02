@@ -80,17 +80,16 @@ public class GNSItems
 		herobrine_spawn_egg = register("herobrine_spawn_egg", new SpawnEggItem(GNSEntityTypes.HEROBRINE, 0xffffff, 0xffffff, new Item.Properties()));
 		giant_spawn_egg = register("giant_spawn_egg", new SpawnEggItem(EntityType.GIANT, 1598464, 30652, new Item.Properties().group(GNSCreativeTabs.items)));
 
-		positite_gem = register("positite_gem", new Item(new Item.Properties().group(GNSCreativeTabs.items)));
-		rainbow_ingot = register("rainbow_ingot", new Item(new Item.Properties().group(GNSCreativeTabs.items)));
+		candy = register("candy", new Item(new Item.Properties().group(GNSCreativeTabs.items).food(GNSFoods.CANDY)));
+		lolipop = register("lolipop", new Item(new Item.Properties().group(GNSCreativeTabs.items)));
 		candy_ingot = register("candy_ingot", new Item(new Item.Properties()));
+		rainbow_ingot = register("rainbow_ingot", new Item(new Item.Properties().group(GNSCreativeTabs.items)));
+		positite_gem = register("positite_gem", new Item(new Item.Properties().group(GNSCreativeTabs.items)));
+		necrum = register("necrum", new Item(new Item.Properties().group(GNSCreativeTabs.items)));
 		zitrite_ingot = register("zitrite_ingot", new Item(new Item.Properties().group(GNSCreativeTabs.items)));
 		negatite_gem = register("negatite_gem", new Item(new Item.Properties().group(GNSCreativeTabs.items)));
-		necrum = register("necrum", new Item(new Item.Properties().group(GNSCreativeTabs.items)));
 		necrotic_extract = register("necrotic_extract", new Item(new Item.Properties().group(GNSCreativeTabs.items)));
 		powdered_sugar = register("powdered_sugar", new Item(new Item.Properties().group(GNSCreativeTabs.items)));
-		lolipop = register("lolipop", new Item(new Item.Properties().group(GNSCreativeTabs.items)));
-
-		candy = register("candy", new Item(new Item.Properties().group(GNSCreativeTabs.items).food(GNSFoods.CANDY)));
 
 		rainbow_seeds = register("rainbow_seeds", new BlockNamedItem(GNSBlocks.rainbow_berries, new Item.Properties().group(GNSCreativeTabs.items)));
 		rainbow_berries = register("rainbow_berries", new Item(new Item.Properties().group(GNSCreativeTabs.items).food(GNSFoods.RAINBOW_BERRIES)));

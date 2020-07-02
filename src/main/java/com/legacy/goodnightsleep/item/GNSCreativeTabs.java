@@ -1,5 +1,6 @@
 package com.legacy.goodnightsleep.item;
 
+import com.legacy.goodnightsleep.GoodNightSleep;
 import com.legacy.goodnightsleep.blocks.GNSBlocks;
 
 import net.minecraft.item.ItemGroup;
@@ -10,7 +11,7 @@ public abstract class GNSCreativeTabs extends ItemGroup
 
 	public GNSCreativeTabs(String label)
 	{
-		super("goodnightsleep." + label);
+		super(GoodNightSleep.MODID + "." + label);
 	}
 	
 	public static final ItemGroup blocks = new ItemGroup("gns_blocks")

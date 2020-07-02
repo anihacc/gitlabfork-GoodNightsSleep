@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "": [
+            { "model": "good_nights_sleep:block/delusion_stone" },
+            { "model": "good_nights_sleep:block/delusion_stone_mirrored" },
+            { "model": "good_nights_sleep:block/delusion_stone", "y": 180 },
+            { "model": "good_nights_sleep:block/delusion_stone_mirrored", "y": 180 }
+        ]
+    }
+}

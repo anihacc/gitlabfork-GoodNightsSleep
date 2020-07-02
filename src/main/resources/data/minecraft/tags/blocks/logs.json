@@ -1,9 +1,9 @@
 {
 	"replace": false,
 	"values": [
-		"goodnightsleep:dream_log",
-		"goodnightsleep:white_log",
-		"goodnightsleep:dead_log",
-		"goodnightsleep:blood_log"
+		"good_nights_sleep:dream_log",
+		"good_nights_sleep:white_log",
+		"good_nights_sleep:dead_log",
+		"good_nights_sleep:blood_log"
 	]
 }

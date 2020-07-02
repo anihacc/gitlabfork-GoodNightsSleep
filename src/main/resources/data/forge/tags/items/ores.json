@@ -1,13 +1,13 @@
 {
 	"replace": false,
 	"values": [
-		"goodnightsleep:candy_ore",
-		"goodnightsleep:rainbow_ore",
-		"goodnightsleep:positite_ore",
-		"goodnightsleep:coal_ore",
-		"goodnightsleep:lapis_ore",
-		"goodnightsleep:necrum_ore",
-		"goodnightsleep:zitrite_ore",
-		"goodnightsleep:negatite_ore"
+		"good_nights_sleep:candy_ore",
+		"good_nights_sleep:rainbow_ore",
+		"good_nights_sleep:positite_ore",
+		"good_nights_sleep:coal_ore",
+		"good_nights_sleep:lapis_ore",
+		"good_nights_sleep:necrum_ore",
+		"good_nights_sleep:zitrite_ore",
+		"good_nights_sleep:negatite_ore"
 	]
 }

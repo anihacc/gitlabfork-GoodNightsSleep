@@ -1,8 +1,8 @@
 {
 	"replace": false,
 	"values": [
-		"goodnightsleep:dream_leaves",
-		"goodnightsleep:candy_leaves",
-		"goodnightsleep:diamond_leaves"
+		"good_nights_sleep:dream_leaves",
+		"good_nights_sleep:candy_leaves",
+		"good_nights_sleep:diamond_leaves"
 	]
 }

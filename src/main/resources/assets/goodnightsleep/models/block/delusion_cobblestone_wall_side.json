@@ -1,6 +1,0 @@
-{
-    "parent": "block/template_wall_side",
-    "textures": {
-        "wall": "goodnightsleep:block/delusion_cobblestone"
-    }
-}

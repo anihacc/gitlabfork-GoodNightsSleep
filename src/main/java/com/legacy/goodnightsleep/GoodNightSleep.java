@@ -1,7 +1,11 @@
 package com.legacy.goodnightsleep;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.legacy.goodnightsleep.blocks.util.ToolCompat;
 import com.legacy.goodnightsleep.client.GoodNightSleepClient;
+import com.legacy.goodnightsleep.data.GNSMappingChanges;
 import com.legacy.goodnightsleep.world.dream.features.GNSFeatures;
 
 import net.minecraft.util.ResourceLocation;
@@ -26,7 +30,9 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class GoodNightSleep
 {
 	public static final String NAME = "Good Night's Sleep";
-	public static final String MODID = "goodnightsleep";
+	public static final String MODID = "good_nights_sleep";
+	public static final String OLD_MODID = "goodnightsleep";
+	public static final Logger LOGGER = LogManager.getLogger();
 
 	public GoodNightSleep()
 	{
@@ -43,6 +49,8 @@ public class GoodNightSleep
 
 	private void initialization(final FMLCommonSetupEvent event)
 	{
+		MinecraftForge.EVENT_BUS.register(new GNSMappingChanges());
+
 		for (Biome biome : ForgeRegistries.BIOMES.getValues())
 		{
 			if ((biome.getRegistryName().getNamespace().equalsIgnoreCase("minecraft") || biome.getRegistryName().getNamespace().equalsIgnoreCase("biomesoplenty")) && !BiomeDictionary.hasType(biome, BiomeDictionary.Type.END) && !BiomeDictionary.hasType(biome, BiomeDictionary.Type.VOID))
@@ -67,6 +75,11 @@ public class GoodNightSleep
 	public static ResourceLocation locate(String name)
 	{
 		return new ResourceLocation(MODID, name);
+	}
+
+	public static ResourceLocation locateOld(String name)
+	{
+		return new ResourceLocation(OLD_MODID, name);
 	}
 
 	public static String find(String name)

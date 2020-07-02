@@ -1,0 +1,6 @@
+{
+    "parent": "block/fence_post",
+    "textures": {
+        "texture": "good_nights_sleep:block/construction/blood_plank"
+    }
+}

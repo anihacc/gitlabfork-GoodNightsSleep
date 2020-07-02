@@ -1,9 +1,9 @@
 {
 	"replace": false,
 	"values": [
-		"goodnightsleep:dream_planks",
-		"goodnightsleep:white_planks",
-		"goodnightsleep:dead_planks",
-		"goodnightsleep:blood_planks"
+		"good_nights_sleep:dream_planks",
+		"good_nights_sleep:white_planks",
+		"good_nights_sleep:dead_planks",
+		"good_nights_sleep:blood_planks"
 	]
 }

@@ -1,12 +1,12 @@
 {
 	"replace": false,
 	"values": [
-		"goodnightsleep:potted_dream_sapling",
-		"goodnightsleep:potted_candy_sapling",
-		"goodnightsleep:potted_hope_mushroom",
-		"goodnightsleep:potted_despair_mushroom",
-		"goodnightsleep:potted_orange_flower",
-		"goodnightsleep:potted_cyan_flower",
-		"goodnightsleep:potted_dead_flower"
+		"good_nights_sleep:potted_dream_sapling",
+		"good_nights_sleep:potted_candy_sapling",
+		"good_nights_sleep:potted_hope_mushroom",
+		"good_nights_sleep:potted_despair_mushroom",
+		"good_nights_sleep:potted_orange_flower",
+		"good_nights_sleep:potted_cyan_flower",
+		"good_nights_sleep:potted_dead_flower"
 	]
 }
