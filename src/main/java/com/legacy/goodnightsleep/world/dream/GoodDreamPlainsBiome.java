@@ -2,6 +2,7 @@ package com.legacy.goodnightsleep.world.dream;
 
 import com.legacy.goodnightsleep.blocks.GNSBlocks;
 import com.legacy.goodnightsleep.entity.GNSEntityTypes;
+import com.legacy.goodnightsleep.world.BaseGNSBiome;
 import com.legacy.goodnightsleep.world.GNSCanyonWorldCarver;
 import com.legacy.goodnightsleep.world.GNSCaveWorldCarver;
 import com.legacy.goodnightsleep.world.general_features.GNSFeatures;
@@ -25,7 +26,7 @@ import net.minecraft.world.gen.placement.Placement;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 
-public class GoodDreamPlainsBiome extends Biome
+public class GoodDreamPlainsBiome extends BaseGNSBiome
 {
 	private static final FillerBlockType DELUSION_CONFIG = OreFeatureConfig.FillerBlockType.create("dream_stone", "dream_stone", new BlockMatcher(GNSBlocks.delusion_stone));
 	public static final BlockClusterFeatureConfig TALL_GRASS = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(GNSBlocks.dream_grass.getDefaultState()), new SimpleBlockPlacer())).tries(32).build();
@@ -36,8 +37,8 @@ public class GoodDreamPlainsBiome extends Biome
 	{
 		super((new Biome.Builder()).surfaceBuilder(SurfaceBuilder.DEFAULT, DREAM_SURFACE_BUILDER).precipitation(Biome.RainType.NONE).category(Biome.Category.PLAINS).depth(0.1F).scale(0.5F).temperature(0.8F).downfall(0.0F).waterColor(4159204).waterFogColor(329011).parent((String) null));
 
-		this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.RANDOM_PATCH.withConfiguration(TALL_GRASS).withPlacement(Placement.NOISE_HEIGHTMAP_DOUBLE.configure(new NoiseDependant(-0.8D, 5, 10))));
-		this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.FLOWER.withConfiguration(DREAM_FLOWER_CONFIG).withPlacement(Placement.COUNT_HEIGHTMAP_32.configure(new FrequencyConfig(5))));
+		this.addDreamFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.RANDOM_PATCH.withConfiguration(TALL_GRASS).withPlacement(Placement.NOISE_HEIGHTMAP_DOUBLE.configure(new NoiseDependant(-0.8D, 5, 10))));
+		this.addDreamFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.FLOWER.withConfiguration(DREAM_FLOWER_CONFIG).withPlacement(Placement.COUNT_HEIGHTMAP_32.configure(new FrequencyConfig(5))));
 
 		GNSFeatures.addDreamTrees(this);
 		GNSFeatures.addScatteredDreamFeatures(this);
