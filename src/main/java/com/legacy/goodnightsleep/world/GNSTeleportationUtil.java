@@ -39,9 +39,14 @@ public class GNSTeleportationUtil
 
 		Vec3d endpointPos = new Vec3d(pos.getX() + 0.5, transferY, pos.getZ() + 0.5);
 
-		if (transferWorld.getBlockState(new BlockPos(endpointPos)).getBlock() == Blocks.LAVA || transferWorld.getBlockState(new BlockPos(endpointPos).down()).getBlock() == Blocks.LAVA)
+		for (int x = -1; x < 2; ++x)
 		{
-			transferWorld.setBlockState(new BlockPos(endpointPos.add(0, -1, 0)), Blocks.COBBLESTONE.getDefaultState());
+			for (int z = -1; z < 2; ++z)
+			{
+				BlockPos newPos = new BlockPos(endpointPos.add(x, -1, z));
+				if (transferWorld.getBlockState(new BlockPos(newPos)).getBlock() == Blocks.LAVA || transferWorld.getBlockState(new BlockPos(newPos).up()).getBlock() == Blocks.LAVA)
+					transferWorld.setBlockState(newPos, Blocks.GRASS_BLOCK.getDefaultState());
+			}
 		}
 
 		Entity teleportedEntity = teleportEntity(entity, transferWorld, endpointPos);
