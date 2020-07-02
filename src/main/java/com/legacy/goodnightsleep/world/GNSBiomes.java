@@ -22,8 +22,8 @@ public class GNSBiomes
 		register(event.getRegistry(), "good_dream_plains", GOOD_DREAM_PLAINS);
 		register(event.getRegistry(), "nightmare_hills", NIGHTMARE_HILLS);
 		
-		BiomeDictionary.addTypes(GOOD_DREAM_PLAINS, BiomeDictionary.Type.MAGICAL);
-		BiomeDictionary.addTypes(NIGHTMARE_HILLS, BiomeDictionary.Type.SPOOKY);
+		BiomeDictionary.addTypes(GOOD_DREAM_PLAINS, BiomeDictionary.Type.MAGICAL, BiomeDictionary.Type.PLAINS);
+		BiomeDictionary.addTypes(NIGHTMARE_HILLS, BiomeDictionary.Type.SPOOKY, BiomeDictionary.Type.HILLS, BiomeDictionary.Type.MOUNTAIN, BiomeDictionary.Type.HOT, BiomeDictionary.Type.DEAD);
 	}
 
 	public static void register(IForgeRegistry<Biome> registry, String key, Biome biome)

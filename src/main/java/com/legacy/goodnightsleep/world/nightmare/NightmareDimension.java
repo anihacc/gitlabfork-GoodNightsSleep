@@ -107,6 +107,7 @@ public class NightmareDimension extends Dimension implements IForgeDimension
 	@Override
 	public float calculateCelestialAngle(long worldTime, float partialTicks)
 	{
+		// kick the player out after 20 minutes
 		if (!GNSConfig.disableTimePassing)
 		{
 			int j = (int) (worldTime % 48000L);

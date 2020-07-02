@@ -9,6 +9,7 @@ import net.minecraft.entity.passive.horse.AbstractHorseEntity;
 import net.minecraft.entity.passive.horse.SkeletonHorseEntity;
 import net.minecraft.entity.passive.horse.ZombieHorseEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceContext;
 import net.minecraft.util.math.RayTraceResult;
@@ -52,7 +53,8 @@ public class GNSEvents
 
 		if (!world.isRemote && state.getBlock() instanceof BedBlock && (player.dimension == GNSDimensions.dimensionType(true) || player.dimension == GNSDimensions.dimensionType(false)))
 		{
-			GNSTeleportationUtil.changeDimension(DimensionType.OVERWORLD, player, event.getPos());
+			BlockPos pos = player.getBedLocation(DimensionType.OVERWORLD) != null ? player.getBedLocation(DimensionType.OVERWORLD) : player.world.getSpawnPoint();
+			GNSTeleportationUtil.changeDimension(DimensionType.OVERWORLD, player, pos);
 		}
 	}
 
