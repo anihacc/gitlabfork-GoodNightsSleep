@@ -1,5 +1,5 @@
 {
-    "parent": "good_nights_sleep:dream/obtain_rainbow_ingot",
+    "parent": "good_nights_sleep:dream/dream",
     "display": {
         "icon": {
             "item": "good_nights_sleep:rainbow_berries"
