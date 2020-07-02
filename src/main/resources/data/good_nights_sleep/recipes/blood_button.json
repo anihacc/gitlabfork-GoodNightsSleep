@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "wooden_button",
+  "ingredients": [
+    {
+      "item": "good_nights_sleep:blood_planks"
+    }
+  ],
+  "result": {
+    "item": "good_nights_sleep:blood_button"
+  }
+}

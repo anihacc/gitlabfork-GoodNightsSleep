@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "good_nights_sleep:delusion_stonebrick"
+    }
+  },
+  "result": {
+    "item": "good_nights_sleep:delusion_stonebrick_wall",
+    "count": 6
+  }
+}
