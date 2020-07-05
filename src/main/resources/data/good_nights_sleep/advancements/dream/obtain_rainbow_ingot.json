@@ -1,0 +1,26 @@
+{
+    "parent": "good_nights_sleep:dream/kill_baby_creeper",
+    "display": {
+        "icon": {
+            "item": "good_nights_sleep:rainbow_ingot"
+        },
+        "title": {
+            "translate": "advancements.good_nights_sleep.obtain_rainbow_ingot.title"
+        },
+        "description": {
+            "translate": "advancements.good_nights_sleep.obtain_rainbow_ingot.desc"
+        }
+    },
+    "criteria": {
+        "have_item": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "good_nights_sleep:rainbow_ingot"
+                    }
+                ]
+            }
+        }
+    }
+}

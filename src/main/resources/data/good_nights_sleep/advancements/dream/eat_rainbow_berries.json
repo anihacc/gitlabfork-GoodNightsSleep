@@ -1,0 +1,25 @@
+{
+    "parent": "good_nights_sleep:dream/dream",
+    "display": {
+        "icon": {
+            "item": "good_nights_sleep:rainbow_berries"
+        },
+        "title": {
+            "translate": "advancements.good_nights_sleep.eat_rainbow_berry.title"
+        },
+        "description": {
+            "translate": "advancements.good_nights_sleep.eat_rainbow_berry.desc"
+        }
+    },
+    "criteria": {
+        "have_item": {
+            "trigger": "minecraft:consume_item",
+            "conditions": {
+                "item": {
+                    "item": "good_nights_sleep:rainbow_berries",
+                    "count": 1
+                }
+            }
+        }
+    }
+}

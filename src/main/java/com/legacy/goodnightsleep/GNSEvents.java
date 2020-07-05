@@ -5,6 +5,7 @@ import com.legacy.goodnightsleep.world.GNSTeleportationUtil;
 
 import net.minecraft.block.BedBlock;
 import net.minecraft.block.BlockState;
+import net.minecraft.entity.monster.PhantomEntity;
 import net.minecraft.entity.passive.horse.AbstractHorseEntity;
 import net.minecraft.entity.passive.horse.SkeletonHorseEntity;
 import net.minecraft.entity.passive.horse.ZombieHorseEntity;
@@ -16,6 +17,7 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
+import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.RegisterDimensionsEvent;
 import net.minecraftforge.eventbus.api.Event.Result;
@@ -41,6 +43,15 @@ public class GNSEvents
 				event.setResult(Result.ALLOW);
 				player.startRiding(event.getTarget());
 			}
+		}
+	}
+
+	@SubscribeEvent
+	public void onLivingCheckSpawn(LivingSpawnEvent.CheckSpawn event)
+	{
+		if (event.getEntityLiving() instanceof PhantomEntity && event.getEntityLiving().dimension == GNSDimensions.dimensionType(false) && !GNSConfig.allowNightmarePhantoms)
+		{
+			event.setResult(Result.DENY);
 		}
 	}
 

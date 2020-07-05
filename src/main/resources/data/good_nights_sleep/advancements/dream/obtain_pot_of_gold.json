@@ -1,0 +1,26 @@
+{
+    "parent": "good_nights_sleep:dream/obtain_rainbow_ingot",
+    "display": {
+        "icon": {
+            "item": "good_nights_sleep:pot_of_gold"
+        },
+        "title": {
+            "translate": "advancements.good_nights_sleep.obtain_pot_of_gold.title"
+        },
+        "description": {
+            "translate": "advancements.good_nights_sleep.obtain_pot_of_gold.desc"
+        }
+    },
+    "criteria": {
+        "have_pot_of_gold": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "good_nights_sleep:pot_of_gold"
+                    }
+                ]
+            }
+        }
+    }
+}

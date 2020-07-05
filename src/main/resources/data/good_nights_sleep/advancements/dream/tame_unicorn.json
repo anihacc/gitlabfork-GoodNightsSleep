@@ -1,0 +1,24 @@
+{
+    "parent": "good_nights_sleep:dream/dream",
+    "display": {
+        "icon": {
+            "item": "minecraft:saddle"
+        },
+        "title": {
+            "translate": "advancements.good_nights_sleep.tame_unicorn.title"
+        },
+        "description": {
+            "translate": "advancements.good_nights_sleep.tame_unicorn.desc"
+        }
+    },
+    "criteria": {
+        "have_item": {
+            "trigger": "minecraft:tame_animal",
+            "conditions": {
+                "entity": {
+                    "type": "good_nights_sleep:unicorn"
+                }
+            }
+        }
+    }
+}

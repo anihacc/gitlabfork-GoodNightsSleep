@@ -1,0 +1,24 @@
+{
+  "parent": "good_nights_sleep:nightmare/nightmare",
+  "display": {
+    "icon": {
+      "item": "good_nights_sleep:necrum"
+    },
+    "title": {
+          "translate": "advancements.good_nights_sleep.kill_tormenter.title"
+        },
+        "description": {
+            "translate": "advancements.good_nights_sleep.kill_tormenter.desc"
+        }
+  },
+  "criteria": {
+    "criteria": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "good_nights_sleep:tormenter"
+        }
+      }
+    }
+  }
+}
