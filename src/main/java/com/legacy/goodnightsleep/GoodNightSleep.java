@@ -48,7 +48,7 @@ public class GoodNightSleep
 
 		for (Biome biome : ForgeRegistries.BIOMES.getValues())
 		{
-			if (BiomeDictionary.hasType(biome, BiomeDictionary.Type.OVERWORLD) && !BiomeDictionary.hasType(biome, BiomeDictionary.Type.END) && !BiomeDictionary.hasType(biome, BiomeDictionary.Type.VOID))
+			if ((BiomeDictionary.hasType(biome, BiomeDictionary.Type.OVERWORLD) || BiomeDictionary.hasType(biome, BiomeDictionary.Type.NETHER)) && !BiomeDictionary.hasType(biome, BiomeDictionary.Type.END) && !BiomeDictionary.hasType(biome, BiomeDictionary.Type.VOID))
 			{
 				GNSFeatures.addMushrooms(biome);
 			}
