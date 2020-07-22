@@ -14,6 +14,6 @@ public class DreamTree extends Tree
 	@Override
 	protected ConfiguredFeature<TreeFeatureConfig, ?> getTreeFeature(Random random, boolean p_225546_2_)
 	{
-		return new DreamTreeFeature(TreeFeatureConfig::func_227338_a_, true).withConfiguration(DefaultBiomeFeatures.OAK_TREE_CONFIG);
+		return new DreamTreeFeature(TreeFeatureConfig::deserializeFoliage, true).withConfiguration(DefaultBiomeFeatures.OAK_TREE_CONFIG);
 	}
 }

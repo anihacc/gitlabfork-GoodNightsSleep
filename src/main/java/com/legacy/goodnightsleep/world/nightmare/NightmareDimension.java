@@ -40,7 +40,7 @@ public class NightmareDimension extends Dimension implements IForgeDimension
 		OverworldGenSettings genSettings = ChunkGeneratorType.SURFACE.createSettings();
 		genSettings.setDefaultBlock(Blocks.STONE.getDefaultState());
 		genSettings.setDefaultFluid(Blocks.LAVA.getDefaultState());
-		return ChunkGeneratorType.SURFACE.create(this.world, BiomeProviderType.FIXED.create(BiomeProviderType.FIXED.func_226840_a_(this.world.getWorldInfo()).setBiome(GNSBiomes.NIGHTMARE_HILLS)), genSettings);
+		return ChunkGeneratorType.SURFACE.create(this.world, BiomeProviderType.FIXED.create(BiomeProviderType.FIXED.createSettings(this.world.getWorldInfo()).setBiome(GNSBiomes.NIGHTMARE_HILLS)), genSettings);
 	}
 
 	@Override

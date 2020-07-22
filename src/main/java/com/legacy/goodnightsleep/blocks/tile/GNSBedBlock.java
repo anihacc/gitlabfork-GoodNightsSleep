@@ -292,7 +292,7 @@ public class GNSBedBlock extends HorizontalBlock implements ITileEntityProvider
 				{
 					float f = p_220175_0_.getWidth() / 2.0F;
 					Vec3d vec3d = new Vec3d((double) blockpos$mutableblockpos.getX() + 0.5D, d0, (double) blockpos$mutableblockpos.getZ() + 0.5D);
-					return p_220175_1_.func_226664_a_(new AxisAlignedBB(vec3d.x - (double) f, vec3d.y, vec3d.z - (double) f, vec3d.x + (double) f, vec3d.y + (double) p_220175_0_.getHeight(), vec3d.z + (double) f)) ? Optional.of(vec3d) : Optional.empty();
+					return p_220175_1_.hasNoCollisions(new AxisAlignedBB(vec3d.x - (double) f, vec3d.y, vec3d.z - (double) f, vec3d.x + (double) f, vec3d.y + (double) p_220175_0_.getHeight(), vec3d.z + (double) f)) ? Optional.of(vec3d) : Optional.empty();
 				}
 			}
 		}

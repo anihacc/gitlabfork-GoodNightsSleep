@@ -47,7 +47,7 @@ public class DreamTreeFeature extends AbstractTreeFeature<TreeFeatureConfig>
 	}
 
 	@Override
-	protected boolean func_225557_a_(IWorldGenerationReader worldIn, Random rand, BlockPos position, Set<BlockPos> changedBlocks, Set<BlockPos> set2, MutableBoundingBox p_208519_5_, TreeFeatureConfig config)
+	protected boolean place(IWorldGenerationReader worldIn, Random rand, BlockPos position, Set<BlockPos> changedBlocks, Set<BlockPos> set2, MutableBoundingBox p_208519_5_, TreeFeatureConfig config)
 	{
 		int i = this.getHeight(rand);
 		boolean flag = true;
@@ -106,7 +106,7 @@ public class DreamTreeFeature extends AbstractTreeFeature<TreeFeatureConfig>
 								BlockPos blockpos = new BlockPos(j1, l2, l1);
 								if (isAirOrLeaves(worldIn, blockpos) || isAir(worldIn, blockpos))
 								{
-									this.func_227217_a_(worldIn, blockpos, this.leaf, p_208519_5_);
+									this.setBlockState(worldIn, blockpos, this.leaf, p_208519_5_);
 								}
 							}
 						}
@@ -116,7 +116,7 @@ public class DreamTreeFeature extends AbstractTreeFeature<TreeFeatureConfig>
 				{
 					if (isAirOrLeaves(worldIn, position.up(i3)) || isAir(worldIn, position.up(i3)))
 					{
-						this.func_227217_a_(worldIn, position.up(i3), this.trunk, p_208519_5_);
+						this.setBlockState(worldIn, position.up(i3), this.trunk, p_208519_5_);
 						changedBlocks.add(position.up(i3).toImmutable());
 					}
 				}

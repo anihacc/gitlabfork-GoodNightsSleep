@@ -87,7 +87,7 @@ public class GNSTeleportationUtil
 		teleportedEntity.setLocationAndAngles(transferPos.x, transferPos.y, transferPos.z, entity.rotationYaw, entity.rotationPitch);
 		teleportedEntity.setRotationYawHead(entity.rotationYaw);
 		teleportedEntity.setMotion(Vec3d.ZERO);
-		transferWorld.func_217460_e(teleportedEntity);
+		transferWorld.addFromAnotherDimension(teleportedEntity);
 		entity.remove();
 
 		return teleportedEntity;

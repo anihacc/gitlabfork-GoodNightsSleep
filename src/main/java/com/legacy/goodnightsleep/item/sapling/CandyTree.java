@@ -15,6 +15,6 @@ public class CandyTree extends Tree
 	@Override
 	protected ConfiguredFeature<TreeFeatureConfig, ?> getTreeFeature(Random random, boolean p_225546_2_)
 	{
-		return new DreamTreeFeature(TreeFeatureConfig::func_227338_a_, true, 5, GNSBlocks.white_log.getDefaultState(), GNSBlocks.candy_leaves.getDefaultState()).withConfiguration(DefaultBiomeFeatures.OAK_TREE_CONFIG);
+		return new DreamTreeFeature(TreeFeatureConfig::deserializeFoliage, true, 5, GNSBlocks.white_log.getDefaultState(), GNSBlocks.candy_leaves.getDefaultState()).withConfiguration(DefaultBiomeFeatures.OAK_TREE_CONFIG);
 	}
 }

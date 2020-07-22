@@ -21,7 +21,7 @@ public class UnicornModel<T extends AbstractHorseEntity> extends HorseModel<T>
 	@Override
 	public Iterable<ModelRenderer> getHeadParts()
 	{
-		return ImmutableList.of(this.field_217128_b, this.horn);
+		return ImmutableList.of(this.head, this.horn);
 	}
 
 	@Override
@@ -34,9 +34,9 @@ public class UnicornModel<T extends AbstractHorseEntity> extends HorseModel<T>
 	public void setLivingAnimations(T entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTickTime)
 	{
 		super.setLivingAnimations((T) entitylivingbaseIn, limbSwing, limbSwingAmount, partialTickTime);
-		this.horn.rotationPointY = this.field_217128_b.rotationPointY;
-		this.horn.rotationPointZ = this.field_217128_b.rotationPointZ;
-		this.horn.rotateAngleX = this.field_217128_b.rotateAngleX;
-		this.horn.rotateAngleY = this.field_217128_b.rotateAngleY;
+		this.horn.rotationPointY = this.head.rotationPointY;
+		this.horn.rotationPointZ = this.head.rotationPointZ;
+
+		this.horn.copyModelAngles(this.head);
 	}
 }

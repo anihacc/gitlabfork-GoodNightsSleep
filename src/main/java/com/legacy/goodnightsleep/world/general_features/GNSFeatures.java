@@ -41,11 +41,11 @@ import net.minecraftforge.registries.ObjectHolder;
 @ObjectHolder(GoodNightSleep.MODID)
 public class GNSFeatures
 {
-	public static final AbstractTreeFeature<TreeFeatureConfig> DREAM_TREE = new DreamTreeFeature(TreeFeatureConfig::func_227338_a_, false);
-	public static final AbstractTreeFeature<TreeFeatureConfig> CANDY_TREE = new DreamTreeFeature(TreeFeatureConfig::func_227338_a_, false, 5, GNSBlocks.white_log.getDefaultState(), GNSBlocks.candy_leaves.getDefaultState());
-	public static final AbstractTreeFeature<TreeFeatureConfig> DIAMOND_TREE = new GNSBigTreeFeature(TreeFeatureConfig::func_227338_a_, false, GNSBlocks.dream_log.getDefaultState(), GNSBlocks.diamond_leaves.getDefaultState());
-	public static final AbstractTreeFeature<TreeFeatureConfig> DEAD_TREE = new GNSBigTreeFeature(TreeFeatureConfig::func_227338_a_, false, GNSBlocks.dead_log.getDefaultState(), Blocks.AIR.getDefaultState());
-	public static final AbstractTreeFeature<TreeFeatureConfig> BLOOD_TREE = new DreamTreeFeature(TreeFeatureConfig::func_227338_a_, false, 5, GNSBlocks.blood_log.getDefaultState(), Blocks.AIR.getDefaultState());
+	public static final AbstractTreeFeature<TreeFeatureConfig> DREAM_TREE = new DreamTreeFeature(TreeFeatureConfig::deserializeFoliage, false);
+	public static final AbstractTreeFeature<TreeFeatureConfig> CANDY_TREE = new DreamTreeFeature(TreeFeatureConfig::deserializeFoliage, false, 5, GNSBlocks.white_log.getDefaultState(), GNSBlocks.candy_leaves.getDefaultState());
+	public static final AbstractTreeFeature<TreeFeatureConfig> DIAMOND_TREE = new GNSBigTreeFeature(TreeFeatureConfig::deserializeFoliage, false, GNSBlocks.dream_log.getDefaultState(), GNSBlocks.diamond_leaves.getDefaultState());
+	public static final AbstractTreeFeature<TreeFeatureConfig> DEAD_TREE = new GNSBigTreeFeature(TreeFeatureConfig::deserializeFoliage, false, GNSBlocks.dead_log.getDefaultState(), Blocks.AIR.getDefaultState());
+	public static final AbstractTreeFeature<TreeFeatureConfig> BLOOD_TREE = new DreamTreeFeature(TreeFeatureConfig::deserializeFoliage, false, 5, GNSBlocks.blood_log.getDefaultState(), Blocks.AIR.getDefaultState());
 
 	public static final Feature<NoFeatureConfig> DREAM_SPONGE = new DreamSpongeFeature(NoFeatureConfig::deserialize);
 	public static final Feature<NoFeatureConfig> BIG_HOPE_MUSHROOM = new BigHopeMushroomFeature(NoFeatureConfig::deserialize);

@@ -30,7 +30,7 @@ public class GoodDreamPlainsBiome extends BaseGNSBiome
 {
 	private static final FillerBlockType DELUSION_CONFIG = OreFeatureConfig.FillerBlockType.create("dream_stone", "dream_stone", new BlockMatcher(GNSBlocks.delusion_stone));
 	public static final BlockClusterFeatureConfig TALL_GRASS = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(GNSBlocks.dream_grass.getDefaultState()), new SimpleBlockPlacer())).tries(32).build();
-	public static final BlockClusterFeatureConfig DREAM_FLOWER_CONFIG = (new BlockClusterFeatureConfig.Builder((new WeightedBlockStateProvider()).func_227407_a_(GNSBlocks.cyan_flower.getDefaultState(), 1).func_227407_a_(GNSBlocks.orange_flower.getDefaultState(), 1).func_227407_a_(GNSBlocks.lolipop_bush.getDefaultState(), 2), new SimpleBlockPlacer())).tries(64).build();
+	public static final BlockClusterFeatureConfig DREAM_FLOWER_CONFIG = (new BlockClusterFeatureConfig.Builder((new WeightedBlockStateProvider()).addWeightedBlockstate(GNSBlocks.cyan_flower.getDefaultState(), 1).addWeightedBlockstate(GNSBlocks.orange_flower.getDefaultState(), 1).addWeightedBlockstate(GNSBlocks.lolipop_bush.getDefaultState(), 2), new SimpleBlockPlacer())).tries(64).build();
 	public static final SurfaceBuilderConfig DREAM_SURFACE_BUILDER = new SurfaceBuilderConfig(GNSBlocks.dream_grass_block.getDefaultState(), GNSBlocks.dream_dirt.getDefaultState(), Blocks.GRAVEL.getDefaultState());
 
 	public GoodDreamPlainsBiome()

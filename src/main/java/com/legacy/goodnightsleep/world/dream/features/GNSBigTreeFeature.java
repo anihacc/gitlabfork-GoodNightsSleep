@@ -51,7 +51,7 @@ public class GNSBigTreeFeature extends AbstractTreeFeature<TreeFeatureConfig>
 					BlockPos blockpos = pos.add(j, 0, k);
 					if (isAirOrLeaves(worldIn, blockpos))
 					{
-						this.func_227217_a_(worldIn, blockpos, OAK_LEAVES, p_208529_4_);
+						this.setBlockState(worldIn, blockpos, OAK_LEAVES, p_208529_4_);
 					}
 				}
 			}
@@ -119,7 +119,7 @@ public class GNSBigTreeFeature extends AbstractTreeFeature<TreeFeatureConfig>
 				BlockPos blockpos1 = p_208523_3_.add((double) (0.5F + (float) j * f), (double) (0.5F + (float) j * f1), (double) (0.5F + (float) j * f2));
 				if (p_208523_5_)
 				{
-					this.func_227217_a_(worldIn, blockpos1, OAK_LOG.with(LogBlock.AXIS, this.getLoxAxis(p_208523_3_, blockpos1)), p_208523_6_);
+					this.setBlockState(worldIn, blockpos1, OAK_LOG.with(LogBlock.AXIS, this.getLoxAxis(p_208523_3_, blockpos1)), p_208523_6_);
 					//p_208523_1_.add(blockpos.up(j).toImmutable());
 				}
 				else if (!func_214587_a(worldIn, blockpos1))
@@ -204,7 +204,7 @@ public class GNSBigTreeFeature extends AbstractTreeFeature<TreeFeatureConfig>
 	}
 
 	@Override
-	protected boolean func_225557_a_(IWorldGenerationReader worldIn, Random rand, BlockPos position, Set<BlockPos> set1, Set<BlockPos> set2, MutableBoundingBox box, TreeFeatureConfig config)
+	protected boolean place(IWorldGenerationReader worldIn, Random rand, BlockPos position, Set<BlockPos> set1, Set<BlockPos> set2, MutableBoundingBox box, TreeFeatureConfig config)
 	{
 		Random random = new Random(rand.nextLong());
 		int i = this.checkLocation(set1, worldIn, position, 5 + random.nextInt(12), box);
