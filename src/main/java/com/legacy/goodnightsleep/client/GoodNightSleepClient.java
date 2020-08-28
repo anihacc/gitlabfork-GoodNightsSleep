@@ -1,9 +1,9 @@
 package com.legacy.goodnightsleep.client;
 
-import com.legacy.goodnightsleep.blocks.GNSBlocks;
 import com.legacy.goodnightsleep.client.audio.GNSMusicHandler;
 import com.legacy.goodnightsleep.client.render.GNSEntityRendering;
 import com.legacy.goodnightsleep.client.render.GNSTileEntityRendering;
+import com.legacy.goodnightsleep.registry.GNSBlocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderType;
@@ -18,6 +18,7 @@ public class GoodNightSleepClient
 		GNSTileEntityRendering.initialization();
 		GNSEntityRendering.initialization();
 		MinecraftForge.EVENT_BUS.register(new GNSMusicHandler());
+		MinecraftForge.EVENT_BUS.register(new ClientEvents());
 
 		renderCutout(GNSBlocks.candy_sapling);
 		renderCutout(GNSBlocks.dream_sapling);

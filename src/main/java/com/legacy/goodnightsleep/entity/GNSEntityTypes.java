@@ -2,12 +2,12 @@ package com.legacy.goodnightsleep.entity;
 
 import java.util.Random;
 
-import com.legacy.goodnightsleep.GNSRegistry;
 import com.legacy.goodnightsleep.GoodNightSleep;
-import com.legacy.goodnightsleep.blocks.GNSBlocks;
 import com.legacy.goodnightsleep.entity.dream.BabyCreeperEntity;
 import com.legacy.goodnightsleep.entity.dream.GummyBearEntity;
 import com.legacy.goodnightsleep.entity.dream.UnicornEntity;
+import com.legacy.goodnightsleep.registry.GNSBlocks;
+import com.legacy.goodnightsleep.registry.GNSRegistry;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
@@ -15,7 +15,10 @@ import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
+import net.minecraft.entity.monster.CreeperEntity;
 import net.minecraft.entity.monster.MonsterEntity;
+import net.minecraft.entity.monster.ZombieEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
@@ -50,6 +53,19 @@ public class GNSEntityTypes
 		EntitySpawnPlacementRegistry.register(GNSEntityTypes.UNICORN, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, GNSEntityTypes::animalSpawnConditions);
 		EntitySpawnPlacementRegistry.register(GNSEntityTypes.GUMMY_BEAR, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, GNSEntityTypes::animalSpawnConditions);
 		EntitySpawnPlacementRegistry.register(GNSEntityTypes.SPAWNER_ENTITY, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, GNSEntityTypes::otherSpawnConditions);
+
+		registerAttributes();
+	}
+	
+	private static void registerAttributes()
+	{
+		GlobalEntityTypeAttributes.put(GNSEntityTypes.UNICORN, MobEntity.func_233666_p_().create());
+		GlobalEntityTypeAttributes.put(GNSEntityTypes.GUMMY_BEAR, MobEntity.func_233666_p_().create());
+		GlobalEntityTypeAttributes.put(GNSEntityTypes.BABY_CREEPER, CreeperEntity.func_234278_m_().create());
+		GlobalEntityTypeAttributes.put(GNSEntityTypes.TORMENTER, ZombieEntity.func_234342_eQ_().create());
+		GlobalEntityTypeAttributes.put(GNSEntityTypes.HEROBRINE, MonsterEntity.func_234295_eP_().create());
+		GlobalEntityTypeAttributes.put(GNSEntityTypes.SPAWNER_ENTITY, MobEntity.func_233666_p_().create());
+
 	}
 
 	public static boolean animalSpawnConditions(EntityType<? extends AnimalEntity> p_223316_0_, IWorld p_223316_1_, SpawnReason p_223316_2_, BlockPos p_223316_3_, Random p_223316_4_)

@@ -1,7 +1,7 @@
 package com.legacy.goodnightsleep.blocks.natural;
 
-import com.legacy.goodnightsleep.blocks.GNSBlocks;
-import com.legacy.goodnightsleep.item.GNSItems;
+import com.legacy.goodnightsleep.registry.GNSBlocks;
+import com.legacy.goodnightsleep.registry.GNSItems;
 
 import net.minecraft.block.BeetrootBlock;
 import net.minecraft.block.BlockState;

@@ -2,42 +2,42 @@ package com.legacy.goodnightsleep.world;
 
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.RegistryKey;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunk;
-import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.fml.LogicalSidedProvider;
 
-public class GNSTeleportationUtil
+public class GNSTeleporter
 {
-	public static void changeDimension(DimensionType type, Entity entity, BlockPos pos)
+	public static void changeDimension(RegistryKey<World> type, Entity entity, BlockPos pos)
 	{
 		MinecraftServer server = LogicalSidedProvider.INSTANCE.get(LogicalSide.SERVER);
 
 		if (server == null)
-		{
 			return;
-		}
 
-		DimensionType transferDimension = entity.dimension == type ? DimensionType.OVERWORLD : type;
+		RegistryKey<World> overworld = World.OVERWORLD;
+
+		RegistryKey<World> transferDimension = entity.world.getDimensionKey() == type ? overworld : type;
 		ServerWorld transferWorld = server.getWorld(transferDimension);
 
-		if (!ForgeHooks.onTravelToDimension(entity, transferDimension) || entity.timeUntilPortal > 0)
+		if (!ForgeHooks.onTravelToDimension(entity, transferDimension))
 		{
 			return;
 		}
 
 		IChunk chunk = transferWorld.getChunk(pos);
-		int transferY = type == DimensionType.OVERWORLD && entity instanceof PlayerEntity && ((PlayerEntity) entity).getBedLocation(DimensionType.OVERWORLD) != null ? ((PlayerEntity) entity).getBedLocation(DimensionType.OVERWORLD).getY() : chunk.getTopBlockY(Heightmap.Type.MOTION_BLOCKING, pos.getX(), pos.getZ()) + 1;
+		int transferY = /*type == overworld && entity instanceof PlayerEntity && ((PlayerEntity) entity).getBedLocation(overworld) != null ? ((PlayerEntity) entity).getBedLocation(overworld).getY() : */chunk.getTopBlockY(Heightmap.Type.MOTION_BLOCKING, pos.getX(), pos.getZ()) + 1;
 
-		Vec3d endpointPos = new Vec3d(pos.getX() + 0.5, transferY, pos.getZ() + 0.5);
+		Vector3d endpointPos = new Vector3d(pos.getX() + 0.5, transferY, pos.getZ() + 0.5);
 
 		for (int x = -1; x < 2; ++x)
 		{
@@ -59,34 +59,28 @@ public class GNSTeleportationUtil
 		teleportedEntity.fallDistance = 0.0F;
 	}
 
-	private static Entity teleportEntity(Entity entity, ServerWorld transferWorld, Vec3d transferPos)
+	private static Entity teleportEntity(Entity entity, ServerWorld transferWorld, Vector3d transferPos)
 	{
 		if (entity instanceof ServerPlayerEntity)
 		{
 			ServerPlayerEntity player = (ServerPlayerEntity) entity;
 			player.teleport(transferWorld, transferPos.x, transferPos.y, transferPos.z, entity.rotationYaw, entity.rotationPitch);
-			player.timeUntilPortal = 50;
 			return player;
-		}
-		else
-		{
-			entity.timeUntilPortal = 300;
 		}
 
 		entity.detach();
-		entity.dimension = transferWorld.dimension.getType();
+		//entity.world.getDimensionKey() = transferWorld;
+		entity.changeDimension(transferWorld);
 
 		Entity teleportedEntity = entity.getType().create(transferWorld);
 
 		if (teleportedEntity == null)
-		{
 			return entity;
-		}
 
 		teleportedEntity.copyDataFromOld(entity);
 		teleportedEntity.setLocationAndAngles(transferPos.x, transferPos.y, transferPos.z, entity.rotationYaw, entity.rotationPitch);
 		teleportedEntity.setRotationYawHead(entity.rotationYaw);
-		teleportedEntity.setMotion(Vec3d.ZERO);
+		teleportedEntity.setMotion(Vector3d.ZERO);
 		transferWorld.addFromAnotherDimension(teleportedEntity);
 		entity.remove();
 

@@ -11,7 +11,6 @@ import com.legacy.goodnightsleep.world.general_features.GNSFeatures;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -35,7 +34,7 @@ public class GoodNightSleep
 
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::initialization);
 
-		DistExecutor.runWhenOn(Dist.CLIENT, () -> () ->
+		DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () ->
 		{
 			FMLJavaModLoadingContext.get().getModEventBus().addListener(GoodNightSleepClient::initialization);
 			MinecraftForge.EVENT_BUS.register(new GoodNightSleepClient());
@@ -48,7 +47,7 @@ public class GoodNightSleep
 
 		for (Biome biome : ForgeRegistries.BIOMES.getValues())
 		{
-			if ((BiomeDictionary.hasType(biome, BiomeDictionary.Type.OVERWORLD) || BiomeDictionary.hasType(biome, BiomeDictionary.Type.NETHER)) && !BiomeDictionary.hasType(biome, BiomeDictionary.Type.END) && !BiomeDictionary.hasType(biome, BiomeDictionary.Type.VOID))
+			if (biome.getCategory() != Biome.Category.THEEND && (biome.getCategory() == Biome.Category.NETHER || biome.getCategory() != Biome.Category.NONE))
 			{
 				GNSFeatures.addMushrooms(biome);
 			}

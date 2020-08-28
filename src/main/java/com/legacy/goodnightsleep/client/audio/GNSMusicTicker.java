@@ -2,7 +2,7 @@ package com.legacy.goodnightsleep.client.audio;
 
 import java.util.Random;
 
-import com.legacy.goodnightsleep.world.GNSDimensions;
+import com.legacy.goodnightsleep.registry.GNSDimensions;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.ISound;
@@ -37,9 +37,9 @@ public class GNSMusicTicker implements ITickable
 
 		try
 		{
-			if (this.mc.player != null && !this.mc.getSoundHandler().isPlaying(this.playingRecord) && GNSDimensions.dimensionType(true) != null && GNSDimensions.dimensionType(false) != null)
+			if (this.mc.player != null && !this.mc.getSoundHandler().isPlaying(this.playingRecord) && GNSDimensions.getDimensionLocations(true) != null && GNSDimensions.getDimensionLocations(false) != null)
 			{
-				if (this.mc.player.dimension == GNSDimensions.dimensionType(true))
+				if (this.mc.player.world.getDimensionKey().func_240901_a_() == GNSDimensions.getDimensionLocations(true))
 				{
 					if (this.ambientMusic != null)
 					{
@@ -55,7 +55,7 @@ public class GNSMusicTicker implements ITickable
 						this.playMusic(tracktypeB);
 					}
 				}
-				else if (this.mc.player.dimension == GNSDimensions.dimensionType(false))
+				else if (this.mc.player.world.getDimensionKey().func_240901_a_() == GNSDimensions.getDimensionLocations(false))
 				{
 					if (this.ambientMusic != null)
 					{

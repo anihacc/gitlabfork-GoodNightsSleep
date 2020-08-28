@@ -1,13 +1,11 @@
-package com.legacy.goodnightsleep;
+package com.legacy.goodnightsleep.registry;
 
-import com.legacy.goodnightsleep.blocks.GNSBlocks;
+import com.legacy.goodnightsleep.GoodNightSleep;
 import com.legacy.goodnightsleep.client.audio.GNSSounds;
 import com.legacy.goodnightsleep.entity.GNSEntityTypes;
 import com.legacy.goodnightsleep.item.GNSCreativeTabs;
-import com.legacy.goodnightsleep.item.GNSItems;
 import com.legacy.goodnightsleep.tile_entity.GNSTileEntityTypes;
 import com.legacy.goodnightsleep.world.GNSBiomes;
-import com.legacy.goodnightsleep.world.GNSDimensions;
 import com.legacy.goodnightsleep.world.general_features.GNSFeatures;
 
 import net.minecraft.block.Block;
@@ -17,8 +15,8 @@ import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.gen.carver.WorldCarver;
 import net.minecraft.world.gen.feature.Feature;
-import net.minecraftforge.common.ModDimension;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.RegistryEvent.Register;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -34,8 +32,7 @@ public class GNSRegistry
 	@SubscribeEvent
 	public static void onRegisterSounds(RegistryEvent.Register<SoundEvent> event)
 	{
-		GNSSounds.soundRegistry = event.getRegistry();
-		GNSSounds.init();
+		GNSSounds.init(event);
 	}
 
 	@SubscribeEvent
@@ -80,9 +77,9 @@ public class GNSRegistry
 	}
 
 	@SubscribeEvent
-	public static void onRegisterModDimensions(RegistryEvent.Register<ModDimension> event)
+	public static void onRegisterWorldCarvers(Register<WorldCarver<?>> event)
 	{
-		GNSDimensions.initModDimensions(event.getRegistry());
+		GNSFeatures.Carvers.init(event);
 	}
 
 	public static <T extends IForgeRegistryEntry<T>> void register(IForgeRegistry<T> registry, String name, T object)

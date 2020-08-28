@@ -1,33 +1,34 @@
 package com.legacy.goodnightsleep.world;
 
-import com.legacy.goodnightsleep.GNSRegistry;
 import com.legacy.goodnightsleep.GoodNightSleep;
-import com.legacy.goodnightsleep.world.dream.GoodDreamPlainsBiome;
-import com.legacy.goodnightsleep.world.nightmare.NightmareHillsBiome;
+import com.legacy.goodnightsleep.registry.GNSBlocks;
 
+import net.minecraft.block.Blocks;
+import net.minecraft.util.RegistryKey;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
-import net.minecraftforge.common.BiomeDictionary;
+import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilder;
+import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
+import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 import net.minecraftforge.event.RegistryEvent.Register;
-import net.minecraftforge.registries.IForgeRegistry;
-import net.minecraftforge.registries.ObjectHolder;
 
-@ObjectHolder(GoodNightSleep.MODID)
 public class GNSBiomes
 {
-	public static final Biome GOOD_DREAM_PLAINS = new GoodDreamPlainsBiome();
-	public static final Biome NIGHTMARE_HILLS = new NightmareHillsBiome();
+	public static final RegistryKey<Biome> GOOD_DREAM_PLAINS = RegistryKey.func_240903_a_(Registry.BIOME_KEY, GoodNightSleep.locate("good_dream_plains"));
+	public static final RegistryKey<Biome> NIGHTMARE_HILLS = RegistryKey.func_240903_a_(Registry.BIOME_KEY, GoodNightSleep.locate("nightmare_hills"));
 
 	public static void init(Register<Biome> event)
 	{
-		register(event.getRegistry(), "good_dream_plains", GOOD_DREAM_PLAINS);
-		register(event.getRegistry(), "nightmare_hills", NIGHTMARE_HILLS);
-		
-		BiomeDictionary.addTypes(GOOD_DREAM_PLAINS, BiomeDictionary.Type.MAGICAL, BiomeDictionary.Type.PLAINS);
-		BiomeDictionary.addTypes(NIGHTMARE_HILLS, BiomeDictionary.Type.SPOOKY, BiomeDictionary.Type.HILLS, BiomeDictionary.Type.MOUNTAIN, BiomeDictionary.Type.HOT, BiomeDictionary.Type.DEAD);
+		/*BiomeDictionary.addTypes(GOOD_DREAM_PLAINS, BiomeDictionary.Type.MAGICAL, BiomeDictionary.Type.PLAINS);
+		BiomeDictionary.addTypes(NIGHTMARE_HILLS, BiomeDictionary.Type.SPOOKY, BiomeDictionary.Type.HILLS, BiomeDictionary.Type.MOUNTAIN, BiomeDictionary.Type.HOT, BiomeDictionary.Type.DEAD);*/
 	}
 
-	public static void register(IForgeRegistry<Biome> registry, String key, Biome biome)
+	public static class SurfaceBuilders
 	{
-		GNSRegistry.register(registry, key, biome);
+		public static final SurfaceBuilderConfig DREAM_GRASS_DIRT_GRAVEL_CONFIG = new SurfaceBuilderConfig(GNSBlocks.dream_grass_block.getDefaultState(), GNSBlocks.dream_dirt.getDefaultState(), Blocks.GRAVEL.getDefaultState());
+		public static final SurfaceBuilderConfig NIGHTMARE_GRASS_DIRT_GRAVEL_CONFIG = new SurfaceBuilderConfig(GNSBlocks.nightmare_grass_block.getDefaultState(), Blocks.DIRT.getDefaultState(), Blocks.GRAVEL.getDefaultState());
+
+		public static final ConfiguredSurfaceBuilder<SurfaceBuilderConfig> DREAM_GRASS_SURFACE_BUILDER = SurfaceBuilder.DEFAULT.func_242929_a(DREAM_GRASS_DIRT_GRAVEL_CONFIG);
+		public static final ConfiguredSurfaceBuilder<SurfaceBuilderConfig> NIGHTMARE_GRASS_SURFACE_BUILDER = SurfaceBuilder.DEFAULT.func_242929_a(NIGHTMARE_GRASS_DIRT_GRAVEL_CONFIG);
 	}
 }

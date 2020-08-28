@@ -1,10 +1,13 @@
 
-package com.legacy.goodnightsleep.blocks;
+package com.legacy.goodnightsleep.registry;
 
 import java.util.ArrayList;
 
 import com.google.common.collect.Lists;
 import com.legacy.goodnightsleep.GoodNightSleep;
+import com.legacy.goodnightsleep.blocks.GNSFlowerPotBlock;
+import com.legacy.goodnightsleep.blocks.GoldPotBlock;
+import com.legacy.goodnightsleep.blocks.RainbowBlock;
 import com.legacy.goodnightsleep.blocks.natural.GNSFarmlandBlock;
 import com.legacy.goodnightsleep.blocks.natural.GNSFlowerBlock;
 import com.legacy.goodnightsleep.blocks.natural.GNSGrassBlock;
@@ -16,15 +19,14 @@ import com.legacy.goodnightsleep.item.sapling.CandyTree;
 import com.legacy.goodnightsleep.item.sapling.DreamTree;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.Block.Properties;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.DoorBlock;
 import net.minecraft.block.FenceBlock;
 import net.minecraft.block.FenceGateBlock;
 import net.minecraft.block.HugeMushroomBlock;
 import net.minecraft.block.LeavesBlock;
-import net.minecraft.block.LogBlock;
 import net.minecraft.block.PressurePlateBlock;
+import net.minecraft.block.RotatedPillarBlock;
 import net.minecraft.block.SaplingBlock;
 import net.minecraft.block.SlabBlock;
 import net.minecraft.block.SoundType;
@@ -51,7 +53,7 @@ public class GNSBlocks
 
 	public static Block candy_leaves, dream_leaves, diamond_leaves;
 
-	public static Block candy_block, rainbow_block, positite_block, necrum_block, zitrite_block, negatite_block; 
+	public static Block candy_block, rainbow_block, positite_block, necrum_block, zitrite_block, negatite_block;
 
 	public static Block dead_planks, blood_planks, white_planks, dream_planks;
 
@@ -65,19 +67,21 @@ public class GNSBlocks
 
 	public static Block dream_log, white_log, dead_log, blood_log, dream_wood, white_wood, dead_wood, blood_wood;
 
-	public static Block stripped_dream_log, stripped_white_log, stripped_dead_log, stripped_blood_log, stripped_dream_wood, stripped_white_wood, stripped_dead_wood, stripped_blood_wood;
+	public static Block stripped_dream_log, stripped_white_log, stripped_dead_log, stripped_blood_log,
+			stripped_dream_wood, stripped_white_wood, stripped_dead_wood, stripped_blood_wood;
 
 	public static Block delusion_stone, delusion_cobblestone, delusion_stonebrick;
 
 	public static Block dream_fence, white_fence, dead_fence, blood_fence;
-	
+
 	public static Block delusion_cobblestone_wall, delusion_stonebrick_wall;
 
 	public static Block dream_fence_gate, white_fence_gate, dead_fence_gate, blood_fence_gate;
 
 	public static Block dream_button, white_button, dead_button, blood_button, delusion_button;
 
-	public static Block dream_pressure_plate, white_pressure_plate, dead_pressure_plate, blood_pressure_plate, delusion_pressure_plate;
+	public static Block dream_pressure_plate, white_pressure_plate, dead_pressure_plate, blood_pressure_plate,
+			delusion_pressure_plate;
 
 	public static Block dream_door, white_door, dead_door, blood_door;
 
@@ -95,12 +99,14 @@ public class GNSBlocks
 
 	public static Block luxurious_bed, wretched_bed, strange_bed;
 
-	public static Block potted_dream_sapling, potted_candy_sapling, potted_hope_mushroom, potted_despair_mushroom, potted_orange_flower, potted_cyan_flower, potted_dead_flower;
+	public static Block potted_dream_sapling, potted_candy_sapling, potted_hope_mushroom, potted_despair_mushroom,
+			potted_orange_flower, potted_cyan_flower, potted_dead_flower;
 
 	private static IForgeRegistry<Block> iBlockRegistry;
 
 	public static ArrayList<Block> gnsBlockList = Lists.newArrayList();
 
+	// @formatter:off
 	public static void init(RegistryEvent.Register<Block> event)
 	{
 		iBlockRegistry = event.getRegistry();
@@ -114,7 +120,7 @@ public class GNSBlocks
 		prickly_nightmare_grass = register("prickly_nightmare_grass", new GNSTallGrassBlock(Block.Properties.from(Blocks.GRASS)));
 		dream_grass_block = register("dream_grass_block", new GNSGrassBlock());
 		dream_dirt = register("dream_dirt", new Block(Block.Properties.from(Blocks.DIRT)));
-		dream_farmland = register("dream_farmland", new GNSFarmlandBlock(Properties.from(Blocks.FARMLAND)));
+		dream_farmland = register("dream_farmland", new GNSFarmlandBlock(Block.Properties.from(Blocks.FARMLAND)));
 		delusion_stone = register("delusion_stone", new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F)));
 		delusion_cobblestone = register("delusion_cobblestone", new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(2.0F, 6.0F)));
 		delusion_stonebrick = register("delusion_stonebrick", new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(2.0F, 6.0F)));
@@ -136,25 +142,25 @@ public class GNSBlocks
 		candy_leaves = register("candy_leaves", new LeavesBlock(Block.Properties.from(Blocks.OAK_LEAVES)));
 		diamond_leaves = register("diamond_leaves", new LeavesBlock(Block.Properties.from(Blocks.OAK_LEAVES)));
 
-		dream_log = register("dream_log", new LogBlock(MaterialColor.CYAN, Block.Properties.from(Blocks.OAK_LOG)));
-		white_log = register("white_log", new LogBlock(MaterialColor.LIGHT_GRAY, Block.Properties.from(Blocks.OAK_LOG)));
-		dead_log = register("dead_log", new LogBlock(MaterialColor.GRAY, Block.Properties.from(Blocks.OAK_LOG)));
-		blood_log = register("blood_log", new LogBlock(MaterialColor.RED, Block.Properties.from(Blocks.OAK_LOG)));
+		dream_log = register("dream_log", new RotatedPillarBlock(Block.Properties.from(Blocks.OAK_LOG)));
+		white_log = register("white_log", new RotatedPillarBlock(Block.Properties.from(Blocks.OAK_LOG)));
+		dead_log = register("dead_log", new RotatedPillarBlock(Block.Properties.from(Blocks.OAK_LOG)));
+		blood_log = register("blood_log", new RotatedPillarBlock(Block.Properties.from(Blocks.OAK_LOG)));
 		
-		dream_wood = register("dream_wood", new LogBlock(MaterialColor.CYAN, Block.Properties.from(Blocks.OAK_LOG)));
-		white_wood = register("white_wood", new LogBlock(MaterialColor.LIGHT_GRAY, Block.Properties.from(Blocks.OAK_LOG)));
-		dead_wood = register("dead_wood", new LogBlock(MaterialColor.GRAY, Block.Properties.from(Blocks.OAK_LOG)));
-		blood_wood = register("blood_wood", new LogBlock(MaterialColor.RED, Block.Properties.from(Blocks.OAK_LOG)));
+		dream_wood = register("dream_wood", new RotatedPillarBlock(Block.Properties.from(Blocks.OAK_LOG)));
+		white_wood = register("white_wood", new RotatedPillarBlock(Block.Properties.from(Blocks.OAK_LOG)));
+		dead_wood = register("dead_wood", new RotatedPillarBlock(Block.Properties.from(Blocks.OAK_LOG)));
+		blood_wood = register("blood_wood", new RotatedPillarBlock(Block.Properties.from(Blocks.OAK_LOG)));
 
-		stripped_dream_log = register("stripped_dream_log", new LogBlock(MaterialColor.CYAN, Block.Properties.from(Blocks.OAK_LOG)));
-		stripped_white_log = register("stripped_white_log", new LogBlock(MaterialColor.LIGHT_GRAY, Block.Properties.from(Blocks.OAK_LOG)));
-		stripped_dead_log = register("stripped_dead_log", new LogBlock(MaterialColor.GRAY, Block.Properties.from(Blocks.OAK_LOG)));
-		stripped_blood_log = register("stripped_blood_log", new LogBlock(MaterialColor.RED, Block.Properties.from(Blocks.OAK_LOG)));
+		stripped_dream_log = register("stripped_dream_log", new RotatedPillarBlock(Block.Properties.from(Blocks.OAK_LOG)));
+		stripped_white_log = register("stripped_white_log", new RotatedPillarBlock(Block.Properties.from(Blocks.OAK_LOG)));
+		stripped_dead_log = register("stripped_dead_log", new RotatedPillarBlock(Block.Properties.from(Blocks.OAK_LOG)));
+		stripped_blood_log = register("stripped_blood_log", new RotatedPillarBlock(Block.Properties.from(Blocks.OAK_LOG)));
 
-		stripped_dream_wood = register("stripped_dream_wood", new LogBlock(MaterialColor.CYAN, Block.Properties.from(Blocks.OAK_LOG)));
-		stripped_white_wood = register("stripped_white_wood", new LogBlock(MaterialColor.LIGHT_GRAY, Block.Properties.from(Blocks.OAK_LOG)));
-		stripped_dead_wood = register("stripped_dead_wood", new LogBlock(MaterialColor.GRAY, Block.Properties.from(Blocks.OAK_LOG)));
-		stripped_blood_wood = register("stripped_blood_wood", new LogBlock(MaterialColor.RED, Block.Properties.from(Blocks.OAK_LOG)));
+		stripped_dream_wood = register("stripped_dream_wood", new RotatedPillarBlock(Block.Properties.from(Blocks.OAK_LOG)));
+		stripped_white_wood = register("stripped_white_wood", new RotatedPillarBlock(Block.Properties.from(Blocks.OAK_LOG)));
+		stripped_dead_wood = register("stripped_dead_wood", new RotatedPillarBlock(Block.Properties.from(Blocks.OAK_LOG)));
+		stripped_blood_wood = register("stripped_blood_wood", new RotatedPillarBlock(Block.Properties.from(Blocks.OAK_LOG)));
 
 		dream_planks = register("dream_planks", new Block(Block.Properties.from(Blocks.OAK_PLANKS)));
 		white_planks = register("white_planks", new Block(Block.Properties.from(Blocks.OAK_PLANKS)));
@@ -229,7 +235,10 @@ public class GNSBlocks
 		delusion_stonebrick_slab = register("delusion_stonebrick_slab", new SlabBlock(Block.Properties.from(GNSBlocks.delusion_stonebrick)));
 
 		candy_block = register("candy_block", new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0F, 6.0F).sound(SoundType.METAL)));
-		rainbow_block = register("rainbow_block", new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0F, 6.0F).sound(SoundType.METAL).lightValue(15)));
+		rainbow_block = register("rainbow_block", new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0F, 6.0F).sound(SoundType.METAL).setLightLevel((state) ->
+		{
+			return 15;
+		})));
 		positite_block = register("positite_block", new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0F, 6.0F).sound(SoundType.METAL)));
 		necrum_block = register("necrum_block", new Block(Block.Properties.create(Material.ORGANIC).hardnessAndResistance(3.0F, 6.0F).sound(SoundType.GROUND)));
 		zitrite_block = register("zitrite_block", new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0F, 6.0F).sound(SoundType.METAL)));
@@ -248,6 +257,7 @@ public class GNSBlocks
 		potted_cyan_flower = registerBlock("potted_cyan_flower", new GNSFlowerPotBlock(() -> cyan_flower.delegate.get()));
 		potted_dead_flower = registerBlock("potted_dead_flower", new GNSFlowerPotBlock(() -> dead_flower.delegate.get()));
 	}
+	// @formatter:on
 
 	public static Block register(String name, Block block)
 	{

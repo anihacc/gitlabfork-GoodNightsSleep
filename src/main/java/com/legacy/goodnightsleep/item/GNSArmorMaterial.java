@@ -4,6 +4,7 @@ import java.util.function.Supplier;
 
 import com.legacy.goodnightsleep.GoodNightSleep;
 import com.legacy.goodnightsleep.client.audio.GNSSounds;
+import com.legacy.goodnightsleep.registry.GNSItems;
 
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.IArmorMaterial;
@@ -97,5 +98,11 @@ public enum GNSArmorMaterial implements IArmorMaterial
 	public float getToughness()
 	{
 		return this.toughness;
+	}
+
+	@Override
+	public float getKnockbackResistance()
+	{
+		return 0;
 	}
 }

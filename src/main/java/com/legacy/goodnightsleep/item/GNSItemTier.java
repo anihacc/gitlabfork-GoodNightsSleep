@@ -2,7 +2,8 @@ package com.legacy.goodnightsleep.item;
 
 import java.util.function.Supplier;
 
-import com.legacy.goodnightsleep.blocks.GNSBlocks;
+import com.legacy.goodnightsleep.registry.GNSBlocks;
+import com.legacy.goodnightsleep.registry.GNSItems;
 
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.crafting.Ingredient;

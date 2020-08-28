@@ -1,4 +1,4 @@
-package com.legacy.goodnightsleep.world.dream;
+/*package com.legacy.goodnightsleep.world.dream;
 
 import java.util.Random;
 
@@ -9,9 +9,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.FogRenderer;
-import net.minecraft.client.renderer.Matrix4f;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.Vector3f;
 import net.minecraft.client.renderer.WorldVertexBufferUploader;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
@@ -20,7 +18,9 @@ import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.vector.Matrix4f;
+import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.util.math.vector.Vector3f;
 
 public class DreamSkyRenderer implements net.minecraftforge.client.SkyRenderHandler
 {
@@ -45,10 +45,10 @@ public class DreamSkyRenderer implements net.minecraftforge.client.SkyRenderHand
 	public void render(int ticks, float partialTicks, MatrixStack matrixStackIn, ClientWorld world, Minecraft mc)
 	{
 		RenderSystem.disableTexture();
-		Vec3d vec3d = world.getSkyColor(mc.gameRenderer.getActiveRenderInfo().getBlockPos(), partialTicks);
-		float f = (float) vec3d.x;
-		float f1 = (float) vec3d.y;
-		float f2 = (float) vec3d.z;
+		Vector3d Vector3d = world.getSkyColor(mc.gameRenderer.getActiveRenderInfo().getBlockPos(), partialTicks);
+		float f = (float) Vector3d.x;
+		float f1 = (float) Vector3d.y;
+		float f2 = (float) Vector3d.z;
 		FogRenderer.applyFog();
 		BufferBuilder bufferbuilder = Tessellator.getInstance().getBuffer();
 		RenderSystem.depthMask(false);
@@ -292,3 +292,4 @@ public class DreamSkyRenderer implements net.minecraftforge.client.SkyRenderHand
 
 	}
 }
+*/

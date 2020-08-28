@@ -2,18 +2,17 @@ package com.legacy.goodnightsleep.item.sapling;
 
 import java.util.Random;
 
-import com.legacy.goodnightsleep.world.dream.features.DreamTreeFeature;
+import com.legacy.goodnightsleep.world.general_features.GNSFeatures;
 
 import net.minecraft.block.trees.Tree;
-import net.minecraft.world.biome.DefaultBiomeFeatures;
+import net.minecraft.world.gen.feature.BaseTreeFeatureConfig;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
-import net.minecraft.world.gen.feature.TreeFeatureConfig;
 
 public class DreamTree extends Tree
 {
 	@Override
-	protected ConfiguredFeature<TreeFeatureConfig, ?> getTreeFeature(Random random, boolean p_225546_2_)
+	protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature(Random random, boolean p_225546_2_)
 	{
-		return new DreamTreeFeature(TreeFeatureConfig::deserializeFoliage, true).withConfiguration(DefaultBiomeFeatures.OAK_TREE_CONFIG);
+		return (ConfiguredFeature<BaseTreeFeatureConfig, ?>) GNSFeatures.DREAM_TREE;
 	}
 }

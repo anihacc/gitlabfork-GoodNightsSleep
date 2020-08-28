@@ -1,10 +1,11 @@
 package com.legacy.goodnightsleep.client.audio;
 
-import com.legacy.goodnightsleep.GNSRegistry;
 import com.legacy.goodnightsleep.GoodNightSleep;
+import com.legacy.goodnightsleep.registry.GNSRegistry;
 
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
+import net.minecraftforge.event.RegistryEvent.Register;
 import net.minecraftforge.registries.IForgeRegistry;
 
 public class GNSSounds
@@ -36,8 +37,10 @@ public class GNSSounds
 
 	public static IForgeRegistry<SoundEvent> soundRegistry;
 
-	public static void init()
+	public static void init(Register<SoundEvent> event)
 	{
+		soundRegistry = event.getRegistry();
+
 		MUSIC_GOOD_DREAM = register("music.good_dream");
 		MUSIC_SKY_BLUE = register("music.sky_blue");
 

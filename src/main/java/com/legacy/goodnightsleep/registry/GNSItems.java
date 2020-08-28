@@ -1,8 +1,11 @@
-package com.legacy.goodnightsleep.item;
+package com.legacy.goodnightsleep.registry;
 
 import com.legacy.goodnightsleep.GoodNightSleep;
-import com.legacy.goodnightsleep.blocks.GNSBlocks;
 import com.legacy.goodnightsleep.entity.GNSEntityTypes;
+import com.legacy.goodnightsleep.item.GNSArmorMaterial;
+import com.legacy.goodnightsleep.item.GNSCreativeTabs;
+import com.legacy.goodnightsleep.item.GNSFoods;
+import com.legacy.goodnightsleep.item.GNSItemTier;
 
 import net.minecraft.entity.EntityType;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -101,37 +104,37 @@ public class GNSItems
 		candy_pickaxe = register("candy_pickaxe", new PickaxeItem(GNSItemTier.CANDY, 1, -2.8F, (new Item.Properties()).group(GNSCreativeTabs.tools)));
 		candy_axe = register("candy_axe", new AxeItem(GNSItemTier.CANDY, 7.0F, -3.2F, (new Item.Properties()).group(GNSCreativeTabs.tools)));
 		candy_shovel = register("candy_shovel", new ShovelItem(GNSItemTier.CANDY, 1.5F, -3.0F, (new Item.Properties()).group(GNSCreativeTabs.tools)));
-		candy_hoe = register("candy_hoe", new HoeItem(GNSItemTier.CANDY, -2.0F, (new Item.Properties()).group(GNSCreativeTabs.tools)));
+		candy_hoe = register("candy_hoe", new HoeItem(GNSItemTier.CANDY, 0, -2.0F, (new Item.Properties()).group(GNSCreativeTabs.tools)));
 
 		necrum_sword = register("necrum_sword", new SwordItem(GNSItemTier.NECRUM, 3, -2.4F, (new Item.Properties()).group(GNSCreativeTabs.tools)));
 		necrum_pickaxe = register("necrum_pickaxe", new PickaxeItem(GNSItemTier.NECRUM, 1, -2.8F, (new Item.Properties()).group(GNSCreativeTabs.tools)));
 		necrum_axe = register("necrum_axe", new AxeItem(GNSItemTier.NECRUM, 7.0F, -3.2F, (new Item.Properties()).group(GNSCreativeTabs.tools)));
 		necrum_shovel = register("necrum_shovel", new ShovelItem(GNSItemTier.NECRUM, 1.5F, -3.0F, (new Item.Properties()).group(GNSCreativeTabs.tools)));
-		necrum_hoe = register("necrum_hoe", new HoeItem(GNSItemTier.NECRUM, -2.0F, (new Item.Properties()).group(GNSCreativeTabs.tools)));
+		necrum_hoe = register("necrum_hoe", new HoeItem(GNSItemTier.NECRUM, 0, -2.0F, (new Item.Properties()).group(GNSCreativeTabs.tools)));
 
 		zitrite_sword = register("zitrite_sword", new SwordItem(GNSItemTier.ZITRITE, 3, -2.4F, (new Item.Properties()).group(GNSCreativeTabs.tools)));
 		zitrite_pickaxe = register("zitrite_pickaxe", new PickaxeItem(GNSItemTier.ZITRITE, 1, -2.8F, (new Item.Properties()).group(GNSCreativeTabs.tools)));
 		zitrite_axe = register("zitrite_axe", new AxeItem(GNSItemTier.ZITRITE, 6.0F, -3.1F, (new Item.Properties()).group(GNSCreativeTabs.tools)));
 		zitrite_shovel = register("zitrite_shovel", new ShovelItem(GNSItemTier.ZITRITE, 1.5F, -3.0F, (new Item.Properties()).group(GNSCreativeTabs.tools)));
-		zitrite_hoe = register("zitrite_hoe", new HoeItem(GNSItemTier.ZITRITE, -1.0F, (new Item.Properties()).group(GNSCreativeTabs.tools)));
+		zitrite_hoe = register("zitrite_hoe", new HoeItem(GNSItemTier.ZITRITE, -2, -1.0F, (new Item.Properties()).group(GNSCreativeTabs.tools)));
 
 		rainbow_sword = register("rainbow_sword", new SwordItem(GNSItemTier.RAINBOW, 3, -2.4F, (new Item.Properties()).group(GNSCreativeTabs.tools)));
 		rainbow_pickaxe = register("rainbow_pickaxe", new PickaxeItem(GNSItemTier.RAINBOW, 1, -2.8F, (new Item.Properties()).group(GNSCreativeTabs.tools)));
 		rainbow_axe = register("rainbow_axe", new AxeItem(GNSItemTier.RAINBOW, 6.0F, -3.1F, (new Item.Properties()).group(GNSCreativeTabs.tools)));
 		rainbow_shovel = register("rainbow_shovel", new ShovelItem(GNSItemTier.RAINBOW, 1.5F, -3.0F, (new Item.Properties()).group(GNSCreativeTabs.tools)));
-		rainbow_hoe = register("rainbow_hoe", new HoeItem(GNSItemTier.RAINBOW, -1.0F, (new Item.Properties()).group(GNSCreativeTabs.tools)));
+		rainbow_hoe = register("rainbow_hoe", new HoeItem(GNSItemTier.RAINBOW, -2, -1.0F, (new Item.Properties()).group(GNSCreativeTabs.tools)));
 
 		positite_sword = register("positite_sword", new SwordItem(GNSItemTier.POSITITE, 3, -2.4F, (new Item.Properties()).group(GNSCreativeTabs.tools)));
 		positite_pickaxe = register("positite_pickaxe", new PickaxeItem(GNSItemTier.POSITITE, 1, -2.8F, (new Item.Properties()).group(GNSCreativeTabs.tools)));
 		positite_axe = register("positite_axe", new AxeItem(GNSItemTier.POSITITE, 5.0F, -3.0F, (new Item.Properties()).group(GNSCreativeTabs.tools)));
 		positite_shovel = register("positite_shovel", new ShovelItem(GNSItemTier.POSITITE, 1.5F, -3.0F, (new Item.Properties()).group(GNSCreativeTabs.tools)));
-		positite_hoe = register("positite_hoe", new HoeItem(GNSItemTier.POSITITE, 0.0F, (new Item.Properties()).group(GNSCreativeTabs.tools)));
+		positite_hoe = register("positite_hoe", new HoeItem(GNSItemTier.POSITITE, -3, 0.0F, (new Item.Properties()).group(GNSCreativeTabs.tools)));
 
 		negatite_sword = register("negatite_sword", new SwordItem(GNSItemTier.NEGATITE, 4, -2.5F, (new Item.Properties()).group(GNSCreativeTabs.tools)));
 		negatite_pickaxe = register("negatite_pickaxe", new PickaxeItem(GNSItemTier.NEGATITE, 1, -2.8F, (new Item.Properties()).group(GNSCreativeTabs.tools)));
 		negatite_axe = register("negatite_axe", new AxeItem(GNSItemTier.NEGATITE, 5.0F, -3.0F, (new Item.Properties()).group(GNSCreativeTabs.tools)));
 		negatite_shovel = register("negatite_shovel", new ShovelItem(GNSItemTier.NEGATITE, 1.5F, -3.0F, (new Item.Properties()).group(GNSCreativeTabs.tools)));
-		negatite_hoe = register("negatite_hoe", new HoeItem(GNSItemTier.NEGATITE, 0.0F, (new Item.Properties()).group(GNSCreativeTabs.tools)));
+		negatite_hoe = register("negatite_hoe", new HoeItem(GNSItemTier.NEGATITE, -4, 0.0F, (new Item.Properties()).group(GNSCreativeTabs.tools)));
 
 		candy_helmet = register("candy_helmet", new ArmorItem(GNSArmorMaterial.CANDY, EquipmentSlotType.HEAD, new Item.Properties().group(GNSCreativeTabs.armor)));
 		candy_chestplate = register("candy_chestplate", new ArmorItem(GNSArmorMaterial.CANDY, EquipmentSlotType.CHEST, new Item.Properties().group(GNSCreativeTabs.armor)));

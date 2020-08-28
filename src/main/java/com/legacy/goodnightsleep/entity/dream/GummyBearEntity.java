@@ -6,6 +6,7 @@ import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 
 public class GummyBearEntity extends AnimalEntity
 {
@@ -22,7 +23,7 @@ public class GummyBearEntity extends AnimalEntity
     }
 
 	@Override
-	public AgeableEntity createChild(AgeableEntity ageable)
+	public AgeableEntity func_241840_a(ServerWorld worldIn, AgeableEntity ageableIn)
 	{
 		return null;
 	}

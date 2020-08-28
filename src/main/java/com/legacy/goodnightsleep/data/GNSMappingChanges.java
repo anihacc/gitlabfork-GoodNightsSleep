@@ -4,12 +4,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.legacy.goodnightsleep.GoodNightSleep;
-import com.legacy.goodnightsleep.blocks.GNSBlocks;
 import com.legacy.goodnightsleep.entity.GNSEntityTypes;
-import com.legacy.goodnightsleep.item.GNSItems;
+import com.legacy.goodnightsleep.registry.GNSBlocks;
+import com.legacy.goodnightsleep.registry.GNSItems;
 import com.legacy.goodnightsleep.tile_entity.GNSTileEntityTypes;
-import com.legacy.goodnightsleep.world.GNSBiomes;
-import com.legacy.goodnightsleep.world.GNSDimensions;
 import com.legacy.goodnightsleep.world.general_features.GNSFeatures;
 
 import net.minecraft.block.Block;
@@ -18,10 +16,7 @@ import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.gen.feature.Feature;
-import net.minecraftforge.common.ModDimension;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistryEntry;
@@ -232,15 +227,15 @@ public class GNSMappingChanges
 		}
 	};
 
-	private static final Map<ResourceLocation, Biome> biomeRemappings = new HashMap<ResourceLocation, Biome>()
+	/*private static final Map<ResourceLocation, Biome> biomeRemappings = new HashMap<ResourceLocation, Biome>()
 	{
 		private static final long serialVersionUID = 3505784855800524223L;
-
+	
 		{
 			put(GoodNightSleep.locateOld("good_dream_plains"), GNSBiomes.GOOD_DREAM_PLAINS);
 			put(GoodNightSleep.locateOld("nightmare_hills"), GNSBiomes.NIGHTMARE_HILLS);
 		}
-	};
+	};*/
 
 	private static final Map<ResourceLocation, EntityType<?>> entityTypeRemappings = new HashMap<ResourceLocation, EntityType<?>>()
 	{
@@ -273,43 +268,43 @@ public class GNSMappingChanges
 		private static final long serialVersionUID = -6593770258280881293L;
 
 		{
-			put(GoodNightSleep.locateOld("dream_tree"), GNSFeatures.DREAM_TREE);
+			/*put(GoodNightSleep.locateOld("dream_tree"), GNSFeatures.DREAM_TREE);
 			put(GoodNightSleep.locateOld("candy_tree"), GNSFeatures.CANDY_TREE);
 			put(GoodNightSleep.locateOld("diamond_tree"), GNSFeatures.DIAMOND_TREE);
 			put(GoodNightSleep.locateOld("dead_tree"), GNSFeatures.CANDY_TREE);
-			put(GoodNightSleep.locateOld("blood_tree"), GNSFeatures.CANDY_TREE);
+			put(GoodNightSleep.locateOld("blood_tree"), GNSFeatures.CANDY_TREE);*/
 
 			put(GoodNightSleep.locateOld("dream_sponge"), GNSFeatures.DREAM_SPONGE);
-			put(GoodNightSleep.locateOld("big_hope_mushroom"), GNSFeatures.BIG_HOPE_MUSHROOM);
+			//put(GoodNightSleep.locateOld("big_hope_mushroom"), GNSFeatures.BIG_HOPE_MUSHROOM);
 			put(GoodNightSleep.locateOld("scattered_presents"), GNSFeatures.SCATTERED_PRESENTS);
-			put(GoodNightSleep.locateOld("dream_ores"), GNSFeatures.DREAM_ORES);
+			//put(GoodNightSleep.locateOld("dream_ores"), GNSFeatures.DREAM_ORES);
 
 			put(GoodNightSleep.locateOld("nether_splash"), GNSFeatures.NETHER_SPLASH);
-			put(GoodNightSleep.locateOld("big_despair_mushroom"), GNSFeatures.BIG_DESPAIR_MUSHROOM);
+			//put(GoodNightSleep.locateOld("big_despair_mushroom"), GNSFeatures.BIG_DESPAIR_MUSHROOM);
 			put(GoodNightSleep.locateOld("scattered_pumpkins"), GNSFeatures.SCATTERED_PUMPKINS);
 
 		}
 	};
 
-	private static final Map<ResourceLocation, DimensionType> dimTypeRemappings = new HashMap<ResourceLocation, DimensionType>()
+	/*private static final Map<ResourceLocation, DimensionType> dimTypeRemappings = new HashMap<ResourceLocation, DimensionType>()
 	{
 		private static final long serialVersionUID = -9007380852518195235L;
-
+	
 		{
-			put(GoodNightSleep.locateOld("good_dream"), GNSDimensions.dimensionType(true));
-			put(GoodNightSleep.locateOld("nightmare"), GNSDimensions.dimensionType(false));
+			put(GoodNightSleep.locateOld("good_dream"), GNSDimensions.getDimensionLocations(true));
+			put(GoodNightSleep.locateOld("nightmare"), GNSDimensions.getDimensionLocations(false));
 		}
 	};
-
+	
 	private static final Map<ResourceLocation, ModDimension> modDimRemappings = new HashMap<ResourceLocation, ModDimension>()
 	{
 		private static final long serialVersionUID = -9002350852518195235L;
-
+	
 		{
 			put(GoodNightSleep.locateOld("good_dream"), GNSDimensions.dreamDim);
 			put(GoodNightSleep.locateOld("nightmare"), GNSDimensions.nightmareDim);
 		}
-	};
+	};*/
 
 	@SubscribeEvent
 	public void blockMapping(RegistryEvent.MissingMappings<Block> event)
@@ -372,56 +367,56 @@ public class GNSMappingChanges
 		}
 	}
 
-	@SubscribeEvent
+	/*@SubscribeEvent
 	public void biomeMapping(RegistryEvent.MissingMappings<Biome> event)
 	{
 		if (event.getAllMappings().stream().filter(m -> m.key.getNamespace().equals(GoodNightSleep.OLD_MODID)).findAny().isPresent())
 		{
 			GoodNightSleep.LOGGER.warn("Found missing biome mappings. Attempting to replace them...");
-
+	
 			event.getAllMappings().stream().filter(m -> m.key.getNamespace().equals(GoodNightSleep.OLD_MODID)).forEach(mapping ->
 			{
 				if (biomeRemappings.containsKey(mapping.key))
 					remap(mapping, biomeRemappings);
 			});
-
+	
 			event.getAllMappings().stream().filter(m -> m.key.getNamespace().equals(GoodNightSleep.OLD_MODID)).forEach(m -> remap(m, biomeRemappings));
 		}
-	}
+	}*/
 
-	@SubscribeEvent
+	/*@SubscribeEvent
 	public void dimTypeMapping(RegistryEvent.MissingMappings<DimensionType> event)
 	{
 		if (event.getAllMappings().stream().filter(m -> m.key.getNamespace().equals(GoodNightSleep.OLD_MODID)).findAny().isPresent())
 		{
 			GoodNightSleep.LOGGER.warn("Found missing dimension mappings. Attempting to replace them...");
-
+	
 			event.getAllMappings().stream().filter(m -> m.key.getNamespace().equals(GoodNightSleep.OLD_MODID)).forEach(mapping ->
 			{
 				if (dimTypeRemappings.containsKey(mapping.key))
 					remap(mapping, dimTypeRemappings);
 			});
-
+	
 			event.getAllMappings().stream().filter(m -> m.key.getNamespace().equals(GoodNightSleep.OLD_MODID)).forEach(m -> remap(m, dimTypeRemappings));
 		}
 	}
-
+	
 	@SubscribeEvent
 	public void modDimMapping(RegistryEvent.MissingMappings<ModDimension> event)
 	{
 		if (event.getAllMappings().stream().filter(m -> m.key.getNamespace().equals(GoodNightSleep.OLD_MODID)).findAny().isPresent())
 		{
 			GoodNightSleep.LOGGER.warn("Found missing mod dimension mappings. Attempting to replace them...");
-
+	
 			event.getAllMappings().stream().filter(m -> m.key.getNamespace().equals(GoodNightSleep.OLD_MODID)).forEach(mapping ->
 			{
 				if (modDimRemappings.containsKey(mapping.key))
 					remap(mapping, modDimRemappings);
 			});
-
+	
 			event.getAllMappings().stream().filter(m -> m.key.getNamespace().equals(GoodNightSleep.OLD_MODID)).forEach(m -> remap(m, modDimRemappings));
 		}
-	}
+	}*/
 
 	@SubscribeEvent
 	public void soundMapping(RegistryEvent.MissingMappings<SoundEvent> event)

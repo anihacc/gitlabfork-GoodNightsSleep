@@ -1,18 +1,13 @@
 package com.legacy.goodnightsleep.blocks.tile;
 
-import java.util.Optional;
-
 import javax.annotation.Nullable;
 
-import com.legacy.goodnightsleep.GNSConfig;
-import com.legacy.goodnightsleep.blocks.GNSBlocks;
+import com.legacy.goodnightsleep.registry.GNSBlocks;
+import com.legacy.goodnightsleep.registry.GNSDimensions;
 import com.legacy.goodnightsleep.tile_entity.TileEntityLuxuriousBed;
 import com.legacy.goodnightsleep.tile_entity.TileEntityStrangeBed;
 import com.legacy.goodnightsleep.tile_entity.TileEntityWretchedBed;
-import com.legacy.goodnightsleep.world.GNSDimensions;
-import com.legacy.goodnightsleep.world.GNSTeleportationUtil;
-import com.legacy.goodnightsleep.world.dream.GoodDreamDimension;
-import com.legacy.goodnightsleep.world.nightmare.NightmareDimension;
+import com.legacy.goodnightsleep.world.GNSTeleporter;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
@@ -23,7 +18,6 @@ import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.block.material.PushReaction;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
@@ -39,19 +33,17 @@ import net.minecraft.tileentity.TileEntityMerger;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
-import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.RegistryKey;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
-import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
-import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -106,9 +98,9 @@ public class GNSBedBlock extends HorizontalBlock implements ITileEntityProvider
 		}
 		else
 		{
-			if (player.dimension == DimensionType.OVERWORLD)
+			if (player.world.getDimensionKey() == World.OVERWORLD)
 			{
-				player.setSpawnPoint(pos, false, false, DimensionType.OVERWORLD);
+				//player.setSpawnPoint(pos, false, false, World.OVERWORLD);
 				player.setBedPosition(pos);
 			}
 
@@ -144,11 +136,11 @@ public class GNSBedBlock extends HorizontalBlock implements ITileEntityProvider
 		}
 		else
 		{
-			Vec3d vec3d = entityIn.getMotion();
-			if (vec3d.y < 0.0D)
+			Vector3d Vector3d = entityIn.getMotion();
+			if (Vector3d.y < 0.0D)
 			{
 				double d0 = entityIn instanceof LivingEntity ? 1.0D : 0.8D;
-				entityIn.setMotion(vec3d.x, -vec3d.y * (double) 0.66F * d0, vec3d.z);
+				entityIn.setMotion(Vector3d.x, -Vector3d.y * (double) 0.66F * d0, Vector3d.z);
 			}
 		}
 	}
@@ -230,7 +222,7 @@ public class GNSBedBlock extends HorizontalBlock implements ITileEntityProvider
 		return true;
 	}
 
-	public static Optional<Vec3d> func_220172_a(EntityType<?> p_220172_0_, IWorldReader p_220172_1_, BlockPos p_220172_2_, int p_220172_3_)
+	/*public static Optional<Vector3d> func_220172_a(EntityType<?> p_220172_0_, IWorldReader p_220172_1_, BlockPos p_220172_2_, int p_220172_3_)
 	{
 		Direction direction = p_220172_1_.getBlockState(p_220172_2_).get(HORIZONTAL_FACING);
 		int i = p_220172_2_.getX();
@@ -247,7 +239,7 @@ public class GNSBedBlock extends HorizontalBlock implements ITileEntityProvider
 				for (int j2 = j1; j2 <= l1; ++j2)
 				{
 					BlockPos blockpos = new BlockPos(i2, j, j2);
-					Optional<Vec3d> optional = func_220175_a(p_220172_0_, p_220172_1_, blockpos);
+					Optional<Vector3d> optional = func_220175_a(p_220172_0_, p_220172_1_, blockpos);
 					if (optional.isPresent())
 					{
 						if (p_220172_3_ <= 0)
@@ -261,8 +253,8 @@ public class GNSBedBlock extends HorizontalBlock implements ITileEntityProvider
 		}
 		return Optional.empty();
 	}
-
-	protected static Optional<Vec3d> func_220175_a(EntityType<?> p_220175_0_, IWorldReader p_220175_1_, BlockPos p_220175_2_)
+	
+	protected static Optional<Vector3d> func_220175_a(EntityType<?> p_220175_0_, IWorldReader p_220175_1_, BlockPos p_220175_2_)
 	{
 		VoxelShape voxelshape = p_220175_1_.getBlockState(p_220175_2_).getCollisionShape(p_220175_1_, p_220175_2_);
 		if (voxelshape.getEnd(Direction.Axis.Y) > 0.4375D)
@@ -291,12 +283,12 @@ public class GNSBedBlock extends HorizontalBlock implements ITileEntityProvider
 				else
 				{
 					float f = p_220175_0_.getWidth() / 2.0F;
-					Vec3d vec3d = new Vec3d((double) blockpos$mutableblockpos.getX() + 0.5D, d0, (double) blockpos$mutableblockpos.getZ() + 0.5D);
-					return p_220175_1_.hasNoCollisions(new AxisAlignedBB(vec3d.x - (double) f, vec3d.y, vec3d.z - (double) f, vec3d.x + (double) f, vec3d.y + (double) p_220175_0_.getHeight(), vec3d.z + (double) f)) ? Optional.of(vec3d) : Optional.empty();
+					Vector3d Vector3d = new Vector3d((double) blockpos$mutableblockpos.getX() + 0.5D, d0, (double) blockpos$mutableblockpos.getZ() + 0.5D);
+					return p_220175_1_.hasNoCollisions(new AxisAlignedBB(Vector3d.x - (double) f, Vector3d.y, Vector3d.z - (double) f, Vector3d.x + (double) f, Vector3d.y + (double) p_220175_0_.getHeight(), Vector3d.z + (double) f)) ? Optional.of(Vector3d) : Optional.empty();
 				}
 			}
 		}
-	}
+	}*/
 
 	@Override
 	public PushReaction getPushReaction(BlockState state)
@@ -342,8 +334,8 @@ public class GNSBedBlock extends HorizontalBlock implements ITileEntityProvider
 		{
 			BlockPos blockpos = pos.offset(state.get(HORIZONTAL_FACING));
 			worldIn.setBlockState(blockpos, state.with(PART, BedPart.HEAD), 3);
-			worldIn.notifyNeighbors(pos, Blocks.AIR);
-			state.updateNeighbors(worldIn, pos, 3);
+			//worldIn.notifyNeighbors(pos, Blocks.AIR);
+			//state.updateNeighbors(worldIn, pos, 3);
 		}
 	}
 
@@ -362,41 +354,41 @@ public class GNSBedBlock extends HorizontalBlock implements ITileEntityProvider
 
 	private void travelToDream(PlayerEntity player, boolean dream)
 	{
-		DimensionType transferDimension = player.dimension == GNSDimensions.dimensionType(dream) ? DimensionType.OVERWORLD : GNSDimensions.dimensionType(dream);
+		RegistryKey<World> transferDimension = player.world.getDimensionKey() == GNSDimensions.getDimensionKeys(dream) ? World.OVERWORLD : GNSDimensions.getDimensionKeys(dream);
 
-		if (transferDimension == GNSDimensions.dimensionType(true))
+		if (transferDimension == GNSDimensions.getDimensionKeys(true))
 		{
-			ServerWorld serverWorld = player.getServer().getWorld(GNSDimensions.dimensionType(true));
+			ServerWorld serverWorld = player.getServer().getWorld(GNSDimensions.getDimensionKeys(true));
 
-			if (((GoodDreamDimension) serverWorld.getDimension()).dreamPlayerList.size() <= 0)
+			/*if (((GoodDreamDimension) serverWorld.getDimension()).dreamPlayerList.size() <= 0)
 			{
 				if (!GNSConfig.disableTimePassing)
 				{
 					player.world.setDayTime(0L);
 				}
-
+			
 				// serverWorld.setDayTime(0L);
-			}
+			}*/
 		}
-		else if (transferDimension == GNSDimensions.dimensionType(false))
+		else if (transferDimension == GNSDimensions.getDimensionKeys(false))
 		{
-			ServerWorld serverWorld = player.getServer().getWorld(GNSDimensions.dimensionType(false));
+			ServerWorld serverWorld = player.getServer().getWorld(GNSDimensions.getDimensionKeys(false));
 
-			if (((NightmareDimension) serverWorld.getDimension()).nightmarePlayerList.size() <= 0)
+			/*if (((NightmareDimension) serverWorld.getDimension()).nightmarePlayerList.size() <= 0)
 			{
 				if (!GNSConfig.disableTimePassing)
 				{
 					player.world.setDayTime(0L);
 				}
-
+			
 				// serverWorld.setDayTime(0L);
-			}
+			}*/
 		}
 
 		try
 		{
-			BlockPos pos = player.dimension != DimensionType.OVERWORLD ? player.getBedLocation(DimensionType.OVERWORLD) : player.world.getSpawnPoint();
-			GNSTeleportationUtil.changeDimension(transferDimension, player, pos);
+			BlockPos pos = player.getPosition()/*player.dimension != DimensionType.OVERWORLD ? player.getBedLocation(DimensionType.OVERWORLD) : player.world.getSpawnPoint()*/;
+			GNSTeleporter.changeDimension(transferDimension, player, pos);
 		}
 		catch (NullPointerException e)
 		{

@@ -1,0 +1,13 @@
+{
+    "generator": {
+        "biome_source": {
+            "type": "minecraft:fixed",
+            "seed": 1337,
+            "biome": "good_nights_sleep:good_dream_plains"
+        },
+        "seed": 1337,
+        "settings": "good_nights_sleep:dream",
+        "type": "minecraft:noise"
+      },
+    "type": "good_nights_sleep:dream"
+}

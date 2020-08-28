@@ -1,7 +1,8 @@
 package com.legacy.goodnightsleep.item;
 
 import com.legacy.goodnightsleep.GoodNightSleep;
-import com.legacy.goodnightsleep.blocks.GNSBlocks;
+import com.legacy.goodnightsleep.registry.GNSBlocks;
+import com.legacy.goodnightsleep.registry.GNSItems;
 
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;

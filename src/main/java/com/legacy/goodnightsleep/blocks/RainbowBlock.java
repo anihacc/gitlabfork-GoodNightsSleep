@@ -2,6 +2,8 @@ package com.legacy.goodnightsleep.blocks;
 
 import java.util.Random;
 
+import com.legacy.goodnightsleep.registry.GNSBlocks;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
@@ -81,17 +83,15 @@ public class RainbowBlock extends Block
 	private static BlockState updateDistance(BlockState state, IWorld worldIn, BlockPos pos)
 	{
 		int i = 100;
+		BlockPos.Mutable blockpos$mutable = new BlockPos.Mutable();
 
-		try (BlockPos.PooledMutable blockpos$pooledmutableblockpos = BlockPos.PooledMutable.retain())
+		for (Direction direction : Direction.values())
 		{
-			for (Direction direction : Direction.values())
+			blockpos$mutable.setPos(pos).move(direction);
+			i = Math.min(i, getDistance(worldIn.getBlockState(blockpos$mutable)) + 1);
+			if (i == 1)
 			{
-				blockpos$pooledmutableblockpos.setPos(pos).move(direction);
-				i = Math.min(i, getDistance(worldIn.getBlockState(blockpos$pooledmutableblockpos)) + 1);
-				if (i == 1)
-				{
-					break;
-				}
+				break;
 			}
 		}
 

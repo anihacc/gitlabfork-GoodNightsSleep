@@ -7,7 +7,6 @@ import com.legacy.goodnightsleep.entity.GNSEntityTypes;
 import net.minecraft.entity.AreaEffectCloudEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.goal.AvoidEntityGoal;
 import net.minecraft.entity.ai.goal.HurtByTargetGoal;
 import net.minecraft.entity.ai.goal.LookAtGoal;
@@ -16,7 +15,6 @@ import net.minecraft.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
 import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
-import net.minecraft.entity.effect.LightningBoltEntity;
 import net.minecraft.entity.monster.CreeperEntity;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.passive.CatEntity;
@@ -29,6 +27,7 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.potion.EffectInstance;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundEvent;
@@ -81,11 +80,11 @@ public class BabyCreeperEntity extends MonsterEntity
 		this.targetSelector.addGoal(2, new HurtByTargetGoal(this));
 	}
 
-	protected void registerAttributes()
+	/*protected void registerAttributes()
 	{
 		super.registerAttributes();
 		this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25D);
-	}
+	}*/
 
 	public int getMaxFallHeight()
 	{
@@ -241,13 +240,13 @@ public class BabyCreeperEntity extends MonsterEntity
 	/**
 	 * Called when a lightning bolt hits the entity.
 	 */
-	public void onStruckByLightning(LightningBoltEntity lightningBolt)
+	/*public void onStruckByLightning(LightningBoltEntity lightningBolt)
 	{
 		super.onStruckByLightning(lightningBolt);
 		this.dataManager.set(POWERED, true);
-	}
+	}*/
 
-	protected boolean processInteract(PlayerEntity player, Hand hand)
+	protected ActionResultType func_230254_b_(PlayerEntity player, Hand hand)
 	{
 		ItemStack itemstack = player.getHeldItem(hand);
 		if (itemstack.getItem() == Items.FLINT_AND_STEEL)
@@ -261,10 +260,10 @@ public class BabyCreeperEntity extends MonsterEntity
 				{
 					p_213625_1_.sendBreakAnimation(hand);
 				});
-				return true;
+				return ActionResultType.SUCCESS;
 			}
 		}
-		return super.processInteract(player, hand);
+		return super.func_230254_b_(player, hand);
 	}
 
 	/**

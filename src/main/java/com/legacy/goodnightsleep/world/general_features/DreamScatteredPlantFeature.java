@@ -1,16 +1,14 @@
 package com.legacy.goodnightsleep.world.general_features;
 
 import java.util.Random;
-import java.util.function.Function;
 
-import com.legacy.goodnightsleep.blocks.GNSBlocks;
-import com.mojang.datafixers.Dynamic;
+import com.legacy.goodnightsleep.registry.GNSBlocks;
+import com.mojang.serialization.Codec;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IWorld;
+import net.minecraft.world.ISeedReader;
 import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.GenerationSettings;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 
@@ -18,17 +16,16 @@ public class DreamScatteredPlantFeature extends Feature<NoFeatureConfig>
 {
 	protected final BlockState plant;
 
-	public DreamScatteredPlantFeature(Function<Dynamic<?>, ? extends NoFeatureConfig> configFactoryIn, BlockState plantIn)
+	public DreamScatteredPlantFeature(Codec<NoFeatureConfig> configFactoryIn, BlockState plantIn)
 	{
 		super(configFactoryIn);
 		this.plant = plantIn;
 	}
 
 	@Override
-	public boolean place(IWorld worldIn, ChunkGenerator<? extends GenerationSettings> generator, Random rand, BlockPos pos, NoFeatureConfig config)
+	public boolean func_241855_a(ISeedReader worldIn, ChunkGenerator generator, Random rand, BlockPos pos, NoFeatureConfig config)
 	{
 		int i = 0;
-
 
 		if (this.plant.getBlock() == GNSBlocks.present && worldIn.isAirBlock(pos) && worldIn.getBlockState(pos.down()).getBlock() == GNSBlocks.dream_grass_block)
 		{

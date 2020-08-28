@@ -1,6 +1,6 @@
 package com.legacy.goodnightsleep.entity;
 
-import com.legacy.goodnightsleep.world.GNSDimensions;
+import com.legacy.goodnightsleep.registry.GNSDimensions;
 
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;
@@ -19,6 +19,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.Heightmap.Type;
+import net.minecraft.world.server.ServerWorld;
 
 public class GNSSpawnerEntity extends AnimalEntity
 {
@@ -37,7 +38,10 @@ public class GNSSpawnerEntity extends AnimalEntity
 
 	public void spawnMobs()
 	{
-		World worldIn = this.world;
+		if (!(this.world instanceof ServerWorld))
+			return;
+
+		ServerWorld worldIn = (ServerWorld) this.world;
 
 		DifficultyInstance difficultyIn = this.world.getDifficultyForLocation(this.getPosition());
 		int type = rand.nextInt(4);
@@ -45,7 +49,7 @@ public class GNSSpawnerEntity extends AnimalEntity
 
 		BlockPos blockpos = this.world.getHeight(Type.MOTION_BLOCKING_NO_LEAVES, this.getPosition()).add(-2 + this.rand.nextInt(4), 0, -2 + this.rand.nextInt(4));
 
-		if (worldIn.getDimension().getType() != GNSDimensions.dimensionType(false))
+		if (worldIn.getDimensionKey() != GNSDimensions.getDimensionKeys(false))
 		{
 			if (type == 0)
 			{
@@ -93,7 +97,7 @@ public class GNSSpawnerEntity extends AnimalEntity
 				}
 			}
 		}
-		else if (rand.nextBoolean() && worldIn.getDimension().getType() == GNSDimensions.dimensionType(false))
+		else if (rand.nextBoolean() && worldIn.getDimensionKey() == GNSDimensions.getDimensionKeys(false))
 		{
 			int nType = rand.nextInt(2);
 			int nChance = rand.nextInt(4) + 1;
@@ -145,7 +149,7 @@ public class GNSSpawnerEntity extends AnimalEntity
 	}
 
 	@Override
-	public AgeableEntity createChild(AgeableEntity ageable)
+	public AgeableEntity func_241840_a(ServerWorld worldIn, AgeableEntity ageableIn)
 	{
 		return null;
 	}

@@ -1,5 +1,7 @@
 package com.legacy.goodnightsleep.blocks;
 
+import com.legacy.goodnightsleep.registry.GNSBlocks;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.LivingEntity;

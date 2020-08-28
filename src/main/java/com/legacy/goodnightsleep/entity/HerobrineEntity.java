@@ -7,7 +7,6 @@ import net.minecraft.entity.EntityPredicate;
 import net.minecraft.entity.EntitySize;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.Pose;
-import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.goal.HurtByTargetGoal;
 import net.minecraft.entity.ai.goal.LookAtGoal;
 import net.minecraft.entity.ai.goal.LookRandomlyGoal;
@@ -23,7 +22,7 @@ import net.minecraft.util.IndirectEntityDamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.EnderTeleportEvent;
@@ -55,16 +54,16 @@ public class HerobrineEntity extends MonsterEntity
 		this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)));
 	}
 
-	@Override
+	/*@Override
 	protected void registerAttributes()
 	{
 		super.registerAttributes();
-
+	
 		this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(40.0D);
 		this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.30000001192092896D);
 		this.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(7.0D);
 		this.getAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(64.0D);
-	}
+	}*/
 
 	@Override
 	protected SoundEvent getAmbientSound()
@@ -91,7 +90,7 @@ public class HerobrineEntity extends MonsterEntity
 		{
 			return false;
 		}
-		else if (!(source instanceof IndirectEntityDamageSource) && source != DamageSource.FIREWORKS)
+		else if (!(source instanceof IndirectEntityDamageSource))
 		{
 			boolean flag = super.attackEntityFrom(source, amount);
 			if (source.isUnblockable() && this.rand.nextInt(10) != 0)
@@ -126,12 +125,12 @@ public class HerobrineEntity extends MonsterEntity
 	@SuppressWarnings("unused")
 	private boolean teleportToEntity(Entity p_70816_1_)
 	{
-		Vec3d vec3d = new Vec3d(this.getPosX() - p_70816_1_.getPosX(), this.getBoundingBox().minY + (double) (this.getHeight() / 2.0F) - p_70816_1_.getPosY() + (double) p_70816_1_.getEyeHeight(), this.getPosZ() - p_70816_1_.getPosZ());
-		vec3d = vec3d.normalize();
+		Vector3d Vector3d = new Vector3d(this.getPosX() - p_70816_1_.getPosX(), this.getBoundingBox().minY + (double) (this.getHeight() / 2.0F) - p_70816_1_.getPosY() + (double) p_70816_1_.getEyeHeight(), this.getPosZ() - p_70816_1_.getPosZ());
+		Vector3d = Vector3d.normalize();
 		double d0 = 16.0D;
-		double d1 = this.getPosX() + (this.rand.nextDouble() - 0.5D) * 8.0D - vec3d.x * 16.0D;
-		double d2 = this.getPosY() + (double) (this.rand.nextInt(16) - 8) - vec3d.y * 16.0D;
-		double d3 = this.getPosZ() + (this.rand.nextDouble() - 0.5D) * 8.0D - vec3d.z * 16.0D;
+		double d1 = this.getPosX() + (this.rand.nextDouble() - 0.5D) * 8.0D - Vector3d.x * 16.0D;
+		double d2 = this.getPosY() + (double) (this.rand.nextInt(16) - 8) - Vector3d.y * 16.0D;
+		double d3 = this.getPosZ() + (this.rand.nextDouble() - 0.5D) * 8.0D - Vector3d.z * 16.0D;
 		return this.teleportTo(d1, d2, d3);
 	}
 

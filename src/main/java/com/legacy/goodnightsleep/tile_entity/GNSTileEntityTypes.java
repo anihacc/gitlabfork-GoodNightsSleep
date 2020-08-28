@@ -1,8 +1,8 @@
 package com.legacy.goodnightsleep.tile_entity;
 
-import com.legacy.goodnightsleep.GNSRegistry;
 import com.legacy.goodnightsleep.GoodNightSleep;
-import com.legacy.goodnightsleep.blocks.GNSBlocks;
+import com.legacy.goodnightsleep.registry.GNSBlocks;
+import com.legacy.goodnightsleep.registry.GNSRegistry;
 
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.event.RegistryEvent.Register;

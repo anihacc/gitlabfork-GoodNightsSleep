@@ -1,7 +1,7 @@
 package com.legacy.goodnightsleep.blocks.util;
 
 import com.google.common.collect.Maps;
-import com.legacy.goodnightsleep.blocks.GNSBlocks;
+import com.legacy.goodnightsleep.registry.GNSBlocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;

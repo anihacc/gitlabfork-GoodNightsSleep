@@ -1,10 +1,9 @@
 package com.legacy.goodnightsleep.entity.dream;
 
 import com.legacy.goodnightsleep.client.audio.GNSSounds;
-import com.legacy.goodnightsleep.item.GNSItems;
+import com.legacy.goodnightsleep.registry.GNSItems;
 
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.passive.horse.AbstractHorseEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -13,6 +12,7 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundEvent;
@@ -55,14 +55,14 @@ public class UnicornEntity extends AbstractHorseEntity
 		this.setUnicornType(compound.getInt("unicornType"));
 	}
 
-	@Override
+	/*@Override
 	protected void registerAttributes()
 	{
 		super.registerAttributes();
 		this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(15.0D);
 		this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.20000000298023224D);
 		this.getAttribute(JUMP_STRENGTH).setBaseValue(this.getModifiedJumpStrength());
-	}
+	}*/
 
 	@Override
 	protected SoundEvent getAmbientSound()
@@ -99,14 +99,14 @@ public class UnicornEntity extends AbstractHorseEntity
 	}
 
 	@Override
-	public boolean processInteract(PlayerEntity player, Hand hand)
+	public ActionResultType func_230254_b_(PlayerEntity player, Hand hand)
 	{
 		ItemStack itemstack = player.getHeldItem(hand);
 		boolean flag = !itemstack.isEmpty();
 
 		if (flag && itemstack.getItem() == GNSItems.unicorn_spawn_egg)
 		{
-			return super.processInteract(player, hand);
+			return super.func_230254_b_(player, hand);
 		}
 		else
 		{
@@ -115,12 +115,12 @@ public class UnicornEntity extends AbstractHorseEntity
 				if (this.isTame() && player.isCrouching())
 				{
 					this.openGUI(player);
-					return true;
+					return ActionResultType.SUCCESS;
 				}
 
 				if (this.isBeingRidden())
 				{
-					return super.processInteract(player, hand);
+					return super.func_230254_b_(player, hand);
 				}
 			}
 
@@ -133,18 +133,18 @@ public class UnicornEntity extends AbstractHorseEntity
 						itemstack.shrink(1);
 					}
 
-					return true;
+					return ActionResultType.SUCCESS;
 				}
 
-				if (itemstack.interactWithEntity(player, this, hand))
+				if (itemstack.interactWithEntity(player, this, hand).isSuccessOrConsume())
 				{
-					return true;
+					return itemstack.interactWithEntity(player, this, hand);
 				}
 
 				if (!this.isTame())
 				{
 					this.makeMad();
-					return true;
+					return ActionResultType.SUCCESS;
 				}
 
 				boolean flag1 = false; // HorseArmorItem.getByItemStack(itemstack) != HorseArmorType.NONE;
@@ -153,18 +153,18 @@ public class UnicornEntity extends AbstractHorseEntity
 				if (flag1 || flag2)
 				{
 					this.openGUI(player);
-					return true;
+					return ActionResultType.SUCCESS;
 				}
 			}
 
 			if (this.isChild())
 			{
-				return super.processInteract(player, hand);
+				return super.func_230254_b_(player, hand);
 			}
 			else
 			{
 				this.mountTo(player);
-				return true;
+				return ActionResultType.SUCCESS;
 			}
 		}
 	}
