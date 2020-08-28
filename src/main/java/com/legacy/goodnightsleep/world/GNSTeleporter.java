@@ -2,6 +2,7 @@ package com.legacy.goodnightsleep.world;
 
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.RegistryKey;
@@ -25,17 +26,16 @@ public class GNSTeleporter
 			return;
 
 		RegistryKey<World> overworld = World.OVERWORLD;
-
 		RegistryKey<World> transferDimension = entity.world.getDimensionKey() == type ? overworld : type;
 		ServerWorld transferWorld = server.getWorld(transferDimension);
 
 		if (!ForgeHooks.onTravelToDimension(entity, transferDimension))
-		{
 			return;
-		}
 
 		IChunk chunk = transferWorld.getChunk(pos);
-		int transferY = /*type == overworld && entity instanceof PlayerEntity && ((PlayerEntity) entity).getBedLocation(overworld) != null ? ((PlayerEntity) entity).getBedLocation(overworld).getY() : */chunk.getTopBlockY(Heightmap.Type.MOTION_BLOCKING, pos.getX(), pos.getZ()) + 1;
+		int transferY = type == overworld && entity instanceof ServerPlayerEntity && ((ServerPlayerEntity) entity).func_241140_K_(/*overworld*/) != null ? ((ServerPlayerEntity) entity).func_241140_K_(/*overworld*/).getY() : chunk.getTopBlockY(Heightmap.Type.MOTION_BLOCKING, pos.getX(), pos.getZ()) + 1;
+
+       // serverplayerentity.func_242111_a(worldIn.getDimensionKey(), pos, 0.0F, false, true);
 
 		Vector3d endpointPos = new Vector3d(pos.getX() + 0.5, transferY, pos.getZ() + 0.5);
 
@@ -51,11 +51,6 @@ public class GNSTeleporter
 
 		Entity teleportedEntity = teleportEntity(entity, transferWorld, endpointPos);
 
-		/*if (entity instanceof ServerPlayerEntity)
-		{
-			teleportEntity(entity)
-		}*/
-
 		teleportedEntity.fallDistance = 0.0F;
 	}
 
@@ -69,7 +64,6 @@ public class GNSTeleporter
 		}
 
 		entity.detach();
-		//entity.world.getDimensionKey() = transferWorld;
 		entity.changeDimension(transferWorld);
 
 		Entity teleportedEntity = entity.getType().create(transferWorld);

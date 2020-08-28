@@ -16,8 +16,8 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.legacy.goodnightsleep.GoodNightSleep;
 import com.legacy.goodnightsleep.entity.GNSEntityTypes;
+import com.legacy.goodnightsleep.registry.GNSFeatures;
 import com.legacy.goodnightsleep.world.GNSBiomes;
-import com.legacy.goodnightsleep.world.general_features.GNSFeatures;
 import com.mojang.serialization.DataResult;
 import com.mojang.serialization.JsonOps;
 

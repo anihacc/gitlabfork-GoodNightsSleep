@@ -3,7 +3,7 @@ package com.legacy.goodnightsleep.blocks.natural;
 import java.util.Random;
 
 import com.legacy.goodnightsleep.registry.GNSBlocks;
-import com.legacy.goodnightsleep.world.general_features.GNSFeatures;
+import com.legacy.goodnightsleep.registry.GNSFeatures;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

@@ -2,7 +2,7 @@ package com.legacy.goodnightsleep.item.sapling;
 
 import java.util.Random;
 
-import com.legacy.goodnightsleep.world.general_features.GNSFeatures;
+import com.legacy.goodnightsleep.registry.GNSFeatures;
 
 import net.minecraft.block.trees.Tree;
 import net.minecraft.world.gen.feature.BaseTreeFeatureConfig;

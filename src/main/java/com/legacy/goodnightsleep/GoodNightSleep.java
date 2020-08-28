@@ -6,7 +6,7 @@ import org.apache.logging.log4j.Logger;
 import com.legacy.goodnightsleep.blocks.util.ToolCompat;
 import com.legacy.goodnightsleep.client.GoodNightSleepClient;
 import com.legacy.goodnightsleep.data.GNSMappingChanges;
-import com.legacy.goodnightsleep.world.general_features.GNSFeatures;
+import com.legacy.goodnightsleep.registry.GNSFeatures;
 
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;

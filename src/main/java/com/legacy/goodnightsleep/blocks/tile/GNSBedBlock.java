@@ -20,6 +20,7 @@ import net.minecraft.block.material.PushReaction;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.pathfinding.PathType;
@@ -91,7 +92,6 @@ public class GNSBedBlock extends HorizontalBlock implements ITileEntityProvider
 	@Override
 	public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit)
 	{
-
 		if (worldIn.isRemote)
 		{
 			return ActionResultType.SUCCESS;
@@ -100,7 +100,9 @@ public class GNSBedBlock extends HorizontalBlock implements ITileEntityProvider
 		{
 			if (player.world.getDimensionKey() == World.OVERWORLD)
 			{
-				//player.setSpawnPoint(pos, false, false, World.OVERWORLD);
+				if (player instanceof ServerPlayerEntity)
+					((ServerPlayerEntity) player).func_242111_a(World.OVERWORLD, pos, 0.0F, false, false);
+
 				player.setBedPosition(pos);
 			}
 
@@ -149,13 +151,9 @@ public class GNSBedBlock extends HorizontalBlock implements ITileEntityProvider
 	public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos)
 	{
 		if (facing == getDirectionToOther(stateIn.get(PART), stateIn.get(HORIZONTAL_FACING)))
-		{
 			return facingState.getBlock() == this && facingState.get(PART) != stateIn.get(PART) ? stateIn : Blocks.AIR.getDefaultState();
-		}
 		else
-		{
-			return super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
-		}
+			return stateIn;
 	}
 
 	private static Direction getDirectionToOther(BedPart p_208070_0_, Direction p_208070_1_)
@@ -312,18 +310,11 @@ public class GNSBedBlock extends HorizontalBlock implements ITileEntityProvider
 	public TileEntity createNewTileEntity(IBlockReader worldIn)
 	{
 		if (this == GNSBlocks.luxurious_bed)
-		{
 			return new TileEntityLuxuriousBed();
-		}
 		else if (this == GNSBlocks.wretched_bed)
-		{
 			return new TileEntityWretchedBed();
-		}
 		else
-		{
 			return new TileEntityStrangeBed();
-		}
-
 	}
 
 	@Override
@@ -334,8 +325,8 @@ public class GNSBedBlock extends HorizontalBlock implements ITileEntityProvider
 		{
 			BlockPos blockpos = pos.offset(state.get(HORIZONTAL_FACING));
 			worldIn.setBlockState(blockpos, state.with(PART, BedPart.HEAD), 3);
-			//worldIn.notifyNeighbors(pos, Blocks.AIR);
-			//state.updateNeighbors(worldIn, pos, 3);
+			// worldIn.notifyNeighbors(pos, Blocks.AIR);
+			// state.updateNeighbors(worldIn, pos, 3);
 		}
 	}
 
@@ -354,6 +345,10 @@ public class GNSBedBlock extends HorizontalBlock implements ITileEntityProvider
 
 	private void travelToDream(PlayerEntity player, boolean dream)
 	{
+		if (!(player instanceof ServerPlayerEntity))
+			return;
+
+		ServerPlayerEntity serverPlayer = (ServerPlayerEntity) player;
 		RegistryKey<World> transferDimension = player.world.getDimensionKey() == GNSDimensions.getDimensionKeys(dream) ? World.OVERWORLD : GNSDimensions.getDimensionKeys(dream);
 
 		if (transferDimension == GNSDimensions.getDimensionKeys(true))
@@ -387,7 +382,9 @@ public class GNSBedBlock extends HorizontalBlock implements ITileEntityProvider
 
 		try
 		{
-			BlockPos pos = player.getPosition()/*player.dimension != DimensionType.OVERWORLD ? player.getBedLocation(DimensionType.OVERWORLD) : player.world.getSpawnPoint()*/;
+			ServerWorld serverWorld = player.getServer().getWorld(World.OVERWORLD);
+
+			BlockPos pos = player.world.getDimensionKey() != World.OVERWORLD ? serverPlayer.func_241140_K_(/*DimensionType.OVERWORLD*/) : serverWorld.getSpawnPoint();
 			GNSTeleporter.changeDimension(transferDimension, player, pos);
 		}
 		catch (NullPointerException e)

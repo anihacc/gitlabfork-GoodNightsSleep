@@ -1,12 +1,11 @@
-package com.legacy.goodnightsleep.world.general_features;
+package com.legacy.goodnightsleep.registry;
 
 import java.util.OptionalInt;
 
-import com.legacy.goodnightsleep.registry.GNSBlocks;
-import com.legacy.goodnightsleep.registry.GNSRegistry;
 import com.legacy.goodnightsleep.world.carver.GNSCanyonWorldCarver;
 import com.legacy.goodnightsleep.world.carver.GNSCaveWorldCarver;
 import com.legacy.goodnightsleep.world.dream.features.DreamSpongeFeature;
+import com.legacy.goodnightsleep.world.general_features.DreamScatteredPlantFeature;
 import com.legacy.goodnightsleep.world.nightmare.features.NetherSplashFeature;
 
 import net.minecraft.block.BlockState;

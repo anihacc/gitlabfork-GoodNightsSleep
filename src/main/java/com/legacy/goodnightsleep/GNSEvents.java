@@ -10,20 +10,23 @@ import net.minecraft.entity.passive.horse.AbstractHorseEntity;
 import net.minecraft.entity.passive.horse.SkeletonHorseEntity;
 import net.minecraft.entity.passive.horse.ZombieHorseEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.eventbus.api.Event.Result;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class GNSEvents
 {
-	/*@SubscribeEvent
-	public void onRegisteredDimension(RegisterDimensionsEvent event)
+	@SubscribeEvent
+	public void onWorldLoad(WorldEvent.Load event)
 	{
-		GNSDimensions.initDimensions();
-	}*/
+	}
 
 	@SubscribeEvent
 	public void onPlayerRightClickEntity(PlayerInteractEvent.EntityInteract event)
@@ -52,13 +55,18 @@ public class GNSEvents
 	@SubscribeEvent
 	public void onPlayerRightClickBlock(PlayerInteractEvent.RightClickBlock event)
 	{
-		PlayerEntity player = event.getPlayer();
-		World world = event.getWorld();
+		if (!(event.getPlayer() instanceof ServerPlayerEntity) || !(event.getWorld() instanceof ServerWorld))
+			return;
+
+		ServerPlayerEntity player = (ServerPlayerEntity) event.getPlayer();
+		ServerWorld world = (ServerWorld) event.getWorld();
 		BlockState state = event.getWorld().getBlockState(event.getPos());
 
 		if (!world.isRemote && state.getBlock() instanceof BedBlock && (player.world.getDimensionKey() == GNSDimensions.getDimensionKeys(true) || player.world.getDimensionKey() == GNSDimensions.getDimensionKeys(false)))
 		{
-			BlockPos pos = player.getPosition(); /*player.getBedLocation(DimensionType.OVERWORLD) != null ? player.getBedLocation(DimensionType.OVERWORLD) : player.world.getSpawnPoint();*/
+			player.swing(Hand.MAIN_HAND, true);
+			event.setCanceled(true);
+			BlockPos pos = player.func_241140_K_(/*DimensionType.OVERWORLD*/) != null ? player.func_241140_K_(/*DimensionType.OVERWORLD*/) : world.getSpawnPoint();
 			GNSTeleporter.changeDimension(World.OVERWORLD, player, pos);
 		}
 	}
