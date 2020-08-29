@@ -27,6 +27,7 @@ import net.minecraft.data.DirectoryCache;
 import net.minecraft.data.IDataProvider;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.biome.Biome;
@@ -35,10 +36,13 @@ import net.minecraft.world.biome.BiomeGenerationSettings;
 import net.minecraft.world.biome.DefaultBiomeFeatures;
 import net.minecraft.world.biome.MobSpawnInfo;
 import net.minecraft.world.biome.MoodSoundAmbience;
+import net.minecraft.world.biome.ParticleEffectAmbience;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.Features;
 import net.minecraft.world.gen.feature.ProbabilityConfig;
+import net.minecraft.world.gen.placement.AtSurfaceWithExtraConfig;
+import net.minecraft.world.gen.placement.Placement;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 
 public class GNSBiomeGen extends BiomeProvider
@@ -102,11 +106,14 @@ public class GNSBiomeGen extends BiomeProvider
 	{
 		public static void init()
 		{
-			BIOMES.put(GoodNightSleep.locate("good_dream_plains"), createDreamBiome(0.1F, 0.5F, 0.8F, 0.0F, 4159204, 329011)); // 329011
+			BIOMES.put(GoodNightSleep.locate("good_dream_plains"), createDreamPlainsBiome(0.1F, 0.5F, 0.5F, 0.0F, 4159204, 329011)); // 329011
+			BIOMES.put(GoodNightSleep.locate("dreamy_forest"), createDreamForestBiome(0.0F, 0.2F, 0.5F, 0.0F, 4159204, 329011)); // 329011
+			BIOMES.put(GoodNightSleep.locate("hopeful_fields"), createHopefulFieldsBiome(0.0F, 0.4F, 0.3F, 0.0F, 4159204, 329011)); // 329011
+
 			BIOMES.put(GoodNightSleep.locate("nightmare_hills"), createNightmareBiome(0.1F, 1.0F, 0.8F, 0.0F, 4159204, 329011));
 		}
 
-		public static Biome createDreamBiome(float depthIn, float scaleIn, float tempIn, float downfallIn, int waterColorIn, int waterFogColorIn)
+		public static Biome createDreamPlainsBiome(float depthIn, float scaleIn, float tempIn, float downfallIn, int waterColorIn, int waterFogColorIn)
 		{
 			MobSpawnInfo.Builder spawns = new MobSpawnInfo.Builder();
 
@@ -136,6 +143,62 @@ public class GNSBiomeGen extends BiomeProvider
 			GNSFeatures.addDreamOres(builder);
 			GNSFeatures.addNoiseBasedGrass(builder, GNSFeatures.DREAM_GRASS_CONFIG);
 			builder.func_242513_a(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.FLOWER.withConfiguration(GNSFeatures.DREAM_FLOWER_CONFIG).withPlacement(Features.Placements.field_244000_k).withPlacement(Features.Placements.field_244001_l).func_242731_b(5)); // COUNT_HEIGHTMAP_32
+
+			builder.func_242512_a(GenerationStage.Carving.AIR, GNSFeatures.Carvers.DELUSION_CAVE_CARVER.func_242761_a(new ProbabilityConfig(0.14285715F)));
+			builder.func_242512_a(GenerationStage.Carving.AIR, GNSFeatures.Carvers.DELUSION_CANYON_CARVER.func_242761_a(new ProbabilityConfig(0.02F)));
+
+			return (new Biome.Builder()).precipitation(Biome.RainType.NONE).category(Biome.Category.NONE).depth(depthIn).scale(scaleIn).temperature(tempIn).downfall(downfallIn).func_235097_a_((new BiomeAmbience.Builder()).setWaterColor(waterColorIn).setWaterFogColor(waterFogColorIn).setFogColor(12638463).func_242539_d(ambienceChance(tempIn)).setMoodSound(MoodSoundAmbience.field_235027_b_).build()).func_242458_a(spawns.func_242577_b()).func_242457_a(builder.func_242508_a()).func_242455_a();
+		}
+
+		public static Biome createDreamForestBiome(float depthIn, float scaleIn, float tempIn, float downfallIn, int waterColorIn, int waterFogColorIn)
+		{
+			MobSpawnInfo.Builder spawns = new MobSpawnInfo.Builder();
+
+			spawns.func_242575_a(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(GNSEntityTypes.SPAWNER_ENTITY, 140, 1, 1));
+			// spawns.func_242575_a(EntityClassification.CREATURE, new
+			// MobSpawnInfo.Spawners(GNSEntityTypes.UNICORN, 90, 1, 4));
+
+			spawns.func_242575_a(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(GNSEntityTypes.BABY_CREEPER, 10, 1, 4));
+
+			BiomeGenerationSettings.Builder builder = (new BiomeGenerationSettings.Builder()).func_242517_a(GNSBiomes.SurfaceBuilders.DREAM_GRASS_SURFACE_BUILDER);
+
+			builder.func_242513_a(GenerationStage.Decoration.VEGETAL_DECORATION, GNSFeatures.DREAM_TREE.withPlacement(Features.Placements.field_244001_l).withPlacement(Placement.field_242902_f.configure(new AtSurfaceWithExtraConfig(0, 1.1F, 5))));
+			builder.func_242513_a(GenerationStage.Decoration.VEGETAL_DECORATION, GNSFeatures.CANDY_TREE.withPlacement(Features.Placements.field_244001_l).withPlacement(Placement.field_242902_f.configure(new AtSurfaceWithExtraConfig(0, 0.8F, 1))));
+
+			GNSFeatures.addDreamSponges(builder);
+			GNSFeatures.addDreamOres(builder);
+			GNSFeatures.addNoiseBasedGrass(builder, GNSFeatures.DREAM_GRASS_CONFIG);
+
+			builder.func_242513_a(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.FLOWER.withConfiguration(GNSFeatures.DREAM_FLOWER_CONFIG).withPlacement(Features.Placements.field_244000_k).withPlacement(Features.Placements.field_244001_l).func_242731_b(5)); // COUNT_HEIGHTMAP_32
+
+			builder.func_242512_a(GenerationStage.Carving.AIR, GNSFeatures.Carvers.DELUSION_CAVE_CARVER.func_242761_a(new ProbabilityConfig(0.14285715F)));
+			builder.func_242512_a(GenerationStage.Carving.AIR, GNSFeatures.Carvers.DELUSION_CANYON_CARVER.func_242761_a(new ProbabilityConfig(0.02F)));
+
+			return (new Biome.Builder()).precipitation(Biome.RainType.NONE).category(Biome.Category.NONE).depth(depthIn).scale(scaleIn).temperature(tempIn).downfall(downfallIn).func_235097_a_((new BiomeAmbience.Builder()).setWaterColor(waterColorIn).setWaterFogColor(waterFogColorIn).setFogColor(12638463).func_242539_d(ambienceChance(tempIn)).setMoodSound(MoodSoundAmbience.field_235027_b_).build()).func_242458_a(spawns.func_242577_b()).func_242457_a(builder.func_242508_a()).func_242455_a();
+		}
+
+		/**
+		 * The Hopeful Fields biome.
+		 */
+		public static Biome createHopefulFieldsBiome(float depthIn, float scaleIn, float tempIn, float downfallIn, int waterColorIn, int waterFogColorIn)
+		{
+			MobSpawnInfo.Builder spawns = new MobSpawnInfo.Builder();
+
+			spawns.func_242575_a(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(GNSEntityTypes.SPAWNER_ENTITY, 140, 1, 1));
+			spawns.func_242575_a(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(GNSEntityTypes.UNICORN, 90, 1, 4));
+
+			spawns.func_242575_a(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(GNSEntityTypes.BABY_CREEPER, 10, 1, 4));
+
+			BiomeGenerationSettings.Builder builder = (new BiomeGenerationSettings.Builder()).func_242517_a(GNSBiomes.SurfaceBuilders.DREAM_GRASS_SURFACE_BUILDER);
+
+			GNSFeatures.addHopeMushroomFields(builder);
+
+			GNSFeatures.addDreamSponges(builder);
+			GNSFeatures.addDreamOres(builder);
+			GNSFeatures.addNoiseBasedGrass(builder, GNSFeatures.DREAM_GRASS_CONFIG);
+
+			builder.func_242513_a(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.FLOWER.withConfiguration(GNSFeatures.DREAM_FLOWER_CONFIG).withPlacement(Features.Placements.field_244000_k).withPlacement(Features.Placements.field_244001_l).func_242731_b(5)); // COUNT_HEIGHTMAP_32
+			builder.func_242513_a(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.FLOWER.withConfiguration(GNSFeatures.HOPE_MUSHROOM_CONFIG).withPlacement(Features.Placements.field_244000_k).withPlacement(Features.Placements.field_244001_l).func_242731_b(25));
 
 			builder.func_242512_a(GenerationStage.Carving.AIR, GNSFeatures.Carvers.DELUSION_CAVE_CARVER.func_242761_a(new ProbabilityConfig(0.14285715F)));
 			builder.func_242512_a(GenerationStage.Carving.AIR, GNSFeatures.Carvers.DELUSION_CANYON_CARVER.func_242761_a(new ProbabilityConfig(0.02F)));

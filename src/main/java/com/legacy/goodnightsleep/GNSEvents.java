@@ -47,9 +47,7 @@ public class GNSEvents
 	public void onLivingCheckSpawn(LivingSpawnEvent.CheckSpawn event)
 	{
 		if (event.getEntityLiving() instanceof PhantomEntity && event.getEntityLiving().world.getDimensionKey() == GNSDimensions.getDimensionKeys(false) && !GNSConfig.allowNightmarePhantoms)
-		{
 			event.setResult(Result.DENY);
-		}
 	}
 
 	@SubscribeEvent
