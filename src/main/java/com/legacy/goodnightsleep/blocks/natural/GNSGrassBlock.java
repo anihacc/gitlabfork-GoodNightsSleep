@@ -63,7 +63,7 @@ public class GNSGrassBlock extends GrassBlock
 						if (!worldIn.isBlockPresent(blockpos))
 							return;
 
-						if ((this == GNSBlocks.dream_grass_block && worldIn.getBlockState(blockpos).getBlock() == GNSBlocks.dream_dirt || this == GNSBlocks.nightmare_grass_block && worldIn.getBlockState(blockpos).getBlock() == Blocks.DIRT) && shouldDecayAndNotWaterlogged(worldIn, blockpos))
+						if ((this == GNSBlocks.dream_grass_block && worldIn.getBlockState(blockpos).getBlock() == GNSBlocks.dream_dirt || this == GNSBlocks.nightmare_grass_block && (worldIn.getBlockState(blockpos).getBlock() == Blocks.DIRT || worldIn.getBlockState(blockpos).getBlock() == Blocks.GRASS_BLOCK)) && shouldDecayAndNotWaterlogged(worldIn, blockpos))
 							worldIn.setBlockState(blockpos, this.getDefaultState());
 
 					}

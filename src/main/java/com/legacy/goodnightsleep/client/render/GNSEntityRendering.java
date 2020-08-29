@@ -6,7 +6,7 @@ import com.legacy.goodnightsleep.client.render.entity.HerobrineRenderer;
 import com.legacy.goodnightsleep.client.render.entity.SpawnerRenderer;
 import com.legacy.goodnightsleep.client.render.entity.TormenterRenderer;
 import com.legacy.goodnightsleep.client.render.entity.UnicornRenderer;
-import com.legacy.goodnightsleep.entity.GNSEntityTypes;
+import com.legacy.goodnightsleep.registry.GNSEntityTypes;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;

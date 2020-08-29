@@ -1,6 +1,6 @@
 package com.legacy.goodnightsleep.entity.dream;
 
-import com.legacy.goodnightsleep.entity.GNSEntityTypes;
+import com.legacy.goodnightsleep.registry.GNSEntityTypes;
 
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;

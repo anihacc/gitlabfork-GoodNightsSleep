@@ -466,7 +466,7 @@
           "decorator": {
             "config": {
               "count": 0,
-              "extra_chance": 0.3,
+              "extra_chance": 0.5,
               "extra_count": 1
             },
             "type": "minecraft:count_extra"
@@ -815,6 +815,12 @@
         "weight": 140,
         "minCount": 1,
         "maxCount": 1
+      },
+      {
+        "type": "good_nights_sleep:unicorn",
+        "weight": 90,
+        "minCount": 1,
+        "maxCount": 4
       }
     ],
     "ambient": [],

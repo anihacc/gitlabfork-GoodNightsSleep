@@ -7,8 +7,8 @@
       "block_search_extent": 8,
       "offset": 2.0
     },
-    "sky_color": 8103167,
-    "fog_color": 12638463,
+    "sky_color": 7907327,
+    "fog_color": 3344392,
     "water_color": 4159204,
     "water_fog_color": 329011
   },
@@ -18,10 +18,10 @@
         "Properties": {
           "snowy": "false"
         },
-        "Name": "good_nights_sleep:dream_grass_block"
+        "Name": "good_nights_sleep:nightmare_grass_block"
       },
       "under_material": {
-        "Name": "good_nights_sleep:dream_dirt"
+        "Name": "minecraft:dirt"
       },
       "underwater_material": {
         "Name": "minecraft:gravel"
@@ -55,7 +55,7 @@
                 "config": {
                   "feature": {
                     "config": {},
-                    "type": "good_nights_sleep:dream_sponge"
+                    "type": "good_nights_sleep:nether_splash"
                   },
                   "decorator": {
                     "config": {},
@@ -92,7 +92,45 @@
     ],
     [],
     [],
-    [],
+    [
+      {
+        "config": {
+          "feature": {
+            "config": {
+              "feature": {
+                "config": {
+                  "feature": {
+                    "config": {},
+                    "type": "minecraft:monster_room"
+                  },
+                  "decorator": {
+                    "config": {
+                      "bottom_offset": 0,
+                      "top_offset": 0,
+                      "maximum": 256
+                    },
+                    "type": "minecraft:range"
+                  }
+                },
+                "type": "minecraft:decorated"
+              },
+              "decorator": {
+                "config": {},
+                "type": "minecraft:square"
+              }
+            },
+            "type": "minecraft:decorated"
+          },
+          "decorator": {
+            "config": {
+              "count": 8
+            },
+            "type": "minecraft:count"
+          }
+        },
+        "type": "minecraft:decorated"
+      }
+    ],
     [],
     [],
     [
@@ -105,11 +143,11 @@
                   "feature": {
                     "config": {
                       "target": {
-                        "block": "good_nights_sleep:delusion_stone",
-                        "predicate_type": "minecraft:block_match"
+                        "tag": "minecraft:base_stone_overworld",
+                        "predicate_type": "minecraft:tag_match"
                       },
                       "state": {
-                        "Name": "good_nights_sleep:dream_dirt"
+                        "Name": "minecraft:dirt"
                       },
                       "size": 33
                     },
@@ -151,11 +189,57 @@
                   "feature": {
                     "config": {
                       "target": {
-                        "block": "good_nights_sleep:delusion_stone",
-                        "predicate_type": "minecraft:block_match"
+                        "tag": "minecraft:base_stone_overworld",
+                        "predicate_type": "minecraft:tag_match"
                       },
                       "state": {
-                        "Name": "good_nights_sleep:coal_ore"
+                        "Name": "minecraft:gravel"
+                      },
+                      "size": 33
+                    },
+                    "type": "minecraft:ore"
+                  },
+                  "decorator": {
+                    "config": {
+                      "bottom_offset": 0,
+                      "top_offset": 0,
+                      "maximum": 256
+                    },
+                    "type": "minecraft:range"
+                  }
+                },
+                "type": "minecraft:decorated"
+              },
+              "decorator": {
+                "config": {},
+                "type": "minecraft:square"
+              }
+            },
+            "type": "minecraft:decorated"
+          },
+          "decorator": {
+            "config": {
+              "count": 8
+            },
+            "type": "minecraft:count"
+          }
+        },
+        "type": "minecraft:decorated"
+      },
+      {
+        "config": {
+          "feature": {
+            "config": {
+              "feature": {
+                "config": {
+                  "feature": {
+                    "config": {
+                      "target": {
+                        "tag": "minecraft:base_stone_overworld",
+                        "predicate_type": "minecraft:tag_match"
+                      },
+                      "state": {
+                        "Name": "minecraft:coal_ore"
                       },
                       "size": 17
                     },
@@ -197,11 +281,11 @@
                   "feature": {
                     "config": {
                       "target": {
-                        "block": "good_nights_sleep:delusion_stone",
-                        "predicate_type": "minecraft:block_match"
+                        "tag": "minecraft:base_stone_overworld",
+                        "predicate_type": "minecraft:tag_match"
                       },
                       "state": {
-                        "Name": "good_nights_sleep:candy_ore"
+                        "Name": "good_nights_sleep:necrum_ore"
                       },
                       "size": 15
                     },
@@ -211,7 +295,7 @@
                     "config": {
                       "bottom_offset": 0,
                       "top_offset": 0,
-                      "maximum": 64
+                      "maximum": 128
                     },
                     "type": "minecraft:range"
                   }
@@ -243,11 +327,11 @@
                   "feature": {
                     "config": {
                       "target": {
-                        "block": "good_nights_sleep:delusion_stone",
-                        "predicate_type": "minecraft:block_match"
+                        "tag": "minecraft:base_stone_overworld",
+                        "predicate_type": "minecraft:tag_match"
                       },
                       "state": {
-                        "Name": "good_nights_sleep:rainbow_ore"
+                        "Name": "minecraft:iron_ore"
                       },
                       "size": 9
                     },
@@ -289,13 +373,59 @@
                   "feature": {
                     "config": {
                       "target": {
-                        "block": "good_nights_sleep:delusion_stone",
-                        "predicate_type": "minecraft:block_match"
+                        "tag": "minecraft:base_stone_overworld",
+                        "predicate_type": "minecraft:tag_match"
                       },
                       "state": {
-                        "Name": "good_nights_sleep:positite_ore"
+                        "Name": "good_nights_sleep:zitrite_ore"
                       },
                       "size": 8
+                    },
+                    "type": "minecraft:ore"
+                  },
+                  "decorator": {
+                    "config": {
+                      "bottom_offset": 0,
+                      "top_offset": 0,
+                      "maximum": 32
+                    },
+                    "type": "minecraft:range"
+                  }
+                },
+                "type": "minecraft:decorated"
+              },
+              "decorator": {
+                "config": {},
+                "type": "minecraft:square"
+              }
+            },
+            "type": "minecraft:decorated"
+          },
+          "decorator": {
+            "config": {
+              "count": 5
+            },
+            "type": "minecraft:count"
+          }
+        },
+        "type": "minecraft:decorated"
+      },
+      {
+        "config": {
+          "feature": {
+            "config": {
+              "feature": {
+                "config": {
+                  "feature": {
+                    "config": {
+                      "target": {
+                        "tag": "minecraft:base_stone_overworld",
+                        "predicate_type": "minecraft:tag_match"
+                      },
+                      "state": {
+                        "Name": "good_nights_sleep:negatite_ore"
+                      },
+                      "size": 5
                     },
                     "type": "minecraft:ore"
                   },
@@ -333,11 +463,11 @@
               "feature": {
                 "config": {
                   "target": {
-                    "block": "good_nights_sleep:delusion_stone",
-                    "predicate_type": "minecraft:block_match"
+                    "tag": "minecraft:base_stone_overworld",
+                    "predicate_type": "minecraft:tag_match"
                   },
                   "state": {
-                    "Name": "good_nights_sleep:lapis_ore"
+                    "Name": "minecraft:lapis_ore"
                   },
                   "size": 7
                 },
@@ -359,52 +489,6 @@
           }
         },
         "type": "minecraft:decorated"
-      },
-      {
-        "config": {
-          "feature": {
-            "config": {
-              "feature": {
-                "config": {
-                  "feature": {
-                    "config": {
-                      "target": {
-                        "block": "good_nights_sleep:delusion_stone",
-                        "predicate_type": "minecraft:block_match"
-                      },
-                      "state": {
-                        "Name": "minecraft:glowstone"
-                      },
-                      "size": 8
-                    },
-                    "type": "minecraft:ore"
-                  },
-                  "decorator": {
-                    "config": {
-                      "bottom_offset": 0,
-                      "top_offset": 0,
-                      "maximum": 7
-                    },
-                    "type": "minecraft:range"
-                  }
-                },
-                "type": "minecraft:decorated"
-              },
-              "decorator": {
-                "config": {},
-                "type": "minecraft:square"
-              }
-            },
-            "type": "minecraft:decorated"
-          },
-          "decorator": {
-            "config": {
-              "count": 1
-            },
-            "type": "minecraft:count"
-          }
-        },
-        "type": "minecraft:decorated"
       }
     ],
     [],
@@ -422,7 +506,7 @@
                     "limit": 0,
                     "lower_size": 0,
                     "upper_size": 0,
-                    "min_clipped_height": 4,
+                    "min_clipped_height": 8,
                     "type": "minecraft:two_layers_feature_size"
                   },
                   "decorators": [],
@@ -431,17 +515,13 @@
                       "Properties": {
                         "axis": "y"
                       },
-                      "Name": "good_nights_sleep:dream_log"
+                      "Name": "good_nights_sleep:blood_log"
                     },
                     "type": "minecraft:simple_state_provider"
                   },
                   "leaves_provider": {
                     "state": {
-                      "Properties": {
-                        "persistent": "false",
-                        "distance": "7"
-                      },
-                      "Name": "good_nights_sleep:diamond_leaves"
+                      "Name": "minecraft:air"
                     },
                     "type": "minecraft:simple_state_provider"
                   },
@@ -479,7 +559,7 @@
           "decorator": {
             "config": {
               "count": 0,
-              "extra_chance": 0.1,
+              "extra_chance": 0.2,
               "extra_count": 1
             },
             "type": "minecraft:count_extra"
@@ -503,7 +583,7 @@
                         "east": "true",
                         "down": "false"
                       },
-                      "Name": "good_nights_sleep:hope_mushroom_block"
+                      "Name": "good_nights_sleep:despair_mushroom_block"
                     },
                     "type": "minecraft:simple_state_provider"
                   },
@@ -521,9 +601,9 @@
                     },
                     "type": "minecraft:simple_state_provider"
                   },
-                  "foliage_radius": 2
+                  "foliage_radius": 3
                 },
-                "type": "minecraft:huge_red_mushroom"
+                "type": "minecraft:huge_brown_mushroom"
               },
               "decorator": {
                 "config": {
@@ -557,8 +637,17 @@
           "feature": {
             "config": {
               "feature": {
-                "config": {},
-                "type": "good_nights_sleep:scattered_presents"
+                "config": {
+                  "feature": {
+                    "config": {},
+                    "type": "good_nights_sleep:scattered_pumpkins"
+                  },
+                  "decorator": {
+                    "config": {},
+                    "type": "minecraft:spread_32_above"
+                  }
+                },
+                "type": "minecraft:decorated"
               },
               "decorator": {
                 "config": {
@@ -578,7 +667,7 @@
           },
           "decorator": {
             "config": {
-              "chance": 32
+              "chance": 35
             },
             "type": "minecraft:chance"
           }
@@ -602,7 +691,7 @@
                   "tries": 32,
                   "state_provider": {
                     "state": {
-                      "Name": "good_nights_sleep:dream_grass"
+                      "Name": "good_nights_sleep:nightmare_grass"
                     },
                     "type": "minecraft:simple_state_provider"
                   },
@@ -645,6 +734,58 @@
             "config": {
               "feature": {
                 "config": {
+                  "can_replace": false,
+                  "project": true,
+                  "need_water": false,
+                  "xspread": 7,
+                  "yspread": 3,
+                  "zspread": 7,
+                  "whitelist": [],
+                  "blacklist": [],
+                  "tries": 32,
+                  "state_provider": {
+                    "state": {
+                      "Name": "good_nights_sleep:prickly_nightmare_grass"
+                    },
+                    "type": "minecraft:simple_state_provider"
+                  },
+                  "block_placer": {
+                    "type": "minecraft:simple_block_placer"
+                  }
+                },
+                "type": "minecraft:random_patch"
+              },
+              "decorator": {
+                "config": {
+                  "outer": {
+                    "config": {},
+                    "type": "minecraft:square"
+                  },
+                  "inner": {
+                    "config": {},
+                    "type": "minecraft:heightmap_spread_double"
+                  }
+                },
+                "type": "minecraft:decorated"
+              }
+            },
+            "type": "minecraft:decorated"
+          },
+          "decorator": {
+            "config": {
+              "count": 2
+            },
+            "type": "minecraft:count"
+          }
+        },
+        "type": "minecraft:decorated"
+      },
+      {
+        "config": {
+          "feature": {
+            "config": {
+              "feature": {
+                "config": {
                   "feature": {
                     "config": {
                       "can_replace": false,
@@ -661,19 +802,7 @@
                           {
                             "weight": 1,
                             "data": {
-                              "Name": "good_nights_sleep:cyan_flower"
-                            }
-                          },
-                          {
-                            "weight": 1,
-                            "data": {
-                              "Name": "good_nights_sleep:orange_flower"
-                            }
-                          },
-                          {
-                            "weight": 2,
-                            "data": {
-                              "Name": "good_nights_sleep:lolipop_bush"
+                              "Name": "good_nights_sleep:dead_flower"
                             }
                           }
                         ],
@@ -716,67 +845,6 @@
           }
         },
         "type": "minecraft:decorated"
-      },
-      {
-        "config": {
-          "feature": {
-            "config": {
-              "feature": {
-                "config": {
-                  "feature": {
-                    "config": {
-                      "can_replace": false,
-                      "project": true,
-                      "need_water": false,
-                      "xspread": 7,
-                      "yspread": 3,
-                      "zspread": 7,
-                      "whitelist": [],
-                      "blacklist": [],
-                      "tries": 32,
-                      "state_provider": {
-                        "state": {
-                          "Name": "good_nights_sleep:lolipop_bush"
-                        },
-                        "type": "minecraft:simple_state_provider"
-                      },
-                      "block_placer": {
-                        "type": "minecraft:simple_block_placer"
-                      }
-                    },
-                    "type": "minecraft:flower"
-                  },
-                  "decorator": {
-                    "config": {},
-                    "type": "minecraft:spread_32_above"
-                  }
-                },
-                "type": "minecraft:decorated"
-              },
-              "decorator": {
-                "config": {
-                  "outer": {
-                    "config": {},
-                    "type": "minecraft:square"
-                  },
-                  "inner": {
-                    "config": {},
-                    "type": "minecraft:heightmap"
-                  }
-                },
-                "type": "minecraft:decorated"
-              }
-            },
-            "type": "minecraft:decorated"
-          },
-          "decorator": {
-            "config": {
-              "count": 20
-            },
-            "type": "minecraft:count"
-          }
-        },
-        "type": "minecraft:decorated"
       }
     ]
   ],
@@ -784,24 +852,96 @@
   "spawners": {
     "monster": [
       {
-        "type": "good_nights_sleep:baby_creeper",
+        "type": "good_nights_sleep:tormenter",
+        "weight": 100,
+        "minCount": 4,
+        "maxCount": 4
+      },
+      {
+        "type": "good_nights_sleep:herobrine",
         "weight": 10,
         "minCount": 1,
+        "maxCount": 1
+      },
+      {
+        "type": "minecraft:spider",
+        "weight": 100,
+        "minCount": 4,
+        "maxCount": 4
+      },
+      {
+        "type": "minecraft:zombie",
+        "weight": 95,
+        "minCount": 4,
+        "maxCount": 4
+      },
+      {
+        "type": "minecraft:zombie_villager",
+        "weight": 5,
+        "minCount": 1,
+        "maxCount": 1
+      },
+      {
+        "type": "minecraft:skeleton",
+        "weight": 100,
+        "minCount": 4,
+        "maxCount": 4
+      },
+      {
+        "type": "minecraft:creeper",
+        "weight": 100,
+        "minCount": 4,
+        "maxCount": 4
+      },
+      {
+        "type": "minecraft:slime",
+        "weight": 100,
+        "minCount": 4,
+        "maxCount": 4
+      },
+      {
+        "type": "minecraft:enderman",
+        "weight": 10,
+        "minCount": 1,
+        "maxCount": 4
+      },
+      {
+        "type": "minecraft:witch",
+        "weight": 5,
+        "minCount": 1,
+        "maxCount": 1
+      },
+      {
+        "type": "minecraft:ghast",
+        "weight": 30,
+        "minCount": 4,
+        "maxCount": 4
+      },
+      {
+        "type": "minecraft:zombified_piglin",
+        "weight": 90,
+        "minCount": 4,
+        "maxCount": 4
+      },
+      {
+        "type": "minecraft:magma_cube",
+        "weight": 2,
+        "minCount": 4,
+        "maxCount": 4
+      },
+      {
+        "type": "minecraft:silverfish",
+        "weight": 5,
+        "minCount": 4,
         "maxCount": 4
       }
     ],
     "creature": [
       {
         "type": "good_nights_sleep:gns_spawner",
-        "weight": 140,
+        "weight": 1,
         "minCount": 1,
         "maxCount": 1
-      },
-      {
-        "type": "good_nights_sleep:unicorn",
-        "weight": 90,
-        "minCount": 1,
-        "maxCount": 4
       }
     ],
     "ambient": [],
@@ -812,8 +952,8 @@
   "spawn_costs": {},
   "player_spawn_friendly": false,
   "precipitation": "none",
-  "temperature": 0.5,
+  "temperature": 0.8,
   "downfall": 0.0,
   "category": "none",
-  "depth": 0.0
+  "depth": 0.1
 }

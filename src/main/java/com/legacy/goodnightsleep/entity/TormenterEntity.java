@@ -1,10 +1,13 @@
 package com.legacy.goodnightsleep.entity;
 
 import com.legacy.goodnightsleep.client.audio.GNSSounds;
+import com.legacy.goodnightsleep.registry.GNSEntityTypes;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.monster.ZombieEntity;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
@@ -22,6 +25,11 @@ public class TormenterEntity extends ZombieEntity
 	public TormenterEntity(World worldIn)
 	{
 		this(GNSEntityTypes.TORMENTER, worldIn);
+	}
+
+	public static AttributeModifierMap.MutableAttribute registerAttributes()
+	{
+		return TormenterEntity.func_234342_eQ_().createMutableAttribute(Attributes.MAX_HEALTH, 30.0D);
 	}
 
 	@Override

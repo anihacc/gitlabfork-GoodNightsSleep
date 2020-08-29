@@ -497,46 +497,64 @@
         "config": {
           "feature": {
             "config": {
-              "max_water_depth": 0,
-              "ignore_vines": true,
-              "heightmap": "MOTION_BLOCKING",
-              "minimum_size": {
-                "limit": 0,
-                "lower_size": 0,
-                "upper_size": 0,
-                "min_clipped_height": 4,
-                "type": "minecraft:two_layers_feature_size"
-              },
-              "decorators": [],
-              "trunk_provider": {
-                "state": {
-                  "Properties": {
-                    "axis": "y"
+              "feature": {
+                "config": {
+                  "max_water_depth": 0,
+                  "ignore_vines": true,
+                  "heightmap": "MOTION_BLOCKING",
+                  "minimum_size": {
+                    "limit": 0,
+                    "lower_size": 0,
+                    "upper_size": 0,
+                    "min_clipped_height": 4,
+                    "type": "minecraft:two_layers_feature_size"
                   },
-                  "Name": "good_nights_sleep:dead_log"
+                  "decorators": [],
+                  "trunk_provider": {
+                    "state": {
+                      "Properties": {
+                        "axis": "y"
+                      },
+                      "Name": "good_nights_sleep:dead_log"
+                    },
+                    "type": "minecraft:simple_state_provider"
+                  },
+                  "leaves_provider": {
+                    "state": {
+                      "Name": "minecraft:air"
+                    },
+                    "type": "minecraft:simple_state_provider"
+                  },
+                  "foliage_placer": {
+                    "radius": 2,
+                    "offset": 4,
+                    "height": 4,
+                    "type": "minecraft:fancy_foliage_placer"
+                  },
+                  "trunk_placer": {
+                    "base_height": 3,
+                    "height_rand_a": 11,
+                    "height_rand_b": 0,
+                    "type": "minecraft:fancy_trunk_placer"
+                  }
                 },
-                "type": "minecraft:simple_state_provider"
+                "type": "minecraft:tree"
               },
-              "leaves_provider": {
-                "state": {
-                  "Name": "minecraft:air"
+              "decorator": {
+                "config": {
+                  "outer": {
+                    "config": {},
+                    "type": "minecraft:square"
+                  },
+                  "inner": {
+                    "config": {},
+                    "type": "minecraft:heightmap"
+                  }
                 },
-                "type": "minecraft:simple_state_provider"
-              },
-              "foliage_placer": {
-                "radius": 2,
-                "offset": 4,
-                "height": 4,
-                "type": "minecraft:fancy_foliage_placer"
-              },
-              "trunk_placer": {
-                "base_height": 3,
-                "height_rand_a": 11,
-                "height_rand_b": 0,
-                "type": "minecraft:fancy_trunk_placer"
+                "type": "minecraft:decorated"
               }
             },
-            "type": "minecraft:tree"
+            "type": "minecraft:decorated"
           },
           "decorator": {
             "config": {
@@ -553,45 +571,63 @@
         "config": {
           "feature": {
             "config": {
-              "max_water_depth": 0,
-              "ignore_vines": true,
-              "heightmap": "OCEAN_FLOOR",
-              "minimum_size": {
-                "limit": 1,
-                "lower_size": 0,
-                "upper_size": 1,
-                "type": "minecraft:two_layers_feature_size"
-              },
-              "decorators": [],
-              "trunk_provider": {
-                "state": {
-                  "Properties": {
-                    "axis": "y"
+              "feature": {
+                "config": {
+                  "max_water_depth": 0,
+                  "ignore_vines": true,
+                  "heightmap": "OCEAN_FLOOR",
+                  "minimum_size": {
+                    "limit": 1,
+                    "lower_size": 0,
+                    "upper_size": 1,
+                    "type": "minecraft:two_layers_feature_size"
                   },
-                  "Name": "good_nights_sleep:blood_log"
+                  "decorators": [],
+                  "trunk_provider": {
+                    "state": {
+                      "Properties": {
+                        "axis": "y"
+                      },
+                      "Name": "good_nights_sleep:blood_log"
+                    },
+                    "type": "minecraft:simple_state_provider"
+                  },
+                  "leaves_provider": {
+                    "state": {
+                      "Name": "minecraft:air"
+                    },
+                    "type": "minecraft:simple_state_provider"
+                  },
+                  "foliage_placer": {
+                    "radius": 2,
+                    "offset": 0,
+                    "height": 3,
+                    "type": "minecraft:blob_foliage_placer"
+                  },
+                  "trunk_placer": {
+                    "base_height": 5,
+                    "height_rand_a": 2,
+                    "height_rand_b": 0,
+                    "type": "minecraft:straight_trunk_placer"
+                  }
                 },
-                "type": "minecraft:simple_state_provider"
+                "type": "minecraft:tree"
               },
-              "leaves_provider": {
-                "state": {
-                  "Name": "minecraft:air"
+              "decorator": {
+                "config": {
+                  "outer": {
+                    "config": {},
+                    "type": "minecraft:square"
+                  },
+                  "inner": {
+                    "config": {},
+                    "type": "minecraft:heightmap"
+                  }
                 },
-                "type": "minecraft:simple_state_provider"
-              },
-              "foliage_placer": {
-                "radius": 2,
-                "offset": 0,
-                "height": 3,
-                "type": "minecraft:blob_foliage_placer"
-              },
-              "trunk_placer": {
-                "base_height": 5,
-                "height_rand_a": 2,
-                "height_rand_b": 0,
-                "type": "minecraft:straight_trunk_placer"
+                "type": "minecraft:decorated"
               }
             },
-            "type": "minecraft:tree"
+            "type": "minecraft:decorated"
           },
           "decorator": {
             "config": {
@@ -674,8 +710,17 @@
           "feature": {
             "config": {
               "feature": {
-                "config": {},
-                "type": "good_nights_sleep:scattered_pumpkins"
+                "config": {
+                  "feature": {
+                    "config": {},
+                    "type": "good_nights_sleep:scattered_pumpkins"
+                  },
+                  "decorator": {
+                    "config": {},
+                    "type": "minecraft:spread_32_above"
+                  }
+                },
+                "type": "minecraft:decorated"
               },
               "decorator": {
                 "config": {
@@ -708,35 +753,26 @@
             "config": {
               "feature": {
                 "config": {
-                  "feature": {
-                    "config": {
-                      "can_replace": false,
-                      "project": true,
-                      "need_water": false,
-                      "xspread": 7,
-                      "yspread": 3,
-                      "zspread": 7,
-                      "whitelist": [],
-                      "blacklist": [],
-                      "tries": 32,
-                      "state_provider": {
-                        "state": {
-                          "Name": "good_nights_sleep:nightmare_grass"
-                        },
-                        "type": "minecraft:simple_state_provider"
-                      },
-                      "block_placer": {
-                        "type": "minecraft:simple_block_placer"
-                      }
+                  "can_replace": false,
+                  "project": true,
+                  "need_water": false,
+                  "xspread": 7,
+                  "yspread": 3,
+                  "zspread": 7,
+                  "whitelist": [],
+                  "blacklist": [],
+                  "tries": 32,
+                  "state_provider": {
+                    "state": {
+                      "Name": "good_nights_sleep:nightmare_grass"
                     },
-                    "type": "minecraft:random_patch"
+                    "type": "minecraft:simple_state_provider"
                   },
-                  "decorator": {
-                    "config": {},
-                    "type": "minecraft:spread_32_above"
+                  "block_placer": {
+                    "type": "minecraft:simple_block_placer"
                   }
                 },
-                "type": "minecraft:decorated"
+                "type": "minecraft:random_patch"
               },
               "decorator": {
                 "config": {
@@ -746,7 +782,7 @@
                   },
                   "inner": {
                     "config": {},
-                    "type": "minecraft:heightmap"
+                    "type": "minecraft:heightmap_spread_double"
                   }
                 },
                 "type": "minecraft:decorated"
@@ -756,9 +792,11 @@
           },
           "decorator": {
             "config": {
-              "count": 5
+              "noise_level": -0.8,
+              "below_noise": 5,
+              "above_noise": 10
             },
-            "type": "minecraft:count"
+            "type": "minecraft:count_noise"
           }
         },
         "type": "minecraft:decorated"
@@ -769,35 +807,26 @@
             "config": {
               "feature": {
                 "config": {
-                  "feature": {
-                    "config": {
-                      "can_replace": false,
-                      "project": true,
-                      "need_water": false,
-                      "xspread": 7,
-                      "yspread": 3,
-                      "zspread": 7,
-                      "whitelist": [],
-                      "blacklist": [],
-                      "tries": 32,
-                      "state_provider": {
-                        "state": {
-                          "Name": "good_nights_sleep:prickly_nightmare_grass"
-                        },
-                        "type": "minecraft:simple_state_provider"
-                      },
-                      "block_placer": {
-                        "type": "minecraft:simple_block_placer"
-                      }
+                  "can_replace": false,
+                  "project": true,
+                  "need_water": false,
+                  "xspread": 7,
+                  "yspread": 3,
+                  "zspread": 7,
+                  "whitelist": [],
+                  "blacklist": [],
+                  "tries": 32,
+                  "state_provider": {
+                    "state": {
+                      "Name": "good_nights_sleep:prickly_nightmare_grass"
                     },
-                    "type": "minecraft:random_patch"
+                    "type": "minecraft:simple_state_provider"
                   },
-                  "decorator": {
-                    "config": {},
-                    "type": "minecraft:spread_32_above"
+                  "block_placer": {
+                    "type": "minecraft:simple_block_placer"
                   }
                 },
-                "type": "minecraft:decorated"
+                "type": "minecraft:random_patch"
               },
               "decorator": {
                 "config": {
@@ -807,7 +836,7 @@
                   },
                   "inner": {
                     "config": {},
-                    "type": "minecraft:heightmap"
+                    "type": "minecraft:heightmap_spread_double"
                   }
                 },
                 "type": "minecraft:decorated"
@@ -980,14 +1009,7 @@
         "maxCount": 4
       }
     ],
-    "creature": [
-      {
-        "type": "good_nights_sleep:gns_spawner",
-        "weight": 1,
-        "minCount": 1,
-        "maxCount": 1
-      }
-    ],
+    "creature": [],
     "ambient": [],
     "water_creature": [],
     "water_ambient": [],

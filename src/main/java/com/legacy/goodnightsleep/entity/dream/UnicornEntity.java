@@ -4,6 +4,7 @@ import com.legacy.goodnightsleep.client.audio.GNSSounds;
 import com.legacy.goodnightsleep.registry.GNSItems;
 
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.passive.horse.AbstractHorseEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -32,7 +33,7 @@ public class UnicornEntity extends AbstractHorseEntity
 	protected void registerData()
 	{
 		super.registerData();
-		this.dataManager.register(UNICORN_TYPE, Integer.valueOf(this.rand.nextInt(4)));
+		this.dataManager.register(UNICORN_TYPE, this.rand.nextInt(4));
 	}
 
 	@Override
@@ -57,12 +58,20 @@ public class UnicornEntity extends AbstractHorseEntity
 
 	/*@Override
 	protected void registerAttributes()
-	{
+	{HorseEntity
 		super.registerAttributes();
 		this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(15.0D);
 		this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.20000000298023224D);
 		this.getAttribute(JUMP_STRENGTH).setBaseValue(this.getModifiedJumpStrength());
 	}*/
+
+	@Override
+	protected void func_230273_eI_()
+	{
+		this.getAttribute(Attributes.MAX_HEALTH).setBaseValue((double) this.getModifiedMaxHealth());
+		this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(this.getModifiedMovementSpeed());
+		this.getAttribute(Attributes.HORSE_JUMP_STRENGTH).setBaseValue(this.getModifiedJumpStrength());
+	}
 
 	@Override
 	protected SoundEvent getAmbientSound()

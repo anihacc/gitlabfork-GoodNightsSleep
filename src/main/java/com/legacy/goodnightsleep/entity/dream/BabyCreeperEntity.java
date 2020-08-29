@@ -2,7 +2,7 @@ package com.legacy.goodnightsleep.entity.dream;
 
 import java.util.Collection;
 
-import com.legacy.goodnightsleep.entity.GNSEntityTypes;
+import com.legacy.goodnightsleep.registry.GNSEntityTypes;
 
 import net.minecraft.entity.AreaEffectCloudEntity;
 import net.minecraft.entity.Entity;

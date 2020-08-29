@@ -4,8 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.legacy.goodnightsleep.GoodNightSleep;
-import com.legacy.goodnightsleep.entity.GNSEntityTypes;
 import com.legacy.goodnightsleep.registry.GNSBlocks;
+import com.legacy.goodnightsleep.registry.GNSEntityTypes;
 import com.legacy.goodnightsleep.registry.GNSFeatures;
 import com.legacy.goodnightsleep.registry.GNSItems;
 import com.legacy.goodnightsleep.tile_entity.GNSTileEntityTypes;

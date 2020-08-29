@@ -1,13 +1,14 @@
-package com.legacy.goodnightsleep.entity;
+package com.legacy.goodnightsleep.registry;
 
 import java.util.Random;
 
 import com.legacy.goodnightsleep.GoodNightSleep;
+import com.legacy.goodnightsleep.entity.GNSSpawnerEntity;
+import com.legacy.goodnightsleep.entity.HerobrineEntity;
+import com.legacy.goodnightsleep.entity.TormenterEntity;
 import com.legacy.goodnightsleep.entity.dream.BabyCreeperEntity;
 import com.legacy.goodnightsleep.entity.dream.GummyBearEntity;
 import com.legacy.goodnightsleep.entity.dream.UnicornEntity;
-import com.legacy.goodnightsleep.registry.GNSBlocks;
-import com.legacy.goodnightsleep.registry.GNSRegistry;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
@@ -18,7 +19,6 @@ import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
 import net.minecraft.entity.monster.CreeperEntity;
 import net.minecraft.entity.monster.MonsterEntity;
-import net.minecraft.entity.monster.ZombieEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
@@ -38,7 +38,6 @@ public class GNSEntityTypes
 
 	public static void init(Register<EntityType<?>> event)
 	{
-
 		GNSRegistry.register(event.getRegistry(), "unicorn", GNSEntityTypes.UNICORN);
 		GNSRegistry.register(event.getRegistry(), "gummy_bear", GNSEntityTypes.GUMMY_BEAR);
 		GNSRegistry.register(event.getRegistry(), "baby_creeper", GNSEntityTypes.BABY_CREEPER);
@@ -59,23 +58,22 @@ public class GNSEntityTypes
 	
 	private static void registerAttributes()
 	{
-		GlobalEntityTypeAttributes.put(GNSEntityTypes.UNICORN, MobEntity.func_233666_p_().create());
+		GlobalEntityTypeAttributes.put(GNSEntityTypes.UNICORN, UnicornEntity.func_234237_fg_().create());
 		GlobalEntityTypeAttributes.put(GNSEntityTypes.GUMMY_BEAR, MobEntity.func_233666_p_().create());
 		GlobalEntityTypeAttributes.put(GNSEntityTypes.BABY_CREEPER, CreeperEntity.func_234278_m_().create());
-		GlobalEntityTypeAttributes.put(GNSEntityTypes.TORMENTER, ZombieEntity.func_234342_eQ_().create());
-		GlobalEntityTypeAttributes.put(GNSEntityTypes.HEROBRINE, MonsterEntity.func_234295_eP_().create());
+		GlobalEntityTypeAttributes.put(GNSEntityTypes.TORMENTER, TormenterEntity.registerAttributes().create());
+		GlobalEntityTypeAttributes.put(GNSEntityTypes.HEROBRINE, HerobrineEntity.registerAttributes().create());
 		GlobalEntityTypeAttributes.put(GNSEntityTypes.SPAWNER_ENTITY, MobEntity.func_233666_p_().create());
-
 	}
 
-	public static boolean animalSpawnConditions(EntityType<? extends AnimalEntity> p_223316_0_, IWorld p_223316_1_, SpawnReason p_223316_2_, BlockPos p_223316_3_, Random p_223316_4_)
+	public static boolean animalSpawnConditions(EntityType<? extends AnimalEntity> entityIn, IWorld worldIn, SpawnReason reasonIn, BlockPos posIn, Random randIn)
 	{
-		return p_223316_1_.getBlockState(p_223316_3_.down()).getBlock() == GNSBlocks.dream_grass_block && p_223316_1_.getLightSubtracted(p_223316_3_, 0) > 8;
+		return worldIn.getBlockState(posIn.down()).getBlock() == GNSBlocks.dream_grass_block && worldIn.getLightSubtracted(posIn, 0) > 8;
 	}
 
-	public static boolean otherSpawnConditions(EntityType<? extends MobEntity> p_223316_0_, IWorld p_223316_1_, SpawnReason p_223316_2_, BlockPos p_223316_3_, Random p_223316_4_)
+	public static boolean otherSpawnConditions(EntityType<? extends MobEntity> entityIn, IWorld worldIn, SpawnReason reasonIn, BlockPos posIn, Random randIn)
 	{
-		return (p_223316_1_.getBlockState(p_223316_3_.down()).getBlock() == GNSBlocks.nightmare_grass_block || p_223316_1_.getBlockState(p_223316_3_.down()).getBlock() == GNSBlocks.dream_grass_block) && p_223316_1_.canBlockSeeSky(p_223316_3_);
+		return (worldIn.getBlockState(posIn.down()).getBlock() == GNSBlocks.nightmare_grass_block || worldIn.getBlockState(posIn.down()).getBlock() == GNSBlocks.dream_grass_block) && worldIn.canBlockSeeSky(posIn);
 	}
 
 	private static <T extends Entity> EntityType<T> buildEntity(String key, EntityType.Builder<T> builder)

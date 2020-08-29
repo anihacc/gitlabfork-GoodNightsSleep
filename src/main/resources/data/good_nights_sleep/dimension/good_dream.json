@@ -32,7 +32,7 @@
 						"temperature": 0.0,
 						"humidity": 0.0
 					},
-					"biome": "good_nights_sleep:good_dream_plains"
+					"biome": "good_nights_sleep:sleepy_hills"
 				},
 				{
 					"parameters": {
@@ -52,7 +52,7 @@
                         "temperature": 0.0,
                         "humidity": 0.0
                     },
-                    "biome": "good_nights_sleep:hopeful_fields"
+                    "biome": "good_nights_sleep:good_dream_plains"
                 }
 			],
 			"temperature_noise": {

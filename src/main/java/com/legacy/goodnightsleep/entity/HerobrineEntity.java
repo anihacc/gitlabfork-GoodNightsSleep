@@ -1,12 +1,15 @@
 package com.legacy.goodnightsleep.entity;
 
 import com.legacy.goodnightsleep.client.audio.GNSSounds;
+import com.legacy.goodnightsleep.registry.GNSEntityTypes;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityPredicate;
 import net.minecraft.entity.EntitySize;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.Pose;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.HurtByTargetGoal;
 import net.minecraft.entity.ai.goal.LookAtGoal;
 import net.minecraft.entity.ai.goal.LookRandomlyGoal;
@@ -29,7 +32,6 @@ import net.minecraftforge.event.entity.living.EnderTeleportEvent;
 
 public class HerobrineEntity extends MonsterEntity
 {
-
 	public HerobrineEntity(EntityType<? extends HerobrineEntity> type, World worldIn)
 	{
 		super(type, worldIn);
@@ -54,16 +56,10 @@ public class HerobrineEntity extends MonsterEntity
 		this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)));
 	}
 
-	/*@Override
-	protected void registerAttributes()
+	public static AttributeModifierMap.MutableAttribute registerAttributes()
 	{
-		super.registerAttributes();
-	
-		this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(40.0D);
-		this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.30000001192092896D);
-		this.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(7.0D);
-		this.getAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(64.0D);
-	}*/
+		return MonsterEntity.func_234295_eP_().createMutableAttribute(Attributes.FOLLOW_RANGE, 64.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.3F).createMutableAttribute(Attributes.ATTACK_DAMAGE, 7.0D).createMutableAttribute(Attributes.MAX_HEALTH, 40.0D);
+	}
 
 	@Override
 	protected SoundEvent getAmbientSound()
@@ -156,7 +152,7 @@ public class HerobrineEntity extends MonsterEntity
 			if (flag)
 			{
 				this.world.playSound((PlayerEntity) null, this.prevPosX, this.prevPosY, this.prevPosZ, SoundEvents.ITEM_CHORUS_FRUIT_TELEPORT, this.getSoundCategory(), 1.0F, 1.0F);
-				this.playSound(SoundEvents.ENTITY_ENDERMAN_TELEPORT, 1.0F, 1.0F);
+				this.playSound(SoundEvents.ITEM_CHORUS_FRUIT_TELEPORT, 1.0F, 1.0F);
 			}
 
 			return flag;

@@ -2,7 +2,6 @@ package com.legacy.goodnightsleep.registry;
 
 import com.legacy.goodnightsleep.GoodNightSleep;
 import com.legacy.goodnightsleep.client.audio.GNSSounds;
-import com.legacy.goodnightsleep.entity.GNSEntityTypes;
 import com.legacy.goodnightsleep.item.GNSCreativeTabs;
 import com.legacy.goodnightsleep.tile_entity.GNSTileEntityTypes;
 import com.legacy.goodnightsleep.world.GNSBiomes;

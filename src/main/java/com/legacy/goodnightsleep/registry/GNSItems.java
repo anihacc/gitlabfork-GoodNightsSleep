@@ -1,7 +1,6 @@
 package com.legacy.goodnightsleep.registry;
 
 import com.legacy.goodnightsleep.GoodNightSleep;
-import com.legacy.goodnightsleep.entity.GNSEntityTypes;
 import com.legacy.goodnightsleep.item.GNSArmorMaterial;
 import com.legacy.goodnightsleep.item.GNSCreativeTabs;
 import com.legacy.goodnightsleep.item.GNSFoods;
