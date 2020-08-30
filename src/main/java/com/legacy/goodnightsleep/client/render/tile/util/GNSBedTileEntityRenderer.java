@@ -66,7 +66,7 @@ public class GNSBedTileEntityRenderer extends TileEntityRenderer<TileEntity>
 		if (world != null)
 		{
 			BlockState blockstate = tileEntityIn.getBlockState();
-			TileEntityMerger.ICallbackWrapper<? extends TileEntityLuxuriousBed> icallbackwrapper = TileEntityMerger.func_226924_a_(GNSTileEntityTypes.LUXURIOUS_BED, GNSBedBlock::func_226863_i_, GNSBedBlock::func_226862_h_, ChestBlock.FACING, blockstate, world, tileEntityIn.getPos(), (p_228846_0_, p_228846_1_) ->
+			TileEntityMerger.ICallbackWrapper<? extends TileEntityLuxuriousBed> icallbackwrapper = TileEntityMerger.func_226924_a_(GNSTileEntityTypes.LUXURIOUS_BED, GNSBedBlock::getMergeType, GNSBedBlock::getFootDirection, ChestBlock.FACING, blockstate, world, tileEntityIn.getPos(), (p_228846_0_, p_228846_1_) ->
 			{
 				return false;
 			});
