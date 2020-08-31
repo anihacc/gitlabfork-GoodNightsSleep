@@ -192,7 +192,7 @@ public class GNSFeatures
 
 	public static void addMushrooms(Biome biomeIn)
 	{
-		if (biomeIn.toString().contains(GoodNightSleep.MODID))
+		if (biomeIn.toString().contains(GoodNightSleep.MODID) || biomeIn.getCategory() == Biome.Category.THEEND || biomeIn.getCategory() == Biome.Category.NONE)
 			return;
 
 		if (biomeIn.getCategory() == Biome.Category.NETHER)

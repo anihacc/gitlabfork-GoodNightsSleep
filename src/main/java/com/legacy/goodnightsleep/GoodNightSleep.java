@@ -9,7 +9,6 @@ import com.legacy.goodnightsleep.data.GNSMappingChanges;
 import com.legacy.goodnightsleep.registry.GNSFeatures;
 
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.biome.Biome;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.DistExecutor;
@@ -43,18 +42,12 @@ public class GoodNightSleep
 
 	private void initialization(final FMLCommonSetupEvent event)
 	{
-		MinecraftForge.EVENT_BUS.register(new GNSMappingChanges());
+		ForgeRegistries.BIOMES.getValues().forEach(GNSFeatures::addMushrooms);
 
-		for (Biome biome : ForgeRegistries.BIOMES.getValues())
-		{
-			if (biome.getCategory() != Biome.Category.THEEND && (biome.getCategory() == Biome.Category.NETHER || biome.getCategory() != Biome.Category.NONE))
-			{
-				GNSFeatures.addMushrooms(biome);
-			}
-		}
+		MinecraftForge.EVENT_BUS.register(new GNSMappingChanges());
+		MinecraftForge.EVENT_BUS.register(new GNSEvents());
 
 		ToolCompat.init();
-		MinecraftForge.EVENT_BUS.register(new GNSEvents());
 	}
 
 	public static ResourceLocation locate(String name)
