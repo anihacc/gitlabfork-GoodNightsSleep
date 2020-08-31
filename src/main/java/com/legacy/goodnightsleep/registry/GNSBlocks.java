@@ -119,7 +119,7 @@ public class GNSBlocks
 		nightmare_grass = register("nightmare_grass", new GNSTallGrassBlock(Block.Properties.from(Blocks.GRASS)));
 		prickly_nightmare_grass = register("prickly_nightmare_grass", new GNSTallGrassBlock(Block.Properties.from(Blocks.GRASS)));
 		dream_grass_block = register("dream_grass_block", new GNSGrassBlock());
-		dream_dirt = register("dream_dirt", new Block(Block.Properties.from(Blocks.DIRT)));
+		dream_dirt = register("dream_dirt", new Block(Block.Properties.from(Blocks.DIRT).harvestTool(ToolType.SHOVEL)));
 		dream_farmland = register("dream_farmland", new GNSFarmlandBlock(Block.Properties.from(Blocks.FARMLAND)));
 		delusion_stone = register("delusion_stone", new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F)));
 		delusion_cobblestone = register("delusion_cobblestone", new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(2.0F, 6.0F)));

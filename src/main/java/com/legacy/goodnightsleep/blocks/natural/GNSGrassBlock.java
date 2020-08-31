@@ -17,12 +17,13 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.PlantType;
+import net.minecraftforge.common.ToolType;
 
 public class GNSGrassBlock extends GrassBlock
 {
 	public GNSGrassBlock()
 	{
-		super(Properties.from(Blocks.GRASS_BLOCK));
+		super(Properties.from(Blocks.GRASS_BLOCK).harvestTool(ToolType.SHOVEL));
 	}
 
 	private static boolean shouldDecay(IWorldReader worldIn, BlockPos posIn)
