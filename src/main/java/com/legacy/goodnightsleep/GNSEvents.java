@@ -38,6 +38,7 @@ public class GNSEvents
 			if (!((AbstractHorseEntity) event.getTarget()).isTame() && player.getHeldItemMainhand().isEmpty() && player.getHeldItemOffhand().isEmpty())
 			{
 				event.setResult(Result.ALLOW);
+				player.swingArm(Hand.MAIN_HAND);
 				player.startRiding(event.getTarget());
 			}
 		}
