@@ -1,7 +1,6 @@
-package com.legacy.goodnightsleep.world;
+package com.legacy.goodnightsleep.registry;
 
 import com.legacy.goodnightsleep.GoodNightSleep;
-import com.legacy.goodnightsleep.registry.GNSBlocks;
 
 import net.minecraft.block.Blocks;
 import net.minecraft.util.RegistryKey;
