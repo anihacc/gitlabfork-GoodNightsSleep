@@ -65,21 +65,21 @@ public class ClientEvents
 	public static float getTime(long worldTime, float partialTicks)
 	{
 		int j = (int) (worldTime % 48000L);
-		flo = ((float) j + partialTicks) / 48000.0F - 0.25F;
+		float f1 = ((float) j + partialTicks) / 48000.0F - 0.25F;
 
-		if (flo < 0.0F)
+		if (f1 < 0.0F)
 		{
-			++flo;
+			++f1;
 		}
 
-		if (flo > 1.0F)
+		if (f1 > 1.0F)
 		{
 			--flo;
 		}
 
-		float f2 = flo;
-		flo = 1.0F - (float) ((Math.cos((double) flo * Math.PI) + 1.0D) / 2.0D);
-		flo = f2 + (flo - f2) / 3.0F;
+		float f2 = f1;
+		f1 = 1.0F - (float) ((Math.cos((double) f1 * Math.PI) + 1.0D) / 2.0D);
+		f1 = f2 + (f1 - f2) / 3.0F;
 
 		/*if (worldTime > 25000L)
 		{
@@ -110,6 +110,6 @@ public class ClientEvents
 			}
 		}*/
 
-		return flo;
+		return f1;
 	}
 }

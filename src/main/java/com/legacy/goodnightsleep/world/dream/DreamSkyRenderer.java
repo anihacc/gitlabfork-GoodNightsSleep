@@ -1,7 +1,8 @@
-/*package com.legacy.goodnightsleep.world.dream;
+package com.legacy.goodnightsleep.world.dream;
 
 import java.util.Random;
 
+import com.legacy.goodnightsleep.client.ClientEvents;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -22,7 +23,8 @@ import net.minecraft.util.math.vector.Matrix4f;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.math.vector.Vector3f;
 
-public class DreamSkyRenderer implements net.minecraftforge.client.SkyRenderHandler
+@SuppressWarnings("deprecation")
+public class DreamSkyRenderer //implements net.minecraftforge.client.SkyRenderHandler
 {
 	private static final ResourceLocation MOON_PHASES_TEXTURES = new ResourceLocation("textures/environment/moon_phases.png");
 	private static final ResourceLocation SUN_TEXTURES = new ResourceLocation("textures/environment/sun.png");
@@ -36,14 +38,15 @@ public class DreamSkyRenderer implements net.minecraftforge.client.SkyRenderHand
 
 	public DreamSkyRenderer()
 	{
-		this.generateStars();
-		this.generateSky();
-		this.generateSky2();
+		generateStars();
+		generateSky();
+		generateSky2();
 	}
 
-	@Override
+	//@Override
 	public void render(int ticks, float partialTicks, MatrixStack matrixStackIn, ClientWorld world, Minecraft mc)
 	{
+		System.out.println("aaaaaaas");
 		RenderSystem.disableTexture();
 		Vector3d Vector3d = world.getSkyColor(mc.gameRenderer.getActiveRenderInfo().getBlockPos(), partialTicks);
 		float f = (float) Vector3d.x;
@@ -54,16 +57,16 @@ public class DreamSkyRenderer implements net.minecraftforge.client.SkyRenderHand
 		RenderSystem.depthMask(false);
 		RenderSystem.enableFog();
 		RenderSystem.color3f(f, f1, f2);
-		this.skyVBO.bindBuffer();
-		this.skyVertexFormat.setupBufferState(0L);
-		this.skyVBO.draw(matrixStackIn.getLast().getMatrix(), 7);
+		skyVBO.bindBuffer();
+		skyVertexFormat.setupBufferState(0L);
+		skyVBO.draw(matrixStackIn.getLast().getMatrix(), 7);
 		VertexBuffer.unbindBuffer();
-		this.skyVertexFormat.clearBufferState();
+		skyVertexFormat.clearBufferState();
 		RenderSystem.disableFog();
 		RenderSystem.disableAlphaTest();
 		RenderSystem.enableBlend();
 		RenderSystem.defaultBlendFunc();
-		float[] afloat = world.dimension.calcSunriseSunsetColors(world.getCelestialAngle(partialTicks), partialTicks);
+		float[] afloat = world.func_239132_a_().func_230492_a_(world.func_242415_f(partialTicks), partialTicks); /*world.dimension.calcSunriseSunsetColors(world.getCelestialAngle(partialTicks), partialTicks);*/
 		if (afloat != null)
 		{
 			RenderSystem.disableTexture();
@@ -100,10 +103,10 @@ public class DreamSkyRenderer implements net.minecraftforge.client.SkyRenderHand
 		float f11 = 1.0F - world.getRainStrength(partialTicks);
 		RenderSystem.color4f(1.0F, 1.0F, 1.0F, f11);
 		matrixStackIn.rotate(Vector3f.YP.rotationDegrees(-90.0F));
-		matrixStackIn.rotate(Vector3f.XP.rotationDegrees(world.getCelestialAngle(partialTicks) * 360.0F));
+		matrixStackIn.rotate(Vector3f.XP.rotationDegrees(ClientEvents.getTime(world.getDayTime(), partialTicks)));/*world.getCelestialAngle(partialTicks) * 360.0F*/
 		Matrix4f matrix4f1 = matrixStackIn.getLast().getMatrix();
 		float f12 = 30.0F;
-		this.textureManager.bindTexture(SUN_TEXTURES);
+		textureManager.bindTexture(SUN_TEXTURES);
 		bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
 		bufferbuilder.pos(matrix4f1, -f12, 100.0F, -f12).tex(0.0F, 0.0F).endVertex();
 		bufferbuilder.pos(matrix4f1, f12, 100.0F, -f12).tex(1.0F, 0.0F).endVertex();
@@ -112,8 +115,8 @@ public class DreamSkyRenderer implements net.minecraftforge.client.SkyRenderHand
 		bufferbuilder.finishDrawing();
 		WorldVertexBufferUploader.draw(bufferbuilder);
 		f12 = 20.0F;
-		this.textureManager.bindTexture(MOON_PHASES_TEXTURES);
-		int k = world.getMoonPhase();
+		textureManager.bindTexture(MOON_PHASES_TEXTURES);
+		int k = world.func_242414_af(); //world.getMoonPhase();
 		int l = k % 4;
 		int i1 = k / 4 % 2;
 		float f13 = (float) (l + 0) / 4.0F;
@@ -132,11 +135,11 @@ public class DreamSkyRenderer implements net.minecraftforge.client.SkyRenderHand
 		if (f10 > 0.0F)
 		{
 			RenderSystem.color4f(f10, f10, f10, f10);
-			this.starVBO.bindBuffer();
-			this.skyVertexFormat.setupBufferState(0L);
-			this.starVBO.draw(matrixStackIn.getLast().getMatrix(), 7);
+			starVBO.bindBuffer();
+			skyVertexFormat.setupBufferState(0L);
+			starVBO.draw(matrixStackIn.getLast().getMatrix(), 7);
 			VertexBuffer.unbindBuffer();
-			this.skyVertexFormat.clearBufferState();
+			skyVertexFormat.clearBufferState();
 		}
 
 		RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
@@ -147,27 +150,28 @@ public class DreamSkyRenderer implements net.minecraftforge.client.SkyRenderHand
 		RenderSystem.disableTexture();
 		RenderSystem.color3f(0.0F, 0.0F, 0.0F);
 
-		double d0 = mc.player.getEyePosition(partialTicks).y - world.getHorizonHeight(); // TODO
+		double d0 = mc.player.getEyePosition(partialTicks).y - world.getWorldInfo().getVoidFogHeight()/*world.getHorizonHeight()*/; // TODO
 		if (d0 < 0.0D)
 		{
 			matrixStackIn.push();
 			matrixStackIn.translate(0.0D, 12.0D, 0.0D);
-			this.sky2VBO.bindBuffer();
-			this.skyVertexFormat.setupBufferState(0L);
-			this.sky2VBO.draw(matrixStackIn.getLast().getMatrix(), 7);
+			sky2VBO.bindBuffer();
+			skyVertexFormat.setupBufferState(0L);
+			sky2VBO.draw(matrixStackIn.getLast().getMatrix(), 7);
 			VertexBuffer.unbindBuffer();
-			this.skyVertexFormat.clearBufferState();
+			skyVertexFormat.clearBufferState();
 			matrixStackIn.pop();
 		}
 
-		if (world.dimension.isSkyColored())
+		RenderSystem.color3f(f * 0.2F + 0.04F, f1 * 0.2F + 0.04F, f2 * 0.6F + 0.1F);
+		/*if (world.dimension.isSkyColored())
 		{
 			RenderSystem.color3f(f * 0.2F + 0.04F, f1 * 0.2F + 0.04F, f2 * 0.6F + 0.1F);
 		}
 		else
 		{
 			RenderSystem.color3f(f, f1, f2);
-		}
+		}*/
 
 		RenderSystem.enableTexture();
 		RenderSystem.depthMask(true);
@@ -178,15 +182,15 @@ public class DreamSkyRenderer implements net.minecraftforge.client.SkyRenderHand
 	{
 		Tessellator tessellator = Tessellator.getInstance();
 		BufferBuilder bufferbuilder = tessellator.getBuffer();
-		if (this.starVBO != null)
+		if (starVBO != null)
 		{
-			this.starVBO.close();
+			starVBO.close();
 		}
 
-		this.starVBO = new VertexBuffer(this.skyVertexFormat);
-		this.renderStars(bufferbuilder);
+		starVBO = new VertexBuffer(skyVertexFormat);
+		renderStars(bufferbuilder);
 		bufferbuilder.finishDrawing();
-		this.starVBO.upload(bufferbuilder);
+		starVBO.upload(bufferbuilder);
 	}
 
 	private void renderStars(BufferBuilder bufferBuilderIn)
@@ -241,30 +245,30 @@ public class DreamSkyRenderer implements net.minecraftforge.client.SkyRenderHand
 	{
 		Tessellator tessellator = Tessellator.getInstance();
 		BufferBuilder bufferbuilder = tessellator.getBuffer();
-		if (this.sky2VBO != null)
+		if (sky2VBO != null)
 		{
-			this.sky2VBO.close();
+			sky2VBO.close();
 		}
 
-		this.sky2VBO = new VertexBuffer(this.skyVertexFormat);
-		this.renderSky(bufferbuilder, -16.0F, true);
+		sky2VBO = new VertexBuffer(skyVertexFormat);
+		renderSky(bufferbuilder, -16.0F, true);
 		bufferbuilder.finishDrawing();
-		this.sky2VBO.upload(bufferbuilder);
+		sky2VBO.upload(bufferbuilder);
 	}
 
 	private void generateSky()
 	{
 		Tessellator tessellator = Tessellator.getInstance();
 		BufferBuilder bufferbuilder = tessellator.getBuffer();
-		if (this.skyVBO != null)
+		if (skyVBO != null)
 		{
-			this.skyVBO.close();
+			skyVBO.close();
 		}
 
-		this.skyVBO = new VertexBuffer(this.skyVertexFormat);
-		this.renderSky(bufferbuilder, 16.0F, false);
+		skyVBO = new VertexBuffer(skyVertexFormat);
+		renderSky(bufferbuilder, 16.0F, false);
 		bufferbuilder.finishDrawing();
-		this.skyVBO.upload(bufferbuilder);
+		skyVBO.upload(bufferbuilder);
 	}
 
 	private void renderSky(BufferBuilder bufferBuilderIn, float posY, boolean reverseX)
@@ -292,4 +296,3 @@ public class DreamSkyRenderer implements net.minecraftforge.client.SkyRenderHand
 
 	}
 }
-*/

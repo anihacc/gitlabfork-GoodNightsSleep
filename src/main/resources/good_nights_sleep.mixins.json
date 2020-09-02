@@ -1,0 +1,15 @@
+{
+	"required": true,
+	"package": "com.legacy.goodnightsleep.mixin",
+	"compatibilityLevel": "JAVA_8",
+	"refmap": "good_nights_sleep.refmap.json",
+	"mixins": [
+		"WorldRendererMixin"
+	],
+	"client": [
+	],
+	"injectors": {
+		"defaultRequire": 1
+	},
+	"minVersion": "0.8"
+}
