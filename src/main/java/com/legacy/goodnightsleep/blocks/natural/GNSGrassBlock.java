@@ -1,5 +1,6 @@
 package com.legacy.goodnightsleep.blocks.natural;
 
+import java.util.List;
 import java.util.Random;
 
 import com.legacy.goodnightsleep.registry.GNSBlocks;
@@ -7,6 +8,7 @@ import com.legacy.goodnightsleep.registry.GNSBlocks;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.GrassBlock;
+import net.minecraft.block.IGrowable;
 import net.minecraft.block.SaplingBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.tags.FluidTags;
@@ -15,6 +17,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
+import net.minecraft.world.gen.feature.ConfiguredFeature;
+import net.minecraft.world.gen.feature.FlowersFeature;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.PlantType;
 import net.minecraftforge.common.ToolType;
@@ -73,65 +77,58 @@ public class GNSGrassBlock extends GrassBlock
 		}
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked", "deprecation" })
 	@Override
-	public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state)
+	public void grow(ServerWorld worldIn, Random rand, BlockPos pos, BlockState state)
 	{
 		BlockPos blockpos = pos.up();
 		BlockState blockstate = state.getBlock() == GNSBlocks.nightmare_grass_block ? GNSBlocks.nightmare_grass.getDefaultState() : GNSBlocks.dream_grass.getDefaultState();
 
-		/*for (int i = 0; i < 128; ++i)
+		label48: for (int i = 0; i < 128; ++i)
 		{
 			BlockPos blockpos1 = blockpos;
-			int j = 0;
-		
-			while (true)
+
+			for (int j = 0; j < i / 16; ++j)
 			{
-				if (j >= i / 16)
+				blockpos1 = blockpos1.add(rand.nextInt(3) - 1, (rand.nextInt(3) - 1) * rand.nextInt(3) / 2, rand.nextInt(3) - 1);
+				if (!worldIn.getBlockState(blockpos1.down()).isIn(this) || worldIn.getBlockState(blockpos1).hasOpaqueCollisionShape(worldIn, blockpos1))
 				{
-					BlockState blockstate2 = world.getBlockState(blockpos1);
-					if (blockstate2.getBlock() == blockstate.getBlock() && random.nextInt(10) == 0)
-					{
-						((IGrowable) blockstate.getBlock()).grow(world, random, blockpos1, blockstate2);
-					}
-		
-					if (!blockstate2.isAir())
-					{
-						break;
-					}
-		
-					BlockState blockstate1;
-					if (random.nextInt(8) == 0)
-					{
-						List<ConfiguredFeature<?, ?>> list = world.getBiome(blockpos1).getFlowers();
-						if (list.isEmpty())
-						{
-							break;
-						}
-		
-						ConfiguredFeature<?, ?> configuredfeature = ((DecoratedFeatureConfig) (list.get(0)).config).feature;
-						blockstate1 = ((FlowersFeature) configuredfeature.feature).getFlowerToPlace(random, blockpos1, configuredfeature.config);
-					}
-					else
-					{
-						blockstate1 = blockstate;
-					}
-		
-					if (blockstate1.isValidPosition(world, blockpos1))
-					{
-						world.setBlockState(blockpos1, blockstate1, 3);
-					}
-					break;
+					continue label48;
 				}
-		
-				blockpos1 = blockpos1.add(random.nextInt(3) - 1, (random.nextInt(3) - 1) * random.nextInt(3) / 2, random.nextInt(3) - 1);
-				if (world.getBlockState(blockpos1.down()).getBlock() != this || world.getBlockState(blockpos1).isCollisionShapeOpaque(world, blockpos1))
-				{
-					break;
-				}
-		
-				++j;
 			}
-		}*/
+
+			BlockState blockstate2 = worldIn.getBlockState(blockpos1);
+			if (blockstate2.isIn(blockstate.getBlock()) && rand.nextInt(10) == 0)
+			{
+				((IGrowable) blockstate.getBlock()).grow(worldIn, rand, blockpos1, blockstate2);
+			}
+
+			if (blockstate2.isAir())
+			{
+				BlockState blockstate1;
+				if (rand.nextInt(8) == 0)
+				{
+					List<ConfiguredFeature<?, ?>> list = worldIn.getBiome(blockpos1).func_242440_e().func_242496_b();
+					if (list.isEmpty())
+					{
+						continue;
+					}
+
+					ConfiguredFeature<?, ?> configuredfeature = list.get(0);
+					FlowersFeature flowersfeature = (FlowersFeature) configuredfeature.feature;
+					blockstate1 = flowersfeature.getFlowerToPlace(rand, blockpos1, configuredfeature.func_242767_c());
+				}
+				else
+				{
+					blockstate1 = blockstate;
+				}
+
+				if (blockstate1.isValidPosition(worldIn, blockpos1))
+				{
+					worldIn.setBlockState(blockpos1, blockstate1, 3);
+				}
+			}
+		}
 	}
 
 	@Override

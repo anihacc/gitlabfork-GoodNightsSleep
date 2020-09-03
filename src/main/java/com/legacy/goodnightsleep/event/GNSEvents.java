@@ -1,5 +1,6 @@
-package com.legacy.goodnightsleep;
+package com.legacy.goodnightsleep.event;
 
+import com.legacy.goodnightsleep.GNSConfig;
 import com.legacy.goodnightsleep.registry.GNSDimensions;
 import com.legacy.goodnightsleep.world.GNSTeleporter;
 
@@ -65,7 +66,8 @@ public class GNSEvents
 		{
 			player.swing(Hand.MAIN_HAND, true);
 			event.setCanceled(true);
-			BlockPos pos = player.func_241140_K_(/*DimensionType.OVERWORLD*/) != null ? player.func_241140_K_(/*DimensionType.OVERWORLD*/) : world.getSpawnPoint();
+			// get the player's bed spawn, otherwise go for the world spawn
+			BlockPos pos = player.func_241140_K_() != null ? player.func_241140_K_() : world.getSpawnPoint();
 			GNSTeleporter.changeDimension(World.OVERWORLD, player, pos);
 		}
 	}

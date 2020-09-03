@@ -15,7 +15,8 @@ public class GNSConfig
 	public static final ClientConfig CLIENT;
 	public static final ServerConfig SERVER;
 
-	public static boolean disableTimePassing;
+	// not needed due to latest changes!
+	/*public static boolean disableTimePassing;*/
 	public static boolean allowNightmarePhantoms;
 
 	static
@@ -63,13 +64,13 @@ public class GNSConfig
 
 	private static class ServerConfig
 	{
-		public final ForgeConfigSpec.ConfigValue<Boolean> disableTimePassing;
+		/*public final ForgeConfigSpec.ConfigValue<Boolean> disableTimePassing;*/
 		public final ForgeConfigSpec.ConfigValue<Boolean> allowNightmarePhantoms;
 
 		public ServerConfig(ForgeConfigSpec.Builder builder)
 		{
 			builder.comment("Server and Client side changes.").push("common");
-			disableTimePassing = builder.translation(translate("disableTimePassing")).comment("Disabling this will prevent time from passing in the dream dimensions, this locks it at noon/midnight. Highly recommended for servers. (Note: players will need to craft a bed to leave the dimensions)").define("disableTimePassing", false);
+			/*disableTimePassing = builder.translation(translate("disableTimePassing")).comment("Disabling this will prevent time from passing in the dream dimensions, this locks it at noon/midnight. Highly recommended for servers. (Note: players will need to craft a bed to leave the dimensions)").define("disableTimePassing", false);*/
 			allowNightmarePhantoms = builder.translation(translate("allowNightmarePhantoms")).comment("Allows Phantoms to spawn in the Nightmare dimension.").define("allowNightmarePhantoms", true);
 
 			builder.pop();
@@ -90,7 +91,7 @@ public class GNSConfig
 		public static void bakeServer(ModConfig config)
 		{
 			serverConfig = config;
-			disableTimePassing = SERVER.disableTimePassing.get();
+			/*disableTimePassing = SERVER.disableTimePassing.get();*/
 			allowNightmarePhantoms = SERVER.allowNightmarePhantoms.get();
 		}
 	}

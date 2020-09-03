@@ -104,7 +104,7 @@ public class UnicornEntity extends AbstractHorseEntity
 	@Override
 	public double getMountedYOffset()
 	{
-		return super.getMountedYOffset() - 0.07D;
+		return super.getMountedYOffset() - 0.2D;
 	}
 
 	@Override

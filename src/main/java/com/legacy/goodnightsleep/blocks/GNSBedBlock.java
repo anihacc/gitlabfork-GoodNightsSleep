@@ -1,5 +1,8 @@
-package com.legacy.goodnightsleep.blocks.tile;
+package com.legacy.goodnightsleep.blocks;
 
+import com.legacy.goodnightsleep.capabillity.DreamPlayer;
+import com.legacy.goodnightsleep.network.PacketHandler;
+import com.legacy.goodnightsleep.network.SendEnteredTimePacket;
 import com.legacy.goodnightsleep.registry.GNSBlocks;
 import com.legacy.goodnightsleep.registry.GNSDimensions;
 import com.legacy.goodnightsleep.tile_entity.TileEntityLuxuriousBed;
@@ -67,34 +70,11 @@ public class GNSBedBlock extends BedBlock
 		ServerPlayerEntity serverPlayer = (ServerPlayerEntity) player;
 		RegistryKey<World> transferDimension = player.world.getDimensionKey() == GNSDimensions.getDimensionKeys(dream) ? World.OVERWORLD : GNSDimensions.getDimensionKeys(dream);
 
-		/*if (transferDimension == GNSDimensions.getDimensionKeys(true))
+		if (transferDimension != World.OVERWORLD && DreamPlayer.get(serverPlayer) != null)
 		{
-			ServerWorld serverWorld = player.getServer().getWorld(GNSDimensions.getDimensionKeys(true));
-		
-			if (((GoodDreamDimension) serverWorld.getDimension()).dreamPlayerList.size() <= 0)
-			{
-				if (!GNSConfig.disableTimePassing)
-				{
-					player.world.setDayTime(0L);
-				}
-			
-				// serverWorld.setDayTime(0L);
-			}
+			DreamPlayer.get(serverPlayer).setEnteredDreamTime(serverPlayer.world.getGameTime());
+			PacketHandler.sendTo(new SendEnteredTimePacket(serverPlayer.world.getGameTime()), serverPlayer);
 		}
-		else if (transferDimension == GNSDimensions.getDimensionKeys(false))
-		{
-			ServerWorld serverWorld = player.getServer().getWorld(GNSDimensions.getDimensionKeys(false));
-		
-			if (((NightmareDimension) serverWorld.getDimension()).nightmarePlayerList.size() <= 0)
-			{
-				if (!GNSConfig.disableTimePassing)
-				{
-					player.world.setDayTime(0L);
-				}
-			
-				// serverWorld.setDayTime(0L);
-			}
-		}*/
 
 		try
 		{

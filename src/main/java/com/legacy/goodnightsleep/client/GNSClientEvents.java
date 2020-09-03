@@ -1,27 +1,24 @@
 package com.legacy.goodnightsleep.client;
 
-import java.util.ArrayList;
-
+import com.legacy.goodnightsleep.capabillity.DreamPlayer;
 import com.legacy.goodnightsleep.registry.GNSDimensions;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.potion.Effects;
 import net.minecraft.tags.FluidTags;
+import net.minecraft.world.World;
 import net.minecraftforge.client.event.EntityViewRenderEvent.FogColors;
 import net.minecraftforge.client.event.EntityViewRenderEvent.RenderFogEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
-public class ClientEvents
+public class GNSClientEvents
 {
 	private static final Minecraft mc = Minecraft.getInstance();
-	public static ArrayList<ServerPlayerEntity> dreamPlayerList = new ArrayList<ServerPlayerEntity>();
-	public static float flo = 0F;
-	public static long playerTime = 0L;
 
 	@SuppressWarnings("deprecation")
 	@SubscribeEvent
@@ -54,6 +51,13 @@ public class ClientEvents
 	@SubscribeEvent
 	public void onClientTick(TickEvent.ClientTickEvent event)
 	{
+		World world = mc.world;
+
+		if (world == null || !world.isRemote)
+			return;
+
+		if (mc.player != null && DreamPlayer.get(mc.player) != null)
+			DreamPlayer.get(mc.player).clientTick();
 	}
 
 	private static boolean shouldNightmareFogRender()
@@ -62,10 +66,23 @@ public class ClientEvents
 	}
 
 	// i am going insane
-	public static float getTime(long worldTime, float partialTicks)
+	public static float calculateSunAngle(long worldTimeIn, float partialTicks)
 	{
+		long worldTime;
+		PlayerEntity player = mc.player;
+
+		if (DreamPlayer.get(player) != null)
+		{
+			worldTime = worldTimeIn - DreamPlayer.get(player).getEnteredDreamTime();
+		}
+		else
+			worldTime = worldTimeIn;
+
 		int j = (int) (worldTime % 48000L);
 		float f1 = ((float) j + partialTicks) / 48000.0F - 0.25F;
+
+		if (player.world.getDimensionKey() == GNSDimensions.getDimensionKeys(false))
+			f1 += 0.5F;
 
 		if (f1 < 0.0F)
 		{
@@ -74,41 +91,12 @@ public class ClientEvents
 
 		if (f1 > 1.0F)
 		{
-			--flo;
+			--f1;
 		}
 
 		float f2 = f1;
 		f1 = 1.0F - (float) ((Math.cos((double) f1 * Math.PI) + 1.0D) / 2.0D);
 		f1 = f2 + (f1 - f2) / 3.0F;
-
-		/*if (worldTime > 25000L)
-		{
-			Iterator<?> iterator = mc.world.getPlayers().iterator();
-		
-			ServerPlayerEntity playerMP;
-			while (iterator.hasNext())
-			{
-				Object i = iterator.next();
-				if (i instanceof ServerPlayerEntity)
-				{
-					playerMP = (ServerPlayerEntity) i;
-		
-					// if (playerMP.dimension == GNSDimensions.dimensionType(true))
-					{
-						dreamPlayerList.add(playerMP);
-					}
-				}
-			}
-		
-			for (int var14 = 0; var14 < dreamPlayerList.size(); ++var14)
-			{
-				System.out.println("time to leave");
-				playerMP = (ServerPlayerEntity) dreamPlayerList.get(var14);
-				
-				BlockPos pos = playerMP.func_241140_K_(); //playerMP.getBedLocation(DimensionType.OVERWORLD) != null ? playerMP.getBedLocation(DimensionType.OVERWORLD) : playerMP.world.getSpawnPoint();
-				GNSTeleporter.changeDimension(World.OVERWORLD, playerMP, pos);
-			}
-		}*/
 
 		return f1;
 	}

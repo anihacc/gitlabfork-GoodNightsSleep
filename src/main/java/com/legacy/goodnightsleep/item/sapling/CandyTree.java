@@ -13,6 +13,6 @@ public class CandyTree extends Tree
 	@Override
 	protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature(Random random, boolean p_225546_2_)
 	{
-		return (ConfiguredFeature<BaseTreeFeatureConfig, ?>) GNSFeatures.CANDY_TREE;
+		return GNSFeatures.CANDY_TREE;
 	}
 }

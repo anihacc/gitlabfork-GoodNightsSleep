@@ -69,13 +69,13 @@ public class GNSFeatures
 	public static final BlockClusterFeatureConfig HOPE_MUSHROOM_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(GNSBlocks.hope_mushroom.getDefaultState()), new SimpleBlockPlacer())).tries(64).func_227317_b_().build();
 	public static final BlockClusterFeatureConfig DESPAIR_MUSHROOM_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(GNSBlocks.despair_mushroom.getDefaultState()), new SimpleBlockPlacer())).tries(64).func_227317_b_().build();
 
-	public static final ConfiguredFeature<?, ?> DREAM_TREE = createBasicTree(GNSBlocks.dream_log.getDefaultState(), GNSBlocks.dream_leaves.getDefaultState(), 4, 1);
-	public static final ConfiguredFeature<?, ?> CANDY_TREE = createBasicTree(GNSBlocks.white_log.getDefaultState(), GNSBlocks.candy_leaves.getDefaultState(), 5);
-	public static final ConfiguredFeature<?, ?> DIAMOND_TREE = Feature.field_236291_c_.withConfiguration((new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(GNSBlocks.dream_log.getDefaultState()), new SimpleBlockStateProvider(GNSBlocks.diamond_leaves.getDefaultState()), new FancyFoliagePlacer(FeatureSpread.func_242252_a(2), FeatureSpread.func_242252_a(4), 4), new FancyTrunkPlacer(3, 11, 0), new TwoLayerFeature(0, 0, 0, OptionalInt.of(4)))).setIgnoreVines().func_236702_a_(Heightmap.Type.MOTION_BLOCKING).build());
-	public static final ConfiguredFeature<?, ?> DEAD_TREE = createBasicTree(GNSBlocks.dead_log.getDefaultState(), Blocks.AIR.getDefaultState(), 5);
-	public static final ConfiguredFeature<?, ?> BLOOD_TREE = createBasicTree(GNSBlocks.blood_log.getDefaultState(), Blocks.AIR.getDefaultState(), 5);
-	public static final ConfiguredFeature<?, ?> LARGE_DEAD_TREE = Feature.field_236291_c_.withConfiguration((new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(GNSBlocks.dead_log.getDefaultState()), new SimpleBlockStateProvider(Blocks.AIR.getDefaultState()), new FancyFoliagePlacer(FeatureSpread.func_242252_a(2), FeatureSpread.func_242252_a(4), 4), new FancyTrunkPlacer(3, 11, 0), new TwoLayerFeature(0, 0, 0, OptionalInt.of(4)))).setIgnoreVines().func_236702_a_(Heightmap.Type.MOTION_BLOCKING).build());
-	public static final ConfiguredFeature<?, ?> LARGE_BLOOD_TREE = Feature.field_236291_c_.withConfiguration((new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(GNSBlocks.blood_log.getDefaultState()), new SimpleBlockStateProvider(Blocks.AIR.getDefaultState()), new FancyFoliagePlacer(FeatureSpread.func_242252_a(2), FeatureSpread.func_242252_a(4), 4), new FancyTrunkPlacer(3, 11, 0), new TwoLayerFeature(0, 0, 0, OptionalInt.of(8)))).setIgnoreVines().func_236702_a_(Heightmap.Type.MOTION_BLOCKING).build());
+	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> DREAM_TREE = createBasicTree(GNSBlocks.dream_log.getDefaultState(), GNSBlocks.dream_leaves.getDefaultState(), 4, 1);
+	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> CANDY_TREE = createBasicTree(GNSBlocks.white_log.getDefaultState(), GNSBlocks.candy_leaves.getDefaultState(), 5);
+	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> DIAMOND_TREE = Feature.field_236291_c_.withConfiguration((new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(GNSBlocks.dream_log.getDefaultState()), new SimpleBlockStateProvider(GNSBlocks.diamond_leaves.getDefaultState()), new FancyFoliagePlacer(FeatureSpread.func_242252_a(2), FeatureSpread.func_242252_a(4), 4), new FancyTrunkPlacer(3, 11, 0), new TwoLayerFeature(0, 0, 0, OptionalInt.of(4)))).setIgnoreVines().func_236702_a_(Heightmap.Type.MOTION_BLOCKING).build());
+	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> DEAD_TREE = createBasicTree(GNSBlocks.dead_log.getDefaultState(), Blocks.AIR.getDefaultState(), 5);
+	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> BLOOD_TREE = createBasicTree(GNSBlocks.blood_log.getDefaultState(), Blocks.AIR.getDefaultState(), 5);
+	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> LARGE_DEAD_TREE = Feature.field_236291_c_.withConfiguration((new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(GNSBlocks.dead_log.getDefaultState()), new SimpleBlockStateProvider(Blocks.AIR.getDefaultState()), new FancyFoliagePlacer(FeatureSpread.func_242252_a(2), FeatureSpread.func_242252_a(4), 4), new FancyTrunkPlacer(3, 11, 0), new TwoLayerFeature(0, 0, 0, OptionalInt.of(4)))).setIgnoreVines().func_236702_a_(Heightmap.Type.MOTION_BLOCKING).build());
+	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> LARGE_BLOOD_TREE = Feature.field_236291_c_.withConfiguration((new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(GNSBlocks.blood_log.getDefaultState()), new SimpleBlockStateProvider(Blocks.AIR.getDefaultState()), new FancyFoliagePlacer(FeatureSpread.func_242252_a(2), FeatureSpread.func_242252_a(4), 4), new FancyTrunkPlacer(3, 11, 0), new TwoLayerFeature(0, 0, 0, OptionalInt.of(8)))).setIgnoreVines().func_236702_a_(Heightmap.Type.MOTION_BLOCKING).build());
 
 	public static final ConfiguredFeature<?, ?> HUGE_HOPE_MUSHROOM = Feature.HUGE_RED_MUSHROOM.withConfiguration(new BigMushroomFeatureConfig(new SimpleBlockStateProvider(GNSBlocks.hope_mushroom_block.getDefaultState().with(HugeMushroomBlock.DOWN, Boolean.valueOf(false))), new SimpleBlockStateProvider(Blocks.MUSHROOM_STEM.getDefaultState().with(HugeMushroomBlock.UP, Boolean.valueOf(false)).with(HugeMushroomBlock.DOWN, Boolean.valueOf(false))), 2));
 	public static final ConfiguredFeature<?, ?> HUGE_DESPAIR_MUSHROOM = Feature.HUGE_BROWN_MUSHROOM.withConfiguration(new BigMushroomFeatureConfig(new SimpleBlockStateProvider(GNSBlocks.despair_mushroom_block.getDefaultState().with(HugeMushroomBlock.DOWN, Boolean.valueOf(false))), new SimpleBlockStateProvider(Blocks.MUSHROOM_STEM.getDefaultState().with(HugeMushroomBlock.UP, Boolean.valueOf(false)).with(HugeMushroomBlock.DOWN, Boolean.valueOf(false))), 3));
@@ -207,12 +207,12 @@ public class GNSFeatures
 		}
 	}
 
-	public static ConfiguredFeature<?, ?> createBasicTree(BlockState log, BlockState leaves, int height)
+	public static ConfiguredFeature<BaseTreeFeatureConfig, ?> createBasicTree(BlockState log, BlockState leaves, int height)
 	{
 		return createBasicTree(log, leaves, height, 2);
 	}
 
-	public static ConfiguredFeature<?, ?> createBasicTree(BlockState log, BlockState leaves, int height, int randHeight)
+	public static ConfiguredFeature<BaseTreeFeatureConfig, ?> createBasicTree(BlockState log, BlockState leaves, int height, int randHeight)
 	{
 		return Feature.field_236291_c_.withConfiguration((new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(log), new SimpleBlockStateProvider(leaves), new BlobFoliagePlacer(FeatureSpread.func_242252_a(2), FeatureSpread.func_242252_a(0), 3), new StraightTrunkPlacer(height, randHeight, 0), new TwoLayerFeature(1, 0, 1))).setIgnoreVines().build());
 	}

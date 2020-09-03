@@ -16,10 +16,11 @@ import net.minecraft.client.renderer.WorldRenderer;
 public class WorldRendererMixin
 {
 	// func_228424_a_
+	@SuppressWarnings("resource")
 	@Inject(at = @At("HEAD"), method = "renderSky(Lcom/mojang/blaze3d/matrix/MatrixStack;F)V", cancellable = true)
 	private void renderSky(MatrixStack matrixStackIn, float partialTicks, CallbackInfo callback)
 	{
-		if (Minecraft.getInstance().world.getDimensionKey() == GNSDimensions.getDimensionKeys(true))
+		if (Minecraft.getInstance().world.getDimensionKey() == GNSDimensions.getDimensionKeys(true) || Minecraft.getInstance().world.getDimensionKey() == GNSDimensions.getDimensionKeys(false))
 		{
 			//Minecraft.getInstance().player.ticksExisted
 			DreamSkyRenderer.INSTANCE.render(Minecraft.getInstance().player.ticksExisted, partialTicks, matrixStackIn, Minecraft.getInstance().world, Minecraft.getInstance());			

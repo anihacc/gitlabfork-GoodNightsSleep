@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import com.google.common.collect.Lists;
 import com.legacy.goodnightsleep.GoodNightSleep;
+import com.legacy.goodnightsleep.blocks.GNSBedBlock;
 import com.legacy.goodnightsleep.blocks.GNSFlowerPotBlock;
 import com.legacy.goodnightsleep.blocks.GoldPotBlock;
 import com.legacy.goodnightsleep.blocks.RainbowBlock;
@@ -14,7 +15,6 @@ import com.legacy.goodnightsleep.blocks.natural.GNSGrassBlock;
 import com.legacy.goodnightsleep.blocks.natural.GNSMushroomBlock;
 import com.legacy.goodnightsleep.blocks.natural.GNSRainbowCropBlock;
 import com.legacy.goodnightsleep.blocks.natural.GNSTallGrassBlock;
-import com.legacy.goodnightsleep.blocks.tile.GNSBedBlock;
 import com.legacy.goodnightsleep.item.sapling.CandyTree;
 import com.legacy.goodnightsleep.item.sapling.DreamTree;
 

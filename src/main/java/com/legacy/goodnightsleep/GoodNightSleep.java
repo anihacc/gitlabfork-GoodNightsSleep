@@ -4,11 +4,14 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.legacy.goodnightsleep.blocks.util.ToolCompat;
-import com.legacy.goodnightsleep.client.ClientEvents;
+import com.legacy.goodnightsleep.client.GNSClientEvents;
 import com.legacy.goodnightsleep.client.audio.GNSMusicHandler;
 import com.legacy.goodnightsleep.client.render.GNSEntityRendering;
 import com.legacy.goodnightsleep.client.render.GNSTileEntityRendering;
 import com.legacy.goodnightsleep.data.GNSMappingChanges;
+import com.legacy.goodnightsleep.event.GNSEvents;
+import com.legacy.goodnightsleep.event.GNSPlayerEvents;
+import com.legacy.goodnightsleep.network.PacketHandler;
 import com.legacy.goodnightsleep.registry.GNSBlocks;
 import com.legacy.goodnightsleep.registry.GNSFeatures;
 
@@ -64,14 +67,16 @@ public class GoodNightSleep
 
 		MinecraftForge.EVENT_BUS.register(new GNSMappingChanges());
 		MinecraftForge.EVENT_BUS.register(new GNSEvents());
+		MinecraftForge.EVENT_BUS.register(new GNSPlayerEvents());
 
+		PacketHandler.register();
 		ToolCompat.init();
 	}
 
 	public void clientInit(FMLClientSetupEvent event)
 	{
 		MinecraftForge.EVENT_BUS.register(new GNSMusicHandler());
-		MinecraftForge.EVENT_BUS.register(new ClientEvents());
+		MinecraftForge.EVENT_BUS.register(new GNSClientEvents());
 
 		GNSTileEntityRendering.initialization();
 		GNSEntityRendering.initialization();

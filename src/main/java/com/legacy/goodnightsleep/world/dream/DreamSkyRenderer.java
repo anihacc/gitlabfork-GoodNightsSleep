@@ -2,7 +2,7 @@ package com.legacy.goodnightsleep.world.dream;
 
 import java.util.Random;
 
-import com.legacy.goodnightsleep.client.ClientEvents;
+import com.legacy.goodnightsleep.client.GNSClientEvents;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -24,7 +24,7 @@ import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.math.vector.Vector3f;
 
 @SuppressWarnings("deprecation")
-public class DreamSkyRenderer //implements net.minecraftforge.client.SkyRenderHandler
+public class DreamSkyRenderer // implements SkyRenderHandler
 {
 	private static final ResourceLocation MOON_PHASES_TEXTURES = new ResourceLocation("textures/environment/moon_phases.png");
 	private static final ResourceLocation SUN_TEXTURES = new ResourceLocation("textures/environment/sun.png");
@@ -43,10 +43,16 @@ public class DreamSkyRenderer //implements net.minecraftforge.client.SkyRenderHa
 		generateSky2();
 	}
 
-	//@Override
+	public float sunriseColors(long timeIn)
+	{
+		double d0 = MathHelper.frac((double) timeIn / 24000.0D - 0.25D);
+		double d1 = 0.5D - Math.cos(d0 * Math.PI) / 2.0D;
+		return (float) (d0 * 2.0D + d1) / 3.0F;
+	}
+
+	// @Override
 	public void render(int ticks, float partialTicks, MatrixStack matrixStackIn, ClientWorld world, Minecraft mc)
 	{
-		System.out.println("aaaaaaas");
 		RenderSystem.disableTexture();
 		Vector3d Vector3d = world.getSkyColor(mc.gameRenderer.getActiveRenderInfo().getBlockPos(), partialTicks);
 		float f = (float) Vector3d.x;
@@ -66,7 +72,8 @@ public class DreamSkyRenderer //implements net.minecraftforge.client.SkyRenderHa
 		RenderSystem.disableAlphaTest();
 		RenderSystem.enableBlend();
 		RenderSystem.defaultBlendFunc();
-		float[] afloat = world.func_239132_a_().func_230492_a_(world.func_242415_f(partialTicks), partialTicks); /*world.dimension.calcSunriseSunsetColors(world.getCelestialAngle(partialTicks), partialTicks);*/
+		float[] afloat = world.func_239132_a_().func_230492_a_(GNSClientEvents.calculateSunAngle(world.getGameTime(), partialTicks), partialTicks);
+
 		if (afloat != null)
 		{
 			RenderSystem.disableTexture();
@@ -103,7 +110,7 @@ public class DreamSkyRenderer //implements net.minecraftforge.client.SkyRenderHa
 		float f11 = 1.0F - world.getRainStrength(partialTicks);
 		RenderSystem.color4f(1.0F, 1.0F, 1.0F, f11);
 		matrixStackIn.rotate(Vector3f.YP.rotationDegrees(-90.0F));
-		matrixStackIn.rotate(Vector3f.XP.rotationDegrees(ClientEvents.getTime(world.getDayTime(), partialTicks)));/*world.getCelestialAngle(partialTicks) * 360.0F*/
+		matrixStackIn.rotate(Vector3f.XP.rotationDegrees(GNSClientEvents.calculateSunAngle(world.getGameTime(), partialTicks) * 360.0F));/*world.getCelestialAngle(partialTicks) * 360.0F*/ // world.func_242415_f(partialTicks)
 		Matrix4f matrix4f1 = matrixStackIn.getLast().getMatrix();
 		float f12 = 30.0F;
 		textureManager.bindTexture(SUN_TEXTURES);
@@ -116,7 +123,7 @@ public class DreamSkyRenderer //implements net.minecraftforge.client.SkyRenderHa
 		WorldVertexBufferUploader.draw(bufferbuilder);
 		f12 = 20.0F;
 		textureManager.bindTexture(MOON_PHASES_TEXTURES);
-		int k = world.func_242414_af(); //world.getMoonPhase();
+		int k = world.func_242414_af(); // world.getMoonPhase();
 		int l = k % 4;
 		int i1 = k / 4 % 2;
 		float f13 = (float) (l + 0) / 4.0F;
