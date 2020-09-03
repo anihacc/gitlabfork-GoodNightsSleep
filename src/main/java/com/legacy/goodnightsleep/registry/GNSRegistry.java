@@ -10,7 +10,9 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntityType;
+import net.minecraft.util.RegistryKey;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.carver.WorldCarver;
 import net.minecraft.world.gen.feature.Feature;
@@ -25,6 +27,7 @@ import net.minecraftforge.registries.IForgeRegistryEntry;
 @EventBusSubscriber(modid = GoodNightSleep.MODID, bus = Bus.MOD)
 public class GNSRegistry
 {
+	public static final RegistryKey<Registry<Biome>> GNS_BIOME_KEY = createKey("worldgen/biome");
 
 	@SubscribeEvent
 	public static void onRegisterSounds(RegistryEvent.Register<SoundEvent> event)
@@ -83,5 +86,10 @@ public class GNSRegistry
 	{
 		object.setRegistryName(GoodNightSleep.locate(name));
 		registry.register(object);
+	}
+
+	public static <T> RegistryKey<Registry<T>> createKey(String name)
+	{
+		return RegistryKey.func_240904_a_(GoodNightSleep.locate(name));
 	}
 }

@@ -100,18 +100,29 @@ public class GNSBiomeGen extends BiomeProvider
 
 	public static class Makers
 	{
+		public static final Biome SLEEPY_HILLS = createSleepyHillsBiome(0.1F, 0.5F, 0.5F, 0.0F, 4159204, 329011);
+		public static final Biome GOOD_DREAM_PLAINS = createGoodDreamPlainsBiome(0.0F, 0.1F, 0.5F, 0.0F, 4159204, 329011);
+		public static final Biome DREAMY_FOREST = createDreamyForestBiome(0.0F, 0.2F, 0.5F, 0.0F, 4159204, 329011);
+
+		public static final Biome NIGHTMARE_HILLS = createNightmareBiome(0.1F, 1.0F, 0.8F, 0.0F, 4159204, 329011);
+		public static final Biome SHAMEFUL_PLAINS = createShamefulPlainsBiome(0.1F, 0.1F, 0.8F, 0.0F, 4159204, 329011);
+		public static final Biome WASTED_FOREST = createWastedForestBiome(0.0F, 0.1F, 0.5F, 0.0F, 4159204, 329011);
+
+		// UNUSED
+		public static final Biome HOPEFUL_FIELDS = createHopefulFieldsBiome(0.0F, 0.4F, 0.3F, 0.0F, 4159204, 329011);
+
 		public static void init()
 		{
-			BIOMES.put(GoodNightSleep.locate("sleepy_hills"), createSleepyHillsBiome(0.1F, 0.5F, 0.5F, 0.0F, 4159204, 329011)); // 329011
-			BIOMES.put(GoodNightSleep.locate("good_dream_plains"), createGoodDreamPlainsBiome(0.0F, 0.1F, 0.5F, 0.0F, 4159204, 329011));
-			BIOMES.put(GoodNightSleep.locate("dreamy_forest"), createDreamyForestBiome(0.0F, 0.2F, 0.5F, 0.0F, 4159204, 329011));
+			BIOMES.put(GoodNightSleep.locate("sleepy_hills"), SLEEPY_HILLS); // 329011
+			BIOMES.put(GoodNightSleep.locate("good_dream_plains"), GOOD_DREAM_PLAINS);
+			BIOMES.put(GoodNightSleep.locate("dreamy_forest"), DREAMY_FOREST);
 
 			// UNUSED
-			BIOMES.put(GoodNightSleep.locate("hopeful_fields"), createHopefulFieldsBiome(0.0F, 0.4F, 0.3F, 0.0F, 4159204, 329011));
+			BIOMES.put(GoodNightSleep.locate("hopeful_fields"), HOPEFUL_FIELDS);
 
-			BIOMES.put(GoodNightSleep.locate("nightmare_hills"), createNightmareBiome(0.1F, 1.0F, 0.8F, 0.0F, 4159204, 329011));
-			BIOMES.put(GoodNightSleep.locate("shameful_plains"), createShamefulPlainsBiome(0.1F, 0.1F, 0.8F, 0.0F, 4159204, 329011));
-			BIOMES.put(GoodNightSleep.locate("wasted_forest"), createWastedForestBiome(0.0F, 0.1F, 0.5F, 0.0F, 4159204, 329011));
+			BIOMES.put(GoodNightSleep.locate("nightmare_hills"), NIGHTMARE_HILLS);
+			BIOMES.put(GoodNightSleep.locate("shameful_plains"), SHAMEFUL_PLAINS);
+			BIOMES.put(GoodNightSleep.locate("wasted_forest"), WASTED_FOREST);
 
 		}
 
