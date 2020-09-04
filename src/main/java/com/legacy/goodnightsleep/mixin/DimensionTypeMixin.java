@@ -34,6 +34,7 @@ public class DimensionTypeMixin
 		callback.setReturnValue(simpleregistry);
 	}
 
+	// there's probably a better way to do all this, but everything is private
 	private static ChunkGenerator registerDream(Registry<Biome> biomeRegistry, Registry<DimensionSettings> dimSettingsRegistry, long seed)
 	{
 		return new NoiseChunkGenerator(DreamBiomeProvider.DreamPreset.dreamPreset.func_242619_a(biomeRegistry, seed), seed, () ->

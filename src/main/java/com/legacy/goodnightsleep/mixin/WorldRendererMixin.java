@@ -22,8 +22,7 @@ public class WorldRendererMixin
 	{
 		if (Minecraft.getInstance().world.getDimensionKey() == GNSDimensions.getDimensionKeys(true) || Minecraft.getInstance().world.getDimensionKey() == GNSDimensions.getDimensionKeys(false))
 		{
-			//Minecraft.getInstance().player.ticksExisted
-			DreamSkyRenderer.INSTANCE.render(Minecraft.getInstance().player.ticksExisted, partialTicks, matrixStackIn, Minecraft.getInstance().world, Minecraft.getInstance());			
+			DreamSkyRenderer.INSTANCE.render(Minecraft.getInstance().player.ticksExisted, partialTicks, matrixStackIn, Minecraft.getInstance().world, Minecraft.getInstance());
 			callback.cancel();
 		}
 	}

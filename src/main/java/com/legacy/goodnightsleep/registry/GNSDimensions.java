@@ -1,7 +1,11 @@
 package com.legacy.goodnightsleep.registry;
 
+import java.lang.reflect.Constructor;
+
 import com.legacy.goodnightsleep.GoodNightSleep;
 
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
@@ -11,6 +15,9 @@ import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.DimensionSettings;
 import net.minecraft.world.gen.settings.DimensionStructuresSettings;
+import net.minecraft.world.gen.settings.NoiseSettings;
+import net.minecraft.world.gen.settings.ScalingSettings;
+import net.minecraft.world.gen.settings.SlideSettings;
 
 public class GNSDimensions
 {
@@ -38,8 +45,26 @@ public class GNSDimensions
 
 	public static void initNoiseSettings()
 	{
-		registerNoiseSettings(DREAM_NOISE_SETTINGS, DimensionSettings.func_242743_a(new DimensionStructuresSettings(false), true, DREAM_NOISE_SETTINGS.func_240901_a_()));
-		registerNoiseSettings(NIGHTMARE_NOISE_SETTINGS, DimensionSettings.func_242743_a(new DimensionStructuresSettings(false), true, NIGHTMARE_NOISE_SETTINGS.func_240901_a_()));
+		registerNoiseSettings(DREAM_NOISE_SETTINGS, createNoiseSettings(new DimensionStructuresSettings(false), false, GNSBlocks.delusion_stone.getDefaultState(), Blocks.WATER.getDefaultState(), DREAM_NOISE_SETTINGS.func_240901_a_()));
+		registerNoiseSettings(NIGHTMARE_NOISE_SETTINGS, createNoiseSettings(new DimensionStructuresSettings(false), false, Blocks.STONE.getDefaultState(), Blocks.LAVA.getDefaultState(), NIGHTMARE_NOISE_SETTINGS.func_240901_a_()));
+	}
+
+	public static DimensionSettings createNoiseSettings(DimensionStructuresSettings structureSettingsIn, boolean flag1, BlockState fillerBlockIn, BlockState fluidBlockIn, ResourceLocation settingsLocationIn)
+	{
+		try
+		{
+			System.out.println("burger creating noise settings");
+			Constructor<DimensionSettings> constructor = DimensionSettings.class.getDeclaredConstructor(DimensionStructuresSettings.class, NoiseSettings.class, BlockState.class, BlockState.class, int.class, int.class, int.class, boolean.class);
+			constructor.setAccessible(true);
+			return constructor.newInstance(structureSettingsIn, new NoiseSettings(256, new ScalingSettings(0.9999999814507745D, 0.9999999814507745D, 80.0D, 160.0D), new SlideSettings(-10, 3, 0), new SlideSettings(-30, 0, 0), 1, 2, 1.0D, -0.46875D, true, true, false, flag1), fillerBlockIn, fluidBlockIn, -10, 0, 63, false);
+		}
+		catch (Exception e)
+		{
+			System.out.println("burger failed to create noise settings");
+			e.printStackTrace();
+		}
+
+		return null;
 	}
 
 	private static DimensionSettings registerNoiseSettings(RegistryKey<DimensionSettings> settingsKeyIn, DimensionSettings dimSettingsIn)
