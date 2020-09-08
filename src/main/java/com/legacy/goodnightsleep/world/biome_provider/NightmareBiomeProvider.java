@@ -275,13 +275,13 @@ public class NightmareBiomeProvider extends BiomeProvider
 		{
 			return new NightmareBiomeProvider(seedIn, ImmutableList.of(Pair.of(new Biome.Attributes(0.0F, 0.0F, 0.0F, 0.0F, 0.0F), () ->
 			{
-				return biomeList.func_243576_d(GNSBiomes.NIGHTMARE_HILLS);
+				return biomeList.func_243576_d(GNSBiomes.Keys.NIGHTMARE_HILLS);
 			}), Pair.of(new Biome.Attributes(0.0F, 0.0F, 0.0F, 0.0F, 0.1F), () ->
 			{
-				return biomeList.func_243576_d(GNSBiomes.WASTED_FOREST);
+				return biomeList.func_243576_d(GNSBiomes.Keys.WASTED_FOREST);
 			}), Pair.of(new Biome.Attributes(0.0F, 0.0F, 0.1F, 0.0F, 0.0F), () ->
 			{
-				return biomeList.func_243576_d(GNSBiomes.SHAMEFUL_PLAINS);
+				return biomeList.func_243576_d(GNSBiomes.Keys.SHAMEFUL_PLAINS);
 			})), Optional.of(Pair.of(biomeList, preset)));
 		});
 		private final ResourceLocation field_235290_d_;

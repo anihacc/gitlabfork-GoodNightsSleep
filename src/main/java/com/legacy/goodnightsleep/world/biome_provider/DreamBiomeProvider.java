@@ -226,13 +226,13 @@ public class DreamBiomeProvider extends BiomeProvider
 		{
 			return new DreamBiomeProvider(seedIn, ImmutableList.of(Pair.of(new Biome.Attributes(0.0F, 0.0F, 0.0F, 0.0F, 0.0F), () ->
 			{
-				return biomeList.func_243576_d(GNSBiomes.SLEEPY_HILLS);
+				return biomeList.func_243576_d(GNSBiomes.Keys.SLEEPY_HILLS);
 			}), Pair.of(new Biome.Attributes(0.0F, 0.0F, 0.0F, 0.1F, 0.0F), () ->
 			{
-				return biomeList.func_243576_d(GNSBiomes.DREAMY_FOREST);
+				return biomeList.func_243576_d(GNSBiomes.Keys.DREAMY_FOREST);
 			}), Pair.of(new Biome.Attributes(0.0F, 0.1F, 0.0F, 0.0F, 0.0F), () ->
 			{
-				return biomeList.func_243576_d(GNSBiomes.GOOD_DREAM_PLAINS);
+				return biomeList.func_243576_d(GNSBiomes.Keys.GOOD_DREAM_PLAINS);
 			})), Optional.of(Pair.of(biomeList, preset)));
 		});
 		private final ResourceLocation field_235290_d_;
