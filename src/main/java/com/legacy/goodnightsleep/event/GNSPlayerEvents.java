@@ -24,20 +24,24 @@ public class GNSPlayerEvents
 	@SubscribeEvent
 	public void onCapabilityAttached(AttachCapabilitiesEvent<Entity> event)
 	{
-		if (event.getObject() instanceof PlayerEntity && DreamPlayer.get((PlayerEntity) event.getObject()) == null)
-			event.addCapability(GoodNightSleep.locate("player_capability"), new CapabilityProvider(new DreamPlayer((PlayerEntity) event.getObject())));
+		if (event.getObject() instanceof PlayerEntity)
+			event.getObject().getCapability(DreamPlayer.GNS_PLAYER).ifPresent(c -> event.addCapability(GoodNightSleep.locate("player_capability"), new CapabilityProvider(new DreamPlayer((PlayerEntity) event.getObject()))));
+
 	}
 
 	@SubscribeEvent
 	public void onEntityDeath(LivingDeathEvent event)
 	{
-		if (event.getEntity() instanceof PlayerEntity && DreamPlayer.get((PlayerEntity) event.getEntity()) != null)
-			DreamPlayer.get((PlayerEntity) event.getEntity()).onDeath();
+		if (event.getEntity() instanceof PlayerEntity)
+			event.getEntity().getCapability(DreamPlayer.GNS_PLAYER).ifPresent(c -> c.onDeath());
 	}
 
 	@SubscribeEvent
 	public void onPlayerCloned(Clone event)
 	{
+		if (!event.getEntity().getCapability(DreamPlayer.GNS_PLAYER).isPresent())
+			return;
+
 		IDreamPlayer original = DreamPlayer.get(event.getOriginal());
 		IDreamPlayer clone = DreamPlayer.get(event.getPlayer());
 		CompoundNBT compound = new CompoundNBT();
@@ -67,14 +71,15 @@ public class GNSPlayerEvents
 	@SubscribeEvent
 	public void onEntityUpdate(LivingUpdateEvent event)
 	{
-		if (event.getEntity() instanceof PlayerEntity && DreamPlayer.get((PlayerEntity) event.getEntityLiving()) != null)
-			DreamPlayer.get((PlayerEntity) event.getEntityLiving()).serverTick();
+		if (event.getEntity() instanceof PlayerEntity)
+			event.getEntity().getCapability(DreamPlayer.GNS_PLAYER).ifPresent(c -> c.serverTick());
 	}
 
 	@SubscribeEvent
 	public void onEntityJoin(EntityJoinWorldEvent event)
 	{
-		if (event.getEntity() instanceof ServerPlayerEntity && DreamPlayer.get((ServerPlayerEntity) event.getEntity()) != null)
-			PacketHandler.sendTo(new SendEnteredTimePacket(DreamPlayer.get((ServerPlayerEntity) event.getEntity()).getEnteredDreamTime()), (ServerPlayerEntity) event.getEntity());
+		if (event.getEntity() instanceof ServerPlayerEntity)
+			event.getEntity().getCapability(DreamPlayer.GNS_PLAYER).ifPresent(c -> PacketHandler.sendTo(new SendEnteredTimePacket(c.getEnteredDreamTime()), (ServerPlayerEntity) event.getEntity()));
+
 	}
 }

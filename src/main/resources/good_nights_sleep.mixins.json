@@ -5,7 +5,8 @@
 	"refmap": "good_nights_sleep.refmap.json",
 	"mixins": [
 		"WorldRendererMixin",
-		"MinecraftServerMixin"
+		"MinecraftServerMixin",
+		"EntityMixin"
 	],
 	"client": [
 	],

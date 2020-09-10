@@ -10,12 +10,12 @@ import net.minecraftforge.common.util.LazyOptional;
 
 public class CapabilityProvider implements ICapabilitySerializable<CompoundNBT>
 {
-
 	private final LazyOptional<IDreamPlayer> dreamPlayerHandler;
 
 	public CapabilityProvider(IDreamPlayer dreamPlayer)
 	{
-		this.dreamPlayerHandler = LazyOptional.of(() -> {
+		this.dreamPlayerHandler = LazyOptional.of(() ->
+		{
 			return dreamPlayer;
 		});
 	}

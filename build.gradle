@@ -17,7 +17,7 @@ apply plugin: 'org.spongepowered.mixin'
 
 version = '1.2.2'
 group = 'com.legacy.goodnightsleep'
-archivesBaseName = 'good-nights-sleep-1.16.2'
+archivesBaseName = 'good-nights-sleep-1.16.3'
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
 
@@ -78,7 +78,7 @@ minecraft {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.16.2-33.0.22'
+    minecraft 'net.minecraftforge:forge:1.16.3-34.0.0'
 }
 
 jar {

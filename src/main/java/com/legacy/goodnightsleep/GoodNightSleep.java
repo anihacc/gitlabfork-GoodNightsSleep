@@ -14,6 +14,7 @@ import com.legacy.goodnightsleep.event.GNSPlayerEvents;
 import com.legacy.goodnightsleep.network.PacketHandler;
 import com.legacy.goodnightsleep.registry.GNSBlocks;
 import com.legacy.goodnightsleep.registry.GNSFeatures;
+import com.legacy.goodnightsleep.resource_pack.GNSResourcePackHandler;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderType;
@@ -80,6 +81,7 @@ public class GoodNightSleep
 
 		GNSTileEntityRendering.initialization();
 		GNSEntityRendering.initialization();
+		GNSResourcePackHandler.init();
 
 		renderCutout(GNSBlocks.candy_sapling);
 		renderCutout(GNSBlocks.dream_sapling);

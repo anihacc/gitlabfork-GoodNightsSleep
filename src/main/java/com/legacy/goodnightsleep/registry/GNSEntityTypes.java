@@ -55,7 +55,7 @@ public class GNSEntityTypes
 
 		registerAttributes();
 	}
-	
+
 	private static void registerAttributes()
 	{
 		GlobalEntityTypeAttributes.put(GNSEntityTypes.UNICORN, UnicornEntity.func_234237_fg_().create());
