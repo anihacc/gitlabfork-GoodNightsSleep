@@ -1,4 +1,4 @@
-package com.legacy.goodnightsleep.resource_pack;
+package com.legacy.goodnightsleep.client.resource_pack;
 
 import java.io.IOException;
 import java.io.InputStream;

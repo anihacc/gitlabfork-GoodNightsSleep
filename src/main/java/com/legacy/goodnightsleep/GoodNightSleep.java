@@ -11,13 +11,13 @@ import com.legacy.goodnightsleep.client.GNSClientEvents;
 import com.legacy.goodnightsleep.client.audio.GNSMusicHandler;
 import com.legacy.goodnightsleep.client.render.GNSEntityRendering;
 import com.legacy.goodnightsleep.client.render.GNSTileEntityRendering;
+import com.legacy.goodnightsleep.client.resource_pack.GNSResourcePackHandler;
 import com.legacy.goodnightsleep.data.GNSMappingChanges;
 import com.legacy.goodnightsleep.event.GNSEvents;
 import com.legacy.goodnightsleep.event.GNSPlayerEvents;
 import com.legacy.goodnightsleep.network.PacketHandler;
 import com.legacy.goodnightsleep.registry.GNSBlocks;
 import com.legacy.goodnightsleep.registry.GNSFeatures;
-import com.legacy.goodnightsleep.resource_pack.GNSResourcePackHandler;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderType;

@@ -1,4 +1,4 @@
-package com.legacy.goodnightsleep.resource_pack;
+package com.legacy.goodnightsleep.client.resource_pack;
 
 import com.legacy.goodnightsleep.GoodNightSleep;
 
