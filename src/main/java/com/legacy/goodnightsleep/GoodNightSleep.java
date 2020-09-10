@@ -4,6 +4,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.legacy.goodnightsleep.blocks.util.ToolCompat;
+import com.legacy.goodnightsleep.capabillity.DreamPlayer;
+import com.legacy.goodnightsleep.capabillity.util.CapabilityStorage;
+import com.legacy.goodnightsleep.capabillity.util.IDreamPlayer;
 import com.legacy.goodnightsleep.client.GNSClientEvents;
 import com.legacy.goodnightsleep.client.audio.GNSMusicHandler;
 import com.legacy.goodnightsleep.client.render.GNSEntityRendering;
@@ -22,6 +25,7 @@ import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
@@ -64,6 +68,8 @@ public class GoodNightSleep
 
 	private void commonInit(final FMLCommonSetupEvent event)
 	{
+		CapabilityManager.INSTANCE.register(IDreamPlayer.class, new CapabilityStorage(), DreamPlayer::new);
+
 		ForgeRegistries.BIOMES.getValues().forEach(GNSFeatures::addMushrooms);
 
 		MinecraftForge.EVENT_BUS.register(new GNSMappingChanges());
