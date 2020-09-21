@@ -60,7 +60,7 @@ public class GNSEntityTypes
 	{
 		GlobalEntityTypeAttributes.put(GNSEntityTypes.UNICORN, UnicornEntity.func_234237_fg_().create());
 		GlobalEntityTypeAttributes.put(GNSEntityTypes.GUMMY_BEAR, MobEntity.func_233666_p_().create());
-		GlobalEntityTypeAttributes.put(GNSEntityTypes.BABY_CREEPER, CreeperEntity.func_234278_m_().create());
+		GlobalEntityTypeAttributes.put(GNSEntityTypes.BABY_CREEPER, CreeperEntity.registerAttributes().create());
 		GlobalEntityTypeAttributes.put(GNSEntityTypes.TORMENTER, TormenterEntity.registerAttributes().create());
 		GlobalEntityTypeAttributes.put(GNSEntityTypes.HEROBRINE, HerobrineEntity.registerAttributes().create());
 		GlobalEntityTypeAttributes.put(GNSEntityTypes.SPAWNER_ENTITY, MobEntity.func_233666_p_().create());

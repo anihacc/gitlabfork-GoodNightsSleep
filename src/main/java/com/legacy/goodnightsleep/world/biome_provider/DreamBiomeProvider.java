@@ -43,7 +43,7 @@ public class DreamBiomeProvider extends BiomeProvider
 			return p_235286_0_.seed;
 		}), RecordCodecBuilder.<Pair<Biome.Attributes, Supplier<Biome>>>create((p_235282_0_) ->
 		{
-			return p_235282_0_.group(Biome.Attributes.field_235104_a_.fieldOf("parameters").forGetter(Pair::getFirst), Biome.field_235051_b_.fieldOf("biome").forGetter(Pair::getSecond)).apply(p_235282_0_, Pair::of);
+			return p_235282_0_.group(Biome.Attributes.CODEC.fieldOf("parameters").forGetter(Pair::getFirst), Biome.BIOME_CODEC.fieldOf("biome").forGetter(Pair::getSecond)).apply(p_235282_0_, Pair::of);
 		}).listOf().fieldOf("biomes").forGetter((p_235284_0_) ->
 		{
 			return p_235284_0_.biomes;
@@ -135,10 +135,10 @@ public class DreamBiomeProvider extends BiomeProvider
 	{
 		int i = this.field_235269_l_ ? y : 0;
 		Biome.Attributes biome$attributes = new Biome.Attributes((float) this.field_235264_g_.func_237211_a_((double) x, (double) i, (double) z), (float) this.field_235265_h_.func_237211_a_((double) x, (double) i, (double) z), (float) this.field_235266_i_.func_237211_a_((double) x, (double) i, (double) z), (float) this.field_235267_j_.func_237211_a_((double) x, (double) i, (double) z), 0.0F);
-		return this.biomes.stream().min(Comparator.comparing((p_235272_1_) ->
+		return this.biomes.stream().min(Comparator.comparing((attributeBiomePair) ->
 		{
-			return p_235272_1_.getFirst().func_235110_a_(biome$attributes);
-		})).map(Pair::getSecond).map(Supplier::get).orElse(BiomeRegistry.field_244201_b);
+			return attributeBiomePair.getFirst().getAttributeDifference(biome$attributes);
+		})).map(Pair::getSecond).map(Supplier::get).orElse(BiomeRegistry.THE_VOID);
 	}
 
 	public boolean func_235280_b_(long p_235280_1_)
@@ -159,7 +159,7 @@ public class DreamBiomeProvider extends BiomeProvider
 			}, (p_242629_0_) ->
 			{
 				return DataResult.success(p_242629_0_.getName());
-			}).fieldOf("preset").stable().forGetter(DreamBiomeProvider.DreamBuilder::func_242628_a), RegistryLookupCodec.func_244331_a(Registry.BIOME_KEY).forGetter(DreamBiomeProvider.DreamBuilder::func_242632_b), Codec.LONG.fieldOf("seed").stable().forGetter(DreamBiomeProvider.DreamBuilder::func_242634_c)).apply(p_242630_0_, p_242630_0_.stable(DreamBiomeProvider.DreamBuilder::new));
+			}).fieldOf("preset").stable().forGetter(DreamBiomeProvider.DreamBuilder::func_242628_a), RegistryLookupCodec.getLookUpCodec(Registry.BIOME_KEY).forGetter(DreamBiomeProvider.DreamBuilder::func_242632_b), Codec.LONG.fieldOf("seed").stable().forGetter(DreamBiomeProvider.DreamBuilder::func_242634_c)).apply(p_242630_0_, p_242630_0_.stable(DreamBiomeProvider.DreamBuilder::new));
 		});
 		private final DreamBiomeProvider.DreamPreset field_242625_b;
 		private final Registry<Biome> field_242626_c;
@@ -226,13 +226,13 @@ public class DreamBiomeProvider extends BiomeProvider
 		{
 			return new DreamBiomeProvider(seedIn, ImmutableList.of(Pair.of(new Biome.Attributes(0.0F, 0.0F, 0.0F, 0.0F, 0.0F), () ->
 			{
-				return biomeList.func_243576_d(GNSBiomes.Keys.SLEEPY_HILLS);
+				return biomeList.getOrThrow(GNSBiomes.Keys.SLEEPY_HILLS);
 			}), Pair.of(new Biome.Attributes(0.0F, 0.0F, 0.0F, 0.1F, 0.0F), () ->
 			{
-				return biomeList.func_243576_d(GNSBiomes.Keys.DREAMY_FOREST);
+				return biomeList.getOrThrow(GNSBiomes.Keys.DREAMY_FOREST);
 			}), Pair.of(new Biome.Attributes(0.0F, 0.1F, 0.0F, 0.0F, 0.0F), () ->
 			{
-				return biomeList.func_243576_d(GNSBiomes.Keys.GOOD_DREAM_PLAINS);
+				return biomeList.getOrThrow(GNSBiomes.Keys.GOOD_DREAM_PLAINS);
 			})), Optional.of(Pair.of(biomeList, preset)));
 		});
 		private final ResourceLocation field_235290_d_;

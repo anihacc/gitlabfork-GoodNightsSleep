@@ -27,6 +27,6 @@ public class MinecraftServerMixin
 	@Inject(at = @At("HEAD"), method = "func_240800_l__()V")
 	private void initServer(CallbackInfo callback)
 	{
-		GNSDimensions.init(this.field_240768_i_.getDimensionGeneratorSettings().func_236224_e_(), this.field_240767_f_.func_243612_b(Registry.DIMENSION_TYPE_KEY), this.field_240767_f_.func_243612_b(Registry.BIOME_KEY), this.field_240767_f_.func_243612_b(Registry.field_243549_ar), this.field_240768_i_.getDimensionGeneratorSettings().getSeed());
+		GNSDimensions.init(this.field_240768_i_.getDimensionGeneratorSettings().func_236224_e_(), this.field_240767_f_.getRegistry(Registry.DIMENSION_TYPE_KEY), this.field_240767_f_.getRegistry(Registry.BIOME_KEY), this.field_240767_f_.getRegistry(Registry.NOISE_SETTINGS_KEY), this.field_240768_i_.getDimensionGeneratorSettings().getSeed());
 	}
 }

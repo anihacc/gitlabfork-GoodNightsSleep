@@ -43,7 +43,7 @@ public class GNSMusicHandler
 
 		if (category == SoundCategory.MUSIC)
 		{
-			if (this.mc.player != null && this.mc.player.world.getDimensionKey().func_240901_a_() == GNSDimensions.getDimensionLocations(true) || this.mc.player != null && this.mc.player.world.getDimensionKey().func_240901_a_() == GNSDimensions.getDimensionLocations(false))
+			if (this.mc.player != null && this.mc.player.world.getDimensionKey().getLocation() == GNSDimensions.getDimensionLocations(true) || this.mc.player != null && this.mc.player.world.getDimensionKey().getLocation() == GNSDimensions.getDimensionLocations(false))
 			{
 				if (!sound.getSoundLocation().toString().contains(GoodNightSleep.MODID) && (this.musicTicker.playingMusic() || !this.musicTicker.playingMusic()))
 				{

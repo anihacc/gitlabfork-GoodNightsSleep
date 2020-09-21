@@ -39,7 +39,7 @@ public class GNSMusicTicker implements ITickable
 		{
 			if (this.mc.player != null && !this.mc.getSoundHandler().isPlaying(this.playingRecord) && GNSDimensions.getDimensionLocations(true) != null && GNSDimensions.getDimensionLocations(false) != null)
 			{
-				if (this.mc.player.world.getDimensionKey().func_240901_a_() == GNSDimensions.getDimensionLocations(true))
+				if (this.mc.player.world.getDimensionKey().getLocation() == GNSDimensions.getDimensionLocations(true))
 				{
 					if (this.ambientMusic != null)
 					{
@@ -55,7 +55,7 @@ public class GNSMusicTicker implements ITickable
 						this.playMusic(tracktypeB);
 					}
 				}
-				else if (this.mc.player.world.getDimensionKey().func_240901_a_() == GNSDimensions.getDimensionLocations(false))
+				else if (this.mc.player.world.getDimensionKey().getLocation() == GNSDimensions.getDimensionLocations(false))
 				{
 					if (this.ambientMusic != null)
 					{

@@ -30,7 +30,7 @@ public class FatHopeMushroomFeature extends BigRedMushroomFeature
 
 					if (worldIn.getBlockState(newPosIn).canBeReplacedByLogs(worldIn, newPosIn))
 					{
-						this.func_230367_a_(worldIn, newPosIn, configIn.field_227273_b_.getBlockState(randomIn, posIn));
+						this.setBlockState(worldIn, newPosIn, configIn.field_227273_b_.getBlockState(randomIn, posIn));
 					}
 				}
 			}

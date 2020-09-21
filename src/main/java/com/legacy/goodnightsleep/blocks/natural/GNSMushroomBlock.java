@@ -52,9 +52,9 @@ public class GNSMushroomBlock extends MushroomBlock
 		world.removeBlock(pos, false);
 		ConfiguredFeature<?, ?> configuredfeature;
 
-		if (this == Blocks.BROWN_MUSHROOM)
+		if (this == GNSBlocks.despair_mushroom)
 		{
-			configuredfeature = Features.field_243860_bF;
+			configuredfeature = GNSFeatures.HUGE_DESPAIR_MUSHROOM;
 		}
 		else
 		{

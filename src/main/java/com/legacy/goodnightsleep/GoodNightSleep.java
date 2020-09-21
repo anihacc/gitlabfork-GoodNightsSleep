@@ -28,6 +28,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
+import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
@@ -35,7 +36,6 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.registries.ForgeRegistries;
 
 @Mod(GoodNightSleep.MODID)
 public class GoodNightSleep
@@ -72,7 +72,7 @@ public class GoodNightSleep
 	{
 		CapabilityManager.INSTANCE.register(IDreamPlayer.class, new CapabilityStorage(), DreamPlayer::new);
 
-		ForgeRegistries.BIOMES.getValues().forEach(GNSFeatures::addMushrooms);
+		MinecraftForge.EVENT_BUS.addListener((BiomeLoadingEvent biomeEvent) -> GNSFeatures.addMushrooms(biomeEvent));
 
 		MinecraftForge.EVENT_BUS.register(new GNSMappingChanges());
 		MinecraftForge.EVENT_BUS.register(new GNSEvents());
@@ -80,7 +80,7 @@ public class GoodNightSleep
 
 		PacketHandler.register();
 		ToolCompat.init();
-		
+
 		GNSBlockTags.init();
 		GNSItemTags.init();
 	}

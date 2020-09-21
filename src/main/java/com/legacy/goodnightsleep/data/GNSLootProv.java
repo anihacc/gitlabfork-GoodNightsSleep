@@ -86,7 +86,7 @@ public class GNSLootProv extends LootTableProvider
 	{
 		map.forEach((location, table) ->
 		{
-			LootTableManager.func_227508_a_(validationtracker, location, table);
+			LootTableManager.validateLootTable(validationtracker, location, table);
 		});
 
 	}
@@ -118,7 +118,7 @@ public class GNSLootProv extends LootTableProvider
 		{
 			this.registerLootTable(GNSEntityTypes.UNICORN, LootTable.builder().addLootPool(LootPool.builder().rolls(ConstantRange.of(1)).addEntry(ItemLootEntry.builder(Items.LEATHER).acceptFunction(SetCount.builder(RandomValueRange.of(0.0F, 2.0F))).acceptFunction(LootingEnchantBonus.builder(RandomValueRange.of(0.0F, 1.0F))))));
 			this.registerLootTable(GNSEntityTypes.GUMMY_BEAR, LootTable.builder());
-			this.registerLootTable(GNSEntityTypes.BABY_CREEPER, LootTable.builder().addLootPool(LootPool.builder().rolls(ConstantRange.of(1)).addEntry(ItemLootEntry.builder(Items.GUNPOWDER).acceptFunction(SetCount.builder(RandomValueRange.of(0.0F, 2.0F))).acceptFunction(LootingEnchantBonus.builder(RandomValueRange.of(0.0F, 1.0F))))).addLootPool(LootPool.builder().addEntry(TagLootEntry.func_216176_b(ItemTags.field_232907_V_)).acceptCondition(EntityHasProperty.builder(LootContext.EntityTarget.KILLER, EntityPredicate.Builder.create().type(EntityTypeTags.SKELETONS)))));
+			this.registerLootTable(GNSEntityTypes.BABY_CREEPER, LootTable.builder().addLootPool(LootPool.builder().rolls(ConstantRange.of(1)).addEntry(ItemLootEntry.builder(Items.GUNPOWDER).acceptFunction(SetCount.builder(RandomValueRange.of(0.0F, 2.0F))).acceptFunction(LootingEnchantBonus.builder(RandomValueRange.of(0.0F, 1.0F))))).addLootPool(LootPool.builder().addEntry(TagLootEntry.getBuilder(ItemTags.CREEPER_DROP_MUSIC_DISCS)).acceptCondition(EntityHasProperty.builder(LootContext.EntityTarget.KILLER, EntityPredicate.Builder.create().type(EntityTypeTags.SKELETONS)))));
 
 			this.registerLootTable(GNSEntityTypes.HEROBRINE, LootTable.builder().addLootPool(LootPool.builder().rolls(ConstantRange.of(1)).addEntry(ItemLootEntry.builder(GNSItems.negatite).acceptFunction(SetCount.builder(RandomValueRange.of(0.0F, 2.0F))))));
 			this.registerLootTable(GNSEntityTypes.TORMENTER, LootTable.builder().addLootPool(LootPool.builder().rolls(ConstantRange.of(1)).addEntry(ItemLootEntry.builder(GNSItems.necrum).acceptFunction(SetCount.builder(RandomValueRange.of(2.0F, 3.0F))))));
@@ -228,7 +228,7 @@ public class GNSLootProv extends LootTableProvider
 
 		private void droppingSeedTag(Block block, ITag.INamedTag<Item> tag)
 		{
-			this.registerLootTable(block, droppingWithShears(block, withExplosionDecay(block, (TagLootEntry.func_216176_b(tag).acceptCondition(RandomChance.builder(0.125F))).acceptFunction(ApplyBonus.uniformBonusCount(Enchantments.FORTUNE, 2)))));
+			this.registerLootTable(block, droppingWithShears(block, withExplosionDecay(block, (TagLootEntry.getBuilder(tag).acceptCondition(RandomChance.builder(0.125F))).acceptFunction(ApplyBonus.uniformBonusCount(Enchantments.FORTUNE, 2)))));
 		}
 
 		private void silkOrElse(Block withSilk, IItemProvider without)

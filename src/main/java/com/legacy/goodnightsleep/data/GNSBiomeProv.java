@@ -66,7 +66,7 @@ public class GNSBiomeProv extends BiomeProvider
 		{
 			Path path1 = createPath(path, entry.getKey());
 			Biome biome = entry.getValue();
-			Function<Supplier<Biome>, DataResult<JsonElement>> function = JsonOps.INSTANCE.withEncoder(Biome.field_235051_b_);
+			Function<Supplier<Biome>, DataResult<JsonElement>> function = JsonOps.INSTANCE.withEncoder(Biome.BIOME_CODEC);
 
 			try
 			{
@@ -134,18 +134,18 @@ public class GNSBiomeProv extends BiomeProvider
 		{
 			MobSpawnInfo.Builder spawns = new MobSpawnInfo.Builder();
 
-			spawns.func_242575_a(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(GNSEntityTypes.SPAWNER_ENTITY, 140, 1, 1));
-			spawns.func_242575_a(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(GNSEntityTypes.UNICORN, 90, 1, 4));
+			spawns.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(GNSEntityTypes.SPAWNER_ENTITY, 140, 1, 1));
+			spawns.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(GNSEntityTypes.UNICORN, 90, 1, 4));
 
-			spawns.func_242575_a(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(GNSEntityTypes.BABY_CREEPER, 10, 1, 4));
+			spawns.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(GNSEntityTypes.BABY_CREEPER, 10, 1, 4));
 
-			BiomeGenerationSettings.Builder builder = (new BiomeGenerationSettings.Builder()).func_242517_a(GNSBiomes.SurfaceBuilders.DREAM_GRASS_SURFACE_BUILDER);
+			BiomeGenerationSettings.Builder builder = (new BiomeGenerationSettings.Builder()).withSurfaceBuilder(GNSBiomes.SurfaceBuilders.DREAM_GRASS_SURFACE_BUILDER);
 
 			/*DefaultBiomeFeatures.func_243735_b(spawns, 95, 5, 100);*/ // default hostiles
 
 			// DefaultBiomeFeatures.func_243738_d(builder); // default carvers
 			/*DefaultBiomeFeatures.func_243742_f(builder); // lakes
-			DefaultBiomeFeatures.func_243746_h(builder); // monster rooms/dungeons
+			DefaultBiomeFeatures.withMonsterRoom(builder); // monster rooms/dungeons
 			DefaultBiomeFeatures.func_243748_i(builder); // dirt/diorite/granite/andesite
 			DefaultBiomeFeatures.func_243750_j(builder); // default ores
 			DefaultBiomeFeatures.func_243754_n(builder); // disks
@@ -164,7 +164,7 @@ public class GNSBiomeProv extends BiomeProvider
 
 			GNSFeatures.addCarvers(builder);
 
-			return (new Biome.Builder()).precipitation(Biome.RainType.NONE).category(Biome.Category.NONE).depth(depthIn).scale(scaleIn).temperature(tempIn).downfall(downfallIn).func_235097_a_((new BiomeAmbience.Builder()).setWaterColor(waterColorIn).setWaterFogColor(waterFogColorIn).setFogColor(12638463).func_242539_d(ambienceChance(tempIn)).setMoodSound(MoodSoundAmbience.field_235027_b_).build()).func_242458_a(spawns.func_242577_b()).func_242457_a(builder.func_242508_a()).func_242455_a();
+			return (new Biome.Builder()).precipitation(Biome.RainType.NONE).category(Biome.Category.NONE).depth(depthIn).scale(scaleIn).temperature(tempIn).downfall(downfallIn).setEffects((new BiomeAmbience.Builder()).setWaterColor(waterColorIn).setWaterFogColor(waterFogColorIn).setFogColor(12638463).withSkyColor(calculateSkyColor(tempIn)).setMoodSound(MoodSoundAmbience.DEFAULT_CAVE).build()).withMobSpawnSettings(spawns.copy()).withGenerationSettings(builder.build()).build();
 		}
 
 		/**
@@ -174,15 +174,15 @@ public class GNSBiomeProv extends BiomeProvider
 		{
 			MobSpawnInfo.Builder spawns = new MobSpawnInfo.Builder();
 
-			spawns.func_242575_a(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(GNSEntityTypes.SPAWNER_ENTITY, 140, 1, 1));
-			spawns.func_242575_a(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(GNSEntityTypes.UNICORN, 90, 1, 4));
+			spawns.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(GNSEntityTypes.SPAWNER_ENTITY, 140, 1, 1));
+			spawns.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(GNSEntityTypes.UNICORN, 90, 1, 4));
 
-			spawns.func_242575_a(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(GNSEntityTypes.BABY_CREEPER, 10, 1, 4));
+			spawns.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(GNSEntityTypes.BABY_CREEPER, 10, 1, 4));
 
-			BiomeGenerationSettings.Builder builder = (new BiomeGenerationSettings.Builder()).func_242517_a(GNSBiomes.SurfaceBuilders.DREAM_GRASS_SURFACE_BUILDER);
+			BiomeGenerationSettings.Builder builder = (new BiomeGenerationSettings.Builder()).withSurfaceBuilder(GNSBiomes.SurfaceBuilders.DREAM_GRASS_SURFACE_BUILDER);
 
-			builder.func_242513_a(GenerationStage.Decoration.VEGETAL_DECORATION, GNSFeatures.DIAMOND_TREE.withPlacement(Features.Placements.field_244001_l).withPlacement(Placement.field_242902_f.configure(new AtSurfaceWithExtraConfig(0, 0.1F, 1))));
-			builder.func_242513_a(GenerationStage.Decoration.VEGETAL_DECORATION, GNSFeatures.HUGE_HOPE_MUSHROOM.withPlacement(Features.Placements.field_244001_l).withPlacement(Placement.field_242902_f.configure(new AtSurfaceWithExtraConfig(0, 0.1F, 1))));
+			builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, GNSFeatures.DIAMOND_TREE.withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.field_242902_f.configure(new AtSurfaceWithExtraConfig(0, 0.1F, 1))));
+			builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, GNSFeatures.HUGE_HOPE_MUSHROOM.withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.field_242902_f.configure(new AtSurfaceWithExtraConfig(0, 0.1F, 1))));
 
 			GNSFeatures.addScatteredDreamFeatures(builder);
 			GNSFeatures.addDreamOres(builder);
@@ -193,7 +193,7 @@ public class GNSBiomeProv extends BiomeProvider
 
 			GNSFeatures.addCarvers(builder);
 
-			return (new Biome.Builder()).precipitation(Biome.RainType.NONE).category(Biome.Category.NONE).depth(depthIn).scale(scaleIn).temperature(tempIn).downfall(downfallIn).func_235097_a_((new BiomeAmbience.Builder()).setWaterColor(waterColorIn).setWaterFogColor(waterFogColorIn).setFogColor(12638463).func_242539_d(ambienceChance(tempIn)).setMoodSound(MoodSoundAmbience.field_235027_b_).build()).func_242458_a(spawns.func_242577_b()).func_242457_a(builder.func_242508_a()).func_242455_a();
+			return (new Biome.Builder()).precipitation(Biome.RainType.NONE).category(Biome.Category.NONE).depth(depthIn).scale(scaleIn).temperature(tempIn).downfall(downfallIn).setEffects((new BiomeAmbience.Builder()).setWaterColor(waterColorIn).setWaterFogColor(waterFogColorIn).setFogColor(12638463).withSkyColor(calculateSkyColor(tempIn)).setMoodSound(MoodSoundAmbience.DEFAULT_CAVE).build()).withMobSpawnSettings(spawns.copy()).withGenerationSettings(builder.build()).build();
 		}
 
 		/**
@@ -203,16 +203,16 @@ public class GNSBiomeProv extends BiomeProvider
 		{
 			MobSpawnInfo.Builder spawns = new MobSpawnInfo.Builder();
 
-			spawns.func_242575_a(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(GNSEntityTypes.SPAWNER_ENTITY, 140, 1, 1));
-			// spawns.func_242575_a(EntityClassification.CREATURE, new
+			spawns.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(GNSEntityTypes.SPAWNER_ENTITY, 140, 1, 1));
+			// spawns.withSpawner(EntityClassification.CREATURE, new
 			// MobSpawnInfo.Spawners(GNSEntityTypes.UNICORN, 90, 1, 4));
 
-			spawns.func_242575_a(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(GNSEntityTypes.BABY_CREEPER, 10, 1, 4));
+			spawns.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(GNSEntityTypes.BABY_CREEPER, 10, 1, 4));
 
-			BiomeGenerationSettings.Builder builder = (new BiomeGenerationSettings.Builder()).func_242517_a(GNSBiomes.SurfaceBuilders.DREAM_GRASS_SURFACE_BUILDER);
+			BiomeGenerationSettings.Builder builder = (new BiomeGenerationSettings.Builder()).withSurfaceBuilder(GNSBiomes.SurfaceBuilders.DREAM_GRASS_SURFACE_BUILDER);
 
-			builder.func_242513_a(GenerationStage.Decoration.VEGETAL_DECORATION, GNSFeatures.DREAM_TREE.withPlacement(Features.Placements.field_244001_l).withPlacement(Placement.field_242902_f.configure(new AtSurfaceWithExtraConfig(0, 1.1F, 5))));
-			builder.func_242513_a(GenerationStage.Decoration.VEGETAL_DECORATION, GNSFeatures.CANDY_TREE.withPlacement(Features.Placements.field_244001_l).withPlacement(Placement.field_242902_f.configure(new AtSurfaceWithExtraConfig(0, 0.8F, 1))));
+			builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, GNSFeatures.DREAM_TREE.withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.field_242902_f.configure(new AtSurfaceWithExtraConfig(0, 1.1F, 5))));
+			builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, GNSFeatures.CANDY_TREE.withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.field_242902_f.configure(new AtSurfaceWithExtraConfig(0, 0.8F, 1))));
 
 			GNSFeatures.addDreamSponges(builder);
 			GNSFeatures.addDreamOres(builder);
@@ -222,7 +222,7 @@ public class GNSBiomeProv extends BiomeProvider
 
 			GNSFeatures.addCarvers(builder);
 
-			return (new Biome.Builder()).precipitation(Biome.RainType.NONE).category(Biome.Category.NONE).depth(depthIn).scale(scaleIn).temperature(tempIn).downfall(downfallIn).func_235097_a_((new BiomeAmbience.Builder()).setWaterColor(waterColorIn).setWaterFogColor(waterFogColorIn).setFogColor(12638463).func_242539_d(ambienceChance(tempIn)).setMoodSound(MoodSoundAmbience.field_235027_b_).build()).func_242458_a(spawns.func_242577_b()).func_242457_a(builder.func_242508_a()).func_242455_a();
+			return (new Biome.Builder()).precipitation(Biome.RainType.NONE).category(Biome.Category.NONE).depth(depthIn).scale(scaleIn).temperature(tempIn).downfall(downfallIn).setEffects((new BiomeAmbience.Builder()).setWaterColor(waterColorIn).setWaterFogColor(waterFogColorIn).setFogColor(12638463).withSkyColor(calculateSkyColor(tempIn)).setMoodSound(MoodSoundAmbience.DEFAULT_CAVE).build()).withMobSpawnSettings(spawns.copy()).withGenerationSettings(builder.build()).build();
 		}
 
 		/**
@@ -232,12 +232,12 @@ public class GNSBiomeProv extends BiomeProvider
 		{
 			MobSpawnInfo.Builder spawns = new MobSpawnInfo.Builder();
 
-			spawns.func_242575_a(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(GNSEntityTypes.SPAWNER_ENTITY, 140, 1, 1));
-			spawns.func_242575_a(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(GNSEntityTypes.UNICORN, 90, 1, 4));
+			spawns.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(GNSEntityTypes.SPAWNER_ENTITY, 140, 1, 1));
+			spawns.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(GNSEntityTypes.UNICORN, 90, 1, 4));
 
-			spawns.func_242575_a(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(GNSEntityTypes.BABY_CREEPER, 10, 1, 4));
+			spawns.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(GNSEntityTypes.BABY_CREEPER, 10, 1, 4));
 
-			BiomeGenerationSettings.Builder builder = (new BiomeGenerationSettings.Builder()).func_242517_a(GNSBiomes.SurfaceBuilders.DREAM_GRASS_SURFACE_BUILDER);
+			BiomeGenerationSettings.Builder builder = (new BiomeGenerationSettings.Builder()).withSurfaceBuilder(GNSBiomes.SurfaceBuilders.DREAM_GRASS_SURFACE_BUILDER);
 
 			GNSFeatures.addHopeMushroomFields(builder);
 			GNSFeatures.addDreamSponges(builder);
@@ -249,20 +249,20 @@ public class GNSBiomeProv extends BiomeProvider
 
 			GNSFeatures.addCarvers(builder);
 
-			return (new Biome.Builder()).precipitation(Biome.RainType.NONE).category(Biome.Category.NONE).depth(depthIn).scale(scaleIn).temperature(tempIn).downfall(downfallIn).func_235097_a_((new BiomeAmbience.Builder()).setWaterColor(waterColorIn).setWaterFogColor(waterFogColorIn).setFogColor(12638463).func_242539_d(ambienceChance(tempIn)).setMoodSound(MoodSoundAmbience.field_235027_b_).build()).func_242458_a(spawns.func_242577_b()).func_242457_a(builder.func_242508_a()).func_242455_a();
+			return (new Biome.Builder()).precipitation(Biome.RainType.NONE).category(Biome.Category.NONE).depth(depthIn).scale(scaleIn).temperature(tempIn).downfall(downfallIn).setEffects((new BiomeAmbience.Builder()).setWaterColor(waterColorIn).setWaterFogColor(waterFogColorIn).setFogColor(12638463).withSkyColor(calculateSkyColor(tempIn)).setMoodSound(MoodSoundAmbience.DEFAULT_CAVE).build()).withMobSpawnSettings(spawns.copy()).withGenerationSettings(builder.build()).build();
 		}
 
 		public static Biome createNightmareBiome(float depthIn, float scaleIn, float tempIn, float downfallIn, int waterColorIn, int waterFogColorIn)
 		{
 			MobSpawnInfo.Builder spawns = getDefaultNightmareSpawns();
 
-			BiomeGenerationSettings.Builder builder = (new BiomeGenerationSettings.Builder()).func_242517_a(GNSBiomes.SurfaceBuilders.NIGHTMARE_GRASS_SURFACE_BUILDER);
+			BiomeGenerationSettings.Builder builder = (new BiomeGenerationSettings.Builder()).withSurfaceBuilder(GNSBiomes.SurfaceBuilders.NIGHTMARE_GRASS_SURFACE_BUILDER);
 
 			GNSFeatures.addNightmareTrees(builder);
 			GNSFeatures.addHugeDespairMushrooms(builder);
 			GNSFeatures.addScatteredNightmareFeatures(builder, 10);
 			GNSFeatures.addNightmareOres(builder);
-			DefaultBiomeFeatures.func_243746_h(builder); // monster rooms
+			DefaultBiomeFeatures.withMonsterRoom(builder); // monster rooms
 
 			GNSFeatures.addNoiseBasedGrass(builder, GNSFeatures.NIGHTMARE_GRASS_CONFIG);
 			GNSFeatures.addGrass(builder, GNSFeatures.PRICKLY_GRASS_CONFIG, 1);
@@ -270,7 +270,7 @@ public class GNSBiomeProv extends BiomeProvider
 
 			GNSFeatures.addCarvers(builder);
 
-			return (new Biome.Builder()).precipitation(Biome.RainType.NONE).category(Biome.Category.NONE).depth(depthIn).scale(scaleIn).temperature(tempIn).downfall(downfallIn).func_235097_a_((new BiomeAmbience.Builder()).setWaterColor(waterColorIn).setWaterFogColor(waterFogColorIn).setFogColor(3344392).func_242539_d(ambienceChance(tempIn)).setMoodSound(MoodSoundAmbience.field_235027_b_).build()).func_242458_a(spawns.func_242577_b()).func_242457_a(builder.func_242508_a()).func_242455_a();
+			return (new Biome.Builder()).precipitation(Biome.RainType.NONE).category(Biome.Category.NONE).depth(depthIn).scale(scaleIn).temperature(tempIn).downfall(downfallIn).setEffects((new BiomeAmbience.Builder()).setWaterColor(waterColorIn).setWaterFogColor(waterFogColorIn).setFogColor(3344392).withSkyColor(calculateSkyColor(tempIn)).setMoodSound(MoodSoundAmbience.DEFAULT_CAVE).build()).withMobSpawnSettings(spawns.copy()).withGenerationSettings(builder.build()).build();
 		}
 
 		public static Biome createShamefulPlainsBiome(float depthIn, float scaleIn, float tempIn, float downfallIn, int waterColorIn, int waterFogColorIn)
@@ -278,16 +278,16 @@ public class GNSBiomeProv extends BiomeProvider
 			MobSpawnInfo.Builder spawns = getDefaultNightmareSpawns();
 
 			// undead horses
-			spawns.func_242575_a(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(GNSEntityTypes.SPAWNER_ENTITY, 1, 1, 1));
+			spawns.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(GNSEntityTypes.SPAWNER_ENTITY, 1, 1, 1));
 
-			BiomeGenerationSettings.Builder builder = (new BiomeGenerationSettings.Builder()).func_242517_a(GNSBiomes.SurfaceBuilders.NIGHTMARE_GRASS_SURFACE_BUILDER);
+			BiomeGenerationSettings.Builder builder = (new BiomeGenerationSettings.Builder()).withSurfaceBuilder(GNSBiomes.SurfaceBuilders.NIGHTMARE_GRASS_SURFACE_BUILDER);
 
-			builder.func_242513_a(GenerationStage.Decoration.VEGETAL_DECORATION, GNSFeatures.LARGE_BLOOD_TREE.withPlacement(Features.Placements.field_244001_l).withPlacement(Placement.field_242902_f.configure(new AtSurfaceWithExtraConfig(0, 0.2F, 1))));
-			builder.func_242513_a(GenerationStage.Decoration.VEGETAL_DECORATION, GNSFeatures.HUGE_DESPAIR_MUSHROOM.withPlacement(Features.Placements.field_244001_l).withPlacement(Placement.field_242902_f.configure(new AtSurfaceWithExtraConfig(0, 0.1F, 1))));
+			builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, GNSFeatures.LARGE_BLOOD_TREE.withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.field_242902_f.configure(new AtSurfaceWithExtraConfig(0, 0.2F, 1))));
+			builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, GNSFeatures.HUGE_DESPAIR_MUSHROOM.withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.field_242902_f.configure(new AtSurfaceWithExtraConfig(0, 0.1F, 1))));
 
 			GNSFeatures.addScatteredNightmareFeatures(builder, 35);
 			GNSFeatures.addNightmareOres(builder);
-			DefaultBiomeFeatures.func_243746_h(builder); // monster rooms
+			DefaultBiomeFeatures.withMonsterRoom(builder); // monster rooms
 
 			GNSFeatures.addNoiseBasedGrass(builder, GNSFeatures.NIGHTMARE_GRASS_CONFIG);
 			GNSFeatures.addGrass(builder, GNSFeatures.PRICKLY_GRASS_CONFIG, 2);
@@ -295,21 +295,21 @@ public class GNSBiomeProv extends BiomeProvider
 
 			GNSFeatures.addCarvers(builder);
 
-			return (new Biome.Builder()).precipitation(Biome.RainType.NONE).category(Biome.Category.NONE).depth(depthIn).scale(scaleIn).temperature(tempIn).downfall(downfallIn).func_235097_a_((new BiomeAmbience.Builder()).setWaterColor(waterColorIn).setWaterFogColor(waterFogColorIn).setFogColor(3344392).func_242539_d(ambienceChance(tempIn)).setMoodSound(MoodSoundAmbience.field_235027_b_).build()).func_242458_a(spawns.func_242577_b()).func_242457_a(builder.func_242508_a()).func_242455_a();
+			return (new Biome.Builder()).precipitation(Biome.RainType.NONE).category(Biome.Category.NONE).depth(depthIn).scale(scaleIn).temperature(tempIn).downfall(downfallIn).setEffects((new BiomeAmbience.Builder()).setWaterColor(waterColorIn).setWaterFogColor(waterFogColorIn).setFogColor(3344392).withSkyColor(calculateSkyColor(tempIn)).setMoodSound(MoodSoundAmbience.DEFAULT_CAVE).build()).withMobSpawnSettings(spawns.copy()).withGenerationSettings(builder.build()).build();
 		}
 
 		public static Biome createWastedForestBiome(float depthIn, float scaleIn, float tempIn, float downfallIn, int waterColorIn, int waterFogColorIn)
 		{
 			MobSpawnInfo.Builder spawns = getDefaultNightmareSpawns();
 
-			BiomeGenerationSettings.Builder builder = (new BiomeGenerationSettings.Builder()).func_242517_a(GNSBiomes.SurfaceBuilders.NIGHTMARE_GRASS_SURFACE_BUILDER);
+			BiomeGenerationSettings.Builder builder = (new BiomeGenerationSettings.Builder()).withSurfaceBuilder(GNSBiomes.SurfaceBuilders.NIGHTMARE_GRASS_SURFACE_BUILDER);
 
-			builder.func_242513_a(GenerationStage.Decoration.VEGETAL_DECORATION, GNSFeatures.DEAD_TREE.withPlacement(Features.Placements.field_244001_l).withPlacement(Placement.field_242902_f.configure(new AtSurfaceWithExtraConfig(0, 1.1F, 5))));
-			builder.func_242513_a(GenerationStage.Decoration.VEGETAL_DECORATION, GNSFeatures.LARGE_BLOOD_TREE.withPlacement(Features.Placements.field_244001_l).withPlacement(Placement.field_242902_f.configure(new AtSurfaceWithExtraConfig(0, 0.8F, 1))));
+			builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, GNSFeatures.DEAD_TREE.withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.field_242902_f.configure(new AtSurfaceWithExtraConfig(0, 1.1F, 5))));
+			builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, GNSFeatures.LARGE_BLOOD_TREE.withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.field_242902_f.configure(new AtSurfaceWithExtraConfig(0, 0.8F, 1))));
 
 			GNSFeatures.addScatteredNightmareFeatures(builder, 20);
 			GNSFeatures.addNightmareOres(builder);
-			DefaultBiomeFeatures.func_243746_h(builder); // monster rooms
+			DefaultBiomeFeatures.withMonsterRoom(builder); // monster rooms
 
 			GNSFeatures.addGrass(builder, GNSFeatures.NIGHTMARE_GRASS_CONFIG, 5);
 			GNSFeatures.addGrass(builder, GNSFeatures.PRICKLY_GRASS_CONFIG, 1);
@@ -317,34 +317,34 @@ public class GNSBiomeProv extends BiomeProvider
 
 			GNSFeatures.addCarvers(builder);
 
-			return (new Biome.Builder()).precipitation(Biome.RainType.NONE).category(Biome.Category.NONE).depth(depthIn).scale(scaleIn).temperature(tempIn).downfall(downfallIn).func_235097_a_((new BiomeAmbience.Builder()).setWaterColor(waterColorIn).setWaterFogColor(waterFogColorIn).setFogColor(3344392).func_242539_d(ambienceChance(tempIn)).setMoodSound(MoodSoundAmbience.field_235027_b_).build()).func_242458_a(spawns.func_242577_b()).func_242457_a(builder.func_242508_a()).func_242455_a();
+			return (new Biome.Builder()).precipitation(Biome.RainType.NONE).category(Biome.Category.NONE).depth(depthIn).scale(scaleIn).temperature(tempIn).downfall(downfallIn).setEffects((new BiomeAmbience.Builder()).setWaterColor(waterColorIn).setWaterFogColor(waterFogColorIn).setFogColor(3344392).withSkyColor(calculateSkyColor(tempIn)).setMoodSound(MoodSoundAmbience.DEFAULT_CAVE).build()).withMobSpawnSettings(spawns.copy()).withGenerationSettings(builder.build()).build();
 		}
 
 		private static MobSpawnInfo.Builder getDefaultNightmareSpawns()
 		{
 			MobSpawnInfo.Builder spawns = new MobSpawnInfo.Builder();
 
-			spawns.func_242575_a(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(GNSEntityTypes.TORMENTER, 100, 4, 4));
-			spawns.func_242575_a(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(GNSEntityTypes.HEROBRINE, 10, 1, 1));
-			spawns.func_242575_a(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.SPIDER, 100, 4, 4));
-			spawns.func_242575_a(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.ZOMBIE, 95, 4, 4));
-			spawns.func_242575_a(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.ZOMBIE_VILLAGER, 5, 1, 1));
-			spawns.func_242575_a(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.SKELETON, 100, 4, 4));
-			spawns.func_242575_a(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.CREEPER, 100, 4, 4));
-			spawns.func_242575_a(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.SLIME, 100, 4, 4));
-			spawns.func_242575_a(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.ENDERMAN, 10, 1, 4));
-			spawns.func_242575_a(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.WITCH, 5, 1, 1));
-			spawns.func_242575_a(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.GHAST, 30, 4, 4));
-			spawns.func_242575_a(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.ZOMBIFIED_PIGLIN, 90, 4, 4));
-			spawns.func_242575_a(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.MAGMA_CUBE, 2, 4, 4));
-			spawns.func_242575_a(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.SILVERFISH, 5, 4, 4));
+			spawns.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(GNSEntityTypes.TORMENTER, 100, 4, 4));
+			spawns.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(GNSEntityTypes.HEROBRINE, 10, 1, 1));
+			spawns.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.SPIDER, 100, 4, 4));
+			spawns.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.ZOMBIE, 95, 4, 4));
+			spawns.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.ZOMBIE_VILLAGER, 5, 1, 1));
+			spawns.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.SKELETON, 100, 4, 4));
+			spawns.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.CREEPER, 100, 4, 4));
+			spawns.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.SLIME, 100, 4, 4));
+			spawns.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.ENDERMAN, 10, 1, 4));
+			spawns.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.WITCH, 5, 1, 1));
+			spawns.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.GHAST, 30, 4, 4));
+			spawns.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.ZOMBIFIED_PIGLIN, 90, 4, 4));
+			spawns.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.MAGMA_CUBE, 2, 4, 4));
+			spawns.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.SILVERFISH, 5, 4, 4));
 
 			return spawns;
 		}
 
-		private static int ambienceChance(float p_244206_0_)
+		private static int calculateSkyColor(float tempIn)
 		{
-			float lvt_1_1_ = p_244206_0_ / 3.0F;
+			float lvt_1_1_ = tempIn / 3.0F;
 			lvt_1_1_ = MathHelper.clamp(lvt_1_1_, -1.0F, 1.0F);
 			return MathHelper.hsvToRGB(0.62222224F - lvt_1_1_ * 0.05F, 0.5F + lvt_1_1_ * 0.1F, 1.0F);
 		}

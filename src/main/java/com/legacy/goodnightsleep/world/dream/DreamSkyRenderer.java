@@ -123,7 +123,7 @@ public class DreamSkyRenderer // implements SkyRenderHandler
 		WorldVertexBufferUploader.draw(bufferbuilder);
 		f12 = 20.0F;
 		textureManager.bindTexture(MOON_PHASES_TEXTURES);
-		int k = world.func_242414_af(); // world.getMoonPhase();
+		int k = world.getMoonPhase(); // world.getMoonPhase();
 		int l = k % 4;
 		int i1 = k / 4 % 2;
 		float f13 = (float) (l + 0) / 4.0F;

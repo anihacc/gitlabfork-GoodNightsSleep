@@ -108,7 +108,7 @@ public class GNSGrassBlock extends GrassBlock
 				BlockState blockstate1;
 				if (rand.nextInt(8) == 0)
 				{
-					List<ConfiguredFeature<?, ?>> list = worldIn.getBiome(blockpos1).func_242440_e().func_242496_b();
+					List<ConfiguredFeature<?, ?>> list = worldIn.getBiome(blockpos1).getGenerationSettings().getFlowerFeatures();
 					if (list.isEmpty())
 					{
 						continue;

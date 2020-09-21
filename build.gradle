@@ -32,7 +32,7 @@ mixin {
 }
 
 minecraft {
-    mappings channel: 'snapshot', version: '20200820-1.16.1'
+    mappings channel: 'snapshot', version: '20200916-1.16.2'
     accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
     runs {
         client {
@@ -78,7 +78,7 @@ minecraft {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.16.3-34.0.0'
+    minecraft 'net.minecraftforge:forge:1.16.3-34.0.9'
 }
 
 jar {

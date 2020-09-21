@@ -78,7 +78,7 @@ public class BigDespairMushroomFeature extends Feature<NoFeatureConfig>
 								boolean flag6 = flag || flag4 && l1 == 2;
 								boolean flag7 = flag1 || flag3 && i2 == -2;
 								boolean flag8 = flag2 || flag3 && i2 == 2;
-								this.func_230367_a_(worldIn, blockpos$mutableblockpos, iblockstate1.with(HugeMushroomBlock.WEST, Boolean.valueOf(flag5)).with(HugeMushroomBlock.EAST, Boolean.valueOf(flag6)).with(HugeMushroomBlock.NORTH, Boolean.valueOf(flag7)).with(HugeMushroomBlock.SOUTH, Boolean.valueOf(flag8)));
+								this.setBlockState(worldIn, blockpos$mutableblockpos, iblockstate1.with(HugeMushroomBlock.WEST, Boolean.valueOf(flag5)).with(HugeMushroomBlock.EAST, Boolean.valueOf(flag6)).with(HugeMushroomBlock.NORTH, Boolean.valueOf(flag7)).with(HugeMushroomBlock.SOUTH, Boolean.valueOf(flag8)));
 							}
 						}
 					}
@@ -89,7 +89,7 @@ public class BigDespairMushroomFeature extends Feature<NoFeatureConfig>
 					blockpos$mutableblockpos.setPos(posIn).move(Direction.UP, j2);
 					if (worldIn.getBlockState(blockpos$mutableblockpos).canBeReplacedByLeaves(worldIn, blockpos$mutableblockpos))
 					{
-						this.func_230367_a_(worldIn, blockpos$mutableblockpos, iblockstate2);
+						this.setBlockState(worldIn, blockpos$mutableblockpos, iblockstate2);
 					}
 				}
 				return true;

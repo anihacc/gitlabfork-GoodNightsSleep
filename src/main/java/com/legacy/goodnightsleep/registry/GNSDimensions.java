@@ -34,21 +34,21 @@ import net.minecraft.world.gen.settings.SlideSettings;
 
 public class GNSDimensions
 {
-	public static final RegistryKey<World> DREAM = RegistryKey.func_240903_a_(Registry.WORLD_KEY, GoodNightSleep.locate("good_dream"));
-	public static final RegistryKey<World> NIGHTMARE = RegistryKey.func_240903_a_(Registry.WORLD_KEY, GoodNightSleep.locate("nightmare"));
+	public static final RegistryKey<World> DREAM = RegistryKey.getOrCreateKey(Registry.WORLD_KEY, GoodNightSleep.locate("good_dream"));
+	public static final RegistryKey<World> NIGHTMARE = RegistryKey.getOrCreateKey(Registry.WORLD_KEY, GoodNightSleep.locate("nightmare"));
 
-	public static final RegistryKey<DimensionSettings> DREAM_NOISE_SETTINGS = RegistryKey.func_240903_a_(Registry.field_243549_ar, GoodNightSleep.locate("dream"));
-	public static final RegistryKey<DimensionSettings> NIGHTMARE_NOISE_SETTINGS = RegistryKey.func_240903_a_(Registry.field_243549_ar, GoodNightSleep.locate("nightmare"));
+	public static final RegistryKey<DimensionSettings> DREAM_NOISE_SETTINGS = RegistryKey.getOrCreateKey(Registry.NOISE_SETTINGS_KEY, GoodNightSleep.locate("dream"));
+	public static final RegistryKey<DimensionSettings> NIGHTMARE_NOISE_SETTINGS = RegistryKey.getOrCreateKey(Registry.NOISE_SETTINGS_KEY, GoodNightSleep.locate("nightmare"));
 
-	public static final RegistryKey<DimensionType> DREAM_TYPE = RegistryKey.func_240903_a_(Registry.DIMENSION_TYPE_KEY, GoodNightSleep.locate("dream"));
-	public static final RegistryKey<DimensionType> NIGHTMARE_TYPE = RegistryKey.func_240903_a_(Registry.DIMENSION_TYPE_KEY, GoodNightSleep.locate("nightmare"));
+	public static final RegistryKey<DimensionType> DREAM_TYPE = RegistryKey.getOrCreateKey(Registry.DIMENSION_TYPE_KEY, GoodNightSleep.locate("dream"));
+	public static final RegistryKey<DimensionType> NIGHTMARE_TYPE = RegistryKey.getOrCreateKey(Registry.DIMENSION_TYPE_KEY, GoodNightSleep.locate("nightmare"));
 
-	public static final RegistryKey<Dimension> DREAM_DIM = RegistryKey.func_240903_a_(Registry.DIMENSION_KEY, GoodNightSleep.locate("good_dream"));
-	public static final RegistryKey<Dimension> NIGHTMARE_DIM = RegistryKey.func_240903_a_(Registry.DIMENSION_KEY, GoodNightSleep.locate("nightmare"));
+	public static final RegistryKey<Dimension> DREAM_DIM = RegistryKey.getOrCreateKey(Registry.DIMENSION_KEY, GoodNightSleep.locate("good_dream"));
+	public static final RegistryKey<Dimension> NIGHTMARE_DIM = RegistryKey.getOrCreateKey(Registry.DIMENSION_KEY, GoodNightSleep.locate("nightmare"));
 
 	public static ResourceLocation getDimensionLocations(boolean dream)
 	{
-		return getDimensionKeys(dream).func_240901_a_();
+		return getDimensionKeys(dream).getLocation();
 	}
 
 	public static RegistryKey<World> getDimensionKeys(boolean dream)
@@ -58,11 +58,11 @@ public class GNSDimensions
 
 	public static void init(SimpleRegistry<Dimension> simpleRegistry, MutableRegistry<DimensionType> mutableRegistry, MutableRegistry<Biome> biomeRegistry, MutableRegistry<DimensionSettings> dimSettingsRegistry, long seed)
 	{
-		Function<RegistryKey<DimensionSettings>, DimensionSettings> dreamSettings = (noiseSettings) -> createNoiseSettings(new DimensionStructuresSettings(false), false, GNSBlocks.delusion_stone.getDefaultState(), Blocks.WATER.getDefaultState(), DREAM_NOISE_SETTINGS.func_240901_a_());
+		Function<RegistryKey<DimensionSettings>, DimensionSettings> dreamSettings = (noiseSettings) -> createNoiseSettings(new DimensionStructuresSettings(false), false, GNSBlocks.delusion_stone.getDefaultState(), Blocks.WATER.getDefaultState(), DREAM_NOISE_SETTINGS.getLocation());
 		Function<DimensionSettings, ChunkGenerator> dreamGenerator = (s) -> createDreamChunkGenerator(biomeRegistry, dimSettingsRegistry, seed);
 		Supplier<DimensionType> dreamDimensionType = () -> createDimSettings(OptionalLong.of(6000L), false, false);
 
-		Function<RegistryKey<DimensionSettings>, DimensionSettings> nightmareSettings = (noiseSettings) -> createNoiseSettings(new DimensionStructuresSettings(false), false, Blocks.STONE.getDefaultState(), Blocks.LAVA.getDefaultState(), NIGHTMARE_NOISE_SETTINGS.func_240901_a_());
+		Function<RegistryKey<DimensionSettings>, DimensionSettings> nightmareSettings = (noiseSettings) -> createNoiseSettings(new DimensionStructuresSettings(false), false, Blocks.STONE.getDefaultState(), Blocks.LAVA.getDefaultState(), NIGHTMARE_NOISE_SETTINGS.getLocation());
 		Function<DimensionSettings, ChunkGenerator> nightmareGenerator = (s) -> createNightmareChunkGenerator(biomeRegistry, dimSettingsRegistry, seed);
 		Supplier<DimensionType> nightmareDimensionType = () -> createDimSettings(OptionalLong.of(18000L), true, true);
 
@@ -75,8 +75,8 @@ public class GNSDimensions
 
 	public static void initNoiseSettings()
 	{
-		registerNoiseSettings(DREAM_NOISE_SETTINGS, createNoiseSettings(new DimensionStructuresSettings(false), false, GNSBlocks.delusion_stone.getDefaultState(), Blocks.WATER.getDefaultState(), DREAM_NOISE_SETTINGS.func_240901_a_()));
-		registerNoiseSettings(NIGHTMARE_NOISE_SETTINGS, createNoiseSettings(new DimensionStructuresSettings(false), false, Blocks.STONE.getDefaultState(), Blocks.LAVA.getDefaultState(), NIGHTMARE_NOISE_SETTINGS.func_240901_a_()));
+		registerNoiseSettings(DREAM_NOISE_SETTINGS, createNoiseSettings(new DimensionStructuresSettings(false), false, GNSBlocks.delusion_stone.getDefaultState(), Blocks.WATER.getDefaultState(), DREAM_NOISE_SETTINGS.getLocation()));
+		registerNoiseSettings(NIGHTMARE_NOISE_SETTINGS, createNoiseSettings(new DimensionStructuresSettings(false), false, Blocks.STONE.getDefaultState(), Blocks.LAVA.getDefaultState(), NIGHTMARE_NOISE_SETTINGS.getLocation()));
 	}
 
 	public static DimensionSettings createNoiseSettings(DimensionStructuresSettings structureSettingsIn, boolean flag1, BlockState fillerBlockIn, BlockState fluidBlockIn, ResourceLocation settingsLocationIn)
@@ -98,7 +98,7 @@ public class GNSDimensions
 
 	private static DimensionSettings registerNoiseSettings(RegistryKey<DimensionSettings> settingsKeyIn, DimensionSettings dimSettingsIn)
 	{
-		WorldGenRegistries.func_243664_a(WorldGenRegistries.field_243658_j, settingsKeyIn.func_240901_a_(), dimSettingsIn);
+		WorldGenRegistries.register(WorldGenRegistries.NOISE_SETTINGS, settingsKeyIn.getLocation(), dimSettingsIn);
 		return dimSettingsIn;
 	}
 
@@ -106,7 +106,7 @@ public class GNSDimensions
 	{
 		return new NoiseChunkGenerator(DreamBiomeProvider.DreamPreset.dreamPreset.func_242619_a(biomeRegistry, seed), seed, () ->
 		{
-			return dimSettingsRegistry.func_243576_d(GNSDimensions.DREAM_NOISE_SETTINGS);
+			return dimSettingsRegistry.getOrThrow(GNSDimensions.DREAM_NOISE_SETTINGS);
 		});
 	}
 
@@ -114,13 +114,13 @@ public class GNSDimensions
 	{
 		return new NoiseChunkGenerator(NightmareBiomeProvider.NightmarePreset.nightmarePreset.func_242619_a(biomeRegistry, seed), seed, () ->
 		{
-			return dimSettingsRegistry.func_243576_d(GNSDimensions.NIGHTMARE_NOISE_SETTINGS);
+			return dimSettingsRegistry.getOrThrow(GNSDimensions.NIGHTMARE_NOISE_SETTINGS);
 		});
 	}
 
 	private static DimensionType createDimSettings(OptionalLong time, boolean ultrawarm, boolean piglinSafe)
 	{
-		return new DimensionType(time, true, false, ultrawarm, true, 1, false, piglinSafe, true, false, false, 256, FuzzedBiomeMagnifier.INSTANCE, BlockTags.INFINIBURN_OVERWORLD.getName(), DimensionType.field_242710_a, 0.0F)
+		return new DimensionType(time, true, false, ultrawarm, true, 1, false, piglinSafe, true, false, false, 256, FuzzedBiomeMagnifier.INSTANCE, BlockTags.INFINIBURN_OVERWORLD.getName(), DimensionType.OVERWORLD_ID, 0.0F)
 		{
 		};
 	}

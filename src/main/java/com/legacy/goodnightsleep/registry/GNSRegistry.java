@@ -90,6 +90,6 @@ public class GNSRegistry
 
 	public static <T> RegistryKey<Registry<T>> createKey(String name)
 	{
-		return RegistryKey.func_240904_a_(GoodNightSleep.locate(name));
+		return RegistryKey.getOrCreateRootKey(GoodNightSleep.locate(name));
 	}
 }
