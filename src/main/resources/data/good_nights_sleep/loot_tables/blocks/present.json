@@ -1,51 +1,233 @@
 {
-	"type": "minecraft:block",
-	"pools": [
-		{
-			"name": "block",
-			"rolls": 1,
-			"entries": [
-				{
-					"type": "minecraft:item",
-					"weight": 30,
-					"name": "good_nights_sleep:rainbow_ingot"
-				},
-				{
-					"type": "minecraft:item",
-					"weight": 10,
-					"name": "minecraft:gold_ingot"
-				},
-				{
-					"type": "minecraft:item",
-					"weight": 10,
-					"name": "minecraft:iron_ingot"
-				},
-				{
-					"type": "minecraft:item",
-					"weight": 10,
-					"name": "minecraft:redstone"
-				},
-				{
-					"type": "minecraft:item",
-					"weight": 5,
-					"name": "minecraft:emerald"
-				},
-				{
-					"type": "minecraft:item",
-					"weight": 30,
-					"name": "good_nights_sleep:candy"
-				},
-				{
-					"type": "minecraft:item",
-					"weight": 5,
-					"name": "good_nights_sleep:positite_gem"
-				}
-			],
-			"conditions": [
-				{
-					"condition": "minecraft:survives_explosion"
-				}
-			]
-		}
-	]
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:alternatives",
+          "children": [
+            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "condition": "minecraft:match_tool",
+                  "predicate": {
+                    "enchantments": [
+                      {
+                        "enchantment": "minecraft:silk_touch",
+                        "levels": {
+                          "min": 1
+                        }
+                      }
+                    ]
+                  }
+                }
+              ],
+              "name": "good_nights_sleep:present"
+            },
+            {
+              "type": "minecraft:item",
+              "weight": 30,
+              "name": "good_nights_sleep:rainbow_ingot"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:alternatives",
+          "children": [
+            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "condition": "minecraft:match_tool",
+                  "predicate": {
+                    "enchantments": [
+                      {
+                        "enchantment": "minecraft:silk_touch",
+                        "levels": {
+                          "min": 1
+                        }
+                      }
+                    ]
+                  }
+                }
+              ],
+              "name": "good_nights_sleep:present"
+            },
+            {
+              "type": "minecraft:item",
+              "weight": 10,
+              "name": "minecraft:gold_ingot"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:alternatives",
+          "children": [
+            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "condition": "minecraft:match_tool",
+                  "predicate": {
+                    "enchantments": [
+                      {
+                        "enchantment": "minecraft:silk_touch",
+                        "levels": {
+                          "min": 1
+                        }
+                      }
+                    ]
+                  }
+                }
+              ],
+              "name": "good_nights_sleep:present"
+            },
+            {
+              "type": "minecraft:item",
+              "weight": 10,
+              "name": "minecraft:iron_ingot"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:alternatives",
+          "children": [
+            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "condition": "minecraft:match_tool",
+                  "predicate": {
+                    "enchantments": [
+                      {
+                        "enchantment": "minecraft:silk_touch",
+                        "levels": {
+                          "min": 1
+                        }
+                      }
+                    ]
+                  }
+                }
+              ],
+              "name": "good_nights_sleep:present"
+            },
+            {
+              "type": "minecraft:item",
+              "weight": 10,
+              "functions": [
+                {
+                  "function": "minecraft:set_count",
+                  "count": {
+                    "min": 1.0,
+                    "max": 4.0,
+                    "type": "minecraft:uniform"
+                  }
+                }
+              ],
+              "name": "minecraft:redstone"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:alternatives",
+          "children": [
+            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "condition": "minecraft:match_tool",
+                  "predicate": {
+                    "enchantments": [
+                      {
+                        "enchantment": "minecraft:silk_touch",
+                        "levels": {
+                          "min": 1
+                        }
+                      }
+                    ]
+                  }
+                }
+              ],
+              "name": "good_nights_sleep:present"
+            },
+            {
+              "type": "minecraft:item",
+              "weight": 5,
+              "name": "minecraft:emerald"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:alternatives",
+          "children": [
+            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "condition": "minecraft:match_tool",
+                  "predicate": {
+                    "enchantments": [
+                      {
+                        "enchantment": "minecraft:silk_touch",
+                        "levels": {
+                          "min": 1
+                        }
+                      }
+                    ]
+                  }
+                }
+              ],
+              "name": "good_nights_sleep:present"
+            },
+            {
+              "type": "minecraft:item",
+              "weight": 30,
+              "functions": [
+                {
+                  "function": "minecraft:set_count",
+                  "count": {
+                    "min": 1.0,
+                    "max": 3.0,
+                    "type": "minecraft:uniform"
+                  }
+                }
+              ],
+              "name": "good_nights_sleep:candy"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:alternatives",
+          "children": [
+            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "condition": "minecraft:match_tool",
+                  "predicate": {
+                    "enchantments": [
+                      {
+                        "enchantment": "minecraft:silk_touch",
+                        "levels": {
+                          "min": 1
+                        }
+                      }
+                    ]
+                  }
+                }
+              ],
+              "name": "good_nights_sleep:present"
+            },
+            {
+              "type": "minecraft:item",
+              "weight": 5,
+              "name": "good_nights_sleep:positite_gem"
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }

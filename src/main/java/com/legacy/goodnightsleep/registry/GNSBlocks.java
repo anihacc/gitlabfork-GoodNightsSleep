@@ -7,6 +7,7 @@ import com.google.common.collect.Lists;
 import com.legacy.goodnightsleep.GoodNightSleep;
 import com.legacy.goodnightsleep.blocks.GNSBedBlock;
 import com.legacy.goodnightsleep.blocks.GNSFlowerPotBlock;
+import com.legacy.goodnightsleep.blocks.GNSOreBlock;
 import com.legacy.goodnightsleep.blocks.GoldPotBlock;
 import com.legacy.goodnightsleep.blocks.RainbowBlock;
 import com.legacy.goodnightsleep.blocks.natural.GNSFarmlandBlock;
@@ -128,12 +129,12 @@ public class GNSBlocks
 		hope_mushroom_block = register("hope_mushroom_block", new HugeMushroomBlock(Block.Properties.create(Material.WOOD, MaterialColor.YELLOW).hardnessAndResistance(0.2F).sound(SoundType.WOOD)));
 		despair_mushroom_block = register("despair_mushroom_block", new HugeMushroomBlock(Block.Properties.create(Material.WOOD, MaterialColor.GRAY).hardnessAndResistance(0.2F).sound(SoundType.WOOD)));
 
-		candy_ore = register("candy_ore", new Block(Block.Properties.from(Blocks.COAL_ORE).harvestLevel(0).harvestTool(ToolType.PICKAXE)));
-		rainbow_ore = register("rainbow_ore", new Block(Block.Properties.from(Blocks.IRON_ORE).harvestLevel(1).harvestTool(ToolType.PICKAXE)));
-		positite_ore = register("positite_ore", new Block(Block.Properties.from(Blocks.DIAMOND_ORE).harvestLevel(2).harvestTool(ToolType.PICKAXE)));
-		necrum_ore = register("necrum_ore", new Block(Block.Properties.from(Blocks.COAL_ORE).harvestLevel(0).harvestTool(ToolType.PICKAXE)));
-		zitrite_ore = register("zitrite_ore", new Block(Block.Properties.from(Blocks.IRON_ORE).harvestLevel(1).harvestTool(ToolType.PICKAXE)));
-		negatite_ore = register("negatite_ore", new Block(Block.Properties.from(Blocks.DIAMOND_ORE).harvestLevel(2).harvestTool(ToolType.PICKAXE)));
+		candy_ore = register("candy_ore", new GNSOreBlock(Block.Properties.from(Blocks.COAL_ORE).harvestLevel(0).harvestTool(ToolType.PICKAXE)));
+		rainbow_ore = register("rainbow_ore", new GNSOreBlock(Block.Properties.from(Blocks.IRON_ORE).harvestLevel(1).harvestTool(ToolType.PICKAXE)));
+		positite_ore = register("positite_ore", new GNSOreBlock(Block.Properties.from(Blocks.DIAMOND_ORE).harvestLevel(2).harvestTool(ToolType.PICKAXE)));
+		necrum_ore = register("necrum_ore", new GNSOreBlock(Block.Properties.from(Blocks.COAL_ORE).harvestLevel(0).harvestTool(ToolType.PICKAXE)));
+		zitrite_ore = register("zitrite_ore", new GNSOreBlock(Block.Properties.from(Blocks.IRON_ORE).harvestLevel(1).harvestTool(ToolType.PICKAXE)));
+		negatite_ore = register("negatite_ore", new GNSOreBlock(Block.Properties.from(Blocks.DIAMOND_ORE).harvestLevel(2).harvestTool(ToolType.PICKAXE)));
 
 		coal_ore = register("coal_ore", new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0F, 3.0F)));
 		lapis_ore = register("lapis_ore", new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0F, 3.0F)));

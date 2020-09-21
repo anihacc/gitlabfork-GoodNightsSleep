@@ -99,7 +99,6 @@ public class GNSTagProv
 			/*this.getOrCreateBuilder(BlockTags.LOGS).add(GNSBlocks.blood_log);*/
 
 			this.getOrCreateBuilder(BlockTags.PLANKS).addTag(GNSBlockTags.PLANKS);
-
 			this.getOrCreateBuilder(BlockTags.BEDS).add(GNSBlocks.luxurious_bed, GNSBlocks.wretched_bed, GNSBlocks.strange_bed);
 		}
 
@@ -191,6 +190,9 @@ public class GNSTagProv
 			this.copy(BlockTags.WOODEN_SLABS, ItemTags.WOODEN_SLABS);
 			this.copy(BlockTags.WOODEN_STAIRS, ItemTags.WOODEN_STAIRS);
 			this.copy(BlockTags.WOODEN_TRAPDOORS, ItemTags.WOODEN_TRAPDOORS);
+
+			this.getOrCreateBuilder(ItemTags.STONE_TOOL_MATERIALS).addTag(GNSItemTags.COBBLESTONES);
+
 			/*ForgeRegistries.ITEMS.getValues().stream().filter(item -> item.getRegistryName().getNamespace().equals(GoodNightSleep.MODID) && item instanceof MusicDiscItem).forEach(this.getOrCreateBuilder(ItemTags.MUSIC_DISCS)::add);*/
 		}
 

@@ -17,7 +17,7 @@ public class GNSDataGen
 	{
 		DataGenerator gen = event.getGenerator();
 		
-		gen.addProvider(new GNSBiomeProv(gen));
+		//gen.addProvider(new GNSBiomeProv(gen));
 		
 		BlockTagsProvider blockProv = new GNSTagProv.BlockTagProv(gen, event.getExistingFileHelper());
 		gen.addProvider(blockProv);

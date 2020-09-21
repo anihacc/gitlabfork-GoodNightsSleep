@@ -23,6 +23,7 @@ import net.minecraft.advancements.criterion.ItemPredicate;
 import net.minecraft.advancements.criterion.MinMaxBounds;
 import net.minecraft.advancements.criterion.StatePropertiesPredicate;
 import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.DoorBlock;
 import net.minecraft.block.FlowerPotBlock;
 import net.minecraft.block.SlabBlock;
@@ -94,7 +95,7 @@ public class GNSLootProv extends LootTableProvider
 	@Override
 	public String getName()
 	{
-		return "Blue Skies Loot Tables";
+		return "Good Night's Sleep Loot Tables";
 	}
 
 	private class ChestLoot extends ChestLootTables implements LootPoolUtil
@@ -188,8 +189,10 @@ public class GNSLootProv extends LootTableProvider
 					registerLootTable(block, (b) -> droppingItemWithFortune(b, GNSItems.positite));
 				else if (block == GNSBlocks.negatite_ore)
 					registerLootTable(block, (b) -> droppingItemWithFortune(b, GNSItems.negatite));
+				else if (block == GNSBlocks.rainbow_ore)
+					registerLootTable(block, (b) -> dropRainbow(b));
 				else if (block == GNSBlocks.present)
-					registerLootTable(block, (b) -> droppingWithSilkTouch(b, GNSItems.positite));
+					registerLootTable(block, (b) -> dropPresent(b));
 				else if (block instanceof DoorBlock)
 					registerLootTable(block, (b) -> droppingWhen(b, DoorBlock.HALF, DoubleBlockHalf.LOWER));
 				else if (block instanceof FlowerPotBlock)
@@ -220,6 +223,31 @@ public class GNSLootProv extends LootTableProvider
 		{
 			return blocks()::iterator;
 		}
+
+		// @formatter:off
+		protected LootTable.Builder dropRainbow(Block block)
+		{
+			return LootTable.builder().addLootPool(LootPool.builder().rolls(ConstantRange.of(1))
+					.addEntry(ItemLootEntry.builder(block).acceptCondition(SILK_TOUCH).alternatively(ItemLootEntry.builder(GNSBlocks.rainbow_ore).weight(50)))
+					.addEntry(ItemLootEntry.builder(block).acceptCondition(SILK_TOUCH).alternatively(ItemLootEntry.builder(Blocks.GOLD_ORE).weight(10)))
+					.addEntry(ItemLootEntry.builder(block).acceptCondition(SILK_TOUCH).alternatively(ItemLootEntry.builder(Blocks.IRON_ORE).weight(10)))
+					.addEntry(ItemLootEntry.builder(block).acceptCondition(SILK_TOUCH).alternatively(ItemLootEntry.builder(Items.REDSTONE).weight(10).acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 4.0F)))))
+					.addEntry(ItemLootEntry.builder(block).acceptCondition(SILK_TOUCH).alternatively(ItemLootEntry.builder(Items.EMERALD).weight(1)))
+					.addEntry(ItemLootEntry.builder(block).acceptCondition(SILK_TOUCH).alternatively(ItemLootEntry.builder(GNSItems.candy).weight(20).acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 3.0F))))));
+		}
+		
+		protected LootTable.Builder dropPresent(Block block)
+		{
+			return LootTable.builder().addLootPool(LootPool.builder().rolls(ConstantRange.of(1))
+					.addEntry(ItemLootEntry.builder(block).acceptCondition(SILK_TOUCH).alternatively(ItemLootEntry.builder(GNSItems.rainbow_ingot).weight(30)))
+					.addEntry(ItemLootEntry.builder(block).acceptCondition(SILK_TOUCH).alternatively(ItemLootEntry.builder(Items.GOLD_INGOT).weight(10)))
+					.addEntry(ItemLootEntry.builder(block).acceptCondition(SILK_TOUCH).alternatively(ItemLootEntry.builder(Items.IRON_INGOT).weight(10)))
+					.addEntry(ItemLootEntry.builder(block).acceptCondition(SILK_TOUCH).alternatively(ItemLootEntry.builder(Items.REDSTONE).weight(10).acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 4.0F)))))
+					.addEntry(ItemLootEntry.builder(block).acceptCondition(SILK_TOUCH).alternatively(ItemLootEntry.builder(Items.EMERALD).weight(5)))
+					.addEntry(ItemLootEntry.builder(block).acceptCondition(SILK_TOUCH).alternatively(ItemLootEntry.builder(GNSItems.candy).weight(30).acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 3.0F)))))
+					.addEntry(ItemLootEntry.builder(block).acceptCondition(SILK_TOUCH).alternatively(ItemLootEntry.builder(GNSItems.positite).weight(5))));
+		}
+		// @formatter:on
 
 		private Stream<Block> blocks()
 		{
