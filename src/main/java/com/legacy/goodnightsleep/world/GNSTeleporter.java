@@ -8,8 +8,7 @@ import net.minecraft.util.RegistryKey;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
-import net.minecraft.world.chunk.IChunk;
-import net.minecraft.world.gen.Heightmap;
+import net.minecraft.world.gen.Heightmap.Type;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.fml.LogicalSide;
@@ -31,8 +30,8 @@ public class GNSTeleporter
 		if (!ForgeHooks.onTravelToDimension(entity, transferDimension))
 			return;
 
-		IChunk chunk = transferWorld.getChunk(pos);
-		int transferY = type == overworld && entity instanceof ServerPlayerEntity && ((ServerPlayerEntity) entity).func_241140_K_(/*overworld*/) != null ? ((ServerPlayerEntity) entity).func_241140_K_(/*overworld*/).getY() : chunk.getTopBlockY(Heightmap.Type.MOTION_BLOCKING, pos.getX(), pos.getZ()) + 1;
+		int maxY = entity.world.getHeight(Type.MOTION_BLOCKING_NO_LEAVES, pos.getX(), pos.getZ());
+		int transferY = type == overworld && entity instanceof ServerPlayerEntity && ((ServerPlayerEntity) entity).func_241140_K_(/*overworld*/) != null ? ((ServerPlayerEntity) entity).func_241140_K_(/*overworld*/).getY() : maxY;
 
 		Vector3d endpointPos = new Vector3d(pos.getX() + 0.5, transferY, pos.getZ() + 0.5);
 
