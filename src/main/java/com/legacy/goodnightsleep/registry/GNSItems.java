@@ -26,7 +26,7 @@ public class GNSItems
 {
 	private static IForgeRegistry<Item> iItemRegistry;
 
-	public static Item positite_gem, zitrite_ingot, negatite_gem, necrum, rainbow_ingot, candy_ingot;
+	public static Item positite, zitrite_ingot, negatite, necrum, rainbow_ingot, candy_ingot;
 
 	public static Item candy_pickaxe, candy_axe, candy_shovel, candy_hoe, candy_sword;
 
@@ -86,10 +86,10 @@ public class GNSItems
 		lolipop = register("lolipop", new Item(new Item.Properties().group(GNSCreativeTabs.items)));
 		candy_ingot = register("candy_ingot", new Item(new Item.Properties()));
 		rainbow_ingot = register("rainbow_ingot", new Item(new Item.Properties().group(GNSCreativeTabs.items)));
-		positite_gem = register("positite_gem", new Item(new Item.Properties().group(GNSCreativeTabs.items)));
+		positite = register("positite_gem", new Item(new Item.Properties().group(GNSCreativeTabs.items)));
 		necrum = register("necrum", new Item(new Item.Properties().group(GNSCreativeTabs.items)));
 		zitrite_ingot = register("zitrite_ingot", new Item(new Item.Properties().group(GNSCreativeTabs.items)));
-		negatite_gem = register("negatite_gem", new Item(new Item.Properties().group(GNSCreativeTabs.items)));
+		negatite = register("negatite_gem", new Item(new Item.Properties().group(GNSCreativeTabs.items)));
 		necrotic_extract = register("necrotic_extract", new Item(new Item.Properties().group(GNSCreativeTabs.items)));
 		powdered_sugar = register("powdered_sugar", new Item(new Item.Properties().group(GNSCreativeTabs.items)));
 

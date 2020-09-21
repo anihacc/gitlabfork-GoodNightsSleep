@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_trapdoor",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "good_nights_sleep:white_planks"
+    }
+  },
+  "result": {
+    "item": "good_nights_sleep:white_trapdoor",
+    "count": 2
+  }
+}

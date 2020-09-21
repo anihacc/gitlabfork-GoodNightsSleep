@@ -1,11 +1,11 @@
 {
-	"replace": false,
-	"values": [
-		"good_nights_sleep:candy_block",
-		"good_nights_sleep:rainbow_block",
-		"good_nights_sleep:positite_block",
-		"good_nights_sleep:necrum_block",
-		"good_nights_sleep:zitrite_block",
-		"good_nights_sleep:negatite_block"
-	]
+  "replace": false,
+  "values": [
+    "#good_nights_sleep:storage_blocks/moonstone",
+    "#good_nights_sleep:storage_blocks/pyrope",
+    "#good_nights_sleep:storage_blocks/diopside",
+    "#good_nights_sleep:storage_blocks/turquoise",
+    "#good_nights_sleep:storage_blocks/charoite",
+    "#good_nights_sleep:storage_blocks/horizonite"
+  ]
 }

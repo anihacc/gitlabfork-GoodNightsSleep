@@ -25,7 +25,7 @@ public enum GNSArmorMaterial implements IArmorMaterial
 		return Ingredient.fromItems(GNSItems.rainbow_ingot);
 	}), POSITITE("positite", 49, new int[] { 3, 8, 6, 3 }, 10, GNSSounds.ITEM_ARMOR_EQUIP_POSITITE, 2.0F, () ->
 	{
-		return Ingredient.fromItems(GNSItems.positite_gem);
+		return Ingredient.fromItems(GNSItems.positite);
 	}), NECRUM("necrum", 5, new int[] { 2, 3, 3, 2 }, 0, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0F, () ->
 	{
 		return Ingredient.fromItems(GNSItems.necrum);
@@ -34,7 +34,7 @@ public enum GNSArmorMaterial implements IArmorMaterial
 		return Ingredient.fromItems(GNSItems.zitrite_ingot);
 	}), NEGATITE("negatite", 29, new int[] { 4, 9, 7, 4 }, 0, GNSSounds.ITEM_ARMOR_EQUIP_NEGATITE, 4.0F, () ->
 	{
-		return Ingredient.fromItems(GNSItems.negatite_gem);
+		return Ingredient.fromItems(GNSItems.negatite);
 	});
 
 	private static final int[] MAX_DAMAGE_ARRAY = new int[] { 13, 15, 16, 11 };

@@ -1,8 +1,8 @@
 {
-	"replace": false,
-	"values": [
-		"good_nights_sleep:dream_grass_block",
-		"good_nights_sleep:nightmare_grass_block",
-		"good_nights_sleep:dream_dirt"
-	]
+  "replace": false,
+  "values": [
+    "good_nights_sleep:dream_grass_block",
+    "good_nights_sleep:dream_dirt",
+    "good_nights_sleep:nightmare_grass_block"
+  ]
 }

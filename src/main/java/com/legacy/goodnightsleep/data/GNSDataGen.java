@@ -2,6 +2,7 @@ package com.legacy.goodnightsleep.data;
 
 import com.legacy.goodnightsleep.GoodNightSleep;
 
+import net.minecraft.data.BlockTagsProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -16,6 +17,13 @@ public class GNSDataGen
 	{
 		DataGenerator gen = event.getGenerator();
 		
-		gen.addProvider(new GNSBiomeGen(gen));
+		gen.addProvider(new GNSBiomeProv(gen));
+		
+		BlockTagsProvider blockProv = new GNSTagProv.BlockTagProv(gen, event.getExistingFileHelper());
+		gen.addProvider(blockProv);
+		gen.addProvider(new GNSTagProv.ItemTagProv(gen, blockProv, event.getExistingFileHelper()));
+		gen.addProvider(new GNSRecipeProv(gen));
+		gen.addProvider(new GNSLootProv(gen));
+		//gen.addProvider(new GNSAdvancementProv(gen));
 	}
 }

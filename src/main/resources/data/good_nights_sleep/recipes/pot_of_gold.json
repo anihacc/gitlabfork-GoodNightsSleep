@@ -1,23 +1,22 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-        "iii",
-        "iGi",
-        "iCi"
-    ],
-    "key": {
-        "i": {
-            "item": "good_nights_sleep:rainbow_ingot"
-        },
-        "G": {
-            "item": "minecraft:gold_block"
-        },
-        "C": {
-            "item": "minecraft:cauldron"
-        }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "III",
+    "IGI",
+    "ICI"
+  ],
+  "key": {
+    "I": {
+      "item": "good_nights_sleep:rainbow_ingot"
     },
-    "result": {
-        "item": "good_nights_sleep:pot_of_gold",
-        "count": 1
+    "G": {
+      "item": "minecraft:gold_block"
+    },
+    "C": {
+      "item": "minecraft:cauldron"
     }
+  },
+  "result": {
+    "item": "good_nights_sleep:pot_of_gold"
+  }
 }

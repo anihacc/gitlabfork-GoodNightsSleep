@@ -4,11 +4,11 @@
 	"compatibilityLevel": "JAVA_8",
 	"refmap": "good_nights_sleep.refmap.json",
 	"mixins": [
-		"WorldRendererMixin",
 		"MinecraftServerMixin",
 		"EntityMixin"
 	],
 	"client": [
+		"WorldRendererMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

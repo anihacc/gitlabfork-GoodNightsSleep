@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "good_nights_sleep:dream_trapdoor",
+    "good_nights_sleep:white_trapdoor",
+    "good_nights_sleep:dead_trapdoor",
+    "good_nights_sleep:blood_trapdoor"
+  ]
+}

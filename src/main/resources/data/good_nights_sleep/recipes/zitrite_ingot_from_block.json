@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "good_nights_sleep:ores/zitrite"
+    }
+  ],
+  "result": {
+    "item": "good_nights_sleep:zitrite_ingot",
+    "count": 9
+  }
+}

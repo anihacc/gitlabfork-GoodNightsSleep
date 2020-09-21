@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "good_nights_sleep:delusion_stonebrick"
+  },
+  "result": "good_nights_sleep:delusion_stonebrick_stairs",
+  "count": 1
+}

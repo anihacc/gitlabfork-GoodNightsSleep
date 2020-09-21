@@ -1,12 +1,12 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "X X",
-    "X X"
+    "# #",
+    "# #"
   ],
   "key": {
-    "X": {
-      "item": "good_nights_sleep:candy_block"
+    "#": {
+      "tag": "good_nights_sleep:storage_blocks/moonstone"
     }
   },
   "result": {

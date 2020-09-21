@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "good_nights_sleep:storage_blocks/turquoise"
+    }
+  ],
+  "result": {
+    "item": "good_nights_sleep:necrum",
+    "count": 9
+  }
+}

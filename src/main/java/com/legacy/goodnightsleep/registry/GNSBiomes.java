@@ -1,7 +1,7 @@
 package com.legacy.goodnightsleep.registry;
 
 import com.legacy.goodnightsleep.GoodNightSleep;
-import com.legacy.goodnightsleep.data.GNSBiomeGen;
+import com.legacy.goodnightsleep.data.GNSBiomeProv;
 import com.legacy.goodnightsleep.world.biome_provider.DreamBiomeProvider;
 import com.legacy.goodnightsleep.world.biome_provider.NightmareBiomeProvider;
 
@@ -17,15 +17,15 @@ import net.minecraftforge.registries.IForgeRegistry;
 
 public class GNSBiomes
 {
-	public static final Biome SLEEPY_HILLS = GNSBiomeGen.Makers.SLEEPY_HILLS;
-	public static final Biome DREAMY_FOREST = GNSBiomeGen.Makers.DREAMY_FOREST;
-	public static final Biome GOOD_DREAM_PLAINS = GNSBiomeGen.Makers.GOOD_DREAM_PLAINS;
+	public static final Biome SLEEPY_HILLS = GNSBiomeProv.Makers.SLEEPY_HILLS;
+	public static final Biome DREAMY_FOREST = GNSBiomeProv.Makers.DREAMY_FOREST;
+	public static final Biome GOOD_DREAM_PLAINS = GNSBiomeProv.Makers.GOOD_DREAM_PLAINS;
 
-	public static final Biome NIGHTMARE_HILLS = GNSBiomeGen.Makers.NIGHTMARE_HILLS;
-	public static final Biome SHAMEFUL_PLAINS = GNSBiomeGen.Makers.SHAMEFUL_PLAINS;
-	public static final Biome WASTED_FOREST = GNSBiomeGen.Makers.WASTED_FOREST;
+	public static final Biome NIGHTMARE_HILLS = GNSBiomeProv.Makers.NIGHTMARE_HILLS;
+	public static final Biome SHAMEFUL_PLAINS = GNSBiomeProv.Makers.SHAMEFUL_PLAINS;
+	public static final Biome WASTED_FOREST = GNSBiomeProv.Makers.WASTED_FOREST;
 
-	public static final Biome HOPEFUL_FIELDS = GNSBiomeGen.Makers.HOPEFUL_FIELDS;
+	public static final Biome HOPEFUL_FIELDS = GNSBiomeProv.Makers.HOPEFUL_FIELDS;
 
 	public static void init(Register<Biome> event)
 	{

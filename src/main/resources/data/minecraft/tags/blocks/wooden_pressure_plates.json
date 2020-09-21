@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "good_nights_sleep:dream_pressure_plate",
+    "good_nights_sleep:white_pressure_plate",
+    "good_nights_sleep:dead_pressure_plate",
+    "good_nights_sleep:blood_pressure_plate"
+  ]
+}

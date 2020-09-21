@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "tag": "good_nights_sleep:ores/rainbow"
+  },
+  "result": "good_nights_sleep:rainbow_ingot",
+  "experience": 0.7,
+  "cookingtime": 200
+}

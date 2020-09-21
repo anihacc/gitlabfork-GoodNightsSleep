@@ -1,9 +1,9 @@
 {
-	"replace": false,
-	"values": [
-		"good_nights_sleep:dream_door",
-		"good_nights_sleep:white_door",
-		"good_nights_sleep:dead_door",
-		"good_nights_sleep:blood_door"
-	]
+  "replace": false,
+  "values": [
+    "good_nights_sleep:dream_door",
+    "good_nights_sleep:white_door",
+    "good_nights_sleep:dead_door",
+    "good_nights_sleep:blood_door"
+  ]
 }

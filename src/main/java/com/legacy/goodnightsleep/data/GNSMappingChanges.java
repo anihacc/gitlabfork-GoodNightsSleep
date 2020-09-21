@@ -156,10 +156,10 @@ public class GNSMappingChanges
 			put(GoodNightSleep.locateOld("strange_bed_item"), GNSItems.strange_bed);
 			put(GoodNightSleep.locateOld("candy_ingot"), GNSItems.candy_ingot);
 			put(GoodNightSleep.locateOld("rainbow_ingot"), GNSItems.rainbow_ingot);
-			put(GoodNightSleep.locateOld("positite_gem"), GNSItems.positite_gem);
+			put(GoodNightSleep.locateOld("positite_gem"), GNSItems.positite);
 			put(GoodNightSleep.locateOld("necrum"), GNSItems.necrum);
 			put(GoodNightSleep.locateOld("zitrite_ingot"), GNSItems.zitrite_ingot);
-			put(GoodNightSleep.locateOld("negatite_gem"), GNSItems.negatite_gem);
+			put(GoodNightSleep.locateOld("negatite_gem"), GNSItems.negatite);
 			put(GoodNightSleep.locateOld("candy_pickaxe"), GNSItems.candy_pickaxe);
 			put(GoodNightSleep.locateOld("candy_axe"), GNSItems.candy_axe);
 			put(GoodNightSleep.locateOld("candy_shovel"), GNSItems.candy_shovel);

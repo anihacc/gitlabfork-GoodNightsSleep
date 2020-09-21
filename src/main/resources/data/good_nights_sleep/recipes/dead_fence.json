@@ -2,15 +2,15 @@
   "type": "minecraft:crafting_shaped",
   "group": "wooden_fence",
   "pattern": [
-    "W#W",
-    "W#W"
+    "PSP",
+    "PSP"
   ],
   "key": {
-    "#": {
-      "item": "minecraft:stick"
+    "P": {
+      "item": "good_nights_sleep:dead_planks"
     },
-    "W": {
-        "item": "good_nights_sleep:dead_planks"
+    "S": {
+      "tag": "forge:rods/wooden"
     }
   },
   "result": {

@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "tag": "good_nights_sleep:ores/negatite"
+  },
+  "result": "good_nights_sleep:negatite_gem",
+  "experience": 1.0,
+  "cookingtime": 200
+}

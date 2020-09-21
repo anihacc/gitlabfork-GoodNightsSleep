@@ -1,19 +1,17 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "XX ",
-    " # ",
-    " # "
+    "XX",
+    " #",
+    " #"
   ],
   "key": {
     "#": {
       "item": "minecraft:stick"
     },
-    "X": [
-      {
-        "item": "good_nights_sleep:negatite_gem"
-      }
-    ]
+    "X": {
+      "tag": "good_nights_sleep:gems/negatite"
+    }
   },
   "result": {
     "item": "good_nights_sleep:negatite_hoe"

@@ -5,15 +5,12 @@
     "##"
   ],
   "key": {
-    "#": [
-      {
-        "item": "good_nights_sleep:delusion_stone"
-	    } 
-    ]
+    "#": {
+      "item": "good_nights_sleep:delusion_stone"
+    }
   },
   "result": {
     "item": "good_nights_sleep:delusion_stonebrick",
     "count": 4
-
   }
 }

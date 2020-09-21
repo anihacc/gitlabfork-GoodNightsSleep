@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "good_nights_sleep:ores/candy"
+    }
+  ],
+  "result": {
+    "item": "good_nights_sleep:candy",
+    "count": 9
+  }
+}

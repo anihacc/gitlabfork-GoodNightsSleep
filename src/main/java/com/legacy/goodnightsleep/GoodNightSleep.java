@@ -12,6 +12,8 @@ import com.legacy.goodnightsleep.client.audio.GNSMusicHandler;
 import com.legacy.goodnightsleep.client.render.GNSEntityRendering;
 import com.legacy.goodnightsleep.client.render.GNSTileEntityRendering;
 import com.legacy.goodnightsleep.client.resource_pack.GNSResourcePackHandler;
+import com.legacy.goodnightsleep.data.GNSBlockTags;
+import com.legacy.goodnightsleep.data.GNSItemTags;
 import com.legacy.goodnightsleep.data.GNSMappingChanges;
 import com.legacy.goodnightsleep.event.GNSEvents;
 import com.legacy.goodnightsleep.event.GNSPlayerEvents;
@@ -78,6 +80,9 @@ public class GoodNightSleep
 
 		PacketHandler.register();
 		ToolCompat.init();
+		
+		GNSBlockTags.init();
+		GNSItemTags.init();
 	}
 
 	public void clientInit(FMLClientSetupEvent event)

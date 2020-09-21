@@ -1,9 +1,21 @@
 {
-	"replace": false,
-	"values": [
-		"good_nights_sleep:dream_log",
-		"good_nights_sleep:white_log",
-		"good_nights_sleep:dead_log",
-		"good_nights_sleep:blood_log"
-	]
+  "replace": false,
+  "values": [
+    "good_nights_sleep:dream_log",
+    "good_nights_sleep:white_log",
+    "good_nights_sleep:dead_log",
+    "good_nights_sleep:blood_log",
+    "good_nights_sleep:dream_wood",
+    "good_nights_sleep:white_wood",
+    "good_nights_sleep:dead_wood",
+    "good_nights_sleep:blood_wood",
+    "good_nights_sleep:stripped_dream_log",
+    "good_nights_sleep:stripped_white_log",
+    "good_nights_sleep:stripped_dead_log",
+    "good_nights_sleep:stripped_blood_log",
+    "good_nights_sleep:stripped_dream_wood",
+    "good_nights_sleep:stripped_white_wood",
+    "good_nights_sleep:stripped_dead_wood",
+    "good_nights_sleep:stripped_blood_wood"
+  ]
 }

@@ -1,7 +1,7 @@
 {
-	"replace": false,
-	"values": [
-		"good_nights_sleep:dream_sapling",
-		"good_nights_sleep:candy_sapling"
-	]
+  "replace": false,
+  "values": [
+    "good_nights_sleep:dream_sapling",
+    "good_nights_sleep:candy_sapling"
+  ]
 }

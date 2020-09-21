@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "tag": "good_nights_sleep:ores/necrum"
+  },
+  "result": "good_nights_sleep:necrum",
+  "experience": 0.2,
+  "cookingtime": 200
+}

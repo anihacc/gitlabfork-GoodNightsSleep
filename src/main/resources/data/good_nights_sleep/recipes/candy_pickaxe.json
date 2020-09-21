@@ -9,11 +9,9 @@
     "#": {
       "item": "minecraft:stick"
     },
-    "X": [
-      {
-        "item": "good_nights_sleep:candy_block"
-      }
-    ]
+    "X": {
+      "tag": "good_nights_sleep:storage_blocks/moonstone"
+    }
   },
   "result": {
     "item": "good_nights_sleep:candy_pickaxe"

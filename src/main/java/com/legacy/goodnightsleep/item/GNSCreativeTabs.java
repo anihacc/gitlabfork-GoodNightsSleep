@@ -44,7 +44,7 @@ public abstract class GNSCreativeTabs extends ItemGroup
 		@Override
 		public ItemStack createIcon() 
 		{
-			return new ItemStack(GNSItems.positite_gem);
+			return new ItemStack(GNSItems.positite);
 		}
 	};
 }
