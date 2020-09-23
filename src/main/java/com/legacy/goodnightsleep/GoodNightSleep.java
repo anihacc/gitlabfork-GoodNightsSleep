@@ -35,7 +35,7 @@ public class GoodNightSleep
 
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::initialization);
 
-		DistExecutor.runWhenOn(Dist.CLIENT, () -> () ->
+		DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () ->
 		{
 			FMLJavaModLoadingContext.get().getModEventBus().addListener(GoodNightSleepClient::initialization);
 			MinecraftForge.EVENT_BUS.register(new GoodNightSleepClient());

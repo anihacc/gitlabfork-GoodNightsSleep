@@ -1,7 +1,7 @@
 package com.legacy.goodnightsleep.client.render.tile.util;
 
 import com.legacy.goodnightsleep.GoodNightSleep;
-import com.legacy.goodnightsleep.blocks.tile.GNSBedBlock;
+import com.legacy.goodnightsleep.blocks.GNSBedBlock;
 import com.legacy.goodnightsleep.tile_entity.GNSTileEntityTypes;
 import com.legacy.goodnightsleep.tile_entity.TileEntityLuxuriousBed;
 import com.mojang.blaze3d.matrix.MatrixStack;

@@ -11,7 +11,6 @@ import com.legacy.goodnightsleep.blocks.natural.GNSGrassBlock;
 import com.legacy.goodnightsleep.blocks.natural.GNSMushroomBlock;
 import com.legacy.goodnightsleep.blocks.natural.GNSRainbowCropBlock;
 import com.legacy.goodnightsleep.blocks.natural.GNSTallGrassBlock;
-import com.legacy.goodnightsleep.blocks.tile.GNSBedBlock;
 import com.legacy.goodnightsleep.item.sapling.CandyTree;
 import com.legacy.goodnightsleep.item.sapling.DreamTree;
 
