@@ -224,7 +224,8 @@ public class DreamBiomeProvider extends BiomeProvider
 		private static final Map<ResourceLocation, DreamBiomeProvider.DreamPreset> biomeMap = Maps.newHashMap();
 		public static final DreamBiomeProvider.DreamPreset dreamPreset = new DreamBiomeProvider.DreamPreset(GoodNightSleep.locate("good_dream"), (preset, biomeList, seedIn) ->
 		{
-			return new DreamBiomeProvider(seedIn, ImmutableList.of(Pair.of(new Biome.Attributes(0.0F, 0.0F, 0.0F, 0.0F, 0.0F), () ->
+			return new DreamBiomeProvider(seedIn, ImmutableList.of(
+				Pair.of(new Biome.Attributes(0.0F, 0.0F, 0.0F, 0.0F, 0.0F), () ->
 			{
 				return biomeList.getOrThrow(GNSBiomes.Keys.SLEEPY_HILLS);
 			}), Pair.of(new Biome.Attributes(0.0F, 0.0F, 0.0F, 0.1F, 0.0F), () ->
@@ -233,6 +234,9 @@ public class DreamBiomeProvider extends BiomeProvider
 			}), Pair.of(new Biome.Attributes(0.0F, 0.1F, 0.0F, 0.0F, 0.0F), () ->
 			{
 				return biomeList.getOrThrow(GNSBiomes.Keys.GOOD_DREAM_PLAINS);
+			}), Pair.of(new Biome.Attributes(0.0F, 0.0F, 0.1F, 0.0F, 0.0F), () ->
+			{
+				return biomeList.getOrThrow(GNSBiomes.Keys.LOLLIPOP_LANDS);
 			})), Optional.of(Pair.of(biomeList, preset)));
 		});
 		private final ResourceLocation field_235290_d_;

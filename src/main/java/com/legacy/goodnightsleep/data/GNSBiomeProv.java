@@ -103,10 +103,11 @@ public class GNSBiomeProv extends BiomeProvider
 		public static final Biome SLEEPY_HILLS = createSleepyHillsBiome(0.1F, 0.5F, 0.5F, 0.0F, 4159204, 329011);
 		public static final Biome GOOD_DREAM_PLAINS = createGoodDreamPlainsBiome(0.0F, 0.1F, 0.5F, 0.0F, 4159204, 329011);
 		public static final Biome DREAMY_FOREST = createDreamyForestBiome(0.0F, 0.2F, 0.5F, 0.0F, 4159204, 329011);
+		public static final Biome LOLLIPOP_LANDS = createLollipopLandsBiome(0.0F, 0.2F, 0.5F, 0.0F, 4159204, 329011);
 
 		public static final Biome NIGHTMARE_HILLS = createNightmareBiome(0.1F, 1.0F, 0.8F, 0.0F, 4159204, 329011);
 		public static final Biome SHAMEFUL_PLAINS = createShamefulPlainsBiome(0.1F, 0.1F, 0.8F, 0.0F, 4159204, 329011);
-		public static final Biome WASTED_FOREST = createWastedForestBiome(0.0F, 0.1F, 0.5F, 0.0F, 4159204, 329011);
+		public static final Biome WASTED_FOREST = createWastedForestBiome(0.0F, 0.1F, 0.8F, 0.0F, 4159204, 329011);
 
 		// UNUSED
 		public static final Biome HOPEFUL_FIELDS = createHopefulFieldsBiome(0.0F, 0.4F, 0.3F, 0.0F, 4159204, 329011);
@@ -116,6 +117,7 @@ public class GNSBiomeProv extends BiomeProvider
 			BIOMES.put(GoodNightSleep.locate("sleepy_hills"), SLEEPY_HILLS); // 329011
 			BIOMES.put(GoodNightSleep.locate("good_dream_plains"), GOOD_DREAM_PLAINS);
 			BIOMES.put(GoodNightSleep.locate("dreamy_forest"), DREAMY_FOREST);
+			BIOMES.put(GoodNightSleep.locate("lollipop_lands"), LOLLIPOP_LANDS);
 
 			// UNUSED
 			BIOMES.put(GoodNightSleep.locate("hopeful_fields"), HOPEFUL_FIELDS);
@@ -164,7 +166,7 @@ public class GNSBiomeProv extends BiomeProvider
 
 			GNSFeatures.addCarvers(builder);
 
-			return (new Biome.Builder()).precipitation(Biome.RainType.NONE).category(Biome.Category.NONE).depth(depthIn).scale(scaleIn).temperature(tempIn).downfall(downfallIn).setEffects((new BiomeAmbience.Builder()).setWaterColor(waterColorIn).setWaterFogColor(waterFogColorIn).setFogColor(12638463).withSkyColor(calculateSkyColor(tempIn)).setMoodSound(MoodSoundAmbience.DEFAULT_CAVE).build()).withMobSpawnSettings(spawns.copy()).withGenerationSettings(builder.build()).build();
+			return (new Biome.Builder()).precipitation(Biome.RainType.NONE).category(Biome.Category.NONE).depth(depthIn).scale(scaleIn).temperature(tempIn).downfall(downfallIn).setEffects((new BiomeAmbience.Builder()).withGrassColor(0xffffff).setWaterColor(waterColorIn).setWaterFogColor(waterFogColorIn).setFogColor(12638463).withSkyColor(calculateSkyColor(tempIn)).setMoodSound(MoodSoundAmbience.DEFAULT_CAVE).build()).withMobSpawnSettings(spawns.copy()).withGenerationSettings(builder.build()).build();
 		}
 
 		/**
@@ -193,7 +195,7 @@ public class GNSBiomeProv extends BiomeProvider
 
 			GNSFeatures.addCarvers(builder);
 
-			return (new Biome.Builder()).precipitation(Biome.RainType.NONE).category(Biome.Category.NONE).depth(depthIn).scale(scaleIn).temperature(tempIn).downfall(downfallIn).setEffects((new BiomeAmbience.Builder()).setWaterColor(waterColorIn).setWaterFogColor(waterFogColorIn).setFogColor(12638463).withSkyColor(calculateSkyColor(tempIn)).setMoodSound(MoodSoundAmbience.DEFAULT_CAVE).build()).withMobSpawnSettings(spawns.copy()).withGenerationSettings(builder.build()).build();
+			return (new Biome.Builder()).precipitation(Biome.RainType.NONE).category(Biome.Category.NONE).depth(depthIn).scale(scaleIn).temperature(tempIn).downfall(downfallIn).setEffects((new BiomeAmbience.Builder()).withGrassColor(0xffffff).setWaterColor(waterColorIn).setWaterFogColor(waterFogColorIn).setFogColor(12638463).withSkyColor(calculateSkyColor(tempIn)).setMoodSound(MoodSoundAmbience.DEFAULT_CAVE).build()).withMobSpawnSettings(spawns.copy()).withGenerationSettings(builder.build()).build();
 		}
 
 		/**
@@ -222,7 +224,31 @@ public class GNSBiomeProv extends BiomeProvider
 
 			GNSFeatures.addCarvers(builder);
 
-			return (new Biome.Builder()).precipitation(Biome.RainType.NONE).category(Biome.Category.NONE).depth(depthIn).scale(scaleIn).temperature(tempIn).downfall(downfallIn).setEffects((new BiomeAmbience.Builder()).setWaterColor(waterColorIn).setWaterFogColor(waterFogColorIn).setFogColor(12638463).withSkyColor(calculateSkyColor(tempIn)).setMoodSound(MoodSoundAmbience.DEFAULT_CAVE).build()).withMobSpawnSettings(spawns.copy()).withGenerationSettings(builder.build()).build();
+			return (new Biome.Builder()).precipitation(Biome.RainType.NONE).category(Biome.Category.NONE).depth(depthIn).scale(scaleIn).temperature(tempIn).downfall(downfallIn).setEffects((new BiomeAmbience.Builder()).withGrassColor(0xffffff).setWaterColor(waterColorIn).setWaterFogColor(waterFogColorIn).setFogColor(12638463).withSkyColor(calculateSkyColor(tempIn)).setMoodSound(MoodSoundAmbience.DEFAULT_CAVE).build()).withMobSpawnSettings(spawns.copy()).withGenerationSettings(builder.build()).build();
+		}
+
+		public static Biome createLollipopLandsBiome(float depthIn, float scaleIn, float tempIn, float downfallIn, int waterColorIn, int waterFogColorIn)
+		{
+			MobSpawnInfo.Builder spawns = new MobSpawnInfo.Builder();
+
+			spawns.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(GNSEntityTypes.SPAWNER_ENTITY, 140, 1, 1));
+
+			spawns.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(GNSEntityTypes.BABY_CREEPER, 10, 1, 4));
+
+			BiomeGenerationSettings.Builder builder = (new BiomeGenerationSettings.Builder()).withSurfaceBuilder(GNSBiomes.SurfaceBuilders.DREAM_GRASS_SURFACE_BUILDER);
+
+			builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, GNSFeatures.LARGE_CANDY_TREE.withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.field_242902_f.configure(new AtSurfaceWithExtraConfig(0, 1.0F, 5))));
+			builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, GNSFeatures.DREAM_TREE.withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.field_242902_f.configure(new AtSurfaceWithExtraConfig(0, 0.3F, 1))));
+
+			GNSFeatures.addDreamSponges(builder);
+			GNSFeatures.addDreamOres(builder);
+
+			GNSFeatures.addNoiseBasedGrass(builder, GNSFeatures.DREAM_GRASS_CONFIG);
+			GNSFeatures.addFlowers(builder, GNSFeatures.DREAM_FLOWER_CONFIG, 5);
+
+			GNSFeatures.addCarvers(builder);
+			// TODO CCFF99
+			return (new Biome.Builder()).precipitation(Biome.RainType.NONE).category(Biome.Category.NONE).depth(depthIn).scale(scaleIn).temperature(tempIn).downfall(downfallIn).setEffects((new BiomeAmbience.Builder()).withGrassColor(0xFFFFCC).setWaterColor(waterColorIn).setWaterFogColor(waterFogColorIn).setFogColor(12638463).withSkyColor(calculateSkyColor(tempIn)).setMoodSound(MoodSoundAmbience.DEFAULT_CAVE).build()).withMobSpawnSettings(spawns.copy()).withGenerationSettings(builder.build()).build();
 		}
 
 		/**
@@ -249,7 +275,7 @@ public class GNSBiomeProv extends BiomeProvider
 
 			GNSFeatures.addCarvers(builder);
 
-			return (new Biome.Builder()).precipitation(Biome.RainType.NONE).category(Biome.Category.NONE).depth(depthIn).scale(scaleIn).temperature(tempIn).downfall(downfallIn).setEffects((new BiomeAmbience.Builder()).setWaterColor(waterColorIn).setWaterFogColor(waterFogColorIn).setFogColor(12638463).withSkyColor(calculateSkyColor(tempIn)).setMoodSound(MoodSoundAmbience.DEFAULT_CAVE).build()).withMobSpawnSettings(spawns.copy()).withGenerationSettings(builder.build()).build();
+			return (new Biome.Builder()).precipitation(Biome.RainType.NONE).category(Biome.Category.NONE).depth(depthIn).scale(scaleIn).temperature(tempIn).downfall(downfallIn).setEffects((new BiomeAmbience.Builder()).withGrassColor(0xffffff).setWaterColor(waterColorIn).setWaterFogColor(waterFogColorIn).setFogColor(12638463).withSkyColor(calculateSkyColor(tempIn)).setMoodSound(MoodSoundAmbience.DEFAULT_CAVE).build()).withMobSpawnSettings(spawns.copy()).withGenerationSettings(builder.build()).build();
 		}
 
 		public static Biome createNightmareBiome(float depthIn, float scaleIn, float tempIn, float downfallIn, int waterColorIn, int waterFogColorIn)

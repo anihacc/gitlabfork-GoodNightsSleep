@@ -1,6 +1,7 @@
 {
-    "parent": "block/cross",
+    "parent": "good_nights_sleep:block/tinted_cross_overlay",
     "textures": {
-        "cross": "good_nights_sleep:block/tall_dream_grass"
+        "cross": "good_nights_sleep:block/tall_dream_grass",
+        "overlay": "good_nights_sleep:block/tall_dream_grass_overlay"
     }
 }

@@ -7,6 +7,7 @@ import com.legacy.goodnightsleep.blocks.util.ToolCompat;
 import com.legacy.goodnightsleep.capabillity.DreamPlayer;
 import com.legacy.goodnightsleep.capabillity.util.CapabilityStorage;
 import com.legacy.goodnightsleep.capabillity.util.IDreamPlayer;
+import com.legacy.goodnightsleep.client.GNSBlockColoring;
 import com.legacy.goodnightsleep.client.GNSClientEvents;
 import com.legacy.goodnightsleep.client.audio.GNSMusicHandler;
 import com.legacy.goodnightsleep.client.render.GNSEntityRendering;
@@ -93,6 +94,7 @@ public class GoodNightSleep
 		GNSTileEntityRendering.initialization();
 		GNSEntityRendering.initialization();
 		GNSResourcePackHandler.init();
+		GNSBlockColoring.init();
 
 		renderCutout(GNSBlocks.candy_sapling);
 		renderCutout(GNSBlocks.dream_sapling);
@@ -122,6 +124,8 @@ public class GoodNightSleep
 		renderCutout(GNSBlocks.white_trapdoor);
 		renderCutout(GNSBlocks.dead_trapdoor);
 		renderCutout(GNSBlocks.blood_trapdoor);
+
+		RenderTypeLookup.setRenderLayer(GNSBlocks.dream_grass_block, RenderType.getCutoutMipped());
 
 		RenderTypeLookup.setRenderLayer(GNSBlocks.rainbow, RenderType.getTranslucent());
 		RenderTypeLookup.setRenderLayer(GNSBlocks.dream_leaves, RenderType.getCutoutMipped());
