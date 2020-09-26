@@ -41,7 +41,7 @@ public class GNSBiomes
 		register(registry, "sleepy_hills", SLEEPY_HILLS);
 		register(registry, "dreamy_forest", DREAMY_FOREST);
 		register(registry, "good_dream_plains", GOOD_DREAM_PLAINS);
-		register(registry, "lollipop_land", LOLLIPOP_LANDS);
+		register(registry, "lollipop_lands", LOLLIPOP_LANDS);
 
 		register(registry, "nightmare_hills", NIGHTMARE_HILLS);
 		register(registry, "shameful_plains", SHAMEFUL_PLAINS);
@@ -75,7 +75,7 @@ public class GNSBiomes
 		public static final RegistryKey<Biome> SLEEPY_HILLS = RegistryKey.getOrCreateKey(Registry.BIOME_KEY, GoodNightSleep.locate("sleepy_hills"));
 		public static final RegistryKey<Biome> DREAMY_FOREST = RegistryKey.getOrCreateKey(Registry.BIOME_KEY, GoodNightSleep.locate("dreamy_forest"));
 		public static final RegistryKey<Biome> GOOD_DREAM_PLAINS = RegistryKey.getOrCreateKey(Registry.BIOME_KEY, GoodNightSleep.locate("good_dream_plains"));
-		public static final RegistryKey<Biome> LOLLIPOP_LANDS = RegistryKey.getOrCreateKey(Registry.BIOME_KEY, GoodNightSleep.locate("lollipop_land"));
+		public static final RegistryKey<Biome> LOLLIPOP_LANDS = RegistryKey.getOrCreateKey(Registry.BIOME_KEY, GoodNightSleep.locate("lollipop_lands"));
 
 		public static final RegistryKey<Biome> NIGHTMARE_HILLS = RegistryKey.getOrCreateKey(Registry.BIOME_KEY, GoodNightSleep.locate("nightmare_hills"));
 		public static final RegistryKey<Biome> SHAMEFUL_PLAINS = RegistryKey.getOrCreateKey(Registry.BIOME_KEY, GoodNightSleep.locate("shameful_plains"));
