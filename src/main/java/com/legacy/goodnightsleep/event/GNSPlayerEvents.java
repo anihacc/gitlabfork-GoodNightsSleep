@@ -17,6 +17,7 @@ import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent.Clone;
+import net.minecraftforge.event.entity.player.PlayerEvent.PlayerChangedDimensionEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class GNSPlayerEvents
@@ -77,6 +78,14 @@ public class GNSPlayerEvents
 
 	@SubscribeEvent
 	public void onEntityJoin(EntityJoinWorldEvent event)
+	{
+		if (event.getEntity() instanceof ServerPlayerEntity)
+			event.getEntity().getCapability(DreamPlayer.GNS_PLAYER).ifPresent(c -> PacketHandler.sendTo(new SendEnteredTimePacket(c.getEnteredDreamTime()), (ServerPlayerEntity) event.getEntity()));
+
+	}
+	
+	@SubscribeEvent
+	public void onEntityChangeDimension(PlayerChangedDimensionEvent event)
 	{
 		if (event.getEntity() instanceof ServerPlayerEntity)
 			event.getEntity().getCapability(DreamPlayer.GNS_PLAYER).ifPresent(c -> PacketHandler.sendTo(new SendEnteredTimePacket(c.getEnteredDreamTime()), (ServerPlayerEntity) event.getEntity()));

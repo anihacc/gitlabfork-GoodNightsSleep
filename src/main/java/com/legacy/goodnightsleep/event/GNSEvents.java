@@ -18,17 +18,11 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.eventbus.api.Event.Result;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class GNSEvents
 {
-	@SubscribeEvent
-	public void onWorldLoad(WorldEvent.Load event)
-	{
-	}
-
 	@SubscribeEvent
 	public void onPlayerRightClickEntity(PlayerInteractEvent.EntityInteract event)
 	{
