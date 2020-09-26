@@ -143,20 +143,6 @@ public class GNSBiomeProv extends BiomeProvider
 
 			BiomeGenerationSettings.Builder builder = (new BiomeGenerationSettings.Builder()).withSurfaceBuilder(GNSBiomes.SurfaceBuilders.DREAM_GRASS_SURFACE_BUILDER);
 
-			/*DefaultBiomeFeatures.func_243735_b(spawns, 95, 5, 100);*/ // default hostiles
-
-			// DefaultBiomeFeatures.func_243738_d(builder); // default carvers
-			/*DefaultBiomeFeatures.func_243742_f(builder); // lakes
-			DefaultBiomeFeatures.withMonsterRoom(builder); // monster rooms/dungeons
-			DefaultBiomeFeatures.func_243748_i(builder); // dirt/diorite/granite/andesite
-			DefaultBiomeFeatures.func_243750_j(builder); // default ores
-			DefaultBiomeFeatures.func_243754_n(builder); // disks
-			DefaultBiomeFeatures.func_243707_U(builder); // default flowers
-			DefaultBiomeFeatures.func_243712_Z(builder); // mushrooms
-			DefaultBiomeFeatures.func_243727_ak(builder); // springs
-			DefaultBiomeFeatures.func_243730_an(builder); // surface snow
-			*/
-
 			GNSFeatures.addDreamTrees(builder);
 			GNSFeatures.addHugeHopeMushrooms(builder);
 			GNSFeatures.addScatteredDreamFeatures(builder);
@@ -227,6 +213,9 @@ public class GNSBiomeProv extends BiomeProvider
 			return (new Biome.Builder()).precipitation(Biome.RainType.NONE).category(Biome.Category.NONE).depth(depthIn).scale(scaleIn).temperature(tempIn).downfall(downfallIn).setEffects((new BiomeAmbience.Builder()).withGrassColor(0xffffff).setWaterColor(waterColorIn).setWaterFogColor(waterFogColorIn).setFogColor(12638463).withSkyColor(calculateSkyColor(tempIn)).setMoodSound(MoodSoundAmbience.DEFAULT_CAVE).build()).withMobSpawnSettings(spawns.copy()).withGenerationSettings(builder.build()).build();
 		}
 
+		/**
+		 * The Lollipop Lands biome.
+		 */
 		public static Biome createLollipopLandsBiome(float depthIn, float scaleIn, float tempIn, float downfallIn, int waterColorIn, int waterFogColorIn)
 		{
 			MobSpawnInfo.Builder spawns = new MobSpawnInfo.Builder();
