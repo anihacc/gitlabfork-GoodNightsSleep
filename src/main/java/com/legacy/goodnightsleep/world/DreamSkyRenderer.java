@@ -1,4 +1,4 @@
-package com.legacy.goodnightsleep.world.dream;
+package com.legacy.goodnightsleep.world;
 
 import java.util.Random;
 
@@ -22,9 +22,10 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Matrix4f;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.math.vector.Vector3f;
+import net.minecraftforge.client.ISkyRenderHandler;
 
 @SuppressWarnings("deprecation")
-public class DreamSkyRenderer // implements SkyRenderHandler
+public class DreamSkyRenderer implements ISkyRenderHandler
 {
 	private static final ResourceLocation MOON_PHASES_TEXTURES = new ResourceLocation("textures/environment/moon_phases.png");
 	private static final ResourceLocation SUN_TEXTURES = new ResourceLocation("textures/environment/sun.png");
@@ -50,7 +51,7 @@ public class DreamSkyRenderer // implements SkyRenderHandler
 		return (float) (d0 * 2.0D + d1) / 3.0F;
 	}
 
-	// @Override
+	@Override
 	public void render(int ticks, float partialTicks, MatrixStack matrixStackIn, ClientWorld world, Minecraft mc)
 	{
 		RenderSystem.disableTexture();

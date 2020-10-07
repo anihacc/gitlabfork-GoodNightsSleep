@@ -16,7 +16,7 @@ import net.minecraftforge.fml.client.registry.RenderingRegistry;
 public class GNSEntityRendering
 {
 
-	public static void initialization()
+	public static void init()
 	{
 		register(GNSEntityTypes.UNICORN, UnicornRenderer::new);
 		register(GNSEntityTypes.GUMMY_BEAR, GummyBearRenderer::new);

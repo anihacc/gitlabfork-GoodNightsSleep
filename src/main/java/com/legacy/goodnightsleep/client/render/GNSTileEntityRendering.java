@@ -9,7 +9,7 @@ import net.minecraftforge.fml.client.registry.ClientRegistry;
 
 public class GNSTileEntityRendering
 {
-	public static void initialization()
+	public static void init()
 	{
 		ClientRegistry.bindTileEntityRenderer(GNSTileEntityTypes.LUXURIOUS_BED, TileEntityLuxuriousBedRenderer::new);
 		ClientRegistry.bindTileEntityRenderer(GNSTileEntityTypes.WRETCHED_BED, TileEntityWretchedBedRenderer::new);

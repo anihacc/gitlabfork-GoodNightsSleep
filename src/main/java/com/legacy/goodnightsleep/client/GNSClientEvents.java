@@ -2,23 +2,40 @@ package com.legacy.goodnightsleep.client;
 
 import com.legacy.goodnightsleep.capabillity.DreamPlayer;
 import com.legacy.goodnightsleep.registry.GNSDimensions;
+import com.legacy.goodnightsleep.world.DreamSkyRenderer;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 
+import it.unimi.dsi.fastutil.objects.Object2ObjectMap;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.world.DimensionRenderInfo;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.potion.Effects;
 import net.minecraft.tags.FluidTags;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
+import net.minecraftforge.client.ISkyRenderHandler;
 import net.minecraftforge.client.event.EntityViewRenderEvent.FogColors;
 import net.minecraftforge.client.event.EntityViewRenderEvent.RenderFogEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 
 public class GNSClientEvents
 {
 	private static final Minecraft mc = Minecraft.getInstance();
+	private static final DimensionRenderInfo DREAM_RENDER_INFO = new DreamRenderInfo();
+	private static final DimensionRenderInfo NIGHTMARE_RENDER_INFO = new NightmareRenderInfo();
+
+	private static final Object2ObjectMap<ResourceLocation, DimensionRenderInfo> DIMENSION_RENDER_INFO = ObfuscationReflectionHelper.getPrivateValue(DimensionRenderInfo.class, DREAM_RENDER_INFO, "field_239208_a_");
+
+	public static void initDimensionRenderInfo()
+	{
+		DIMENSION_RENDER_INFO.put(GNSDimensions.DREAM_ID, DREAM_RENDER_INFO);
+		DIMENSION_RENDER_INFO.put(GNSDimensions.NIGHTMARE_ID, NIGHTMARE_RENDER_INFO);
+	}
 
 	@SuppressWarnings("deprecation")
 	@SubscribeEvent
@@ -35,12 +52,12 @@ public class GNSClientEvents
 	@SubscribeEvent
 	public void onFogColor(FogColors event)
 	{
-		if (shouldNightmareFogRender())
+		/*if (shouldNightmareFogRender())
 		{
 			event.setRed(0.2F);
 			event.setBlue(0.05F);
 			event.setGreen(0.05F);
-		}
+		}*/
 	}
 
 	@SubscribeEvent
@@ -99,5 +116,45 @@ public class GNSClientEvents
 		f1 = f2 + (f1 - f2) / 3.0F;
 
 		return f1;
+	}
+
+	public static class DreamRenderInfo extends DimensionRenderInfo.Overworld
+	{
+		public DreamRenderInfo()
+		{
+			super();
+		}
+
+		@Override
+		public ISkyRenderHandler getSkyRenderHandler()
+		{
+			return DreamSkyRenderer.INSTANCE;
+		}
+	}
+
+	public static class NightmareRenderInfo extends DimensionRenderInfo.Overworld
+	{
+		public NightmareRenderInfo()
+		{
+			super();
+		}
+
+		@Override
+		public Vector3d func_230494_a_(Vector3d fogColor, float fogBrightness)
+		{
+			return fogColor;
+		}
+
+		@Override
+		public boolean func_230493_a_(int posX, int posZ)
+		{
+			return true;
+		}
+
+		@Override
+		public ISkyRenderHandler getSkyRenderHandler()
+		{
+			return DreamSkyRenderer.INSTANCE;
+		}
 	}
 }

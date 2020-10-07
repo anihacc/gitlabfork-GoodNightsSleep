@@ -276,7 +276,7 @@ public class NightmareBiomeProvider extends BiomeProvider
 			return new NightmareBiomeProvider(seedIn, ImmutableList.of(Pair.of(new Biome.Attributes(0.0F, 0.0F, 0.0F, 0.0F, 0.0F), () ->
 			{
 				return biomeList.getOrThrow(GNSBiomes.Keys.NIGHTMARE_HILLS);
-			}), Pair.of(new Biome.Attributes(0.0F, 0.0F, 0.0F, 0.0F, 0.1F), () ->
+			}), Pair.of(new Biome.Attributes(0.1F, 0.0F, 0.0F, 0.0F, 0.1F), () ->
 			{
 				return biomeList.getOrThrow(GNSBiomes.Keys.WASTED_FOREST);
 			}), Pair.of(new Biome.Attributes(0.0F, 0.0F, 0.1F, 0.0F, 0.0F), () ->

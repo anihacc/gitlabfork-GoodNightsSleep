@@ -73,8 +73,8 @@ public class GNSFeatures
 
 	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> DREAM_TREE = createConfiguredFeature("dream_tree", createBasicTree(GNSBlocks.dream_log.getDefaultState(), GNSBlocks.dream_leaves.getDefaultState(), 4, 1));
 	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> CANDY_TREE = createConfiguredFeature("candy_tree", createBasicTree(GNSBlocks.white_log.getDefaultState(), GNSBlocks.candy_leaves.getDefaultState(), 5));
-	
-	//5, 7
+
+	// 5, 7
 	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> LARGE_CANDY_TREE = createConfiguredFeature("large_candy_tree", Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(GNSBlocks.white_log.getDefaultState()), new SimpleBlockStateProvider(GNSBlocks.candy_leaves.getDefaultState()), new FancyFoliagePlacer(FeatureSpread.func_242252_a(2), FeatureSpread.func_242252_a(0), 4), new StraightTrunkPlacer(7, 3, 0), new TwoLayerFeature(0, 0, 0, OptionalInt.of(4)))).setIgnoreVines().func_236702_a_(Heightmap.Type.MOTION_BLOCKING).build()));
 
 	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> DIAMOND_TREE = createConfiguredFeature("diamond_tree", Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(GNSBlocks.dream_log.getDefaultState()), new SimpleBlockStateProvider(GNSBlocks.diamond_leaves.getDefaultState()), new FancyFoliagePlacer(FeatureSpread.func_242252_a(2), FeatureSpread.func_242252_a(4), 4), new FancyTrunkPlacer(3, 11, 0), new TwoLayerFeature(0, 0, 0, OptionalInt.of(4)))).setIgnoreVines().func_236702_a_(Heightmap.Type.MOTION_BLOCKING).build()));

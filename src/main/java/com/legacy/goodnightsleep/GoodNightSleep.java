@@ -91,10 +91,11 @@ public class GoodNightSleep
 		MinecraftForge.EVENT_BUS.register(new GNSMusicHandler());
 		MinecraftForge.EVENT_BUS.register(new GNSClientEvents());
 
-		GNSTileEntityRendering.initialization();
-		GNSEntityRendering.initialization();
+		GNSTileEntityRendering.init();
+		GNSEntityRendering.init();
 		GNSResourcePackHandler.init();
 		GNSBlockColoring.init();
+		GNSClientEvents.initDimensionRenderInfo();
 
 		renderCutout(GNSBlocks.candy_sapling);
 		renderCutout(GNSBlocks.dream_sapling);

@@ -34,17 +34,20 @@ import net.minecraft.world.gen.settings.SlideSettings;
 
 public class GNSDimensions
 {
-	public static final RegistryKey<World> DREAM = RegistryKey.getOrCreateKey(Registry.WORLD_KEY, GoodNightSleep.locate("good_dream"));
-	public static final RegistryKey<World> NIGHTMARE = RegistryKey.getOrCreateKey(Registry.WORLD_KEY, GoodNightSleep.locate("nightmare"));
+	public static final ResourceLocation DREAM_ID = GoodNightSleep.locate("good_dream");
+	public static final ResourceLocation NIGHTMARE_ID = GoodNightSleep.locate("nightmare");
+
+	public static final RegistryKey<World> DREAM = RegistryKey.getOrCreateKey(Registry.WORLD_KEY, DREAM_ID);
+	public static final RegistryKey<World> NIGHTMARE = RegistryKey.getOrCreateKey(Registry.WORLD_KEY, NIGHTMARE_ID);
 
 	public static final RegistryKey<DimensionSettings> DREAM_NOISE_SETTINGS = RegistryKey.getOrCreateKey(Registry.NOISE_SETTINGS_KEY, GoodNightSleep.locate("dream"));
-	public static final RegistryKey<DimensionSettings> NIGHTMARE_NOISE_SETTINGS = RegistryKey.getOrCreateKey(Registry.NOISE_SETTINGS_KEY, GoodNightSleep.locate("nightmare"));
+	public static final RegistryKey<DimensionSettings> NIGHTMARE_NOISE_SETTINGS = RegistryKey.getOrCreateKey(Registry.NOISE_SETTINGS_KEY, NIGHTMARE_ID);
 
 	public static final RegistryKey<DimensionType> DREAM_TYPE = RegistryKey.getOrCreateKey(Registry.DIMENSION_TYPE_KEY, GoodNightSleep.locate("dream"));
-	public static final RegistryKey<DimensionType> NIGHTMARE_TYPE = RegistryKey.getOrCreateKey(Registry.DIMENSION_TYPE_KEY, GoodNightSleep.locate("nightmare"));
+	public static final RegistryKey<DimensionType> NIGHTMARE_TYPE = RegistryKey.getOrCreateKey(Registry.DIMENSION_TYPE_KEY, NIGHTMARE_ID);
 
-	public static final RegistryKey<Dimension> DREAM_DIM = RegistryKey.getOrCreateKey(Registry.DIMENSION_KEY, GoodNightSleep.locate("good_dream"));
-	public static final RegistryKey<Dimension> NIGHTMARE_DIM = RegistryKey.getOrCreateKey(Registry.DIMENSION_KEY, GoodNightSleep.locate("nightmare"));
+	public static final RegistryKey<Dimension> DREAM_DIM = RegistryKey.getOrCreateKey(Registry.DIMENSION_KEY, DREAM_ID);
+	public static final RegistryKey<Dimension> NIGHTMARE_DIM = RegistryKey.getOrCreateKey(Registry.DIMENSION_KEY, NIGHTMARE_ID);
 
 	public static ResourceLocation getDimensionLocations(boolean dream)
 	{
@@ -60,11 +63,11 @@ public class GNSDimensions
 	{
 		Function<RegistryKey<DimensionSettings>, DimensionSettings> dreamSettings = (noiseSettings) -> createNoiseSettings(new DimensionStructuresSettings(false), false, GNSBlocks.delusion_stone.getDefaultState(), Blocks.WATER.getDefaultState(), DREAM_NOISE_SETTINGS.getLocation());
 		Function<DimensionSettings, ChunkGenerator> dreamGenerator = (s) -> createDreamChunkGenerator(biomeRegistry, dimSettingsRegistry, seed);
-		Supplier<DimensionType> dreamDimensionType = () -> createDimSettings(OptionalLong.of(6000L), false, false);
+		Supplier<DimensionType> dreamDimensionType = () -> createDimSettings(OptionalLong.of(6000L), false, false, DREAM_ID);
 
 		Function<RegistryKey<DimensionSettings>, DimensionSettings> nightmareSettings = (noiseSettings) -> createNoiseSettings(new DimensionStructuresSettings(false), false, Blocks.STONE.getDefaultState(), Blocks.LAVA.getDefaultState(), NIGHTMARE_NOISE_SETTINGS.getLocation());
 		Function<DimensionSettings, ChunkGenerator> nightmareGenerator = (s) -> createNightmareChunkGenerator(biomeRegistry, dimSettingsRegistry, seed);
-		Supplier<DimensionType> nightmareDimensionType = () -> createDimSettings(OptionalLong.of(18000L), true, true);
+		Supplier<DimensionType> nightmareDimensionType = () -> createDimSettings(OptionalLong.of(18000L), true, true, NIGHTMARE_ID);
 
 		Dimension dreamDim = new Dimension(dreamDimensionType, dreamGenerator.apply(dreamSettings.apply(DREAM_NOISE_SETTINGS)));
 		Dimension nightmareDim = new Dimension(nightmareDimensionType, nightmareGenerator.apply(nightmareSettings.apply(NIGHTMARE_NOISE_SETTINGS)));
@@ -118,9 +121,9 @@ public class GNSDimensions
 		});
 	}
 
-	private static DimensionType createDimSettings(OptionalLong time, boolean ultrawarm, boolean piglinSafe)
+	private static DimensionType createDimSettings(OptionalLong time, boolean ultrawarm, boolean piglinSafe, ResourceLocation effectsId)
 	{
-		return new DimensionType(time, true, false, ultrawarm, true, 1, false, piglinSafe, true, false, false, 256, FuzzedBiomeMagnifier.INSTANCE, BlockTags.INFINIBURN_OVERWORLD.getName(), DimensionType.OVERWORLD_ID, 0.0F)
+		return new DimensionType(time, true, false, ultrawarm, true, 1, false, piglinSafe, true, false, false, 256, FuzzedBiomeMagnifier.INSTANCE, BlockTags.INFINIBURN_OVERWORLD.getName(), effectsId, 0.0F)
 		{
 		};
 	}
