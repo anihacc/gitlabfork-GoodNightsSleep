@@ -163,12 +163,12 @@ public class GNSLootProv extends LootTableProvider
 			blocks().forEach(block ->
 			{
 				if (block == GNSBlocks.dream_grass)
-					this.registerLootTable(block, BlockLootTables::droppingSeeds);
+					this.registerLootTable(block, this.dropRainbowSeeds(block));
 
 				else if (block == GNSBlocks.dream_grass_block)
 					silkOrElse(block, GNSBlocks.dream_dirt);
 				else if (block == GNSBlocks.nightmare_grass_block)
-					silkOrElse(block, GNSBlocks.dream_dirt);
+					silkOrElse(block, Blocks.DIRT);
 				else if (block == GNSBlocks.dream_farmland)
 					registerDropping(block, GNSBlocks.dream_dirt);
 				else if (block == GNSBlocks.delusion_stone)
@@ -257,6 +257,11 @@ public class GNSLootProv extends LootTableProvider
 		private void droppingSeedTag(Block block, ITag.INamedTag<Item> tag)
 		{
 			this.registerLootTable(block, droppingWithShears(block, withExplosionDecay(block, (TagLootEntry.getBuilder(tag).acceptCondition(RandomChance.builder(0.125F))).acceptFunction(ApplyBonus.uniformBonusCount(Enchantments.FORTUNE, 2)))));
+		}
+
+		protected LootTable.Builder dropRainbowSeeds(Block block)
+		{
+			return droppingWithShears(block, withExplosionDecay(block, ItemLootEntry.builder(GNSItems.rainbow_seeds).acceptCondition(RandomChance.builder(0.125F)).acceptFunction(ApplyBonus.uniformBonusCount(Enchantments.FORTUNE, 2))));
 		}
 
 		private void silkOrElse(Block withSilk, IItemProvider without)
