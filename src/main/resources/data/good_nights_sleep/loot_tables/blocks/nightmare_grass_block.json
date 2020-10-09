@@ -33,7 +33,7 @@
                   "condition": "minecraft:survives_explosion"
                 }
               ],
-              "name": "good_nights_sleep:dream_dirt"
+              "name": "minecraft:dirt"
             }
           ]
         }
