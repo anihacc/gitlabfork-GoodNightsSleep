@@ -164,6 +164,10 @@ public class GNSLootProv extends LootTableProvider
 			{
 				if (block == GNSBlocks.dream_grass)
 					this.registerLootTable(block, this.dropRainbowSeeds(block));
+				else if (block == GNSBlocks.nightmare_grass)
+					this.registerLootTable(block, BlockLootTables::droppingSeeds);
+				else if (block == GNSBlocks.prickly_nightmare_grass)
+					this.registerLootTable(block, BlockLootTables::droppingSeeds);
 
 				else if (block == GNSBlocks.dream_grass_block)
 					silkOrElse(block, GNSBlocks.dream_dirt);
