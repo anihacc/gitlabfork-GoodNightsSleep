@@ -56,15 +56,6 @@ public class UnicornEntity extends AbstractHorseEntity
 		this.setUnicornType(compound.getInt("unicornType"));
 	}
 
-	/*@Override
-	protected void registerAttributes()
-	{HorseEntity
-		super.registerAttributes();
-		this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(15.0D);
-		this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.20000000298023224D);
-		this.getAttribute(JUMP_STRENGTH).setBaseValue(this.getModifiedJumpStrength());
-	}*/
-
 	@Override
 	protected void func_230273_eI_()
 	{
