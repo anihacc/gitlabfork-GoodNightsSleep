@@ -13,6 +13,6 @@ public class DreamTree extends Tree
 	@Override
 	protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature(Random random, boolean p_225546_2_)
 	{
-		return GNSFeatures.DREAM_TREE;
+		return GNSFeatures.Configured.BASE_DREAM_TREE;
 	}
 }

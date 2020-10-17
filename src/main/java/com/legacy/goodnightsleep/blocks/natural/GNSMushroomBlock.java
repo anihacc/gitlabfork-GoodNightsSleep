@@ -14,7 +14,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
-import net.minecraft.world.gen.feature.Features;
 import net.minecraft.world.server.ServerWorld;
 
 public class GNSMushroomBlock extends MushroomBlock
@@ -54,7 +53,7 @@ public class GNSMushroomBlock extends MushroomBlock
 
 		if (this == GNSBlocks.despair_mushroom)
 		{
-			configuredfeature = GNSFeatures.HUGE_DESPAIR_MUSHROOM;
+			configuredfeature = GNSFeatures.Configured.BASE_HUGE_DESPAIR_MUSHROOM;
 		}
 		else
 		{
@@ -64,7 +63,7 @@ public class GNSMushroomBlock extends MushroomBlock
 				return false;
 			}
 
-			configuredfeature = GNSFeatures.HUGE_HOPE_MUSHROOM;
+			configuredfeature = GNSFeatures.Configured.BASE_HUGE_HOPE_MUSHROOM;
 		}
 
 		if (configuredfeature.func_242765_a(world, world.getChunkProvider().getChunkGenerator(), rand, pos))

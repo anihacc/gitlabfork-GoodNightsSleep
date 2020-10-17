@@ -36,9 +36,6 @@ import net.minecraft.world.biome.DefaultBiomeFeatures;
 import net.minecraft.world.biome.MobSpawnInfo;
 import net.minecraft.world.biome.MoodSoundAmbience;
 import net.minecraft.world.gen.GenerationStage;
-import net.minecraft.world.gen.feature.Features;
-import net.minecraft.world.gen.placement.AtSurfaceWithExtraConfig;
-import net.minecraft.world.gen.placement.Placement;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 
 public class GNSBiomeProv extends BiomeProvider
@@ -169,8 +166,8 @@ public class GNSBiomeProv extends BiomeProvider
 
 			BiomeGenerationSettings.Builder builder = (new BiomeGenerationSettings.Builder()).withSurfaceBuilder(GNSBiomes.SurfaceBuilders.DREAM_GRASS_SURFACE_BUILDER);
 
-			builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, GNSFeatures.DIAMOND_TREE.withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.field_242902_f.configure(new AtSurfaceWithExtraConfig(0, 0.1F, 1))));
-			builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, GNSFeatures.HUGE_HOPE_MUSHROOM.withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.field_242902_f.configure(new AtSurfaceWithExtraConfig(0, 0.1F, 1))));
+			builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, GNSFeatures.Configured.PLAINS_DIAMOND_TREE);
+			builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, GNSFeatures.Configured.PLAINS_HOPE_MUSHROOM);
 
 			GNSFeatures.addScatteredDreamFeatures(builder);
 			GNSFeatures.addDreamOres(builder);
@@ -199,8 +196,8 @@ public class GNSBiomeProv extends BiomeProvider
 
 			BiomeGenerationSettings.Builder builder = (new BiomeGenerationSettings.Builder()).withSurfaceBuilder(GNSBiomes.SurfaceBuilders.DREAM_GRASS_SURFACE_BUILDER);
 
-			builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, GNSFeatures.DREAM_TREE.withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.field_242902_f.configure(new AtSurfaceWithExtraConfig(0, 1.1F, 5))));
-			builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, GNSFeatures.CANDY_TREE.withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.field_242902_f.configure(new AtSurfaceWithExtraConfig(0, 0.8F, 1))));
+			builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, GNSFeatures.Configured.FOREST_DREAM_TREE);
+			builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, GNSFeatures.Configured.FOREST_CANDY_TREE);
 
 			GNSFeatures.addDreamSponges(builder);
 			GNSFeatures.addDreamOres(builder);
@@ -226,8 +223,8 @@ public class GNSBiomeProv extends BiomeProvider
 
 			BiomeGenerationSettings.Builder builder = (new BiomeGenerationSettings.Builder()).withSurfaceBuilder(GNSBiomes.SurfaceBuilders.DREAM_GRASS_SURFACE_BUILDER);
 
-			builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, GNSFeatures.LARGE_CANDY_TREE.withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.field_242902_f.configure(new AtSurfaceWithExtraConfig(0, 1.0F, 5))));
-			builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, GNSFeatures.DREAM_TREE.withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.field_242902_f.configure(new AtSurfaceWithExtraConfig(0, 0.3F, 1))));
+			builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, GNSFeatures.Configured.LANDS_CANDY_TREE);
+			builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, GNSFeatures.Configured.LANDS_DREAM_TREE);
 
 			GNSFeatures.addDreamSponges(builder);
 			GNSFeatures.addDreamOres(builder);
@@ -275,7 +272,7 @@ public class GNSBiomeProv extends BiomeProvider
 
 			GNSFeatures.addNightmareTrees(builder);
 			GNSFeatures.addHugeDespairMushrooms(builder);
-			GNSFeatures.addScatteredNightmareFeatures(builder, 10);
+			GNSFeatures.addScatteredNightmareFeatures(builder);
 			GNSFeatures.addNightmareOres(builder);
 			DefaultBiomeFeatures.withMonsterRoom(builder); // monster rooms
 
@@ -297,10 +294,10 @@ public class GNSBiomeProv extends BiomeProvider
 
 			BiomeGenerationSettings.Builder builder = (new BiomeGenerationSettings.Builder()).withSurfaceBuilder(GNSBiomes.SurfaceBuilders.NIGHTMARE_GRASS_SURFACE_BUILDER);
 
-			builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, GNSFeatures.LARGE_BLOOD_TREE.withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.field_242902_f.configure(new AtSurfaceWithExtraConfig(0, 0.2F, 1))));
-			builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, GNSFeatures.HUGE_DESPAIR_MUSHROOM.withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.field_242902_f.configure(new AtSurfaceWithExtraConfig(0, 0.1F, 1))));
+			builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, GNSFeatures.Configured.PLAINS_BLOOD_TREE);
+			builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, GNSFeatures.Configured.PLAINS_DESPAIR_MUSHROOM);
 
-			GNSFeatures.addScatteredNightmareFeatures(builder, 35);
+			GNSFeatures.addScatteredNightmareFeatures(builder);
 			GNSFeatures.addNightmareOres(builder);
 			DefaultBiomeFeatures.withMonsterRoom(builder); // monster rooms
 
@@ -319,10 +316,10 @@ public class GNSBiomeProv extends BiomeProvider
 
 			BiomeGenerationSettings.Builder builder = (new BiomeGenerationSettings.Builder()).withSurfaceBuilder(GNSBiomes.SurfaceBuilders.NIGHTMARE_GRASS_SURFACE_BUILDER);
 
-			builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, GNSFeatures.DEAD_TREE.withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.field_242902_f.configure(new AtSurfaceWithExtraConfig(0, 1.1F, 5))));
-			builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, GNSFeatures.LARGE_BLOOD_TREE.withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.field_242902_f.configure(new AtSurfaceWithExtraConfig(0, 0.8F, 1))));
+			builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, GNSFeatures.Configured.FOREST_DEAD_TREE);
+			builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, GNSFeatures.Configured.FOREST_BLOOD_TREE);
 
-			GNSFeatures.addScatteredNightmareFeatures(builder, 20);
+			GNSFeatures.addScatteredNightmareFeatures(builder); // 20
 			GNSFeatures.addNightmareOres(builder);
 			DefaultBiomeFeatures.withMonsterRoom(builder); // monster rooms
 
