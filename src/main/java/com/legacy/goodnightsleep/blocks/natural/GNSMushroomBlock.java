@@ -66,7 +66,7 @@ public class GNSMushroomBlock extends MushroomBlock
 			configuredfeature = GNSFeatures.Configured.BASE_HUGE_HOPE_MUSHROOM;
 		}
 
-		if (configuredfeature.func_242765_a(world, world.getChunkProvider().getChunkGenerator(), rand, pos))
+		if (configuredfeature.generate(world, world.getChunkProvider().getChunkGenerator(), rand, pos))
 		{
 			return true;
 		}

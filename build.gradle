@@ -17,7 +17,7 @@ apply plugin: 'org.spongepowered.mixin'
 
 version = '1.2.9'
 group = 'com.legacy.goodnightsleep'
-archivesBaseName = 'good-nights-sleep-1.16.3'
+archivesBaseName = 'good-nights-sleep-1.16.4'
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
 
@@ -32,7 +32,7 @@ mixin {
 }
 
 minecraft {
-    mappings channel: 'snapshot', version: '20200916-1.16.2'
+    mappings channel: 'snapshot', version: '20201028-1.16.3'
     accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
     runs {
         client {
@@ -78,7 +78,7 @@ minecraft {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.16.3-34.1.0'
+    minecraft 'net.minecraftforge:forge:1.16.4-35.0.1'
 }
 
 jar {

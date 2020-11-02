@@ -19,7 +19,7 @@ public class MinecraftServerMixin
 	@Shadow
 	protected DynamicRegistries.Impl field_240767_f_;
 	@Shadow
-	protected IServerConfiguration field_240768_i_;
+	protected IServerConfiguration serverConfig;
 
 	/*
 	 * MinecraftServer#func_240800_l__
@@ -27,6 +27,6 @@ public class MinecraftServerMixin
 	@Inject(at = @At("HEAD"), method = "func_240800_l__()V")
 	private void initServer(CallbackInfo callback)
 	{
-		GNSDimensions.init(this.field_240768_i_.getDimensionGeneratorSettings().func_236224_e_(), this.field_240767_f_.getRegistry(Registry.DIMENSION_TYPE_KEY), this.field_240767_f_.getRegistry(Registry.BIOME_KEY), this.field_240767_f_.getRegistry(Registry.NOISE_SETTINGS_KEY), this.field_240768_i_.getDimensionGeneratorSettings().getSeed());
+		GNSDimensions.init(this.serverConfig.getDimensionGeneratorSettings().func_236224_e_(), this.field_240767_f_.getRegistry(Registry.DIMENSION_TYPE_KEY), this.field_240767_f_.getRegistry(Registry.BIOME_KEY), this.field_240767_f_.getRegistry(Registry.NOISE_SETTINGS_KEY), this.serverConfig.getDimensionGeneratorSettings().getSeed());
 	}
 }

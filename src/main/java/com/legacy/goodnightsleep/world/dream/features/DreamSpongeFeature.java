@@ -27,7 +27,7 @@ public class DreamSpongeFeature extends Feature<NoFeatureConfig>
 	}
 
 	@Override
-	public boolean func_241855_a(ISeedReader worldIn, ChunkGenerator generator, Random rand, BlockPos pos, NoFeatureConfig config)
+	public boolean generate(ISeedReader worldIn, ChunkGenerator generator, Random rand, BlockPos pos, NoFeatureConfig config)
 	{
 		int x = pos.getX();
 		int y = pos.getY();

@@ -144,8 +144,8 @@ public class GNSBiomeProv extends BiomeProvider
 			GNSFeatures.addHugeHopeMushrooms(builder);
 			GNSFeatures.addScatteredDreamFeatures(builder);
 			GNSFeatures.addDreamOres(builder);
-			GNSFeatures.addNoiseBasedGrass(builder, GNSFeatures.DREAM_GRASS_CONFIG);
-			GNSFeatures.addFlowers(builder, GNSFeatures.DREAM_FLOWER_CONFIG, 5);
+			builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, GNSFeatures.Configured.NOISE_BASED_DREAM_GRASS);
+			builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, GNSFeatures.Configured.DREAM_FLOWERS_5);
 
 			GNSFeatures.addCarvers(builder);
 
@@ -171,10 +171,10 @@ public class GNSBiomeProv extends BiomeProvider
 
 			GNSFeatures.addScatteredDreamFeatures(builder);
 			GNSFeatures.addDreamOres(builder);
-			GNSFeatures.addNoiseBasedGrass(builder, GNSFeatures.DREAM_GRASS_CONFIG);
+			builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, GNSFeatures.Configured.NOISE_BASED_DREAM_GRASS);
 
-			GNSFeatures.addFlowers(builder, GNSFeatures.DREAM_FLOWER_CONFIG, 5);
-			GNSFeatures.addFlowers(builder, GNSFeatures.LOLIPOP_CONFIG, 20);
+			builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, GNSFeatures.Configured.DREAM_FLOWERS_5);
+			builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, GNSFeatures.Configured.DREAM_LOLLIPOPS_20);
 
 			GNSFeatures.addCarvers(builder);
 
@@ -202,8 +202,8 @@ public class GNSBiomeProv extends BiomeProvider
 			GNSFeatures.addDreamSponges(builder);
 			GNSFeatures.addDreamOres(builder);
 
-			GNSFeatures.addNoiseBasedGrass(builder, GNSFeatures.DREAM_GRASS_CONFIG);
-			GNSFeatures.addFlowers(builder, GNSFeatures.DREAM_FLOWER_CONFIG, 5);
+			builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, GNSFeatures.Configured.NOISE_BASED_DREAM_GRASS);
+			builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, GNSFeatures.Configured.DREAM_FLOWERS_5);
 
 			GNSFeatures.addCarvers(builder);
 
@@ -229,8 +229,8 @@ public class GNSBiomeProv extends BiomeProvider
 			GNSFeatures.addDreamSponges(builder);
 			GNSFeatures.addDreamOres(builder);
 
-			GNSFeatures.addNoiseBasedGrass(builder, GNSFeatures.DREAM_GRASS_CONFIG);
-			GNSFeatures.addFlowers(builder, GNSFeatures.DREAM_FLOWER_CONFIG, 5);
+			builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, GNSFeatures.Configured.NOISE_BASED_DREAM_GRASS);
+			builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, GNSFeatures.Configured.DREAM_FLOWERS_5);
 
 			GNSFeatures.addCarvers(builder);
 			// TODO CCFF99
@@ -255,9 +255,9 @@ public class GNSBiomeProv extends BiomeProvider
 			GNSFeatures.addDreamSponges(builder);
 			GNSFeatures.addDreamOres(builder);
 
-			GNSFeatures.addNoiseBasedGrass(builder, GNSFeatures.DREAM_GRASS_CONFIG);
-			GNSFeatures.addFlowers(builder, GNSFeatures.DREAM_FLOWER_CONFIG, 5);
-			GNSFeatures.addFlowers(builder, GNSFeatures.HOPE_MUSHROOM_CONFIG, 25);
+			builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, GNSFeatures.Configured.NOISE_BASED_DREAM_GRASS);
+			builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, GNSFeatures.Configured.DREAM_FLOWERS_5);
+			builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, GNSFeatures.Configured.DREAM_MUSHROOMS_25);
 
 			GNSFeatures.addCarvers(builder);
 
@@ -276,9 +276,9 @@ public class GNSBiomeProv extends BiomeProvider
 			GNSFeatures.addNightmareOres(builder);
 			DefaultBiomeFeatures.withMonsterRoom(builder); // monster rooms
 
-			GNSFeatures.addNoiseBasedGrass(builder, GNSFeatures.NIGHTMARE_GRASS_CONFIG);
-			GNSFeatures.addGrass(builder, GNSFeatures.PRICKLY_GRASS_CONFIG, 1);
-			GNSFeatures.addFlowers(builder, GNSFeatures.DEAD_FLOWER_CONFIG, 5);
+			builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, GNSFeatures.Configured.NOISE_BASED_NIGHTMARE_GRASS);
+			builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, GNSFeatures.Configured.PRICKLY_NIGHTMARE_GRASS_1);
+			builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, GNSFeatures.Configured.NIGHTMARE_FLOWERS_5);
 
 			GNSFeatures.addCarvers(builder);
 
@@ -301,9 +301,9 @@ public class GNSBiomeProv extends BiomeProvider
 			GNSFeatures.addNightmareOres(builder);
 			DefaultBiomeFeatures.withMonsterRoom(builder); // monster rooms
 
-			GNSFeatures.addNoiseBasedGrass(builder, GNSFeatures.NIGHTMARE_GRASS_CONFIG);
-			GNSFeatures.addGrass(builder, GNSFeatures.PRICKLY_GRASS_CONFIG, 2);
-			GNSFeatures.addFlowers(builder, GNSFeatures.DEAD_FLOWER_CONFIG, 5);
+			builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, GNSFeatures.Configured.NOISE_BASED_NIGHTMARE_GRASS);
+			builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, GNSFeatures.Configured.PRICKLY_NIGHTMARE_GRASS_2);
+			builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, GNSFeatures.Configured.NIGHTMARE_FLOWERS_5);
 
 			GNSFeatures.addCarvers(builder);
 
@@ -323,9 +323,9 @@ public class GNSBiomeProv extends BiomeProvider
 			GNSFeatures.addNightmareOres(builder);
 			DefaultBiomeFeatures.withMonsterRoom(builder); // monster rooms
 
-			GNSFeatures.addGrass(builder, GNSFeatures.NIGHTMARE_GRASS_CONFIG, 5);
-			GNSFeatures.addGrass(builder, GNSFeatures.PRICKLY_GRASS_CONFIG, 1);
-			GNSFeatures.addFlowers(builder, GNSFeatures.DEAD_FLOWER_CONFIG, 5);
+			builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, GNSFeatures.Configured.NIGHTMARE_GRASS_5);
+			builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, GNSFeatures.Configured.PRICKLY_NIGHTMARE_GRASS_2);
+			builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, GNSFeatures.Configured.NIGHTMARE_FLOWERS_5);
 
 			GNSFeatures.addCarvers(builder);
 

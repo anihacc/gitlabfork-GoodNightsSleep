@@ -25,7 +25,7 @@ public class BigDespairMushroomFeature extends Feature<NoFeatureConfig>
 	}
 
 	@Override
-	public boolean func_241855_a(ISeedReader worldIn, ChunkGenerator generatorIn, Random randIn, BlockPos posIn, NoFeatureConfig configIn)
+	public boolean generate(ISeedReader worldIn, ChunkGenerator generatorIn, Random randIn, BlockPos posIn, NoFeatureConfig configIn)
 	{
 		int i = randIn.nextInt(3) + 4;
 		if (randIn.nextInt(12) == 0)

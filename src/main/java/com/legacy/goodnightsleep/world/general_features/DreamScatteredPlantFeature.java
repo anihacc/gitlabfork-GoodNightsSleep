@@ -23,7 +23,7 @@ public class DreamScatteredPlantFeature extends Feature<NoFeatureConfig>
 	}
 
 	@Override
-	public boolean func_241855_a(ISeedReader worldIn, ChunkGenerator generator, Random rand, BlockPos pos, NoFeatureConfig config)
+	public boolean generate(ISeedReader worldIn, ChunkGenerator generator, Random rand, BlockPos pos, NoFeatureConfig config)
 	{
 		int i = 0;
 

@@ -116,7 +116,7 @@ public class GNSGrassBlock extends GrassBlock
 
 					ConfiguredFeature<?, ?> configuredfeature = list.get(0);
 					FlowersFeature flowersfeature = (FlowersFeature) configuredfeature.feature;
-					blockstate1 = flowersfeature.getFlowerToPlace(rand, blockpos1, configuredfeature.func_242767_c());
+					blockstate1 = flowersfeature.getFlowerToPlace(rand, blockpos1, configuredfeature.getConfig());
 				}
 				else
 				{

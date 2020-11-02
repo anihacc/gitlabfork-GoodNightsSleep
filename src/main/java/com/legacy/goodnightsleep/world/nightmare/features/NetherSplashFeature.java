@@ -19,7 +19,7 @@ public class NetherSplashFeature extends Feature<NoFeatureConfig>
 	}
 
 	@Override
-	public boolean func_241855_a(ISeedReader worldIn, ChunkGenerator generator, Random randIn, BlockPos pos, NoFeatureConfig config)
+	public boolean generate(ISeedReader worldIn, ChunkGenerator generator, Random randIn, BlockPos pos, NoFeatureConfig config)
 	{
 		int x = pos.getX();
 		int y = pos.getY();
@@ -29,11 +29,11 @@ public class NetherSplashFeature extends Feature<NoFeatureConfig>
 		{
 			int xOffs = randIn.nextInt(7) - 3;
 			int yOffs = randIn.nextInt(7) - 3;
-			
+
 			if (!worldIn.isAirBlock(new BlockPos(x + xOffs, y - 1, z + yOffs)) && worldIn.getBlockState(new BlockPos(x + xOffs, y - 1, z + yOffs)).getBlock() != Blocks.LAVA)
 			{
 				worldIn.setBlockState(new BlockPos(x + xOffs, y - 1, z + yOffs), Blocks.NETHERRACK.getDefaultState(), 0);
-				
+
 				if (worldIn.isAirBlock(new BlockPos(x + xOffs, y, z + yOffs)) && randIn.nextBoolean())
 				{
 					worldIn.setBlockState(new BlockPos(x + xOffs, y, z + yOffs), Blocks.FIRE.getDefaultState(), 0);
