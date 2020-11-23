@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "tag": "good_nights_sleep:ores/candy"
+      "tag": "good_nights_sleep:storage_blocks/candy"
     }
   ],
   "result": {

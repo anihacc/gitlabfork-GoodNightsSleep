@@ -30,12 +30,12 @@ public class GNSBlockTags
 	public static final ITag.INamedTag<Block> ZITRITE_ORES = tag("ores/zitrite");
 	public static final ITag.INamedTag<Block> NEGATITE_ORES = tag("ores/negatite");
 
-	public static final ITag.INamedTag<Block> CANDY_BLOCKS = tag("storage_blocks/moonstone");
-	public static final ITag.INamedTag<Block> RAINBOW_BLOCKS = tag("storage_blocks/pyrope");
-	public static final ITag.INamedTag<Block> POSITITE_BLOCKS = tag("storage_blocks/diopside");
-	public static final ITag.INamedTag<Block> NECRUM_BLOCKS = tag("storage_blocks/turquoise");
-	public static final ITag.INamedTag<Block> ZITRITE_BLOCKS = tag("storage_blocks/charoite");
-	public static final ITag.INamedTag<Block> NEGATITE_BLOCKS = tag("storage_blocks/horizonite");
+	public static final ITag.INamedTag<Block> CANDY_BLOCKS = tag("storage_blocks/candy");
+	public static final ITag.INamedTag<Block> RAINBOW_BLOCKS = tag("storage_blocks/rainbow");
+	public static final ITag.INamedTag<Block> POSITITE_BLOCKS = tag("storage_blocks/positite");
+	public static final ITag.INamedTag<Block> NECRUM_BLOCKS = tag("storage_blocks/necrum");
+	public static final ITag.INamedTag<Block> ZITRITE_BLOCKS = tag("storage_blocks/zitrite");
+	public static final ITag.INamedTag<Block> NEGATITE_BLOCKS = tag("storage_blocks/negatite");
 
 	private static ITag.INamedTag<Block> tag(String key)
 	{

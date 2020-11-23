@@ -37,12 +37,12 @@ public class GNSItemTags
 	public static final ITag.INamedTag<Item> NECRUM = tag("ingots/zitrite");
 	public static final ITag.INamedTag<Item> NEGATITE = tag("gems/negatite");
 
-	public static final ITag.INamedTag<Item> CANDY_BLOCKS = tag("storage_blocks/moonstone");
-	public static final ITag.INamedTag<Item> RAINBOW_BLOCKS = tag("storage_blocks/pyrope");
-	public static final ITag.INamedTag<Item> POSITITE_BLOCKS = tag("storage_blocks/diopside");
-	public static final ITag.INamedTag<Item> NECRUM_BLOCKS = tag("storage_blocks/turquoise");
-	public static final ITag.INamedTag<Item> ZITRITE_BLOCKS = tag("storage_blocks/charoite");
-	public static final ITag.INamedTag<Item> NEGATITE_BLOCKS = tag("storage_blocks/horizonite");
+	public static final ITag.INamedTag<Item> CANDY_BLOCKS = tag("storage_blocks/candy");
+	public static final ITag.INamedTag<Item> RAINBOW_BLOCKS = tag("storage_blocks/rainbow");
+	public static final ITag.INamedTag<Item> POSITITE_BLOCKS = tag("storage_blocks/positite");
+	public static final ITag.INamedTag<Item> NECRUM_BLOCKS = tag("storage_blocks/necrum");
+	public static final ITag.INamedTag<Item> ZITRITE_BLOCKS = tag("storage_blocks/zitrite");
+	public static final ITag.INamedTag<Item> NEGATITE_BLOCKS = tag("storage_blocks/negatite");
 
 	private static ITag.INamedTag<Item> tag(String key)
 	{
