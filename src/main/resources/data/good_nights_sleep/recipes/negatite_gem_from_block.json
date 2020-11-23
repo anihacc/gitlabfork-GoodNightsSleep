@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "tag": "good_nights_sleep:ores/rainbow"
+      "tag": "good_nights_sleep:ores/negatite"
     }
   ],
   "result": {
