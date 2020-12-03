@@ -23,6 +23,8 @@ import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.blockplacer.SimpleBlockPlacer;
 import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
 import net.minecraft.world.gen.blockstateprovider.WeightedBlockStateProvider;
+import net.minecraft.world.gen.carver.ConfiguredCarver;
+import net.minecraft.world.gen.carver.ICarverConfig;
 import net.minecraft.world.gen.carver.WorldCarver;
 import net.minecraft.world.gen.feature.BaseTreeFeatureConfig;
 import net.minecraft.world.gen.feature.BigMushroomFeatureConfig;
@@ -159,8 +161,8 @@ public class GNSFeatures
 
 	public static void addCarvers(BiomeGenerationSettings.Builder biomeIn)
 	{
-		biomeIn.withCarver(GenerationStage.Carving.AIR, GNSFeatures.Carvers.DELUSION_CAVE_CARVER.func_242761_a(new ProbabilityConfig(0.14285715F)));
-		biomeIn.withCarver(GenerationStage.Carving.AIR, GNSFeatures.Carvers.DELUSION_CANYON_CARVER.func_242761_a(new ProbabilityConfig(0.02F)));
+		biomeIn.withCarver(GenerationStage.Carving.AIR, Configured.DELUSION_CAVE_CARVER);
+		biomeIn.withCarver(GenerationStage.Carving.AIR, Configured.DELUSION_CANYON_CARVER);
 	}
 
 	public static void addMushrooms(BiomeLoadingEvent eventIn)
@@ -199,6 +201,8 @@ public class GNSFeatures
 		{
 			GNSRegistry.register(event.getRegistry(), "delusion_cave_carver", DELUSION_CAVE_CARVER);
 			GNSRegistry.register(event.getRegistry(), "delusion_canyon_carver", DELUSION_CANYON_CARVER);
+
+			Configured.initCarvers();
 		}
 	}
 
@@ -288,6 +292,9 @@ public class GNSFeatures
 		public static final ConfiguredFeature<?, ?> PRICKLY_NIGHTMARE_GRASS_1 = Feature.RANDOM_PATCH.withConfiguration(GNSFeatures.PRICKLY_GRASS_CONFIG).withPlacement(Features.Placements.VEGETATION_PLACEMENT).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).func_242731_b(1);
 		public static final ConfiguredFeature<?, ?> PRICKLY_NIGHTMARE_GRASS_2 = Feature.RANDOM_PATCH.withConfiguration(GNSFeatures.PRICKLY_GRASS_CONFIG).withPlacement(Features.Placements.VEGETATION_PLACEMENT).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).func_242731_b(2);
 
+		public static final ConfiguredCarver<?> DELUSION_CAVE_CARVER = GNSFeatures.Carvers.DELUSION_CAVE_CARVER.func_242761_a(new ProbabilityConfig(0.14285715F));
+		public static final ConfiguredCarver<?> DELUSION_CANYON_CARVER = GNSFeatures.Carvers.DELUSION_CANYON_CARVER.func_242761_a(new ProbabilityConfig(0.02F));
+
 		public static void init()
 		{
 			register("dream_tree", BASE_DREAM_TREE);
@@ -371,9 +378,20 @@ public class GNSFeatures
 			register("prickly_nightmare_grass_2", PRICKLY_NIGHTMARE_GRASS_2);
 		}
 
+		public static void initCarvers()
+		{
+			registerCarver("delusion_cave_carver", DELUSION_CAVE_CARVER);
+			registerCarver("delusion_cave_carver", DELUSION_CANYON_CARVER);
+		}
+
 		private static <FC extends IFeatureConfig> ConfiguredFeature<FC, ?> register(String nameIn, ConfiguredFeature<FC, ?> featureIn)
 		{
 			return Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, nameIn, featureIn);
+		}
+
+		private static <C extends ICarverConfig> ConfiguredCarver<C> registerCarver(String nameIn, ConfiguredCarver<C> featureIn)
+		{
+			return Registry.register(WorldGenRegistries.CONFIGURED_CARVER, nameIn, featureIn);
 		}
 	}
 }
