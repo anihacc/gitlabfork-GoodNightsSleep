@@ -15,7 +15,7 @@ apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 apply plugin: 'org.spongepowered.mixin'
 
-version = '1.2.10'
+version = '1.2.11'
 group = 'com.legacy.goodnightsleep'
 archivesBaseName = 'good-nights-sleep-1.16.4'
 
