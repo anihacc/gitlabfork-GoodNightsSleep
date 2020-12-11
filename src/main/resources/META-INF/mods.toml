@@ -1,7 +1,7 @@
 modLoader="javafml"
 loaderVersion="[35,)"
 issueTrackerURL="https://gitlab.com/groups/modding-legacy/-/issues"
-license="https://www.gnu.org/licenses/gpl-3.0.en.html"
+license="https://moddinglegacy.com/ML-License/"
 [[mods]]
 modId="good_nights_sleep"
 version="${file.jarVersion}"
