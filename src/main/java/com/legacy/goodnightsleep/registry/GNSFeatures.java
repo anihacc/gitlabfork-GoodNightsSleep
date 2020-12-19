@@ -381,7 +381,7 @@ public class GNSFeatures
 		public static void initCarvers()
 		{
 			registerCarver("delusion_cave_carver", DELUSION_CAVE_CARVER);
-			registerCarver("delusion_cave_carver", DELUSION_CANYON_CARVER);
+			registerCarver("delusion_canyon_carver", DELUSION_CANYON_CARVER);
 		}
 
 		private static <FC extends IFeatureConfig> ConfiguredFeature<FC, ?> register(String nameIn, ConfiguredFeature<FC, ?> featureIn)
