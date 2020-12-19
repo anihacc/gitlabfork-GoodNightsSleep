@@ -102,7 +102,7 @@ public class GoodNightSleep
 		renderCutout(GNSBlocks.cyan_flower);
 		renderCutout(GNSBlocks.dead_flower);
 		renderCutout(GNSBlocks.orange_flower);
-		renderCutout(GNSBlocks.lolipop_bush);
+		renderCutout(GNSBlocks.lollipop_bush);
 		renderCutout(GNSBlocks.dream_grass);
 		renderCutout(GNSBlocks.nightmare_grass);
 		renderCutout(GNSBlocks.prickly_nightmare_grass);

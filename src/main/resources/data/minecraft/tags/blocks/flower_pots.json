@@ -7,6 +7,19 @@
     "good_nights_sleep:potted_despair_mushroom",
     "good_nights_sleep:potted_orange_flower",
     "good_nights_sleep:potted_cyan_flower",
-    "good_nights_sleep:potted_dead_flower"
+    "good_nights_sleep:potted_dead_flower",
+    "good_nights_sleep:potted_lollipop_bush",
+    {
+      "required": false,
+      "id": "good_nights_sleep:potted_dream_grass"
+    },
+    {
+      "required": false,
+      "id": "good_nights_sleep:potted_nightmare_grass"
+    },
+    {
+      "required": false,
+      "id": "good_nights_sleep:potted_prickly_nightmare_grass"
+    }
   ]
 }

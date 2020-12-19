@@ -39,7 +39,7 @@ public class GNSMappingChanges
 			put(GoodNightSleep.locateOld("rainbow_crop"), GNSBlocks.rainbow_berries);
 			put(GoodNightSleep.locateOld("dream_dirt"), GNSBlocks.dream_dirt);
 			put(GoodNightSleep.locateOld("dream_farmland"), GNSBlocks.dream_farmland);
-			put(GoodNightSleep.locateOld("lolipop_bush"), GNSBlocks.lolipop_bush);
+			put(GoodNightSleep.locateOld("lolipop_bush"), GNSBlocks.lollipop_bush);
 			put(GoodNightSleep.locateOld("prickly_nightmare_grass"), GNSBlocks.prickly_nightmare_grass);
 			put(GoodNightSleep.locateOld("zitrite_ore"), GNSBlocks.zitrite_ore);
 			put(GoodNightSleep.locateOld("candy_ore"), GNSBlocks.candy_ore);
