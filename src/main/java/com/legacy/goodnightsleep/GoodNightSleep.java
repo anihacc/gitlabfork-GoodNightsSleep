@@ -31,6 +31,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.fml.DistExecutor;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
@@ -116,6 +117,14 @@ public class GoodNightSleep
 		renderCutout(GNSBlocks.potted_orange_flower);
 		renderCutout(GNSBlocks.potted_hope_mushroom);
 		renderCutout(GNSBlocks.potted_despair_mushroom);
+		renderCutout(GNSBlocks.potted_lollipop_bush);
+
+		if (ModList.get().isLoaded("quark"))
+		{
+			renderCutout(GNSBlocks.potted_dream_grass);
+			renderCutout(GNSBlocks.potted_nightmare_grass);
+			renderCutout(GNSBlocks.potted_prickly_nightmare_grass);
+		}
 
 		renderCutout(GNSBlocks.dream_door);
 		renderCutout(GNSBlocks.white_door);
