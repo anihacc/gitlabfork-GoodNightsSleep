@@ -44,7 +44,7 @@ public class DreamPlayer implements IDreamPlayer
 		{
 			long worldTime = player.world.getGameTime() - this.getEnteredDreamTime();
 
-			if (worldTime > 25000L && player.world.getDimensionKey() == GNSDimensions.getDimensionKeys(true))
+			if (worldTime > 25000L && (player.world.getDimensionKey() == GNSDimensions.getDimensionKeys(true) || player.world.getDimensionKey() == GNSDimensions.getDimensionKeys(false)))
 			{
 
 				// System.out.println("time to leave");
