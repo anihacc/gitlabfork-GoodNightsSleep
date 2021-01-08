@@ -112,6 +112,9 @@ public class GNSTagProv
 			this.getOrCreateBuilder(Tags.Blocks.DIRT).add(GNSBlocks.dream_grass_block, GNSBlocks.dream_dirt, GNSBlocks.nightmare_grass_block);
 			this.getOrCreateBuilder(Tags.Blocks.ORES).addTags(GNSBlockTags.CANDY_ORES, GNSBlockTags.RAINBOW_ORES, GNSBlockTags.POSITITE_ORES, GNSBlockTags.NECRUM_ORES, GNSBlockTags.ZITRITE_ORES, GNSBlockTags.NEGATITE_ORES);
 			this.getOrCreateBuilder(Tags.Blocks.STORAGE_BLOCKS).addTags(GNSBlockTags.CANDY_BLOCKS, GNSBlockTags.RAINBOW_BLOCKS, GNSBlockTags.POSITITE_BLOCKS, GNSBlockTags.NECRUM_BLOCKS, GNSBlockTags.ZITRITE_BLOCKS, GNSBlockTags.NEGATITE_BLOCKS);
+
+			this.getOrCreateBuilder(Tags.Blocks.ORES_COAL).add(GNSBlocks.coal_ore);
+			this.getOrCreateBuilder(Tags.Blocks.ORES_LAPIS).add(GNSBlocks.lapis_ore);
 		}
 
 		@Override
@@ -193,6 +196,8 @@ public class GNSTagProv
 
 			this.getOrCreateBuilder(ItemTags.STONE_TOOL_MATERIALS).addTag(GNSItemTags.COBBLESTONES);
 
+			this.getOrCreateBuilder(ItemTags.PIGLIN_LOVED).add(GNSBlocks.pot_of_gold.asItem());
+
 			/*ForgeRegistries.ITEMS.getValues().stream().filter(item -> item.getRegistryName().getNamespace().equals(GoodNightSleep.MODID) && item instanceof MusicDiscItem).forEach(this.getOrCreateBuilder(ItemTags.MUSIC_DISCS)::add);*/
 		}
 
@@ -201,11 +206,9 @@ public class GNSTagProv
 			this.copy(Tags.Blocks.CHESTS_WOODEN, Tags.Items.CHESTS_WOODEN);
 			this.copy(Tags.Blocks.COBBLESTONE, Tags.Items.COBBLESTONE);
 			this.copy(Tags.Blocks.STONE, Tags.Items.STONE);
-			this.copy(Tags.Blocks.STAINED_GLASS, Tags.Items.STAINED_GLASS);
-			this.copy(Tags.Blocks.STAINED_GLASS_PANES, Tags.Items.STAINED_GLASS_PANES);
 			this.copy(Tags.Blocks.ORES, Tags.Items.ORES);
-			this.copy(Tags.Blocks.ORES_EMERALD, Tags.Items.ORES_EMERALD);
-			this.copy(Tags.Blocks.SAND, Tags.Items.SAND);
+			this.copy(Tags.Blocks.ORES_COAL, Tags.Items.ORES_COAL);
+			this.copy(Tags.Blocks.ORES_LAPIS, Tags.Items.ORES_LAPIS);
 			this.copy(Tags.Blocks.SANDSTONE, Tags.Items.SANDSTONE);
 			this.copy(Tags.Blocks.STORAGE_BLOCKS, Tags.Items.STORAGE_BLOCKS);
 			this.getOrCreateBuilder(Tags.Items.CROPS).add(GNSItems.rainbow_berries);
