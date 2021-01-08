@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X",
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "X": {
+      "tag": "good_nights_sleep:storage_blocks/necrum"
+    }
+  },
+  "result": {
+    "item": "good_nights_sleep:necrum_shovel"
+  }
+}

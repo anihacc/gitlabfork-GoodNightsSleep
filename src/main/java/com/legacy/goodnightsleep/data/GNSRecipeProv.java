@@ -113,12 +113,17 @@ public class GNSRecipeProv extends RecipeProvider
 			ShapedRecipeBuilder.shapedRecipe(mat.axe).key('#', Items.STICK).key('X', mat.materialTag).patternLine("XX").patternLine("X#").patternLine(" #").addCriterion(hasItem, hasItem(mat.materialTag)).build(con);
 			ShapedRecipeBuilder.shapedRecipe(mat.shovel).key('#', Items.STICK).key('X', mat.materialTag).patternLine("X").patternLine("#").patternLine("#").addCriterion(hasItem, hasItem(mat.materialTag)).build(con);
 			ShapedRecipeBuilder.shapedRecipe(mat.hoe).key('#', Items.STICK).key('X', mat.materialTag).patternLine("XX").patternLine(" #").patternLine(" #").addCriterion(hasItem, hasItem(mat.materialTag)).build(con);
-
 		});
 
 		ShapelessRecipeBuilder.shapelessRecipe(GNSItems.necrum, 9).addIngredient(GNSItemTags.NECRUM_BLOCKS).addCriterion(hasItem, hasItem(GNSItemTags.NECRUM_BLOCKS)).build(con, GoodNightSleep.find("necrum_from_block"));
 		ShapedRecipeBuilder.shapedRecipe(GNSBlocks.necrum_block).key('#', GNSItemTags.NECRUM).patternLine("###").patternLine("###").patternLine("###").addCriterion(hasItem, hasItem(GNSItemTags.NECRUM)).build(con);
 
+		ShapedRecipeBuilder.shapedRecipe(GNSItems.necrum_sword).key('#', Items.STICK).key('X', GNSItemTags.NECRUM_BLOCKS).patternLine("X").patternLine("X").patternLine("#").addCriterion(hasItem, hasItem(GNSItemTags.NECRUM_BLOCKS)).build(con);
+		ShapedRecipeBuilder.shapedRecipe(GNSItems.necrum_pickaxe).key('#', Items.STICK).key('X', GNSItemTags.NECRUM_BLOCKS).patternLine("XXX").patternLine(" # ").patternLine(" # ").addCriterion(hasItem, hasItem(GNSItemTags.NECRUM_BLOCKS)).build(con);
+		ShapedRecipeBuilder.shapedRecipe(GNSItems.necrum_axe).key('#', Items.STICK).key('X', GNSItemTags.NECRUM_BLOCKS).patternLine("XX").patternLine("X#").patternLine(" #").addCriterion(hasItem, hasItem(GNSItemTags.NECRUM_BLOCKS)).build(con);
+		ShapedRecipeBuilder.shapedRecipe(GNSItems.necrum_shovel).key('#', Items.STICK).key('X', GNSItemTags.NECRUM_BLOCKS).patternLine("X").patternLine("#").patternLine("#").addCriterion(hasItem, hasItem(GNSItemTags.NECRUM_BLOCKS)).build(con);
+		ShapedRecipeBuilder.shapedRecipe(GNSItems.necrum_hoe).key('#', Items.STICK).key('X', GNSItemTags.NECRUM_BLOCKS).patternLine("XX").patternLine(" #").patternLine(" #").addCriterion(hasItem, hasItem(GNSItemTags.NECRUM_BLOCKS)).build(con);
+		
 		// Misc
 		ImmutableMap<IItemProvider, IItemProvider> flowerDyeMap = ImmutableMap.of(GNSBlocks.cyan_flower, Items.CYAN_DYE, GNSBlocks.orange_flower, Items.ORANGE_DYE, GNSBlocks.dead_flower, Items.GRAY_DYE);
 		flowerDyeMap.forEach((flower, dye) -> ShapelessRecipeBuilder.shapelessRecipe(dye).addIngredient(flower).addCriterion(hasItem, hasItem(flower)).build(con, GoodNightSleep.find(dye.asItem().getRegistryName().getPath() + "_from_" + flower.asItem().getRegistryName().getPath())));
