@@ -17,7 +17,7 @@ The Good Night's Sleep mod adds two new dimensions, the good dream and the night
 [[dependencies.good_nights_sleep]]
     modId="forge"
     mandatory=true
-    versionRange="[35.0.0,)"
+    versionRange="[35.1.4,)"
     ordering="NONE"
     side="BOTH"
 [[dependencies.good_nights_sleep]]

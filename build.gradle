@@ -15,17 +15,11 @@ apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 apply plugin: 'org.spongepowered.mixin'
 
-version = '1.2.11'
+version = '1.2.12'
 group = 'com.legacy.goodnightsleep'
 archivesBaseName = 'good-nights-sleep-1.16.4'
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
-
-repositories {
-    maven {
-        url 'https://www.dogforce-games.com/maven/'
-    }
-}
 
 mixin {
     add sourceSets.main, "good_nights_sleep.refmap.json"
@@ -78,7 +72,7 @@ minecraft {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.16.4-35.0.1'
+    minecraft 'net.minecraftforge:forge:1.16.4-35.1.4'
 }
 
 jar {
