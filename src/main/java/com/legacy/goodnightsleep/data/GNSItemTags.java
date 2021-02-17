@@ -33,8 +33,8 @@ public class GNSItemTags
 	public static final ITag.INamedTag<Item> CANDY_MATERIALS = tag("materials/candy");
 	public static final ITag.INamedTag<Item> RAINBOW_INGOTS = tag("ingots/rainbow");
 	public static final ITag.INamedTag<Item> POSITITE = tag("gems/positite");
-	public static final ITag.INamedTag<Item> ZITRITE_INGOTS = tag("materials/necrum");
-	public static final ITag.INamedTag<Item> NECRUM = tag("ingots/zitrite");
+	public static final ITag.INamedTag<Item> NECRUM = tag("materials/necrum");
+	public static final ITag.INamedTag<Item> ZITRITE_INGOTS = tag("ingots/zitrite");
 	public static final ITag.INamedTag<Item> NEGATITE = tag("gems/negatite");
 
 	public static final ITag.INamedTag<Item> CANDY_BLOCKS = tag("storage_blocks/candy");
