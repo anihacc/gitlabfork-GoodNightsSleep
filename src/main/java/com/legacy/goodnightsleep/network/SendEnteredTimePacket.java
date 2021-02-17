@@ -43,8 +43,6 @@ public class SendEnteredTimePacket
 		PlayerEntity player = net.minecraft.client.Minecraft.getInstance().player;
 
 		if (DreamPlayer.get(player) != null)
-		{
 			DreamPlayer.get(player).setEnteredDreamTime(packet.enteredTime);
-		}
 	}
 }

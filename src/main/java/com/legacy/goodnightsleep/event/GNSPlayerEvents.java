@@ -25,9 +25,8 @@ public class GNSPlayerEvents
 	@SubscribeEvent
 	public void onCapabilityAttached(AttachCapabilitiesEvent<Entity> event)
 	{
-		if (event.getObject() instanceof PlayerEntity)
-			event.getObject().getCapability(DreamPlayer.GNS_PLAYER).ifPresent(c -> event.addCapability(GoodNightSleep.locate("player_capability"), new CapabilityProvider(new DreamPlayer((PlayerEntity) event.getObject()))));
-
+		if (event.getObject() instanceof PlayerEntity && !event.getObject().getCapability(DreamPlayer.GNS_PLAYER).isPresent())
+			event.addCapability(GoodNightSleep.locate("player_capability"), new CapabilityProvider(new DreamPlayer((PlayerEntity) event.getObject())));
 	}
 
 	@SubscribeEvent

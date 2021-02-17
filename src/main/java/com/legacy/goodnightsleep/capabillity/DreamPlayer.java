@@ -46,8 +46,6 @@ public class DreamPlayer implements IDreamPlayer
 
 			if (worldTime > 25000L && (player.world.getDimensionKey() == GNSDimensions.getDimensionKeys(true) || player.world.getDimensionKey() == GNSDimensions.getDimensionKeys(false)))
 			{
-
-				// System.out.println("time to leave");
 				ServerPlayerEntity playerMP = (ServerPlayerEntity) player;
 
 				if (playerMP.world instanceof ServerWorld)
@@ -65,9 +63,9 @@ public class DreamPlayer implements IDreamPlayer
 	@Override
 	public void clientTick()
 	{
-		if (player != null && player instanceof net.minecraft.client.entity.player.ClientPlayerEntity && player.getEntityWorld().isRemote())
+		/*if (player != null && player instanceof net.minecraft.client.entity.player.ClientPlayerEntity && player.getEntityWorld().isRemote())
 		{
-		}
+		}*/
 	}
 
 	@Override
