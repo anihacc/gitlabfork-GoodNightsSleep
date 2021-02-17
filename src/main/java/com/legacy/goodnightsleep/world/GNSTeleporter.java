@@ -23,39 +23,45 @@ public class GNSTeleporter
 		if (server == null)
 			return;
 
-		RegistryKey<World> overworld = World.OVERWORLD;
-		RegistryKey<World> transferDimension = entity.world.getDimensionKey() == type ? overworld : type;
+		RegistryKey<World> transferDimension = entity.world.getDimensionKey() == type ? World.OVERWORLD : type;
 		ServerWorld transferWorld = server.getWorld(transferDimension);
 
 		if (!ForgeHooks.onTravelToDimension(entity, transferDimension))
 			return;
 
-		int maxY = entity.world.getHeight(Type.MOTION_BLOCKING_NO_LEAVES, pos.getX(), pos.getZ());
-		int transferY = type == overworld && entity instanceof ServerPlayerEntity && ((ServerPlayerEntity) entity).func_241140_K_(/*overworld*/) != null ? ((ServerPlayerEntity) entity).func_241140_K_(/*overworld*/).getY() : maxY;
-
-		Vector3d endpointPos = new Vector3d(pos.getX() + 0.5, transferY, pos.getZ() + 0.5);
-
-		for (int x = -1; x < 2; ++x)
-		{
-			for (int z = -1; z < 2; ++z)
-			{
-				BlockPos newPos = new BlockPos(endpointPos.add(x, -1, z));
-				if (transferWorld.getBlockState(new BlockPos(newPos)).getBlock() == Blocks.LAVA || transferWorld.getBlockState(new BlockPos(newPos).up()).getBlock() == Blocks.LAVA)
-					transferWorld.setBlockState(newPos, Blocks.GRASS_BLOCK.getDefaultState());
-			}
-		}
-
-		Entity teleportedEntity = teleportEntity(entity, transferWorld, endpointPos);
+		Entity teleportedEntity = teleportEntity(entity, transferWorld, pos);
 
 		teleportedEntity.fallDistance = 0.0F;
 	}
 
-	private static Entity teleportEntity(Entity entity, ServerWorld transferWorld, Vector3d transferPos)
+	private static Entity teleportEntity(Entity entity, ServerWorld transferWorld, BlockPos pos)
 	{
 		if (entity instanceof ServerPlayerEntity)
 		{
 			ServerPlayerEntity player = (ServerPlayerEntity) entity;
-			player.teleport(transferWorld, transferPos.x, transferPos.y, transferPos.z, entity.rotationYaw, entity.rotationPitch);
+
+			player.teleport(transferWorld, pos.getX(), pos.getY(), pos.getZ(), entity.rotationYaw, entity.rotationPitch);
+
+			if (transferWorld.getDimensionKey() != World.OVERWORLD)
+			{
+				int maxY = entity.world.getHeight(Type.MOTION_BLOCKING, pos.getX(), pos.getZ());
+				//int transferY = transferWorld.getDimensionKey() == World.OVERWORLD && entity instanceof ServerPlayerEntity && ((ServerPlayerEntity) entity).func_241140_K_(/*overworld*/) != null ? ((ServerPlayerEntity) entity).func_241140_K_(/*overworld*/).getY() : maxY;
+	
+				BlockPos endpointPos = new BlockPos(pos.getX() + 0.5, maxY, pos.getZ() + 0.5);
+	
+				for (int x = -1; x < 2; ++x)
+				{
+					for (int z = -1; z < 2; ++z)
+					{
+						BlockPos newPos = new BlockPos(endpointPos.add(x, -1, z));
+						if (transferWorld.getBlockState(new BlockPos(newPos)).getBlock() == Blocks.LAVA || transferWorld.getBlockState(new BlockPos(newPos).up()).getBlock() == Blocks.LAVA)
+							transferWorld.setBlockState(newPos, Blocks.GRASS_BLOCK.getDefaultState());
+					}
+				}
+	
+				player.setLocationAndAngles(endpointPos.getX(), endpointPos.getY(), endpointPos.getZ(), entity.rotationYaw, entity.rotationPitch);
+			}
+			
 			return player;
 		}
 
@@ -68,7 +74,7 @@ public class GNSTeleporter
 			return entity;
 
 		teleportedEntity.copyDataFromOld(entity);
-		teleportedEntity.setLocationAndAngles(transferPos.x, transferPos.y, transferPos.z, entity.rotationYaw, entity.rotationPitch);
+		teleportedEntity.setLocationAndAngles(pos.getX(), pos.getY(), pos.getZ(), entity.rotationYaw, entity.rotationPitch);
 		teleportedEntity.setRotationYawHead(entity.rotationYaw);
 		teleportedEntity.setMotion(Vector3d.ZERO);
 		transferWorld.addFromAnotherDimension(teleportedEntity);
