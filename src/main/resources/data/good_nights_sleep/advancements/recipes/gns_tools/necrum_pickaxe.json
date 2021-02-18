@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "good_nights_sleep:zitrite_boots"
+      "good_nights_sleep:necrum_pickaxe"
     ]
   },
   "criteria": {
@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "good_nights_sleep:ingots/zitrite"
+            "tag": "good_nights_sleep:storage_blocks/necrum"
           }
         ]
       }
@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "good_nights_sleep:zitrite_boots"
+        "recipe": "good_nights_sleep:necrum_pickaxe"
       }
     }
   },
