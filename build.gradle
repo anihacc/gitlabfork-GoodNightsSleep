@@ -15,9 +15,9 @@ apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 apply plugin: 'org.spongepowered.mixin'
 
-version = '1.2.13'
+version = '1.2.14'
 group = 'com.legacy.goodnightsleep'
-archivesBaseName = 'good-nights-sleep-1.16.4'
+archivesBaseName = 'good-nights-sleep-1.16.5'
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
 
@@ -72,7 +72,7 @@ minecraft {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.16.4-35.1.4'
+    minecraft 'net.minecraftforge:forge:1.16.5-36.0.42'
 }
 
 jar {
