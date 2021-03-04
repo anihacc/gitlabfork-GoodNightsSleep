@@ -5,8 +5,7 @@
 	"refmap": "good_nights_sleep.refmap.json",
 	"mixins": [
 		"MinecraftServerMixin",
-		"UtilMixin",
-		"ForgeHooksMixin"
+		"UtilMixin"
 	],
 	"client": [
 	],
