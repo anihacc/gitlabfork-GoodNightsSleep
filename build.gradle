@@ -211,6 +211,9 @@ minecraft {
 			// Tell Minecraft if it is running in an IDE (must be configured in your project)
 			property "${mod_id}.iside".toString(), 'true'
 
+			// Tell Minecraft if it is running datagen (must be configured in your project)
+			property "${mod_id}.datagen".toString(), 'true'
+
 			// Workaround for https://github.com/MinecraftForge/ForgeGradle/issues/690
 			// Written by Shadew
 			if (project.ext.isOsx()) {
