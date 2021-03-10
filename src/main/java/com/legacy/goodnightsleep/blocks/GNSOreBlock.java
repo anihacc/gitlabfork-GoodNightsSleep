@@ -7,6 +7,8 @@ import com.legacy.goodnightsleep.registry.GNSBlocks;
 import net.minecraft.block.OreBlock;
 import net.minecraft.util.math.MathHelper;
 
+import net.minecraft.block.AbstractBlock.Properties;
+
 public class GNSOreBlock extends OreBlock
 {
 	public GNSOreBlock(Properties properties)
@@ -15,7 +17,7 @@ public class GNSOreBlock extends OreBlock
 	}
 
 	@Override
-	protected int getExperience(Random rand)
+	protected int xpOnDrop(Random rand)
 	{
 		if (this == GNSBlocks.candy_ore || this == GNSBlocks.necrum_ore)
 		{

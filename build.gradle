@@ -63,7 +63,7 @@ archivesBaseName = "${mod_id}-${mc_version}"
 project.ext.reobfFile = file("build/libs/${archivesBaseName}-${version}.jar")
 
 // This file contains additional instructions for getting Structure Gel API's sources and javadoc jars (uncomment if using Strcture Gel API, see the file for more details).
-apply from: 'eclipse.gradle'
+// apply from: 'eclipse.gradle'
 // This file contains additional instructions for signing builds of this mod (see the file for more details).
 //apply from: 'signing.gradle'
 // This file contains additional instructions for publishing builds of this mod to the Manen (commented out by default, see the file for more details).
@@ -113,7 +113,7 @@ repositories {
 
 minecraft {
 	// Mappings from gradle.properties. See default MDK for mappings instructions.
-	mappings channel: 'snapshot', version: '20201028-1.16.3'
+	mappings channel: "${mappings_channel}".toString(), version: "${mappings_version}".toString()
 
 	// Access Transformer (commented out by default)
 	accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
@@ -231,7 +231,7 @@ mixin {
 
 dependencies {
     // Minecraft Forge
-	minecraft 'net.minecraftforge:forge:1.16.5-36.0.48'
+	minecraft "net.minecraftforge:forge:${mc_version}-${forge_version}".toString()
 
     // Smooth Boot (Forge)
     runtimeOnly fg.deobf("io.github.ultimateboomer:smoothboot-forge:${smoothboot_version}".toString())

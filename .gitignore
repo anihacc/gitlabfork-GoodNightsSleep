@@ -26,3 +26,4 @@ Repositories
 # Files from Forge MDK
 forge*changelog.txt
 /Repositories/
+/.apt_generated_tests/

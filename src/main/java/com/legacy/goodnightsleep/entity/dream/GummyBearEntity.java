@@ -23,7 +23,7 @@ public class GummyBearEntity extends AnimalEntity
     }
 
 	@Override
-	public AgeableEntity func_241840_a(ServerWorld worldIn, AgeableEntity ageableIn)
+	public AgeableEntity getBreedOffspring(ServerWorld worldIn, AgeableEntity ageableIn)
 	{
 		return null;
 	}

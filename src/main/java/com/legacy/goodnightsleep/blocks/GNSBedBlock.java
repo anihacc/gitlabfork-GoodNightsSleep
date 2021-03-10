@@ -34,16 +34,16 @@ public class GNSBedBlock extends BedBlock
 	}
 
 	@Override
-	public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit)
+	public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit)
 	{
-		if (!worldIn.isRemote)
+		if (!worldIn.isClientSide)
 		{
-			if (player.world.getDimensionKey() == World.OVERWORLD)
+			if (player.level.dimension() == World.OVERWORLD)
 			{
 				if (player instanceof ServerPlayerEntity)
-					((ServerPlayerEntity) player).func_242111_a(World.OVERWORLD, pos, 0.0F, false, false);
+					((ServerPlayerEntity) player).setRespawnPosition(World.OVERWORLD, pos, 0.0F, false, false);
 
-				player.setBedPosition(pos);
+				player.setSleepingPos(pos);
 			}
 
 			if (this == GNSBlocks.luxurious_bed)
@@ -51,7 +51,7 @@ public class GNSBedBlock extends BedBlock
 			else if (this == GNSBlocks.wretched_bed)
 				this.travelToDream(player, false);
 			else if (this == GNSBlocks.strange_bed)
-				this.travelToDream(player, worldIn.rand.nextBoolean());
+				this.travelToDream(player, worldIn.random.nextBoolean());
 
 			return ActionResultType.SUCCESS;
 		}
@@ -68,18 +68,18 @@ public class GNSBedBlock extends BedBlock
 			return;
 
 		ServerPlayerEntity serverPlayer = (ServerPlayerEntity) player;
-		RegistryKey<World> transferDimension = player.world.getDimensionKey() == GNSDimensions.getDimensionKeys(dream) ? World.OVERWORLD : GNSDimensions.getDimensionKeys(dream);
+		RegistryKey<World> transferDimension = player.level.dimension() == GNSDimensions.getDimensionKeys(dream) ? World.OVERWORLD : GNSDimensions.getDimensionKeys(dream);
 
 		if (transferDimension != World.OVERWORLD && DreamPlayer.get(serverPlayer) != null)
 		{
-			DreamPlayer.get(serverPlayer).setEnteredDreamTime(serverPlayer.world.getGameTime());
-			PacketHandler.sendTo(new SendEnteredTimePacket(serverPlayer.world.getGameTime()), serverPlayer);
+			DreamPlayer.get(serverPlayer).setEnteredDreamTime(serverPlayer.level.getGameTime());
+			PacketHandler.sendTo(new SendEnteredTimePacket(serverPlayer.level.getGameTime()), serverPlayer);
 		}
 
 		try
 		{
-			ServerWorld serverWorld = player.getServer().getWorld(World.OVERWORLD);
-			BlockPos pos = player.world.getDimensionKey() != World.OVERWORLD ? serverPlayer.func_241140_K_() : serverWorld.getSpawnPoint();
+			ServerWorld serverWorld = player.getServer().getLevel(World.OVERWORLD);
+			BlockPos pos = player.level.dimension() != World.OVERWORLD ? serverPlayer.getRespawnPosition() : serverWorld.getSharedSpawnPos();
 			GNSTeleporter.changeDimension(transferDimension, player, pos);
 		}
 		catch (NullPointerException e)

@@ -42,7 +42,7 @@ public class GNSRecipeProv extends RecipeProvider
 	}
 
 	@Override
-	protected void registerRecipes(Consumer<IFinishedRecipe> consumer)
+	protected void buildShapelessRecipes(Consumer<IFinishedRecipe> consumer)
 	{
 		this.con = consumer;
 
@@ -54,8 +54,8 @@ public class GNSRecipeProv extends RecipeProvider
 		stoneCutting(GNSBlocks.delusion_cobblestone, ImmutableList.of(GNSBlocks.delusion_cobblestone_slab, GNSBlocks.delusion_cobblestone_stairs, GNSBlocks.delusion_cobblestone_wall));
 		stoneCutting(GNSBlocks.delusion_stonebrick, ImmutableList.of(GNSBlocks.delusion_stonebrick_slab, GNSBlocks.delusion_stonebrick_stairs, GNSBlocks.delusion_stonebrick_wall));
 
-		ShapelessRecipeBuilder.shapelessRecipe(GNSBlocks.delusion_button).addIngredient(GNSBlocks.delusion_stone).addCriterion(hasItem, hasItem(GNSBlocks.delusion_stone)).build(con);
-		ShapedRecipeBuilder.shapedRecipe(GNSBlocks.delusion_pressure_plate).key('#', GNSBlocks.delusion_stone).patternLine("##").addCriterion(hasItem, hasItem(GNSBlocks.delusion_stone)).build(con);
+		ShapelessRecipeBuilder.shapeless(GNSBlocks.delusion_button).requires(GNSBlocks.delusion_stone).unlockedBy(hasItem, has(GNSBlocks.delusion_stone)).save(con);
+		ShapedRecipeBuilder.shaped(GNSBlocks.delusion_pressure_plate).define('#', GNSBlocks.delusion_stone).pattern("##").unlockedBy(hasItem, has(GNSBlocks.delusion_stone)).save(con);
 
 		// Wood based
 		//@formatter:off
@@ -68,16 +68,16 @@ public class GNSRecipeProv extends RecipeProvider
 		//@formatter:on
 		woodMapping.forEach(wood ->
 		{
-			ShapedRecipeBuilder.shapedRecipe(wood.strippedWood, 3).key('#', wood.strippedLog).patternLine("##").patternLine("##").setGroup("stripped_bark").addCriterion(hasItem, hasItem(wood.strippedLog)).build(con);
-			ShapedRecipeBuilder.shapedRecipe(wood.wood, 3).key('#', wood.log).patternLine("##").patternLine("##").setGroup("bark").addCriterion(hasItem, hasItem(wood.wood)).build(con);
-			ShapelessRecipeBuilder.shapelessRecipe(wood.plank, 4).addIngredient(wood.logTag).setGroup("planks").addCriterion(hasItem, hasItem(wood.logTag)).build(con);
-			slabs(wood.plank, wood.slab).setGroup("wooden_slab").build(con);
-			stairs(wood.plank, wood.stair).setGroup("wooden_stairs").build(con);
+			ShapedRecipeBuilder.shaped(wood.strippedWood, 3).define('#', wood.strippedLog).pattern("##").pattern("##").group("stripped_bark").unlockedBy(hasItem, has(wood.strippedLog)).save(con);
+			ShapedRecipeBuilder.shaped(wood.wood, 3).define('#', wood.log).pattern("##").pattern("##").group("bark").unlockedBy(hasItem, has(wood.wood)).save(con);
+			ShapelessRecipeBuilder.shapeless(wood.plank, 4).requires(wood.logTag).group("planks").unlockedBy(hasItem, has(wood.logTag)).save(con);
+			slabs(wood.plank, wood.slab).group("wooden_slab").save(con);
+			stairs(wood.plank, wood.stair).group("wooden_stairs").save(con);
 			fencesGates(wood.plank, wood.fence, wood.gate);
-			ShapedRecipeBuilder.shapedRecipe(wood.door, 3).key('#', wood.plank).patternLine("##").patternLine("##").patternLine("##").setGroup("wooden_door").addCriterion(hasItem, hasItem(wood.plank)).build(con);
-			ShapedRecipeBuilder.shapedRecipe(wood.trapdoor, 2).key('#', wood.plank).patternLine("###").patternLine("###").setGroup("wooden_trapdoor").addCriterion(hasItem, hasItem(wood.plank)).build(con);
-			ShapedRecipeBuilder.shapedRecipe(wood.pressurePlate).key('#', wood.plank).patternLine("##").setGroup("wooden_pressure_plate").addCriterion(hasItem, hasItem(wood.plank)).build(con);
-			ShapelessRecipeBuilder.shapelessRecipe(wood.button).addIngredient(wood.plank).addCriterion(hasItem, hasItem(wood.plank)).build(con);
+			ShapedRecipeBuilder.shaped(wood.door, 3).define('#', wood.plank).pattern("##").pattern("##").pattern("##").group("wooden_door").unlockedBy(hasItem, has(wood.plank)).save(con);
+			ShapedRecipeBuilder.shaped(wood.trapdoor, 2).define('#', wood.plank).pattern("###").pattern("###").group("wooden_trapdoor").unlockedBy(hasItem, has(wood.plank)).save(con);
+			ShapedRecipeBuilder.shaped(wood.pressurePlate).define('#', wood.plank).pattern("##").group("wooden_pressure_plate").unlockedBy(hasItem, has(wood.plank)).save(con);
+			ShapelessRecipeBuilder.shapeless(wood.button).requires(wood.plank).unlockedBy(hasItem, has(wood.plank)).save(con);
 		});
 
 		// Armor/Storage blocks
@@ -94,49 +94,49 @@ public class GNSRecipeProv extends RecipeProvider
 		{
 			if (mat.material != GNSBlocks.candy_block)
 			{
-				ShapelessRecipeBuilder.shapelessRecipe(mat.material, 9).addIngredient(mat.blockTag).addCriterion(hasItem, hasItem(mat.blockTag)).build(con, GoodNightSleep.find(mat.material.asItem().getRegistryName().getPath() + "_from_block"));
-				ShapedRecipeBuilder.shapedRecipe(mat.block).key('#', mat.materialTag).patternLine("###").patternLine("###").patternLine("###").addCriterion(hasItem, hasItem(mat.materialTag)).build(con);
+				ShapelessRecipeBuilder.shapeless(mat.material, 9).requires(mat.blockTag).unlockedBy(hasItem, has(mat.blockTag)).save(con, GoodNightSleep.find(mat.material.asItem().getRegistryName().getPath() + "_from_block"));
+				ShapedRecipeBuilder.shaped(mat.block).define('#', mat.materialTag).pattern("###").pattern("###").pattern("###").unlockedBy(hasItem, has(mat.materialTag)).save(con);
 			}
 			else
 			{
 				simple3x3(GNSItems.candy, GNSBlocks.candy_block, 1);
-				ShapelessRecipeBuilder.shapelessRecipe(GNSItems.candy, 9).addIngredient(mat.blockTag).addCriterion(hasItem, hasItem(mat.blockTag)).build(con, GoodNightSleep.find(mat.material.asItem().getRegistryName().getPath() + "_from_block"));
+				ShapelessRecipeBuilder.shapeless(GNSItems.candy, 9).requires(mat.blockTag).unlockedBy(hasItem, has(mat.blockTag)).save(con, GoodNightSleep.find(mat.material.asItem().getRegistryName().getPath() + "_from_block"));
 			}
 
-			ShapedRecipeBuilder.shapedRecipe(mat.helmet).key('#', mat.materialTag).patternLine("###").patternLine("# #").addCriterion(hasItem, hasItem(mat.materialTag)).build(con);
-			ShapedRecipeBuilder.shapedRecipe(mat.chestplate).key('#', mat.materialTag).patternLine("# #").patternLine("###").patternLine("###").addCriterion(hasItem, hasItem(mat.materialTag)).build(con);
-			ShapedRecipeBuilder.shapedRecipe(mat.leggings).key('#', mat.materialTag).patternLine("###").patternLine("# #").patternLine("# #").addCriterion(hasItem, hasItem(mat.materialTag)).build(con);
-			ShapedRecipeBuilder.shapedRecipe(mat.boots).key('#', mat.materialTag).patternLine("# #").patternLine("# #").addCriterion(hasItem, hasItem(mat.materialTag)).build(con);
+			ShapedRecipeBuilder.shaped(mat.helmet).define('#', mat.materialTag).pattern("###").pattern("# #").unlockedBy(hasItem, has(mat.materialTag)).save(con);
+			ShapedRecipeBuilder.shaped(mat.chestplate).define('#', mat.materialTag).pattern("# #").pattern("###").pattern("###").unlockedBy(hasItem, has(mat.materialTag)).save(con);
+			ShapedRecipeBuilder.shaped(mat.leggings).define('#', mat.materialTag).pattern("###").pattern("# #").pattern("# #").unlockedBy(hasItem, has(mat.materialTag)).save(con);
+			ShapedRecipeBuilder.shaped(mat.boots).define('#', mat.materialTag).pattern("# #").pattern("# #").unlockedBy(hasItem, has(mat.materialTag)).save(con);
 
-			ShapedRecipeBuilder.shapedRecipe(mat.sword).key('#', Items.STICK).key('X', mat.materialTag).patternLine("X").patternLine("X").patternLine("#").addCriterion(hasItem, hasItem(mat.materialTag)).build(con);
-			ShapedRecipeBuilder.shapedRecipe(mat.pickaxe).key('#', Items.STICK).key('X', mat.materialTag).patternLine("XXX").patternLine(" # ").patternLine(" # ").addCriterion(hasItem, hasItem(mat.materialTag)).build(con);
-			ShapedRecipeBuilder.shapedRecipe(mat.axe).key('#', Items.STICK).key('X', mat.materialTag).patternLine("XX").patternLine("X#").patternLine(" #").addCriterion(hasItem, hasItem(mat.materialTag)).build(con);
-			ShapedRecipeBuilder.shapedRecipe(mat.shovel).key('#', Items.STICK).key('X', mat.materialTag).patternLine("X").patternLine("#").patternLine("#").addCriterion(hasItem, hasItem(mat.materialTag)).build(con);
-			ShapedRecipeBuilder.shapedRecipe(mat.hoe).key('#', Items.STICK).key('X', mat.materialTag).patternLine("XX").patternLine(" #").patternLine(" #").addCriterion(hasItem, hasItem(mat.materialTag)).build(con);
+			ShapedRecipeBuilder.shaped(mat.sword).define('#', Items.STICK).define('X', mat.materialTag).pattern("X").pattern("X").pattern("#").unlockedBy(hasItem, has(mat.materialTag)).save(con);
+			ShapedRecipeBuilder.shaped(mat.pickaxe).define('#', Items.STICK).define('X', mat.materialTag).pattern("XXX").pattern(" # ").pattern(" # ").unlockedBy(hasItem, has(mat.materialTag)).save(con);
+			ShapedRecipeBuilder.shaped(mat.axe).define('#', Items.STICK).define('X', mat.materialTag).pattern("XX").pattern("X#").pattern(" #").unlockedBy(hasItem, has(mat.materialTag)).save(con);
+			ShapedRecipeBuilder.shaped(mat.shovel).define('#', Items.STICK).define('X', mat.materialTag).pattern("X").pattern("#").pattern("#").unlockedBy(hasItem, has(mat.materialTag)).save(con);
+			ShapedRecipeBuilder.shaped(mat.hoe).define('#', Items.STICK).define('X', mat.materialTag).pattern("XX").pattern(" #").pattern(" #").unlockedBy(hasItem, has(mat.materialTag)).save(con);
 		});
 
-		ShapelessRecipeBuilder.shapelessRecipe(GNSItems.necrum, 9).addIngredient(GNSItemTags.NECRUM_BLOCKS).addCriterion(hasItem, hasItem(GNSItemTags.NECRUM_BLOCKS)).build(con, GoodNightSleep.find("necrum_from_block"));
-		ShapedRecipeBuilder.shapedRecipe(GNSBlocks.necrum_block).key('#', GNSItemTags.NECRUM).patternLine("###").patternLine("###").patternLine("###").addCriterion(hasItem, hasItem(GNSItemTags.NECRUM)).build(con);
+		ShapelessRecipeBuilder.shapeless(GNSItems.necrum, 9).requires(GNSItemTags.NECRUM_BLOCKS).unlockedBy(hasItem, has(GNSItemTags.NECRUM_BLOCKS)).save(con, GoodNightSleep.find("necrum_from_block"));
+		ShapedRecipeBuilder.shaped(GNSBlocks.necrum_block).define('#', GNSItemTags.NECRUM).pattern("###").pattern("###").pattern("###").unlockedBy(hasItem, has(GNSItemTags.NECRUM)).save(con);
 
-		ShapedRecipeBuilder.shapedRecipe(GNSItems.necrum_sword).key('#', Items.STICK).key('X', GNSItemTags.NECRUM_BLOCKS).patternLine("X").patternLine("X").patternLine("#").addCriterion(hasItem, hasItem(GNSItemTags.NECRUM_BLOCKS)).build(con);
-		ShapedRecipeBuilder.shapedRecipe(GNSItems.necrum_pickaxe).key('#', Items.STICK).key('X', GNSItemTags.NECRUM_BLOCKS).patternLine("XXX").patternLine(" # ").patternLine(" # ").addCriterion(hasItem, hasItem(GNSItemTags.NECRUM_BLOCKS)).build(con);
-		ShapedRecipeBuilder.shapedRecipe(GNSItems.necrum_axe).key('#', Items.STICK).key('X', GNSItemTags.NECRUM_BLOCKS).patternLine("XX").patternLine("X#").patternLine(" #").addCriterion(hasItem, hasItem(GNSItemTags.NECRUM_BLOCKS)).build(con);
-		ShapedRecipeBuilder.shapedRecipe(GNSItems.necrum_shovel).key('#', Items.STICK).key('X', GNSItemTags.NECRUM_BLOCKS).patternLine("X").patternLine("#").patternLine("#").addCriterion(hasItem, hasItem(GNSItemTags.NECRUM_BLOCKS)).build(con);
-		ShapedRecipeBuilder.shapedRecipe(GNSItems.necrum_hoe).key('#', Items.STICK).key('X', GNSItemTags.NECRUM_BLOCKS).patternLine("XX").patternLine(" #").patternLine(" #").addCriterion(hasItem, hasItem(GNSItemTags.NECRUM_BLOCKS)).build(con);
+		ShapedRecipeBuilder.shaped(GNSItems.necrum_sword).define('#', Items.STICK).define('X', GNSItemTags.NECRUM_BLOCKS).pattern("X").pattern("X").pattern("#").unlockedBy(hasItem, has(GNSItemTags.NECRUM_BLOCKS)).save(con);
+		ShapedRecipeBuilder.shaped(GNSItems.necrum_pickaxe).define('#', Items.STICK).define('X', GNSItemTags.NECRUM_BLOCKS).pattern("XXX").pattern(" # ").pattern(" # ").unlockedBy(hasItem, has(GNSItemTags.NECRUM_BLOCKS)).save(con);
+		ShapedRecipeBuilder.shaped(GNSItems.necrum_axe).define('#', Items.STICK).define('X', GNSItemTags.NECRUM_BLOCKS).pattern("XX").pattern("X#").pattern(" #").unlockedBy(hasItem, has(GNSItemTags.NECRUM_BLOCKS)).save(con);
+		ShapedRecipeBuilder.shaped(GNSItems.necrum_shovel).define('#', Items.STICK).define('X', GNSItemTags.NECRUM_BLOCKS).pattern("X").pattern("#").pattern("#").unlockedBy(hasItem, has(GNSItemTags.NECRUM_BLOCKS)).save(con);
+		ShapedRecipeBuilder.shaped(GNSItems.necrum_hoe).define('#', Items.STICK).define('X', GNSItemTags.NECRUM_BLOCKS).pattern("XX").pattern(" #").pattern(" #").unlockedBy(hasItem, has(GNSItemTags.NECRUM_BLOCKS)).save(con);
 		
 		// Misc
 		ImmutableMap<IItemProvider, IItemProvider> flowerDyeMap = ImmutableMap.of(GNSBlocks.cyan_flower, Items.CYAN_DYE, GNSBlocks.orange_flower, Items.ORANGE_DYE, GNSBlocks.dead_flower, Items.GRAY_DYE);
-		flowerDyeMap.forEach((flower, dye) -> ShapelessRecipeBuilder.shapelessRecipe(dye).addIngredient(flower).addCriterion(hasItem, hasItem(flower)).build(con, GoodNightSleep.find(dye.asItem().getRegistryName().getPath() + "_from_" + flower.asItem().getRegistryName().getPath())));
+		flowerDyeMap.forEach((flower, dye) -> ShapelessRecipeBuilder.shapeless(dye).requires(flower).unlockedBy(hasItem, has(flower)).save(con, GoodNightSleep.find(dye.asItem().getRegistryName().getPath() + "_from_" + flower.asItem().getRegistryName().getPath())));
 		ImmutableMap<IItemProvider, IItemProvider> cropSeedMap = ImmutableMap.of(GNSItems.rainbow_seeds, GNSItems.rainbow_berries);
-		cropSeedMap.forEach((seed, crop) -> ShapelessRecipeBuilder.shapelessRecipe(seed).addIngredient(crop).addCriterion(hasItem, hasItem(crop)).build(con));
-		ShapedRecipeBuilder.shapedRecipe(Blocks.FURNACE).key('#', GNSItemTags.COBBLESTONES).patternLine("###").patternLine("# #").patternLine("###").addCriterion(hasItem, hasItem(GNSItemTags.COBBLESTONES)).build(con, GoodNightSleep.find("furnace_compat"));
+		cropSeedMap.forEach((seed, crop) -> ShapelessRecipeBuilder.shapeless(seed).requires(crop).unlockedBy(hasItem, has(crop)).save(con));
+		ShapedRecipeBuilder.shaped(Blocks.FURNACE).define('#', GNSItemTags.COBBLESTONES).pattern("###").pattern("# #").pattern("###").unlockedBy(hasItem, has(GNSItemTags.COBBLESTONES)).save(con, GoodNightSleep.find("furnace_compat"));
 
-		ShapelessRecipeBuilder.shapelessRecipe(GNSItems.strange_bed).addIngredient(ItemTags.BEDS).addIngredient(GNSBlocks.hope_mushroom).addIngredient(GNSBlocks.despair_mushroom).addCriterion(hasItem, hasItem(GNSItemTags.MUSHROOMS)).build(con);
+		ShapelessRecipeBuilder.shapeless(GNSItems.strange_bed).requires(ItemTags.BEDS).requires(GNSBlocks.hope_mushroom).requires(GNSBlocks.despair_mushroom).unlockedBy(hasItem, has(GNSItemTags.MUSHROOMS)).save(con);
 
-		ShapelessRecipeBuilder.shapelessRecipe(GNSItems.luxurious_bed).addIngredient(GNSItems.strange_bed).addIngredient(GNSItems.positite).addCriterion(hasItem, hasItem(GNSItems.strange_bed)).build(con);
-		ShapelessRecipeBuilder.shapelessRecipe(GNSItems.wretched_bed).addIngredient(GNSItems.strange_bed).addIngredient(GNSItems.negatite).addCriterion(hasItem, hasItem(GNSItems.strange_bed)).build(con);
+		ShapelessRecipeBuilder.shapeless(GNSItems.luxurious_bed).requires(GNSItems.strange_bed).requires(GNSItems.positite).unlockedBy(hasItem, has(GNSItems.strange_bed)).save(con);
+		ShapelessRecipeBuilder.shapeless(GNSItems.wretched_bed).requires(GNSItems.strange_bed).requires(GNSItems.negatite).unlockedBy(hasItem, has(GNSItems.strange_bed)).save(con);
 
-		ShapedRecipeBuilder.shapedRecipe(GNSBlocks.pot_of_gold.asItem()).key('I', GNSItems.rainbow_ingot).key('G', Blocks.GOLD_BLOCK.asItem()).key('C', Blocks.CAULDRON.asItem()).patternLine("III").patternLine("IGI").patternLine("ICI").addCriterion(hasItem, hasItem(GNSItems.rainbow_ingot)).build(con);
+		ShapedRecipeBuilder.shaped(GNSBlocks.pot_of_gold.asItem()).define('I', GNSItems.rainbow_ingot).define('G', Blocks.GOLD_BLOCK.asItem()).define('C', Blocks.CAULDRON.asItem()).pattern("III").pattern("IGI").pattern("ICI").unlockedBy(hasItem, has(GNSItems.rainbow_ingot)).save(con);
 
 		// Cooking
 		/*blasting(GNSItemTags.CANDY_ORES, GNSItems.candy_ingot, 0.2F);*/
@@ -152,7 +152,7 @@ public class GNSRecipeProv extends RecipeProvider
 
 	private void simple2x2(IItemProvider item, IItemProvider output, int amount)
 	{
-		ShapedRecipeBuilder.shapedRecipe(output, amount).key('#', item).patternLine("##").patternLine("##").addCriterion(hasItem, hasItem(item)).build(con);
+		ShapedRecipeBuilder.shaped(output, amount).define('#', item).pattern("##").pattern("##").unlockedBy(hasItem, has(item)).save(con);
 	}
 
 	private void simple2x2(IItemProvider item, IItemProvider output)
@@ -162,7 +162,7 @@ public class GNSRecipeProv extends RecipeProvider
 
 	private void simple3x3(IItemProvider item, IItemProvider output, int amount)
 	{
-		ShapedRecipeBuilder.shapedRecipe(output, amount).key('#', item).patternLine("###").patternLine("###").patternLine("###").addCriterion(hasItem, hasItem(item)).build(con);
+		ShapedRecipeBuilder.shaped(output, amount).define('#', item).pattern("###").pattern("###").pattern("###").unlockedBy(hasItem, has(item)).save(con);
 	}
 
 	private void simple3x3(IItemProvider item, IItemProvider output)
@@ -172,8 +172,8 @@ public class GNSRecipeProv extends RecipeProvider
 
 	private void slabsStairs(IItemProvider block, IItemProvider slab, IItemProvider stair)
 	{
-		slabs(block, slab).build(con);
-		stairs(block, stair).build(con);
+		slabs(block, slab).save(con);
+		stairs(block, stair).save(con);
 	}
 
 	private void slabsStairsWalls(IItemProvider block, IItemProvider slab, IItemProvider stair, IItemProvider wall)
@@ -196,17 +196,17 @@ public class GNSRecipeProv extends RecipeProvider
 
 	private ShapedRecipeBuilder slabs(IItemProvider ingredient, IItemProvider slab)
 	{
-		return ShapedRecipeBuilder.shapedRecipe(slab, 6).key('#', ingredient).patternLine("###").addCriterion(hasItem, hasItem(ingredient));
+		return ShapedRecipeBuilder.shaped(slab, 6).define('#', ingredient).pattern("###").unlockedBy(hasItem, has(ingredient));
 	}
 
 	private ShapedRecipeBuilder stairs(IItemProvider ingredient, IItemProvider stair)
 	{
-		return ShapedRecipeBuilder.shapedRecipe(stair, 4).key('#', ingredient).patternLine("#  ").patternLine("## ").patternLine("###").addCriterion(hasItem, hasItem(ingredient));
+		return ShapedRecipeBuilder.shaped(stair, 4).define('#', ingredient).pattern("#  ").pattern("## ").pattern("###").unlockedBy(hasItem, has(ingredient));
 	}
 
 	private void walls(IItemProvider ingredient, IItemProvider wall)
 	{
-		ShapedRecipeBuilder.shapedRecipe(wall, 6).key('#', ingredient).patternLine("###").patternLine("###").addCriterion(hasItem, hasItem(ingredient)).build(con);
+		ShapedRecipeBuilder.shaped(wall, 6).define('#', ingredient).pattern("###").pattern("###").unlockedBy(hasItem, has(ingredient)).save(con);
 	}
 
 	private void fencesGates(IItemProvider plank, IItemProvider fence, IItemProvider gate)
@@ -217,66 +217,66 @@ public class GNSRecipeProv extends RecipeProvider
 
 	private void fences(IItemProvider plank, IItemProvider fence)
 	{
-		ShapedRecipeBuilder.shapedRecipe(fence, 3).key('P', plank).key('S', Ingredient.fromTag(Tags.Items.RODS_WOODEN)).patternLine("PSP").patternLine("PSP").setGroup("wooden_fence").addCriterion(hasItem, hasItem(plank)).build(con);
+		ShapedRecipeBuilder.shaped(fence, 3).define('P', plank).define('S', Ingredient.of(Tags.Items.RODS_WOODEN)).pattern("PSP").pattern("PSP").group("wooden_fence").unlockedBy(hasItem, has(plank)).save(con);
 	}
 
 	private void gates(IItemProvider plank, IItemProvider gate)
 	{
-		ShapedRecipeBuilder.shapedRecipe(gate).key('P', plank).key('S', Ingredient.fromTag(Tags.Items.RODS_WOODEN)).patternLine("SPS").patternLine("SPS").setGroup("wooden_fence_gate").addCriterion(hasItem, hasItem(plank)).build(con);
+		ShapedRecipeBuilder.shaped(gate).define('P', plank).define('S', Ingredient.of(Tags.Items.RODS_WOODEN)).pattern("SPS").pattern("SPS").group("wooden_fence_gate").unlockedBy(hasItem, has(plank)).save(con);
 	}
 
 	private void stoneCutting(IItemProvider ingredient, ImmutableList<IItemProvider> results)
 	{
 		results.forEach(result ->
 		{
-			SingleItemRecipeBuilder.stonecuttingRecipe(Ingredient.fromItems(ingredient), result, result instanceof SlabBlock ? 2 : 1).addCriterion(hasItem, hasItem(ingredient)).build(con, GoodNightSleep.find(result.asItem().getRegistryName().getPath() + "_stonecutting_" + ingredient.asItem().getRegistryName().getPath()));
+			SingleItemRecipeBuilder.stonecutting(Ingredient.of(ingredient), result, result instanceof SlabBlock ? 2 : 1).unlocks(hasItem, has(ingredient)).save(con, GoodNightSleep.find(result.asItem().getRegistryName().getPath() + "_stonecutting_" + ingredient.asItem().getRegistryName().getPath()));
 		});
 	}
 
 	private void cooking(IItemProvider ingredient, IItemProvider result, float exp)
 	{
-		cooking(ingredient, result, exp, 200, IRecipeSerializer.SMELTING);
+		cooking(ingredient, result, exp, 200, IRecipeSerializer.SMELTING_RECIPE);
 	}
 
 	private void cooking(IItemProvider ingredient, IItemProvider result, float exp, int time, CookingRecipeSerializer<?> type)
 	{
-		CookingRecipeBuilder.cookingRecipe(Ingredient.fromItems(ingredient), result, exp, time, type).addCriterion(hasItem, hasItem(ingredient)).build(con, GoodNightSleep.find(result.asItem().getRegistryName().getPath() + "_from_" + type.getRegistryName().getPath()));
+		CookingRecipeBuilder.cooking(Ingredient.of(ingredient), result, exp, time, type).unlockedBy(hasItem, has(ingredient)).save(con, GoodNightSleep.find(result.asItem().getRegistryName().getPath() + "_from_" + type.getRegistryName().getPath()));
 	}
 
 	private void smoking(INamedTag<Item> ingredient, IItemProvider result, float exp)
 	{
 		cooking(ingredient, result, exp);
-		cooking(ingredient, result, exp, 100, IRecipeSerializer.SMOKING);
-		cooking(ingredient, result, exp, 600, IRecipeSerializer.CAMPFIRE_COOKING);
+		cooking(ingredient, result, exp, 100, IRecipeSerializer.SMOKING_RECIPE);
+		cooking(ingredient, result, exp, 600, IRecipeSerializer.CAMPFIRE_COOKING_RECIPE);
 	}
 
 	private void blasting(INamedTag<Item> ingredient, IItemProvider result, float exp)
 	{
 		cooking(ingredient, result, exp);
-		cooking(ingredient, result, exp, 100, IRecipeSerializer.BLASTING);
+		cooking(ingredient, result, exp, 100, IRecipeSerializer.BLASTING_RECIPE);
 	}
 
 	private void cooking(INamedTag<Item> ingredient, IItemProvider result, float exp)
 	{
-		cooking(ingredient, result, exp, 200, IRecipeSerializer.SMELTING);
+		cooking(ingredient, result, exp, 200, IRecipeSerializer.SMELTING_RECIPE);
 	}
 
 	private void cooking(INamedTag<Item> ingredient, IItemProvider result, float exp, int time, CookingRecipeSerializer<?> type)
 	{
-		CookingRecipeBuilder.cookingRecipe(Ingredient.fromTag(ingredient), result, exp, time, type).addCriterion(hasItem, hasItem(ingredient)).build(con, GoodNightSleep.find(result.asItem().getRegistryName().getPath() + "_from_" + type.getRegistryName().getPath()));
+		CookingRecipeBuilder.cooking(Ingredient.of(ingredient), result, exp, time, type).unlockedBy(hasItem, has(ingredient)).save(con, GoodNightSleep.find(result.asItem().getRegistryName().getPath() + "_from_" + type.getRegistryName().getPath()));
 	}
 
 	private void smoking(IItemProvider ingredient, IItemProvider result, float exp)
 	{
-		cooking(ingredient, result, exp, 200, IRecipeSerializer.SMELTING);
-		cooking(ingredient, result, exp, 100, IRecipeSerializer.SMOKING);
-		cooking(ingredient, result, exp, 600, IRecipeSerializer.CAMPFIRE_COOKING);
+		cooking(ingredient, result, exp, 200, IRecipeSerializer.SMELTING_RECIPE);
+		cooking(ingredient, result, exp, 100, IRecipeSerializer.SMOKING_RECIPE);
+		cooking(ingredient, result, exp, 600, IRecipeSerializer.CAMPFIRE_COOKING_RECIPE);
 	}
 
 	private void blasting(IItemProvider ingredient, IItemProvider result, float exp)
 	{
-		cooking(ingredient, result, exp, 200, IRecipeSerializer.SMELTING);
-		cooking(ingredient, result, exp, 100, IRecipeSerializer.BLASTING);
+		cooking(ingredient, result, exp, 200, IRecipeSerializer.SMELTING_RECIPE);
+		cooking(ingredient, result, exp, 100, IRecipeSerializer.BLASTING_RECIPE);
 	}
 
 	@Override

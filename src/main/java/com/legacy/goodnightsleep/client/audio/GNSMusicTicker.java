@@ -37,13 +37,13 @@ public class GNSMusicTicker implements ITickable
 
 		try
 		{
-			if (this.mc.player != null && !this.mc.getSoundHandler().isPlaying(this.playingRecord) && GNSDimensions.getDimensionLocations(true) != null && GNSDimensions.getDimensionLocations(false) != null)
+			if (this.mc.player != null && !this.mc.getSoundManager().isActive(this.playingRecord) && GNSDimensions.getDimensionLocations(true) != null && GNSDimensions.getDimensionLocations(false) != null)
 			{
-				if (this.mc.player.world.getDimensionKey().getLocation() == GNSDimensions.getDimensionLocations(true))
+				if (this.mc.player.level.dimension().location() == GNSDimensions.getDimensionLocations(true))
 				{
 					if (this.ambientMusic != null)
 					{
-						if (!this.mc.getSoundHandler().isPlaying(this.ambientMusic))
+						if (!this.mc.getSoundManager().isActive(this.ambientMusic))
 						{
 							this.ambientMusic = null;
 							this.timeUntilNextMusic = Math.min(MathHelper.nextInt(this.rand, tracktypeB.getMinDelay(), tracktypeB.getMaxDelay()), this.timeUntilNextMusic);
@@ -55,11 +55,11 @@ public class GNSMusicTicker implements ITickable
 						this.playMusic(tracktypeB);
 					}
 				}
-				else if (this.mc.player.world.getDimensionKey().getLocation() == GNSDimensions.getDimensionLocations(false))
+				else if (this.mc.player.level.dimension().location() == GNSDimensions.getDimensionLocations(false))
 				{
 					if (this.ambientMusic != null)
 					{
-						if (!this.mc.getSoundHandler().isPlaying(this.ambientMusic))
+						if (!this.mc.getSoundManager().isActive(this.ambientMusic))
 						{
 							this.ambientMusic = null;
 							this.timeUntilNextMusic = Math.min(MathHelper.nextInt(this.rand, tracktypeD.getMinDelay(), tracktypeD.getMaxDelay()), this.timeUntilNextMusic);
@@ -105,8 +105,8 @@ public class GNSMusicTicker implements ITickable
 
 	public void playMusic(TrackType requestedMusicType)
 	{
-		this.ambientMusic = SimpleSound.music(requestedMusicType.getMusicLocation());
-		this.mc.getSoundHandler().play(this.ambientMusic);
+		this.ambientMusic = SimpleSound.forMusic(requestedMusicType.getMusicLocation());
+		this.mc.getSoundManager().play(this.ambientMusic);
 		this.timeUntilNextMusic = Integer.MAX_VALUE;
 	}
 
@@ -114,7 +114,7 @@ public class GNSMusicTicker implements ITickable
 	{
 		if (this.ambientMusic != null)
 		{
-			this.mc.getSoundHandler().stop(this.ambientMusic);
+			this.mc.getSoundManager().stop(this.ambientMusic);
 			this.ambientMusic = null;
 			this.timeUntilNextMusic = 0;
 		}

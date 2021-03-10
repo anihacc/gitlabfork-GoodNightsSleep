@@ -49,8 +49,8 @@ public class GNSBiomes
 
 		register(registry, "hopeful_fields", HOPEFUL_FIELDS);
 
-		Registry.register(Registry.BIOME_PROVIDER_CODEC, "dream_multi_noise", DreamBiomeProvider.dreamProviderCodec);
-		Registry.register(Registry.BIOME_PROVIDER_CODEC, "nightmare_multi_noise", NightmareBiomeProvider.nightmareProviderCodec);
+		Registry.register(Registry.BIOME_SOURCE, "dream_multi_noise", DreamBiomeProvider.dreamProviderCodec);
+		Registry.register(Registry.BIOME_SOURCE, "nightmare_multi_noise", NightmareBiomeProvider.nightmareProviderCodec);
 
 		/*BiomeDictionary.addTypes(GOOD_DREAM_PLAINS, BiomeDictionary.Type.MAGICAL, BiomeDictionary.Type.PLAINS);
 		BiomeDictionary.addTypes(NIGHTMARE_HILLS, BiomeDictionary.Type.SPOOKY, BiomeDictionary.Type.HILLS, BiomeDictionary.Type.MOUNTAIN, BiomeDictionary.Type.HOT, BiomeDictionary.Type.DEAD);*/
@@ -63,32 +63,32 @@ public class GNSBiomes
 
 	public static class SurfaceBuilders
 	{
-		public static final SurfaceBuilderConfig DREAM_GRASS_DIRT_GRAVEL_CONFIG = new SurfaceBuilderConfig(GNSBlocks.dream_grass_block.getDefaultState(), GNSBlocks.dream_dirt.getDefaultState(), Blocks.GRAVEL.getDefaultState());
-		public static final SurfaceBuilderConfig NIGHTMARE_GRASS_DIRT_GRAVEL_CONFIG = new SurfaceBuilderConfig(GNSBlocks.nightmare_grass_block.getDefaultState(), Blocks.DIRT.getDefaultState(), Blocks.GRAVEL.getDefaultState());
+		public static final SurfaceBuilderConfig DREAM_GRASS_DIRT_GRAVEL_CONFIG = new SurfaceBuilderConfig(GNSBlocks.dream_grass_block.defaultBlockState(), GNSBlocks.dream_dirt.defaultBlockState(), Blocks.GRAVEL.defaultBlockState());
+		public static final SurfaceBuilderConfig NIGHTMARE_GRASS_DIRT_GRAVEL_CONFIG = new SurfaceBuilderConfig(GNSBlocks.nightmare_grass_block.defaultBlockState(), Blocks.DIRT.defaultBlockState(), Blocks.GRAVEL.defaultBlockState());
 
-		public static final ConfiguredSurfaceBuilder<SurfaceBuilderConfig> DREAM_GRASS_SURFACE_BUILDER = SurfaceBuilder.DEFAULT.func_242929_a(DREAM_GRASS_DIRT_GRAVEL_CONFIG);
-		public static final ConfiguredSurfaceBuilder<SurfaceBuilderConfig> NIGHTMARE_GRASS_SURFACE_BUILDER = SurfaceBuilder.DEFAULT.func_242929_a(NIGHTMARE_GRASS_DIRT_GRAVEL_CONFIG);
+		public static final ConfiguredSurfaceBuilder<SurfaceBuilderConfig> DREAM_GRASS_SURFACE_BUILDER = SurfaceBuilder.DEFAULT.configured(DREAM_GRASS_DIRT_GRAVEL_CONFIG);
+		public static final ConfiguredSurfaceBuilder<SurfaceBuilderConfig> NIGHTMARE_GRASS_SURFACE_BUILDER = SurfaceBuilder.DEFAULT.configured(NIGHTMARE_GRASS_DIRT_GRAVEL_CONFIG);
 	}
 
 	public static class Keys
 	{
-		public static final RegistryKey<Biome> SLEEPY_HILLS = RegistryKey.getOrCreateKey(Registry.BIOME_KEY, GoodNightSleep.locate("sleepy_hills"));
-		public static final RegistryKey<Biome> DREAMY_FOREST = RegistryKey.getOrCreateKey(Registry.BIOME_KEY, GoodNightSleep.locate("dreamy_forest"));
-		public static final RegistryKey<Biome> GOOD_DREAM_PLAINS = RegistryKey.getOrCreateKey(Registry.BIOME_KEY, GoodNightSleep.locate("good_dream_plains"));
-		public static final RegistryKey<Biome> LOLLIPOP_LANDS = RegistryKey.getOrCreateKey(Registry.BIOME_KEY, GoodNightSleep.locate("lollipop_lands"));
+		public static final RegistryKey<Biome> SLEEPY_HILLS = RegistryKey.create(Registry.BIOME_REGISTRY, GoodNightSleep.locate("sleepy_hills"));
+		public static final RegistryKey<Biome> DREAMY_FOREST = RegistryKey.create(Registry.BIOME_REGISTRY, GoodNightSleep.locate("dreamy_forest"));
+		public static final RegistryKey<Biome> GOOD_DREAM_PLAINS = RegistryKey.create(Registry.BIOME_REGISTRY, GoodNightSleep.locate("good_dream_plains"));
+		public static final RegistryKey<Biome> LOLLIPOP_LANDS = RegistryKey.create(Registry.BIOME_REGISTRY, GoodNightSleep.locate("lollipop_lands"));
 
-		public static final RegistryKey<Biome> NIGHTMARE_HILLS = RegistryKey.getOrCreateKey(Registry.BIOME_KEY, GoodNightSleep.locate("nightmare_hills"));
-		public static final RegistryKey<Biome> SHAMEFUL_PLAINS = RegistryKey.getOrCreateKey(Registry.BIOME_KEY, GoodNightSleep.locate("shameful_plains"));
-		public static final RegistryKey<Biome> WASTED_FOREST = RegistryKey.getOrCreateKey(Registry.BIOME_KEY, GoodNightSleep.locate("wasted_forest"));
+		public static final RegistryKey<Biome> NIGHTMARE_HILLS = RegistryKey.create(Registry.BIOME_REGISTRY, GoodNightSleep.locate("nightmare_hills"));
+		public static final RegistryKey<Biome> SHAMEFUL_PLAINS = RegistryKey.create(Registry.BIOME_REGISTRY, GoodNightSleep.locate("shameful_plains"));
+		public static final RegistryKey<Biome> WASTED_FOREST = RegistryKey.create(Registry.BIOME_REGISTRY, GoodNightSleep.locate("wasted_forest"));
 
-		public static final RegistryKey<Biome> HOPEFUL_FIELDS = RegistryKey.getOrCreateKey(Registry.BIOME_KEY, GoodNightSleep.locate("hopeful_fields"));
+		public static final RegistryKey<Biome> HOPEFUL_FIELDS = RegistryKey.create(Registry.BIOME_REGISTRY, GoodNightSleep.locate("hopeful_fields"));
 
 		public static final List<RegistryKey<Biome>> DREAM_BIOMES = ImmutableList.of(SLEEPY_HILLS, DREAMY_FOREST, GOOD_DREAM_PLAINS, HOPEFUL_FIELDS, LOLLIPOP_LANDS);
 		public static final List<RegistryKey<Biome>> NIGHTMARE_BIOMES = ImmutableList.of(NIGHTMARE_HILLS, SHAMEFUL_PLAINS, WASTED_FOREST);
 
 		public static RegistryKey<Biome> getKeyFromBiome(World world, Biome biomeIn)
 		{
-			Optional<RegistryKey<Biome>> biome = world.func_241828_r().getRegistry(Registry.BIOME_KEY).getOptionalKey(biomeIn);
+			Optional<RegistryKey<Biome>> biome = world.registryAccess().registryOrThrow(Registry.BIOME_REGISTRY).getResourceKey(biomeIn);
 
 			if (biome.isPresent())
 				return biome.get();

@@ -18,7 +18,7 @@ public abstract class GNSCreativeTabs extends ItemGroup
 	public static final ItemGroup blocks = new ItemGroup("gns_blocks")
 	{
 		@Override
-		public ItemStack createIcon() 
+		public ItemStack makeIcon() 
 		{
 			return new ItemStack(GNSBlocks.dream_grass_block);
 		}
@@ -26,7 +26,7 @@ public abstract class GNSCreativeTabs extends ItemGroup
 	public static final ItemGroup tools = new ItemGroup("gns_tools")
 	{
 		@Override
-		public ItemStack createIcon() 
+		public ItemStack makeIcon() 
 		{
 			return new ItemStack(GNSItems.candy_axe);
 		}
@@ -34,7 +34,7 @@ public abstract class GNSCreativeTabs extends ItemGroup
 	public static final ItemGroup armor = new ItemGroup("gns_armor")
 	{
 		@Override
-		public ItemStack createIcon() 
+		public ItemStack makeIcon() 
 		{
 			return new ItemStack(GNSItems.candy_chestplate);
 		}
@@ -42,7 +42,7 @@ public abstract class GNSCreativeTabs extends ItemGroup
 	public static final ItemGroup items = new ItemGroup("gns_items")
 	{
 		@Override
-		public ItemStack createIcon() 
+		public ItemStack makeIcon() 
 		{
 			return new ItemStack(GNSItems.positite);
 		}

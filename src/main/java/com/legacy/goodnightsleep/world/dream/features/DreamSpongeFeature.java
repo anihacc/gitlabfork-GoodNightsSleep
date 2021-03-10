@@ -23,11 +23,11 @@ public class DreamSpongeFeature extends Feature<NoFeatureConfig>
 	{
 		super(configFactoryIn);
 
-		this.spongeBlockId = Blocks.WET_SPONGE.getDefaultState();
+		this.spongeBlockId = Blocks.WET_SPONGE.defaultBlockState();
 	}
 
 	@Override
-	public boolean generate(ISeedReader worldIn, ChunkGenerator generator, Random rand, BlockPos pos, NoFeatureConfig config)
+	public boolean place(ISeedReader worldIn, ChunkGenerator generator, Random rand, BlockPos pos, NoFeatureConfig config)
 	{
 		int x = pos.getX();
 		int y = pos.getY();
@@ -55,7 +55,7 @@ public class DreamSpongeFeature extends Feature<NoFeatureConfig>
 		{
 			for (int i = 0; i < size; ++i)
 			{
-				world.setBlockState(new BlockPos(x, y + i, z), this.spongeBlockId, 0);
+				world.setBlock(new BlockPos(x, y + i, z), this.spongeBlockId, 0);
 			}
 		}
 	}

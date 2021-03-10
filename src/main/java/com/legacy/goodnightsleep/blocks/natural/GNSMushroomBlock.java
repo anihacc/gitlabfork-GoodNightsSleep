@@ -16,6 +16,8 @@ import net.minecraft.world.IWorldReader;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.server.ServerWorld;
 
+import net.minecraft.block.AbstractBlock.Properties;
+
 public class GNSMushroomBlock extends MushroomBlock
 {
 	public GNSMushroomBlock(Properties properties)
@@ -24,15 +26,15 @@ public class GNSMushroomBlock extends MushroomBlock
 	}
 
 	@Override
-	public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos)
+	public boolean canSurvive(BlockState state, IWorldReader worldIn, BlockPos pos)
 	{
-		BlockPos blockpos = pos.down();
+		BlockPos blockpos = pos.below();
 		BlockState blockstate = worldIn.getBlockState(blockpos);
 		Block block = blockstate.getBlock();
 
 		if (block != Blocks.MYCELIUM && block != Blocks.PODZOL && block != GNSBlocks.dream_grass_block && block != GNSBlocks.nightmare_grass_block)
 		{
-			return worldIn.getLightSubtracted(pos, 0) < 13 && blockstate.canSustainPlant(worldIn, blockpos, Direction.UP, this);
+			return worldIn.getRawBrightness(pos, 0) < 13 && blockstate.canSustainPlant(worldIn, blockpos, Direction.UP, this);
 		}
 		else
 		{
@@ -41,12 +43,12 @@ public class GNSMushroomBlock extends MushroomBlock
 	}
 
 	@Override
-	public boolean canGrow(IBlockReader worldIn, BlockPos pos, BlockState state, boolean isClient)
+	public boolean isValidBonemealTarget(IBlockReader worldIn, BlockPos pos, BlockState state, boolean isClient)
 	{
 		return true;
 	}
 
-	public boolean grow(ServerWorld world, BlockPos pos, BlockState state, Random rand)
+	public boolean growMushroom(ServerWorld world, BlockPos pos, BlockState state, Random rand)
 	{
 		world.removeBlock(pos, false);
 		ConfiguredFeature<?, ?> configuredfeature;
@@ -59,20 +61,20 @@ public class GNSMushroomBlock extends MushroomBlock
 		{
 			if (this != GNSBlocks.hope_mushroom)
 			{
-				world.setBlockState(pos, state, 3);
+				world.setBlock(pos, state, 3);
 				return false;
 			}
 
 			configuredfeature = GNSFeatures.Configured.BASE_HUGE_HOPE_MUSHROOM;
 		}
 
-		if (configuredfeature.generate(world, world.getChunkProvider().getChunkGenerator(), rand, pos))
+		if (configuredfeature.place(world, world.getChunkSource().getGenerator(), rand, pos))
 		{
 			return true;
 		}
 		else
 		{
-			world.setBlockState(pos, state, 3);
+			world.setBlock(pos, state, 3);
 			return false;
 		}
 	}

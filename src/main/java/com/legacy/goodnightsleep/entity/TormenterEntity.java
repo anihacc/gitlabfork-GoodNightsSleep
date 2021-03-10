@@ -29,7 +29,7 @@ public class TormenterEntity extends ZombieEntity
 
 	public static AttributeModifierMap.MutableAttribute registerAttributes()
 	{
-		return TormenterEntity.func_234342_eQ_().createMutableAttribute(Attributes.MAX_HEALTH, 30.0D);
+		return TormenterEntity.createAttributes().add(Attributes.MAX_HEALTH, 30.0D);
 	}
 
 	@Override
@@ -51,18 +51,18 @@ public class TormenterEntity extends ZombieEntity
 	}
 
 	@Override
-	public boolean attackEntityAsMob(Entity entityIn)
+	public boolean doHurtTarget(Entity entityIn)
 	{
-		if (!world.isRemote() && entityIn instanceof LivingEntity && rand.nextBoolean() && !((LivingEntity) entityIn).isPotionActive(Effects.BLINDNESS) && !((LivingEntity) entityIn).isPotionActive(Effects.NAUSEA))
+		if (!level.isClientSide() && entityIn instanceof LivingEntity && random.nextBoolean() && !((LivingEntity) entityIn).hasEffect(Effects.BLINDNESS) && !((LivingEntity) entityIn).hasEffect(Effects.CONFUSION))
 		{
 			this.playSound(GNSSounds.ENTITY_TORMENTER_TORMENT, 0.5F, 1.0F);
-			((LivingEntity) entityIn).addPotionEffect(new EffectInstance(Effects.BLINDNESS, 80));
-			((LivingEntity) entityIn).addPotionEffect(new EffectInstance(Effects.NAUSEA, 160));
+			((LivingEntity) entityIn).addEffect(new EffectInstance(Effects.BLINDNESS, 80));
+			((LivingEntity) entityIn).addEffect(new EffectInstance(Effects.CONFUSION, 160));
 
-			if (this.rand.nextBoolean())
-				((LivingEntity) entityIn).addPotionEffect(new EffectInstance(Effects.WITHER, 60, this.world.getDifficulty().getId()));
+			if (this.random.nextBoolean())
+				((LivingEntity) entityIn).addEffect(new EffectInstance(Effects.WITHER, 60, this.level.getDifficulty().getId()));
 		}
 
-		return super.attackEntityAsMob(entityIn);
+		return super.doHurtTarget(entityIn);
 	}
 }

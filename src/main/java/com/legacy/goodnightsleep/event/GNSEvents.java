@@ -28,12 +28,12 @@ public class GNSEvents
 	{
 		PlayerEntity player = event.getPlayer();
 
-		if ((event.getTarget() instanceof ZombieHorseEntity || event.getTarget() instanceof SkeletonHorseEntity) && player.world.getDimensionKey() == GNSDimensions.getDimensionKeys(false))
+		if ((event.getTarget() instanceof ZombieHorseEntity || event.getTarget() instanceof SkeletonHorseEntity) && player.level.dimension() == GNSDimensions.getDimensionKeys(false))
 		{
-			if (!((AbstractHorseEntity) event.getTarget()).isTame() && player.getHeldItemMainhand().isEmpty() && player.getHeldItemOffhand().isEmpty())
+			if (!((AbstractHorseEntity) event.getTarget()).isTamed() && player.getMainHandItem().isEmpty() && player.getOffhandItem().isEmpty())
 			{
 				event.setResult(Result.ALLOW);
-				player.swingArm(Hand.MAIN_HAND);
+				player.swing(Hand.MAIN_HAND);
 				player.startRiding(event.getTarget());
 			}
 		}
@@ -42,7 +42,7 @@ public class GNSEvents
 	@SubscribeEvent
 	public void onLivingCheckSpawn(LivingSpawnEvent.CheckSpawn event)
 	{
-		if (event.getEntityLiving() instanceof PhantomEntity && event.getEntityLiving().world.getDimensionKey() == GNSDimensions.getDimensionKeys(false) && !GNSConfig.allowNightmarePhantoms)
+		if (event.getEntityLiving() instanceof PhantomEntity && event.getEntityLiving().level.dimension() == GNSDimensions.getDimensionKeys(false) && !GNSConfig.allowNightmarePhantoms)
 			event.setResult(Result.DENY);
 	}
 
@@ -56,12 +56,12 @@ public class GNSEvents
 		ServerWorld world = (ServerWorld) event.getWorld();
 		BlockState state = event.getWorld().getBlockState(event.getPos());
 
-		if (!world.isRemote && state.getBlock() instanceof BedBlock && (player.world.getDimensionKey() == GNSDimensions.getDimensionKeys(true) || player.world.getDimensionKey() == GNSDimensions.getDimensionKeys(false)))
+		if (!world.isClientSide && state.getBlock() instanceof BedBlock && (player.level.dimension() == GNSDimensions.getDimensionKeys(true) || player.level.dimension() == GNSDimensions.getDimensionKeys(false)))
 		{
 			player.swing(Hand.MAIN_HAND, true);
 			event.setCanceled(true);
 			// get the player's bed spawn, otherwise go for the world spawn
-			BlockPos pos = player.func_241140_K_() != null ? player.func_241140_K_() : world.getSpawnPoint();
+			BlockPos pos = player.getRespawnPosition() != null ? player.getRespawnPosition() : world.getSharedSpawnPos();
 			GNSTeleporter.changeDimension(World.OVERWORLD, player, pos);
 		}
 	}

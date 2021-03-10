@@ -45,7 +45,7 @@ public class PacketHandler
 	public static void sendTo(Object packet, ServerPlayerEntity serverPlayer)
 	{
 		if (!(serverPlayer instanceof FakePlayer))
-			INSTANCE.sendTo(packet, serverPlayer.connection.netManager, NetworkDirection.PLAY_TO_CLIENT);
+			INSTANCE.sendTo(packet, serverPlayer.connection.connection, NetworkDirection.PLAY_TO_CLIENT);
 	}
 
 	/**
@@ -56,7 +56,7 @@ public class PacketHandler
 	 */
 	public static void sendToAll(Object packet, World world)
 	{
-		world.getPlayers().forEach(player -> sendTo(packet, (ServerPlayerEntity) player));
+		world.players().forEach(player -> sendTo(packet, (ServerPlayerEntity) player));
 	}
 
 	/**

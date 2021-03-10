@@ -40,18 +40,18 @@ public class DreamPlayer implements IDreamPlayer
 	@Override
 	public void serverTick()
 	{
-		if (player != null && player instanceof ServerPlayerEntity && !player.getEntityWorld().isRemote())
+		if (player != null && player instanceof ServerPlayerEntity && !player.getCommandSenderWorld().isClientSide())
 		{
-			long worldTime = player.world.getGameTime() - this.getEnteredDreamTime();
+			long worldTime = player.level.getGameTime() - this.getEnteredDreamTime();
 
-			if (worldTime > 25000L && (player.world.getDimensionKey() == GNSDimensions.getDimensionKeys(true) || player.world.getDimensionKey() == GNSDimensions.getDimensionKeys(false)))
+			if (worldTime > 25000L && (player.level.dimension() == GNSDimensions.getDimensionKeys(true) || player.level.dimension() == GNSDimensions.getDimensionKeys(false)))
 			{
 				ServerPlayerEntity playerMP = (ServerPlayerEntity) player;
 
-				if (playerMP.world instanceof ServerWorld)
+				if (playerMP.level instanceof ServerWorld)
 				{
 					// try for bed spawn, otherwise go to the world spawn
-					BlockPos pos = playerMP.func_241140_K_() != null ? playerMP.func_241140_K_() : ((ServerWorld) playerMP.world).getSpawnPoint();
+					BlockPos pos = playerMP.getRespawnPosition() != null ? playerMP.getRespawnPosition() : ((ServerWorld) playerMP.level).getSharedSpawnPos();
 					GNSTeleporter.changeDimension(World.OVERWORLD, playerMP, pos);
 				}
 				/*playerMP.getBedLocation(DimensionType.OVERWORLD) != null ? playerMP.getBedLocation(DimensionType.OVERWORLD) : playerMP.world.getSpawnPoint();*/

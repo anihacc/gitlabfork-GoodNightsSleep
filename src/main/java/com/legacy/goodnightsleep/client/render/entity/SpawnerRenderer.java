@@ -18,7 +18,7 @@ public class SpawnerRenderer extends MobRenderer<GNSSpawnerEntity, PigModel<GNSS
 	}
 
 	@Override
-	public ResourceLocation getEntityTexture(GNSSpawnerEntity entity)
+	public ResourceLocation getTextureLocation(GNSSpawnerEntity entity)
 	{
 		return new ResourceLocation("textures/entity/pig/pig.png");
 	}

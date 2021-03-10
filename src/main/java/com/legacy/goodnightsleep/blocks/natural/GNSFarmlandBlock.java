@@ -29,42 +29,42 @@ import net.minecraftforge.common.ForgeHooks;
 public class GNSFarmlandBlock extends Block
 {
 
-	public static final IntegerProperty MOISTURE = BlockStateProperties.MOISTURE_0_7;
+	public static final IntegerProperty MOISTURE = BlockStateProperties.MOISTURE;
 
-	protected static final VoxelShape SHAPE = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 15.0D, 16.0D);
+	protected static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 15.0D, 16.0D);
 
 	public GNSFarmlandBlock(Block.Properties builder)
 	{
 		super(builder);
-		this.setDefaultState(this.stateContainer.getBaseState().with(MOISTURE, Integer.valueOf(0)));
+		this.registerDefaultState(this.stateDefinition.any().setValue(MOISTURE, Integer.valueOf(0)));
 	}
 
 	@SuppressWarnings("deprecation")
 	@Override
-	public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos)
+	public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos)
 	{
-		if (facing == Direction.UP && !stateIn.isValidPosition(worldIn, currentPos))
+		if (facing == Direction.UP && !stateIn.canSurvive(worldIn, currentPos))
 		{
-			worldIn.getPendingBlockTicks().scheduleTick(currentPos, this, 1);
+			worldIn.getBlockTicks().scheduleTick(currentPos, this, 1);
 		}
-		return super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+		return super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
 	}
 
 	@Override
-	public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos)
+	public boolean canSurvive(BlockState state, IWorldReader worldIn, BlockPos pos)
 	{
-		BlockState iblockstate = worldIn.getBlockState(pos.up());
+		BlockState iblockstate = worldIn.getBlockState(pos.above());
 		return !iblockstate.getMaterial().isSolid() || iblockstate.getBlock() instanceof FenceGateBlock;
 	}
 
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext context)
 	{
-		return !this.getDefaultState().isValidPosition(context.getWorld(), context.getPos()) ? GNSBlocks.dream_dirt.getDefaultState() : super.getStateForPlacement(context);
+		return !this.defaultBlockState().canSurvive(context.getLevel(), context.getClickedPos()) ? GNSBlocks.dream_dirt.defaultBlockState() : super.getStateForPlacement(context);
 	}
 
 	@Override
-	public int getOpacity(BlockState state, IBlockReader worldIn, BlockPos pos)
+	public int getLightBlock(BlockState state, IBlockReader worldIn, BlockPos pos)
 	{
 		return worldIn.getMaxLightLevel();
 	}
@@ -78,18 +78,18 @@ public class GNSFarmlandBlock extends Block
 	@Override
 	public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random)
 	{
-		if (!state.isValidPosition(worldIn, pos))
+		if (!state.canSurvive(worldIn, pos))
 		{
 			turnToDirt(state, worldIn, pos);
 		}
 		else
 		{
-			int i = state.get(MOISTURE);
-			if (!hasWater(worldIn, pos) && !worldIn.isRainingAt(pos.up()))
+			int i = state.getValue(MOISTURE);
+			if (!hasWater(worldIn, pos) && !worldIn.isRainingAt(pos.above()))
 			{
 				if (i > 0)
 				{
-					worldIn.setBlockState(pos, state.with(MOISTURE, Integer.valueOf(i - 1)), 2);
+					worldIn.setBlock(pos, state.setValue(MOISTURE, Integer.valueOf(i - 1)), 2);
 				}
 				else if (!hasCrops(worldIn, pos))
 				{
@@ -98,37 +98,37 @@ public class GNSFarmlandBlock extends Block
 			}
 			else if (i < 7)
 			{
-				worldIn.setBlockState(pos, state.with(MOISTURE, Integer.valueOf(7)), 2);
+				worldIn.setBlock(pos, state.setValue(MOISTURE, Integer.valueOf(7)), 2);
 			}
 		}
 	}
 
 	@Override
-	public void onFallenUpon(World worldIn, BlockPos pos, Entity entityIn, float fallDistance)
+	public void fallOn(World worldIn, BlockPos pos, Entity entityIn, float fallDistance)
 	{
-		if (!worldIn.isRemote && ForgeHooks.onFarmlandTrample(worldIn, pos, GNSBlocks.dream_dirt.getDefaultState(), fallDistance, entityIn))
+		if (!worldIn.isClientSide && ForgeHooks.onFarmlandTrample(worldIn, pos, GNSBlocks.dream_dirt.defaultBlockState(), fallDistance, entityIn))
 		{
 			turnToDirt(worldIn.getBlockState(pos), worldIn, pos);
 		}
-		super.onFallenUpon(worldIn, pos, entityIn, fallDistance);
+		super.fallOn(worldIn, pos, entityIn, fallDistance);
 	}
 
 	public static void turnToDirt(BlockState state, World worldIn, BlockPos pos)
 	{
-		worldIn.setBlockState(pos, nudgeEntitiesWithNewState(state, GNSBlocks.dream_dirt.getDefaultState(), worldIn, pos));
+		worldIn.setBlockAndUpdate(pos, pushEntitiesUp(state, GNSBlocks.dream_dirt.defaultBlockState(), worldIn, pos));
 	}
 
 	private boolean hasCrops(IBlockReader p_176529_0_, BlockPos worldIn)
 	{
-		BlockState state = p_176529_0_.getBlockState(worldIn.up());
+		BlockState state = p_176529_0_.getBlockState(worldIn.above());
 		return state.getBlock() instanceof net.minecraftforge.common.IPlantable && canSustainPlant(state, p_176529_0_, worldIn, Direction.UP, (net.minecraftforge.common.IPlantable) state.getBlock());
 	}
 
 	private static boolean hasWater(IWorldReader p_176530_0_, BlockPos worldIn)
 	{
-		for (BlockPos blockpos$mutableblockpos : BlockPos.getAllInBoxMutable(worldIn.add(-4, 0, -4), worldIn.add(4, 1, 4)))
+		for (BlockPos blockpos$mutableblockpos : BlockPos.betweenClosed(worldIn.offset(-4, 0, -4), worldIn.offset(4, 1, 4)))
 		{
-			if (p_176530_0_.getFluidState(blockpos$mutableblockpos).isTagged(FluidTags.WATER))
+			if (p_176530_0_.getFluidState(blockpos$mutableblockpos).is(FluidTags.WATER))
 			{
 				return true;
 			}
@@ -142,13 +142,13 @@ public class GNSFarmlandBlock extends Block
 	}
 
 	@Override
-	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder)
+	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder)
 	{
 		builder.add(MOISTURE);
 	}
 
 	@Override
-	public boolean allowsMovement(BlockState state, IBlockReader worldIn, BlockPos pos, PathType type)
+	public boolean isPathfindable(BlockState state, IBlockReader worldIn, BlockPos pos, PathType type)
 	{
 		return false;
 	}

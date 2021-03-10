@@ -27,7 +27,7 @@ public class GNSMusicHandler
 		{
 			if (type.equals(TickEvent.Type.CLIENT))
 			{
-				if (!mc.isGamePaused())
+				if (!mc.isPaused())
 				{
 					musicTicker.tick();
 				}
@@ -39,13 +39,13 @@ public class GNSMusicHandler
 	public void onMusicControl(PlaySoundEvent event)
 	{
 		ISound sound = event.getSound();
-		SoundCategory category = sound.getCategory();
+		SoundCategory category = sound.getSource();
 
 		if (category == SoundCategory.MUSIC)
 		{
-			if (this.mc.player != null && this.mc.player.world.getDimensionKey().getLocation() == GNSDimensions.getDimensionLocations(true) || this.mc.player != null && this.mc.player.world.getDimensionKey().getLocation() == GNSDimensions.getDimensionLocations(false))
+			if (this.mc.player != null && this.mc.player.level.dimension().location() == GNSDimensions.getDimensionLocations(true) || this.mc.player != null && this.mc.player.level.dimension().location() == GNSDimensions.getDimensionLocations(false))
 			{
-				if (!sound.getSoundLocation().toString().contains(GoodNightSleep.MODID) && (this.musicTicker.playingMusic() || !this.musicTicker.playingMusic()))
+				if (!sound.getLocation().toString().contains(GoodNightSleep.MODID) && (this.musicTicker.playingMusic() || !this.musicTicker.playingMusic()))
 				{
 					event.setResultSound(null);
 

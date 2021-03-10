@@ -26,8 +26,8 @@ public class RainbowBlock extends Block
 {
 	public static final EnumProperty<Direction.Axis> AXIS = BlockStateProperties.HORIZONTAL_AXIS;
 
-	protected static final VoxelShape X_AABB = Block.makeCuboidShape(0.0D, 0.0D, 6.0D, 16.0D, 16.0D, 10.0D);
-	protected static final VoxelShape Z_AABB = Block.makeCuboidShape(6.0D, 0.0D, 0.0D, 10.0D, 16.0D, 16.0D);
+	protected static final VoxelShape X_AABB = Block.box(0.0D, 0.0D, 6.0D, 16.0D, 16.0D, 10.0D);
+	protected static final VoxelShape Z_AABB = Block.box(6.0D, 0.0D, 0.0D, 10.0D, 16.0D, 16.0D);
 
 	/*
 	 * Corner Types: 0 = none, 1 = starting corner, 2 = ending corner Side Types: 0
@@ -40,13 +40,13 @@ public class RainbowBlock extends Block
 	public RainbowBlock(Block.Properties properties)
 	{
 		super(properties);
-		this.setDefaultState(this.stateContainer.getBaseState().with(AXIS, Direction.Axis.X).with(CORNER_TYPE, 0).with(SIDE_TYPE, 0));
+		this.registerDefaultState(this.stateDefinition.any().setValue(AXIS, Direction.Axis.X).setValue(CORNER_TYPE, 0).setValue(SIDE_TYPE, 0));
 	}
 
 	@Override
 	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context)
 	{
-		switch ((Direction.Axis) state.get(AXIS))
+		switch ((Direction.Axis) state.getValue(AXIS))
 		{
 		case Z:
 			return Z_AABB;
@@ -57,12 +57,12 @@ public class RainbowBlock extends Block
 	}
 
 	@Override
-	public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos)
+	public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos)
 	{
 		int i = getDistance(facingState) + 1;
-		if (i != 1 || stateIn.get(DISTANCE) != i)
+		if (i != 1 || stateIn.getValue(DISTANCE) != i)
 		{
-			worldIn.getPendingBlockTicks().scheduleTick(currentPos, this, 1);
+			worldIn.getBlockTicks().scheduleTick(currentPos, this, 1);
 		}
 
 		return stateIn;
@@ -76,7 +76,7 @@ public class RainbowBlock extends Block
 		}
 		else
 		{
-			return neighbor.getBlock() instanceof RainbowBlock ? neighbor.get(DISTANCE) : 100;
+			return neighbor.getBlock() instanceof RainbowBlock ? neighbor.getValue(DISTANCE) : 100;
 		}
 	}
 
@@ -87,7 +87,7 @@ public class RainbowBlock extends Block
 
 		for (Direction direction : Direction.values())
 		{
-			blockpos$mutable.setPos(pos).move(direction);
+			blockpos$mutable.set(pos).move(direction);
 			i = Math.min(i, getDistance(worldIn.getBlockState(blockpos$mutable)) + 1);
 			if (i == 1)
 			{
@@ -95,27 +95,27 @@ public class RainbowBlock extends Block
 			}
 		}
 
-		return state.with(DISTANCE, Integer.valueOf(i));
+		return state.setValue(DISTANCE, Integer.valueOf(i));
 	}
 
 	@Override
 	public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random)
 	{
-		worldIn.setBlockState(pos, updateDistance(state, worldIn, pos), 3);
+		worldIn.setBlock(pos, updateDistance(state, worldIn, pos), 3);
 
-		if (state.get(DISTANCE) >= 100)
+		if (state.getValue(DISTANCE) >= 100)
 		{
 			worldIn.destroyBlock(pos, false);
 		}
 	}
 
 	@Override
-	public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn)
+	public void entityInside(BlockState state, World worldIn, BlockPos pos, Entity entityIn)
 	{
 	}
 
 	@Override
-	public ItemStack getItem(IBlockReader worldIn, BlockPos pos, BlockState state)
+	public ItemStack getCloneItemStack(IBlockReader worldIn, BlockPos pos, BlockState state)
 	{
 		return ItemStack.EMPTY;
 	}
@@ -126,12 +126,12 @@ public class RainbowBlock extends Block
 		{
 		case COUNTERCLOCKWISE_90:
 		case CLOCKWISE_90:
-			switch ((Direction.Axis) state.get(AXIS))
+			switch ((Direction.Axis) state.getValue(AXIS))
 			{
 			case Z:
-				return state.with(AXIS, Direction.Axis.X);
+				return state.setValue(AXIS, Direction.Axis.X);
 			case X:
-				return state.with(AXIS, Direction.Axis.Z);
+				return state.setValue(AXIS, Direction.Axis.Z);
 			default:
 				return state;
 			}
@@ -141,7 +141,7 @@ public class RainbowBlock extends Block
 	}
 
 	@Override
-	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder)
+	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder)
 	{
 		builder.add(AXIS, CORNER_TYPE, SIDE_TYPE, DISTANCE);
 	}

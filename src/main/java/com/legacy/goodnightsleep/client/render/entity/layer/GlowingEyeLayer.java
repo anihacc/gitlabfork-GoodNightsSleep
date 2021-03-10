@@ -13,14 +13,14 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 @OnlyIn(Dist.CLIENT)
 public class GlowingEyeLayer<T extends LivingEntity, M extends BipedModel<T>> extends AbstractEyesLayer<T, M>
 {
-	private static final RenderType RENDER_TYPE = RenderType.getEyes(GoodNightSleep.locate("textures/entity/herobrine_eyes.png"));
+	private static final RenderType RENDER_TYPE = RenderType.eyes(GoodNightSleep.locate("textures/entity/herobrine_eyes.png"));
 
 	public GlowingEyeLayer(IEntityRenderer<T, M> rendererIn)
 	{
 		super(rendererIn);
 	}
 
-	public RenderType getRenderType()
+	public RenderType renderType()
 	{
 		return RENDER_TYPE;
 	}

@@ -19,7 +19,7 @@ public class UnicornRenderer extends AbstractHorseRenderer<UnicornEntity, Unicor
 	}
 
 	@Override
-	public ResourceLocation getEntityTexture(UnicornEntity entity)
+	public ResourceLocation getTextureLocation(UnicornEntity entity)
 	{
 		String type = entity.getUnicornType() == 1 ? "green" : entity.getUnicornType() == 2 ? "yellow" : entity.getUnicornType() == 3 ? "blue" : "pink";
 		return GoodNightSleep.locate("textures/entity/unicorn/unicorn_" + type + ".png");

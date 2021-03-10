@@ -14,7 +14,7 @@ import net.minecraft.util.Util;
 @Mixin(Util.class)
 public class UtilMixin
 {
-	@Inject(at = @At(value = "INVOKE", target = "net/minecraft/util/datafix/DataFixesManager.getDataFixer()Lcom/mojang/datafixers/DataFixer;"), method = "attemptDataFixInternal(Lcom/mojang/datafixers/DSL$TypeReference;Ljava/lang/String;)Lcom/mojang/datafixers/types/Type;", cancellable = true)
+	@Inject(at = @At(value = "INVOKE", target = "net/minecraft/util/datafix/DataFixesManager.getDataFixer()Lcom/mojang/datafixers/DataFixer;"), method = "doFetchChoiceType(Lcom/mojang/datafixers/DSL$TypeReference;Ljava/lang/String;)Lcom/mojang/datafixers/types/Type;", cancellable = true)
 	private static void attemptDataFixInternal(TypeReference typeIn, String choiceName, CallbackInfoReturnable<Type<?>> callback)
 	{
 		if (choiceName.startsWith(GoodNightSleep.MODID))

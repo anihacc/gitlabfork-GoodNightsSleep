@@ -50,7 +50,7 @@ public class GNSPlayerEvents
 		{
 			if (event.isWasDeath())
 			{
-				if (!clone.getPlayer().world.getGameRules().getBoolean(GameRules.KEEP_INVENTORY))
+				if (!clone.getPlayer().level.getGameRules().getBoolean(GameRules.RULE_KEEPINVENTORY))
 				{
 				}
 
@@ -60,7 +60,7 @@ public class GNSPlayerEvents
 			else
 			{
 				if (event.getPlayer() instanceof ServerPlayerEntity)
-					PacketHandler.sendTo(new SendEnteredTimePacket(event.getPlayer().world.getGameTime()), (ServerPlayerEntity) event.getPlayer());
+					PacketHandler.sendTo(new SendEnteredTimePacket(event.getPlayer().level.getGameTime()), (ServerPlayerEntity) event.getPlayer());
 
 				original.writeAdditional(compound);
 				clone.read(compound);

@@ -22,7 +22,7 @@ import net.minecraft.world.World;
 
 public class UnicornEntity extends AbstractHorseEntity
 {
-	public static final DataParameter<Integer> UNICORN_TYPE = EntityDataManager.<Integer>createKey(UnicornEntity.class, DataSerializers.VARINT);
+	public static final DataParameter<Integer> UNICORN_TYPE = EntityDataManager.<Integer>defineId(UnicornEntity.class, DataSerializers.INT);
 
 	public UnicornEntity(EntityType<? extends UnicornEntity> type, World worldIn)
 	{
@@ -30,10 +30,10 @@ public class UnicornEntity extends AbstractHorseEntity
 	}
 
 	@Override
-	protected void registerData()
+	protected void defineSynchedData()
 	{
-		super.registerData();
-		this.dataManager.register(UNICORN_TYPE, this.rand.nextInt(4));
+		super.defineSynchedData();
+		this.entityData.define(UNICORN_TYPE, this.random.nextInt(4));
 	}
 
 	@Override
@@ -43,25 +43,25 @@ public class UnicornEntity extends AbstractHorseEntity
 	}
 
 	@Override
-	public void writeAdditional(CompoundNBT compound)
+	public void addAdditionalSaveData(CompoundNBT compound)
 	{
-		super.writeAdditional(compound);
+		super.addAdditionalSaveData(compound);
 		compound.putInt("unicornType", this.getUnicornType());
 	}
 
 	@Override
-	public void read(CompoundNBT compound)
+	public void load(CompoundNBT compound)
 	{
-		super.read(compound);
+		super.load(compound);
 		this.setUnicornType(compound.getInt("unicornType"));
 	}
 
 	@Override
-	protected void func_230273_eI_()
+	protected void randomizeAttributes()
 	{
-		this.getAttribute(Attributes.MAX_HEALTH).setBaseValue((double) this.getModifiedMaxHealth());
-		this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(this.getModifiedMovementSpeed());
-		this.getAttribute(Attributes.HORSE_JUMP_STRENGTH).setBaseValue(this.getModifiedJumpStrength());
+		this.getAttribute(Attributes.MAX_HEALTH).setBaseValue((double) this.generateRandomMaxHealth());
+		this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(this.generateRandomSpeed());
+		this.getAttribute(Attributes.JUMP_STRENGTH).setBaseValue(this.generateRandomJumpStrength());
 	}
 
 	@Override
@@ -89,38 +89,38 @@ public class UnicornEntity extends AbstractHorseEntity
 	protected SoundEvent getAngrySound()
 	{
 		super.getAngrySound();
-		return SoundEvents.ENTITY_HORSE_ANGRY;
+		return SoundEvents.HORSE_ANGRY;
 	}
 
 	@Override
-	public double getMountedYOffset()
+	public double getPassengersRidingOffset()
 	{
-		return super.getMountedYOffset() - 0.2D;
+		return super.getPassengersRidingOffset() - 0.2D;
 	}
 
 	@Override
-	public ActionResultType func_230254_b_(PlayerEntity player, Hand hand)
+	public ActionResultType mobInteract(PlayerEntity player, Hand hand)
 	{
-		ItemStack itemstack = player.getHeldItem(hand);
+		ItemStack itemstack = player.getItemInHand(hand);
 		boolean flag = !itemstack.isEmpty();
 
 		if (flag && itemstack.getItem() == GNSItems.unicorn_spawn_egg)
 		{
-			return super.func_230254_b_(player, hand);
+			return super.mobInteract(player, hand);
 		}
 		else
 		{
-			if (!this.isChild())
+			if (!this.isBaby())
 			{
-				if (this.isTame() && player.isCrouching())
+				if (this.isTamed() && player.isCrouching())
 				{
-					this.openGUI(player);
+					this.openInventory(player);
 					return ActionResultType.SUCCESS;
 				}
 
-				if (this.isBeingRidden())
+				if (this.isVehicle())
 				{
-					return super.func_230254_b_(player, hand);
+					return super.mobInteract(player, hand);
 				}
 			}
 
@@ -136,34 +136,34 @@ public class UnicornEntity extends AbstractHorseEntity
 					return ActionResultType.SUCCESS;
 				}
 
-				if (itemstack.interactWithEntity(player, this, hand).isSuccessOrConsume())
+				if (itemstack.interactLivingEntity(player, this, hand).consumesAction())
 				{
-					return itemstack.interactWithEntity(player, this, hand);
+					return itemstack.interactLivingEntity(player, this, hand);
 				}
 
-				if (!this.isTame())
+				if (!this.isTamed())
 				{
 					this.makeMad();
 					return ActionResultType.SUCCESS;
 				}
 
 				boolean flag1 = false; // HorseArmorItem.getByItemStack(itemstack) != HorseArmorType.NONE;
-				boolean flag2 = !this.isChild() && !this.isHorseSaddled() && itemstack.getItem() == Items.SADDLE;
+				boolean flag2 = !this.isBaby() && !this.isSaddled() && itemstack.getItem() == Items.SADDLE;
 
 				if (flag1 || flag2)
 				{
-					this.openGUI(player);
+					this.openInventory(player);
 					return ActionResultType.SUCCESS;
 				}
 			}
 
-			if (this.isChild())
+			if (this.isBaby())
 			{
-				return super.func_230254_b_(player, hand);
+				return super.mobInteract(player, hand);
 			}
 			else
 			{
-				this.mountTo(player);
+				this.doPlayerRide(player);
 				return ActionResultType.SUCCESS;
 			}
 		}
@@ -171,11 +171,11 @@ public class UnicornEntity extends AbstractHorseEntity
 
 	public void setUnicornType(int type)
 	{
-		this.dataManager.set(UNICORN_TYPE, type);
+		this.entityData.set(UNICORN_TYPE, type);
 	}
 
 	public int getUnicornType()
 	{
-		return this.dataManager.get(UNICORN_TYPE);
+		return this.entityData.get(UNICORN_TYPE);
 	}
 }

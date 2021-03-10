@@ -24,6 +24,6 @@ public class GNSFlowerPotBlock extends FlowerPotBlock
 
 	public GNSFlowerPotBlock(java.util.function.Supplier<? extends Block> flower)
 	{
-		this(flower, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0F));
+		this(flower, Block.Properties.of(Material.DECORATION).strength(0.0F));
 	}
 }

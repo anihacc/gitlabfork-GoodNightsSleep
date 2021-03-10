@@ -13,7 +13,7 @@ public class GNSCaveWorldCarver extends CaveWorldCarver
 	public GNSCaveWorldCarver(Codec<ProbabilityConfig> p_i49929_1_, int p_i49929_2_)
 	{
 		super(p_i49929_1_, p_i49929_2_);
-		this.carvableBlocks = ImmutableSet.of(GNSBlocks.delusion_stone, Blocks.STONE, GNSBlocks.dream_dirt, Blocks.DIRT, GNSBlocks.dream_grass_block, GNSBlocks.nightmare_grass_block, Blocks.GRAVEL);
+		this.replaceableBlocks = ImmutableSet.of(GNSBlocks.delusion_stone, Blocks.STONE, GNSBlocks.dream_dirt, Blocks.DIRT, GNSBlocks.dream_grass_block, GNSBlocks.nightmare_grass_block, Blocks.GRAVEL);
 
 	}
 }

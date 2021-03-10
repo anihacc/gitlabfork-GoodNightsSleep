@@ -23,7 +23,7 @@ public class HerobrineRenderer<T extends HerobrineEntity, M extends BipedModel<T
 		this.addLayer(new GlowingEyeLayer<>(this));
     }
 
-    public ResourceLocation getEntityTexture(HerobrineEntity entity)
+    public ResourceLocation getTextureLocation(HerobrineEntity entity)
     {
         return TEXTURE;
     }

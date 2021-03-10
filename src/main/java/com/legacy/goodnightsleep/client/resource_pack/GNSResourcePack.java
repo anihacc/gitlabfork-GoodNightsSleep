@@ -53,7 +53,7 @@ public class GNSResourcePack extends ResourcePack
 	}
 
 	@Override
-	protected InputStream getInputStream(String name) throws IOException
+	protected InputStream getResource(String name) throws IOException
 	{
 		final Path path = modFile.getLocator().findPath(modFile, getSubFolders() + name);
 		if (!Files.exists(path))
@@ -63,17 +63,17 @@ public class GNSResourcePack extends ResourcePack
 	}
 
 	@Override
-	protected boolean resourceExists(String name)
+	protected boolean hasResource(String name)
 	{
 		return Files.exists(modFile.getLocator().findPath(modFile, getSubFolders() + name));
 	}
 
 	@Override
-	public Collection<ResourceLocation> getAllResourceLocations(ResourcePackType type, String resourceNamespace, String pathIn, int maxDepth, Predicate<String> filter)
+	public Collection<ResourceLocation> getResources(ResourcePackType type, String resourceNamespace, String pathIn, int maxDepth, Predicate<String> filter)
 	{
 		try
 		{
-			Path root = modFile.getLocator().findPath(modFile, getSubFolders() + type.getDirectoryName()).toAbsolutePath();
+			Path root = modFile.getLocator().findPath(modFile, getSubFolders() + type.getDirectory()).toAbsolutePath();
 			Path inputPath = root.getFileSystem().getPath(pathIn);
 			return Files.walk(root).map(path -> root.relativize(path.toAbsolutePath())).filter(path -> path.getNameCount() > 1 && path.getNameCount() - 1 <= maxDepth).filter(path -> !path.toString().endsWith(".mcmeta")).filter(path -> path.subpath(1, path.getNameCount()).startsWith(inputPath)).filter(path -> filter.test(path.getFileName().toString())).map(path -> new ResourceLocation(path.getName(0).toString(), Joiner.on('/').join(path.subpath(1, Math.min(maxDepth, path.getNameCount()))))).collect(Collectors.toList());
 		}
@@ -84,11 +84,11 @@ public class GNSResourcePack extends ResourcePack
 	}
 
 	@Override
-	public Set<String> getResourceNamespaces(ResourcePackType type)
+	public Set<String> getNamespaces(ResourcePackType type)
 	{
 		try
 		{
-			Path root = modFile.getLocator().findPath(modFile, getSubFolders() + type.getDirectoryName()).toAbsolutePath();
+			Path root = modFile.getLocator().findPath(modFile, getSubFolders() + type.getDirectory()).toAbsolutePath();
 			return Files.walk(root, 1).map(path -> root.relativize(path.toAbsolutePath())).filter(path -> path.getNameCount() > 0).map(p -> p.toString().replaceAll("/$", "")).filter(s -> !s.isEmpty()).collect(Collectors.toSet());
 		}
 		catch (IOException e)

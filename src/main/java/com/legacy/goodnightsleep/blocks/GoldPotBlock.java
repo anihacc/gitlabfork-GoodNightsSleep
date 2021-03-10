@@ -24,13 +24,13 @@ import net.minecraft.world.World;
 
 public class GoldPotBlock extends Block
 {
-	private static final VoxelShape INSIDE = makeCuboidShape(2.0D, 4.0D, 2.0D, 14.0D, 16.0D, 14.0D);
-	protected static final VoxelShape SHAPE = VoxelShapes.combineAndSimplify(VoxelShapes.fullCube(), VoxelShapes.or(makeCuboidShape(0.0D, 0.0D, 4.0D, 16.0D, 3.0D, 12.0D), makeCuboidShape(4.0D, 0.0D, 0.0D, 12.0D, 3.0D, 16.0D), makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 3.0D, 14.0D), INSIDE), IBooleanFunction.ONLY_FIRST);
+	private static final VoxelShape INSIDE = box(2.0D, 4.0D, 2.0D, 14.0D, 16.0D, 14.0D);
+	protected static final VoxelShape SHAPE = VoxelShapes.join(VoxelShapes.block(), VoxelShapes.or(box(0.0D, 0.0D, 4.0D, 16.0D, 3.0D, 12.0D), box(4.0D, 0.0D, 0.0D, 12.0D, 3.0D, 16.0D), box(2.0D, 0.0D, 2.0D, 14.0D, 3.0D, 14.0D), INSIDE), IBooleanFunction.ONLY_FIRST);
 
 	public GoldPotBlock(Block.Properties properties)
 	{
 		super(properties);
-		this.setDefaultState(this.stateContainer.getBaseState());
+		this.registerDefaultState(this.stateDefinition.any());
 	}
 
 	@Override
@@ -40,23 +40,23 @@ public class GoldPotBlock extends Block
 	}
 
 	@Override
-	public VoxelShape getRaytraceShape(BlockState state, IBlockReader worldIn, BlockPos pos)
+	public VoxelShape getInteractionShape(BlockState state, IBlockReader worldIn, BlockPos pos)
 	{
 		return INSIDE;
 	}
 
 	@Override
-	public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit)
+	public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit)
 	{
-		if (!worldIn.isRemote)
-			player.addPotionEffect(new EffectInstance(Effects.REGENERATION, 180, 0, true, true));
+		if (!worldIn.isClientSide)
+			player.addEffect(new EffectInstance(Effects.REGENERATION, 180, 0, true, true));
 
 		return ActionResultType.SUCCESS;
 	}
 
 	@SuppressWarnings("deprecation")
 	@Override
-	public void onBlockPlacedBy(World worldIn, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack)
+	public void setPlacedBy(World worldIn, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack)
 	{
 		int xPos = pos.getX();
 		int yPos = pos.getY();
@@ -70,39 +70,39 @@ public class GoldPotBlock extends Block
 		for (var10 = modifyY + 1; var10 < 20 && worldIn.getBlockState(new BlockPos(xPos, yPos + var10, zPos + modifyZ)).isAir(); ++var10)
 		{
 			// Beginning Line
-			worldIn.setBlockState(new BlockPos(xPos, yPos + var10, zPos), GNSBlocks.rainbow.getDefaultState().with(RainbowBlock.AXIS, Axis.Z).with(RainbowBlock.SIDE_TYPE, 0), 2); // 0
+			worldIn.setBlock(new BlockPos(xPos, yPos + var10, zPos), GNSBlocks.rainbow.defaultBlockState().setValue(RainbowBlock.AXIS, Axis.Z).setValue(RainbowBlock.SIDE_TYPE, 0), 2); // 0
 		}
 
 		if (worldIn.getBlockState(new BlockPos(xPos, yPos + var10, zPos + modifyZ)).isAir())
 		{
-			worldIn.setBlockState(new BlockPos(xPos, yPos + var10, zPos), GNSBlocks.rainbow.getDefaultState().with(RainbowBlock.AXIS, Axis.Z).with(RainbowBlock.CORNER_TYPE, 1).with(RainbowBlock.SIDE_TYPE, 0), 2); // 2
+			worldIn.setBlock(new BlockPos(xPos, yPos + var10, zPos), GNSBlocks.rainbow.defaultBlockState().setValue(RainbowBlock.AXIS, Axis.Z).setValue(RainbowBlock.CORNER_TYPE, 1).setValue(RainbowBlock.SIDE_TYPE, 0), 2); // 2
 
 			int var11;
 			for (var11 = modifyZ + 1; var11 < 40 && worldIn.getBlockState(new BlockPos(xPos, yPos + var10, zPos + var11)).isAir(); ++var11)
 			{
-				worldIn.setBlockState(new BlockPos(xPos, yPos + var10, zPos + var11), GNSBlocks.rainbow.getDefaultState().with(RainbowBlock.AXIS, Axis.Z).with(RainbowBlock.SIDE_TYPE, 1), 2); // 1
+				worldIn.setBlock(new BlockPos(xPos, yPos + var10, zPos + var11), GNSBlocks.rainbow.defaultBlockState().setValue(RainbowBlock.AXIS, Axis.Z).setValue(RainbowBlock.SIDE_TYPE, 1), 2); // 1
 			}
 
 			if (worldIn.getBlockState(new BlockPos(xPos, yPos + var10, zPos + var11)).isAir())
 			{
 				// 3 End Corner
-				worldIn.setBlockState(new BlockPos(xPos, yPos + var10, zPos + var11), GNSBlocks.rainbow.getDefaultState().with(RainbowBlock.AXIS, Axis.Z).with(RainbowBlock.CORNER_TYPE, 2), 2);
+				worldIn.setBlock(new BlockPos(xPos, yPos + var10, zPos + var11), GNSBlocks.rainbow.defaultBlockState().setValue(RainbowBlock.AXIS, Axis.Z).setValue(RainbowBlock.CORNER_TYPE, 2), 2);
 				--var10;
 
 				while (worldIn.getBlockState(new BlockPos(xPos, yPos + var10, zPos + var11)).isAir())
 				{
 					// End Line
-					worldIn.setBlockState(new BlockPos(xPos, yPos + var10, zPos + var11), GNSBlocks.rainbow.getDefaultState().with(RainbowBlock.AXIS, Axis.Z).with(RainbowBlock.SIDE_TYPE, 2), 2); // 4
+					worldIn.setBlock(new BlockPos(xPos, yPos + var10, zPos + var11), GNSBlocks.rainbow.defaultBlockState().setValue(RainbowBlock.AXIS, Axis.Z).setValue(RainbowBlock.SIDE_TYPE, 2), 2); // 4
 					--var10;
 				}
 			}
 		}
 
-		super.onBlockPlacedBy(worldIn, pos, state, placer, stack);
+		super.setPlacedBy(worldIn, pos, state, placer, stack);
 	}
 
 	@Override
-	public boolean allowsMovement(BlockState state, IBlockReader worldIn, BlockPos pos, PathType type)
+	public boolean isPathfindable(BlockState state, IBlockReader worldIn, BlockPos pos, PathType type)
 	{
 		return false;
 	}

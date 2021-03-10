@@ -15,7 +15,7 @@ import net.minecraft.world.IWorldReader;
 
 public class GNSFlowerBlock extends BushBlock
 {
-	protected static final VoxelShape SHAPE = Block.makeCuboidShape(5.0D, 0.0D, 5.0D, 11.0D, 10.0D, 11.0D);
+	protected static final VoxelShape SHAPE = Block.box(5.0D, 0.0D, 5.0D, 11.0D, 10.0D, 11.0D);
 
 	public GNSFlowerBlock(Block.Properties builder)
 	{
@@ -26,13 +26,13 @@ public class GNSFlowerBlock extends BushBlock
 	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context)
 	{
 		Vector3d vec3d = state.getOffset(worldIn, pos);
-		return SHAPE.withOffset(vec3d.x, vec3d.y, vec3d.z);
+		return SHAPE.move(vec3d.x, vec3d.y, vec3d.z);
 	}
 
 	@Override
-	public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos)
+	public boolean canSurvive(BlockState state, IWorldReader worldIn, BlockPos pos)
 	{
-		BlockPos blockpos = pos.down();
+		BlockPos blockpos = pos.below();
 		BlockState iblockstate = worldIn.getBlockState(blockpos);
 		Block block = iblockstate.getBlock();
 

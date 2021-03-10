@@ -20,7 +20,7 @@ public class TormenterRenderer extends MobRenderer<TormenterEntity, TormenterMod
 		super(renderManagerIn, new TormenterModel<>(0.0F, true), 0.5F);
 	}
 
-	public ResourceLocation getEntityTexture(TormenterEntity entity)
+	public ResourceLocation getTextureLocation(TormenterEntity entity)
 	{
 		return TEXTURE;
 	}

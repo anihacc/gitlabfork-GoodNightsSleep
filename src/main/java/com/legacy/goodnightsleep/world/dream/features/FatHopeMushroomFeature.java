@@ -18,7 +18,7 @@ public class FatHopeMushroomFeature extends BigRedMushroomFeature
 	}
 
 	@Override
-	protected void func_227210_a_(IWorld worldIn, Random randomIn, BlockPos posIn, BigMushroomFeatureConfig configIn, int stemHeight, BlockPos.Mutable newPosIn)
+	protected void placeTrunk(IWorld worldIn, Random randomIn, BlockPos posIn, BigMushroomFeatureConfig configIn, int stemHeight, BlockPos.Mutable newPosIn)
 	{
 		for (int x = -1; x < 2; ++x)
 		{
@@ -26,11 +26,11 @@ public class FatHopeMushroomFeature extends BigRedMushroomFeature
 			{
 				for (int i = 0; i < stemHeight; ++i)
 				{
-					newPosIn.setPos(posIn).move(Direction.UP, i).move(Direction.NORTH, x).move(Direction.EAST, z);
+					newPosIn.set(posIn).move(Direction.UP, i).move(Direction.NORTH, x).move(Direction.EAST, z);
 
 					if (worldIn.getBlockState(newPosIn).canBeReplacedByLogs(worldIn, newPosIn))
 					{
-						this.setBlockState(worldIn, newPosIn, configIn.stemProvider.getBlockState(randomIn, posIn));
+						this.setBlock(worldIn, newPosIn, configIn.stemProvider.getState(randomIn, posIn));
 					}
 				}
 			}
@@ -38,7 +38,7 @@ public class FatHopeMushroomFeature extends BigRedMushroomFeature
 	}
 
 	@Override
-	protected int func_227211_a_(Random randIn)
+	protected int getTreeHeight(Random randIn)
 	{
 		return 20 + randIn.nextInt(10);
 	}

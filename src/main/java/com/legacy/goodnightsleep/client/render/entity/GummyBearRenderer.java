@@ -21,7 +21,7 @@ public class GummyBearRenderer extends MobRenderer<GummyBearEntity, GummyBearMod
 	}
 
 	@Override
-	public ResourceLocation getEntityTexture(GummyBearEntity entity)
+	public ResourceLocation getTextureLocation(GummyBearEntity entity)
 	{
 		return TEXTURE;
 	}

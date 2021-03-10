@@ -25,8 +25,8 @@ public class GNSBlockColoring
 			public int getColor(BlockState state, IBlockDisplayReader worldIn, @Nullable BlockPos pos, int tintIndex)
 			{
 				Minecraft mc = Minecraft.getInstance();
-				if (mc.world != null && GNSBiomes.Keys.DREAM_BIOMES.contains(GNSBiomes.Keys.getKeyFromBiome(mc.world, mc.world.getBiome(pos))))
-					return worldIn != null && pos != null ? BiomeColors.getGrassColor(worldIn, pos) : 0xffffff;
+				if (mc.level != null && GNSBiomes.Keys.DREAM_BIOMES.contains(GNSBiomes.Keys.getKeyFromBiome(mc.level, mc.level.getBiome(pos))))
+					return worldIn != null && pos != null ? BiomeColors.getAverageGrassColor(worldIn, pos) : 0xffffff;
 				else
 					return 0xffffff;
 			}

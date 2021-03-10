@@ -23,29 +23,31 @@ import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.PlantType;
 import net.minecraftforge.common.ToolType;
 
+import net.minecraft.block.AbstractBlock.Properties;
+
 public class GNSGrassBlock extends GrassBlock
 {
 	public GNSGrassBlock()
 	{
-		super(Properties.from(Blocks.GRASS_BLOCK).harvestTool(ToolType.SHOVEL));
+		super(Properties.copy(Blocks.GRASS_BLOCK).harvestTool(ToolType.SHOVEL));
 	}
 
 	private static boolean shouldDecay(IWorldReader worldIn, BlockPos posIn)
 	{
-		BlockPos blockpos = posIn.up();
-		return worldIn.getLight(blockpos) >= 4 || worldIn.getBlockState(blockpos).getOpacity(worldIn, blockpos) < worldIn.getMaxLightLevel();
+		BlockPos blockpos = posIn.above();
+		return worldIn.getMaxLocalRawBrightness(blockpos) >= 4 || worldIn.getBlockState(blockpos).getLightBlock(worldIn, blockpos) < worldIn.getMaxLightLevel();
 	}
 
 	private static boolean shouldDecayAndNotWaterlogged(IWorldReader worldIn, BlockPos posIn)
 	{
-		BlockPos blockpos = posIn.up();
-		return worldIn.getLight(blockpos) >= 4 && worldIn.getBlockState(blockpos).getOpacity(worldIn, blockpos) < worldIn.getMaxLightLevel() && !worldIn.getFluidState(blockpos).isTagged(FluidTags.WATER);
+		BlockPos blockpos = posIn.above();
+		return worldIn.getMaxLocalRawBrightness(blockpos) >= 4 && worldIn.getBlockState(blockpos).getLightBlock(worldIn, blockpos) < worldIn.getMaxLightLevel() && !worldIn.getFluidState(blockpos).is(FluidTags.WATER);
 	}
 
 	@Override
 	public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random)
 	{
-		if (!worldIn.isRemote)
+		if (!worldIn.isClientSide)
 		{
 			if (!worldIn.isAreaLoaded(pos, 3))
 				return;
@@ -53,23 +55,23 @@ public class GNSGrassBlock extends GrassBlock
 			if (!shouldDecay(worldIn, pos))
 			{
 				if (this == GNSBlocks.dream_grass_block)
-					worldIn.setBlockState(pos, GNSBlocks.dream_dirt.getDefaultState());
+					worldIn.setBlockAndUpdate(pos, GNSBlocks.dream_dirt.defaultBlockState());
 				else
-					worldIn.setBlockState(pos, Blocks.DIRT.getDefaultState());
+					worldIn.setBlockAndUpdate(pos, Blocks.DIRT.defaultBlockState());
 			}
 			else
 			{
-				if (worldIn.getLight(pos.up()) >= 9)
+				if (worldIn.getMaxLocalRawBrightness(pos.above()) >= 9)
 				{
 					for (int i = 0; i < 4; ++i)
 					{
-						BlockPos blockpos = pos.add(random.nextInt(3) - 1, random.nextInt(5) - 3, random.nextInt(3) - 1);
+						BlockPos blockpos = pos.offset(random.nextInt(3) - 1, random.nextInt(5) - 3, random.nextInt(3) - 1);
 
-						if (!worldIn.isBlockPresent(blockpos))
+						if (!worldIn.isLoaded(blockpos))
 							return;
 
 						if ((this == GNSBlocks.dream_grass_block && worldIn.getBlockState(blockpos).getBlock() == GNSBlocks.dream_dirt || this == GNSBlocks.nightmare_grass_block && (worldIn.getBlockState(blockpos).getBlock() == Blocks.DIRT || worldIn.getBlockState(blockpos).getBlock() == Blocks.GRASS_BLOCK)) && shouldDecayAndNotWaterlogged(worldIn, blockpos))
-							worldIn.setBlockState(blockpos, this.getDefaultState());
+							worldIn.setBlockAndUpdate(blockpos, this.defaultBlockState());
 
 					}
 				}
@@ -79,10 +81,10 @@ public class GNSGrassBlock extends GrassBlock
 
 	@SuppressWarnings({ "rawtypes", "unchecked", "deprecation" })
 	@Override
-	public void grow(ServerWorld worldIn, Random rand, BlockPos pos, BlockState state)
+	public void performBonemeal(ServerWorld worldIn, Random rand, BlockPos pos, BlockState state)
 	{
-		BlockPos blockpos = pos.up();
-		BlockState blockstate = state.getBlock() == GNSBlocks.nightmare_grass_block ? GNSBlocks.nightmare_grass.getDefaultState() : GNSBlocks.dream_grass.getDefaultState();
+		BlockPos blockpos = pos.above();
+		BlockState blockstate = state.getBlock() == GNSBlocks.nightmare_grass_block ? GNSBlocks.nightmare_grass.defaultBlockState() : GNSBlocks.dream_grass.defaultBlockState();
 
 		label48: for (int i = 0; i < 128; ++i)
 		{
@@ -90,17 +92,17 @@ public class GNSGrassBlock extends GrassBlock
 
 			for (int j = 0; j < i / 16; ++j)
 			{
-				blockpos1 = blockpos1.add(rand.nextInt(3) - 1, (rand.nextInt(3) - 1) * rand.nextInt(3) / 2, rand.nextInt(3) - 1);
-				if (!worldIn.getBlockState(blockpos1.down()).isIn(this) || worldIn.getBlockState(blockpos1).hasOpaqueCollisionShape(worldIn, blockpos1))
+				blockpos1 = blockpos1.offset(rand.nextInt(3) - 1, (rand.nextInt(3) - 1) * rand.nextInt(3) / 2, rand.nextInt(3) - 1);
+				if (!worldIn.getBlockState(blockpos1.below()).is(this) || worldIn.getBlockState(blockpos1).isCollisionShapeFullBlock(worldIn, blockpos1))
 				{
 					continue label48;
 				}
 			}
 
 			BlockState blockstate2 = worldIn.getBlockState(blockpos1);
-			if (blockstate2.isIn(blockstate.getBlock()) && rand.nextInt(10) == 0)
+			if (blockstate2.is(blockstate.getBlock()) && rand.nextInt(10) == 0)
 			{
-				((IGrowable) blockstate.getBlock()).grow(worldIn, rand, blockpos1, blockstate2);
+				((IGrowable) blockstate.getBlock()).performBonemeal(worldIn, rand, blockpos1, blockstate2);
 			}
 
 			if (blockstate2.isAir())
@@ -116,16 +118,16 @@ public class GNSGrassBlock extends GrassBlock
 
 					ConfiguredFeature<?, ?> configuredfeature = list.get(0);
 					FlowersFeature flowersfeature = (FlowersFeature) configuredfeature.feature;
-					blockstate1 = flowersfeature.getFlowerToPlace(rand, blockpos1, configuredfeature.getConfig());
+					blockstate1 = flowersfeature.getRandomFlower(rand, blockpos1, configuredfeature.config());
 				}
 				else
 				{
 					blockstate1 = blockstate;
 				}
 
-				if (blockstate1.isValidPosition(worldIn, blockpos1))
+				if (blockstate1.canSurvive(worldIn, blockpos1))
 				{
-					worldIn.setBlockState(blockpos1, blockstate1, 3);
+					worldIn.setBlock(blockpos1, blockstate1, 3);
 				}
 			}
 		}
@@ -137,7 +139,7 @@ public class GNSGrassBlock extends GrassBlock
 		if (plantable instanceof SaplingBlock)
 			return true;
 
-		PlantType plantType = plantable.getPlantType(world, pos.offset(facing));
+		PlantType plantType = plantable.getPlantType(world, pos.relative(facing));
 
 		if (plantType.equals(PlantType.PLAINS))
 			return true;
@@ -150,7 +152,7 @@ public class GNSGrassBlock extends GrassBlock
 	@Override
 	public void onPlantGrow(BlockState state, IWorld world, BlockPos pos, BlockPos source)
 	{
-		BlockState dirtState = this == GNSBlocks.dream_grass_block ? GNSBlocks.dream_dirt.getDefaultState() : Blocks.DIRT.getDefaultState();
-		world.setBlockState(pos, dirtState, 2);
+		BlockState dirtState = this == GNSBlocks.dream_grass_block ? GNSBlocks.dream_dirt.defaultBlockState() : Blocks.DIRT.defaultBlockState();
+		world.setBlock(pos, dirtState, 2);
 	}
 }

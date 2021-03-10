@@ -17,16 +17,16 @@ import net.minecraft.world.storage.IServerConfiguration;
 public class MinecraftServerMixin
 {
 	@Shadow
-	protected DynamicRegistries.Impl field_240767_f_;
+	protected DynamicRegistries.Impl registryHolder;
 	@Shadow
-	protected IServerConfiguration serverConfig;
+	protected IServerConfiguration worldData;
 
 	/*
-	 * MinecraftServer#func_240800_l__
+	 * MinecraftServer#loadLevel
 	 */
-	@Inject(at = @At("HEAD"), method = "func_240800_l__()V")
+	@Inject(at = @At("HEAD"), method = "loadLevel()V")
 	private void initServer(CallbackInfo callback)
 	{
-		GNSDimensions.init(this.serverConfig.getDimensionGeneratorSettings().func_236224_e_(), this.field_240767_f_.getRegistry(Registry.DIMENSION_TYPE_KEY), this.field_240767_f_.getRegistry(Registry.BIOME_KEY), this.field_240767_f_.getRegistry(Registry.NOISE_SETTINGS_KEY), this.serverConfig.getDimensionGeneratorSettings().getSeed());
+		GNSDimensions.init(this.worldData.worldGenSettings().dimensions(), this.registryHolder.registryOrThrow(Registry.DIMENSION_TYPE_REGISTRY), this.registryHolder.registryOrThrow(Registry.BIOME_REGISTRY), this.registryHolder.registryOrThrow(Registry.NOISE_GENERATOR_SETTINGS_REGISTRY), this.worldData.worldGenSettings().seed());
 	}
 }

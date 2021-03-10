@@ -11,21 +11,23 @@ import net.minecraft.util.IItemProvider;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 
+import net.minecraft.block.AbstractBlock.Properties;
+
 public class GNSRainbowCropBlock extends BeetrootBlock
 {
 	public GNSRainbowCropBlock() 
 	{
-		super(Properties.from(Blocks.BEETROOTS));
+		super(Properties.copy(Blocks.BEETROOTS));
 	}
 	
 	@Override
-	protected IItemProvider getSeedsItem()
+	protected IItemProvider getBaseSeedId()
     {
         return GNSItems.rainbow_seeds;
     }
 
     @Override
-	protected boolean isValidGround(BlockState state, IBlockReader worldIn, BlockPos pos)
+	protected boolean mayPlaceOn(BlockState state, IBlockReader worldIn, BlockPos pos)
 	{
 		return state.getBlock() instanceof FarmlandBlock || state.getBlock() == GNSBlocks.dream_farmland;
 	}

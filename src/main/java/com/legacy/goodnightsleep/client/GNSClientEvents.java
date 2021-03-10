@@ -29,7 +29,7 @@ public class GNSClientEvents
 	private static final DimensionRenderInfo DREAM_RENDER_INFO = new DreamRenderInfo();
 	private static final DimensionRenderInfo NIGHTMARE_RENDER_INFO = new NightmareRenderInfo();
 
-	private static final Object2ObjectMap<ResourceLocation, DimensionRenderInfo> DIMENSION_RENDER_INFO = ObfuscationReflectionHelper.getPrivateValue(DimensionRenderInfo.class, DREAM_RENDER_INFO, "field_239208_a_");
+	private static final Object2ObjectMap<ResourceLocation, DimensionRenderInfo> DIMENSION_RENDER_INFO = ObfuscationReflectionHelper.getPrivateValue(DimensionRenderInfo.class, DREAM_RENDER_INFO, "EFFECTS");
 
 	public static void initDimensionRenderInfo()
 	{
@@ -68,9 +68,9 @@ public class GNSClientEvents
 	@SubscribeEvent
 	public void onClientTick(TickEvent.ClientTickEvent event)
 	{
-		World world = mc.world;
+		World world = mc.level;
 
-		if (world == null || !world.isRemote)
+		if (world == null || !world.isClientSide)
 			return;
 
 		if (mc.player != null && DreamPlayer.get(mc.player) != null)
@@ -79,7 +79,7 @@ public class GNSClientEvents
 
 	private static boolean shouldNightmareFogRender()
 	{
-		return mc.world.getDimensionKey() == GNSDimensions.getDimensionKeys(false) && !mc.player.areEyesInFluid(FluidTags.LAVA) && !mc.player.areEyesInFluid(FluidTags.WATER) && !mc.player.isPotionActive(Effects.BLINDNESS);
+		return mc.level.dimension() == GNSDimensions.getDimensionKeys(false) && !mc.player.isEyeInFluid(FluidTags.LAVA) && !mc.player.isEyeInFluid(FluidTags.WATER) && !mc.player.hasEffect(Effects.BLINDNESS);
 	}
 
 	// i am going insane
@@ -98,7 +98,7 @@ public class GNSClientEvents
 		int j = (int) (worldTime % 48000L);
 		float f1 = ((float) j + partialTicks) / 48000.0F - 0.25F;
 
-		if (player.world.getDimensionKey() == GNSDimensions.getDimensionKeys(false))
+		if (player.level.dimension() == GNSDimensions.getDimensionKeys(false))
 			f1 += 0.5F;
 
 		if (f1 < 0.0F)
@@ -140,13 +140,13 @@ public class GNSClientEvents
 		}
 
 		@Override
-		public Vector3d func_230494_a_(Vector3d fogColor, float fogBrightness)
+		public Vector3d getBrightnessDependentFogColor(Vector3d fogColor, float fogBrightness)
 		{
 			return fogColor;
 		}
 
 		@Override
-		public boolean func_230493_a_(int posX, int posZ)
+		public boolean isFoggyAt(int posX, int posZ)
 		{
 			return true;
 		}

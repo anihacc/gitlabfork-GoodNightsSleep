@@ -38,27 +38,27 @@ public class GNSSpawnerEntity extends AnimalEntity
 
 	public void spawnMobs()
 	{
-		if (!(this.world instanceof ServerWorld))
+		if (!(this.level instanceof ServerWorld))
 			return;
 
-		ServerWorld worldIn = (ServerWorld) this.world;
+		ServerWorld worldIn = (ServerWorld) this.level;
 
-		DifficultyInstance difficultyIn = this.world.getDifficultyForLocation(this.getPosition());
-		int type = rand.nextInt(4);
-		int chance = rand.nextInt(4) + 1;
+		DifficultyInstance difficultyIn = this.level.getCurrentDifficultyAt(this.blockPosition());
+		int type = random.nextInt(4);
+		int chance = random.nextInt(4) + 1;
 
-		BlockPos blockpos = this.world.getHeight(Type.MOTION_BLOCKING_NO_LEAVES, this.getPosition()).add(-2 + this.rand.nextInt(4), 0, -2 + this.rand.nextInt(4));
+		BlockPos blockpos = this.level.getHeightmapPos(Type.MOTION_BLOCKING_NO_LEAVES, this.blockPosition()).offset(-2 + this.random.nextInt(4), 0, -2 + this.random.nextInt(4));
 
-		if (worldIn.getDimensionKey() != GNSDimensions.getDimensionKeys(false))
+		if (worldIn.dimension() != GNSDimensions.getDimensionKeys(false))
 		{
 			if (type == 0)
 			{
 				for (int i = 0; i < chance; ++i)
 				{
-					PigEntity pig = new PigEntity(EntityType.PIG, this.world);
-					pig.moveToBlockPosAndAngles(blockpos, 0.0F, 0.0F);
-					pig.onInitialSpawn(worldIn, difficultyIn, SpawnReason.NATURAL, (ILivingEntityData) null, (CompoundNBT) null);
-					this.world.addEntity(pig);
+					PigEntity pig = new PigEntity(EntityType.PIG, this.level);
+					pig.moveTo(blockpos, 0.0F, 0.0F);
+					pig.finalizeSpawn(worldIn, difficultyIn, SpawnReason.NATURAL, (ILivingEntityData) null, (CompoundNBT) null);
+					this.level.addFreshEntity(pig);
 				}
 			}
 
@@ -66,10 +66,10 @@ public class GNSSpawnerEntity extends AnimalEntity
 			{
 				for (int i = 0; i < chance; ++i)
 				{
-					CowEntity cow = new CowEntity(EntityType.COW, this.world);
-					cow.moveToBlockPosAndAngles(blockpos, 0.0F, 0.0F);
-					cow.onInitialSpawn(worldIn, difficultyIn, SpawnReason.NATURAL, (ILivingEntityData) null, (CompoundNBT) null);
-					this.world.addEntity(cow);
+					CowEntity cow = new CowEntity(EntityType.COW, this.level);
+					cow.moveTo(blockpos, 0.0F, 0.0F);
+					cow.finalizeSpawn(worldIn, difficultyIn, SpawnReason.NATURAL, (ILivingEntityData) null, (CompoundNBT) null);
+					this.level.addFreshEntity(cow);
 				}
 			}
 
@@ -77,12 +77,12 @@ public class GNSSpawnerEntity extends AnimalEntity
 			{
 				for (int i = 0; i < chance; ++i)
 				{
-					SheepEntity sheep = new SheepEntity(EntityType.SHEEP, this.world);
-					sheep.moveToBlockPosAndAngles(blockpos, 0.0F, 0.0F);
-					sheep.onInitialSpawn(worldIn, difficultyIn, SpawnReason.NATURAL, (ILivingEntityData) null, (CompoundNBT) null);
+					SheepEntity sheep = new SheepEntity(EntityType.SHEEP, this.level);
+					sheep.moveTo(blockpos, 0.0F, 0.0F);
+					sheep.finalizeSpawn(worldIn, difficultyIn, SpawnReason.NATURAL, (ILivingEntityData) null, (CompoundNBT) null);
 
-					sheep.setFleeceColor(DyeColor.byId(rand.nextInt(15)));
-					this.world.addEntity(sheep);
+					sheep.setColor(DyeColor.byId(random.nextInt(15)));
+					this.level.addFreshEntity(sheep);
 				}
 			}
 
@@ -90,26 +90,26 @@ public class GNSSpawnerEntity extends AnimalEntity
 			{
 				for (int i = 0; i < chance; ++i)
 				{
-					ChickenEntity chicken = new ChickenEntity(EntityType.CHICKEN, this.world);
-					chicken.moveToBlockPosAndAngles(blockpos, 0.0F, 0.0F);
-					chicken.onInitialSpawn(worldIn, difficultyIn, SpawnReason.NATURAL, (ILivingEntityData) null, (CompoundNBT) null);
-					this.world.addEntity(chicken);
+					ChickenEntity chicken = new ChickenEntity(EntityType.CHICKEN, this.level);
+					chicken.moveTo(blockpos, 0.0F, 0.0F);
+					chicken.finalizeSpawn(worldIn, difficultyIn, SpawnReason.NATURAL, (ILivingEntityData) null, (CompoundNBT) null);
+					this.level.addFreshEntity(chicken);
 				}
 			}
 		}
-		else if (rand.nextBoolean() && worldIn.getDimensionKey() == GNSDimensions.getDimensionKeys(false))
+		else if (random.nextBoolean() && worldIn.dimension() == GNSDimensions.getDimensionKeys(false))
 		{
-			int nType = rand.nextInt(2);
-			int nChance = rand.nextInt(4) + 1;
+			int nType = random.nextInt(2);
+			int nChance = random.nextInt(4) + 1;
 
 			if (nType == 0)
 			{
 				for (int i = 0; i < nChance; ++i)
 				{
-					ZombieHorseEntity zombhorse = new ZombieHorseEntity(EntityType.ZOMBIE_HORSE, this.world);
-					zombhorse.moveToBlockPosAndAngles(blockpos, 0.0F, 0.0F);
-					zombhorse.onInitialSpawn(worldIn, difficultyIn, SpawnReason.NATURAL, (ILivingEntityData) null, (CompoundNBT) null);
-					this.world.addEntity(zombhorse);
+					ZombieHorseEntity zombhorse = new ZombieHorseEntity(EntityType.ZOMBIE_HORSE, this.level);
+					zombhorse.moveTo(blockpos, 0.0F, 0.0F);
+					zombhorse.finalizeSpawn(worldIn, difficultyIn, SpawnReason.NATURAL, (ILivingEntityData) null, (CompoundNBT) null);
+					this.level.addFreshEntity(zombhorse);
 				}
 			}
 
@@ -117,17 +117,17 @@ public class GNSSpawnerEntity extends AnimalEntity
 			{
 				for (int i = 0; i < nChance; ++i)
 				{
-					SkeletonHorseEntity skelehorse = new SkeletonHorseEntity(EntityType.SKELETON_HORSE, this.world);
-					skelehorse.moveToBlockPosAndAngles(blockpos, 0.0F, 0.0F);
-					skelehorse.onInitialSpawn(worldIn, difficultyIn, SpawnReason.NATURAL, (ILivingEntityData) null, (CompoundNBT) null);
-					this.world.addEntity(skelehorse);
+					SkeletonHorseEntity skelehorse = new SkeletonHorseEntity(EntityType.SKELETON_HORSE, this.level);
+					skelehorse.moveTo(blockpos, 0.0F, 0.0F);
+					skelehorse.finalizeSpawn(worldIn, difficultyIn, SpawnReason.NATURAL, (ILivingEntityData) null, (CompoundNBT) null);
+					this.level.addFreshEntity(skelehorse);
 				}
 			}
 		}
 	}
 
 	@Override
-	public int getMaxSpawnedInChunk()
+	public int getMaxSpawnClusterSize()
 	{
 		return 1;
 	}
@@ -136,12 +136,12 @@ public class GNSSpawnerEntity extends AnimalEntity
 	public void tick()
 	{
 		super.tick();
-		if (this.ticksExisted > 50 || this.spawnedMobs)
+		if (this.tickCount > 50 || this.spawnedMobs)
 		{
 			this.remove();
 		}
 
-		if (this.ticksExisted == 3)
+		if (this.tickCount == 3)
 		{
 			this.spawnMobs();
 			this.spawnedMobs = true;
@@ -149,7 +149,7 @@ public class GNSSpawnerEntity extends AnimalEntity
 	}
 
 	@Override
-	public AgeableEntity func_241840_a(ServerWorld worldIn, AgeableEntity ageableIn)
+	public AgeableEntity getBreedOffspring(ServerWorld worldIn, AgeableEntity ageableIn)
 	{
 		return null;
 	}

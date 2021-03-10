@@ -35,7 +35,7 @@ public class HerobrineEntity extends MonsterEntity
 	public HerobrineEntity(EntityType<? extends HerobrineEntity> type, World worldIn)
 	{
 		super(type, worldIn);
-		this.ignoreFrustumCheck = true;
+		this.noCulling = true;
 	}
 
 	public HerobrineEntity(World worldIn)
@@ -58,7 +58,7 @@ public class HerobrineEntity extends MonsterEntity
 
 	public static AttributeModifierMap.MutableAttribute registerAttributes()
 	{
-		return MonsterEntity.func_234295_eP_().createMutableAttribute(Attributes.FOLLOW_RANGE, 64.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.3F).createMutableAttribute(Attributes.ATTACK_DAMAGE, 7.0D).createMutableAttribute(Attributes.MAX_HEALTH, 40.0D);
+		return MonsterEntity.createMonsterAttributes().add(Attributes.FOLLOW_RANGE, 64.0D).add(Attributes.MOVEMENT_SPEED, 0.3F).add(Attributes.ATTACK_DAMAGE, 7.0D).add(Attributes.MAX_HEALTH, 40.0D);
 	}
 
 	@Override
@@ -80,7 +80,7 @@ public class HerobrineEntity extends MonsterEntity
 	}
 
 	@Override
-	public boolean attackEntityFrom(DamageSource source, float amount)
+	public boolean hurt(DamageSource source, float amount)
 	{
 		if (this.isInvulnerableTo(source))
 		{
@@ -88,8 +88,8 @@ public class HerobrineEntity extends MonsterEntity
 		}
 		else if (!(source instanceof IndirectEntityDamageSource))
 		{
-			boolean flag = super.attackEntityFrom(source, amount);
-			if (source.isUnblockable() && this.rand.nextInt(10) != 0)
+			boolean flag = super.hurt(source, amount);
+			if (source.isBypassArmor() && this.random.nextInt(10) != 0)
 			{
 				this.teleportRandomly();
 			}
@@ -112,34 +112,34 @@ public class HerobrineEntity extends MonsterEntity
 
 	protected boolean teleportRandomly()
 	{
-		double d0 = this.getPosX() + (this.rand.nextDouble() - 0.5D) * 64.0D;
-		double d1 = this.getPosY() + (double) (this.rand.nextInt(64) - 32);
-		double d2 = this.getPosZ() + (this.rand.nextDouble() - 0.5D) * 64.0D;
-		return this.teleportTo(d0, d1, d2);
+		double d0 = this.getX() + (this.random.nextDouble() - 0.5D) * 64.0D;
+		double d1 = this.getY() + (double) (this.random.nextInt(64) - 32);
+		double d2 = this.getZ() + (this.random.nextDouble() - 0.5D) * 64.0D;
+		return this.teleportToPos(d0, d1, d2);
 	}
 
 	@SuppressWarnings("unused")
 	private boolean teleportToEntity(Entity p_70816_1_)
 	{
-		Vector3d Vector3d = new Vector3d(this.getPosX() - p_70816_1_.getPosX(), this.getBoundingBox().minY + (double) (this.getHeight() / 2.0F) - p_70816_1_.getPosY() + (double) p_70816_1_.getEyeHeight(), this.getPosZ() - p_70816_1_.getPosZ());
+		Vector3d Vector3d = new Vector3d(this.getX() - p_70816_1_.getX(), this.getBoundingBox().minY + (double) (this.getBbHeight() / 2.0F) - p_70816_1_.getY() + (double) p_70816_1_.getEyeHeight(), this.getZ() - p_70816_1_.getZ());
 		Vector3d = Vector3d.normalize();
 		double d0 = 16.0D;
-		double d1 = this.getPosX() + (this.rand.nextDouble() - 0.5D) * 8.0D - Vector3d.x * 16.0D;
-		double d2 = this.getPosY() + (double) (this.rand.nextInt(16) - 8) - Vector3d.y * 16.0D;
-		double d3 = this.getPosZ() + (this.rand.nextDouble() - 0.5D) * 8.0D - Vector3d.z * 16.0D;
-		return this.teleportTo(d1, d2, d3);
+		double d1 = this.getX() + (this.random.nextDouble() - 0.5D) * 8.0D - Vector3d.x * 16.0D;
+		double d2 = this.getY() + (double) (this.random.nextInt(16) - 8) - Vector3d.y * 16.0D;
+		double d3 = this.getZ() + (this.random.nextDouble() - 0.5D) * 8.0D - Vector3d.z * 16.0D;
+		return this.teleportToPos(d1, d2, d3);
 	}
 
-	private boolean teleportTo(double x, double y, double z)
+	private boolean teleportToPos(double x, double y, double z)
 	{
 		BlockPos.Mutable blockpos$mutableblockpos = new BlockPos.Mutable(x, y, z);
 
-		while (blockpos$mutableblockpos.getY() > 0 && !this.world.getBlockState(blockpos$mutableblockpos).getMaterial().blocksMovement())
+		while (blockpos$mutableblockpos.getY() > 0 && !this.level.getBlockState(blockpos$mutableblockpos).getMaterial().blocksMotion())
 		{
 			blockpos$mutableblockpos.move(Direction.DOWN);
 		}
 
-		if (!this.world.getBlockState(blockpos$mutableblockpos).getMaterial().blocksMovement())
+		if (!this.level.getBlockState(blockpos$mutableblockpos).getMaterial().blocksMotion())
 		{
 			return false;
 		}
@@ -148,11 +148,11 @@ public class HerobrineEntity extends MonsterEntity
 			EnderTeleportEvent event = new EnderTeleportEvent(this, x, y, z, 0);
 			if (MinecraftForge.EVENT_BUS.post(event))
 				return false;
-			boolean flag = this.attemptTeleport(event.getTargetX(), event.getTargetY(), event.getTargetZ(), true);
+			boolean flag = this.randomTeleport(event.getTargetX(), event.getTargetY(), event.getTargetZ(), true);
 			if (flag)
 			{
-				this.world.playSound((PlayerEntity) null, this.prevPosX, this.prevPosY, this.prevPosZ, SoundEvents.ITEM_CHORUS_FRUIT_TELEPORT, this.getSoundCategory(), 1.0F, 1.0F);
-				this.playSound(SoundEvents.ITEM_CHORUS_FRUIT_TELEPORT, 1.0F, 1.0F);
+				this.level.playSound((PlayerEntity) null, this.xo, this.yo, this.zo, SoundEvents.CHORUS_FRUIT_TELEPORT, this.getSoundSource(), 1.0F, 1.0F);
+				this.playSound(SoundEvents.CHORUS_FRUIT_TELEPORT, 1.0F, 1.0F);
 			}
 
 			return flag;
@@ -161,7 +161,7 @@ public class HerobrineEntity extends MonsterEntity
 
 	private boolean shouldAttackPlayer(PlayerEntity player)
 	{
-		return player.canEntityBeSeen(this);
+		return player.canSee(this);
 	}
 
 	protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn)
@@ -175,38 +175,38 @@ public class HerobrineEntity extends MonsterEntity
 		private PlayerEntity player;
 		private int aggroTime;
 		private int teleportTime;
-		private final EntityPredicate field_220791_m;
-		private final EntityPredicate field_220792_n = (new EntityPredicate()).setLineOfSiteRequired();
+		private final EntityPredicate startAggroTargetConditions;
+		private final EntityPredicate continueAggroTargetConditions = (new EntityPredicate()).allowUnseeable();
 
 		public FindPlayerGoal(HerobrineEntity p_i45842_1_)
 		{
 			super(p_i45842_1_, PlayerEntity.class, false);
 			this.enderman = p_i45842_1_;
-			this.field_220791_m = (new EntityPredicate()).setDistance(this.getTargetDistance()).setCustomPredicate((p_220790_1_) ->
+			this.startAggroTargetConditions = (new EntityPredicate()).range(this.getFollowDistance()).selector((p_220790_1_) ->
 			{
 				return p_i45842_1_.shouldAttackPlayer((PlayerEntity) p_220790_1_);
 			});
 		}
 
-		public boolean shouldExecute()
+		public boolean canUse()
 		{
-			this.player = this.enderman.world.getClosestPlayer(this.field_220791_m, this.enderman);
+			this.player = this.enderman.level.getNearestPlayer(this.startAggroTargetConditions, this.enderman);
 			return this.player != null;
 		}
 
-		public void startExecuting()
+		public void start()
 		{
 			this.aggroTime = 5;
 			this.teleportTime = 0;
 		}
 
-		public void resetTask()
+		public void stop()
 		{
 			this.player = null;
-			super.resetTask();
+			super.stop();
 		}
 
-		public boolean shouldContinueExecuting()
+		public boolean canContinueToUse()
 		{
 			if (this.player != null)
 			{
@@ -216,13 +216,13 @@ public class HerobrineEntity extends MonsterEntity
 				}
 				else
 				{
-					this.enderman.faceEntity(this.player, 10.0F, 10.0F);
+					this.enderman.lookAt(this.player, 10.0F, 10.0F);
 					return true;
 				}
 			}
 			else
 			{
-				return this.nearestTarget != null && this.field_220792_n.canTarget(this.enderman, this.nearestTarget) ? true : super.shouldContinueExecuting();
+				return this.target != null && this.continueAggroTargetConditions.test(this.enderman, this.target) ? true : super.canContinueToUse();
 			}
 		}
 
@@ -232,25 +232,25 @@ public class HerobrineEntity extends MonsterEntity
 			{
 				if (--this.aggroTime <= 0)
 				{
-					this.nearestTarget = this.player;
+					this.target = this.player;
 					this.player = null;
-					super.startExecuting();
+					super.start();
 				}
 			}
 			else
 			{
-				if (this.nearestTarget != null && !this.enderman.isPassenger())
+				if (this.target != null && !this.enderman.isPassenger())
 				{
-					if (this.enderman.shouldAttackPlayer((PlayerEntity) this.nearestTarget))
+					if (this.enderman.shouldAttackPlayer((PlayerEntity) this.target))
 					{
-						if (this.nearestTarget.getDistanceSq(this.enderman) < 16.0D)
+						if (this.target.distanceToSqr(this.enderman) < 16.0D)
 						{
 							this.enderman.teleportRandomly();
 						}
 
 						this.teleportTime = 0;
 					}
-					else if (this.nearestTarget.getDistanceSq(this.enderman) > 256.0D && this.teleportTime++ >= 30 && this.enderman.teleportToEntity(this.nearestTarget))
+					else if (this.target.distanceToSqr(this.enderman) > 256.0D && this.teleportTime++ >= 30 && this.enderman.teleportToEntity(this.target))
 					{
 						this.teleportTime = 0;
 					}

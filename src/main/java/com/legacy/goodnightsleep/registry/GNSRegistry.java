@@ -44,7 +44,7 @@ public class GNSRegistry
 
 		for (int i3 = 0; i3 < GNSBlocks.gnsBlockList.size(); ++i3)
 		{
-			register(event.getRegistry(), GNSBlocks.gnsBlockList.get(i3).getRegistryName().toString().replace(GoodNightSleep.MODID + ":", ""), new BlockItem(GNSBlocks.gnsBlockList.get(i3), (new Item.Properties().group(GNSCreativeTabs.blocks))));
+			register(event.getRegistry(), GNSBlocks.gnsBlockList.get(i3).getRegistryName().toString().replace(GoodNightSleep.MODID + ":", ""), new BlockItem(GNSBlocks.gnsBlockList.get(i3), (new Item.Properties().tab(GNSCreativeTabs.blocks))));
 		}
 	}
 

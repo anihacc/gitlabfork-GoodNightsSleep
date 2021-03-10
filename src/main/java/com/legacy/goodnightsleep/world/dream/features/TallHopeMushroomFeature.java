@@ -18,9 +18,9 @@ public class TallHopeMushroomFeature extends BigRedMushroomFeature
 	}
 
 	@Override
-	protected void func_227210_a_(IWorld worldIn, Random randomIn, BlockPos posIn, BigMushroomFeatureConfig configIn, int stemHeight, BlockPos.Mutable newPosIn)
+	protected void placeTrunk(IWorld worldIn, Random randomIn, BlockPos posIn, BigMushroomFeatureConfig configIn, int stemHeight, BlockPos.Mutable newPosIn)
 	{
-		/*if (stemHeight >= 20 && configIn.field_227274_c_ > 3)
+		/*if (stemHeight >= 20 && configIn.foliageRadius > 3)
 		{
 			for (int x = -1; x < 2; ++x)
 			{
@@ -32,7 +32,7 @@ public class TallHopeMushroomFeature extends BigRedMushroomFeature
 		
 						if (worldIn.getBlockState(newPosIn).canBeReplacedByLogs(worldIn, newPosIn))
 						{
-							this.func_230367_a_(worldIn, newPosIn, configIn.field_227273_b_.getBlockState(randomIn, posIn));
+							this.setBlock(worldIn, newPosIn, configIn.stemProvider.getBlockState(randomIn, posIn));
 						}
 					}
 				}
@@ -42,18 +42,18 @@ public class TallHopeMushroomFeature extends BigRedMushroomFeature
 		{
 			for (int i = 0; i < stemHeight; ++i)
 			{
-				newPosIn.setPos(posIn).move(Direction.UP, i);
+				newPosIn.set(posIn).move(Direction.UP, i);
 
 				if (worldIn.getBlockState(newPosIn).canBeReplacedByLogs(worldIn, newPosIn))
 				{
-					this.setBlockState(worldIn, newPosIn, configIn.stemProvider.getBlockState(randomIn, posIn));
+					this.setBlock(worldIn, newPosIn, configIn.stemProvider.getState(randomIn, posIn));
 				}
 			}
 		}
 	}
 
 	@Override
-	protected int func_227211_a_(Random randIn)
+	protected int getTreeHeight(Random randIn)
 	{
 		return 10 + randIn.nextInt(15);
 	}

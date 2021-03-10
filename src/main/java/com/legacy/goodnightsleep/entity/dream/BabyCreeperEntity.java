@@ -40,9 +40,9 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class BabyCreeperEntity extends MonsterEntity
 {
-	private static final DataParameter<Integer> STATE = EntityDataManager.createKey(BabyCreeperEntity.class, DataSerializers.VARINT);
-	private static final DataParameter<Boolean> POWERED = EntityDataManager.createKey(BabyCreeperEntity.class, DataSerializers.BOOLEAN);
-	private static final DataParameter<Boolean> IGNITED = EntityDataManager.createKey(BabyCreeperEntity.class, DataSerializers.BOOLEAN);
+	private static final DataParameter<Integer> STATE = EntityDataManager.defineId(BabyCreeperEntity.class, DataSerializers.INT);
+	private static final DataParameter<Boolean> POWERED = EntityDataManager.defineId(BabyCreeperEntity.class, DataSerializers.BOOLEAN);
+	private static final DataParameter<Boolean> IGNITED = EntityDataManager.defineId(BabyCreeperEntity.class, DataSerializers.BOOLEAN);
 
 	private int lastActiveTime;
 	/**
@@ -86,33 +86,33 @@ public class BabyCreeperEntity extends MonsterEntity
 		this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25D);
 	}*/
 
-	public int getMaxFallHeight()
+	public int getMaxFallDistance()
 	{
-		return this.getAttackTarget() == null ? 3 : 3 + (int) (this.getHealth() - 1.0F);
+		return this.getTarget() == null ? 3 : 3 + (int) (this.getHealth() - 1.0F);
 	}
 
-	public boolean onLivingFall(float distance, float damageMultiplier)
+	public boolean causeFallDamage(float distance, float damageMultiplier)
 	{
 		this.timeSinceIgnited = (int) ((float) this.timeSinceIgnited + distance * 1.5F);
 		if (this.timeSinceIgnited > this.fuseTime - 5)
 		{
 			this.timeSinceIgnited = this.fuseTime - 5;
 		}
-		return super.onLivingFall(distance, damageMultiplier);
+		return super.causeFallDamage(distance, damageMultiplier);
 	}
 
-	protected void registerData()
+	protected void defineSynchedData()
 	{
-		super.registerData();
-		this.dataManager.register(STATE, -1);
-		this.dataManager.register(POWERED, false);
-		this.dataManager.register(IGNITED, false);
+		super.defineSynchedData();
+		this.entityData.define(STATE, -1);
+		this.entityData.define(POWERED, false);
+		this.entityData.define(IGNITED, false);
 	}
 
-	public void writeAdditional(CompoundNBT compound)
+	public void addAdditionalSaveData(CompoundNBT compound)
 	{
-		super.writeAdditional(compound);
-		if (this.dataManager.get(POWERED))
+		super.addAdditionalSaveData(compound);
+		if (this.entityData.get(POWERED))
 		{
 			compound.putBoolean("powered", true);
 		}
@@ -124,10 +124,10 @@ public class BabyCreeperEntity extends MonsterEntity
 	/**
 	 * (abstract) Protected helper method to read subclass entity data from NBT.
 	 */
-	public void readAdditional(CompoundNBT compound)
+	public void readAdditionalSaveData(CompoundNBT compound)
 	{
-		super.readAdditional(compound);
-		this.dataManager.set(POWERED, compound.getBoolean("powered"));
+		super.readAdditionalSaveData(compound);
+		this.entityData.set(POWERED, compound.getBoolean("powered"));
 		if (compound.contains("Fuse", 99))
 		{
 			this.fuseTime = compound.getShort("Fuse");
@@ -157,7 +157,7 @@ public class BabyCreeperEntity extends MonsterEntity
 			int i = this.getCreeperState();
 			if (i > 0 && this.timeSinceIgnited == 0)
 			{
-				this.playSound(SoundEvents.ENTITY_CREEPER_PRIMED, 1.0F, 0.5F);
+				this.playSound(SoundEvents.CREEPER_PRIMED, 1.0F, 0.5F);
 			}
 			this.timeSinceIgnited += i;
 			if (this.timeSinceIgnited < 0)
@@ -175,30 +175,30 @@ public class BabyCreeperEntity extends MonsterEntity
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn)
 	{
-		return SoundEvents.ENTITY_CREEPER_HURT;
+		return SoundEvents.CREEPER_HURT;
 	}
 
 	protected SoundEvent getDeathSound()
 	{
-		return SoundEvents.ENTITY_CREEPER_DEATH;
+		return SoundEvents.CREEPER_DEATH;
 	}
 
-	protected void dropSpecialItems(DamageSource source, int looting, boolean recentlyHitIn)
+	protected void dropCustomDeathLoot(DamageSource source, int looting, boolean recentlyHitIn)
 	{
-		super.dropSpecialItems(source, looting, recentlyHitIn);
-		Entity entity = source.getTrueSource();
+		super.dropCustomDeathLoot(source, looting, recentlyHitIn);
+		Entity entity = source.getEntity();
 		if (entity != this && entity instanceof CreeperEntity)
 		{
 			CreeperEntity creeperentity = (CreeperEntity) entity;
-			if (creeperentity.ableToCauseSkullDrop())
+			if (creeperentity.canDropMobsSkull())
 			{
-				creeperentity.incrementDroppedSkulls();
-				this.entityDropItem(Items.CREEPER_HEAD);
+				creeperentity.increaseDroppedSkulls();
+				this.spawnAtLocation(Items.CREEPER_HEAD);
 			}
 		}
 	}
 
-	public boolean attackEntityAsMob(Entity entityIn)
+	public boolean doHurtTarget(Entity entityIn)
 	{
 		return true;
 	}
@@ -208,7 +208,7 @@ public class BabyCreeperEntity extends MonsterEntity
 	 */
 	public boolean getPowered()
 	{
-		return this.dataManager.get(POWERED);
+		return this.entityData.get(POWERED);
 	}
 
 	/**
@@ -226,7 +226,7 @@ public class BabyCreeperEntity extends MonsterEntity
 	 */
 	public int getCreeperState()
 	{
-		return this.dataManager.get(STATE);
+		return this.entityData.get(STATE);
 	}
 
 	/**
@@ -234,7 +234,7 @@ public class BabyCreeperEntity extends MonsterEntity
 	 */
 	public void setCreeperState(int state)
 	{
-		this.dataManager.set(STATE, state);
+		this.entityData.set(STATE, state);
 	}
 
 	/**
@@ -246,24 +246,24 @@ public class BabyCreeperEntity extends MonsterEntity
 		this.dataManager.set(POWERED, true);
 	}*/
 
-	protected ActionResultType func_230254_b_(PlayerEntity player, Hand hand)
+	protected ActionResultType mobInteract(PlayerEntity player, Hand hand)
 	{
-		ItemStack itemstack = player.getHeldItem(hand);
+		ItemStack itemstack = player.getItemInHand(hand);
 		if (itemstack.getItem() == Items.FLINT_AND_STEEL)
 		{
-			this.world.playSound(player, this.getPosX(), this.getPosY(), this.getPosZ(), SoundEvents.ITEM_FLINTANDSTEEL_USE, this.getSoundCategory(), 1.0F, this.rand.nextFloat() * 0.4F + 0.8F);
-			player.swingArm(hand);
-			if (!this.world.isRemote)
+			this.level.playSound(player, this.getX(), this.getY(), this.getZ(), SoundEvents.FLINTANDSTEEL_USE, this.getSoundSource(), 1.0F, this.random.nextFloat() * 0.4F + 0.8F);
+			player.swing(hand);
+			if (!this.level.isClientSide)
 			{
 				this.ignite();
-				itemstack.damageItem(1, player, (p_213625_1_) ->
+				itemstack.hurtAndBreak(1, player, (p_213625_1_) ->
 				{
-					p_213625_1_.sendBreakAnimation(hand);
+					p_213625_1_.broadcastBreakEvent(hand);
 				});
 				return ActionResultType.SUCCESS;
 			}
 		}
-		return super.func_230254_b_(player, hand);
+		return super.mobInteract(player, hand);
 	}
 
 	/**
@@ -272,12 +272,12 @@ public class BabyCreeperEntity extends MonsterEntity
 	 */
 	private void explode()
 	{
-		if (!this.world.isRemote)
+		if (!this.level.isClientSide)
 		{
-			Explosion.Mode explosion$mode = net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.world, this) ? Explosion.Mode.DESTROY : Explosion.Mode.NONE;
+			Explosion.Mode explosion$mode = net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.level, this) ? Explosion.Mode.DESTROY : Explosion.Mode.NONE;
 			float f = this.getPowered() ? 2.0F : 1.0F;
 			this.dead = true;
-			this.world.createExplosion(this, this.getPosX(), this.getPosY(), this.getPosZ(), (float) this.explosionRadius * f, explosion$mode);
+			this.level.explode(this, this.getX(), this.getY(), this.getZ(), (float) this.explosionRadius * f, explosion$mode);
 			this.remove();
 			this.spawnLingeringCloud();
 		}
@@ -285,10 +285,10 @@ public class BabyCreeperEntity extends MonsterEntity
 
 	private void spawnLingeringCloud()
 	{
-		Collection<EffectInstance> collection = this.getActivePotionEffects();
+		Collection<EffectInstance> collection = this.getActiveEffects();
 		if (!collection.isEmpty())
 		{
-			AreaEffectCloudEntity areaeffectcloudentity = new AreaEffectCloudEntity(this.world, this.getPosX(), this.getPosY(), this.getPosZ());
+			AreaEffectCloudEntity areaeffectcloudentity = new AreaEffectCloudEntity(this.level, this.getX(), this.getY(), this.getZ());
 			areaeffectcloudentity.setRadius(2.5F);
 			areaeffectcloudentity.setRadiusOnUse(-0.5F);
 			areaeffectcloudentity.setWaitTime(10);
@@ -298,18 +298,18 @@ public class BabyCreeperEntity extends MonsterEntity
 			{
 				areaeffectcloudentity.addEffect(new EffectInstance(effectinstance));
 			}
-			this.world.addEntity(areaeffectcloudentity);
+			this.level.addFreshEntity(areaeffectcloudentity);
 		}
 	}
 
 	public boolean hasIgnited()
 	{
-		return this.dataManager.get(IGNITED);
+		return this.entityData.get(IGNITED);
 	}
 
 	public void ignite()
 	{
-		this.dataManager.set(IGNITED, true);
+		this.entityData.set(IGNITED, true);
 	}
 
 	/**

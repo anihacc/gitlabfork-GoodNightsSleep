@@ -25,7 +25,7 @@ public class BigDespairMushroomFeature extends Feature<NoFeatureConfig>
 	}
 
 	@Override
-	public boolean generate(ISeedReader worldIn, ChunkGenerator generatorIn, Random randIn, BlockPos posIn, NoFeatureConfig configIn)
+	public boolean place(ISeedReader worldIn, ChunkGenerator generatorIn, Random randIn, BlockPos posIn, NoFeatureConfig configIn)
 	{
 		int i = randIn.nextInt(3) + 4;
 		if (randIn.nextInt(12) == 0)
@@ -35,7 +35,7 @@ public class BigDespairMushroomFeature extends Feature<NoFeatureConfig>
 		int j = posIn.getY();
 		if (j >= 1 && j + i + 1 < 256)
 		{
-			Block block = worldIn.getBlockState(posIn.down()).getBlock();
+			Block block = worldIn.getBlockState(posIn.below()).getBlock();
 			if (block != Blocks.DIRT && block != Blocks.GRASS_BLOCK && block != GNSBlocks.nightmare_grass_block)
 			{
 				return false;
@@ -50,15 +50,15 @@ public class BigDespairMushroomFeature extends Feature<NoFeatureConfig>
 					{
 						for (int j1 = -l; j1 <= l; ++j1)
 						{
-							BlockState iblockstate = worldIn.getBlockState(blockpos$mutableblockpos.setPos(posIn).move(i1, k, j1));
-							if (!iblockstate.isAir(worldIn, blockpos$mutableblockpos) && !iblockstate.isIn(BlockTags.LEAVES))
+							BlockState iblockstate = worldIn.getBlockState(blockpos$mutableblockpos.set(posIn).move(i1, k, j1));
+							if (!iblockstate.isAir(worldIn, blockpos$mutableblockpos) && !iblockstate.is(BlockTags.LEAVES))
 							{
 								return false;
 							}
 						}
 					}
 				}
-				BlockState iblockstate1 = GNSBlocks.despair_mushroom_block.getDefaultState().with(HugeMushroomBlock.UP, Boolean.valueOf(true)).with(HugeMushroomBlock.DOWN, Boolean.valueOf(false));
+				BlockState iblockstate1 = GNSBlocks.despair_mushroom_block.defaultBlockState().setValue(HugeMushroomBlock.UP, Boolean.valueOf(true)).setValue(HugeMushroomBlock.DOWN, Boolean.valueOf(false));
 				for (int l1 = -3; l1 <= 3; ++l1)
 				{
 					for (int i2 = -3; i2 <= 3; ++i2)
@@ -71,25 +71,25 @@ public class BigDespairMushroomFeature extends Feature<NoFeatureConfig>
 						boolean flag4 = flag1 || flag2;
 						if (!flag3 || !flag4)
 						{
-							blockpos$mutableblockpos.setPos(posIn).move(l1, i, i2);
+							blockpos$mutableblockpos.set(posIn).move(l1, i, i2);
 							if (worldIn.getBlockState(blockpos$mutableblockpos).canBeReplacedByLeaves(worldIn, blockpos$mutableblockpos))
 							{
 								boolean flag5 = flag9 || flag4 && l1 == -2;
 								boolean flag6 = flag || flag4 && l1 == 2;
 								boolean flag7 = flag1 || flag3 && i2 == -2;
 								boolean flag8 = flag2 || flag3 && i2 == 2;
-								this.setBlockState(worldIn, blockpos$mutableblockpos, iblockstate1.with(HugeMushroomBlock.WEST, Boolean.valueOf(flag5)).with(HugeMushroomBlock.EAST, Boolean.valueOf(flag6)).with(HugeMushroomBlock.NORTH, Boolean.valueOf(flag7)).with(HugeMushroomBlock.SOUTH, Boolean.valueOf(flag8)));
+								this.setBlock(worldIn, blockpos$mutableblockpos, iblockstate1.setValue(HugeMushroomBlock.WEST, Boolean.valueOf(flag5)).setValue(HugeMushroomBlock.EAST, Boolean.valueOf(flag6)).setValue(HugeMushroomBlock.NORTH, Boolean.valueOf(flag7)).setValue(HugeMushroomBlock.SOUTH, Boolean.valueOf(flag8)));
 							}
 						}
 					}
 				}
-				BlockState iblockstate2 = Blocks.MUSHROOM_STEM.getDefaultState().with(HugeMushroomBlock.UP, Boolean.valueOf(false)).with(HugeMushroomBlock.DOWN, Boolean.valueOf(false));
+				BlockState iblockstate2 = Blocks.MUSHROOM_STEM.defaultBlockState().setValue(HugeMushroomBlock.UP, Boolean.valueOf(false)).setValue(HugeMushroomBlock.DOWN, Boolean.valueOf(false));
 				for (int j2 = 0; j2 < i; ++j2)
 				{
-					blockpos$mutableblockpos.setPos(posIn).move(Direction.UP, j2);
+					blockpos$mutableblockpos.set(posIn).move(Direction.UP, j2);
 					if (worldIn.getBlockState(blockpos$mutableblockpos).canBeReplacedByLeaves(worldIn, blockpos$mutableblockpos))
 					{
-						this.setBlockState(worldIn, blockpos$mutableblockpos, iblockstate2);
+						this.setBlock(worldIn, blockpos$mutableblockpos, iblockstate2);
 					}
 				}
 				return true;

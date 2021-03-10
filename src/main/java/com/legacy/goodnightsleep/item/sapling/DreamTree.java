@@ -11,7 +11,7 @@ import net.minecraft.world.gen.feature.ConfiguredFeature;
 public class DreamTree extends Tree
 {
 	@Override
-	protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature(Random random, boolean p_225546_2_)
+	protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getConfiguredFeature(Random random, boolean p_225546_2_)
 	{
 		return GNSFeatures.Configured.BASE_DREAM_TREE;
 	}

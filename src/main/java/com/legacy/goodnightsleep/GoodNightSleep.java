@@ -135,16 +135,16 @@ public class GoodNightSleep
 		renderCutout(GNSBlocks.dead_trapdoor);
 		renderCutout(GNSBlocks.blood_trapdoor);
 
-		RenderTypeLookup.setRenderLayer(GNSBlocks.dream_grass_block, RenderType.getCutoutMipped());
+		RenderTypeLookup.setRenderLayer(GNSBlocks.dream_grass_block, RenderType.cutoutMipped());
 
-		RenderTypeLookup.setRenderLayer(GNSBlocks.rainbow, RenderType.getTranslucent());
-		RenderTypeLookup.setRenderLayer(GNSBlocks.dream_leaves, RenderType.getCutoutMipped());
-		RenderTypeLookup.setRenderLayer(GNSBlocks.candy_leaves, RenderType.getCutoutMipped());
-		RenderTypeLookup.setRenderLayer(GNSBlocks.diamond_leaves, RenderType.getCutoutMipped());
+		RenderTypeLookup.setRenderLayer(GNSBlocks.rainbow, RenderType.translucent());
+		RenderTypeLookup.setRenderLayer(GNSBlocks.dream_leaves, RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(GNSBlocks.candy_leaves, RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(GNSBlocks.diamond_leaves, RenderType.cutoutMipped());
 	}
 
 	private static void renderCutout(Block block)
 	{
-		RenderTypeLookup.setRenderLayer(block, RenderType.getCutout());
+		RenderTypeLookup.setRenderLayer(block, RenderType.cutout());
 	}
 }

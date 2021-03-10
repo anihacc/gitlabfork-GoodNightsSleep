@@ -41,7 +41,7 @@ public class GNSTagProv
 		}
 
 		@Override
-		protected void registerTags()
+		protected void addTags()
 		{
 			goodNightsSleep();
 			vanilla();
@@ -50,71 +50,71 @@ public class GNSTagProv
 
 		void goodNightsSleep()
 		{
-			this.getOrCreateBuilder(GNSBlockTags.PLANKS).add(GNSBlocks.dream_planks, GNSBlocks.white_planks, GNSBlocks.dead_planks, GNSBlocks.blood_planks);
+			this.tag(GNSBlockTags.PLANKS).add(GNSBlocks.dream_planks, GNSBlocks.white_planks, GNSBlocks.dead_planks, GNSBlocks.blood_planks);
 
-			this.getOrCreateBuilder(GNSBlockTags.DREAM_LOGS).add(GNSBlocks.dream_log, GNSBlocks.dream_wood, GNSBlocks.stripped_dream_log, GNSBlocks.stripped_dream_wood);
-			this.getOrCreateBuilder(GNSBlockTags.WHITE_LOGS).add(GNSBlocks.white_log, GNSBlocks.white_wood, GNSBlocks.stripped_white_log, GNSBlocks.stripped_white_wood);
-			this.getOrCreateBuilder(GNSBlockTags.DEAD_LOGS).add(GNSBlocks.dead_log, GNSBlocks.dead_wood, GNSBlocks.stripped_dead_log, GNSBlocks.stripped_dead_wood);
-			this.getOrCreateBuilder(GNSBlockTags.BLOOD_LOGS).add(GNSBlocks.blood_log, GNSBlocks.blood_wood, GNSBlocks.stripped_blood_log, GNSBlocks.stripped_blood_wood);
+			this.tag(GNSBlockTags.DREAM_LOGS).add(GNSBlocks.dream_log, GNSBlocks.dream_wood, GNSBlocks.stripped_dream_log, GNSBlocks.stripped_dream_wood);
+			this.tag(GNSBlockTags.WHITE_LOGS).add(GNSBlocks.white_log, GNSBlocks.white_wood, GNSBlocks.stripped_white_log, GNSBlocks.stripped_white_wood);
+			this.tag(GNSBlockTags.DEAD_LOGS).add(GNSBlocks.dead_log, GNSBlocks.dead_wood, GNSBlocks.stripped_dead_log, GNSBlocks.stripped_dead_wood);
+			this.tag(GNSBlockTags.BLOOD_LOGS).add(GNSBlocks.blood_log, GNSBlocks.blood_wood, GNSBlocks.stripped_blood_log, GNSBlocks.stripped_blood_wood);
 
-			this.getOrCreateBuilder(GNSBlockTags.COBBLESTONES).add(GNSBlocks.delusion_cobblestone);
-			this.getOrCreateBuilder(GNSBlockTags.STONES).add(GNSBlocks.delusion_stone);
-			this.getOrCreateBuilder(GNSBlockTags.MUSHROOMS).add(GNSBlocks.hope_mushroom, GNSBlocks.despair_mushroom);
+			this.tag(GNSBlockTags.COBBLESTONES).add(GNSBlocks.delusion_cobblestone);
+			this.tag(GNSBlockTags.STONES).add(GNSBlocks.delusion_stone);
+			this.tag(GNSBlockTags.MUSHROOMS).add(GNSBlocks.hope_mushroom, GNSBlocks.despair_mushroom);
 
-			this.getOrCreateBuilder(GNSBlockTags.CANDY_ORES).add(GNSBlocks.candy_ore);
-			this.getOrCreateBuilder(GNSBlockTags.RAINBOW_ORES).add(GNSBlocks.rainbow_ore);
-			this.getOrCreateBuilder(GNSBlockTags.POSITITE_ORES).add(GNSBlocks.positite_ore);
-			this.getOrCreateBuilder(GNSBlockTags.NECRUM_ORES).add(GNSBlocks.necrum_ore);
-			this.getOrCreateBuilder(GNSBlockTags.ZITRITE_ORES).add(GNSBlocks.zitrite_ore);
-			this.getOrCreateBuilder(GNSBlockTags.NEGATITE_ORES).add(GNSBlocks.negatite_ore);
+			this.tag(GNSBlockTags.CANDY_ORES).add(GNSBlocks.candy_ore);
+			this.tag(GNSBlockTags.RAINBOW_ORES).add(GNSBlocks.rainbow_ore);
+			this.tag(GNSBlockTags.POSITITE_ORES).add(GNSBlocks.positite_ore);
+			this.tag(GNSBlockTags.NECRUM_ORES).add(GNSBlocks.necrum_ore);
+			this.tag(GNSBlockTags.ZITRITE_ORES).add(GNSBlocks.zitrite_ore);
+			this.tag(GNSBlockTags.NEGATITE_ORES).add(GNSBlocks.negatite_ore);
 
-			this.getOrCreateBuilder(GNSBlockTags.CANDY_BLOCKS).add(GNSBlocks.candy_block);
-			this.getOrCreateBuilder(GNSBlockTags.RAINBOW_BLOCKS).add(GNSBlocks.rainbow_block);
-			this.getOrCreateBuilder(GNSBlockTags.POSITITE_BLOCKS).add(GNSBlocks.positite_block);
-			this.getOrCreateBuilder(GNSBlockTags.NECRUM_BLOCKS).add(GNSBlocks.necrum_block);
-			this.getOrCreateBuilder(GNSBlockTags.ZITRITE_BLOCKS).add(GNSBlocks.zitrite_block);
-			this.getOrCreateBuilder(GNSBlockTags.NEGATITE_BLOCKS).add(GNSBlocks.negatite_block);
+			this.tag(GNSBlockTags.CANDY_BLOCKS).add(GNSBlocks.candy_block);
+			this.tag(GNSBlockTags.RAINBOW_BLOCKS).add(GNSBlocks.rainbow_block);
+			this.tag(GNSBlockTags.POSITITE_BLOCKS).add(GNSBlocks.positite_block);
+			this.tag(GNSBlockTags.NECRUM_BLOCKS).add(GNSBlocks.necrum_block);
+			this.tag(GNSBlockTags.ZITRITE_BLOCKS).add(GNSBlocks.zitrite_block);
+			this.tag(GNSBlockTags.NEGATITE_BLOCKS).add(GNSBlocks.negatite_block);
 		}
 
 		void vanilla()
 		{
-			ForgeRegistries.BLOCKS.getValues().stream().filter(block -> block.getRegistryName().getNamespace().equals(GoodNightSleep.MODID) && block instanceof FlowerPotBlock).forEach(this.getOrCreateBuilder(BlockTags.FLOWER_POTS)::add);
-			ForgeRegistries.BLOCKS.getValues().stream().filter(block -> block.getRegistryName().getNamespace().equals(GoodNightSleep.MODID) && block instanceof LeavesBlock).forEach(this.getOrCreateBuilder(BlockTags.LEAVES)::add);
-			ForgeRegistries.BLOCKS.getValues().stream().filter(block -> block.getRegistryName().getNamespace().equals(GoodNightSleep.MODID) && block instanceof SaplingBlock).forEach(this.getOrCreateBuilder(BlockTags.SAPLINGS)::add);
-			ForgeRegistries.BLOCKS.getValues().stream().filter(block -> block.getRegistryName().getNamespace().equals(GoodNightSleep.MODID) && block instanceof SlabBlock && !block.getDefaultState().getMaterial().equals(Material.WOOD)).forEach(this.getOrCreateBuilder(BlockTags.SLABS)::add);
-			ForgeRegistries.BLOCKS.getValues().stream().filter(block -> block.getRegistryName().getNamespace().equals(GoodNightSleep.MODID) && block instanceof FlowerBlock).forEach(this.getOrCreateBuilder(BlockTags.SMALL_FLOWERS)::add);
-			ForgeRegistries.BLOCKS.getValues().stream().filter(block -> block.getRegistryName().getNamespace().equals(GoodNightSleep.MODID) && block instanceof StairsBlock && !block.getDefaultState().getMaterial().equals(Material.WOOD)).forEach(this.getOrCreateBuilder(BlockTags.STAIRS)::add);
-			ForgeRegistries.BLOCKS.getValues().stream().filter(block -> block.getRegistryName().getNamespace().equals(GoodNightSleep.MODID) && block instanceof GrassBlock).forEach(this.getOrCreateBuilder(BlockTags.VALID_SPAWN)::add);
-			ForgeRegistries.BLOCKS.getValues().stream().filter(block -> block.getRegistryName().getNamespace().equals(GoodNightSleep.MODID) && block instanceof WallBlock).forEach(this.getOrCreateBuilder(BlockTags.WALLS)::add);
-			ForgeRegistries.BLOCKS.getValues().stream().filter(block -> block.getRegistryName().getNamespace().equals(GoodNightSleep.MODID) && block instanceof WoodButtonBlock).forEach(this.getOrCreateBuilder(BlockTags.WOODEN_BUTTONS)::add);
-			ForgeRegistries.BLOCKS.getValues().stream().filter(block -> block.getRegistryName().getNamespace().equals(GoodNightSleep.MODID) && block instanceof DoorBlock && block.getDefaultState().getMaterial().equals(Material.WOOD)).forEach(this.getOrCreateBuilder(BlockTags.WOODEN_DOORS)::add);
-			ForgeRegistries.BLOCKS.getValues().stream().filter(block -> block.getRegistryName().getNamespace().equals(GoodNightSleep.MODID) && block instanceof FenceBlock && block.getDefaultState().getMaterial().equals(Material.WOOD)).forEach(this.getOrCreateBuilder(BlockTags.WOODEN_FENCES)::add);
-			ForgeRegistries.BLOCKS.getValues().stream().filter(block -> block.getRegistryName().getNamespace().equals(GoodNightSleep.MODID) && block instanceof PressurePlateBlock && block.getDefaultState().getMaterial().equals(Material.WOOD)).forEach(this.getOrCreateBuilder(BlockTags.WOODEN_PRESSURE_PLATES)::add);
-			ForgeRegistries.BLOCKS.getValues().stream().filter(block -> block.getRegistryName().getNamespace().equals(GoodNightSleep.MODID) && block instanceof SlabBlock && block.getDefaultState().getMaterial().equals(Material.WOOD)).forEach(this.getOrCreateBuilder(BlockTags.WOODEN_SLABS)::add);
-			ForgeRegistries.BLOCKS.getValues().stream().filter(block -> block.getRegistryName().getNamespace().equals(GoodNightSleep.MODID) && block instanceof StairsBlock && block.getDefaultState().getMaterial().equals(Material.WOOD)).forEach(this.getOrCreateBuilder(BlockTags.WOODEN_STAIRS)::add);
-			ForgeRegistries.BLOCKS.getValues().stream().filter(block -> block.getRegistryName().getNamespace().equals(GoodNightSleep.MODID) && block instanceof TrapDoorBlock && block.getDefaultState().getMaterial().equals(Material.WOOD)).forEach(this.getOrCreateBuilder(BlockTags.WOODEN_TRAPDOORS)::add);
-			ForgeRegistries.BLOCKS.getValues().stream().filter(block -> block.getRegistryName().getNamespace().equals(GoodNightSleep.MODID) && block instanceof RotatedPillarBlock && block.getDefaultState().getMaterial().equals(Material.WOOD)).forEach(this.getOrCreateBuilder(BlockTags.LOGS)::add);
+			ForgeRegistries.BLOCKS.getValues().stream().filter(block -> block.getRegistryName().getNamespace().equals(GoodNightSleep.MODID) && block instanceof FlowerPotBlock).forEach(this.tag(BlockTags.FLOWER_POTS)::add);
+			ForgeRegistries.BLOCKS.getValues().stream().filter(block -> block.getRegistryName().getNamespace().equals(GoodNightSleep.MODID) && block instanceof LeavesBlock).forEach(this.tag(BlockTags.LEAVES)::add);
+			ForgeRegistries.BLOCKS.getValues().stream().filter(block -> block.getRegistryName().getNamespace().equals(GoodNightSleep.MODID) && block instanceof SaplingBlock).forEach(this.tag(BlockTags.SAPLINGS)::add);
+			ForgeRegistries.BLOCKS.getValues().stream().filter(block -> block.getRegistryName().getNamespace().equals(GoodNightSleep.MODID) && block instanceof SlabBlock && !block.defaultBlockState().getMaterial().equals(Material.WOOD)).forEach(this.tag(BlockTags.SLABS)::add);
+			ForgeRegistries.BLOCKS.getValues().stream().filter(block -> block.getRegistryName().getNamespace().equals(GoodNightSleep.MODID) && block instanceof FlowerBlock).forEach(this.tag(BlockTags.SMALL_FLOWERS)::add);
+			ForgeRegistries.BLOCKS.getValues().stream().filter(block -> block.getRegistryName().getNamespace().equals(GoodNightSleep.MODID) && block instanceof StairsBlock && !block.defaultBlockState().getMaterial().equals(Material.WOOD)).forEach(this.tag(BlockTags.STAIRS)::add);
+			ForgeRegistries.BLOCKS.getValues().stream().filter(block -> block.getRegistryName().getNamespace().equals(GoodNightSleep.MODID) && block instanceof GrassBlock).forEach(this.tag(BlockTags.VALID_SPAWN)::add);
+			ForgeRegistries.BLOCKS.getValues().stream().filter(block -> block.getRegistryName().getNamespace().equals(GoodNightSleep.MODID) && block instanceof WallBlock).forEach(this.tag(BlockTags.WALLS)::add);
+			ForgeRegistries.BLOCKS.getValues().stream().filter(block -> block.getRegistryName().getNamespace().equals(GoodNightSleep.MODID) && block instanceof WoodButtonBlock).forEach(this.tag(BlockTags.WOODEN_BUTTONS)::add);
+			ForgeRegistries.BLOCKS.getValues().stream().filter(block -> block.getRegistryName().getNamespace().equals(GoodNightSleep.MODID) && block instanceof DoorBlock && block.defaultBlockState().getMaterial().equals(Material.WOOD)).forEach(this.tag(BlockTags.WOODEN_DOORS)::add);
+			ForgeRegistries.BLOCKS.getValues().stream().filter(block -> block.getRegistryName().getNamespace().equals(GoodNightSleep.MODID) && block instanceof FenceBlock && block.defaultBlockState().getMaterial().equals(Material.WOOD)).forEach(this.tag(BlockTags.WOODEN_FENCES)::add);
+			ForgeRegistries.BLOCKS.getValues().stream().filter(block -> block.getRegistryName().getNamespace().equals(GoodNightSleep.MODID) && block instanceof PressurePlateBlock && block.defaultBlockState().getMaterial().equals(Material.WOOD)).forEach(this.tag(BlockTags.WOODEN_PRESSURE_PLATES)::add);
+			ForgeRegistries.BLOCKS.getValues().stream().filter(block -> block.getRegistryName().getNamespace().equals(GoodNightSleep.MODID) && block instanceof SlabBlock && block.defaultBlockState().getMaterial().equals(Material.WOOD)).forEach(this.tag(BlockTags.WOODEN_SLABS)::add);
+			ForgeRegistries.BLOCKS.getValues().stream().filter(block -> block.getRegistryName().getNamespace().equals(GoodNightSleep.MODID) && block instanceof StairsBlock && block.defaultBlockState().getMaterial().equals(Material.WOOD)).forEach(this.tag(BlockTags.WOODEN_STAIRS)::add);
+			ForgeRegistries.BLOCKS.getValues().stream().filter(block -> block.getRegistryName().getNamespace().equals(GoodNightSleep.MODID) && block instanceof TrapDoorBlock && block.defaultBlockState().getMaterial().equals(Material.WOOD)).forEach(this.tag(BlockTags.WOODEN_TRAPDOORS)::add);
+			ForgeRegistries.BLOCKS.getValues().stream().filter(block -> block.getRegistryName().getNamespace().equals(GoodNightSleep.MODID) && block instanceof RotatedPillarBlock && block.defaultBlockState().getMaterial().equals(Material.WOOD)).forEach(this.tag(BlockTags.LOGS)::add);
 
-			this.getOrCreateBuilder(BlockTags.BEACON_BASE_BLOCKS).addTags(GNSBlockTags.RAINBOW_BLOCKS, GNSBlockTags.POSITITE_BLOCKS, GNSBlockTags.ZITRITE_BLOCKS, GNSBlockTags.NEGATITE_BLOCKS);
+			this.tag(BlockTags.BEACON_BASE_BLOCKS).addTags(GNSBlockTags.RAINBOW_BLOCKS, GNSBlockTags.POSITITE_BLOCKS, GNSBlockTags.ZITRITE_BLOCKS, GNSBlockTags.NEGATITE_BLOCKS);
 			/*this.getOrCreateBuilder(BlockTags.LOGS).add(GNSBlocks.blood_log);*/
 
-			this.getOrCreateBuilder(BlockTags.PLANKS).addTag(GNSBlockTags.PLANKS);
-			this.getOrCreateBuilder(BlockTags.BEDS).add(GNSBlocks.luxurious_bed, GNSBlocks.wretched_bed, GNSBlocks.strange_bed);
+			this.tag(BlockTags.PLANKS).addTag(GNSBlockTags.PLANKS);
+			this.tag(BlockTags.BEDS).add(GNSBlocks.luxurious_bed, GNSBlocks.wretched_bed, GNSBlocks.strange_bed);
 		}
 
 		void forge()
 		{
-			ForgeRegistries.BLOCKS.getValues().stream().filter(block -> block.getRegistryName().getNamespace().equals(GoodNightSleep.MODID) && block instanceof ChestBlock && block.getDefaultState().getMaterial().equals(Material.WOOD)).forEach(this.getOrCreateBuilder(Tags.Blocks.CHESTS_WOODEN)::add);
-			ForgeRegistries.BLOCKS.getValues().stream().filter(block -> block.getRegistryName().getNamespace().equals(GoodNightSleep.MODID) && block instanceof FenceBlock && block.getDefaultState().getMaterial().equals(Material.WOOD)).forEach(this.getOrCreateBuilder(Tags.Blocks.FENCES_WOODEN)::add);
-			ForgeRegistries.BLOCKS.getValues().stream().filter(block -> block.getRegistryName().getNamespace().equals(GoodNightSleep.MODID) && block instanceof FenceGateBlock && block.getDefaultState().getMaterial().equals(Material.WOOD)).forEach(this.getOrCreateBuilder(Tags.Blocks.FENCE_GATES_WOODEN)::add);
-			this.getOrCreateBuilder(Tags.Blocks.COBBLESTONE).addTag(GNSBlockTags.COBBLESTONES);
-			this.getOrCreateBuilder(Tags.Blocks.STONE).addTag(GNSBlockTags.STONES);
-			this.getOrCreateBuilder(Tags.Blocks.DIRT).add(GNSBlocks.dream_grass_block, GNSBlocks.dream_dirt, GNSBlocks.nightmare_grass_block);
-			this.getOrCreateBuilder(Tags.Blocks.ORES).addTags(GNSBlockTags.CANDY_ORES, GNSBlockTags.RAINBOW_ORES, GNSBlockTags.POSITITE_ORES, GNSBlockTags.NECRUM_ORES, GNSBlockTags.ZITRITE_ORES, GNSBlockTags.NEGATITE_ORES);
-			this.getOrCreateBuilder(Tags.Blocks.STORAGE_BLOCKS).addTags(GNSBlockTags.CANDY_BLOCKS, GNSBlockTags.RAINBOW_BLOCKS, GNSBlockTags.POSITITE_BLOCKS, GNSBlockTags.NECRUM_BLOCKS, GNSBlockTags.ZITRITE_BLOCKS, GNSBlockTags.NEGATITE_BLOCKS);
+			ForgeRegistries.BLOCKS.getValues().stream().filter(block -> block.getRegistryName().getNamespace().equals(GoodNightSleep.MODID) && block instanceof ChestBlock && block.defaultBlockState().getMaterial().equals(Material.WOOD)).forEach(this.tag(Tags.Blocks.CHESTS_WOODEN)::add);
+			ForgeRegistries.BLOCKS.getValues().stream().filter(block -> block.getRegistryName().getNamespace().equals(GoodNightSleep.MODID) && block instanceof FenceBlock && block.defaultBlockState().getMaterial().equals(Material.WOOD)).forEach(this.tag(Tags.Blocks.FENCES_WOODEN)::add);
+			ForgeRegistries.BLOCKS.getValues().stream().filter(block -> block.getRegistryName().getNamespace().equals(GoodNightSleep.MODID) && block instanceof FenceGateBlock && block.defaultBlockState().getMaterial().equals(Material.WOOD)).forEach(this.tag(Tags.Blocks.FENCE_GATES_WOODEN)::add);
+			this.tag(Tags.Blocks.COBBLESTONE).addTag(GNSBlockTags.COBBLESTONES);
+			this.tag(Tags.Blocks.STONE).addTag(GNSBlockTags.STONES);
+			this.tag(Tags.Blocks.DIRT).add(GNSBlocks.dream_grass_block, GNSBlocks.dream_dirt, GNSBlocks.nightmare_grass_block);
+			this.tag(Tags.Blocks.ORES).addTags(GNSBlockTags.CANDY_ORES, GNSBlockTags.RAINBOW_ORES, GNSBlockTags.POSITITE_ORES, GNSBlockTags.NECRUM_ORES, GNSBlockTags.ZITRITE_ORES, GNSBlockTags.NEGATITE_ORES);
+			this.tag(Tags.Blocks.STORAGE_BLOCKS).addTags(GNSBlockTags.CANDY_BLOCKS, GNSBlockTags.RAINBOW_BLOCKS, GNSBlockTags.POSITITE_BLOCKS, GNSBlockTags.NECRUM_BLOCKS, GNSBlockTags.ZITRITE_BLOCKS, GNSBlockTags.NEGATITE_BLOCKS);
 
-			this.getOrCreateBuilder(Tags.Blocks.ORES_COAL).add(GNSBlocks.coal_ore);
-			this.getOrCreateBuilder(Tags.Blocks.ORES_LAPIS).add(GNSBlocks.lapis_ore);
+			this.tag(Tags.Blocks.ORES_COAL).add(GNSBlocks.coal_ore);
+			this.tag(Tags.Blocks.ORES_LAPIS).add(GNSBlocks.lapis_ore);
 		}
 
 		@Override
@@ -132,7 +132,7 @@ public class GNSTagProv
 		}
 
 		@Override
-		protected void registerTags()
+		protected void addTags()
 		{
 			goodNightsSleep();
 			vanilla();
@@ -166,12 +166,12 @@ public class GNSTagProv
 			this.copy(GNSBlockTags.ZITRITE_BLOCKS, GNSItemTags.ZITRITE_BLOCKS);
 			this.copy(GNSBlockTags.NEGATITE_BLOCKS, GNSItemTags.NEGATITE_BLOCKS);
 
-			this.getOrCreateBuilder(GNSItemTags.CANDY_MATERIALS).add(GNSBlocks.candy_block.asItem());
-			this.getOrCreateBuilder(GNSItemTags.RAINBOW_INGOTS).add(GNSItems.rainbow_ingot);
-			this.getOrCreateBuilder(GNSItemTags.POSITITE).add(GNSItems.positite);
-			this.getOrCreateBuilder(GNSItemTags.NECRUM).add(GNSItems.necrum);
-			this.getOrCreateBuilder(GNSItemTags.ZITRITE_INGOTS).add(GNSItems.zitrite_ingot);
-			this.getOrCreateBuilder(GNSItemTags.NEGATITE).add(GNSItems.negatite);
+			this.tag(GNSItemTags.CANDY_MATERIALS).add(GNSBlocks.candy_block.asItem());
+			this.tag(GNSItemTags.RAINBOW_INGOTS).add(GNSItems.rainbow_ingot);
+			this.tag(GNSItemTags.POSITITE).add(GNSItems.positite);
+			this.tag(GNSItemTags.NECRUM).add(GNSItems.necrum);
+			this.tag(GNSItemTags.ZITRITE_INGOTS).add(GNSItems.zitrite_ingot);
+			this.tag(GNSItemTags.NEGATITE).add(GNSItems.negatite);
 		}
 
 		void vanilla()
@@ -194,9 +194,9 @@ public class GNSTagProv
 			this.copy(BlockTags.WOODEN_STAIRS, ItemTags.WOODEN_STAIRS);
 			this.copy(BlockTags.WOODEN_TRAPDOORS, ItemTags.WOODEN_TRAPDOORS);
 
-			this.getOrCreateBuilder(ItemTags.STONE_TOOL_MATERIALS).addTag(GNSItemTags.COBBLESTONES);
+			this.tag(ItemTags.STONE_TOOL_MATERIALS).addTag(GNSItemTags.COBBLESTONES);
 
-			this.getOrCreateBuilder(ItemTags.PIGLIN_LOVED).add(GNSBlocks.pot_of_gold.asItem());
+			this.tag(ItemTags.PIGLIN_LOVED).add(GNSBlocks.pot_of_gold.asItem());
 
 			/*ForgeRegistries.ITEMS.getValues().stream().filter(item -> item.getRegistryName().getNamespace().equals(GoodNightSleep.MODID) && item instanceof MusicDiscItem).forEach(this.getOrCreateBuilder(ItemTags.MUSIC_DISCS)::add);*/
 		}
@@ -211,10 +211,10 @@ public class GNSTagProv
 			this.copy(Tags.Blocks.ORES_LAPIS, Tags.Items.ORES_LAPIS);
 			this.copy(Tags.Blocks.SANDSTONE, Tags.Items.SANDSTONE);
 			this.copy(Tags.Blocks.STORAGE_BLOCKS, Tags.Items.STORAGE_BLOCKS);
-			this.getOrCreateBuilder(Tags.Items.CROPS).add(GNSItems.rainbow_berries);
-			this.getOrCreateBuilder(Tags.Items.GEMS).addTags(GNSItemTags.POSITITE, GNSItemTags.NEGATITE);
-			this.getOrCreateBuilder(Tags.Items.INGOTS).addTags(GNSItemTags.RAINBOW_INGOTS, GNSItemTags.ZITRITE_INGOTS);
-			this.getOrCreateBuilder(Tags.Items.SEEDS).add(GNSItems.rainbow_seeds);
+			this.tag(Tags.Items.CROPS).add(GNSItems.rainbow_berries);
+			this.tag(Tags.Items.GEMS).addTags(GNSItemTags.POSITITE, GNSItemTags.NEGATITE);
+			this.tag(Tags.Items.INGOTS).addTags(GNSItemTags.RAINBOW_INGOTS, GNSItemTags.ZITRITE_INGOTS);
+			this.tag(Tags.Items.SEEDS).add(GNSItems.rainbow_seeds);
 		}
 
 		@Override

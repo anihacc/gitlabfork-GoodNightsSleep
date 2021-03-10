@@ -12,12 +12,12 @@ import net.minecraft.util.LazyValue;
 public enum GNSItemTier implements IItemTier
 {
 	// @formatter:off
-	CANDY(1, 196, 4.0F, 1.0F, 5, () -> {return Ingredient.fromItems(GNSBlocks.candy_block);}),
-	NECRUM(1, 131, 6.0F, 2.0F, 0, () -> {return Ingredient.fromItems(GNSItems.necrum);}),
-	RAINBOW(2, 375, 6.0F, 2.0F, 14, () -> {return Ingredient.fromItems(GNSItems.rainbow_ingot);}),
-	ZITRITE(3, 975, 8.0F, 2.5F, 10, () -> {return Ingredient.fromItems(GNSItems.zitrite_ingot);}),
-	POSITITE(3, 2341, 8.0F, 3.0F, 10, () -> {return Ingredient.fromItems(GNSItems.positite);}),
-	NEGATITE(4, 1100, 10.0F, 3.0F, 1, () -> {return Ingredient.fromItems(GNSItems.negatite);});
+	CANDY(1, 196, 4.0F, 1.0F, 5, () -> {return Ingredient.of(GNSBlocks.candy_block);}),
+	NECRUM(1, 131, 6.0F, 2.0F, 0, () -> {return Ingredient.of(GNSItems.necrum);}),
+	RAINBOW(2, 375, 6.0F, 2.0F, 14, () -> {return Ingredient.of(GNSItems.rainbow_ingot);}),
+	ZITRITE(3, 975, 8.0F, 2.5F, 10, () -> {return Ingredient.of(GNSItems.zitrite_ingot);}),
+	POSITITE(3, 2341, 8.0F, 3.0F, 10, () -> {return Ingredient.of(GNSItems.positite);}),
+	NEGATITE(4, 1100, 10.0F, 3.0F, 1, () -> {return Ingredient.of(GNSItems.negatite);});
 	// @formatter:on
 
 	private final int harvestLevel;
@@ -42,33 +42,33 @@ public enum GNSItemTier implements IItemTier
 		this.repairMaterial = new LazyValue<>(repairMaterialIn);
 	}
 
-	public int getMaxUses()
+	public int getUses()
 	{
 		return this.maxUses;
 	}
 
-	public float getEfficiency()
+	public float getSpeed()
 	{
 		return this.efficiency;
 	}
 
-	public float getAttackDamage()
+	public float getAttackDamageBonus()
 	{
 		return this.attackDamage;
 	}
 
-	public int getHarvestLevel()
+	public int getLevel()
 	{
 		return this.harvestLevel;
 	}
 
-	public int getEnchantability()
+	public int getEnchantmentValue()
 	{
 		return this.enchantability;
 	}
 
-	public Ingredient getRepairMaterial()
+	public Ingredient getRepairIngredient()
 	{
-		return this.repairMaterial.getValue();
+		return this.repairMaterial.get();
 	}
 }

@@ -22,7 +22,7 @@ public class BabyCreeperRenderer extends MobRenderer<BabyCreeperEntity, BabyCree
 		super(renderManagerIn, new BabyCreeperModel<>(), 0.5F);
 	}
 
-	protected void preRenderCallback(BabyCreeperEntity entitylivingbaseIn, MatrixStack matrix, float partialTickTime)
+	protected void scale(BabyCreeperEntity entitylivingbaseIn, MatrixStack matrix, float partialTickTime)
 	{
 		float f = entitylivingbaseIn.getCreeperFlashIntensity(partialTickTime);
 		float f1 = 1.0F + MathHelper.sin(f * 100.0F) * f * 0.01F;
@@ -51,7 +51,7 @@ public class BabyCreeperRenderer extends MobRenderer<BabyCreeperEntity, BabyCree
 	}
 
 	@Override
-	public ResourceLocation getEntityTexture(BabyCreeperEntity entity)
+	public ResourceLocation getTextureLocation(BabyCreeperEntity entity)
 	{
 		return TEXTURE;
 	}

@@ -23,23 +23,23 @@ public class DreamScatteredPlantFeature extends Feature<NoFeatureConfig>
 	}
 
 	@Override
-	public boolean generate(ISeedReader worldIn, ChunkGenerator generator, Random rand, BlockPos pos, NoFeatureConfig config)
+	public boolean place(ISeedReader worldIn, ChunkGenerator generator, Random rand, BlockPos pos, NoFeatureConfig config)
 	{
 		int i = 0;
 
-		if (this.plant.getBlock() == GNSBlocks.present && worldIn.isAirBlock(pos) && worldIn.getBlockState(pos.down()).getBlock() == GNSBlocks.dream_grass_block)
+		if (this.plant.getBlock() == GNSBlocks.present && worldIn.isEmptyBlock(pos) && worldIn.getBlockState(pos.below()).getBlock() == GNSBlocks.dream_grass_block)
 		{
-			worldIn.setBlockState(pos, this.plant, 2);
+			worldIn.setBlock(pos, this.plant, 2);
 			++i;
 			return i > 0;
 		}
 
 		for (int j = 0; j < 64; ++j)
 		{
-			BlockPos blockpos = pos.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
-			if (worldIn.isAirBlock(blockpos) && (worldIn.getBlockState(blockpos.down()).getBlock() == GNSBlocks.dream_grass_block || worldIn.getBlockState(blockpos.down()).getBlock() == GNSBlocks.nightmare_grass_block))
+			BlockPos blockpos = pos.offset(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
+			if (worldIn.isEmptyBlock(blockpos) && (worldIn.getBlockState(blockpos.below()).getBlock() == GNSBlocks.dream_grass_block || worldIn.getBlockState(blockpos.below()).getBlock() == GNSBlocks.nightmare_grass_block))
 			{
-				worldIn.setBlockState(blockpos, this.plant, 2);
+				worldIn.setBlock(blockpos, this.plant, 2);
 				++i;
 			}
 		}

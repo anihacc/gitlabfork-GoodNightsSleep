@@ -19,22 +19,22 @@ public enum GNSArmorMaterial implements IArmorMaterial
 {
 	CANDY("candy", 7, new int[] { 1, 2, 2, 1 }, 5, GNSSounds.ITEM_ARMOR_EQUIP_CANDY, 0.0F, () ->
 	{
-		return Ingredient.fromItems(GNSItems.candy);
+		return Ingredient.of(GNSItems.candy);
 	}), RAINBOW("rainbow", 22, new int[] { 2, 6, 5, 2 }, 14, GNSSounds.ITEM_ARMOR_EQUIP_RAINBOW, 0.0F, () ->
 	{
-		return Ingredient.fromItems(GNSItems.rainbow_ingot);
+		return Ingredient.of(GNSItems.rainbow_ingot);
 	}), POSITITE("positite", 49, new int[] { 3, 8, 6, 3 }, 10, GNSSounds.ITEM_ARMOR_EQUIP_POSITITE, 2.0F, () ->
 	{
-		return Ingredient.fromItems(GNSItems.positite);
-	}), NECRUM("necrum", 5, new int[] { 2, 3, 3, 2 }, 0, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0F, () ->
+		return Ingredient.of(GNSItems.positite);
+	}), NECRUM("necrum", 5, new int[] { 2, 3, 3, 2 }, 0, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, () ->
 	{
-		return Ingredient.fromItems(GNSItems.necrum);
+		return Ingredient.of(GNSItems.necrum);
 	}), ZITRITE("zitrite", 15, new int[] { 3, 7, 6, 3 }, 0, GNSSounds.ITEM_ARMOR_EQUIP_ZITRITE, 0.0F, () ->
 	{
-		return Ingredient.fromItems(GNSItems.zitrite_ingot);
+		return Ingredient.of(GNSItems.zitrite_ingot);
 	}), NEGATITE("negatite", 29, new int[] { 4, 9, 7, 4 }, 0, GNSSounds.ITEM_ARMOR_EQUIP_NEGATITE, 4.0F, () ->
 	{
-		return Ingredient.fromItems(GNSItems.negatite);
+		return Ingredient.of(GNSItems.negatite);
 	});
 
 	private static final int[] MAX_DAMAGE_ARRAY = new int[] { 13, 15, 16, 11 };
@@ -64,29 +64,29 @@ public enum GNSArmorMaterial implements IArmorMaterial
 		this.repairMaterial = new LazyValue<>(p_i48533_9_);
 	}
 
-	public int getDurability(EquipmentSlotType slotIn)
+	public int getDurabilityForSlot(EquipmentSlotType slotIn)
 	{
 		return MAX_DAMAGE_ARRAY[slotIn.getIndex()] * this.maxDamageFactor;
 	}
 
-	public int getDamageReductionAmount(EquipmentSlotType slotIn)
+	public int getDefenseForSlot(EquipmentSlotType slotIn)
 	{
 		return this.damageReductionAmountArray[slotIn.getIndex()];
 	}
 
-	public int getEnchantability()
+	public int getEnchantmentValue()
 	{
 		return this.enchantability;
 	}
 
-	public SoundEvent getSoundEvent()
+	public SoundEvent getEquipSound()
 	{
 		return this.soundEvent;
 	}
 
-	public Ingredient getRepairMaterial()
+	public Ingredient getRepairIngredient()
 	{
-		return this.repairMaterial.getValue();
+		return this.repairMaterial.get();
 	}
 
 	@OnlyIn(Dist.CLIENT)

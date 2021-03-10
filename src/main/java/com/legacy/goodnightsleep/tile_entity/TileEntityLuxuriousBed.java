@@ -13,6 +13,6 @@ public class TileEntityLuxuriousBed extends TileEntity
 	@Override
 	public SUpdateTileEntityPacket getUpdatePacket()
 	{
-		return new SUpdateTileEntityPacket(this.pos, -999, this.getUpdateTag());
+		return new SUpdateTileEntityPacket(this.worldPosition, -999, this.getUpdateTag());
 	}
 }

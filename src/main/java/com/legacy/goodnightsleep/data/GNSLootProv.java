@@ -87,7 +87,7 @@ public class GNSLootProv extends LootTableProvider
 	{
 		map.forEach((location, table) ->
 		{
-			LootTableManager.validateLootTable(validationtracker, location, table);
+			LootTableManager.validate(validationtracker, location, table);
 		});
 
 	}
@@ -117,24 +117,24 @@ public class GNSLootProv extends LootTableProvider
 		@Override
 		protected void addTables()
 		{
-			this.registerLootTable(GNSEntityTypes.UNICORN, LootTable.builder().addLootPool(LootPool.builder().rolls(ConstantRange.of(1)).addEntry(ItemLootEntry.builder(Items.LEATHER).acceptFunction(SetCount.builder(RandomValueRange.of(0.0F, 2.0F))).acceptFunction(LootingEnchantBonus.builder(RandomValueRange.of(0.0F, 1.0F))))));
-			this.registerLootTable(GNSEntityTypes.GUMMY_BEAR, LootTable.builder());
-			this.registerLootTable(GNSEntityTypes.BABY_CREEPER, LootTable.builder().addLootPool(LootPool.builder().rolls(ConstantRange.of(1)).addEntry(ItemLootEntry.builder(Items.GUNPOWDER).acceptFunction(SetCount.builder(RandomValueRange.of(0.0F, 2.0F))).acceptFunction(LootingEnchantBonus.builder(RandomValueRange.of(0.0F, 1.0F))))).addLootPool(LootPool.builder().addEntry(TagLootEntry.getBuilder(ItemTags.CREEPER_DROP_MUSIC_DISCS)).acceptCondition(EntityHasProperty.builder(LootContext.EntityTarget.KILLER, EntityPredicate.Builder.create().type(EntityTypeTags.SKELETONS)))));
+			this.add(GNSEntityTypes.UNICORN, LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(1)).add(ItemLootEntry.lootTableItem(Items.LEATHER).apply(SetCount.setCount(RandomValueRange.between(0.0F, 2.0F))).apply(LootingEnchantBonus.lootingMultiplier(RandomValueRange.between(0.0F, 1.0F))))));
+			this.add(GNSEntityTypes.GUMMY_BEAR, LootTable.lootTable());
+			this.add(GNSEntityTypes.BABY_CREEPER, LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(1)).add(ItemLootEntry.lootTableItem(Items.GUNPOWDER).apply(SetCount.setCount(RandomValueRange.between(0.0F, 2.0F))).apply(LootingEnchantBonus.lootingMultiplier(RandomValueRange.between(0.0F, 1.0F))))).withPool(LootPool.lootPool().add(TagLootEntry.expandTag(ItemTags.CREEPER_DROP_MUSIC_DISCS)).when(EntityHasProperty.hasProperties(LootContext.EntityTarget.KILLER, EntityPredicate.Builder.entity().of(EntityTypeTags.SKELETONS)))));
 
-			this.registerLootTable(GNSEntityTypes.HEROBRINE, LootTable.builder().addLootPool(LootPool.builder().rolls(ConstantRange.of(1)).addEntry(ItemLootEntry.builder(GNSItems.negatite).acceptFunction(SetCount.builder(RandomValueRange.of(0.0F, 2.0F))))));
-			this.registerLootTable(GNSEntityTypes.TORMENTER, LootTable.builder().addLootPool(LootPool.builder().rolls(ConstantRange.of(1)).addEntry(ItemLootEntry.builder(GNSItems.necrum).acceptFunction(SetCount.builder(RandomValueRange.of(2.0F, 3.0F))))));
+			this.add(GNSEntityTypes.HEROBRINE, LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(1)).add(ItemLootEntry.lootTableItem(GNSItems.negatite).apply(SetCount.setCount(RandomValueRange.between(0.0F, 2.0F))))));
+			this.add(GNSEntityTypes.TORMENTER, LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(1)).add(ItemLootEntry.lootTableItem(GNSItems.necrum).apply(SetCount.setCount(RandomValueRange.between(2.0F, 3.0F))))));
 
-			this.registerLootTable(GNSEntityTypes.SPAWNER_ENTITY, LootTable.builder());
+			this.add(GNSEntityTypes.SPAWNER_ENTITY, LootTable.lootTable());
 		}
 
 		private LootPool.Builder lootingPool(IItemProvider item, int min, int max, int minLooting, int maxLooting)
 		{
-			return basicPool(item, min, max).acceptFunction(LootingEnchantBonus.builder(RandomValueRange.of(minLooting, maxLooting)));
+			return basicPool(item, min, max).apply(LootingEnchantBonus.lootingMultiplier(RandomValueRange.between(minLooting, maxLooting)));
 		}
 
 		private LootPool.Builder smeltingPool(IItemProvider item, int min, int max, int minLooting, int maxLooting)
 		{
-			return lootingPool(item, min, max, minLooting, maxLooting).acceptFunction(Smelt.func_215953_b().acceptCondition(EntityHasProperty.builder(LootContext.EntityTarget.THIS, ON_FIRE)));
+			return lootingPool(item, min, max, minLooting, maxLooting).apply(Smelt.smelted().when(EntityHasProperty.hasProperties(LootContext.EntityTarget.THIS, ENTITY_ON_FIRE)));
 		}
 
 		private String entityName(EntityType<?> entity)
@@ -151,10 +151,10 @@ public class GNSLootProv extends LootTableProvider
 
 	private class BlockLoot extends BlockLootTables implements LootPoolUtil
 	{
-		private final ILootCondition.IBuilder SILK_TOUCH = MatchTool.builder(ItemPredicate.Builder.create().enchantment(new EnchantmentPredicate(Enchantments.SILK_TOUCH, MinMaxBounds.IntBound.atLeast(1))));
-		private final ILootCondition.IBuilder SHEARS = MatchTool.builder(ItemPredicate.Builder.create().item(Items.SHEARS));
-		private final ILootCondition.IBuilder SILK_TOUCH_OR_SHEARS = SHEARS.alternative(SILK_TOUCH);
-		private final ILootCondition.IBuilder NOT_SILK_TOUCH_OR_SHEARS = SILK_TOUCH_OR_SHEARS.inverted();
+		private final ILootCondition.IBuilder SILK_TOUCH = MatchTool.toolMatches(ItemPredicate.Builder.item().hasEnchantment(new EnchantmentPredicate(Enchantments.SILK_TOUCH, MinMaxBounds.IntBound.atLeast(1))));
+		private final ILootCondition.IBuilder SHEARS = MatchTool.toolMatches(ItemPredicate.Builder.item().of(Items.SHEARS));
+		private final ILootCondition.IBuilder SILK_TOUCH_OR_SHEARS = SHEARS.or(SILK_TOUCH);
+		private final ILootCondition.IBuilder NOT_SILK_TOUCH_OR_SHEARS = SILK_TOUCH_OR_SHEARS.invert();
 		private float[] DEFAULT_SAPLING_DROP_RATES = new float[] { 0.05F, 0.0625F, 0.083333336F, 0.1F };
 
 		@Override
@@ -163,62 +163,62 @@ public class GNSLootProv extends LootTableProvider
 			blocks().forEach(block ->
 			{
 				if (block == GNSBlocks.dream_grass)
-					this.registerLootTable(block, this.dropRainbowSeeds(block));
+					this.add(block, this.dropRainbowSeeds(block));
 				else if (block == GNSBlocks.nightmare_grass)
-					this.registerLootTable(block, BlockLootTables::droppingSeeds);
+					this.add(block, BlockLootTables::createGrassDrops);
 				else if (block == GNSBlocks.prickly_nightmare_grass)
-					this.registerLootTable(block, BlockLootTables::droppingSeeds);
+					this.add(block, BlockLootTables::createGrassDrops);
 
 				else if (block == GNSBlocks.dream_grass_block)
 					silkOrElse(block, GNSBlocks.dream_dirt);
 				else if (block == GNSBlocks.nightmare_grass_block)
 					silkOrElse(block, Blocks.DIRT);
 				else if (block == GNSBlocks.dream_farmland)
-					registerDropping(block, GNSBlocks.dream_dirt);
+					dropOther(block, GNSBlocks.dream_dirt);
 				else if (block == GNSBlocks.delusion_stone)
 					silkOrElse(block, GNSBlocks.delusion_cobblestone);
 				else if (block == GNSBlocks.dream_leaves)
-					registerLootTable(block, (b) -> leaves(b, GNSBlocks.dream_sapling, Items.STICK));
+					add(block, (b) -> leaves(b, GNSBlocks.dream_sapling, Items.STICK));
 				else if (block == GNSBlocks.candy_leaves)
-					registerLootTable(block, (b) -> leaves(b, GNSBlocks.candy_sapling, Items.STICK));
+					add(block, (b) -> leaves(b, GNSBlocks.candy_sapling, Items.STICK));
 				else if (block == GNSBlocks.diamond_leaves)
-					registerLootTable(block, (b) -> leaves(b, GNSBlocks.dream_sapling, Items.STICK));
+					add(block, (b) -> leaves(b, GNSBlocks.dream_sapling, Items.STICK));
 				else if (block instanceof SlabBlock)
-					registerLootTable(block, BlockLootTables::droppingSlab);
+					add(block, BlockLootTables::createSlabItemTable);
 				else if (block == GNSBlocks.candy_ore)
-					registerLootTable(block, (b) -> droppingWithSilkTouch(b, withExplosionDecay(b, ItemLootEntry.builder(GNSItems.candy).acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 3.0F))).acceptFunction(ApplyBonus.uniformBonusCount(Enchantments.FORTUNE)))));
+					add(block, (b) -> createSilkTouchDispatchTable(b, applyExplosionDecay(b, ItemLootEntry.lootTableItem(GNSItems.candy).apply(SetCount.setCount(RandomValueRange.between(1.0F, 3.0F))).apply(ApplyBonus.addUniformBonusCount(Enchantments.BLOCK_FORTUNE)))));
 				else if (block == GNSBlocks.necrum_ore)
-					registerLootTable(block, (b) -> droppingWithSilkTouch(b, withExplosionDecay(b, ItemLootEntry.builder(GNSItems.necrum).acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 3.0F))).acceptFunction(ApplyBonus.uniformBonusCount(Enchantments.FORTUNE)))));
+					add(block, (b) -> createSilkTouchDispatchTable(b, applyExplosionDecay(b, ItemLootEntry.lootTableItem(GNSItems.necrum).apply(SetCount.setCount(RandomValueRange.between(1.0F, 3.0F))).apply(ApplyBonus.addUniformBonusCount(Enchantments.BLOCK_FORTUNE)))));
 				else if (block == GNSBlocks.positite_ore)
-					registerLootTable(block, (b) -> droppingItemWithFortune(b, GNSItems.positite));
+					add(block, (b) -> createOreDrop(b, GNSItems.positite));
 				else if (block == GNSBlocks.negatite_ore)
-					registerLootTable(block, (b) -> droppingItemWithFortune(b, GNSItems.negatite));
+					add(block, (b) -> createOreDrop(b, GNSItems.negatite));
 				else if (block == GNSBlocks.rainbow_ore)
-					registerLootTable(block, (b) -> dropRainbow(b));
+					add(block, (b) -> dropRainbow(b));
 				else if (block == GNSBlocks.present)
-					registerLootTable(block, (b) -> dropPresent(b));
+					add(block, (b) -> dropPresent(b));
 				else if (block instanceof DoorBlock)
-					registerLootTable(block, (b) -> droppingWhen(b, DoorBlock.HALF, DoubleBlockHalf.LOWER));
+					add(block, (b) -> createSinglePropConditionTable(b, DoorBlock.HALF, DoubleBlockHalf.LOWER));
 				else if (block instanceof FlowerPotBlock)
-					registerFlowerPot(block);
+					dropPottedContents(block);
 				else if (block == GNSBlocks.lapis_ore)
-					registerLootTable(block, (b) -> droppingWithSilkTouch(block, withExplosionDecay(block, ItemLootEntry.builder(Items.LAPIS_LAZULI).acceptFunction(SetCount.builder(RandomValueRange.of(4.0F, 9.0F))).acceptFunction(ApplyBonus.oreDrops(Enchantments.FORTUNE)))));
+					add(block, (b) -> createSilkTouchDispatchTable(block, applyExplosionDecay(block, ItemLootEntry.lootTableItem(Items.LAPIS_LAZULI).apply(SetCount.setCount(RandomValueRange.between(4.0F, 9.0F))).apply(ApplyBonus.addOreBonusCount(Enchantments.BLOCK_FORTUNE)))));
 				else if (block == GNSBlocks.coal_ore)
-					registerLootTable(block, (b) -> droppingItemWithFortune(block, Items.COAL));
+					add(block, (b) -> createOreDrop(block, Items.COAL));
 				else if (block instanceof GNSBedBlock)
-					registerLootTable(block, (bed) ->
+					add(block, (bed) ->
 					{
-						return droppingWhen(bed, GNSBedBlock.PART, BedPart.HEAD);
+						return createSinglePropConditionTable(bed, GNSBedBlock.PART, BedPart.HEAD);
 					});
 				else if (block instanceof GNSRainbowCropBlock)
 				{
-					ILootCondition.IBuilder growthCondition = BlockStateProperty.builder(block).fromProperties(StatePropertiesPredicate.Builder.newBuilder().withIntProp(GNSRainbowCropBlock.AGE, ((GNSRainbowCropBlock) block).getMaxAge()));
+					ILootCondition.IBuilder growthCondition = BlockStateProperty.hasBlockStateProperties(block).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(GNSRainbowCropBlock.AGE, ((GNSRainbowCropBlock) block).getMaxAge()));
 
 					if (block == GNSBlocks.rainbow_berries)
-						this.registerLootTable(block, (b) -> crop(growthCondition, b, GNSItems.rainbow_berries));
+						this.add(block, (b) -> crop(growthCondition, b, GNSItems.rainbow_berries));
 				}
 				else
-					registerDropSelfLootTable(block);
+					dropSelf(block);
 			});
 		}
 
@@ -231,25 +231,25 @@ public class GNSLootProv extends LootTableProvider
 		// @formatter:off
 		protected LootTable.Builder dropRainbow(Block block)
 		{
-			return LootTable.builder().addLootPool(LootPool.builder().rolls(ConstantRange.of(1))
-					.addEntry(ItemLootEntry.builder(block).acceptCondition(SILK_TOUCH).alternatively(ItemLootEntry.builder(GNSBlocks.rainbow_ore).weight(50)))
-					.addEntry(ItemLootEntry.builder(block).acceptCondition(SILK_TOUCH).alternatively(ItemLootEntry.builder(Blocks.GOLD_ORE).weight(10)))
-					.addEntry(ItemLootEntry.builder(block).acceptCondition(SILK_TOUCH).alternatively(ItemLootEntry.builder(Blocks.IRON_ORE).weight(10)))
-					.addEntry(ItemLootEntry.builder(block).acceptCondition(SILK_TOUCH).alternatively(ItemLootEntry.builder(Items.REDSTONE).weight(10).acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 4.0F)))))
-					.addEntry(ItemLootEntry.builder(block).acceptCondition(SILK_TOUCH).alternatively(ItemLootEntry.builder(Items.EMERALD).weight(1)))
-					.addEntry(ItemLootEntry.builder(block).acceptCondition(SILK_TOUCH).alternatively(ItemLootEntry.builder(GNSItems.candy).weight(20).acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 3.0F))))));
+			return LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(1))
+					.add(ItemLootEntry.lootTableItem(block).when(SILK_TOUCH).otherwise(ItemLootEntry.lootTableItem(GNSBlocks.rainbow_ore).setWeight(50)))
+					.add(ItemLootEntry.lootTableItem(block).when(SILK_TOUCH).otherwise(ItemLootEntry.lootTableItem(Blocks.GOLD_ORE).setWeight(10)))
+					.add(ItemLootEntry.lootTableItem(block).when(SILK_TOUCH).otherwise(ItemLootEntry.lootTableItem(Blocks.IRON_ORE).setWeight(10)))
+					.add(ItemLootEntry.lootTableItem(block).when(SILK_TOUCH).otherwise(ItemLootEntry.lootTableItem(Items.REDSTONE).setWeight(10).apply(SetCount.setCount(RandomValueRange.between(1.0F, 4.0F)))))
+					.add(ItemLootEntry.lootTableItem(block).when(SILK_TOUCH).otherwise(ItemLootEntry.lootTableItem(Items.EMERALD).setWeight(1)))
+					.add(ItemLootEntry.lootTableItem(block).when(SILK_TOUCH).otherwise(ItemLootEntry.lootTableItem(GNSItems.candy).setWeight(20).apply(SetCount.setCount(RandomValueRange.between(1.0F, 3.0F))))));
 		}
 		
 		protected LootTable.Builder dropPresent(Block block)
 		{
-			return LootTable.builder().addLootPool(LootPool.builder().rolls(ConstantRange.of(1))
-					.addEntry(ItemLootEntry.builder(block).acceptCondition(SILK_TOUCH).alternatively(ItemLootEntry.builder(GNSItems.rainbow_ingot).weight(30)))
-					.addEntry(ItemLootEntry.builder(block).acceptCondition(SILK_TOUCH).alternatively(ItemLootEntry.builder(Items.GOLD_INGOT).weight(10)))
-					.addEntry(ItemLootEntry.builder(block).acceptCondition(SILK_TOUCH).alternatively(ItemLootEntry.builder(Items.IRON_INGOT).weight(10)))
-					.addEntry(ItemLootEntry.builder(block).acceptCondition(SILK_TOUCH).alternatively(ItemLootEntry.builder(Items.REDSTONE).weight(10).acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 4.0F)))))
-					.addEntry(ItemLootEntry.builder(block).acceptCondition(SILK_TOUCH).alternatively(ItemLootEntry.builder(Items.EMERALD).weight(5)))
-					.addEntry(ItemLootEntry.builder(block).acceptCondition(SILK_TOUCH).alternatively(ItemLootEntry.builder(GNSItems.candy).weight(30).acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 3.0F)))))
-					.addEntry(ItemLootEntry.builder(block).acceptCondition(SILK_TOUCH).alternatively(ItemLootEntry.builder(GNSItems.positite).weight(5))));
+			return LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(1))
+					.add(ItemLootEntry.lootTableItem(block).when(SILK_TOUCH).otherwise(ItemLootEntry.lootTableItem(GNSItems.rainbow_ingot).setWeight(30)))
+					.add(ItemLootEntry.lootTableItem(block).when(SILK_TOUCH).otherwise(ItemLootEntry.lootTableItem(Items.GOLD_INGOT).setWeight(10)))
+					.add(ItemLootEntry.lootTableItem(block).when(SILK_TOUCH).otherwise(ItemLootEntry.lootTableItem(Items.IRON_INGOT).setWeight(10)))
+					.add(ItemLootEntry.lootTableItem(block).when(SILK_TOUCH).otherwise(ItemLootEntry.lootTableItem(Items.REDSTONE).setWeight(10).apply(SetCount.setCount(RandomValueRange.between(1.0F, 4.0F)))))
+					.add(ItemLootEntry.lootTableItem(block).when(SILK_TOUCH).otherwise(ItemLootEntry.lootTableItem(Items.EMERALD).setWeight(5)))
+					.add(ItemLootEntry.lootTableItem(block).when(SILK_TOUCH).otherwise(ItemLootEntry.lootTableItem(GNSItems.candy).setWeight(30).apply(SetCount.setCount(RandomValueRange.between(1.0F, 3.0F)))))
+					.add(ItemLootEntry.lootTableItem(block).when(SILK_TOUCH).otherwise(ItemLootEntry.lootTableItem(GNSItems.positite).setWeight(5))));
 		}
 		// @formatter:on
 
@@ -260,29 +260,29 @@ public class GNSLootProv extends LootTableProvider
 
 		private void droppingSeedTag(Block block, ITag.INamedTag<Item> tag)
 		{
-			this.registerLootTable(block, droppingWithShears(block, withExplosionDecay(block, (TagLootEntry.getBuilder(tag).acceptCondition(RandomChance.builder(0.125F))).acceptFunction(ApplyBonus.uniformBonusCount(Enchantments.FORTUNE, 2)))));
+			this.add(block, createShearsDispatchTable(block, applyExplosionDecay(block, (TagLootEntry.expandTag(tag).when(RandomChance.randomChance(0.125F))).apply(ApplyBonus.addUniformBonusCount(Enchantments.BLOCK_FORTUNE, 2)))));
 		}
 
 		protected LootTable.Builder dropRainbowSeeds(Block block)
 		{
-			return droppingWithShears(block, withExplosionDecay(block, ItemLootEntry.builder(GNSItems.rainbow_seeds).acceptCondition(RandomChance.builder(0.125F)).acceptFunction(ApplyBonus.uniformBonusCount(Enchantments.FORTUNE, 2))));
+			return createShearsDispatchTable(block, applyExplosionDecay(block, ItemLootEntry.lootTableItem(GNSItems.rainbow_seeds).when(RandomChance.randomChance(0.125F)).apply(ApplyBonus.addUniformBonusCount(Enchantments.BLOCK_FORTUNE, 2))));
 		}
 
 		private void silkOrElse(Block withSilk, IItemProvider without)
 		{
-			this.registerLootTable(withSilk, (b) -> droppingWithSilkTouch(b, without));
+			this.add(withSilk, (b) -> createSingleItemTableWithSilkTouch(b, without));
 		}
 
 		private LootTable.Builder leaves(Block block, IItemProvider sapling, IItemProvider stick)
 		{
-			return droppingWithSilkTouchOrShears(block, withSurvivesExplosion(block, ItemLootEntry.builder(sapling)).acceptCondition(TableBonus.builder(Enchantments.FORTUNE, DEFAULT_SAPLING_DROP_RATES))).addLootPool(LootPool.builder().rolls(ConstantRange.of(1)).acceptCondition(NOT_SILK_TOUCH_OR_SHEARS).addEntry(withExplosionDecay(block, ItemLootEntry.builder(stick).acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 2.0F)))).acceptCondition(TableBonus.builder(Enchantments.FORTUNE, 0.02F, 0.022222223F, 0.025F, 0.033333335F, 0.1F))));
+			return createSilkTouchOrShearsDispatchTable(block, applyExplosionCondition(block, ItemLootEntry.lootTableItem(sapling)).when(TableBonus.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, DEFAULT_SAPLING_DROP_RATES))).withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(1)).when(NOT_SILK_TOUCH_OR_SHEARS).add(applyExplosionDecay(block, ItemLootEntry.lootTableItem(stick).apply(SetCount.setCount(RandomValueRange.between(1.0F, 2.0F)))).when(TableBonus.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, 0.02F, 0.022222223F, 0.025F, 0.033333335F, 0.1F))));
 		}
 
 		private LootTable.Builder leavesFruit(Block block, IItemProvider sapling, IItemProvider stick, IItemProvider fruit)
 		{
 			float baseChance = 0.05F;
 			float[] fortuneChances = new float[] { 1.11111114F, 1.25F, 1.6666668F, 5.0F };
-			return leaves(block, sapling, stick).addLootPool(LootPool.builder().rolls(ConstantRange.of(1)).acceptCondition(NOT_SILK_TOUCH_OR_SHEARS).addEntry(withSurvivesExplosion(block, ItemLootEntry.builder(fruit)).acceptCondition(TableBonus.builder(Enchantments.FORTUNE, baseChance, baseChance * fortuneChances[0], baseChance * fortuneChances[1], baseChance * fortuneChances[2], baseChance * fortuneChances[3]))));
+			return leaves(block, sapling, stick).withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(1)).when(NOT_SILK_TOUCH_OR_SHEARS).add(applyExplosionCondition(block, ItemLootEntry.lootTableItem(fruit)).when(TableBonus.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, baseChance, baseChance * fortuneChances[0], baseChance * fortuneChances[1], baseChance * fortuneChances[2], baseChance * fortuneChances[3]))));
 		}
 
 		private LootTable.Builder crop(ILootCondition.IBuilder growthCondition, Block block, IItemProvider food)
@@ -292,10 +292,10 @@ public class GNSLootProv extends LootTableProvider
 
 		private LootTable.Builder crop(ILootCondition.IBuilder growthCondition, Block block, IItemProvider food, IItemProvider seed)
 		{
-			LootPool.Builder seedPool = LootPool.builder().addEntry(ItemLootEntry.builder(seed).acceptFunction(ApplyBonus.binomialWithBonusCount(Enchantments.FORTUNE, 0.5714286F, 3).acceptCondition(growthCondition)));
-			LootPool.Builder foodPool = LootPool.builder().acceptCondition(growthCondition).addEntry(ItemLootEntry.builder(food).acceptFunction(ApplyBonus.binomialWithBonusCount(Enchantments.FORTUNE, 0.5714286F, 1)));
+			LootPool.Builder seedPool = LootPool.lootPool().add(ItemLootEntry.lootTableItem(seed).apply(ApplyBonus.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714286F, 3).when(growthCondition)));
+			LootPool.Builder foodPool = LootPool.lootPool().when(growthCondition).add(ItemLootEntry.lootTableItem(food).apply(ApplyBonus.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714286F, 1)));
 
-			return withExplosionDecay(block, LootTable.builder().addLootPool(seedPool).addLootPool(foodPool));
+			return applyExplosionDecay(block, LootTable.lootTable().withPool(seedPool).withPool(foodPool));
 		}
 	}
 
@@ -315,8 +315,8 @@ public class GNSLootProv extends LootTableProvider
 		 */
 		default LootTable.Builder tableOf(List<LootPool.Builder> pools)
 		{
-			LootTable.Builder table = LootTable.builder();
-			pools.forEach(pool -> table.addLootPool(pool));
+			LootTable.Builder table = LootTable.lootTable();
+			pools.forEach(pool -> table.withPool(pool));
 			return table;
 		}
 
@@ -328,7 +328,7 @@ public class GNSLootProv extends LootTableProvider
 		 */
 		default LootTable.Builder tableOf(LootPool.Builder pool)
 		{
-			return LootTable.builder().addLootPool(pool);
+			return LootTable.lootTable().withPool(pool);
 		}
 
 		/**
@@ -342,7 +342,7 @@ public class GNSLootProv extends LootTableProvider
 		 */
 		default LootPool.Builder basicPool(IItemProvider item, int min, int max)
 		{
-			return LootPool.builder().addEntry(basicEntry(item, min, max));
+			return LootPool.lootPool().add(basicEntry(item, min, max));
 		}
 
 		/**
@@ -353,7 +353,7 @@ public class GNSLootProv extends LootTableProvider
 		 */
 		default LootPool.Builder basicPool(IItemProvider item)
 		{
-			return LootPool.builder().addEntry(basicEntry(item));
+			return LootPool.lootPool().add(basicEntry(item));
 		}
 
 		/**
@@ -376,8 +376,8 @@ public class GNSLootProv extends LootTableProvider
 		 */
 		default LootPool.Builder poolOf(List<LootEntry.Builder<?>> lootEntries)
 		{
-			LootPool.Builder pool = LootPool.builder();
-			lootEntries.forEach(entry -> pool.addEntry(entry));
+			LootPool.Builder pool = LootPool.lootPool();
+			lootEntries.forEach(entry -> pool.add(entry));
 			return pool;
 		}
 
@@ -392,7 +392,7 @@ public class GNSLootProv extends LootTableProvider
 		 */
 		default ItemLootEntry.Builder<?> basicEntry(IItemProvider item, int min, int max)
 		{
-			return basicEntry(item).acceptFunction(SetCount.builder(RandomValueRange.of(min, max)));
+			return basicEntry(item).apply(SetCount.setCount(RandomValueRange.between(min, max)));
 		}
 
 		/**
@@ -403,7 +403,7 @@ public class GNSLootProv extends LootTableProvider
 		 */
 		default ItemLootEntry.Builder<?> basicEntry(IItemProvider item)
 		{
-			return ItemLootEntry.builder(item);
+			return ItemLootEntry.lootTableItem(item);
 		}
 	}
 }

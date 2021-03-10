@@ -28,13 +28,13 @@ public class ToolCompat
 
 	static void axeStripping(Block log, Block stripped)
 	{
-		AxeItem.BLOCK_STRIPPING_MAP = Maps.newHashMap(AxeItem.BLOCK_STRIPPING_MAP);
-		AxeItem.BLOCK_STRIPPING_MAP.put(log, stripped);
+		AxeItem.STRIPABLES = Maps.newHashMap(AxeItem.STRIPABLES);
+		AxeItem.STRIPABLES.put(log, stripped);
 	}
 
 	static void hoeTilling(Block dirt, Block farmland)
 	{
-		HoeItem.HOE_LOOKUP = Maps.newHashMap(HoeItem.HOE_LOOKUP);
-		HoeItem.HOE_LOOKUP.put(dirt, farmland.getDefaultState());
+		HoeItem.TILLABLES = Maps.newHashMap(HoeItem.TILLABLES);
+		HoeItem.TILLABLES.put(dirt, farmland.defaultBlockState());
 	}
 }

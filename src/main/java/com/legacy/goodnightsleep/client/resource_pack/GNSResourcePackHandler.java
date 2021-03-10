@@ -21,6 +21,6 @@ public class GNSResourcePackHandler
 	private static void registerResourcePack(ResourceLocation packId, String subFolder, String packName)
 	{
 		Minecraft mc = Minecraft.getInstance();
-		mc.getResourcePackList().addPackFinder((consumer, factory) -> consumer.accept(ResourcePackInfo.createResourcePack(packId.toString(), false, () -> new GNSResourcePack(subFolder, packName), factory, ResourcePackInfo.Priority.TOP, IPackNameDecorator.BUILTIN)));
+		mc.getResourcePackRepository().addPackFinder((consumer, factory) -> consumer.accept(ResourcePackInfo.create(packId.toString(), false, () -> new GNSResourcePack(subFolder, packName), factory, ResourcePackInfo.Priority.TOP, IPackNameDecorator.BUILT_IN)));
 	}
 }
