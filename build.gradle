@@ -62,12 +62,15 @@ archivesBaseName = "${mod_id}-${mc_version}"
 // this variable points to where the latest built file is placed for usage in publish.gradle
 project.ext.reobfFile = file("build/libs/${archivesBaseName}-${version}.jar")
 
-// This file contains additional instructions for getting Structure Gel API's sources and javadoc jars (uncomment if using Strcture Gel API, see the file for more details).
-// apply from: 'eclipse.gradle'
 // This file contains additional instructions for signing builds of this mod (see the file for more details).
-//apply from: 'signing.gradle'
+apply from: 'signing.gradle'
 // This file contains additional instructions for publishing builds of this mod to the Manen (commented out by default, see the file for more details).
 apply from: 'publish.gradle'
+
+// This file contains additional instructions for getting Structure Gel API's sources and javadoc jars (uncomment if using Strcture Gel API, see the file for more details).
+if (project.hasProperty('gel_version')) {
+	apply from: 'eclipse.gradle'
+}
 
 // Ensure that the IDE knows that this project is for Java 8 (or at the least, SDK level 8) and nothing else.
 java.toolchain.languageVersion = JavaLanguageVersion.of(8)
