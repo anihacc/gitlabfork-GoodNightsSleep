@@ -146,6 +146,7 @@ minecraft {
 			property "${mod_id}.iside".toString(), 'true'
 
 			mods {
+				// you will NEED to change this to your mod id. Unfortunately, this is not automated.
 				good_nights_sleep {
 					source sourceSets.main
 				}
@@ -178,6 +179,7 @@ minecraft {
 			property "${mod_id}.iside".toString(), 'true'
 
 			mods {
+				// you will NEED to change this to your mod id. Unfortunately, this is not automated.
 				good_nights_sleep {
 					source sourceSets.main
 				}
@@ -216,6 +218,7 @@ minecraft {
             }
 
 			mods {
+				// you will NEED to change this to your mod id. Unfortunately, this is not automated.
 				good_nights_sleep {
 					source sourceSets.main
 				}
