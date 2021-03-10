@@ -190,32 +190,32 @@ minecraft {
 			// The directory for Minecraft to run in
 			workingDirectory project.file('run')
 
-            // Enable mixins (comment out if using a Mixin connector)
-            arg "-mixin.config=${mod_id}.mixins.json".toString()
+			// Enable mixins (comment out if using a Mixin connector)
+			arg "-mixin.config=${mod_id}.mixins.json".toString()
 
-            // Enable Structure Gel API mixins (commented out by default)
-            //arg '-mixin.config=structure_gel.mixins.json'
+			// Enable Structure Gel API mixins (commented out by default)
+			//arg '-mixin.config=structure_gel.mixins.json'
 
-            // Additional arguments exclusive to data generation (do NOT change these unless necessary)
-            args '--mod', "${mod_id}".toString(), '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+			// Additional arguments exclusive to data generation (do NOT change these unless necessary)
+			args '--mod', "${mod_id}".toString(), '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
 
-            // Disable refmaps for mixin in a dev environment
-            property 'mixin.env.disableRefMap', 'true'
+			// Disable refmaps for mixin in a dev environment
+			property 'mixin.env.disableRefMap', 'true'
 
-            // Logging markers for Forge. See default MDK for instructions
-            property 'forge.logging.markers', 'REGISTRIES'
+			// Logging markers for Forge. See default MDK for instructions
+			property 'forge.logging.markers', 'REGISTRIES'
 
-            // Console logging level (info by default)
-            property 'forge.logging.console.level', 'debug'
+			// Console logging level (info by default)
+			property 'forge.logging.console.level', 'debug'
 
-            // Tell Minecraft if it is running in an IDE (must be configured in your project)
-            property "${mod_id}.iside".toString(), 'true'
+			// Tell Minecraft if it is running in an IDE (must be configured in your project)
+			property "${mod_id}.iside".toString(), 'true'
 
-            // Workaround for https://github.com/MinecraftForge/ForgeGradle/issues/690
-            // Written by Shadew
-            if (project.ext.isOsx()) {
-                jvmArg("-XstartOnFirstThread")
-            }
+			// Workaround for https://github.com/MinecraftForge/ForgeGradle/issues/690
+			// Written by Shadew
+			if (project.ext.isOsx()) {
+				jvmArg("-XstartOnFirstThread")
+			}
 
 			mods {
 				// you will NEED to change this to your mod id. Unfortunately, this is not automated.
@@ -232,18 +232,18 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 // Ensure the reference map is included in the source sets
 mixin {
-    add sourceSets.main, "${mod_id}.refmap.json"
+	add sourceSets.main, "${mod_id}.refmap.json"
 }
 
 dependencies {
-    // Minecraft Forge
+	// Minecraft Forge
 	minecraft "net.minecraftforge:forge:${mc_version}-${forge_version}".toString()
 
-    // Smooth Boot (Forge)
-    runtimeOnly fg.deobf("io.github.ultimateboomer:smoothboot-forge:${smoothboot_version}".toString())
+	// Smooth Boot (Forge)
+	runtimeOnly fg.deobf("io.github.ultimateboomer:smoothboot-forge:${smoothboot_version}".toString())
 
-    // Structure Gel API (commented out by default)
-    //implementation fg.deobf("com.legacy:structure-gel:${gel_version}".toString())
+	// Structure Gel API (commented out by default)
+	//implementation fg.deobf("com.legacy:structure-gel:${gel_version}".toString())
 }
 
 // Example for how to get properties into the manifest for reading by the runtime..
