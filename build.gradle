@@ -240,7 +240,7 @@ dependencies {
     runtimeOnly fg.deobf("io.github.ultimateboomer:smoothboot-forge:${smoothboot_version}".toString())
 
     // Structure Gel API (commented out by default)
-    //compile fg.deobf("com.legacy:structure-gel:${mc_version}-${gel_version}".toString())
+    //implementation fg.deobf("com.legacy:structure-gel:${gel_version}".toString())
 }
 
 // Example for how to get properties into the manifest for reading by the runtime..
