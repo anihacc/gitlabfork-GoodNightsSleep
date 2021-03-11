@@ -257,7 +257,7 @@ jar {
 				"Specification-Vendor"    : "${jar_specification_vendor}",
 				"Specification-Version"   : "${jar_specification_version}",
 				"Implementation-Title"    : project.name,
-				"Implementation-Version"  : "${archiveVersion}",
+				"Implementation-Version"  : "${version}",
 				"Implementation-Vendor"   : "${jar_specification_vendor}",
 				"Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
 				"MixinConfigs"            : "${mod_id}.mixins.json"
