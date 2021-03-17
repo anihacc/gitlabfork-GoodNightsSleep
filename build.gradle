@@ -247,6 +247,9 @@ dependencies {
 
 	// Structure Gel API (commented out by default)
 	//implementation fg.deobf("com.legacy:structure-gel:${gel_version}".toString())
+
+	// Mixin processor
+	annotationProcessor 'org.spongepowered:mixin:0.8.2:processor'
 }
 
 // Example for how to get properties into the manifest for reading by the runtime..
