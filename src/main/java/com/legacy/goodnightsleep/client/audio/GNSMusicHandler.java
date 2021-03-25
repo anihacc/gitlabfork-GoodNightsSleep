@@ -52,17 +52,6 @@ public class GNSMusicHandler
 				}
 			}
 		}
-
-		else if (category == SoundCategory.RECORDS)
-		{
-			this.musicTicker.stopMusic();
-			this.mc.getSoundHandler().stopSounds();
-
-			this.musicTicker.ambientMusic = null;
-			
-			this.musicTicker.playingRecord = event.getSound();
-			return;
-		}
 	}
 
 }
