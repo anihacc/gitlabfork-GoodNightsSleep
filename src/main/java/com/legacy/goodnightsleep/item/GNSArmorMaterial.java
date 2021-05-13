@@ -26,13 +26,13 @@ public enum GNSArmorMaterial implements IArmorMaterial
 	}), POSITITE("positite", 49, new int[] { 3, 8, 6, 3 }, 10, GNSSounds.ITEM_ARMOR_EQUIP_POSITITE, 2.0F, () ->
 	{
 		return Ingredient.of(GNSItems.positite);
-	}), NECRUM("necrum", 5, new int[] { 2, 3, 3, 2 }, 0, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, () ->
+	}), NECRUM("necrum", 5, new int[] { 2, 3, 3, 2 }, 2, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, () ->
 	{
 		return Ingredient.of(GNSItems.necrum);
-	}), ZITRITE("zitrite", 15, new int[] { 3, 7, 6, 3 }, 0, GNSSounds.ITEM_ARMOR_EQUIP_ZITRITE, 0.0F, () ->
+	}), ZITRITE("zitrite", 15, new int[] { 3, 5, 6, 2 }, 3, GNSSounds.ITEM_ARMOR_EQUIP_ZITRITE, 0.0F, () ->
 	{
 		return Ingredient.of(GNSItems.zitrite_ingot);
-	}), NEGATITE("negatite", 29, new int[] { 4, 9, 7, 4 }, 0, GNSSounds.ITEM_ARMOR_EQUIP_NEGATITE, 4.0F, () ->
+	}), NEGATITE("negatite", 29, new int[] { 3, 6, 8, 3 }, 0, GNSSounds.ITEM_ARMOR_EQUIP_NEGATITE, 6.0F, () ->
 	{
 		return Ingredient.of(GNSItems.negatite);
 	});
