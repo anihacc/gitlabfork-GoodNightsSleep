@@ -205,6 +205,10 @@ public class GNSLootProv extends LootTableProvider
 					add(block, (b) -> createSilkTouchDispatchTable(block, applyExplosionDecay(block, ItemLootEntry.lootTableItem(Items.LAPIS_LAZULI).apply(SetCount.setCount(RandomValueRange.between(4.0F, 9.0F))).apply(ApplyBonus.addOreBonusCount(Enchantments.BLOCK_FORTUNE)))));
 				else if (block == GNSBlocks.coal_ore)
 					add(block, (b) -> createOreDrop(block, Items.COAL));
+				else if (block == GNSBlocks.hope_mushroom_block)
+					add(block, (b) -> createMushroomBlockDrop(b, GNSBlocks.hope_mushroom));
+				else if (block == GNSBlocks.despair_mushroom_block)
+					add(block, (b) -> createMushroomBlockDrop(b, GNSBlocks.despair_mushroom));
 				else if (block instanceof GNSBedBlock)
 					add(block, (bed) ->
 					{
