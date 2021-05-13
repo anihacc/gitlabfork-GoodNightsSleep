@@ -24,9 +24,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraftforge.event.RegistryEvent.Register;
-import net.minecraftforge.registries.ObjectHolder;
 
-@ObjectHolder(GoodNightSleep.MODID)
 public class GNSEntityTypes
 {
 	public static final EntityType<UnicornEntity> UNICORN = buildEntity("unicorn", EntityType.Builder.<UnicornEntity>of(UnicornEntity::new, EntityClassification.CREATURE).sized(1.3964844F, 1.6F));
@@ -34,7 +32,7 @@ public class GNSEntityTypes
 	public static final EntityType<BabyCreeperEntity> BABY_CREEPER = buildEntity("baby_creeper", EntityType.Builder.<BabyCreeperEntity>of(BabyCreeperEntity::new, EntityClassification.MONSTER).sized(0.6F, 1.3F));
 	public static final EntityType<TormenterEntity> TORMENTER = buildEntity("tormenter", EntityType.Builder.of(TormenterEntity::new, EntityClassification.MONSTER));
 	public static final EntityType<HerobrineEntity> HEROBRINE = buildEntity("herobrine", EntityType.Builder.of(HerobrineEntity::new, EntityClassification.MONSTER));
-	public static final EntityType<GNSSpawnerEntity> SPAWNER_ENTITY = buildEntity("gns_spawner", EntityType.Builder.of(GNSSpawnerEntity::new, EntityClassification.CREATURE).sized(1.0F, 1.0F));
+	public static final EntityType<GNSSpawnerEntity> SPAWNER_ENTITY = buildEntity("gns_spawner", EntityType.Builder.of(GNSSpawnerEntity::new, EntityClassification.CREATURE).sized(1.0F, 1.0F).noSummon());
 
 	public static void init(Register<EntityType<?>> event)
 	{

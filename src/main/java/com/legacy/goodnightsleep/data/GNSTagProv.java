@@ -98,6 +98,8 @@ public class GNSTagProv
 			this.tag(BlockTags.BEACON_BASE_BLOCKS).addTags(GNSBlockTags.RAINBOW_BLOCKS, GNSBlockTags.POSITITE_BLOCKS, GNSBlockTags.ZITRITE_BLOCKS, GNSBlockTags.NEGATITE_BLOCKS);
 			/*this.getOrCreateBuilder(BlockTags.LOGS).add(GNSBlocks.blood_log);*/
 
+			this.tag(BlockTags.FLOWER_POTS).addOptional(GoodNightSleep.locate("potted_dream_grass")).addOptional(GoodNightSleep.locate("potted_nightmare_grass")).addOptional(GoodNightSleep.locate("potted_prickly_nightmare_grass"));
+
 			this.tag(BlockTags.PLANKS).addTag(GNSBlockTags.PLANKS);
 			this.tag(BlockTags.BEDS).add(GNSBlocks.luxurious_bed, GNSBlocks.wretched_bed, GNSBlocks.strange_bed);
 		}

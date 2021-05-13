@@ -133,8 +133,8 @@ public class GNSBiomeProv extends BiomeProvider
 		{
 			MobSpawnInfo.Builder spawns = new MobSpawnInfo.Builder();
 
-			spawns.addSpawn(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(GNSEntityTypes.SPAWNER_ENTITY, 140, 1, 1));
-			spawns.addSpawn(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(GNSEntityTypes.UNICORN, 90, 1, 4));
+			DefaultBiomeFeatures.farmAnimals(spawns);
+			spawns.addSpawn(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(GNSEntityTypes.UNICORN, 5, 1, 4));
 
 			spawns.addSpawn(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(GNSEntityTypes.BABY_CREEPER, 10, 1, 4));
 
@@ -159,8 +159,8 @@ public class GNSBiomeProv extends BiomeProvider
 		{
 			MobSpawnInfo.Builder spawns = new MobSpawnInfo.Builder();
 
-			spawns.addSpawn(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(GNSEntityTypes.SPAWNER_ENTITY, 140, 1, 1));
-			spawns.addSpawn(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(GNSEntityTypes.UNICORN, 90, 1, 4));
+			DefaultBiomeFeatures.farmAnimals(spawns);
+			spawns.addSpawn(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(GNSEntityTypes.UNICORN, 5, 1, 4));
 
 			spawns.addSpawn(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(GNSEntityTypes.BABY_CREEPER, 10, 1, 4));
 
@@ -188,7 +188,7 @@ public class GNSBiomeProv extends BiomeProvider
 		{
 			MobSpawnInfo.Builder spawns = new MobSpawnInfo.Builder();
 
-			spawns.addSpawn(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(GNSEntityTypes.SPAWNER_ENTITY, 140, 1, 1));
+			DefaultBiomeFeatures.farmAnimals(spawns);
 			// spawns.withSpawner(EntityClassification.CREATURE, new
 			// MobSpawnInfo.Spawners(GNSEntityTypes.UNICORN, 90, 1, 4));
 
@@ -217,7 +217,7 @@ public class GNSBiomeProv extends BiomeProvider
 		{
 			MobSpawnInfo.Builder spawns = new MobSpawnInfo.Builder();
 
-			spawns.addSpawn(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(GNSEntityTypes.SPAWNER_ENTITY, 140, 1, 1));
+			DefaultBiomeFeatures.farmAnimals(spawns);
 
 			spawns.addSpawn(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(GNSEntityTypes.BABY_CREEPER, 10, 1, 4));
 
@@ -244,8 +244,9 @@ public class GNSBiomeProv extends BiomeProvider
 		{
 			MobSpawnInfo.Builder spawns = new MobSpawnInfo.Builder();
 
-			spawns.addSpawn(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(GNSEntityTypes.SPAWNER_ENTITY, 140, 1, 1));
-			spawns.addSpawn(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(GNSEntityTypes.UNICORN, 90, 1, 4));
+			DefaultBiomeFeatures.farmAnimals(spawns);
+			/*spawns.addSpawn(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(GNSEntityTypes.SPAWNER_ENTITY, 140, 1, 1));*/
+			spawns.addSpawn(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(GNSEntityTypes.UNICORN, 5, 1, 4)); // 90
 
 			spawns.addSpawn(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(GNSEntityTypes.BABY_CREEPER, 10, 1, 4));
 
@@ -290,7 +291,10 @@ public class GNSBiomeProv extends BiomeProvider
 			MobSpawnInfo.Builder spawns = getDefaultNightmareSpawns();
 
 			// undead horses
-			spawns.addSpawn(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(GNSEntityTypes.SPAWNER_ENTITY, 1, 1, 1));
+			/*spawns.addSpawn(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(GNSEntityTypes.SPAWNER_ENTITY, 1, 1, 1));*/
+
+			spawns.addSpawn(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(EntityType.ZOMBIE_HORSE, 1, 1, 3));
+			spawns.addSpawn(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(EntityType.SKELETON_HORSE, 1, 1, 3));
 
 			BiomeGenerationSettings.Builder builder = (new BiomeGenerationSettings.Builder()).surfaceBuilder(GNSBiomes.SurfaceBuilders.NIGHTMARE_GRASS_SURFACE_BUILDER);
 
