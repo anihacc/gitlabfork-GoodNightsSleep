@@ -44,7 +44,7 @@ public class DreamPlayer implements IDreamPlayer
 		{
 			long worldTime = player.level.getGameTime() - this.getEnteredDreamTime();
 
-			if (worldTime > 25000L && (player.level.dimension() == GNSDimensions.getDimensionKeys(true) || player.level.dimension() == GNSDimensions.getDimensionKeys(false)))
+			if (worldTime > 25000L && (player.level.dimension() == GNSDimensions.getKey(true) || player.level.dimension() == GNSDimensions.getKey(false)))
 			{
 				ServerPlayer playerMP = (ServerPlayer) player;
 

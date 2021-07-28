@@ -10,7 +10,6 @@ import com.mojang.serialization.Lifecycle;
 import net.minecraft.core.MappedRegistry;
 import net.minecraft.core.Registry;
 import net.minecraft.core.WritableRegistry;
-import net.minecraft.data.BuiltinRegistries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
@@ -52,33 +51,22 @@ public class GNSDimensions
 	public static final DimensionType DREAM_TYPE = createDimSettings(OptionalLong.of(6000L), false, false, DREAM_ID);
 	public static final DimensionType NIGHTMARE_TYPE = createDimSettings(OptionalLong.of(18000L), true, true, NIGHTMARE_ID);
 
-	public static ResourceLocation getDimensionLocations(boolean dream)
+	public static ResourceLocation getLoc(boolean dream)
 	{
-		return getDimensionKeys(dream).location();
+		return getKey(dream).location();
 	}
 
-	public static ResourceKey<Level> getDimensionKeys(boolean dream)
+	public static ResourceKey<Level> getKey(boolean dream)
 	{
 		return dream ? DREAM_KEY : NIGHTMARE_KEY;
 	}
 
 	public static void init(MappedRegistry<LevelStem> simpleRegistry, WritableRegistry<DimensionType> mutableRegistry, Registry<Biome> biomeRegistry, WritableRegistry<NoiseGeneratorSettings> dimSettingsRegistry, long seed)
 	{
-		DimensionType dreamDimensionType = createDimSettings(OptionalLong.of(6000L), false, false, DREAM_ID);
-		mutableRegistry.register(DREAM_TYPE_KEY, dreamDimensionType, Lifecycle.stable());
-
-		dimSettingsRegistry.register(DREAM_NOISE_KEY, DREAM_NOISE, Lifecycle.stable());
-
 		ChunkGenerator dreamGenerator = createDreamChunkGenerator(biomeRegistry, dimSettingsRegistry, seed);
-
-		DimensionType nightmareDimensionType = createDimSettings(OptionalLong.of(18000L), true, true, NIGHTMARE_ID);
-		mutableRegistry.register(NIGHTMARE_TYPE_KEY, nightmareDimensionType, Lifecycle.stable());
-
-		dimSettingsRegistry.register(NIGHTMARE_NOISE_KEY, NIGHTMARE_NOISE, Lifecycle.stable());
+		simpleRegistry.register(DREAM_DIM, new LevelStem(() -> DREAM_TYPE, dreamGenerator), Lifecycle.stable());
 
 		ChunkGenerator nightmareGenerator = createNightmareChunkGenerator(biomeRegistry, dimSettingsRegistry, seed);
-
-		simpleRegistry.register(DREAM_DIM, new LevelStem(() -> DREAM_TYPE, dreamGenerator), Lifecycle.stable());
 		simpleRegistry.register(NIGHTMARE_DIM, new LevelStem(() -> NIGHTMARE_TYPE, nightmareGenerator), Lifecycle.stable());
 	}
 

@@ -28,7 +28,7 @@ public class GNSEvents
 	{
 		Player player = event.getPlayer();
 
-		if ((event.getTarget() instanceof ZombieHorse || event.getTarget() instanceof SkeletonHorse) && player.level.dimension() == GNSDimensions.getDimensionKeys(false))
+		if ((event.getTarget() instanceof ZombieHorse || event.getTarget() instanceof SkeletonHorse) && player.level.dimension() == GNSDimensions.getKey(false))
 		{
 			if (!((AbstractHorse) event.getTarget()).isTamed() && player.getMainHandItem().isEmpty() && player.getOffhandItem().isEmpty())
 			{
@@ -42,7 +42,7 @@ public class GNSEvents
 	@SubscribeEvent
 	public void onLivingCheckSpawn(LivingSpawnEvent.CheckSpawn event)
 	{
-		if (event.getEntityLiving() instanceof Phantom && event.getEntityLiving().level.dimension() == GNSDimensions.getDimensionKeys(false) && !GNSConfig.allowNightmarePhantoms)
+		if (event.getEntityLiving() instanceof Phantom && event.getEntityLiving().level.dimension() == GNSDimensions.getKey(false) && !GNSConfig.allowNightmarePhantoms)
 			event.setResult(Result.DENY);
 	}
 
@@ -56,7 +56,7 @@ public class GNSEvents
 		ServerLevel world = (ServerLevel) event.getWorld();
 		BlockState state = event.getWorld().getBlockState(event.getPos());
 
-		if (!world.isClientSide && state.getBlock() instanceof BedBlock && (player.level.dimension() == GNSDimensions.getDimensionKeys(true) || player.level.dimension() == GNSDimensions.getDimensionKeys(false)))
+		if (!world.isClientSide && state.getBlock() instanceof BedBlock && (player.level.dimension() == GNSDimensions.getKey(true) || player.level.dimension() == GNSDimensions.getKey(false)))
 		{
 			player.swing(InteractionHand.MAIN_HAND, true);
 			event.setCanceled(true);

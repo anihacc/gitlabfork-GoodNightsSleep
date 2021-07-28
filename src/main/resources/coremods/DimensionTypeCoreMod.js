@@ -15,7 +15,7 @@ function initializeCoreMod() {
 				'type': 'METHOD',
 				'class': 'net.minecraft.world.level.dimension.DimensionType',
 				'methodName': 'm_63926_',
-				'methodDesc': '()V'
+				'methodDesc': '(Lnet/minecraft/core/RegistryAccess$RegistryHolder;)Lnet/minecraft/core/RegistryAccess$RegistryHolder;'
 			},
 			'transformer': registerBuiltin
 		}

@@ -37,9 +37,9 @@ public class GNSMusicTicker implements Tickable
 
 		try
 		{
-			if (this.mc.player != null && !this.mc.getSoundManager().isActive(this.playingRecord) && GNSDimensions.getDimensionLocations(true) != null && GNSDimensions.getDimensionLocations(false) != null)
+			if (this.mc.player != null && !this.mc.getSoundManager().isActive(this.playingRecord) && GNSDimensions.getLoc(true) != null && GNSDimensions.getLoc(false) != null)
 			{
-				if (this.mc.player.level.dimension().location() == GNSDimensions.getDimensionLocations(true))
+				if (this.mc.player.level.dimension().location() == GNSDimensions.getLoc(true))
 				{
 					if (this.ambientMusic != null)
 					{
@@ -55,7 +55,7 @@ public class GNSMusicTicker implements Tickable
 						this.playMusic(tracktypeB);
 					}
 				}
-				else if (this.mc.player.level.dimension().location() == GNSDimensions.getDimensionLocations(false))
+				else if (this.mc.player.level.dimension().location() == GNSDimensions.getLoc(false))
 				{
 					if (this.ambientMusic != null)
 					{

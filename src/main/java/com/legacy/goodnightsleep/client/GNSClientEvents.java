@@ -85,7 +85,7 @@ public class GNSClientEvents
 
 	private static boolean shouldNightmareFogRender()
 	{
-		return mc.level.dimension() == GNSDimensions.getDimensionKeys(false) && !mc.player.isEyeInFluid(FluidTags.LAVA) && !mc.player.isEyeInFluid(FluidTags.WATER) && !mc.player.hasEffect(MobEffects.BLINDNESS);
+		return mc.level.dimension() == GNSDimensions.getKey(false) && !mc.player.isEyeInFluid(FluidTags.LAVA) && !mc.player.isEyeInFluid(FluidTags.WATER) && !mc.player.hasEffect(MobEffects.BLINDNESS);
 	}
 
 	// i am going insane
@@ -104,7 +104,7 @@ public class GNSClientEvents
 		int j = (int) (worldTime % 48000L);
 		float f1 = ((float) j + partialTicks) / 48000.0F - 0.25F;
 
-		if (player.level.dimension() == GNSDimensions.getDimensionKeys(false))
+		if (player.level.dimension() == GNSDimensions.getKey(false))
 			f1 += 0.5F;
 
 		if (f1 < 0.0F)

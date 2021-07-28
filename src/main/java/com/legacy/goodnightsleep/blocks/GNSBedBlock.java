@@ -65,7 +65,7 @@ public class GNSBedBlock extends BedBlock
 			return;
 
 		ServerPlayer serverPlayer = (ServerPlayer) player;
-		ResourceKey<Level> transferDimension = player.level.dimension() == GNSDimensions.getDimensionKeys(dream) ? Level.OVERWORLD : GNSDimensions.getDimensionKeys(dream);
+		ResourceKey<Level> transferDimension = player.level.dimension() == GNSDimensions.getKey(dream) ? Level.OVERWORLD : GNSDimensions.getKey(dream);
 
 		if (transferDimension != Level.OVERWORLD && DreamPlayer.get(serverPlayer) != null)
 		{

@@ -2,31 +2,19 @@ package com.legacy.goodnightsleep.world;
 
 import java.util.Random;
 
-import com.legacy.goodnightsleep.client.GNSClientEvents;
-import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.platform.GlStateManager;
-import com.mojang.blaze3d.systems.RenderSystem;
-
-import net.minecraft.client.Minecraft;
 import com.mojang.blaze3d.vertex.BufferBuilder;
-import net.minecraft.client.renderer.FogRenderer;
-import net.minecraft.client.renderer.GameRenderer;
-
-import com.mojang.blaze3d.vertex.Tesselator;
-import com.mojang.blaze3d.vertex.BufferUploader;
-import net.minecraft.client.renderer.texture.TextureManager;
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexBuffer;
 import com.mojang.blaze3d.vertex.VertexFormat;
+
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
-import com.mojang.math.Matrix4f;
-import net.minecraft.world.phys.Vec3;
-import com.mojang.math.Vector3f;
 import net.minecraftforge.client.ISkyRenderHandler;
 
-@SuppressWarnings("deprecation")
 public class DreamSkyRenderer implements ISkyRenderHandler
 {
 	private static final ResourceLocation MOON_PHASES_TEXTURES = new ResourceLocation("textures/environment/moon_phases.png");
@@ -56,7 +44,7 @@ public class DreamSkyRenderer implements ISkyRenderHandler
 	@Override
 	public void render(int ticks, float partialTicks, PoseStack matrixStackIn, ClientLevel world, Minecraft mc)
 	{
-		RenderSystem.disableTexture();
+		/*RenderSystem.disableTexture();
 		Vec3 Vector3d = world.getSkyColor(mc.gameRenderer.getMainCamera().getPosition(), partialTicks);
 		float f = (float) Vector3d.x;
 		float f1 = (float) Vector3d.y;
@@ -76,7 +64,7 @@ public class DreamSkyRenderer implements ISkyRenderHandler
 		RenderSystem.enableBlend();
 		RenderSystem.defaultBlendFunc();
 		float[] afloat = world.effects().getSunriseColor(GNSClientEvents.calculateSunAngle(world.getGameTime(), partialTicks), partialTicks);
-
+		
 		if (afloat != null)
 		{
 			RenderSystem.disableTexture();
@@ -92,7 +80,7 @@ public class DreamSkyRenderer implements ISkyRenderHandler
 			Matrix4f matrix4f = matrixStackIn.last().pose();
 			bufferbuilder.begin(6, DefaultVertexFormat.POSITION_COLOR);
 			bufferbuilder.vertex(matrix4f, 0.0F, 100.0F, 0.0F).color(f4, f5, f6, afloat[3]).endVertex();
-
+		
 			for (int j = 0; j <= 16; ++j)
 			{
 				float f7 = (float) j * ((float) Math.PI * 2F) / 16.0F;
@@ -100,20 +88,20 @@ public class DreamSkyRenderer implements ISkyRenderHandler
 				float f9 = Mth.cos(f7);
 				bufferbuilder.vertex(matrix4f, f8 * 120.0F, f9 * 120.0F, -f9 * 40.0F * afloat[3]).color(afloat[0], afloat[1], afloat[2], 0.0F).endVertex();
 			}
-
+		
 			bufferbuilder.end();
 			BufferUploader.end(bufferbuilder);
 			matrixStackIn.popPose();
 			RenderSystem.shadeModel(7424);
 		}
-
+		
 		RenderSystem.enableTexture();
 		RenderSystem.blendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
 		matrixStackIn.pushPose();
 		float f11 = 1.0F - world.getRainLevel(partialTicks);
 		RenderSystem.color4f(1.0F, 1.0F, 1.0F, f11);
 		matrixStackIn.mulPose(Vector3f.YP.rotationDegrees(-90.0F));
-		matrixStackIn.mulPose(Vector3f.XP.rotationDegrees(GNSClientEvents.calculateSunAngle(world.getGameTime(), partialTicks) * 360.0F));/*world.getCelestialAngle(partialTicks) * 360.0F*/ // world.getTimeOfDay(partialTicks)
+		matrixStackIn.mulPose(Vector3f.XP.rotationDegrees(GNSClientEvents.calculateSunAngle(world.getGameTime(), partialTicks) * 360.0F));
 		Matrix4f matrix4f1 = matrixStackIn.last().pose();
 		float f12 = 30.0F;
 		textureManager.bind(SUN_TEXTURES);
@@ -151,7 +139,7 @@ public class DreamSkyRenderer implements ISkyRenderHandler
 			VertexBuffer.unbind();
 			skyVertexFormat.clearBufferState();
 		}
-
+		
 		RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
 		RenderSystem.disableBlend();
 		RenderSystem.enableAlphaTest();
@@ -159,8 +147,8 @@ public class DreamSkyRenderer implements ISkyRenderHandler
 		matrixStackIn.popPose();
 		RenderSystem.disableTexture();
 		RenderSystem.color3f(0.0F, 0.0F, 0.0F);
-
-		double d0 = mc.player.getEyePosition(partialTicks).y - world.getLevelData().getHorizonHeight()/*world.getHorizonHeight()*/; // TODO
+		
+		double d0 = mc.player.getEyePosition(partialTicks).y - world.getLevelData().getHorizonHeight();
 		if (d0 < 0.0D)
 		{
 			matrixStackIn.pushPose();
@@ -172,35 +160,27 @@ public class DreamSkyRenderer implements ISkyRenderHandler
 			skyVertexFormat.clearBufferState();
 			matrixStackIn.popPose();
 		}
-
+		
 		RenderSystem.color3f(f * 0.2F + 0.04F, f1 * 0.2F + 0.04F, f2 * 0.6F + 0.1F);
-		/*if (world.dimension.isSkyColored())
-		{
-			RenderSystem.color3f(f * 0.2F + 0.04F, f1 * 0.2F + 0.04F, f2 * 0.6F + 0.1F);
-		}
-		else
-		{
-			RenderSystem.color3f(f, f1, f2);
-		}*/
-
+		
 		RenderSystem.enableTexture();
 		RenderSystem.depthMask(true);
-		RenderSystem.disableFog();
+		RenderSystem.disableFog();*/
 	}
 
 	private void generateStars()
 	{
-		Tesselator tessellator = Tesselator.getInstance();
+		/*Tesselator tessellator = Tesselator.getInstance();
 		BufferBuilder bufferbuilder = tessellator.getBuilder();
 		RenderSystem.setShader(GameRenderer::getPositionShader);
 		
 		if (starVBO != null)
 			starVBO.close();
-
+		
 		starVBO = new VertexBuffer(skyVertexFormat);
 		renderStars(bufferbuilder);
 		bufferbuilder.end();
-		starVBO.upload(bufferbuilder);
+		starVBO.upload(bufferbuilder);*/
 	}
 
 	private void renderStars(BufferBuilder bufferBuilderIn)
@@ -253,38 +233,38 @@ public class DreamSkyRenderer implements ISkyRenderHandler
 
 	private void generateSky2()
 	{
-		Tesselator tessellator = Tesselator.getInstance();
+		/*Tesselator tessellator = Tesselator.getInstance();
 		BufferBuilder bufferbuilder = tessellator.getBuilder();
 		if (sky2VBO != null)
 		{
 			sky2VBO.close();
 		}
-
+		
 		sky2VBO = new VertexBuffer(skyVertexFormat);
 		renderSky(bufferbuilder, -16.0F, true);
 		bufferbuilder.end();
-		sky2VBO.upload(bufferbuilder);
+		sky2VBO.upload(bufferbuilder);*/
 	}
 
 	private void generateSky()
 	{
-		Tesselator tessellator = Tesselator.getInstance();
+		/*Tesselator tessellator = Tesselator.getInstance();
 		BufferBuilder bufferbuilder = tessellator.getBuilder();
 		if (skyVBO != null)
 		{
 			skyVBO.close();
 		}
-
+		
 		skyVBO = new VertexBuffer(skyVertexFormat);
 		renderSky(bufferbuilder, 16.0F, false);
 		bufferbuilder.end();
-		skyVBO.upload(bufferbuilder);
+		skyVBO.upload(bufferbuilder);*/
 	}
 
 	private void renderSky(BufferBuilder bufferBuilderIn, float posY, boolean reverseX)
 	{
-		bufferBuilderIn.begin(7, DefaultVertexFormat.POSITION);
-
+		/*bufferBuilderIn.begin(7, DefaultVertexFormat.POSITION);
+		
 		for (int k = -384; k <= 384; k += 64)
 		{
 			for (int l = -384; l <= 384; l += 64)
@@ -296,13 +276,13 @@ public class DreamSkyRenderer implements ISkyRenderHandler
 					f1 = (float) k;
 					f = (float) (k + 64);
 				}
-
+		
 				bufferBuilderIn.vertex((double) f, (double) posY, (double) l).endVertex();
 				bufferBuilderIn.vertex((double) f1, (double) posY, (double) l).endVertex();
 				bufferBuilderIn.vertex((double) f1, (double) posY, (double) (l + 64)).endVertex();
 				bufferBuilderIn.vertex((double) f, (double) posY, (double) (l + 64)).endVertex();
 			}
-		}
+		}*/
 
 	}
 }
