@@ -24,7 +24,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 public class GNSEvents
 {
 	@SubscribeEvent
-	public void onPlayerRightClickEntity(PlayerInteractEvent.EntityInteract event)
+	public static void onPlayerRightClickEntity(PlayerInteractEvent.EntityInteract event)
 	{
 		Player player = event.getPlayer();
 
@@ -40,14 +40,14 @@ public class GNSEvents
 	}
 
 	@SubscribeEvent
-	public void onLivingCheckSpawn(LivingSpawnEvent.CheckSpawn event)
+	public static void onLivingCheckSpawn(LivingSpawnEvent.CheckSpawn event)
 	{
 		if (event.getEntityLiving() instanceof Phantom && event.getEntityLiving().level.dimension() == GNSDimensions.getKey(false) && !GNSConfig.allowNightmarePhantoms)
 			event.setResult(Result.DENY);
 	}
 
 	@SubscribeEvent
-	public void onPlayerRightClickBlock(PlayerInteractEvent.RightClickBlock event)
+	public static void onPlayerRightClickBlock(PlayerInteractEvent.RightClickBlock event)
 	{
 		if (!(event.getPlayer() instanceof ServerPlayer) || !(event.getWorld() instanceof ServerLevel))
 			return;

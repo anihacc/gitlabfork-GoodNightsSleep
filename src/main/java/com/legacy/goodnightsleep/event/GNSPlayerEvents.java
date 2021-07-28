@@ -23,21 +23,21 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 public class GNSPlayerEvents
 {
 	@SubscribeEvent
-	public void onCapabilityAttached(AttachCapabilitiesEvent<Entity> event)
+	public static void onCapabilityAttached(AttachCapabilitiesEvent<Entity> event)
 	{
 		if (event.getObject() instanceof Player && !event.getObject().getCapability(DreamPlayer.GNS_PLAYER).isPresent())
 			event.addCapability(GoodNightSleep.locate("player_capability"), new CapabilityProvider(new DreamPlayer((Player) event.getObject())));
 	}
 
 	@SubscribeEvent
-	public void onEntityDeath(LivingDeathEvent event)
+	public static void onEntityDeath(LivingDeathEvent event)
 	{
 		if (event.getEntity() instanceof Player)
 			event.getEntity().getCapability(DreamPlayer.GNS_PLAYER).ifPresent(c -> c.onDeath());
 	}
 
 	@SubscribeEvent
-	public void onPlayerCloned(Clone event)
+	public static void onPlayerCloned(Clone event)
 	{
 		if (!event.getEntity().getCapability(DreamPlayer.GNS_PLAYER).isPresent())
 			return;
@@ -69,14 +69,14 @@ public class GNSPlayerEvents
 	}
 
 	@SubscribeEvent
-	public void onEntityUpdate(LivingUpdateEvent event)
+	public static void onEntityUpdate(LivingUpdateEvent event)
 	{
 		if (event.getEntity() instanceof Player)
 			event.getEntity().getCapability(DreamPlayer.GNS_PLAYER).ifPresent(c -> c.serverTick());
 	}
 
 	@SubscribeEvent
-	public void onEntityJoin(EntityJoinWorldEvent event)
+	public static void onEntityJoin(EntityJoinWorldEvent event)
 	{
 		if (event.getEntity() instanceof ServerPlayer)
 			event.getEntity().getCapability(DreamPlayer.GNS_PLAYER).ifPresent(c -> PacketHandler.sendTo(new SendEnteredTimePacket(c.getEnteredDreamTime()), (ServerPlayer) event.getEntity()));
@@ -84,7 +84,7 @@ public class GNSPlayerEvents
 	}
 	
 	@SubscribeEvent
-	public void onEntityChangeDimension(PlayerChangedDimensionEvent event)
+	public static void onEntityChangeDimension(PlayerChangedDimensionEvent event)
 	{
 		if (event.getEntity() instanceof ServerPlayer)
 			event.getEntity().getCapability(DreamPlayer.GNS_PLAYER).ifPresent(c -> PacketHandler.sendTo(new SendEnteredTimePacket(c.getEnteredDreamTime()), (ServerPlayer) event.getEntity()));

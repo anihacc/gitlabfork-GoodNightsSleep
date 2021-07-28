@@ -79,15 +79,18 @@ public class GoodNightSleep
 
 	private void commonInit(final FMLCommonSetupEvent event)
 	{
+		IEventBus mod = FMLJavaModLoadingContext.get().getModEventBus();
 		IEventBus forge = MinecraftForge.EVENT_BUS;
 
 		CapabilityManager.INSTANCE.register(IDreamPlayer.class);
 
+		mod.addListener(GNSClientEvents::onAtlasStich);
+
 		forge.addListener((BiomeLoadingEvent biomeEvent) -> GNSFeatures.addMushrooms(biomeEvent));
 
 		forge.register(new GNSMappingChanges());
-		forge.register(new GNSEvents());
-		forge.register(new GNSPlayerEvents());
+		forge.register(GNSEvents.class);
+		forge.register(GNSPlayerEvents.class);
 
 		PacketHandler.register();
 		ToolCompat.init();
@@ -99,7 +102,7 @@ public class GoodNightSleep
 	public void clientInit(FMLClientSetupEvent event)
 	{
 		MinecraftForge.EVENT_BUS.register(new GNSMusicHandler());
-		MinecraftForge.EVENT_BUS.register(new GNSClientEvents());
+		MinecraftForge.EVENT_BUS.register(GNSClientEvents.class);
 
 		GNSEntityRendering.init();
 		GNSResourcePackHandler.init();

@@ -7,18 +7,11 @@ import com.legacy.goodnightsleep.registry.GNSDimensions;
 import it.unimi.dsi.fastutil.objects.Object2ObjectMap;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.DimensionSpecialEffects;
-import net.minecraft.client.renderer.FogRenderer;
-import net.minecraft.client.renderer.FogRenderer.FogMode;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.FluidTags;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.client.event.EntityViewRenderEvent.FogColors;
-import net.minecraftforge.client.event.EntityViewRenderEvent.RenderFogEvent;
-import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -32,14 +25,25 @@ public class GNSClientEvents
 
 	private static final Object2ObjectMap<ResourceLocation, DimensionSpecialEffects> DIMENSION_RENDER_INFO = ObfuscationReflectionHelper.getPrivateValue(DimensionSpecialEffects.class, DREAM_RENDER_INFO, "f_108857_");
 
+	@SubscribeEvent
+	public static void onClientTick(TickEvent.ClientTickEvent event)
+	{
+		Level world = mc.level;
+
+		if (world == null || world != null && !world.isClientSide)
+			return;
+
+		if (mc.player != null && DreamPlayer.get(mc.player) != null)
+			DreamPlayer.get(mc.player).clientTick();
+	}
+
 	public static void initDimensionRenderInfo()
 	{
 		DIMENSION_RENDER_INFO.put(GNSDimensions.DREAM_ID, DREAM_RENDER_INFO);
 		DIMENSION_RENDER_INFO.put(GNSDimensions.NIGHTMARE_ID, NIGHTMARE_RENDER_INFO);
 	}
 
-	@SubscribeEvent
-	public void onAtlasStich(TextureStitchEvent.Pre event)
+	public static void onAtlasStich(TextureStitchEvent.Pre event)
 	{
 		if (event.getMap().location().equals(Sheets.BED_SHEET))
 		{
@@ -47,45 +51,6 @@ public class GNSClientEvents
 			event.addSprite(GoodNightSleep.locate("entity/wretched_bed"));
 			event.addSprite(GoodNightSleep.locate("entity/strange_bed"));
 		}
-	}
-
-	@SubscribeEvent
-	public void onFogRender(RenderFogEvent event)
-	{
-		// 0.035F
-	}
-
-	@SubscribeEvent
-	public void onFogColor(FogColors event)
-	{
-		/*if (shouldNightmareFogRender())
-		{
-			event.setRed(0.2F);
-			event.setBlue(0.05F);
-			event.setGreen(0.05F);
-		}*/
-	}
-
-	@SubscribeEvent
-	public void onRenderWorld(RenderWorldLastEvent event)
-	{
-	}
-
-	@SubscribeEvent
-	public void onClientTick(TickEvent.ClientTickEvent event)
-	{
-		Level world = mc.level;
-
-		if (world == null || !world.isClientSide)
-			return;
-
-		if (mc.player != null && DreamPlayer.get(mc.player) != null)
-			DreamPlayer.get(mc.player).clientTick();
-	}
-
-	private static boolean shouldNightmareFogRender()
-	{
-		return mc.level.dimension() == GNSDimensions.getKey(false) && !mc.player.isEyeInFluid(FluidTags.LAVA) && !mc.player.isEyeInFluid(FluidTags.WATER) && !mc.player.hasEffect(MobEffects.BLINDNESS);
 	}
 
 	// i am going insane
@@ -124,6 +89,7 @@ public class GNSClientEvents
 		return f1;
 	}
 
+	// FIXME: Whenever Forge passes in the extra argument fix the skyboxes
 	public static class DreamRenderInfo extends DimensionSpecialEffects.OverworldEffects
 	{
 		public DreamRenderInfo()
@@ -151,6 +117,7 @@ public class GNSClientEvents
 			return fogColor;
 		}
 
+		// 0.035F
 		@Override
 		public boolean isFoggyAt(int posX, int posZ)
 		{
