@@ -6,19 +6,19 @@ import com.legacy.goodnightsleep.item.GNSCreativeTabs;
 import com.legacy.goodnightsleep.item.GNSFoods;
 import com.legacy.goodnightsleep.item.GNSItemTier;
 
-import net.minecraft.entity.EntityType;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ArmorItem;
-import net.minecraft.item.AxeItem;
-import net.minecraft.item.BedItem;
-import net.minecraft.item.BlockNamedItem;
-import net.minecraft.item.HoeItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.PickaxeItem;
-import net.minecraft.item.ShovelItem;
-import net.minecraft.item.SpawnEggItem;
-import net.minecraft.item.SwordItem;
-import net.minecraft.item.TallBlockItem;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.AxeItem;
+import net.minecraft.world.item.BedItem;
+import net.minecraft.world.item.ItemNameBlockItem;
+import net.minecraft.world.item.HoeItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.PickaxeItem;
+import net.minecraft.world.item.ShovelItem;
+import net.minecraft.world.item.SpawnEggItem;
+import net.minecraft.world.item.SwordItem;
+import net.minecraft.world.item.DoubleHighBlockItem;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.registries.IForgeRegistry;
 
@@ -70,10 +70,10 @@ public class GNSItems
 		wretched_bed = register("wretched_bed", new BedItem(GNSBlocks.wretched_bed, (new Item.Properties()).stacksTo(1).tab(GNSCreativeTabs.blocks)));
 		strange_bed = register("strange_bed", new BedItem(GNSBlocks.strange_bed, (new Item.Properties()).stacksTo(1).tab(GNSCreativeTabs.blocks)));
 
-		dream_door = register("dream_door", new TallBlockItem(GNSBlocks.dream_door, (new Item.Properties()).tab(GNSCreativeTabs.blocks)));
-		white_door = register("white_door", new TallBlockItem(GNSBlocks.white_door, (new Item.Properties()).tab(GNSCreativeTabs.blocks)));
-		dead_door = register("dead_door", new TallBlockItem(GNSBlocks.dead_door, (new Item.Properties()).tab(GNSCreativeTabs.blocks)));
-		blood_door = register("blood_door", new TallBlockItem(GNSBlocks.blood_door, (new Item.Properties()).tab(GNSCreativeTabs.blocks)));
+		dream_door = register("dream_door", new DoubleHighBlockItem(GNSBlocks.dream_door, (new Item.Properties()).tab(GNSCreativeTabs.blocks)));
+		white_door = register("white_door", new DoubleHighBlockItem(GNSBlocks.white_door, (new Item.Properties()).tab(GNSCreativeTabs.blocks)));
+		dead_door = register("dead_door", new DoubleHighBlockItem(GNSBlocks.dead_door, (new Item.Properties()).tab(GNSCreativeTabs.blocks)));
+		blood_door = register("blood_door", new DoubleHighBlockItem(GNSBlocks.blood_door, (new Item.Properties()).tab(GNSCreativeTabs.blocks)));
 
 		unicorn_spawn_egg = register("unicorn_spawn_egg", new SpawnEggItem(GNSEntityTypes.UNICORN, 0xffffff, 0xdf8cf8, new Item.Properties().tab(GNSCreativeTabs.items)));
 		gummy_bear_spawn_egg = register("gummy_bear_spawn_egg", new SpawnEggItem(GNSEntityTypes.GUMMY_BEAR, 0xffffff, 0xffffff, new Item.Properties()));
@@ -93,7 +93,7 @@ public class GNSItems
 		necrotic_extract = register("necrotic_extract", new Item(new Item.Properties().tab(GNSCreativeTabs.items)));
 		powdered_sugar = register("powdered_sugar", new Item(new Item.Properties().tab(GNSCreativeTabs.items)));
 
-		rainbow_seeds = register("rainbow_seeds", new BlockNamedItem(GNSBlocks.rainbow_berries, new Item.Properties().tab(GNSCreativeTabs.items)));
+		rainbow_seeds = register("rainbow_seeds", new ItemNameBlockItem(GNSBlocks.rainbow_berries, new Item.Properties().tab(GNSCreativeTabs.items)));
 		rainbow_berries = register("rainbow_berries", new Item(new Item.Properties().tab(GNSCreativeTabs.items).food(GNSFoods.RAINBOW_BERRIES)));
 
 		luxurious_soup = register("luxurious_soup", new Item(new Item.Properties().stacksTo(1).tab(GNSCreativeTabs.items).food(GNSFoods.TELEPORTATION_STEW)));
@@ -135,30 +135,30 @@ public class GNSItems
 		negatite_shovel = register("negatite_shovel", new ShovelItem(GNSItemTier.NEGATITE, 1.5F, -3.0F, (new Item.Properties()).tab(GNSCreativeTabs.tools)));
 		negatite_hoe = register("negatite_hoe", new HoeItem(GNSItemTier.NEGATITE, -4, 0.0F, (new Item.Properties()).tab(GNSCreativeTabs.tools)));
 
-		candy_helmet = register("candy_helmet", new ArmorItem(GNSArmorMaterial.CANDY, EquipmentSlotType.HEAD, new Item.Properties().tab(GNSCreativeTabs.armor)));
-		candy_chestplate = register("candy_chestplate", new ArmorItem(GNSArmorMaterial.CANDY, EquipmentSlotType.CHEST, new Item.Properties().tab(GNSCreativeTabs.armor)));
-		candy_leggings = register("candy_leggings", new ArmorItem(GNSArmorMaterial.CANDY, EquipmentSlotType.LEGS, new Item.Properties().tab(GNSCreativeTabs.armor)));
-		candy_boots = register("candy_boots", new ArmorItem(GNSArmorMaterial.CANDY, EquipmentSlotType.FEET, new Item.Properties().tab(GNSCreativeTabs.armor)));
+		candy_helmet = register("candy_helmet", new ArmorItem(GNSArmorMaterial.CANDY, EquipmentSlot.HEAD, new Item.Properties().tab(GNSCreativeTabs.armor)));
+		candy_chestplate = register("candy_chestplate", new ArmorItem(GNSArmorMaterial.CANDY, EquipmentSlot.CHEST, new Item.Properties().tab(GNSCreativeTabs.armor)));
+		candy_leggings = register("candy_leggings", new ArmorItem(GNSArmorMaterial.CANDY, EquipmentSlot.LEGS, new Item.Properties().tab(GNSCreativeTabs.armor)));
+		candy_boots = register("candy_boots", new ArmorItem(GNSArmorMaterial.CANDY, EquipmentSlot.FEET, new Item.Properties().tab(GNSCreativeTabs.armor)));
 
-		rainbow_helmet = register("rainbow_helmet", new ArmorItem(GNSArmorMaterial.RAINBOW, EquipmentSlotType.HEAD, new Item.Properties().tab(GNSCreativeTabs.armor)));
-		rainbow_chestplate = register("rainbow_chestplate", new ArmorItem(GNSArmorMaterial.RAINBOW, EquipmentSlotType.CHEST, new Item.Properties().tab(GNSCreativeTabs.armor)));
-		rainbow_leggings = register("rainbow_leggings", new ArmorItem(GNSArmorMaterial.RAINBOW, EquipmentSlotType.LEGS, new Item.Properties().tab(GNSCreativeTabs.armor)));
-		rainbow_boots = register("rainbow_boots", new ArmorItem(GNSArmorMaterial.RAINBOW, EquipmentSlotType.FEET, new Item.Properties().tab(GNSCreativeTabs.armor)));
+		rainbow_helmet = register("rainbow_helmet", new ArmorItem(GNSArmorMaterial.RAINBOW, EquipmentSlot.HEAD, new Item.Properties().tab(GNSCreativeTabs.armor)));
+		rainbow_chestplate = register("rainbow_chestplate", new ArmorItem(GNSArmorMaterial.RAINBOW, EquipmentSlot.CHEST, new Item.Properties().tab(GNSCreativeTabs.armor)));
+		rainbow_leggings = register("rainbow_leggings", new ArmorItem(GNSArmorMaterial.RAINBOW, EquipmentSlot.LEGS, new Item.Properties().tab(GNSCreativeTabs.armor)));
+		rainbow_boots = register("rainbow_boots", new ArmorItem(GNSArmorMaterial.RAINBOW, EquipmentSlot.FEET, new Item.Properties().tab(GNSCreativeTabs.armor)));
 
-		positite_helmet = register("positite_helmet", new ArmorItem(GNSArmorMaterial.POSITITE, EquipmentSlotType.HEAD, new Item.Properties().tab(GNSCreativeTabs.armor)));
-		positite_chestplate = register("positite_chestplate", new ArmorItem(GNSArmorMaterial.POSITITE, EquipmentSlotType.CHEST, new Item.Properties().tab(GNSCreativeTabs.armor)));
-		positite_leggings = register("positite_leggings", new ArmorItem(GNSArmorMaterial.POSITITE, EquipmentSlotType.LEGS, new Item.Properties().tab(GNSCreativeTabs.armor)));
-		positite_boots = register("positite_boots", new ArmorItem(GNSArmorMaterial.POSITITE, EquipmentSlotType.FEET, new Item.Properties().tab(GNSCreativeTabs.armor)));
+		positite_helmet = register("positite_helmet", new ArmorItem(GNSArmorMaterial.POSITITE, EquipmentSlot.HEAD, new Item.Properties().tab(GNSCreativeTabs.armor)));
+		positite_chestplate = register("positite_chestplate", new ArmorItem(GNSArmorMaterial.POSITITE, EquipmentSlot.CHEST, new Item.Properties().tab(GNSCreativeTabs.armor)));
+		positite_leggings = register("positite_leggings", new ArmorItem(GNSArmorMaterial.POSITITE, EquipmentSlot.LEGS, new Item.Properties().tab(GNSCreativeTabs.armor)));
+		positite_boots = register("positite_boots", new ArmorItem(GNSArmorMaterial.POSITITE, EquipmentSlot.FEET, new Item.Properties().tab(GNSCreativeTabs.armor)));
 
-		zitrite_helmet = register("zitrite_helmet", new ArmorItem(GNSArmorMaterial.ZITRITE, EquipmentSlotType.HEAD, new Item.Properties().tab(GNSCreativeTabs.armor)));
-		zitrite_chestplate = register("zitrite_chestplate", new ArmorItem(GNSArmorMaterial.ZITRITE, EquipmentSlotType.CHEST, new Item.Properties().tab(GNSCreativeTabs.armor)));
-		zitrite_leggings = register("zitrite_leggings", new ArmorItem(GNSArmorMaterial.ZITRITE, EquipmentSlotType.LEGS, new Item.Properties().tab(GNSCreativeTabs.armor)));
-		zitrite_boots = register("zitrite_boots", new ArmorItem(GNSArmorMaterial.ZITRITE, EquipmentSlotType.FEET, new Item.Properties().tab(GNSCreativeTabs.armor)));
+		zitrite_helmet = register("zitrite_helmet", new ArmorItem(GNSArmorMaterial.ZITRITE, EquipmentSlot.HEAD, new Item.Properties().tab(GNSCreativeTabs.armor)));
+		zitrite_chestplate = register("zitrite_chestplate", new ArmorItem(GNSArmorMaterial.ZITRITE, EquipmentSlot.CHEST, new Item.Properties().tab(GNSCreativeTabs.armor)));
+		zitrite_leggings = register("zitrite_leggings", new ArmorItem(GNSArmorMaterial.ZITRITE, EquipmentSlot.LEGS, new Item.Properties().tab(GNSCreativeTabs.armor)));
+		zitrite_boots = register("zitrite_boots", new ArmorItem(GNSArmorMaterial.ZITRITE, EquipmentSlot.FEET, new Item.Properties().tab(GNSCreativeTabs.armor)));
 
-		negatite_helmet = register("negatite_helmet", new ArmorItem(GNSArmorMaterial.NEGATITE, EquipmentSlotType.HEAD, new Item.Properties().tab(GNSCreativeTabs.armor)));
-		negatite_chestplate = register("negatite_chestplate", new ArmorItem(GNSArmorMaterial.NEGATITE, EquipmentSlotType.CHEST, new Item.Properties().tab(GNSCreativeTabs.armor)));
-		negatite_leggings = register("negatite_leggings", new ArmorItem(GNSArmorMaterial.NEGATITE, EquipmentSlotType.LEGS, new Item.Properties().tab(GNSCreativeTabs.armor)));
-		negatite_boots = register("negatite_boots", new ArmorItem(GNSArmorMaterial.NEGATITE, EquipmentSlotType.FEET, new Item.Properties().tab(GNSCreativeTabs.armor)));
+		negatite_helmet = register("negatite_helmet", new ArmorItem(GNSArmorMaterial.NEGATITE, EquipmentSlot.HEAD, new Item.Properties().tab(GNSCreativeTabs.armor)));
+		negatite_chestplate = register("negatite_chestplate", new ArmorItem(GNSArmorMaterial.NEGATITE, EquipmentSlot.CHEST, new Item.Properties().tab(GNSCreativeTabs.armor)));
+		negatite_leggings = register("negatite_leggings", new ArmorItem(GNSArmorMaterial.NEGATITE, EquipmentSlot.LEGS, new Item.Properties().tab(GNSCreativeTabs.armor)));
+		negatite_boots = register("negatite_boots", new ArmorItem(GNSArmorMaterial.NEGATITE, EquipmentSlot.FEET, new Item.Properties().tab(GNSCreativeTabs.armor)));
 	}
 
 	private static Item register(String unlocalizedName, Item item)

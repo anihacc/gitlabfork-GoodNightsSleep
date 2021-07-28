@@ -2,11 +2,11 @@ package com.legacy.goodnightsleep.blocks.util;
 
 import com.google.common.collect.Maps;
 import com.legacy.goodnightsleep.registry.GNSBlocks;
+import com.mojang.datafixers.util.Pair;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.item.AxeItem;
-import net.minecraft.item.HoeItem;
+import net.minecraft.world.item.HoeItem;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 
 public class ToolCompat
 {
@@ -28,13 +28,14 @@ public class ToolCompat
 
 	static void axeStripping(Block log, Block stripped)
 	{
-		AxeItem.STRIPABLES = Maps.newHashMap(AxeItem.STRIPABLES);
-		AxeItem.STRIPABLES.put(log, stripped);
+		// FIXME
+		/*AxeItem.STRIPABLES = Maps.newHashMap(AxeItem.STRIPABLES);
+		AxeItem.STRIPABLES.put(log, stripped);*/
 	}
 
 	static void hoeTilling(Block dirt, Block farmland)
 	{
 		HoeItem.TILLABLES = Maps.newHashMap(HoeItem.TILLABLES);
-		HoeItem.TILLABLES.put(dirt, farmland.defaultBlockState());
+		HoeItem.TILLABLES.put(dirt, Pair.of(HoeItem::onlyIfAirAbove, HoeItem.changeIntoState(farmland.defaultBlockState())));
 	}
 }

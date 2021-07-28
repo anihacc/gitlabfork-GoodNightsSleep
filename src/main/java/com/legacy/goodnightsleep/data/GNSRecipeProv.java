@@ -2,8 +2,32 @@ package com.legacy.goodnightsleep.data;
 
 import static net.minecraft.item.Items.BOOK;
 
+importimport com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMap;
+import com.legacy.goodnightsleep.GoodNightSleep;
+import com.legacy.goodnightsleep.registry.GNSBlocks;
+import com.legacy.goodnightsleep.registry.GNSItems;
 import java.util.List;
 import java.util.function.Consumer;
+import net.minecraft.data.DataGenerator;
+import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.data.recipes.RecipeProvider;
+import net.minecraft.data.recipes.ShapedRecipeBuilder;
+import net.minecraft.data.recipes.ShapelessRecipeBuilder;
+import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
+import net.minecraft.data.recipes.SingleItemRecipeBuilder;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.Tag.Named;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.SimpleCookingSerializer;
+import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.SlabBlock;
+import net.minecraftforge.common.Tags;
+
+ javanet.minecraft.world.item.Items.util.function.Consumer;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
@@ -33,7 +57,7 @@ import net.minecraftforge.common.Tags;
 @SuppressWarnings("unused")
 public class GNSRecipeProv extends RecipeProvider
 {
-	private Consumer<IFinishedRecipe> con;
+	private Consumer<FinishedRecipe> con;
 	private String hasItem = "has_item";
 
 	public GNSRecipeProv(DataGenerator generatorIn)
@@ -42,7 +66,7 @@ public class GNSRecipeProv extends RecipeProvider
 	}
 
 	@Override
-	protected void buildShapelessRecipes(Consumer<IFinishedRecipe> consumer)
+	protected void buildShapelessRecipes(Consumer<FinishedRecipe> consumer)
 	{
 		this.con = consumer;
 
@@ -125,9 +149,9 @@ public class GNSRecipeProv extends RecipeProvider
 		ShapedRecipeBuilder.shaped(GNSItems.necrum_hoe).define('#', Items.STICK).define('X', GNSItemTags.NECRUM_BLOCKS).pattern("XX").pattern(" #").pattern(" #").unlockedBy(hasItem, has(GNSItemTags.NECRUM_BLOCKS)).save(con);
 		
 		// Misc
-		ImmutableMap<IItemProvider, IItemProvider> flowerDyeMap = ImmutableMap.of(GNSBlocks.cyan_flower, Items.CYAN_DYE, GNSBlocks.orange_flower, Items.ORANGE_DYE, GNSBlocks.dead_flower, Items.GRAY_DYE);
+		ImmutableMap<ItemLike, ItemLike> flowerDyeMap = ImmutableMap.of(GNSBlocks.cyan_flower, Items.CYAN_DYE, GNSBlocks.orange_flower, Items.ORANGE_DYE, GNSBlocks.dead_flower, Items.GRAY_DYE);
 		flowerDyeMap.forEach((flower, dye) -> ShapelessRecipeBuilder.shapeless(dye).requires(flower).unlockedBy(hasItem, has(flower)).save(con, GoodNightSleep.find(dye.asItem().getRegistryName().getPath() + "_from_" + flower.asItem().getRegistryName().getPath())));
-		ImmutableMap<IItemProvider, IItemProvider> cropSeedMap = ImmutableMap.of(GNSItems.rainbow_seeds, GNSItems.rainbow_berries);
+		ImmutableMap<ItemLike, ItemLike> cropSeedMap = ImmutableMap.of(GNSItems.rainbow_seeds, GNSItems.rainbow_berries);
 		cropSeedMap.forEach((seed, crop) -> ShapelessRecipeBuilder.shapeless(seed).requires(crop).unlockedBy(hasItem, has(crop)).save(con));
 		ShapedRecipeBuilder.shaped(Blocks.FURNACE).define('#', GNSItemTags.COBBLESTONES).pattern("###").pattern("# #").pattern("###").unlockedBy(hasItem, has(GNSItemTags.COBBLESTONES)).save(con, GoodNightSleep.find("furnace_compat"));
 
@@ -150,82 +174,82 @@ public class GNSRecipeProv extends RecipeProvider
 
 	}
 
-	private void simple2x2(IItemProvider item, IItemProvider output, int amount)
+	private void simple2x2(ItemLike item, ItemLike output, int amount)
 	{
 		ShapedRecipeBuilder.shaped(output, amount).define('#', item).pattern("##").pattern("##").unlockedBy(hasItem, has(item)).save(con);
 	}
 
-	private void simple2x2(IItemProvider item, IItemProvider output)
+	private void simple2x2(ItemLike item, ItemLike output)
 	{
 		simple2x2(item, output, 1);
 	}
 
-	private void simple3x3(IItemProvider item, IItemProvider output, int amount)
+	private void simple3x3(ItemLike item, ItemLike output, int amount)
 	{
 		ShapedRecipeBuilder.shaped(output, amount).define('#', item).pattern("###").pattern("###").pattern("###").unlockedBy(hasItem, has(item)).save(con);
 	}
 
-	private void simple3x3(IItemProvider item, IItemProvider output)
+	private void simple3x3(ItemLike item, ItemLike output)
 	{
 		simple3x3(item, output, 1);
 	}
 
-	private void slabsStairs(IItemProvider block, IItemProvider slab, IItemProvider stair)
+	private void slabsStairs(ItemLike block, ItemLike slab, ItemLike stair)
 	{
 		slabs(block, slab).save(con);
 		stairs(block, stair).save(con);
 	}
 
-	private void slabsStairsWalls(IItemProvider block, IItemProvider slab, IItemProvider stair, IItemProvider wall)
+	private void slabsStairsWalls(ItemLike block, ItemLike slab, ItemLike stair, ItemLike wall)
 	{
 		slabsStairs(block, slab, stair);
 		walls(block, wall);
 	}
 
-	private void slabsStairs(IItemProvider block, IItemProvider slab, IItemProvider stair, boolean withStoneCutting)
+	private void slabsStairs(ItemLike block, ItemLike slab, ItemLike stair, boolean withStoneCutting)
 	{
 		slabsStairs(block, slab, stair);
 		stoneCutting(block, ImmutableList.of(slab, stair));
 	}
 
-	private void slabsStairsWalls(IItemProvider block, IItemProvider slab, IItemProvider stair, IItemProvider wall, boolean withStoneCutting)
+	private void slabsStairsWalls(ItemLike block, ItemLike slab, ItemLike stair, ItemLike wall, boolean withStoneCutting)
 	{
 		slabsStairsWalls(block, slab, stair, wall);
 		stoneCutting(block, ImmutableList.of(slab, stair, wall));
 	}
 
-	private ShapedRecipeBuilder slabs(IItemProvider ingredient, IItemProvider slab)
+	private ShapedRecipeBuilder slabs(ItemLike ingredient, ItemLike slab)
 	{
 		return ShapedRecipeBuilder.shaped(slab, 6).define('#', ingredient).pattern("###").unlockedBy(hasItem, has(ingredient));
 	}
 
-	private ShapedRecipeBuilder stairs(IItemProvider ingredient, IItemProvider stair)
+	private ShapedRecipeBuilder stairs(ItemLike ingredient, ItemLike stair)
 	{
 		return ShapedRecipeBuilder.shaped(stair, 4).define('#', ingredient).pattern("#  ").pattern("## ").pattern("###").unlockedBy(hasItem, has(ingredient));
 	}
 
-	private void walls(IItemProvider ingredient, IItemProvider wall)
+	private void walls(ItemLike ingredient, ItemLike wall)
 	{
 		ShapedRecipeBuilder.shaped(wall, 6).define('#', ingredient).pattern("###").pattern("###").unlockedBy(hasItem, has(ingredient)).save(con);
 	}
 
-	private void fencesGates(IItemProvider plank, IItemProvider fence, IItemProvider gate)
+	private void fencesGates(ItemLike plank, ItemLike fence, ItemLike gate)
 	{
 		fences(plank, fence);
 		gates(plank, gate);
 	}
 
-	private void fences(IItemProvider plank, IItemProvider fence)
+	private void fences(ItemLike plank, ItemLike fence)
 	{
 		ShapedRecipeBuilder.shaped(fence, 3).define('P', plank).define('S', Ingredient.of(Tags.Items.RODS_WOODEN)).pattern("PSP").pattern("PSP").group("wooden_fence").unlockedBy(hasItem, has(plank)).save(con);
 	}
 
-	private void gates(IItemProvider plank, IItemProvider gate)
+	private void gates(ItemLike plank, ItemLike gate)
 	{
 		ShapedRecipeBuilder.shaped(gate).define('P', plank).define('S', Ingredient.of(Tags.Items.RODS_WOODEN)).pattern("SPS").pattern("SPS").group("wooden_fence_gate").unlockedBy(hasItem, has(plank)).save(con);
 	}
 
-	private void stoneCutting(IItemProvider ingredient, ImmutableList<IItemProvider> results)
+	private void stoneCutting(ItemLike ingredient, ImmutableList<ItemLike> results)
 	{
 		results.forEach(result ->
 		{
@@ -233,50 +257,50 @@ public class GNSRecipeProv extends RecipeProvider
 		});
 	}
 
-	private void cooking(IItemProvider ingredient, IItemProvider result, float exp)
+	private void cooking(ItemLike ingredient, ItemLike result, float exp)
 	{
-		cooking(ingredient, result, exp, 200, IRecipeSerializer.SMELTING_RECIPE);
+		cooking(ingredient, result, exp, 200, RecipeSerializer.SMELTING_RECIPE);
 	}
 
-	private void cooking(IItemProvider ingredient, IItemProvider result, float exp, int time, CookingRecipeSerializer<?> type)
+	private void cooking(ItemLike ingredient, ItemLike result, float exp, int time, SimpleCookingSerializer<?> type)
 	{
-		CookingRecipeBuilder.cooking(Ingredient.of(ingredient), result, exp, time, type).unlockedBy(hasItem, has(ingredient)).save(con, GoodNightSleep.find(result.asItem().getRegistryName().getPath() + "_from_" + type.getRegistryName().getPath()));
+		SimpleCookingRecipeBuilder.cooking(Ingredient.of(ingredient), result, exp, time, type).unlockedBy(hasItem, has(ingredient)).save(con, GoodNightSleep.find(result.asItem().getRegistryName().getPath() + "_from_" + type.getRegistryName().getPath()));
 	}
 
-	private void smoking(INamedTag<Item> ingredient, IItemProvider result, float exp)
+	private void smoking(Named<Item> ingredient, ItemLike result, float exp)
 	{
 		cooking(ingredient, result, exp);
-		cooking(ingredient, result, exp, 100, IRecipeSerializer.SMOKING_RECIPE);
-		cooking(ingredient, result, exp, 600, IRecipeSerializer.CAMPFIRE_COOKING_RECIPE);
+		cooking(ingredient, result, exp, 100, RecipeSerializer.SMOKING_RECIPE);
+		cooking(ingredient, result, exp, 600, RecipeSerializer.CAMPFIRE_COOKING_RECIPE);
 	}
 
-	private void blasting(INamedTag<Item> ingredient, IItemProvider result, float exp)
+	private void blasting(Named<Item> ingredient, ItemLike result, float exp)
 	{
 		cooking(ingredient, result, exp);
-		cooking(ingredient, result, exp, 100, IRecipeSerializer.BLASTING_RECIPE);
+		cooking(ingredient, result, exp, 100, RecipeSerializer.BLASTING_RECIPE);
 	}
 
-	private void cooking(INamedTag<Item> ingredient, IItemProvider result, float exp)
+	private void cooking(Named<Item> ingredient, ItemLike result, float exp)
 	{
-		cooking(ingredient, result, exp, 200, IRecipeSerializer.SMELTING_RECIPE);
+		cooking(ingredient, result, exp, 200, RecipeSerializer.SMELTING_RECIPE);
 	}
 
-	private void cooking(INamedTag<Item> ingredient, IItemProvider result, float exp, int time, CookingRecipeSerializer<?> type)
+	private void cooking(Named<Item> ingredient, ItemLike result, float exp, int time, SimpleCookingSerializer<?> type)
 	{
-		CookingRecipeBuilder.cooking(Ingredient.of(ingredient), result, exp, time, type).unlockedBy(hasItem, has(ingredient)).save(con, GoodNightSleep.find(result.asItem().getRegistryName().getPath() + "_from_" + type.getRegistryName().getPath()));
+		SimpleCookingRecipeBuilder.cooking(Ingredient.of(ingredient), result, exp, time, type).unlockedBy(hasItem, has(ingredient)).save(con, GoodNightSleep.find(result.asItem().getRegistryName().getPath() + "_from_" + type.getRegistryName().getPath()));
 	}
 
-	private void smoking(IItemProvider ingredient, IItemProvider result, float exp)
+	private void smoking(ItemLike ingredient, ItemLike result, float exp)
 	{
-		cooking(ingredient, result, exp, 200, IRecipeSerializer.SMELTING_RECIPE);
-		cooking(ingredient, result, exp, 100, IRecipeSerializer.SMOKING_RECIPE);
-		cooking(ingredient, result, exp, 600, IRecipeSerializer.CAMPFIRE_COOKING_RECIPE);
+		cooking(ingredient, result, exp, 200, RecipeSerializer.SMELTING_RECIPE);
+		cooking(ingredient, result, exp, 100, RecipeSerializer.SMOKING_RECIPE);
+		cooking(ingredient, result, exp, 600, RecipeSerializer.CAMPFIRE_COOKING_RECIPE);
 	}
 
-	private void blasting(IItemProvider ingredient, IItemProvider result, float exp)
+	private void blasting(ItemLike ingredient, ItemLike result, float exp)
 	{
-		cooking(ingredient, result, exp, 200, IRecipeSerializer.SMELTING_RECIPE);
-		cooking(ingredient, result, exp, 100, IRecipeSerializer.BLASTING_RECIPE);
+		cooking(ingredient, result, exp, 200, RecipeSerializer.SMELTING_RECIPE);
+		cooking(ingredient, result, exp, 100, RecipeSerializer.BLASTING_RECIPE);
 	}
 
 	@Override
@@ -293,11 +317,11 @@ public class GNSRecipeProv extends RecipeProvider
 	 */
 	protected static class WoodMap
 	{
-		public final INamedTag<Item> logTag;
-		public final IItemProvider log, wood, strippedLog, strippedWood, plank, slab, stair, pressurePlate, button,
+		public final Named<Item> logTag;
+		public final ItemLike log, wood, strippedLog, strippedWood, plank, slab, stair, pressurePlate, button,
 				door, trapdoor, fence, gate;
 
-		public WoodMap(INamedTag<Item> bluebrightLogs, IItemProvider log, IItemProvider wood, IItemProvider strippedLog, IItemProvider strippedWood, IItemProvider plank, IItemProvider slab, IItemProvider stair, IItemProvider pressurePlate, IItemProvider button, IItemProvider door, IItemProvider trapdoor, IItemProvider fence, IItemProvider gate)
+		public WoodMap(Named<Item> bluebrightLogs, ItemLike log, ItemLike wood, ItemLike strippedLog, ItemLike strippedWood, ItemLike plank, ItemLike slab, ItemLike stair, ItemLike pressurePlate, ItemLike button, ItemLike door, ItemLike trapdoor, ItemLike fence, ItemLike gate)
 		{
 			this.logTag = bluebrightLogs;
 			this.log = log;
@@ -324,11 +348,11 @@ public class GNSRecipeProv extends RecipeProvider
 	 */
 	protected static class OreMap
 	{
-		public final INamedTag<Item> materialTag, blockTag;
-		public final IItemProvider material, block, chestplate, leggings, boots, helmet, sword, pickaxe, axe, shovel,
+		public final Named<Item> materialTag, blockTag;
+		public final ItemLike material, block, chestplate, leggings, boots, helmet, sword, pickaxe, axe, shovel,
 				hoe;
 
-		public OreMap(INamedTag<Item> materialTag, IItemProvider material, INamedTag<Item> blockTag, IItemProvider block, IItemProvider chestplate, IItemProvider leggings, IItemProvider boots, IItemProvider helmet, IItemProvider sword, IItemProvider pickaxe, IItemProvider axe, IItemProvider shovel, IItemProvider hoe)
+		public OreMap(Named<Item> materialTag, ItemLike material, Named<Item> blockTag, ItemLike block, ItemLike chestplate, ItemLike leggings, ItemLike boots, ItemLike helmet, ItemLike sword, ItemLike pickaxe, ItemLike axe, ItemLike shovel, ItemLike hoe)
 		{
 			this.materialTag = materialTag;
 			this.material = material;

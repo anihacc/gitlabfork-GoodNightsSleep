@@ -3,28 +3,28 @@ package com.legacy.goodnightsleep.entity.dream;
 import com.legacy.goodnightsleep.client.audio.GNSSounds;
 import com.legacy.goodnightsleep.registry.GNSItems;
 
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.passive.horse.AbstractHorseEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.Hand;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.animal.horse.AbstractHorse;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.level.Level;
 
-public class UnicornEntity extends AbstractHorseEntity
+public class UnicornEntity extends AbstractHorse
 {
-	public static final DataParameter<Integer> UNICORN_TYPE = EntityDataManager.<Integer>defineId(UnicornEntity.class, DataSerializers.INT);
+	public static final EntityDataAccessor<Integer> UNICORN_TYPE = SynchedEntityData.<Integer>defineId(UnicornEntity.class, EntityDataSerializers.INT);
 
-	public UnicornEntity(EntityType<? extends UnicornEntity> type, World worldIn)
+	public UnicornEntity(EntityType<? extends UnicornEntity> type, Level worldIn)
 	{
 		super(type, worldIn);
 	}
@@ -43,14 +43,14 @@ public class UnicornEntity extends AbstractHorseEntity
 	}
 
 	@Override
-	public void addAdditionalSaveData(CompoundNBT compound)
+	public void addAdditionalSaveData(CompoundTag compound)
 	{
 		super.addAdditionalSaveData(compound);
 		compound.putInt("unicornType", this.getUnicornType());
 	}
 
 	@Override
-	public void load(CompoundNBT compound)
+	public void load(CompoundTag compound)
 	{
 		super.load(compound);
 		this.setUnicornType(compound.getInt("unicornType"));
@@ -99,7 +99,7 @@ public class UnicornEntity extends AbstractHorseEntity
 	}
 
 	@Override
-	public ActionResultType mobInteract(PlayerEntity player, Hand hand)
+	public InteractionResult mobInteract(Player player, InteractionHand hand)
 	{
 		ItemStack itemstack = player.getItemInHand(hand);
 		boolean flag = !itemstack.isEmpty();
@@ -115,7 +115,7 @@ public class UnicornEntity extends AbstractHorseEntity
 				if (this.isTamed() && player.isCrouching())
 				{
 					this.openInventory(player);
-					return ActionResultType.SUCCESS;
+					return InteractionResult.SUCCESS;
 				}
 
 				if (this.isVehicle())
@@ -133,7 +133,7 @@ public class UnicornEntity extends AbstractHorseEntity
 						itemstack.shrink(1);
 					}
 
-					return ActionResultType.SUCCESS;
+					return InteractionResult.SUCCESS;
 				}
 
 				if (itemstack.interactLivingEntity(player, this, hand).consumesAction())
@@ -144,7 +144,7 @@ public class UnicornEntity extends AbstractHorseEntity
 				if (!this.isTamed())
 				{
 					this.makeMad();
-					return ActionResultType.SUCCESS;
+					return InteractionResult.SUCCESS;
 				}
 
 				boolean flag1 = false; // HorseArmorItem.getByItemStack(itemstack) != HorseArmorType.NONE;
@@ -153,7 +153,7 @@ public class UnicornEntity extends AbstractHorseEntity
 				if (flag1 || flag2)
 				{
 					this.openInventory(player);
-					return ActionResultType.SUCCESS;
+					return InteractionResult.SUCCESS;
 				}
 			}
 
@@ -164,7 +164,7 @@ public class UnicornEntity extends AbstractHorseEntity
 			else
 			{
 				this.doPlayerRide(player);
-				return ActionResultType.SUCCESS;
+				return InteractionResult.SUCCESS;
 			}
 		}
 	}

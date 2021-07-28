@@ -1,32 +1,28 @@
 package com.legacy.goodnightsleep.blocks.natural;
 
-import java.util.Random;
+import java.util.function.Supplier;
 
 import com.legacy.goodnightsleep.registry.GNSBlocks;
-import com.legacy.goodnightsleep.registry.GNSFeatures;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.MushroomBlock;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorldReader;
-import net.minecraft.world.gen.feature.ConfiguredFeature;
-import net.minecraft.world.server.ServerWorld;
-
-import net.minecraft.block.AbstractBlock.Properties;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.MushroomBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 
 public class GNSMushroomBlock extends MushroomBlock
 {
-	public GNSMushroomBlock(Properties properties)
+	public GNSMushroomBlock(Properties properties, Supplier<ConfiguredFeature<?, ?>> feature)
 	{
-		super(properties);
+		super(properties, feature);
 	}
 
 	@Override
-	public boolean canSurvive(BlockState state, IWorldReader worldIn, BlockPos pos)
+	public boolean canSurvive(BlockState state, LevelReader worldIn, BlockPos pos)
 	{
 		BlockPos blockpos = pos.below();
 		BlockState blockstate = worldIn.getBlockState(blockpos);
@@ -43,16 +39,16 @@ public class GNSMushroomBlock extends MushroomBlock
 	}
 
 	@Override
-	public boolean isValidBonemealTarget(IBlockReader worldIn, BlockPos pos, BlockState state, boolean isClient)
+	public boolean isValidBonemealTarget(BlockGetter worldIn, BlockPos pos, BlockState state, boolean isClient)
 	{
 		return true;
 	}
 
-	public boolean growMushroom(ServerWorld world, BlockPos pos, BlockState state, Random rand)
+	/*public boolean growMushroom(ServerLevel world, BlockPos pos, BlockState state, Random rand)
 	{
 		world.removeBlock(pos, false);
 		ConfiguredFeature<?, ?> configuredfeature;
-
+	
 		if (this == GNSBlocks.despair_mushroom)
 		{
 			configuredfeature = GNSFeatures.Configured.BASE_HUGE_DESPAIR_MUSHROOM;
@@ -64,10 +60,10 @@ public class GNSMushroomBlock extends MushroomBlock
 				world.setBlock(pos, state, 3);
 				return false;
 			}
-
+	
 			configuredfeature = GNSFeatures.Configured.BASE_HUGE_HOPE_MUSHROOM;
 		}
-
+	
 		if (configuredfeature.place(world, world.getChunkSource().getGenerator(), rand, pos))
 		{
 			return true;
@@ -77,5 +73,5 @@ public class GNSMushroomBlock extends MushroomBlock
 			world.setBlock(pos, state, 3);
 			return false;
 		}
-	}
+	}*/
 }

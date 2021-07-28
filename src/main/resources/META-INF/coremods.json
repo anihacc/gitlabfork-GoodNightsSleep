@@ -1,0 +1,4 @@
+{
+	"MinecraftServerCoreMod": "coremods/MinecraftServerCoreMod.js",
+	"DimensionTypeCoreMod": "coremods/DimensionTypeCoreMod.js"
+}

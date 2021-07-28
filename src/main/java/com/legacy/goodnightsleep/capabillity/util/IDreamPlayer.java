@@ -1,7 +1,7 @@
 package com.legacy.goodnightsleep.capabillity.util;
 
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.nbt.CompoundTag;
 
 public interface IDreamPlayer
 {
@@ -9,15 +9,15 @@ public interface IDreamPlayer
 
 	void clientTick();
 
-	void writeAdditional(CompoundNBT nbt);
+	void writeAdditional(CompoundTag nbt);
 
-	void read(CompoundNBT nbt);
+	void read(CompoundTag nbt);
 
 	public long getEnteredDreamTime();
 
 	public void setEnteredDreamTime(long timeIn);
 
-	PlayerEntity getPlayer();
+	Player getPlayer();
 
 	void onDeath();
 }

@@ -7,11 +7,11 @@ import com.legacy.goodnightsleep.capabillity.util.IDreamPlayer;
 import com.legacy.goodnightsleep.network.PacketHandler;
 import com.legacy.goodnightsleep.network.SendEnteredTimePacket;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.world.GameRules;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.level.GameRules;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
@@ -25,14 +25,14 @@ public class GNSPlayerEvents
 	@SubscribeEvent
 	public void onCapabilityAttached(AttachCapabilitiesEvent<Entity> event)
 	{
-		if (event.getObject() instanceof PlayerEntity && !event.getObject().getCapability(DreamPlayer.GNS_PLAYER).isPresent())
-			event.addCapability(GoodNightSleep.locate("player_capability"), new CapabilityProvider(new DreamPlayer((PlayerEntity) event.getObject())));
+		if (event.getObject() instanceof Player && !event.getObject().getCapability(DreamPlayer.GNS_PLAYER).isPresent())
+			event.addCapability(GoodNightSleep.locate("player_capability"), new CapabilityProvider(new DreamPlayer((Player) event.getObject())));
 	}
 
 	@SubscribeEvent
 	public void onEntityDeath(LivingDeathEvent event)
 	{
-		if (event.getEntity() instanceof PlayerEntity)
+		if (event.getEntity() instanceof Player)
 			event.getEntity().getCapability(DreamPlayer.GNS_PLAYER).ifPresent(c -> c.onDeath());
 	}
 
@@ -44,7 +44,7 @@ public class GNSPlayerEvents
 
 		IDreamPlayer original = DreamPlayer.get(event.getOriginal());
 		IDreamPlayer clone = DreamPlayer.get(event.getPlayer());
-		CompoundNBT compound = new CompoundNBT();
+		CompoundTag compound = new CompoundTag();
 
 		if (original != null && clone != null)
 		{
@@ -59,8 +59,8 @@ public class GNSPlayerEvents
 			}
 			else
 			{
-				if (event.getPlayer() instanceof ServerPlayerEntity)
-					PacketHandler.sendTo(new SendEnteredTimePacket(event.getPlayer().level.getGameTime()), (ServerPlayerEntity) event.getPlayer());
+				if (event.getPlayer() instanceof ServerPlayer)
+					PacketHandler.sendTo(new SendEnteredTimePacket(event.getPlayer().level.getGameTime()), (ServerPlayer) event.getPlayer());
 
 				original.writeAdditional(compound);
 				clone.read(compound);
@@ -71,23 +71,23 @@ public class GNSPlayerEvents
 	@SubscribeEvent
 	public void onEntityUpdate(LivingUpdateEvent event)
 	{
-		if (event.getEntity() instanceof PlayerEntity)
+		if (event.getEntity() instanceof Player)
 			event.getEntity().getCapability(DreamPlayer.GNS_PLAYER).ifPresent(c -> c.serverTick());
 	}
 
 	@SubscribeEvent
 	public void onEntityJoin(EntityJoinWorldEvent event)
 	{
-		if (event.getEntity() instanceof ServerPlayerEntity)
-			event.getEntity().getCapability(DreamPlayer.GNS_PLAYER).ifPresent(c -> PacketHandler.sendTo(new SendEnteredTimePacket(c.getEnteredDreamTime()), (ServerPlayerEntity) event.getEntity()));
+		if (event.getEntity() instanceof ServerPlayer)
+			event.getEntity().getCapability(DreamPlayer.GNS_PLAYER).ifPresent(c -> PacketHandler.sendTo(new SendEnteredTimePacket(c.getEnteredDreamTime()), (ServerPlayer) event.getEntity()));
 
 	}
 	
 	@SubscribeEvent
 	public void onEntityChangeDimension(PlayerChangedDimensionEvent event)
 	{
-		if (event.getEntity() instanceof ServerPlayerEntity)
-			event.getEntity().getCapability(DreamPlayer.GNS_PLAYER).ifPresent(c -> PacketHandler.sendTo(new SendEnteredTimePacket(c.getEnteredDreamTime()), (ServerPlayerEntity) event.getEntity()));
+		if (event.getEntity() instanceof ServerPlayer)
+			event.getEntity().getCapability(DreamPlayer.GNS_PLAYER).ifPresent(c -> PacketHandler.sendTo(new SendEnteredTimePacket(c.getEnteredDreamTime()), (ServerPlayer) event.getEntity()));
 
 	}
 }

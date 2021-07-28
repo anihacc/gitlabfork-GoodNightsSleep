@@ -2,24 +2,24 @@ package com.legacy.goodnightsleep.client.render.models;
 
 import com.google.common.collect.ImmutableList;
 
-import net.minecraft.client.renderer.entity.model.HorseModel;
-import net.minecraft.client.renderer.model.ModelRenderer;
-import net.minecraft.entity.passive.horse.AbstractHorseEntity;
+import net.minecraft.client.model.HorseModel;
+import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.world.entity.animal.horse.AbstractHorse;
 
-public class UnicornModel<T extends AbstractHorseEntity> extends HorseModel<T>
+public class UnicornModel<T extends AbstractHorse> extends HorseModel<T>
 {
-	private final ModelRenderer horn;
+	private final ModelPart horn;
 
 	public UnicornModel(float scale)
 	{
 		super(scale);
-		this.horn = new ModelRenderer(this, 56, 0);
+		this.horn = new ModelPart(this, 56, 0);
 		this.horn.setPos(0.0F, 4.0F, -10.0F);
 		this.horn.addBox(-1.0F, -16.0F, 2.0F, 2, 7, 2, 0.0F);
 	}
 
 	@Override
-	public Iterable<ModelRenderer> headParts()
+	public Iterable<ModelPart> headParts()
 	{
 		return ImmutableList.of(this.headParts, this.horn);
 	}

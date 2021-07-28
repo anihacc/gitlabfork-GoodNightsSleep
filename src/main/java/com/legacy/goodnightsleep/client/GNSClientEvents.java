@@ -1,35 +1,36 @@
 package com.legacy.goodnightsleep.client;
 
+import com.legacy.goodnightsleep.GoodNightSleep;
 import com.legacy.goodnightsleep.capabillity.DreamPlayer;
 import com.legacy.goodnightsleep.registry.GNSDimensions;
-import com.legacy.goodnightsleep.world.DreamSkyRenderer;
-import com.mojang.blaze3d.platform.GlStateManager;
-import com.mojang.blaze3d.systems.RenderSystem;
 
 import it.unimi.dsi.fastutil.objects.Object2ObjectMap;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.world.DimensionRenderInfo;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.potion.Effects;
+import net.minecraft.client.renderer.DimensionSpecialEffects;
+import net.minecraft.client.renderer.FogRenderer;
+import net.minecraft.client.renderer.FogRenderer.FogMode;
+import net.minecraft.client.renderer.Sheets;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.FluidTags;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.World;
-import net.minecraftforge.client.ISkyRenderHandler;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.client.event.EntityViewRenderEvent.FogColors;
 import net.minecraftforge.client.event.EntityViewRenderEvent.RenderFogEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
+import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
+import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
 
 public class GNSClientEvents
 {
 	private static final Minecraft mc = Minecraft.getInstance();
-	private static final DimensionRenderInfo DREAM_RENDER_INFO = new DreamRenderInfo();
-	private static final DimensionRenderInfo NIGHTMARE_RENDER_INFO = new NightmareRenderInfo();
+	private static final DimensionSpecialEffects DREAM_RENDER_INFO = new DreamRenderInfo();
+	private static final DimensionSpecialEffects NIGHTMARE_RENDER_INFO = new NightmareRenderInfo();
 
-	private static final Object2ObjectMap<ResourceLocation, DimensionRenderInfo> DIMENSION_RENDER_INFO = ObfuscationReflectionHelper.getPrivateValue(DimensionRenderInfo.class, DREAM_RENDER_INFO, "EFFECTS");
+	private static final Object2ObjectMap<ResourceLocation, DimensionSpecialEffects> DIMENSION_RENDER_INFO = ObfuscationReflectionHelper.getPrivateValue(DimensionSpecialEffects.class, DREAM_RENDER_INFO, "f_108857_");
 
 	public static void initDimensionRenderInfo()
 	{
@@ -37,16 +38,21 @@ public class GNSClientEvents
 		DIMENSION_RENDER_INFO.put(GNSDimensions.NIGHTMARE_ID, NIGHTMARE_RENDER_INFO);
 	}
 
-	@SuppressWarnings("deprecation")
+	@SubscribeEvent
+	public void onAtlasStich(TextureStitchEvent.Pre event)
+	{
+		if (event.getMap().location().equals(Sheets.BED_SHEET))
+		{
+			event.addSprite(GoodNightSleep.locate("entity/luxurious_bed"));
+			event.addSprite(GoodNightSleep.locate("entity/wretched_bed"));
+			event.addSprite(GoodNightSleep.locate("entity/strange_bed"));
+		}
+	}
+
 	@SubscribeEvent
 	public void onFogRender(RenderFogEvent event)
 	{
-		if (shouldNightmareFogRender())
-		{
-			RenderSystem.fogMode(GlStateManager.FogMode.EXP);
-			RenderSystem.fogDensity(0.035F * 1);
-			RenderSystem.enableFog();
-		}
+		// 0.035F
 	}
 
 	@SubscribeEvent
@@ -68,7 +74,7 @@ public class GNSClientEvents
 	@SubscribeEvent
 	public void onClientTick(TickEvent.ClientTickEvent event)
 	{
-		World world = mc.level;
+		Level world = mc.level;
 
 		if (world == null || !world.isClientSide)
 			return;
@@ -79,14 +85,14 @@ public class GNSClientEvents
 
 	private static boolean shouldNightmareFogRender()
 	{
-		return mc.level.dimension() == GNSDimensions.getDimensionKeys(false) && !mc.player.isEyeInFluid(FluidTags.LAVA) && !mc.player.isEyeInFluid(FluidTags.WATER) && !mc.player.hasEffect(Effects.BLINDNESS);
+		return mc.level.dimension() == GNSDimensions.getDimensionKeys(false) && !mc.player.isEyeInFluid(FluidTags.LAVA) && !mc.player.isEyeInFluid(FluidTags.WATER) && !mc.player.hasEffect(MobEffects.BLINDNESS);
 	}
 
 	// i am going insane
 	public static float calculateSunAngle(long worldTimeIn, float partialTicks)
 	{
 		long worldTime;
-		PlayerEntity player = mc.player;
+		Player player = mc.player;
 
 		if (DreamPlayer.get(player) != null)
 		{
@@ -118,21 +124,21 @@ public class GNSClientEvents
 		return f1;
 	}
 
-	public static class DreamRenderInfo extends DimensionRenderInfo.Overworld
+	public static class DreamRenderInfo extends DimensionSpecialEffects.OverworldEffects
 	{
 		public DreamRenderInfo()
 		{
 			super();
 		}
 
-		@Override
+		/*@Override
 		public ISkyRenderHandler getSkyRenderHandler()
 		{
 			return DreamSkyRenderer.INSTANCE;
-		}
+		}*/
 	}
 
-	public static class NightmareRenderInfo extends DimensionRenderInfo.Overworld
+	public static class NightmareRenderInfo extends DimensionSpecialEffects.OverworldEffects
 	{
 		public NightmareRenderInfo()
 		{
@@ -140,7 +146,7 @@ public class GNSClientEvents
 		}
 
 		@Override
-		public Vector3d getBrightnessDependentFogColor(Vector3d fogColor, float fogBrightness)
+		public Vec3 getBrightnessDependentFogColor(Vec3 fogColor, float fogBrightness)
 		{
 			return fogColor;
 		}
@@ -151,10 +157,10 @@ public class GNSClientEvents
 			return true;
 		}
 
-		@Override
+		/*@Override
 		public ISkyRenderHandler getSkyRenderHandler()
 		{
 			return DreamSkyRenderer.INSTANCE;
-		}
+		}*/
 	}
 }

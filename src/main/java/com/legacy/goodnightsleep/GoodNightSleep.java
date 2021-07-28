@@ -4,14 +4,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.legacy.goodnightsleep.blocks.util.ToolCompat;
-import com.legacy.goodnightsleep.capabillity.DreamPlayer;
-import com.legacy.goodnightsleep.capabillity.util.CapabilityStorage;
 import com.legacy.goodnightsleep.capabillity.util.IDreamPlayer;
 import com.legacy.goodnightsleep.client.GNSBlockColoring;
 import com.legacy.goodnightsleep.client.GNSClientEvents;
 import com.legacy.goodnightsleep.client.audio.GNSMusicHandler;
 import com.legacy.goodnightsleep.client.render.GNSEntityRendering;
-import com.legacy.goodnightsleep.client.render.GNSTileEntityRendering;
 import com.legacy.goodnightsleep.client.resource_pack.GNSResourcePackHandler;
 import com.legacy.goodnightsleep.data.GNSBlockTags;
 import com.legacy.goodnightsleep.data.GNSItemTags;
@@ -20,16 +17,18 @@ import com.legacy.goodnightsleep.event.GNSEvents;
 import com.legacy.goodnightsleep.event.GNSPlayerEvents;
 import com.legacy.goodnightsleep.network.PacketHandler;
 import com.legacy.goodnightsleep.registry.GNSBlocks;
+import com.legacy.goodnightsleep.registry.GNSEntityTypes;
 import com.legacy.goodnightsleep.registry.GNSFeatures;
 
-import net.minecraft.block.Block;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.RenderTypeLookup;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -66,19 +65,29 @@ public class GoodNightSleep
 	{
 		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, GNSConfig.SERVER_SPEC);
 
-		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::commonInit);
-		DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientInit));
+		IEventBus mod = FMLJavaModLoadingContext.get().getModEventBus();
+
+		mod.addListener(this::commonInit);
+		mod.addListener(GNSEntityTypes::onAttributesRegistered);
+
+		DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () ->
+		{
+			GNSEntityRendering.init();
+			mod.addListener(this::clientInit);
+		});
 	}
 
 	private void commonInit(final FMLCommonSetupEvent event)
 	{
-		CapabilityManager.INSTANCE.register(IDreamPlayer.class, new CapabilityStorage(), DreamPlayer::new);
+		IEventBus forge = MinecraftForge.EVENT_BUS;
 
-		MinecraftForge.EVENT_BUS.addListener((BiomeLoadingEvent biomeEvent) -> GNSFeatures.addMushrooms(biomeEvent));
+		CapabilityManager.INSTANCE.register(IDreamPlayer.class);
 
-		MinecraftForge.EVENT_BUS.register(new GNSMappingChanges());
-		MinecraftForge.EVENT_BUS.register(new GNSEvents());
-		MinecraftForge.EVENT_BUS.register(new GNSPlayerEvents());
+		forge.addListener((BiomeLoadingEvent biomeEvent) -> GNSFeatures.addMushrooms(biomeEvent));
+
+		forge.register(new GNSMappingChanges());
+		forge.register(new GNSEvents());
+		forge.register(new GNSPlayerEvents());
 
 		PacketHandler.register();
 		ToolCompat.init();
@@ -92,11 +101,11 @@ public class GoodNightSleep
 		MinecraftForge.EVENT_BUS.register(new GNSMusicHandler());
 		MinecraftForge.EVENT_BUS.register(new GNSClientEvents());
 
-		GNSTileEntityRendering.init();
 		GNSEntityRendering.init();
 		GNSResourcePackHandler.init();
 		GNSBlockColoring.init();
 		GNSClientEvents.initDimensionRenderInfo();
+		GNSEntityRendering.initBlockEntityRenders();
 
 		renderCutout(GNSBlocks.candy_sapling);
 		renderCutout(GNSBlocks.dream_sapling);
@@ -135,16 +144,16 @@ public class GoodNightSleep
 		renderCutout(GNSBlocks.dead_trapdoor);
 		renderCutout(GNSBlocks.blood_trapdoor);
 
-		RenderTypeLookup.setRenderLayer(GNSBlocks.dream_grass_block, RenderType.cutoutMipped());
+		ItemBlockRenderTypes.setRenderLayer(GNSBlocks.dream_grass_block, RenderType.cutoutMipped());
 
-		RenderTypeLookup.setRenderLayer(GNSBlocks.rainbow, RenderType.translucent());
-		RenderTypeLookup.setRenderLayer(GNSBlocks.dream_leaves, RenderType.cutoutMipped());
-		RenderTypeLookup.setRenderLayer(GNSBlocks.candy_leaves, RenderType.cutoutMipped());
-		RenderTypeLookup.setRenderLayer(GNSBlocks.diamond_leaves, RenderType.cutoutMipped());
+		ItemBlockRenderTypes.setRenderLayer(GNSBlocks.rainbow, RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(GNSBlocks.dream_leaves, RenderType.cutoutMipped());
+		ItemBlockRenderTypes.setRenderLayer(GNSBlocks.candy_leaves, RenderType.cutoutMipped());
+		ItemBlockRenderTypes.setRenderLayer(GNSBlocks.diamond_leaves, RenderType.cutoutMipped());
 	}
 
 	private static void renderCutout(Block block)
 	{
-		RenderTypeLookup.setRenderLayer(block, RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(block, RenderType.cutout());
 	}
 }

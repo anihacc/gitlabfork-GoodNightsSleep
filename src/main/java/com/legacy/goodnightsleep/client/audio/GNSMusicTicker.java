@@ -5,23 +5,23 @@ import java.util.Random;
 import com.legacy.goodnightsleep.registry.GNSDimensions;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.audio.ISound;
-import net.minecraft.client.audio.SimpleSound;
-import net.minecraft.client.renderer.texture.ITickable;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.client.resources.sounds.SoundInstance;
+import net.minecraft.client.resources.sounds.SimpleSoundInstance;
+import net.minecraft.client.renderer.texture.Tickable;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.util.Mth;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class GNSMusicTicker implements ITickable
+public class GNSMusicTicker implements Tickable
 {
 
 	private final Random rand = new Random();
 
 	private final Minecraft mc;
 
-	public ISound ambientMusic, playingRecord;
+	public SoundInstance ambientMusic, playingRecord;
 
 	private int timeUntilNextMusic = 100;
 
@@ -46,7 +46,7 @@ public class GNSMusicTicker implements ITickable
 						if (!this.mc.getSoundManager().isActive(this.ambientMusic))
 						{
 							this.ambientMusic = null;
-							this.timeUntilNextMusic = Math.min(MathHelper.nextInt(this.rand, tracktypeB.getMinDelay(), tracktypeB.getMaxDelay()), this.timeUntilNextMusic);
+							this.timeUntilNextMusic = Math.min(Mth.nextInt(this.rand, tracktypeB.getMinDelay(), tracktypeB.getMaxDelay()), this.timeUntilNextMusic);
 						}
 					}
 					this.timeUntilNextMusic = Math.min(this.timeUntilNextMusic, tracktypeB.getMaxDelay());
@@ -62,7 +62,7 @@ public class GNSMusicTicker implements ITickable
 						if (!this.mc.getSoundManager().isActive(this.ambientMusic))
 						{
 							this.ambientMusic = null;
-							this.timeUntilNextMusic = Math.min(MathHelper.nextInt(this.rand, tracktypeD.getMinDelay(), tracktypeD.getMaxDelay()), this.timeUntilNextMusic);
+							this.timeUntilNextMusic = Math.min(Mth.nextInt(this.rand, tracktypeD.getMinDelay(), tracktypeD.getMaxDelay()), this.timeUntilNextMusic);
 						}
 					}
 					this.timeUntilNextMusic = Math.min(this.timeUntilNextMusic, tracktypeD.getMaxDelay());
@@ -105,7 +105,7 @@ public class GNSMusicTicker implements ITickable
 
 	public void playMusic(TrackType requestedMusicType)
 	{
-		this.ambientMusic = SimpleSound.forMusic(requestedMusicType.getMusicLocation());
+		this.ambientMusic = SimpleSoundInstance.forMusic(requestedMusicType.getMusicLocation());
 		this.mc.getSoundManager().play(this.ambientMusic);
 		this.timeUntilNextMusic = Integer.MAX_VALUE;
 	}

@@ -1,18 +1,20 @@
 package com.legacy.goodnightsleep.tile_entity;
 
-import net.minecraft.network.play.server.SUpdateTileEntityPacket;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
 
-public class TileEntityLuxuriousBed extends TileEntity
+public class TileEntityLuxuriousBed extends BlockEntity
 {
-	public TileEntityLuxuriousBed()
+	public TileEntityLuxuriousBed(BlockPos pos, BlockState state)
 	{
-		super(GNSTileEntityTypes.LUXURIOUS_BED);
+		super(GNSTileEntityTypes.DREAM_BED, pos, state);
 	}
 
 	@Override
-	public SUpdateTileEntityPacket getUpdatePacket()
+	public ClientboundBlockEntityDataPacket getUpdatePacket()
 	{
-		return new SUpdateTileEntityPacket(this.worldPosition, -999, this.getUpdateTag());
+		return new ClientboundBlockEntityDataPacket(this.worldPosition, -999, this.getUpdateTag());
 	}
 }

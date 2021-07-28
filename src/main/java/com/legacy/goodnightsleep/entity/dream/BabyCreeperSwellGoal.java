@@ -1,7 +1,7 @@
 package com.legacy.goodnightsleep.entity.dream;
 
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.ai.goal.Goal;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.goal.Goal;
 
 public class BabyCreeperSwellGoal extends Goal
 {
@@ -45,7 +45,7 @@ public class BabyCreeperSwellGoal extends Goal
 		{
 			this.swellingCreeper.setCreeperState(-1);
 		}
-		else if (!this.swellingCreeper.getSensing().canSee(this.creeperAttackTarget))
+		else if (!this.swellingCreeper.getSensing().hasLineOfSight(this.creeperAttackTarget))
 		{
 			this.swellingCreeper.setCreeperState(-1);
 		}

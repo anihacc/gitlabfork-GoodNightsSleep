@@ -6,6 +6,7 @@ import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
+import net.minecraftforge.fml.event.config.ModConfigEvent;
 
 @Mod.EventBusSubscriber(modid = GoodNightSleep.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class GNSConfig
@@ -39,7 +40,7 @@ public class GNSConfig
 	}
 
 	@SubscribeEvent
-	public static void onLoadConfig(final ModConfig.ModConfigEvent event)
+	public static void onLoadConfig(final ModConfigEvent event)
 	{
 		ModConfig config = event.getConfig();
 

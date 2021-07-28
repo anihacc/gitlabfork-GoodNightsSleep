@@ -4,12 +4,12 @@ import com.legacy.goodnightsleep.capabillity.util.IDreamPlayer;
 import com.legacy.goodnightsleep.registry.GNSDimensions;
 import com.legacy.goodnightsleep.world.GNSTeleporter;
 
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.capabilities.Capability;
@@ -19,20 +19,20 @@ public class DreamPlayer implements IDreamPlayer
 {
 	@CapabilityInject(IDreamPlayer.class)
 	public static Capability<IDreamPlayer> GNS_PLAYER = null;
-	private PlayerEntity player;
+	private Player player;
 	private long enteredGameTime = 0L;
 
 	public DreamPlayer()
 	{
 	}
 
-	public DreamPlayer(PlayerEntity player)
+	public DreamPlayer(Player player)
 	{
 		super();
 		this.player = player;
 	}
 
-	public static IDreamPlayer get(PlayerEntity player)
+	public static IDreamPlayer get(Player player)
 	{
 		return player.getCapability(GNS_PLAYER).orElse(null);
 	}
@@ -40,19 +40,19 @@ public class DreamPlayer implements IDreamPlayer
 	@Override
 	public void serverTick()
 	{
-		if (player != null && player instanceof ServerPlayerEntity && !player.getCommandSenderWorld().isClientSide())
+		if (player != null && player instanceof ServerPlayer && !player.getCommandSenderWorld().isClientSide())
 		{
 			long worldTime = player.level.getGameTime() - this.getEnteredDreamTime();
 
 			if (worldTime > 25000L && (player.level.dimension() == GNSDimensions.getDimensionKeys(true) || player.level.dimension() == GNSDimensions.getDimensionKeys(false)))
 			{
-				ServerPlayerEntity playerMP = (ServerPlayerEntity) player;
+				ServerPlayer playerMP = (ServerPlayer) player;
 
-				if (playerMP.level instanceof ServerWorld)
+				if (playerMP.level instanceof ServerLevel)
 				{
 					// try for bed spawn, otherwise go to the world spawn
-					BlockPos pos = playerMP.getRespawnPosition() != null ? playerMP.getRespawnPosition() : ((ServerWorld) playerMP.level).getSharedSpawnPos();
-					GNSTeleporter.changeDimension(World.OVERWORLD, playerMP, pos);
+					BlockPos pos = playerMP.getRespawnPosition() != null ? playerMP.getRespawnPosition() : ((ServerLevel) playerMP.level).getSharedSpawnPos();
+					GNSTeleporter.changeDimension(Level.OVERWORLD, playerMP, pos);
 				}
 				/*playerMP.getBedLocation(DimensionType.OVERWORLD) != null ? playerMP.getBedLocation(DimensionType.OVERWORLD) : playerMP.world.getSpawnPoint();*/
 			}
@@ -69,19 +69,19 @@ public class DreamPlayer implements IDreamPlayer
 	}
 
 	@Override
-	public void writeAdditional(CompoundNBT compound)
+	public void writeAdditional(CompoundTag compound)
 	{
 		compound.putLong("EnteredDreamTime", this.getEnteredDreamTime());
 	}
 
 	@Override
-	public void read(CompoundNBT compound)
+	public void read(CompoundTag compound)
 	{
 		this.setEnteredDreamTime(compound.getLong("EnteredDreamTime"));
 	}
 
 	@Override
-	public PlayerEntity getPlayer()
+	public Player getPlayer()
 	{
 		return this.player;
 	}

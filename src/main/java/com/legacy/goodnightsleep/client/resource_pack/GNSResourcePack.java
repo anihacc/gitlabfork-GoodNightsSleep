@@ -14,62 +14,62 @@ import java.util.stream.Collectors;
 import com.google.common.base.Joiner;
 import com.legacy.goodnightsleep.GoodNightSleep;
 
-import net.minecraft.resources.ResourcePack;
-import net.minecraft.resources.ResourcePackFileNotFoundException;
-import net.minecraft.resources.ResourcePackType;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.server.packs.AbstractPackResources;
+import net.minecraft.server.packs.ResourcePackFileNotFoundException;
+import net.minecraft.server.packs.PackType;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.loading.moddiscovery.ModFile;
 
-public class GNSResourcePack extends ResourcePack
+public class GNSResourcePack// extends AbstractPackResources
 {
-	private static ModFile modFile = ModList.get().getModFileById(GoodNightSleep.MODID).getFile();
+	/*private static ModFile modFile = ModList.get().getModFileById(GoodNightSleep.MODID).getFile();
 	private static String subFolder = "";
 	private String name = "";
-
+	
 	// based on ModFileResourcePack
 	public GNSResourcePack(String subFolderIn, String nameIn)
 	{
 		super(modFile.getFilePath().toFile());
-
+	
 		GNSResourcePack.subFolder = subFolderIn;
 		this.name = nameIn;
 	}
-
+	
 	@Override
 	public String getName()
 	{
 		return this.name;
 	}
-
+	
 	private static String getSubFolders()
 	{
 		return subFolder;
 	}
-
+	
 	@Override
 	public void close()
 	{
 	}
-
+	
 	@Override
 	protected InputStream getResource(String name) throws IOException
 	{
 		final Path path = modFile.getLocator().findPath(modFile, getSubFolders() + name);
 		if (!Files.exists(path))
 			throw new ResourcePackFileNotFoundException(path.toFile(), getSubFolders() + name);
-
+	
 		return Files.newInputStream(path, StandardOpenOption.READ);
 	}
-
+	
 	@Override
 	protected boolean hasResource(String name)
 	{
 		return Files.exists(modFile.getLocator().findPath(modFile, getSubFolders() + name));
 	}
-
+	
 	@Override
-	public Collection<ResourceLocation> getResources(ResourcePackType type, String resourceNamespace, String pathIn, int maxDepth, Predicate<String> filter)
+	public Collection<ResourceLocation> getResources(PackType type, String resourceNamespace, String pathIn, int maxDepth, Predicate<String> filter)
 	{
 		try
 		{
@@ -82,9 +82,9 @@ public class GNSResourcePack extends ResourcePack
 			return Collections.emptyList();
 		}
 	}
-
+	
 	@Override
-	public Set<String> getNamespaces(ResourcePackType type)
+	public Set<String> getNamespaces(PackType type)
 	{
 		try
 		{
@@ -95,6 +95,6 @@ public class GNSResourcePack extends ResourcePack
 		{
 			return Collections.emptySet();
 		}
-	}
+	}*/
 
 }

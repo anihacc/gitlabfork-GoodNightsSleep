@@ -4,8 +4,8 @@ import com.legacy.goodnightsleep.GoodNightSleep;
 import com.legacy.goodnightsleep.registry.GNSDimensions;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.audio.ISound;
-import net.minecraft.util.SoundCategory;
+import net.minecraft.client.resources.sounds.SoundInstance;
+import net.minecraft.sounds.SoundSource;
 import net.minecraftforge.client.event.sound.PlaySoundEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -38,10 +38,10 @@ public class GNSMusicHandler
 	@SubscribeEvent
 	public void onMusicControl(PlaySoundEvent event)
 	{
-		ISound sound = event.getSound();
-		SoundCategory category = sound.getSource();
+		SoundInstance sound = event.getSound();
+		SoundSource category = sound.getSource();
 
-		if (category == SoundCategory.MUSIC)
+		if (category == SoundSource.MUSIC)
 		{
 			if (this.mc.player != null && this.mc.player.level.dimension().location() == GNSDimensions.getDimensionLocations(true) || this.mc.player != null && this.mc.player.level.dimension().location() == GNSDimensions.getDimensionLocations(false))
 			{

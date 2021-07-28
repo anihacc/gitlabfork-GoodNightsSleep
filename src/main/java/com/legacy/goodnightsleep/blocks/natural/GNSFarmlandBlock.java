@@ -4,26 +4,26 @@ import java.util.Random;
 
 import com.legacy.goodnightsleep.registry.GNSBlocks;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.FenceGateBlock;
-import net.minecraft.entity.Entity;
-import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.pathfinding.PathType;
-import net.minecraft.state.IntegerProperty;
-import net.minecraft.state.StateContainer;
-import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.FenceGateBlock;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.pathfinder.PathComputationType;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.tags.FluidTags;
-import net.minecraft.util.Direction;
-import net.minecraft.util.IItemProvider;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.IWorldReader;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.core.Direction;
+import net.minecraft.world.level.ItemLike;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.Level;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraftforge.common.ForgeHooks;
 
 public class GNSFarmlandBlock extends Block
@@ -41,7 +41,7 @@ public class GNSFarmlandBlock extends Block
 
 	@SuppressWarnings("deprecation")
 	@Override
-	public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos)
+	public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos)
 	{
 		if (facing == Direction.UP && !stateIn.canSurvive(worldIn, currentPos))
 		{
@@ -51,32 +51,32 @@ public class GNSFarmlandBlock extends Block
 	}
 
 	@Override
-	public boolean canSurvive(BlockState state, IWorldReader worldIn, BlockPos pos)
+	public boolean canSurvive(BlockState state, LevelReader worldIn, BlockPos pos)
 	{
 		BlockState iblockstate = worldIn.getBlockState(pos.above());
 		return !iblockstate.getMaterial().isSolid() || iblockstate.getBlock() instanceof FenceGateBlock;
 	}
 
 	@Override
-	public BlockState getStateForPlacement(BlockItemUseContext context)
+	public BlockState getStateForPlacement(BlockPlaceContext context)
 	{
 		return !this.defaultBlockState().canSurvive(context.getLevel(), context.getClickedPos()) ? GNSBlocks.dream_dirt.defaultBlockState() : super.getStateForPlacement(context);
 	}
 
 	@Override
-	public int getLightBlock(BlockState state, IBlockReader worldIn, BlockPos pos)
+	public int getLightBlock(BlockState state, BlockGetter worldIn, BlockPos pos)
 	{
 		return worldIn.getMaxLightLevel();
 	}
 
 	@Override
-	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context)
+	public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context)
 	{
 		return SHAPE;
 	}
 
 	@Override
-	public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random)
+	public void tick(BlockState state, ServerLevel worldIn, BlockPos pos, Random random)
 	{
 		if (!state.canSurvive(worldIn, pos))
 		{
@@ -104,27 +104,26 @@ public class GNSFarmlandBlock extends Block
 	}
 
 	@Override
-	public void fallOn(World worldIn, BlockPos pos, Entity entityIn, float fallDistance)
+	public void fallOn(Level worldIn, BlockState state, BlockPos pos, Entity entityIn, float fallDistance)
 	{
 		if (!worldIn.isClientSide && ForgeHooks.onFarmlandTrample(worldIn, pos, GNSBlocks.dream_dirt.defaultBlockState(), fallDistance, entityIn))
-		{
 			turnToDirt(worldIn.getBlockState(pos), worldIn, pos);
-		}
-		super.fallOn(worldIn, pos, entityIn, fallDistance);
+		
+		super.fallOn(worldIn, state, pos, entityIn, fallDistance);
 	}
 
-	public static void turnToDirt(BlockState state, World worldIn, BlockPos pos)
+	public static void turnToDirt(BlockState state, Level worldIn, BlockPos pos)
 	{
 		worldIn.setBlockAndUpdate(pos, pushEntitiesUp(state, GNSBlocks.dream_dirt.defaultBlockState(), worldIn, pos));
 	}
 
-	private boolean hasCrops(IBlockReader p_176529_0_, BlockPos worldIn)
+	private boolean hasCrops(BlockGetter p_176529_0_, BlockPos worldIn)
 	{
 		BlockState state = p_176529_0_.getBlockState(worldIn.above());
 		return state.getBlock() instanceof net.minecraftforge.common.IPlantable && canSustainPlant(state, p_176529_0_, worldIn, Direction.UP, (net.minecraftforge.common.IPlantable) state.getBlock());
 	}
 
-	private static boolean hasWater(IWorldReader p_176530_0_, BlockPos worldIn)
+	private static boolean hasWater(LevelReader p_176530_0_, BlockPos worldIn)
 	{
 		for (BlockPos blockpos$mutableblockpos : BlockPos.betweenClosed(worldIn.offset(-4, 0, -4), worldIn.offset(4, 1, 4)))
 		{
@@ -136,19 +135,19 @@ public class GNSFarmlandBlock extends Block
 		return net.minecraftforge.common.FarmlandWaterManager.hasBlockWaterTicket(p_176530_0_, worldIn);
 	}
 
-	public IItemProvider getItemDropped(BlockState state, World worldIn, BlockPos pos, int fortune)
+	public ItemLike getItemDropped(BlockState state, Level worldIn, BlockPos pos, int fortune)
 	{
 		return GNSBlocks.dream_dirt;
 	}
 
 	@Override
-	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder)
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder)
 	{
 		builder.add(MOISTURE);
 	}
 
 	@Override
-	public boolean isPathfindable(BlockState state, IBlockReader worldIn, BlockPos pos, PathType type)
+	public boolean isPathfindable(BlockState state, BlockGetter worldIn, BlockPos pos, PathComputationType type)
 	{
 		return false;
 	}

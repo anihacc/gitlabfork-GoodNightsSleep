@@ -19,25 +19,25 @@ import com.legacy.goodnightsleep.blocks.natural.GNSTallGrassBlock;
 import com.legacy.goodnightsleep.item.sapling.CandyTree;
 import com.legacy.goodnightsleep.item.sapling.DreamTree;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.DoorBlock;
-import net.minecraft.block.FenceBlock;
-import net.minecraft.block.FenceGateBlock;
-import net.minecraft.block.HugeMushroomBlock;
-import net.minecraft.block.LeavesBlock;
-import net.minecraft.block.PressurePlateBlock;
-import net.minecraft.block.RotatedPillarBlock;
-import net.minecraft.block.SaplingBlock;
-import net.minecraft.block.SlabBlock;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.StairsBlock;
-import net.minecraft.block.StoneButtonBlock;
-import net.minecraft.block.TrapDoorBlock;
-import net.minecraft.block.WallBlock;
-import net.minecraft.block.WoodButtonBlock;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.material.MaterialColor;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.DoorBlock;
+import net.minecraft.world.level.block.FenceBlock;
+import net.minecraft.world.level.block.FenceGateBlock;
+import net.minecraft.world.level.block.HugeMushroomBlock;
+import net.minecraft.world.level.block.LeavesBlock;
+import net.minecraft.world.level.block.PressurePlateBlock;
+import net.minecraft.world.level.block.RotatedPillarBlock;
+import net.minecraft.world.level.block.SaplingBlock;
+import net.minecraft.world.level.block.SlabBlock;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.StairBlock;
+import net.minecraft.world.level.block.StoneButtonBlock;
+import net.minecraft.world.level.block.TrapDoorBlock;
+import net.minecraft.world.level.block.WallBlock;
+import net.minecraft.world.level.block.WoodButtonBlock;
+import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.material.MaterialColor;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.ModList;
@@ -173,8 +173,8 @@ public class GNSBlocks
 		dream_sapling = register("dream_sapling", new SaplingBlock(new DreamTree(), Block.Properties.copy(Blocks.OAK_SAPLING)));
 		candy_sapling = register("candy_sapling", new SaplingBlock(new CandyTree(), Block.Properties.copy(Blocks.OAK_SAPLING)));
 
-		hope_mushroom = register("hope_mushroom", new GNSMushroomBlock(Block.Properties.of(Material.PLANT).noCollission().strength(0.0F).sound(SoundType.GRASS)));
-		despair_mushroom = register("despair_mushroom", new GNSMushroomBlock(Block.Properties.of(Material.PLANT).noCollission().strength(0.0F).sound(SoundType.GRASS)));
+		hope_mushroom = register("hope_mushroom", new GNSMushroomBlock(Block.Properties.of(Material.PLANT).noCollission().strength(0.0F).sound(SoundType.GRASS), () -> GNSFeatures.Configured.BASE_HUGE_HOPE_MUSHROOM));
+		despair_mushroom = register("despair_mushroom", new GNSMushroomBlock(Block.Properties.of(Material.PLANT).noCollission().strength(0.0F).sound(SoundType.GRASS), () -> GNSFeatures.Configured.BASE_HUGE_DESPAIR_MUSHROOM));
 		orange_flower = register("orange_flower", new GNSFlowerBlock(Block.Properties.copy(Blocks.POPPY)));
 		cyan_flower = register("cyan_flower", new GNSFlowerBlock(Block.Properties.copy(Blocks.POPPY)));
 		lollipop_bush = register("lolipop_bush", new GNSFlowerBlock(Block.Properties.copy(Blocks.POPPY)));
@@ -219,14 +219,14 @@ public class GNSBlocks
 
 		delusion_pressure_plate = register("delusion_pressure_plate", new PressurePlateBlock(PressurePlateBlock.Sensitivity.MOBS, Block.Properties.copy(Blocks.STONE_PRESSURE_PLATE)));
 
-		dream_stairs = register("dream_stairs", new StairsBlock(() -> GNSBlocks.dream_planks.defaultBlockState(), Block.Properties.copy(GNSBlocks.dream_planks)));
-		white_stairs = register("white_stairs", new StairsBlock(() -> GNSBlocks.white_planks.defaultBlockState(), Block.Properties.copy(GNSBlocks.white_planks)));
-		dead_stairs = register("dead_stairs", new StairsBlock(() -> GNSBlocks.dead_planks.defaultBlockState(), Block.Properties.copy(GNSBlocks.dead_planks)));
-		blood_stairs = register("blood_stairs", new StairsBlock(() -> GNSBlocks.blood_planks.defaultBlockState(), Block.Properties.copy(GNSBlocks.blood_planks)));
+		dream_stairs = register("dream_stairs", new StairBlock(() -> GNSBlocks.dream_planks.defaultBlockState(), Block.Properties.copy(GNSBlocks.dream_planks)));
+		white_stairs = register("white_stairs", new StairBlock(() -> GNSBlocks.white_planks.defaultBlockState(), Block.Properties.copy(GNSBlocks.white_planks)));
+		dead_stairs = register("dead_stairs", new StairBlock(() -> GNSBlocks.dead_planks.defaultBlockState(), Block.Properties.copy(GNSBlocks.dead_planks)));
+		blood_stairs = register("blood_stairs", new StairBlock(() -> GNSBlocks.blood_planks.defaultBlockState(), Block.Properties.copy(GNSBlocks.blood_planks)));
 
-		delusion_stone_stairs = register("delusion_stone_stairs", new StairsBlock(() -> GNSBlocks.delusion_stone.defaultBlockState(), Block.Properties.copy(GNSBlocks.delusion_stone)));
-		delusion_cobblestone_stairs = register("delusion_cobblestone_stairs", new StairsBlock(() -> GNSBlocks.delusion_cobblestone.defaultBlockState(), Block.Properties.copy(GNSBlocks.delusion_cobblestone)));
-		delusion_stonebrick_stairs = register("delusion_stonebrick_stairs", new StairsBlock(() -> GNSBlocks.delusion_stonebrick.defaultBlockState(), Block.Properties.copy(GNSBlocks.delusion_stonebrick)));
+		delusion_stone_stairs = register("delusion_stone_stairs", new StairBlock(() -> GNSBlocks.delusion_stone.defaultBlockState(), Block.Properties.copy(GNSBlocks.delusion_stone)));
+		delusion_cobblestone_stairs = register("delusion_cobblestone_stairs", new StairBlock(() -> GNSBlocks.delusion_cobblestone.defaultBlockState(), Block.Properties.copy(GNSBlocks.delusion_cobblestone)));
+		delusion_stonebrick_stairs = register("delusion_stonebrick_stairs", new StairBlock(() -> GNSBlocks.delusion_stonebrick.defaultBlockState(), Block.Properties.copy(GNSBlocks.delusion_stonebrick)));
 
 		dream_slab = register("dream_slab", new SlabBlock(Block.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
 		white_slab = register("white_slab", new SlabBlock(Block.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD)));

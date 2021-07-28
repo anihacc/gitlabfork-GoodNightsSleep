@@ -4,10 +4,10 @@ import com.legacy.goodnightsleep.GoodNightSleep;
 import com.legacy.goodnightsleep.registry.GNSBlocks;
 import com.legacy.goodnightsleep.registry.GNSItems;
 
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
 
-public abstract class GNSCreativeTabs extends ItemGroup
+public abstract class GNSCreativeTabs extends CreativeModeTab
 {
 
 	public GNSCreativeTabs(String label)
@@ -15,7 +15,7 @@ public abstract class GNSCreativeTabs extends ItemGroup
 		super(GoodNightSleep.MODID + "." + label);
 	}
 	
-	public static final ItemGroup blocks = new ItemGroup("gns_blocks")
+	public static final CreativeModeTab blocks = new CreativeModeTab("gns_blocks")
 	{
 		@Override
 		public ItemStack makeIcon() 
@@ -23,7 +23,7 @@ public abstract class GNSCreativeTabs extends ItemGroup
 			return new ItemStack(GNSBlocks.dream_grass_block);
 		}
 	};
-	public static final ItemGroup tools = new ItemGroup("gns_tools")
+	public static final CreativeModeTab tools = new CreativeModeTab("gns_tools")
 	{
 		@Override
 		public ItemStack makeIcon() 
@@ -31,7 +31,7 @@ public abstract class GNSCreativeTabs extends ItemGroup
 			return new ItemStack(GNSItems.candy_axe);
 		}
 	};
-	public static final ItemGroup armor = new ItemGroup("gns_armor")
+	public static final CreativeModeTab armor = new CreativeModeTab("gns_armor")
 	{
 		@Override
 		public ItemStack makeIcon() 
@@ -39,7 +39,7 @@ public abstract class GNSCreativeTabs extends ItemGroup
 			return new ItemStack(GNSItems.candy_chestplate);
 		}
 	};
-	public static final ItemGroup items = new ItemGroup("gns_items")
+	public static final CreativeModeTab items = new CreativeModeTab("gns_items")
 	{
 		@Override
 		public ItemStack makeIcon() 

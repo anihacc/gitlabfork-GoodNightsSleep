@@ -2,13 +2,13 @@ package com.legacy.goodnightsleep.capabillity.util;
 
 import com.legacy.goodnightsleep.capabillity.DreamPlayer;
 
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.util.Direction;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.core.Direction;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 import net.minecraftforge.common.util.LazyOptional;
 
-public class CapabilityProvider implements ICapabilitySerializable<CompoundNBT>
+public class CapabilityProvider implements ICapabilitySerializable<CompoundTag>
 {
 	private final LazyOptional<IDreamPlayer> dreamPlayerHandler;
 
@@ -25,14 +25,14 @@ public class CapabilityProvider implements ICapabilitySerializable<CompoundNBT>
 		return cap == DreamPlayer.GNS_PLAYER ? this.dreamPlayerHandler.cast() : LazyOptional.empty();
 	}
 
-	public void deserializeNBT(CompoundNBT compound)
+	public void deserializeNBT(CompoundTag compound)
 	{
 		this.dreamPlayerHandler.orElse(null).read(compound);
 	}
 
-	public CompoundNBT serializeNBT()
+	public CompoundTag serializeNBT()
 	{
-		CompoundNBT compound = new CompoundNBT();
+		CompoundTag compound = new CompoundTag();
 		this.dreamPlayerHandler.orElse(null).writeAdditional(compound);
 		return compound;
 	}

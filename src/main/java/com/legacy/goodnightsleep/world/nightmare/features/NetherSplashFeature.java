@@ -4,40 +4,42 @@ import java.util.Random;
 
 import com.mojang.serialization.Codec;
 
-import net.minecraft.block.Blocks;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.ISeedReader;
-import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.NoFeatureConfig;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
+import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
-public class NetherSplashFeature extends Feature<NoFeatureConfig>
+public class NetherSplashFeature extends Feature<NoneFeatureConfiguration>
 {
-	public NetherSplashFeature(Codec<NoFeatureConfig> configFactoryIn)
+	public NetherSplashFeature(Codec<NoneFeatureConfiguration> configFactoryIn)
 	{
 		super(configFactoryIn);
 	}
 
 	@Override
-	public boolean place(ISeedReader worldIn, ChunkGenerator generator, Random randIn, BlockPos pos, NoFeatureConfig config)
+	public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> context)
 	{
+		WorldGenLevel level = context.level();
+		BlockPos pos = context.origin();
+		Random rand = context.random();
+
 		int x = pos.getX();
 		int y = pos.getY();
 		int z = pos.getZ();
 
-		for (int i = 0; i < randIn.nextInt(13); ++i)
+		for (int i = 0; i < rand.nextInt(13); ++i)
 		{
-			int xOffs = randIn.nextInt(7) - 3;
-			int yOffs = randIn.nextInt(7) - 3;
+			int xOffs = rand.nextInt(7) - 3;
+			int yOffs = rand.nextInt(7) - 3;
 
-			if (!worldIn.isEmptyBlock(new BlockPos(x + xOffs, y - 1, z + yOffs)) && worldIn.getBlockState(new BlockPos(x + xOffs, y - 1, z + yOffs)).getBlock() != Blocks.LAVA)
+			if (!level.isEmptyBlock(new BlockPos(x + xOffs, y - 1, z + yOffs)) && level.getBlockState(new BlockPos(x + xOffs, y - 1, z + yOffs)).getBlock() != Blocks.LAVA)
 			{
-				worldIn.setBlock(new BlockPos(x + xOffs, y - 1, z + yOffs), Blocks.NETHERRACK.defaultBlockState(), 0);
+				level.setBlock(new BlockPos(x + xOffs, y - 1, z + yOffs), Blocks.NETHERRACK.defaultBlockState(), 0);
 
-				if (worldIn.isEmptyBlock(new BlockPos(x + xOffs, y, z + yOffs)) && randIn.nextBoolean())
-				{
-					worldIn.setBlock(new BlockPos(x + xOffs, y, z + yOffs), Blocks.FIRE.defaultBlockState(), 0);
-				}
+				if (level.isEmptyBlock(new BlockPos(x + xOffs, y, z + yOffs)) && rand.nextBoolean())
+					level.setBlock(new BlockPos(x + xOffs, y, z + yOffs), Blocks.FIRE.defaultBlockState(), 0);
 			}
 		}
 		return true;

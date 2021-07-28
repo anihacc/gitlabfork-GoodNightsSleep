@@ -3,9 +3,9 @@ package com.legacy.goodnightsleep.client.resource_pack;
 import com.legacy.goodnightsleep.GoodNightSleep;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.resources.IPackNameDecorator;
-import net.minecraft.resources.ResourcePackInfo;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.server.packs.repository.PackSource;
+import net.minecraft.server.packs.repository.Pack;
+import net.minecraft.resources.ResourceLocation;
 
 public class GNSResourcePackHandler
 {
@@ -21,6 +21,6 @@ public class GNSResourcePackHandler
 	private static void registerResourcePack(ResourceLocation packId, String subFolder, String packName)
 	{
 		Minecraft mc = Minecraft.getInstance();
-		mc.getResourcePackRepository().addPackFinder((consumer, factory) -> consumer.accept(ResourcePackInfo.create(packId.toString(), false, () -> new GNSResourcePack(subFolder, packName), factory, ResourcePackInfo.Priority.TOP, IPackNameDecorator.BUILT_IN)));
+		//mc.getResourcePackRepository().addPackFinder((consumer, factory) -> consumer.accept(Pack.create(packId.toString(), false, () -> new GNSResourcePack(subFolder, packName), factory, Pack.Position.TOP, PackSource.BUILT_IN)));
 	}
 }

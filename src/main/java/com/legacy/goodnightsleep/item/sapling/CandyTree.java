@@ -4,14 +4,14 @@ import java.util.Random;
 
 import com.legacy.goodnightsleep.registry.GNSFeatures;
 
-import net.minecraft.block.trees.Tree;
-import net.minecraft.world.gen.feature.BaseTreeFeatureConfig;
-import net.minecraft.world.gen.feature.ConfiguredFeature;
+import net.minecraft.world.level.block.grower.AbstractTreeGrower;
+import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 
-public class CandyTree extends Tree
+public class CandyTree extends AbstractTreeGrower
 {
 	@Override
-	protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getConfiguredFeature(Random random, boolean p_225546_2_)
+	protected ConfiguredFeature<TreeConfiguration, ?> getConfiguredFeature(Random random, boolean p_225546_2_)
 	{
 		return GNSFeatures.Configured.BASE_CANDY_TREE;
 	}

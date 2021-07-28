@@ -3,8 +3,8 @@ package com.legacy.goodnightsleep.client.audio;
 import com.legacy.goodnightsleep.GoodNightSleep;
 import com.legacy.goodnightsleep.registry.GNSRegistry;
 
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundEvent;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraftforge.event.RegistryEvent.Register;
 import net.minecraftforge.registries.IForgeRegistry;
 

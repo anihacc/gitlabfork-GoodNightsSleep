@@ -3,15 +3,15 @@ package com.legacy.goodnightsleep.blocks.natural;
 import com.legacy.goodnightsleep.registry.GNSBlocks;
 import com.legacy.goodnightsleep.registry.GNSItems;
 
-import net.minecraft.block.BeetrootBlock;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.FarmlandBlock;
-import net.minecraft.util.IItemProvider;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockReader;
+import net.minecraft.world.level.block.BeetrootBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.FarmBlock;
+import net.minecraft.world.level.ItemLike;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.BlockGetter;
 
-import net.minecraft.block.AbstractBlock.Properties;
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class GNSRainbowCropBlock extends BeetrootBlock
 {
@@ -21,14 +21,14 @@ public class GNSRainbowCropBlock extends BeetrootBlock
 	}
 	
 	@Override
-	protected IItemProvider getBaseSeedId()
+	protected ItemLike getBaseSeedId()
     {
         return GNSItems.rainbow_seeds;
     }
 
     @Override
-	protected boolean mayPlaceOn(BlockState state, IBlockReader worldIn, BlockPos pos)
+	protected boolean mayPlaceOn(BlockState state, BlockGetter worldIn, BlockPos pos)
 	{
-		return state.getBlock() instanceof FarmlandBlock || state.getBlock() == GNSBlocks.dream_farmland;
+		return state.getBlock() instanceof FarmBlock || state.getBlock() == GNSBlocks.dream_farmland;
 	}
 }

@@ -4,21 +4,21 @@ import java.util.Random;
 
 import com.mojang.serialization.Codec;
 
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.gen.feature.BigMushroomFeatureConfig;
-import net.minecraft.world.gen.feature.BigRedMushroomFeature;
+import net.minecraft.core.Direction;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.levelgen.feature.configurations.HugeMushroomFeatureConfiguration;
+import net.minecraft.world.level.levelgen.feature.HugeRedMushroomFeature;
 
-public class FatHopeMushroomFeature extends BigRedMushroomFeature
+public class FatHopeMushroomFeature extends HugeRedMushroomFeature
 {
-	public FatHopeMushroomFeature(Codec<BigMushroomFeatureConfig> codecIn)
+	public FatHopeMushroomFeature(Codec<HugeMushroomFeatureConfiguration> codecIn)
 	{
 		super(codecIn);
 	}
 
 	@Override
-	protected void placeTrunk(IWorld worldIn, Random randomIn, BlockPos posIn, BigMushroomFeatureConfig configIn, int stemHeight, BlockPos.Mutable newPosIn)
+	protected void placeTrunk(LevelAccessor worldIn, Random randomIn, BlockPos posIn, HugeMushroomFeatureConfiguration configIn, int stemHeight, BlockPos.MutableBlockPos newPosIn)
 	{
 		for (int x = -1; x < 2; ++x)
 		{
@@ -28,10 +28,8 @@ public class FatHopeMushroomFeature extends BigRedMushroomFeature
 				{
 					newPosIn.set(posIn).move(Direction.UP, i).move(Direction.NORTH, x).move(Direction.EAST, z);
 
-					if (worldIn.getBlockState(newPosIn).canBeReplacedByLogs(worldIn, newPosIn))
-					{
+					if (worldIn.getBlockState(newPosIn).isSolidRender(worldIn, newPosIn))
 						this.setBlock(worldIn, newPosIn, configIn.stemProvider.getState(randomIn, posIn));
-					}
 				}
 			}
 		}

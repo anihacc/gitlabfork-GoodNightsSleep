@@ -1,34 +1,38 @@
 package com.legacy.goodnightsleep.client.render;
 
-import com.legacy.goodnightsleep.client.render.entity.BabyCreeperRenderer;
-import com.legacy.goodnightsleep.client.render.entity.GummyBearRenderer;
-import com.legacy.goodnightsleep.client.render.entity.HerobrineRenderer;
-import com.legacy.goodnightsleep.client.render.entity.SpawnerRenderer;
-import com.legacy.goodnightsleep.client.render.entity.TormenterRenderer;
-import com.legacy.goodnightsleep.client.render.entity.UnicornRenderer;
-import com.legacy.goodnightsleep.registry.GNSEntityTypes;
+import com.legacy.goodnightsleep.client.render.tile.GNSBedBlockEntityRenderer;
+import com.legacy.goodnightsleep.tile_entity.GNSTileEntityTypes;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraftforge.fml.client.registry.IRenderFactory;
-import net.minecraftforge.fml.client.registry.RenderingRegistry;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
+import net.minecraftforge.client.event.EntityRenderersEvent;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 public class GNSEntityRendering
 {
-
 	public static void init()
 	{
-		register(GNSEntityTypes.UNICORN, UnicornRenderer::new);
+		FMLJavaModLoadingContext.get().getModEventBus().addListener(GNSEntityRendering::initLayers);
+		FMLJavaModLoadingContext.get().getModEventBus().addListener(GNSEntityRendering::initRenders);
+	}
+
+	public static void initLayers(EntityRenderersEvent.RegisterLayerDefinitions event)
+	{
+		/*event.registerLayerDefinition(createModelName(type), BoatModel::createBodyModel);*/
+	}
+
+
+	public static void initRenders(EntityRenderersEvent.RegisterRenderers event)
+	{
+		/*register(GNSEntityTypes.UNICORN, UnicornRenderer::new);
 		register(GNSEntityTypes.GUMMY_BEAR, GummyBearRenderer::new);
 		register(GNSEntityTypes.BABY_CREEPER, BabyCreeperRenderer::new);
 		register(GNSEntityTypes.TORMENTER, TormenterRenderer::new);
 		register(GNSEntityTypes.HEROBRINE, HerobrineRenderer::new);
-		register(GNSEntityTypes.SPAWNER_ENTITY, SpawnerRenderer::new);
+		register(GNSEntityTypes.SPAWNER_ENTITY, SpawnerRenderer::new);*/	
 	}
-
-	private static <T extends Entity> void register(EntityType<T> entityClass, IRenderFactory<? super T> renderFactory)
+	
+	public static void initBlockEntityRenders()
 	{
-		RenderingRegistry.registerEntityRenderingHandler(entityClass, renderFactory);
+		BlockEntityRenderers.register(GNSTileEntityTypes.DREAM_BED, GNSBedBlockEntityRenderer::new);
 	}
-
 }

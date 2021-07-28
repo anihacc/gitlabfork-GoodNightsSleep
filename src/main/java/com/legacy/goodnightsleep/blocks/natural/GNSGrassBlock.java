@@ -5,25 +5,23 @@ import java.util.Random;
 
 import com.legacy.goodnightsleep.registry.GNSBlocks;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.GrassBlock;
-import net.minecraft.block.IGrowable;
-import net.minecraft.block.SaplingBlock;
-import net.minecraft.block.material.Material;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.FluidTags;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.IWorldReader;
-import net.minecraft.world.gen.feature.ConfiguredFeature;
-import net.minecraft.world.gen.feature.FlowersFeature;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.BonemealableBlock;
+import net.minecraft.world.level.block.GrassBlock;
+import net.minecraft.world.level.block.SaplingBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.feature.AbstractFlowerFeature;
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import net.minecraft.world.level.material.Material;
 import net.minecraftforge.common.PlantType;
 import net.minecraftforge.common.ToolType;
-
-import net.minecraft.block.AbstractBlock.Properties;
 
 public class GNSGrassBlock extends GrassBlock
 {
@@ -32,20 +30,20 @@ public class GNSGrassBlock extends GrassBlock
 		super(Properties.copy(Blocks.GRASS_BLOCK).harvestTool(ToolType.SHOVEL));
 	}
 
-	private static boolean shouldDecay(IWorldReader worldIn, BlockPos posIn)
+	private static boolean shouldDecay(LevelReader worldIn, BlockPos posIn)
 	{
 		BlockPos blockpos = posIn.above();
 		return worldIn.getMaxLocalRawBrightness(blockpos) >= 4 || worldIn.getBlockState(blockpos).getLightBlock(worldIn, blockpos) < worldIn.getMaxLightLevel();
 	}
 
-	private static boolean shouldDecayAndNotWaterlogged(IWorldReader worldIn, BlockPos posIn)
+	private static boolean shouldDecayAndNotWaterlogged(LevelReader worldIn, BlockPos posIn)
 	{
 		BlockPos blockpos = posIn.above();
 		return worldIn.getMaxLocalRawBrightness(blockpos) >= 4 && worldIn.getBlockState(blockpos).getLightBlock(worldIn, blockpos) < worldIn.getMaxLightLevel() && !worldIn.getFluidState(blockpos).is(FluidTags.WATER);
 	}
 
 	@Override
-	public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random)
+	public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, Random random)
 	{
 		if (!worldIn.isClientSide)
 		{
@@ -81,7 +79,7 @@ public class GNSGrassBlock extends GrassBlock
 
 	@SuppressWarnings({ "rawtypes", "unchecked", "deprecation" })
 	@Override
-	public void performBonemeal(ServerWorld worldIn, Random rand, BlockPos pos, BlockState state)
+	public void performBonemeal(ServerLevel worldIn, Random rand, BlockPos pos, BlockState state)
 	{
 		BlockPos blockpos = pos.above();
 		BlockState blockstate = state.getBlock() == GNSBlocks.nightmare_grass_block ? GNSBlocks.nightmare_grass.defaultBlockState() : GNSBlocks.dream_grass.defaultBlockState();
@@ -102,7 +100,7 @@ public class GNSGrassBlock extends GrassBlock
 			BlockState blockstate2 = worldIn.getBlockState(blockpos1);
 			if (blockstate2.is(blockstate.getBlock()) && rand.nextInt(10) == 0)
 			{
-				((IGrowable) blockstate.getBlock()).performBonemeal(worldIn, rand, blockpos1, blockstate2);
+				((BonemealableBlock) blockstate.getBlock()).performBonemeal(worldIn, rand, blockpos1, blockstate2);
 			}
 
 			if (blockstate2.isAir())
@@ -117,7 +115,7 @@ public class GNSGrassBlock extends GrassBlock
 					}
 
 					ConfiguredFeature<?, ?> configuredfeature = list.get(0);
-					FlowersFeature flowersfeature = (FlowersFeature) configuredfeature.feature;
+					AbstractFlowerFeature flowersfeature = (AbstractFlowerFeature) configuredfeature.feature;
 					blockstate1 = flowersfeature.getRandomFlower(rand, blockpos1, configuredfeature.config());
 				}
 				else
@@ -134,7 +132,7 @@ public class GNSGrassBlock extends GrassBlock
 	}
 
 	@Override
-	public boolean canSustainPlant(BlockState state, IBlockReader world, BlockPos pos, Direction facing, net.minecraftforge.common.IPlantable plantable)
+	public boolean canSustainPlant(BlockState state, BlockGetter world, BlockPos pos, Direction facing, net.minecraftforge.common.IPlantable plantable)
 	{
 		if (plantable instanceof SaplingBlock)
 			return true;
@@ -149,8 +147,9 @@ public class GNSGrassBlock extends GrassBlock
 			return super.canSustainPlant(state, world, pos, facing, plantable);
 	}
 
-	@Override
-	public void onPlantGrow(BlockState state, IWorld world, BlockPos pos, BlockPos source)
+	// FIXME
+	// @Override
+	public void onPlantGrow(BlockState state, LevelAccessor world, BlockPos pos, BlockPos source)
 	{
 		BlockState dirtState = this == GNSBlocks.dream_grass_block ? GNSBlocks.dream_dirt.defaultBlockState() : Blocks.DIRT.defaultBlockState();
 		world.setBlock(pos, dirtState, 2);

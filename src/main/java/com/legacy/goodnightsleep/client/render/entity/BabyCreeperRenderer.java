@@ -3,12 +3,12 @@ package com.legacy.goodnightsleep.client.render.entity;
 import com.legacy.goodnightsleep.GoodNightSleep;
 import com.legacy.goodnightsleep.client.render.models.BabyCreeperModel;
 import com.legacy.goodnightsleep.entity.dream.BabyCreeperEntity;
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 
-import net.minecraft.client.renderer.entity.EntityRendererManager;
+import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
 import net.minecraft.client.renderer.entity.MobRenderer;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -17,16 +17,16 @@ public class BabyCreeperRenderer extends MobRenderer<BabyCreeperEntity, BabyCree
 {
 	private static final ResourceLocation TEXTURE = GoodNightSleep.locate("textures/entity/baby_creeper.png");
 
-	public BabyCreeperRenderer(EntityRendererManager renderManagerIn)
+	public BabyCreeperRenderer(EntityRenderDispatcher renderManagerIn)
 	{
 		super(renderManagerIn, new BabyCreeperModel<>(), 0.5F);
 	}
 
-	protected void scale(BabyCreeperEntity entitylivingbaseIn, MatrixStack matrix, float partialTickTime)
+	protected void scale(BabyCreeperEntity entitylivingbaseIn, PoseStack matrix, float partialTickTime)
 	{
 		float f = entitylivingbaseIn.getCreeperFlashIntensity(partialTickTime);
-		float f1 = 1.0F + MathHelper.sin(f * 100.0F) * f * 0.01F;
-		f = MathHelper.clamp(f, 0.0F, 1.0F);
+		float f1 = 1.0F + Mth.sin(f * 100.0F) * f * 0.01F;
+		f = Mth.clamp(f, 0.0F, 1.0F);
 		f = f * f;
 		f = f * f;
 		float f2 = (1.0F + f * 0.4F) * f1;
@@ -45,7 +45,7 @@ public class BabyCreeperRenderer extends MobRenderer<BabyCreeperEntity, BabyCree
 		else
 		{
 			int i = (int) (f * 0.2F * 255.0F);
-			i = MathHelper.clamp(i, 0, 255);
+			i = Mth.clamp(i, 0, 255);
 			return i << 24 | 822083583;
 		}
 	}

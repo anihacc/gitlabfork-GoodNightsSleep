@@ -10,13 +10,13 @@ import com.legacy.goodnightsleep.registry.GNSFeatures;
 import com.legacy.goodnightsleep.registry.GNSItems;
 import com.legacy.goodnightsleep.tile_entity.GNSTileEntityTypes;
 
-import net.minecraft.block.Block;
-import net.minecraft.entity.EntityType;
-import net.minecraft.item.Item;
-import net.minecraft.tileentity.TileEntityType;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistryEntry;
@@ -247,19 +247,18 @@ public class GNSMappingChanges
 			put(GoodNightSleep.locateOld("herobrine"), GNSEntityTypes.HEROBRINE);
 			put(GoodNightSleep.locateOld("tormenter"), GNSEntityTypes.TORMENTER);
 			put(GoodNightSleep.locateOld("unicorn"), GNSEntityTypes.UNICORN);
-			put(GoodNightSleep.locateOld("gns_spawner"), GNSEntityTypes.SPAWNER_ENTITY);
 
 		}
 	};
 
-	private static final Map<ResourceLocation, TileEntityType<?>> tileEntityTypeRemappings = new HashMap<ResourceLocation, TileEntityType<?>>()
+	private static final Map<ResourceLocation, BlockEntityType<?>> tileEntityTypeRemappings = new HashMap<ResourceLocation, BlockEntityType<?>>()
 	{
 		private static final long serialVersionUID = -3518059723027038971L;
 
 		{
-			put(GoodNightSleep.locateOld("luxurious_bed"), GNSTileEntityTypes.LUXURIOUS_BED);
-			put(GoodNightSleep.locateOld("wretched_bed"), GNSTileEntityTypes.WRETCHED_BED);
-			put(GoodNightSleep.locateOld("strange_bed"), GNSTileEntityTypes.STRANGE_BED);
+			put(GoodNightSleep.locateOld("luxurious_bed"), GNSTileEntityTypes.DREAM_BED);
+			put(GoodNightSleep.locateOld("wretched_bed"), GNSTileEntityTypes.DREAM_BED);
+			put(GoodNightSleep.locateOld("strange_bed"), GNSTileEntityTypes.DREAM_BED);
 		}
 	};
 
@@ -351,7 +350,7 @@ public class GNSMappingChanges
 	}
 
 	@SubscribeEvent
-	public void tileEntityTypeMapping(RegistryEvent.MissingMappings<TileEntityType<?>> event)
+	public void tileEntityTypeMapping(RegistryEvent.MissingMappings<BlockEntityType<?>> event)
 	{
 		if (event.getAllMappings().stream().filter(m -> m.key.getNamespace().equals(GoodNightSleep.OLD_MODID)).findAny().isPresent())
 		{

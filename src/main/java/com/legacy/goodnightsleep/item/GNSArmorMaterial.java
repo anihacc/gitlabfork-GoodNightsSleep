@@ -6,16 +6,16 @@ import com.legacy.goodnightsleep.GoodNightSleep;
 import com.legacy.goodnightsleep.client.audio.GNSSounds;
 import com.legacy.goodnightsleep.registry.GNSItems;
 
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.IArmorMaterial;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.util.LazyValue;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ArmorMaterial;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.util.LazyLoadedValue;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public enum GNSArmorMaterial implements IArmorMaterial
+public enum GNSArmorMaterial implements ArmorMaterial
 {
 	CANDY("candy", 7, new int[] { 1, 2, 2, 1 }, 5, GNSSounds.ITEM_ARMOR_EQUIP_CANDY, 0.0F, () ->
 	{
@@ -51,7 +51,7 @@ public enum GNSArmorMaterial implements IArmorMaterial
 
 	private final float toughness;
 
-	private final LazyValue<Ingredient> repairMaterial;
+	private final LazyLoadedValue<Ingredient> repairMaterial;
 
 	private GNSArmorMaterial(String nameIn, int p_i48533_4_, int[] p_i48533_5_, int p_i48533_6_, SoundEvent p_i48533_7_, float p_i48533_8_, Supplier<Ingredient> p_i48533_9_)
 	{
@@ -61,15 +61,15 @@ public enum GNSArmorMaterial implements IArmorMaterial
 		this.enchantability = p_i48533_6_;
 		this.soundEvent = p_i48533_7_;
 		this.toughness = p_i48533_8_;
-		this.repairMaterial = new LazyValue<>(p_i48533_9_);
+		this.repairMaterial = new LazyLoadedValue<>(p_i48533_9_);
 	}
 
-	public int getDurabilityForSlot(EquipmentSlotType slotIn)
+	public int getDurabilityForSlot(EquipmentSlot slotIn)
 	{
 		return MAX_DAMAGE_ARRAY[slotIn.getIndex()] * this.maxDamageFactor;
 	}
 
-	public int getDefenseForSlot(EquipmentSlotType slotIn)
+	public int getDefenseForSlot(EquipmentSlot slotIn)
 	{
 		return this.damageReductionAmountArray[slotIn.getIndex()];
 	}

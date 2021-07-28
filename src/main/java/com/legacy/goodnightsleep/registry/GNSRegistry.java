@@ -5,15 +5,15 @@ import com.legacy.goodnightsleep.client.audio.GNSSounds;
 import com.legacy.goodnightsleep.item.GNSCreativeTabs;
 import com.legacy.goodnightsleep.tile_entity.GNSTileEntityTypes;
 
-import net.minecraft.block.Block;
-import net.minecraft.entity.EntityType;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.tileentity.TileEntityType;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.gen.carver.WorldCarver;
-import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.levelgen.carver.WorldCarver;
+import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.RegistryEvent.Register;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -55,7 +55,7 @@ public class GNSRegistry
 	}
 
 	@SubscribeEvent
-	public static void registerTileEntityTypes(Register<TileEntityType<?>> event)
+	public static void registerTileEntityTypes(Register<BlockEntityType<?>> event)
 	{
 		GNSTileEntityTypes.init(event);
 	}

@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[36,)"
+loaderVersion="[37,)"
 issueTrackerURL="https://gitlab.com/groups/modding-legacy/-/issues"
 license="https://moddinglegacy.com/ML-General-Terms/"
 [[mods]]
@@ -17,12 +17,12 @@ The Good Night's Sleep mod adds two new dimensions, the good dream and the night
 [[dependencies.good_nights_sleep]]
     modId="forge"
     mandatory=true
-    versionRange="[36.1.0,)"
+    versionRange="[37.0.12,)"
     ordering="NONE"
     side="BOTH"
 [[dependencies.good_nights_sleep]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.16.5]"
+    versionRange="[1.17.1]"
     ordering="NONE"
     side="BOTH"

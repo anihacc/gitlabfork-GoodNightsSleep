@@ -6,14 +6,14 @@ import java.util.function.Supplier;
 
 import com.legacy.goodnightsleep.GoodNightSleep;
 
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.world.World;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.common.util.FakePlayer;
-import net.minecraftforge.fml.network.NetworkDirection;
-import net.minecraftforge.fml.network.NetworkEvent;
-import net.minecraftforge.fml.network.NetworkRegistry;
-import net.minecraftforge.fml.network.simple.SimpleChannel;
+import net.minecraftforge.fmllegacy.network.NetworkDirection;
+import net.minecraftforge.fmllegacy.network.NetworkEvent;
+import net.minecraftforge.fmllegacy.network.NetworkRegistry;
+import net.minecraftforge.fmllegacy.network.simple.SimpleChannel;
 
 public class PacketHandler
 {
@@ -30,7 +30,7 @@ public class PacketHandler
 		/*register(GetClientMotionPacket.class, GetClientMotionPacket::encoder, GetClientMotionPacket::decoder, GetClientMotionPacket::handler);*/
 	}
 
-	private static <MSG> void register(Class<MSG> packet, BiConsumer<MSG, PacketBuffer> encoder, Function<PacketBuffer, MSG> decoder, BiConsumer<MSG, Supplier<NetworkEvent.Context>> messageConsumer)
+	private static <MSG> void register(Class<MSG> packet, BiConsumer<MSG, FriendlyByteBuf> encoder, Function<FriendlyByteBuf, MSG> decoder, BiConsumer<MSG, Supplier<NetworkEvent.Context>> messageConsumer)
 	{
 		INSTANCE.registerMessage(index, packet, encoder, decoder, messageConsumer);
 		index++;
@@ -42,7 +42,7 @@ public class PacketHandler
 	 * @param packet
 	 * @param serverPlayer
 	 */
-	public static void sendTo(Object packet, ServerPlayerEntity serverPlayer)
+	public static void sendTo(Object packet, ServerPlayer serverPlayer)
 	{
 		if (!(serverPlayer instanceof FakePlayer))
 			INSTANCE.sendTo(packet, serverPlayer.connection.connection, NetworkDirection.PLAY_TO_CLIENT);
@@ -54,9 +54,9 @@ public class PacketHandler
 	 * @param packet
 	 * @param world
 	 */
-	public static void sendToAll(Object packet, World world)
+	public static void sendToAll(Object packet, Level world)
 	{
-		world.players().forEach(player -> sendTo(packet, (ServerPlayerEntity) player));
+		world.players().forEach(player -> sendTo(packet, (ServerPlayer) player));
 	}
 
 	/**

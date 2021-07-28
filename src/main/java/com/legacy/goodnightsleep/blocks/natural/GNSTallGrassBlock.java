@@ -4,32 +4,32 @@ import java.util.Random;
 
 import com.legacy.goodnightsleep.registry.GNSBlocks;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.BushBlock;
-import net.minecraft.block.IGrowable;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.entity.monster.IMob;
-import net.minecraft.entity.passive.horse.SkeletonHorseEntity;
-import net.minecraft.entity.passive.horse.ZombieHorseEntity;
-import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorldReader;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.BushBlock;
+import net.minecraft.world.level.block.BonemealableBlock;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.monster.Enemy;
+import net.minecraft.world.entity.animal.horse.SkeletonHorse;
+import net.minecraft.world.entity.animal.horse.ZombieHorse;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.Level;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-import net.minecraft.block.AbstractBlock.OffsetType;
-import net.minecraft.block.AbstractBlock.Properties;
+import net.minecraft.world.level.block.state.BlockBehaviour.OffsetType;
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
-public class GNSTallGrassBlock extends BushBlock implements IGrowable
+public class GNSTallGrassBlock extends BushBlock implements BonemealableBlock
 {
 
 	protected static final VoxelShape SHAPE = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 13.0D, 14.0D);
@@ -40,13 +40,13 @@ public class GNSTallGrassBlock extends BushBlock implements IGrowable
 	}
 
 	@Override
-	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context)
+	public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context)
 	{
 		return SHAPE;
 	}
 
 	@Override
-	public boolean canSurvive(BlockState state, IWorldReader worldIn, BlockPos pos)
+	public boolean canSurvive(BlockState state, LevelReader worldIn, BlockPos pos)
 	{
 		BlockPos blockpos = pos.below();
 		BlockState iblockstate = worldIn.getBlockState(blockpos);
@@ -67,15 +67,15 @@ public class GNSTallGrassBlock extends BushBlock implements IGrowable
 	}
 
 	@Override
-	public boolean canBeReplaced(BlockState state, BlockItemUseContext useContext)
+	public boolean canBeReplaced(BlockState state, BlockPlaceContext useContext)
 	{
 		return true;
 	}
 
 	@Override
-	public void entityInside(BlockState state, World worldIn, BlockPos pos, Entity entityIn)
+	public void entityInside(BlockState state, Level worldIn, BlockPos pos, Entity entityIn)
 	{
-		if (this == GNSBlocks.prickly_nightmare_grass && !(entityIn instanceof IMob || entityIn instanceof ItemEntity || entityIn instanceof ZombieHorseEntity || entityIn instanceof SkeletonHorseEntity))
+		if (this == GNSBlocks.prickly_nightmare_grass && !(entityIn instanceof Enemy || entityIn instanceof ItemEntity || entityIn instanceof ZombieHorse || entityIn instanceof SkeletonHorse))
 		{
 			entityIn.hurt(new DamageSource("nightmare_grass_block"), 1.0F);
 		}
@@ -89,19 +89,19 @@ public class GNSTallGrassBlock extends BushBlock implements IGrowable
 	}
 
 	@Override
-	public boolean isValidBonemealTarget(IBlockReader worldIn, BlockPos pos, BlockState state, boolean isClient)
+	public boolean isValidBonemealTarget(BlockGetter worldIn, BlockPos pos, BlockState state, boolean isClient)
 	{
 		return false;
 	}
 
 	@Override
-	public boolean isBonemealSuccess(World worldIn, Random rand, BlockPos pos, BlockState state)
+	public boolean isBonemealSuccess(Level worldIn, Random rand, BlockPos pos, BlockState state)
 	{
 		return false;
 	}
 
 	@Override
-	public void performBonemeal(ServerWorld p_225535_1_, Random p_225535_2_, BlockPos p_225535_3_, BlockState p_225535_4_)
+	public void performBonemeal(ServerLevel p_225535_1_, Random p_225535_2_, BlockPos p_225535_3_, BlockState p_225535_4_)
 	{
 	}
 }

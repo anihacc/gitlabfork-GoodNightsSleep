@@ -5,11 +5,11 @@ import java.util.function.Supplier;
 import com.legacy.goodnightsleep.registry.GNSBlocks;
 import com.legacy.goodnightsleep.registry.GNSItems;
 
-import net.minecraft.item.IItemTier;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.util.LazyValue;
+import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.util.LazyLoadedValue;
 
-public enum GNSItemTier implements IItemTier
+public enum GNSItemTier implements Tier
 {
 	// @formatter:off
 	CANDY(1, 196, 4.0F, 1.0F, 5, () -> {return Ingredient.of(GNSBlocks.candy_block);}),
@@ -30,7 +30,7 @@ public enum GNSItemTier implements IItemTier
 
 	private final int enchantability;
 
-	private final LazyValue<Ingredient> repairMaterial;
+	private final LazyLoadedValue<Ingredient> repairMaterial;
 
 	private GNSItemTier(int harvestLevelIn, int maxUsesIn, float efficiencyIn, float attackDamageIn, int enchantabilityIn, Supplier<Ingredient> repairMaterialIn)
 	{
@@ -39,7 +39,7 @@ public enum GNSItemTier implements IItemTier
 		this.efficiency = efficiencyIn;
 		this.attackDamage = attackDamageIn;
 		this.enchantability = enchantabilityIn;
-		this.repairMaterial = new LazyValue<>(repairMaterialIn);
+		this.repairMaterial = new LazyLoadedValue<>(repairMaterialIn);
 	}
 
 	public int getUses()

@@ -4,45 +4,45 @@ import java.util.Collection;
 
 import com.legacy.goodnightsleep.registry.GNSEntityTypes;
 
-import net.minecraft.entity.AreaEffectCloudEntity;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.ai.goal.AvoidEntityGoal;
-import net.minecraft.entity.ai.goal.HurtByTargetGoal;
-import net.minecraft.entity.ai.goal.LookAtGoal;
-import net.minecraft.entity.ai.goal.LookRandomlyGoal;
-import net.minecraft.entity.ai.goal.MeleeAttackGoal;
-import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
-import net.minecraft.entity.ai.goal.SwimGoal;
-import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
-import net.minecraft.entity.monster.CreeperEntity;
-import net.minecraft.entity.monster.MonsterEntity;
-import net.minecraft.entity.passive.CatEntity;
-import net.minecraft.entity.passive.OcelotEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.Hand;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.Explosion;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.AreaEffectCloud;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
+import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
+import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
+import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
+import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
+import net.minecraft.world.entity.ai.goal.FloatGoal;
+import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
+import net.minecraft.world.entity.monster.Creeper;
+import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.animal.Cat;
+import net.minecraft.world.entity.animal.Ocelot;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.util.Mth;
+import net.minecraft.world.level.Explosion;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class BabyCreeperEntity extends MonsterEntity
+public class BabyCreeperEntity extends Monster
 {
-	private static final DataParameter<Integer> STATE = EntityDataManager.defineId(BabyCreeperEntity.class, DataSerializers.INT);
-	private static final DataParameter<Boolean> POWERED = EntityDataManager.defineId(BabyCreeperEntity.class, DataSerializers.BOOLEAN);
-	private static final DataParameter<Boolean> IGNITED = EntityDataManager.defineId(BabyCreeperEntity.class, DataSerializers.BOOLEAN);
+	private static final EntityDataAccessor<Integer> STATE = SynchedEntityData.defineId(BabyCreeperEntity.class, EntityDataSerializers.INT);
+	private static final EntityDataAccessor<Boolean> POWERED = SynchedEntityData.defineId(BabyCreeperEntity.class, EntityDataSerializers.BOOLEAN);
+	private static final EntityDataAccessor<Boolean> IGNITED = SynchedEntityData.defineId(BabyCreeperEntity.class, EntityDataSerializers.BOOLEAN);
 
 	private int lastActiveTime;
 	/**
@@ -55,28 +55,28 @@ public class BabyCreeperEntity extends MonsterEntity
 
 	private int explosionRadius = 0;
 
-	public BabyCreeperEntity(EntityType<? extends BabyCreeperEntity> type, World worldIn)
+	public BabyCreeperEntity(EntityType<? extends BabyCreeperEntity> type, Level worldIn)
 	{
 		super(type, worldIn);
 		// this.setSize(0.6F, 1.3F);
 	}
 
-	public BabyCreeperEntity(World worldIn)
+	public BabyCreeperEntity(Level worldIn)
 	{
 		this(GNSEntityTypes.BABY_CREEPER, worldIn);
 	}
 
 	protected void registerGoals()
 	{
-		this.goalSelector.addGoal(1, new SwimGoal(this));
+		this.goalSelector.addGoal(1, new FloatGoal(this));
 		this.goalSelector.addGoal(2, new BabyCreeperSwellGoal(this));
-		this.goalSelector.addGoal(3, new AvoidEntityGoal<>(this, OcelotEntity.class, 6.0F, 1.0D, 1.2D));
-		this.goalSelector.addGoal(3, new AvoidEntityGoal<>(this, CatEntity.class, 6.0F, 1.0D, 1.2D));
+		this.goalSelector.addGoal(3, new AvoidEntityGoal<>(this, Ocelot.class, 6.0F, 1.0D, 1.2D));
+		this.goalSelector.addGoal(3, new AvoidEntityGoal<>(this, Cat.class, 6.0F, 1.0D, 1.2D));
 		this.goalSelector.addGoal(4, new MeleeAttackGoal(this, 1.0D, false));
-		this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 0.8D));
-		this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 8.0F));
-		this.goalSelector.addGoal(6, new LookRandomlyGoal(this));
-		this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
+		this.goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 0.8D));
+		this.goalSelector.addGoal(6, new LookAtPlayerGoal(this, Player.class, 8.0F));
+		this.goalSelector.addGoal(6, new RandomLookAroundGoal(this));
+		this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, true));
 		this.targetSelector.addGoal(2, new HurtByTargetGoal(this));
 	}
 
@@ -91,14 +91,14 @@ public class BabyCreeperEntity extends MonsterEntity
 		return this.getTarget() == null ? 3 : 3 + (int) (this.getHealth() - 1.0F);
 	}
 
-	public boolean causeFallDamage(float distance, float damageMultiplier)
+	public boolean causeFallDamage(float distance, float damageMultiplier, DamageSource source)
 	{
 		this.timeSinceIgnited = (int) ((float) this.timeSinceIgnited + distance * 1.5F);
 		if (this.timeSinceIgnited > this.fuseTime - 5)
 		{
 			this.timeSinceIgnited = this.fuseTime - 5;
 		}
-		return super.causeFallDamage(distance, damageMultiplier);
+		return super.causeFallDamage(distance, damageMultiplier, source);
 	}
 
 	protected void defineSynchedData()
@@ -109,7 +109,7 @@ public class BabyCreeperEntity extends MonsterEntity
 		this.entityData.define(IGNITED, false);
 	}
 
-	public void addAdditionalSaveData(CompoundNBT compound)
+	public void addAdditionalSaveData(CompoundTag compound)
 	{
 		super.addAdditionalSaveData(compound);
 		if (this.entityData.get(POWERED))
@@ -124,7 +124,7 @@ public class BabyCreeperEntity extends MonsterEntity
 	/**
 	 * (abstract) Protected helper method to read subclass entity data from NBT.
 	 */
-	public void readAdditionalSaveData(CompoundNBT compound)
+	public void readAdditionalSaveData(CompoundTag compound)
 	{
 		super.readAdditionalSaveData(compound);
 		this.entityData.set(POWERED, compound.getBoolean("powered"));
@@ -187,9 +187,9 @@ public class BabyCreeperEntity extends MonsterEntity
 	{
 		super.dropCustomDeathLoot(source, looting, recentlyHitIn);
 		Entity entity = source.getEntity();
-		if (entity != this && entity instanceof CreeperEntity)
+		if (entity != this && entity instanceof Creeper)
 		{
-			CreeperEntity creeperentity = (CreeperEntity) entity;
+			Creeper creeperentity = (Creeper) entity;
 			if (creeperentity.canDropMobsSkull())
 			{
 				creeperentity.increaseDroppedSkulls();
@@ -218,7 +218,7 @@ public class BabyCreeperEntity extends MonsterEntity
 	@OnlyIn(Dist.CLIENT)
 	public float getCreeperFlashIntensity(float partialTicks)
 	{
-		return MathHelper.lerp(partialTicks, (float) this.lastActiveTime, (float) this.timeSinceIgnited) / (float) (this.fuseTime - 2);
+		return Mth.lerp(partialTicks, (float) this.lastActiveTime, (float) this.timeSinceIgnited) / (float) (this.fuseTime - 2);
 	}
 
 	/**
@@ -246,7 +246,7 @@ public class BabyCreeperEntity extends MonsterEntity
 		this.dataManager.set(POWERED, true);
 	}*/
 
-	protected ActionResultType mobInteract(PlayerEntity player, Hand hand)
+	protected InteractionResult mobInteract(Player player, InteractionHand hand)
 	{
 		ItemStack itemstack = player.getItemInHand(hand);
 		if (itemstack.getItem() == Items.FLINT_AND_STEEL)
@@ -260,7 +260,7 @@ public class BabyCreeperEntity extends MonsterEntity
 				{
 					p_213625_1_.broadcastBreakEvent(hand);
 				});
-				return ActionResultType.SUCCESS;
+				return InteractionResult.SUCCESS;
 			}
 		}
 		return super.mobInteract(player, hand);
@@ -274,29 +274,29 @@ public class BabyCreeperEntity extends MonsterEntity
 	{
 		if (!this.level.isClientSide)
 		{
-			Explosion.Mode explosion$mode = net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.level, this) ? Explosion.Mode.DESTROY : Explosion.Mode.NONE;
+			Explosion.BlockInteraction explosion$mode = net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.level, this) ? Explosion.BlockInteraction.DESTROY : Explosion.BlockInteraction.NONE;
 			float f = this.getPowered() ? 2.0F : 1.0F;
 			this.dead = true;
 			this.level.explode(this, this.getX(), this.getY(), this.getZ(), (float) this.explosionRadius * f, explosion$mode);
-			this.remove();
+			this.discard();
 			this.spawnLingeringCloud();
 		}
 	}
 
 	private void spawnLingeringCloud()
 	{
-		Collection<EffectInstance> collection = this.getActiveEffects();
+		Collection<MobEffectInstance> collection = this.getActiveEffects();
 		if (!collection.isEmpty())
 		{
-			AreaEffectCloudEntity areaeffectcloudentity = new AreaEffectCloudEntity(this.level, this.getX(), this.getY(), this.getZ());
+			AreaEffectCloud areaeffectcloudentity = new AreaEffectCloud(this.level, this.getX(), this.getY(), this.getZ());
 			areaeffectcloudentity.setRadius(2.5F);
 			areaeffectcloudentity.setRadiusOnUse(-0.5F);
 			areaeffectcloudentity.setWaitTime(10);
 			areaeffectcloudentity.setDuration(areaeffectcloudentity.getDuration() / 2);
 			areaeffectcloudentity.setRadiusPerTick(-areaeffectcloudentity.getRadius() / (float) areaeffectcloudentity.getDuration());
-			for (EffectInstance effectinstance : collection)
+			for (MobEffectInstance effectinstance : collection)
 			{
-				areaeffectcloudentity.addEffect(new EffectInstance(effectinstance));
+				areaeffectcloudentity.addEffect(new MobEffectInstance(effectinstance));
 			}
 			this.level.addFreshEntity(areaeffectcloudentity);
 		}

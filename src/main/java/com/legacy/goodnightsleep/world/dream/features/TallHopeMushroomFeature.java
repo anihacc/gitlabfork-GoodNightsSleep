@@ -4,21 +4,21 @@ import java.util.Random;
 
 import com.mojang.serialization.Codec;
 
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.gen.feature.BigMushroomFeatureConfig;
-import net.minecraft.world.gen.feature.BigRedMushroomFeature;
+import net.minecraft.core.Direction;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.levelgen.feature.configurations.HugeMushroomFeatureConfiguration;
+import net.minecraft.world.level.levelgen.feature.HugeRedMushroomFeature;
 
-public class TallHopeMushroomFeature extends BigRedMushroomFeature
+public class TallHopeMushroomFeature extends HugeRedMushroomFeature
 {
-	public TallHopeMushroomFeature(Codec<BigMushroomFeatureConfig> codecIn)
+	public TallHopeMushroomFeature(Codec<HugeMushroomFeatureConfiguration> codecIn)
 	{
 		super(codecIn);
 	}
 
 	@Override
-	protected void placeTrunk(IWorld worldIn, Random randomIn, BlockPos posIn, BigMushroomFeatureConfig configIn, int stemHeight, BlockPos.Mutable newPosIn)
+	protected void placeTrunk(LevelAccessor worldIn, Random randomIn, BlockPos posIn, HugeMushroomFeatureConfiguration configIn, int stemHeight, BlockPos.MutableBlockPos newPosIn)
 	{
 		/*if (stemHeight >= 20 && configIn.foliageRadius > 3)
 		{
@@ -44,7 +44,7 @@ public class TallHopeMushroomFeature extends BigRedMushroomFeature
 			{
 				newPosIn.set(posIn).move(Direction.UP, i);
 
-				if (worldIn.getBlockState(newPosIn).canBeReplacedByLogs(worldIn, newPosIn))
+				if (worldIn.getBlockState(newPosIn).isSolidRender(worldIn, newPosIn))
 				{
 					this.setBlock(worldIn, newPosIn, configIn.stemProvider.getState(randomIn, posIn));
 				}

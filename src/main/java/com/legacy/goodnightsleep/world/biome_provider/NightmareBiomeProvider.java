@@ -22,18 +22,18 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 
 import it.unimi.dsi.fastutil.doubles.DoubleArrayList;
 import it.unimi.dsi.fastutil.doubles.DoubleList;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SharedSeedRandom;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.RegistryLookupCodec;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.BiomeRegistry;
-import net.minecraft.world.biome.provider.BiomeProvider;
-import net.minecraft.world.gen.MaxMinNoiseMixer;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.levelgen.WorldgenRandom;
+import net.minecraft.core.Registry;
+import net.minecraft.resources.RegistryLookupCodec;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.data.worldgen.biome.Biomes;
+import net.minecraft.world.level.biome.BiomeSource;
+import net.minecraft.world.level.levelgen.synth.NormalNoise;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class NightmareBiomeProvider extends BiomeProvider
+public class NightmareBiomeProvider extends BiomeSource
 {
 	private static final NightmareBiomeProvider.Noise defaultNoise = new NightmareBiomeProvider.Noise(-7, ImmutableList.of(1.0D, 1.0D));
 	public static final MapCodec<NightmareBiomeProvider> DIRECT_CODEC = RecordCodecBuilder.mapCodec((p_242602_0_) ->
@@ -41,9 +41,9 @@ public class NightmareBiomeProvider extends BiomeProvider
 		return p_242602_0_.group(Codec.LONG.fieldOf("seed").forGetter((p_235286_0_) ->
 		{
 			return p_235286_0_.seed;
-		}), RecordCodecBuilder.<Pair<Biome.Attributes, Supplier<Biome>>>create((p_235282_0_) ->
+		}), RecordCodecBuilder.<Pair<Biome.ClimateParameters, Supplier<Biome>>>create((p_235282_0_) ->
 		{
-			return p_235282_0_.group(Biome.Attributes.CODEC.fieldOf("parameters").forGetter(Pair::getFirst), Biome.CODEC.fieldOf("biome").forGetter(Pair::getSecond)).apply(p_235282_0_, Pair::of);
+			return p_235282_0_.group(Biome.ClimateParameters.CODEC.fieldOf("parameters").forGetter(Pair::getFirst), Biome.CODEC.fieldOf("biome").forGetter(Pair::getSecond)).apply(p_235282_0_, Pair::of);
 		}).listOf().fieldOf("biomes").forGetter((p_235284_0_) ->
 		{
 			return p_235284_0_.biomes;
@@ -77,26 +77,26 @@ public class NightmareBiomeProvider extends BiomeProvider
 	private final NightmareBiomeProvider.Noise humidityParams;
 	private final NightmareBiomeProvider.Noise altitudeParams;
 	private final NightmareBiomeProvider.Noise weirdnessParams;
-	private final MaxMinNoiseMixer temperatureNoise;
-	private final MaxMinNoiseMixer humidityNoise;
-	private final MaxMinNoiseMixer altitudeNoise;
-	private final MaxMinNoiseMixer weirdnessNoise;
-	private final List<Pair<Biome.Attributes, Supplier<Biome>>> biomes;
+	private final NormalNoise temperatureNoise;
+	private final NormalNoise humidityNoise;
+	private final NormalNoise altitudeNoise;
+	private final NormalNoise weirdnessNoise;
+	private final List<Pair<Biome.ClimateParameters, Supplier<Biome>>> biomes;
 	private final boolean useY;
 	private final long seed;
 	private final Optional<Pair<Registry<Biome>, NightmareBiomeProvider.NightmarePreset>> biomePreset;
 
-	public NightmareBiomeProvider(long seedIn, List<Pair<Biome.Attributes, Supplier<Biome>>> biomesIn, Optional<Pair<Registry<Biome>, NightmareBiomeProvider.NightmarePreset>> presetIn)
+	public NightmareBiomeProvider(long seedIn, List<Pair<Biome.ClimateParameters, Supplier<Biome>>> biomesIn, Optional<Pair<Registry<Biome>, NightmareBiomeProvider.NightmarePreset>> presetIn)
 	{
 		this(seedIn, biomesIn, defaultNoise, defaultNoise, defaultNoise, defaultNoise, presetIn);
 	}
 
-	public NightmareBiomeProvider(long seedIn, List<Pair<Biome.Attributes, Supplier<Biome>>> biomesIn, NightmareBiomeProvider.Noise tempNoiseIn, NightmareBiomeProvider.Noise humidityNoiseIn, NightmareBiomeProvider.Noise altitudeNoiseIn, NightmareBiomeProvider.Noise weirdnessNoiseIn)
+	public NightmareBiomeProvider(long seedIn, List<Pair<Biome.ClimateParameters, Supplier<Biome>>> biomesIn, NightmareBiomeProvider.Noise tempNoiseIn, NightmareBiomeProvider.Noise humidityNoiseIn, NightmareBiomeProvider.Noise altitudeNoiseIn, NightmareBiomeProvider.Noise weirdnessNoiseIn)
 	{
 		this(seedIn, biomesIn, tempNoiseIn, humidityNoiseIn, altitudeNoiseIn, weirdnessNoiseIn, Optional.empty());
 	}
 
-	public NightmareBiomeProvider(long seedIn, List<Pair<Biome.Attributes, Supplier<Biome>>> biomesIn, NightmareBiomeProvider.Noise tempNoiseIn, NightmareBiomeProvider.Noise humidityNoiseIn, NightmareBiomeProvider.Noise altitudeNoiseIn, NightmareBiomeProvider.Noise weirdnessNoiseIn, Optional<Pair<Registry<Biome>, NightmareBiomeProvider.NightmarePreset>> presetIn)
+	public NightmareBiomeProvider(long seedIn, List<Pair<Biome.ClimateParameters, Supplier<Biome>>> biomesIn, NightmareBiomeProvider.Noise tempNoiseIn, NightmareBiomeProvider.Noise humidityNoiseIn, NightmareBiomeProvider.Noise altitudeNoiseIn, NightmareBiomeProvider.Noise weirdnessNoiseIn, Optional<Pair<Registry<Biome>, NightmareBiomeProvider.NightmarePreset>> presetIn)
 	{
 		super(biomesIn.stream().map(Pair::getSecond));
 		this.seed = seedIn;
@@ -105,22 +105,22 @@ public class NightmareBiomeProvider extends BiomeProvider
 		this.humidityParams = humidityNoiseIn;
 		this.altitudeParams = altitudeNoiseIn;
 		this.weirdnessParams = weirdnessNoiseIn;
-		this.temperatureNoise = MaxMinNoiseMixer.create(new SharedSeedRandom(seedIn), tempNoiseIn.firstOctave(), tempNoiseIn.amplitudes());
-		this.humidityNoise = MaxMinNoiseMixer.create(new SharedSeedRandom(seedIn + 1L), humidityNoiseIn.firstOctave(), humidityNoiseIn.amplitudes());
-		this.altitudeNoise = MaxMinNoiseMixer.create(new SharedSeedRandom(seedIn + 2L), altitudeNoiseIn.firstOctave(), altitudeNoiseIn.amplitudes());
-		this.weirdnessNoise = MaxMinNoiseMixer.create(new SharedSeedRandom(seedIn + 3L), weirdnessNoiseIn.firstOctave(), weirdnessNoiseIn.amplitudes());
+		this.temperatureNoise = NormalNoise.create(new WorldgenRandom(seedIn), tempNoiseIn.firstOctave(), tempNoiseIn.amplitudes());
+		this.humidityNoise = NormalNoise.create(new WorldgenRandom(seedIn + 1L), humidityNoiseIn.firstOctave(), humidityNoiseIn.amplitudes());
+		this.altitudeNoise = NormalNoise.create(new WorldgenRandom(seedIn + 2L), altitudeNoiseIn.firstOctave(), altitudeNoiseIn.amplitudes());
+		this.weirdnessNoise = NormalNoise.create(new WorldgenRandom(seedIn + 3L), weirdnessNoiseIn.firstOctave(), weirdnessNoiseIn.amplitudes());
 		this.biomes = biomesIn;
 		this.useY = false;
 	}
 
 	@Override
-	protected Codec<? extends BiomeProvider> codec()
+	protected Codec<? extends BiomeSource> codec()
 	{
 		return nightmareProviderCodec;
 	}
 
 	@OnlyIn(Dist.CLIENT)
-	public BiomeProvider withSeed(long seed)
+	public BiomeSource withSeed(long seed)
 	{
 		return new NightmareBiomeProvider(seed, this.biomes, this.temperatureParams, this.humidityParams, this.altitudeParams, this.weirdnessParams, this.biomePreset);
 	}
@@ -136,11 +136,11 @@ public class NightmareBiomeProvider extends BiomeProvider
 	public Biome getNoiseBiome(int x, int y, int z)
 	{
 		int i = this.useY ? y : 0;
-		Biome.Attributes biome$attributes = new Biome.Attributes((float) this.temperatureNoise.getValue((double) x, (double) i, (double) z), (float) this.humidityNoise.getValue((double) x, (double) i, (double) z), (float) this.altitudeNoise.getValue((double) x, (double) i, (double) z), (float) this.weirdnessNoise.getValue((double) x, (double) i, (double) z), 0.0F);
+		Biome.ClimateParameters biome$attributes = new Biome.ClimateParameters((float) this.temperatureNoise.getValue((double) x, (double) i, (double) z), (float) this.humidityNoise.getValue((double) x, (double) i, (double) z), (float) this.altitudeNoise.getValue((double) x, (double) i, (double) z), (float) this.weirdnessNoise.getValue((double) x, (double) i, (double) z), 0.0F);
 		return this.biomes.stream().min(Comparator.comparing((attributeBiomePair) ->
 		{
 			return attributeBiomePair.getFirst().fitness(biome$attributes);
-		})).map(Pair::getSecond).map(Supplier::get).orElse(BiomeRegistry.THE_VOID);
+		})).map(Pair::getSecond).map(Supplier::get).orElse(Biomes.THE_VOID);
 	}
 
 	public boolean stable(long p_235280_1_)
@@ -273,13 +273,13 @@ public class NightmareBiomeProvider extends BiomeProvider
 		private static final Map<ResourceLocation, NightmareBiomeProvider.NightmarePreset> biomeMap = Maps.newHashMap();
 		public static final NightmareBiomeProvider.NightmarePreset nightmarePreset = new NightmareBiomeProvider.NightmarePreset(GoodNightSleep.locate("nightmare"), (preset, biomeList, seedIn) ->
 		{
-			return new NightmareBiomeProvider(seedIn, ImmutableList.of(Pair.of(new Biome.Attributes(0.0F, 0.0F, 0.0F, 0.0F, 0.0F), () ->
+			return new NightmareBiomeProvider(seedIn, ImmutableList.of(Pair.of(new Biome.ClimateParameters(0.0F, 0.0F, 0.0F, 0.0F, 0.0F), () ->
 			{
 				return biomeList.getOrThrow(GNSBiomes.Keys.NIGHTMARE_HILLS);
-			}), Pair.of(new Biome.Attributes(0.1F, 0.0F, 0.0F, 0.0F, 0.1F), () ->
+			}), Pair.of(new Biome.ClimateParameters(0.1F, 0.0F, 0.0F, 0.0F, 0.1F), () ->
 			{
 				return biomeList.getOrThrow(GNSBiomes.Keys.WASTED_FOREST);
-			}), Pair.of(new Biome.Attributes(0.0F, 0.0F, 0.1F, 0.0F, 0.0F), () ->
+			}), Pair.of(new Biome.ClimateParameters(0.0F, 0.0F, 0.1F, 0.0F, 0.0F), () ->
 			{
 				return biomeList.getOrThrow(GNSBiomes.Keys.SHAMEFUL_PLAINS);
 			})), Optional.of(Pair.of(biomeList, preset)));

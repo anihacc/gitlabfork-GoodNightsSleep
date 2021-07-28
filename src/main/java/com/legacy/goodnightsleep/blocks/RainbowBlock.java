@@ -4,23 +4,23 @@ import java.util.Random;
 
 import com.legacy.goodnightsleep.registry.GNSBlocks;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.Entity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.state.EnumProperty;
-import net.minecraft.state.IntegerProperty;
-import net.minecraft.state.StateContainer;
-import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Rotation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.core.Direction;
+import net.minecraft.world.level.block.Rotation;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.Level;
+import net.minecraft.server.level.ServerLevel;
 
 public class RainbowBlock extends Block
 {
@@ -44,7 +44,7 @@ public class RainbowBlock extends Block
 	}
 
 	@Override
-	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context)
+	public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context)
 	{
 		switch ((Direction.Axis) state.getValue(AXIS))
 		{
@@ -57,7 +57,7 @@ public class RainbowBlock extends Block
 	}
 
 	@Override
-	public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos)
+	public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos)
 	{
 		int i = getDistance(facingState) + 1;
 		if (i != 1 || stateIn.getValue(DISTANCE) != i)
@@ -80,10 +80,10 @@ public class RainbowBlock extends Block
 		}
 	}
 
-	private static BlockState updateDistance(BlockState state, IWorld worldIn, BlockPos pos)
+	private static BlockState updateDistance(BlockState state, LevelAccessor worldIn, BlockPos pos)
 	{
 		int i = 100;
-		BlockPos.Mutable blockpos$mutable = new BlockPos.Mutable();
+		BlockPos.MutableBlockPos blockpos$mutable = new BlockPos.MutableBlockPos();
 
 		for (Direction direction : Direction.values())
 		{
@@ -99,7 +99,7 @@ public class RainbowBlock extends Block
 	}
 
 	@Override
-	public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random)
+	public void tick(BlockState state, ServerLevel worldIn, BlockPos pos, Random random)
 	{
 		worldIn.setBlock(pos, updateDistance(state, worldIn, pos), 3);
 
@@ -110,12 +110,12 @@ public class RainbowBlock extends Block
 	}
 
 	@Override
-	public void entityInside(BlockState state, World worldIn, BlockPos pos, Entity entityIn)
+	public void entityInside(BlockState state, Level worldIn, BlockPos pos, Entity entityIn)
 	{
 	}
 
 	@Override
-	public ItemStack getCloneItemStack(IBlockReader worldIn, BlockPos pos, BlockState state)
+	public ItemStack getCloneItemStack(BlockGetter worldIn, BlockPos pos, BlockState state)
 	{
 		return ItemStack.EMPTY;
 	}
@@ -141,7 +141,7 @@ public class RainbowBlock extends Block
 	}
 
 	@Override
-	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder)
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder)
 	{
 		builder.add(AXIS, CORNER_TYPE, SIDE_TYPE, DISTANCE);
 	}

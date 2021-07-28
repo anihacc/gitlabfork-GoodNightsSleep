@@ -4,12 +4,12 @@ import java.util.function.Supplier;
 
 import com.legacy.goodnightsleep.capabillity.DreamPlayer;
 
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.network.PacketBuffer;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.DistExecutor;
-import net.minecraftforge.fml.network.NetworkEvent;
+import net.minecraftforge.fmllegacy.network.NetworkEvent;
 
 public class SendEnteredTimePacket
 {
@@ -20,12 +20,12 @@ public class SendEnteredTimePacket
 		this.enteredTime = timeIn;
 	}
 
-	public static void encoder(SendEnteredTimePacket packet, PacketBuffer buffer)
+	public static void encoder(SendEnteredTimePacket packet, FriendlyByteBuf buffer)
 	{
 		buffer.writeLong(packet.enteredTime);
 	}
 
-	public static SendEnteredTimePacket decoder(PacketBuffer buff)
+	public static SendEnteredTimePacket decoder(FriendlyByteBuf buff)
 	{
 		return new SendEnteredTimePacket(buff.readLong());
 	}
@@ -40,7 +40,7 @@ public class SendEnteredTimePacket
 	@OnlyIn(Dist.CLIENT)
 	private static void handlePacket(SendEnteredTimePacket packet)
 	{
-		PlayerEntity player = net.minecraft.client.Minecraft.getInstance().player;
+		Player player = net.minecraft.client.Minecraft.getInstance().player;
 
 		if (DreamPlayer.get(player) != null)
 			DreamPlayer.get(player).setEnteredDreamTime(packet.enteredTime);
