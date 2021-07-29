@@ -10,17 +10,15 @@ import net.minecraft.world.level.Level;
 
 public class GummyBearEntity extends Animal
 {
-		
 	public GummyBearEntity(EntityType<? extends GummyBearEntity> type, Level worldIn)
-    {
-        super(type, worldIn);
-        //this.setSize(0.6F, 0.7F);
-    }
-	
+	{
+		super(type, worldIn);
+	}
+
 	public GummyBearEntity(Level worldIn)
-    {
-        this(GNSEntityTypes.GUMMY_BEAR, worldIn);
-    }
+	{
+		this(GNSEntityTypes.GUMMY_BEAR, worldIn);
+	}
 
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel worldIn, AgeableMob ageableIn)

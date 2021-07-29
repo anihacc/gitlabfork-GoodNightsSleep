@@ -1,10 +1,11 @@
 package com.legacy.goodnightsleep.client.render.entity;
 
 import com.legacy.goodnightsleep.GoodNightSleep;
+import com.legacy.goodnightsleep.client.render.GNSRenderRefs;
 import com.legacy.goodnightsleep.client.render.models.GummyBearModel;
 import com.legacy.goodnightsleep.entity.dream.GummyBearEntity;
 
-import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
@@ -15,9 +16,9 @@ public class GummyBearRenderer extends MobRenderer<GummyBearEntity, GummyBearMod
 {
 	private static final ResourceLocation TEXTURE = GoodNightSleep.locate("textures/entity/gummy_bear.png");
 
-	public GummyBearRenderer(EntityRenderDispatcher renderManagerIn)
+	public GummyBearRenderer(EntityRendererProvider.Context context)
 	{
-		super(renderManagerIn, new GummyBearModel<>(), 0.5F);
+		super(context, new GummyBearModel<>(context.bakeLayer(GNSRenderRefs.GUMMY_BEAR)), 0.5F);
 	}
 
 	@Override

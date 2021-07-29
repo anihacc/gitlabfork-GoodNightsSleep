@@ -3,7 +3,6 @@ package com.legacy.goodnightsleep.registry;
 import com.legacy.goodnightsleep.GoodNightSleep;
 import com.legacy.goodnightsleep.client.audio.GNSSounds;
 import com.legacy.goodnightsleep.item.GNSCreativeTabs;
-import com.legacy.goodnightsleep.tile_entity.GNSTileEntityTypes;
 
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.entity.EntityType;
@@ -57,7 +56,7 @@ public class GNSRegistry
 	@SubscribeEvent
 	public static void registerTileEntityTypes(Register<BlockEntityType<?>> event)
 	{
-		GNSTileEntityTypes.init(event);
+		GNSBlockEntityTypes.init(event);
 	}
 
 	@SubscribeEvent

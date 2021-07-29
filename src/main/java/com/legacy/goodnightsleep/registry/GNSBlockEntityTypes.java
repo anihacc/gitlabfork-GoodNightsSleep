@@ -1,12 +1,11 @@
-package com.legacy.goodnightsleep.tile_entity;
+package com.legacy.goodnightsleep.registry;
 
-import com.legacy.goodnightsleep.registry.GNSBlocks;
-import com.legacy.goodnightsleep.registry.GNSRegistry;
+import com.legacy.goodnightsleep.tile_entity.DreamBedBlockEntity;
 
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.event.RegistryEvent.Register;
 
-public class GNSTileEntityTypes
+public class GNSBlockEntityTypes
 {
 	public static final BlockEntityType<DreamBedBlockEntity> DREAM_BED = BlockEntityType.Builder.of(DreamBedBlockEntity::new, GNSBlocks.luxurious_bed, GNSBlocks.wretched_bed, GNSBlocks.strange_bed).build(null);
 	/*public static final BlockEntityType<TileEntityLuxuriousBed> LUXURIOUS_BED = null;

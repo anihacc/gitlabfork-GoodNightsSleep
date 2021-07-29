@@ -1,11 +1,12 @@
 package com.legacy.goodnightsleep.client.render.entity;
 
 import com.legacy.goodnightsleep.GoodNightSleep;
+import com.legacy.goodnightsleep.client.render.GNSRenderRefs;
 import com.legacy.goodnightsleep.client.render.models.BabyCreeperModel;
 import com.legacy.goodnightsleep.entity.dream.BabyCreeperEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 
-import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
@@ -17,9 +18,9 @@ public class BabyCreeperRenderer extends MobRenderer<BabyCreeperEntity, BabyCree
 {
 	private static final ResourceLocation TEXTURE = GoodNightSleep.locate("textures/entity/baby_creeper.png");
 
-	public BabyCreeperRenderer(EntityRenderDispatcher renderManagerIn)
+	public BabyCreeperRenderer(EntityRendererProvider.Context context)
 	{
-		super(renderManagerIn, new BabyCreeperModel<>(), 0.5F);
+		super(context, new BabyCreeperModel<>(context.bakeLayer(GNSRenderRefs.BABY_CREEPER)), 0.5F);
 	}
 
 	protected void scale(BabyCreeperEntity entitylivingbaseIn, PoseStack matrix, float partialTickTime)

@@ -8,7 +8,7 @@ import com.legacy.goodnightsleep.registry.GNSBlocks;
 import com.legacy.goodnightsleep.registry.GNSEntityTypes;
 import com.legacy.goodnightsleep.registry.GNSFeatures;
 import com.legacy.goodnightsleep.registry.GNSItems;
-import com.legacy.goodnightsleep.tile_entity.GNSTileEntityTypes;
+import com.legacy.goodnightsleep.registry.GNSBlockEntityTypes;
 
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.entity.EntityType;
@@ -256,9 +256,9 @@ public class GNSMappingChanges
 		private static final long serialVersionUID = -3518059723027038971L;
 
 		{
-			put(GoodNightSleep.locateOld("luxurious_bed"), GNSTileEntityTypes.DREAM_BED);
-			put(GoodNightSleep.locateOld("wretched_bed"), GNSTileEntityTypes.DREAM_BED);
-			put(GoodNightSleep.locateOld("strange_bed"), GNSTileEntityTypes.DREAM_BED);
+			put(GoodNightSleep.locateOld("luxurious_bed"), GNSBlockEntityTypes.DREAM_BED);
+			put(GoodNightSleep.locateOld("wretched_bed"), GNSBlockEntityTypes.DREAM_BED);
+			put(GoodNightSleep.locateOld("strange_bed"), GNSBlockEntityTypes.DREAM_BED);
 		}
 	};
 

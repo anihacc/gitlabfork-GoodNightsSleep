@@ -1,14 +1,14 @@
 package com.legacy.goodnightsleep.data;
 
-import static net.minecraft.item.Items.BOOK;
+import java.util.List;
+import java.util.function.Consumer;
 
-importimport com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.legacy.goodnightsleep.GoodNightSleep;
 import com.legacy.goodnightsleep.registry.GNSBlocks;
 import com.legacy.goodnightsleep.registry.GNSItems;
-import java.util.List;
-import java.util.function.Consumer;
+
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeProvider;
@@ -19,39 +19,13 @@ import net.minecraft.data.recipes.SingleItemRecipeBuilder;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.Tag.Named;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.SimpleCookingSerializer;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SlabBlock;
-import net.minecraftforge.common.Tags;
-
- javanet.minecraft.world.item.Items.util.function.Consumer;
-
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableMap;
-import com.legacy.goodnightsleep.GoodNightSleep;
-import com.legacy.goodnightsleep.registry.GNSBlocks;
-import com.legacy.goodnightsleep.registry.GNSItems;
-
-import net.minecraft.block.Blocks;
-import net.minecraft.block.SlabBlock;
-import net.minecraft.data.CookingRecipeBuilder;
-import net.minecraft.data.DataGenerator;
-import net.minecraft.data.IFinishedRecipe;
-import net.minecraft.data.RecipeProvider;
-import net.minecraft.data.ShapedRecipeBuilder;
-import net.minecraft.data.ShapelessRecipeBuilder;
-import net.minecraft.data.SingleItemRecipeBuilder;
-import net.minecraft.item.Item;
-import net.minecraft.item.Items;
-import net.minecraft.item.crafting.CookingRecipeSerializer;
-import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.tags.ItemTags;
-import net.minecraft.tags.ITag.INamedTag;
-import net.minecraft.util.IItemProvider;
 import net.minecraftforge.common.Tags;
 
 @SuppressWarnings("unused")
@@ -66,7 +40,7 @@ public class GNSRecipeProv extends RecipeProvider
 	}
 
 	@Override
-	protected void buildShapelessRecipes(Consumer<FinishedRecipe> consumer)
+	protected void buildCraftingRecipes(Consumer<FinishedRecipe> consumer)
 	{
 		this.con = consumer;
 
@@ -171,7 +145,6 @@ public class GNSRecipeProv extends RecipeProvider
 		blasting(GNSItemTags.NEGATITE_ORES, GNSItems.negatite, 1.0F);
 
 		cooking(GNSBlocks.delusion_cobblestone, GNSBlocks.delusion_stone, 0.1F);
-
 	}
 
 	private void simple2x2(ItemLike item, ItemLike output, int amount)
@@ -253,7 +226,7 @@ public class GNSRecipeProv extends RecipeProvider
 	{
 		results.forEach(result ->
 		{
-			SingleItemRecipeBuilder.stonecutting(Ingredient.of(ingredient), result, result instanceof SlabBlock ? 2 : 1).unlocks(hasItem, has(ingredient)).save(con, GoodNightSleep.find(result.asItem().getRegistryName().getPath() + "_stonecutting_" + ingredient.asItem().getRegistryName().getPath()));
+			SingleItemRecipeBuilder.stonecutting(Ingredient.of(ingredient), result, result instanceof SlabBlock ? 2 : 1).unlockedBy(hasItem, has(ingredient)).save(con, GoodNightSleep.find(result.asItem().getRegistryName().getPath() + "_stonecutting_" + ingredient.asItem().getRegistryName().getPath()));
 		});
 	}
 

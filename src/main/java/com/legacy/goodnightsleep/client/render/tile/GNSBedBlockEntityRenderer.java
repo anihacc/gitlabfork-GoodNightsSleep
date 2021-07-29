@@ -2,8 +2,8 @@ package com.legacy.goodnightsleep.client.render.tile;
 
 import com.legacy.goodnightsleep.client.render.GNSRenderRefs;
 import com.legacy.goodnightsleep.registry.GNSBlocks;
+import com.legacy.goodnightsleep.registry.GNSBlockEntityTypes;
 import com.legacy.goodnightsleep.tile_entity.DreamBedBlockEntity;
-import com.legacy.goodnightsleep.tile_entity.GNSTileEntityTypes;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Vector3f;
@@ -48,7 +48,7 @@ public class GNSBedBlockEntityRenderer implements BlockEntityRenderer<DreamBedBl
 		if (level != null)
 		{
 			BlockState blockstate = bed.getBlockState();
-			DoubleBlockCombiner.NeighborCombineResult<? extends DreamBedBlockEntity> neighborcombineresult = DoubleBlockCombiner.combineWithNeigbour(GNSTileEntityTypes.DREAM_BED, BedBlock::getBlockType, BedBlock::getConnectedDirection, ChestBlock.FACING, blockstate, level, bed.getBlockPos(), (p_112202_, p_112203_) -> false);
+			DoubleBlockCombiner.NeighborCombineResult<? extends DreamBedBlockEntity> neighborcombineresult = DoubleBlockCombiner.combineWithNeigbour(GNSBlockEntityTypes.DREAM_BED, BedBlock::getBlockType, BedBlock::getConnectedDirection, ChestBlock.FACING, blockstate, level, bed.getBlockPos(), (p_112202_, p_112203_) -> false);
 			int i = neighborcombineresult.<Int2IntFunction>apply(new BrightnessCombiner<>()).get(p_112209_);
 			this.renderPiece(stack, buffer, blockstate.getValue(BedBlock.PART) == BedPart.HEAD ? this.headRoot : this.footRoot, blockstate.getValue(BedBlock.FACING), material, i, p_112210_, false);
 		}
